@@ -5,6 +5,7 @@ import type { AdapterAccount } from "next-auth/adapters";
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   email: text("email").notNull().unique(),
+  password: text("password"),
   name: text("name"),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
