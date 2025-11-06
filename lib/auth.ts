@@ -5,6 +5,29 @@ import * as schema from "@/shared/schema";
 import { compare } from "bcryptjs";
 import { eq } from "drizzle-orm";
 
+async function logAuditEvent(
+  userId: number | null,
+  action: string,
+  resource: string,
+  metadata?: any,
+  ipAddress?: string,
+  userAgent?: string
+) {
+  try {
+    await db.insert(schema.auditLogs).values({
+      userId,
+      action,
+      resource,
+      resourceId: userId?.toString() || null,
+      ipAddress: ipAddress || "unknown",
+      userAgent: userAgent || "unknown",
+      metadata: metadata || null,
+    });
+  } catch (error) {
+    console.error("Failed to log audit event:", error);
+  }
+}
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: {
     strategy: "jwt",
@@ -21,8 +44,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) {
+          await logAuditEvent(
+            null,
+            "auth.login.failed",
+            "authentication",
+            { reason: "missing_credentials", email: credentials?.email }
+          );
           throw new Error("Invalid credentials");
         }
 
@@ -32,14 +61,33 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           .where(eq(schema.users.email, credentials.email as string));
 
         if (!user || !user.password) {
+          await logAuditEvent(
+            null,
+            "auth.login.failed",
+            "authentication",
+            { reason: "user_not_found", email: credentials.email }
+          );
           throw new Error("Invalid credentials");
         }
 
         const isPasswordValid = await compare(credentials.password as string, user.password);
 
         if (!isPasswordValid) {
+          await logAuditEvent(
+            user.id,
+            "auth.login.failed",
+            "authentication",
+            { reason: "invalid_password", email: credentials.email }
+          );
           throw new Error("Invalid credentials");
         }
+
+        await logAuditEvent(
+          user.id,
+          "auth.login.success",
+          "authentication",
+          { email: user.email }
+        );
 
         return {
           id: user.id.toString(),
