@@ -1,11 +1,12 @@
 import "server-only";
-import { auth } from "./auth";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./auth";
 import { db } from "./db";
 import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
 
 export async function getUser() {
-  const session = await auth();
+  const session = await getServerSession(authOptions);
   if (!session?.user) return null;
 
   const userId = parseInt((session.user as any).id);
@@ -39,7 +40,7 @@ export async function logAudit(
   resourceId?: string,
   metadata?: any
 ) {
-  const session = await auth();
+  const session = await getServerSession(authOptions);
   const userId = session?.user ? parseInt((session.user as any).id) : null;
 
   try {

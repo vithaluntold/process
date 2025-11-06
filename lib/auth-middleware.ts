@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "./auth";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./auth";
 
 export async function withAuth(
   request: NextRequest,
   handler: (req: NextRequest, user: any) => Promise<NextResponse>
 ) {
-  const session = await auth();
+  const session = await getServerSession(authOptions);
 
   if (!session?.user) {
     return NextResponse.json(
@@ -21,7 +22,7 @@ export async function withAdmin(
   request: NextRequest,
   handler: (req: NextRequest, user: any) => Promise<NextResponse>
 ) {
-  const session = await auth();
+  const session = await getServerSession(authOptions);
 
   if (!session?.user) {
     return NextResponse.json(

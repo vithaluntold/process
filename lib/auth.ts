@@ -29,9 +29,11 @@ async function logAuditEvent(
   }
 }
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+import type { NextAuthOptions } from "next-auth";
+
+const authOptions: NextAuthOptions = {
   session: {
-    strategy: "jwt",
+    strategy: "jwt" as const,
     maxAge: 30 * 24 * 60 * 60,
   },
   pages: {
@@ -83,13 +85,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           throw new Error("Invalid credentials");
         }
 
-        await logAuditEvent(
-          user.id,
-          "auth.login.success",
-          "authentication",
-          { email: user.email }
-        );
-
         return {
           id: user.id.toString(),
           email: user.email,
@@ -100,30 +95,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  events: {
-    async signIn({ user, account, profile, isNewUser }) {
-      await logAuditEvent(
-        parseInt(user.id || "0"),
-        "auth.login.success",
-        "authentication",
-        { 
-          email: user.email,
-          provider: account?.provider || "credentials",
-          isNewUser: isNewUser || false
-        }
-      );
-    },
-    async signOut({ token }) {
-      if (token?.sub) {
-        await logAuditEvent(
-          parseInt(token.sub),
-          "auth.logout",
-          "authentication",
-          { email: token.email }
-        );
-      }
-    },
-  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -152,4 +123,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     },
   },
-});
+};
+
+export default NextAuth(authOptions);
+export { authOptions };

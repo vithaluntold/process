@@ -30,6 +30,12 @@ export default function SignInPage() {
       if (result?.error) {
         setError("Invalid email or password");
       } else {
+        await fetch("/api/auth/audit/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+        
         router.push("/");
         router.refresh();
       }
