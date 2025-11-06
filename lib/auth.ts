@@ -100,6 +100,30 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
+  events: {
+    async signIn({ user, account, profile, isNewUser }) {
+      await logAuditEvent(
+        parseInt(user.id || "0"),
+        "auth.login.success",
+        "authentication",
+        { 
+          email: user.email,
+          provider: account?.provider || "credentials",
+          isNewUser: isNewUser || false
+        }
+      );
+    },
+    async signOut({ token }) {
+      if (token?.sub) {
+        await logAuditEvent(
+          parseInt(token.sub),
+          "auth.logout",
+          "authentication",
+          { email: token.email }
+        );
+      }
+    },
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
