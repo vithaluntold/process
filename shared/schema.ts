@@ -127,3 +127,58 @@ export const eventLogsRelations = relations(eventLogs, ({ one }) => ({
     references: [processes.id],
   }),
 }));
+
+export const processModelsRelations = relations(processModels, ({ one }) => ({
+  process: one(processes, {
+    fields: [processModels.processId],
+    references: [processes.id],
+  }),
+}));
+
+export const activitiesRelations = relations(activities, ({ one }) => ({
+  process: one(processes, {
+    fields: [activities.processId],
+    references: [processes.id],
+  }),
+}));
+
+export const performanceMetricsRelations = relations(performanceMetrics, ({ one }) => ({
+  process: one(processes, {
+    fields: [performanceMetrics.processId],
+    references: [processes.id],
+  }),
+}));
+
+export const deviationsRelations = relations(deviations, ({ one }) => ({
+  process: one(processes, {
+    fields: [deviations.processId],
+    references: [processes.id],
+  }),
+}));
+
+export const automationOpportunitiesRelations = relations(automationOpportunities, ({ one }) => ({
+  process: one(processes, {
+    fields: [automationOpportunities.processId],
+    references: [processes.id],
+  }),
+}));
+
+export const documentsRelations = relations(documents, ({ one }) => ({
+  user: one(users, {
+    fields: [documents.userId],
+    references: [users.id],
+  }),
+}));
+
+export const integrationsRelations = relations(integrations, ({ one }) => ({
+  user: one(users, {
+    fields: [integrations.userId],
+    references: [users.id],
+  }),
+}));
+
+export const usersRelations = relations(users, ({ many }) => ({
+  processes: many(processes),
+  documents: many(documents),
+  integrations: many(integrations),
+}));
