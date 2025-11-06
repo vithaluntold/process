@@ -104,6 +104,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.21(postcss@8.5.6)
+      bufferutil:
+        specifier: ^4.0.9
+        version: 4.0.9
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -176,12 +179,15 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.1.17)
+      utf-8-validate:
+        specifier: ^6.0.5
+        version: 6.0.5
       vaul:
         specifier: ^0.9.9
         version: 0.9.9(@types/react-dom@18.3.7(@types/react@18.3.26))(@types/react@18.3.26)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       ws:
         specifier: ^8.18.3
-        version: 8.18.3
+        version: 8.18.3(bufferutil@4.0.9)(utf-8-validate@6.0.5)
       zod:
         specifier: 3.25.67
         version: 3.25.67
@@ -1706,6 +1712,10 @@ packages:
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
 
+  bufferutil@4.0.9:
+    resolution: {integrity: sha512-WDtdLmJvAuNNPzByAYpRo2rF1Mmradw6gvWsQKf63476DDXmomT9zUiGypLcG4ibIM67vhAj8jJRdbmEws2Aqw==}
+    engines: {node: '>=6.14.2'}
+
   busboy@1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
     engines: {node: '>=10.16.0'}
@@ -2150,6 +2160,10 @@ packages:
       sass:
         optional: true
 
+  node-gyp-build@4.8.4:
+    resolution: {integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==}
+    hasBin: true
+
   node-releases@2.0.27:
     resolution: {integrity: sha512-nmh3lCkYZ3grZvqcCH+fjmQ7X+H0OeZgP40OierEaAptX4XofMh5kwNbWh7lBduUzCcV/8kZ+NDLCwm2iorIlA==}
 
@@ -2430,6 +2444,10 @@ packages:
     resolution: {integrity: sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  utf-8-validate@6.0.5:
+    resolution: {integrity: sha512-EYZR+OpIXp9Y1eG1iueg8KRsY8TuT8VNgnanZ0uA3STqhHQTLwbl+WX76/9X5OY12yQubymBpaBSmMPkSTQcKA==}
+    engines: {node: '>=6.14.2'}
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -3852,6 +3870,10 @@ snapshots:
 
   buffer-from@1.1.2: {}
 
+  bufferutil@4.0.9:
+    dependencies:
+      node-gyp-build: 4.8.4
+
   busboy@1.6.0:
     dependencies:
       streamsearch: 1.1.0
@@ -4209,6 +4231,8 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
+  node-gyp-build@4.8.4: {}
+
   node-releases@2.0.27: {}
 
   normalize-range@0.1.2: {}
@@ -4482,6 +4506,10 @@ snapshots:
     dependencies:
       react: 19.1.0
 
+  utf-8-validate@6.0.5:
+    dependencies:
+      node-gyp-build: 4.8.4
+
   util-deprecate@1.0.2: {}
 
   vaul@0.9.9(@types/react-dom@18.3.7(@types/react@18.3.26))(@types/react@18.3.26)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
@@ -4510,7 +4538,10 @@ snapshots:
       d3-time: 3.1.0
       d3-timer: 3.0.1
 
-  ws@8.18.3: {}
+  ws@8.18.3(bufferutil@4.0.9)(utf-8-validate@6.0.5):
+    optionalDependencies:
+      bufferutil: 4.0.9
+      utf-8-validate: 6.0.5
 
   xtend@4.0.2: {}
 
