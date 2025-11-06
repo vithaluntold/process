@@ -5,7 +5,7 @@ import { sql } from "drizzle-orm";
 export async function purgeOldAuditLogs(retentionDays: number = 90) {
   try {
     const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.setDate(-retentionDays));
+    cutoffDate.setDate(cutoffDate.getDate() - retentionDays);
 
     const result = await db.execute(
       sql`DELETE FROM ${schema.auditLogs} WHERE timestamp < ${cutoffDate}`

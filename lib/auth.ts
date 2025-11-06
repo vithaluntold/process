@@ -24,7 +24,8 @@ async function logAuditEvent(
       metadata: metadata || null,
     });
   } catch (error) {
-    console.error("Failed to log audit event:", error);
+    console.error("CRITICAL: Audit logging failed:", error);
+    throw error;
   }
 }
 
