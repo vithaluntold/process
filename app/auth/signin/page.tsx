@@ -21,6 +21,19 @@ export default function SignInPage() {
     setLoading(true);
 
     try {
+      const loginResponse = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const loginData = await loginResponse.json();
+
+      if (!loginResponse.ok) {
+        setError(loginData.error || "Invalid email or password");
+        return;
+      }
+
       const result = await signIn("credentials", {
         email,
         password,
@@ -28,14 +41,8 @@ export default function SignInPage() {
       });
 
       if (result?.error) {
-        setError("Invalid email or password");
+        setError("Authentication failed");
       } else {
-        await fetch("/api/auth/audit/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        });
-        
         router.push("/");
         router.refresh();
       }

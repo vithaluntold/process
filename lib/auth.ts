@@ -49,13 +49,7 @@ const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         if (!credentials?.email || !credentials?.password) {
-          await logAuditEvent(
-            null,
-            "auth.login.failed",
-            "authentication",
-            { reason: "missing_credentials", email: credentials?.email }
-          );
-          throw new Error("Invalid credentials");
+          return null;
         }
 
         const [user] = await db
@@ -64,25 +58,13 @@ const authOptions: NextAuthOptions = {
           .where(eq(schema.users.email, credentials.email as string));
 
         if (!user || !user.password) {
-          await logAuditEvent(
-            null,
-            "auth.login.failed",
-            "authentication",
-            { reason: "user_not_found", email: credentials.email }
-          );
-          throw new Error("Invalid credentials");
+          return null;
         }
 
         const isPasswordValid = await compare(credentials.password as string, user.password);
 
         if (!isPasswordValid) {
-          await logAuditEvent(
-            user.id,
-            "auth.login.failed",
-            "authentication",
-            { reason: "invalid_password", email: credentials.email }
-          );
-          throw new Error("Invalid credentials");
+          return null;
         }
 
         return {
