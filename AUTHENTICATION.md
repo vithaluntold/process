@@ -17,9 +17,11 @@ This application uses NextAuth v4 with JWT sessions for enterprise-grade authent
 ### Login
 1. User fills out login form at `/auth/signin`
 2. Form calls NextAuth `signIn("credentials", {email, password})`
-3. NextAuth validates credentials against database
-4. On success, frontend calls `/api/auth/audit/login` to log audit event with IP/user-agent
-5. User redirected to dashboard
+3. NextAuth's authorize callback validates credentials and logs audit event:
+   - Extracts IP from x-forwarded-for or x-real-ip headers
+   - Extracts user-agent from request headers
+   - Logs success/failure with IP/user-agent (no bypass possible)
+4. On success, user redirected to dashboard
 
 ### Logout
 To implement logout with audit logging, use the `signOutWithAudit` function:
@@ -63,13 +65,10 @@ Audit logs are retained for 90 days (GDPR Article 32 compliant).
 ## API Routes
 
 ### `/api/auth/[...nextauth]`
-NextAuth handler for session management
+NextAuth handler for session management. The CredentialsProvider's authorize callback handles ALL login audit logging automatically - no separate endpoint needed.
 
 ### `/api/auth/signup` (POST)
-Creates new user account with audit logging
-
-### `/api/auth/audit/login` (POST)
-Logs successful login with IP/user-agent (called by frontend after signIn)
+Creates new user account with audit logging (IP/user-agent captured from request headers)
 
 ### `/api/auth/audit/logout` (POST)
 Logs logout with IP/user-agent (called by signOutWithAudit helper)

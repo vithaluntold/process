@@ -48,7 +48,21 @@ const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
+        const ip = req?.headers?.get('x-forwarded-for') ?? 
+                   req?.headers?.get('x-real-ip') ?? 
+                   (req as any)?.ip ?? 
+                   "unknown";
+        const userAgent = req?.headers?.get('user-agent') ?? "unknown";
+
         if (!credentials?.email || !credentials?.password) {
+          await logAuditEvent(
+            null,
+            "auth.login.failed",
+            "authentication",
+            { reason: "missing_credentials", email: credentials?.email },
+            ip,
+            userAgent
+          );
           return null;
         }
 
@@ -58,14 +72,39 @@ const authOptions: NextAuthOptions = {
           .where(eq(schema.users.email, credentials.email as string));
 
         if (!user || !user.password) {
+          await logAuditEvent(
+            null,
+            "auth.login.failed",
+            "authentication",
+            { reason: "user_not_found", email: credentials.email },
+            ip,
+            userAgent
+          );
           return null;
         }
 
         const isPasswordValid = await compare(credentials.password as string, user.password);
 
         if (!isPasswordValid) {
+          await logAuditEvent(
+            user.id,
+            "auth.login.failed",
+            "authentication",
+            { reason: "invalid_password", email: credentials.email },
+            ip,
+            userAgent
+          );
           return null;
         }
+
+        await logAuditEvent(
+          user.id,
+          "auth.login.success",
+          "authentication",
+          { email: user.email },
+          ip,
+          userAgent
+        );
 
         return {
           id: user.id.toString(),
