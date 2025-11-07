@@ -37,11 +37,13 @@ export function SkeletonTable() {
 }
 
 export function SkeletonChart() {
+  const heights = ['60%', '80%', '70%', '90%', '65%', '85%', '75%', '95%']
+  
   return (
     <div className="space-y-4">
       <div className="flex items-end justify-between gap-2 h-64">
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className="flex-1 skeleton" style={{ height: `${Math.random() * 100 + 50}%` }} />
+        {heights.map((height, i) => (
+          <div key={i} className="flex-1 skeleton" style={{ height }} />
         ))}
       </div>
       <div className="flex gap-2">
