@@ -37,6 +37,17 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  --brand: oklch(0.72 0.14 195);
+  --brand-foreground: oklch(1 0 0);
+  --brand-light: oklch(0.85 0.1 195);
+  --brand-dark: oklch(0.55 0.16 195);
+  --success: oklch(0.65 0.15 145);
+  --success-foreground: oklch(1 0 0);
+  --warning: oklch(0.75 0.15 85);
+  --warning-foreground: oklch(0.145 0 0);
+  --info: oklch(0.65 0.15 230);
+  --info-foreground: oklch(1 0 0);
 }
 
 .dark {
@@ -72,10 +83,20 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+  
+  --brand: oklch(0.75 0.16 195);
+  --brand-foreground: oklch(1 0 0);
+  --brand-light: oklch(0.85 0.12 195);
+  --brand-dark: oklch(0.55 0.18 195);
+  --success: oklch(0.7 0.17 145);
+  --success-foreground: oklch(1 0 0);
+  --warning: oklch(0.8 0.17 85);
+  --warning-foreground: oklch(0.145 0 0);
+  --info: oklch(0.7 0.17 230);
+  --info-foreground: oklch(1 0 0);
 }
 
 @theme inline {
-  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -100,6 +121,16 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-light: var(--brand-light);
+  --color-brand-dark: var(--brand-dark);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -118,16 +149,63 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: "Exo 2", sans-serif;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
+  
+  h1 {
+    @apply text-4xl font-bold tracking-tight;
+  }
+  
+  h2 {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+  
+  h3 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+  
+  h4 {
+    @apply text-xl font-semibold;
+  }
+  
+  h5 {
+    @apply text-lg font-semibold;
+  }
+  
   h6 {
-    font-family: "Exo 2", sans-serif;
+    @apply text-base font-semibold;
+  }
+  
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .transition-slow {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .hover-lift {
+    @apply transition-smooth hover:translate-y-[-2px] hover:shadow-lg;
+  }
+  
+  .hover-glow {
+    @apply transition-smooth hover:shadow-[0_0_20px_rgba(17,193,214,0.3)];
+  }
+  
+  .skeleton {
+    @apply animate-pulse bg-muted rounded;
+  }
+  
+  .glass {
+    @apply backdrop-blur-sm bg-background/80 border border-border/50;
   }
 }
