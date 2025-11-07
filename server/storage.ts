@@ -28,6 +28,21 @@ export interface PerformanceMetricInput {
   conformanceRate?: number;
 }
 
+export async function getUserByEmail(email: string) {
+  const [user] = await db.select().from(schema.users).where(eq(schema.users.email, email));
+  return user;
+}
+
+export async function getUserById(id: number) {
+  const [user] = await db.select().from(schema.users).where(eq(schema.users.id, id));
+  return user;
+}
+
+export async function createUser(data: schema.InsertUser) {
+  const [user] = await db.insert(schema.users).values(data).returning();
+  return user;
+}
+
 export async function createProcess(data: ProcessInput) {
   const [process] = await db.insert(schema.processes).values(data).returning();
   return process;
