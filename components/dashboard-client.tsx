@@ -138,35 +138,35 @@ export default function DashboardClient() {
                 Dashboard
               </Link>
               <Link
-                href="#"
+                href="/process-discovery"
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
               >
                 <Layers className="h-4 w-4" />
                 Process Discovery
               </Link>
               <Link
-                href="#"
+                href="/conformance-checking"
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
               >
                 <Filter className="h-4 w-4" />
                 Conformance Checking
               </Link>
               <Link
-                href="#"
+                href="/performance-analytics"
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
               >
                 <PieChart className="h-4 w-4" />
                 Performance Analytics
               </Link>
               <Link
-                href="#"
+                href="/automation-opportunities"
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
               >
                 <Zap className="h-4 w-4" />
                 Automation Opportunities
               </Link>
               <Link
-                href="#"
+                href="/predictive-analytics"
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
               >
                 <Lightbulb className="h-4 w-4" />
