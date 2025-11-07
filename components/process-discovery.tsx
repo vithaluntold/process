@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import SimpleFlowDiagram from "@/components/simple-flow-diagram"
+import { Loader2 } from "lucide-react"
 
 const processNodes = [
   { id: "1", label: "Order Received", x: 250, y: 0, type: "start" as const },
@@ -35,6 +36,46 @@ const processEdges = [
 
 export default function ProcessDiscovery() {
   const [caseFrequency, setCaseFrequency] = useState(80)
+  const [processes, setProcesses] = useState<any[]>([])
+  const [selectedProcess, setSelectedProcess] = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchProcesses()
+  }, [])
+
+  const fetchProcesses = async () => {
+    try {
+      const response = await fetch("/api/processes")
+      const data = await response.json()
+      setProcesses(data)
+      if (data.length > 0) {
+        setSelectedProcess(data[0].id.toString())
+      }
+    } catch (error) {
+      console.error("Failed to fetch processes:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
+      </div>
+    )
+  }
+
+  if (processes.length === 0) {
+    return (
+      <Card className="border-[#11c1d6]/20">
+        <CardContent className="flex flex-col items-center justify-center h-64">
+          <p className="text-muted-foreground mb-4">No processes found. Upload event logs to get started.</p>
+        </CardContent>
+      </Card>
+    )
+  }
 
   return (
     <div className="space-y-4">
@@ -47,14 +88,16 @@ export default function ProcessDiscovery() {
           <CardContent className="p-0">
             <div className="flex items-center justify-between p-4 border-b">
               <div className="flex items-center gap-4">
-                <Select defaultValue="order-to-cash">
-                  <SelectTrigger className="w-[180px]">
+                <Select value={selectedProcess || ""} onValueChange={setSelectedProcess}>
+                  <SelectTrigger className="w-[200px]">
                     <SelectValue placeholder="Select process" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="order-to-cash">Order to Cash</SelectItem>
-                    <SelectItem value="procure-to-pay">Procure to Pay</SelectItem>
-                    <SelectItem value="customer-onboarding">Customer Onboarding</SelectItem>
+                    {processes.map((process) => (
+                      <SelectItem key={process.id} value={process.id.toString()}>
+                        {process.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 <div className="flex items-center gap-2">
