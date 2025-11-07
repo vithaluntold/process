@@ -6,6 +6,12 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  allowedDevOrigins: [
+    '*.pike.replit.dev',
+    '*.replit.dev',
+    'localhost',
+    '127.0.0.1',
+  ],
   async headers() {
     return [
       {

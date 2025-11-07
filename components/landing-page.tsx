@@ -197,6 +197,7 @@ export default function LandingPage() {
                           placeholder="you@company.com"
                           required
                           disabled={isLoading}
+                          autoComplete="email"
                           className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                         />
                       </div>
@@ -208,6 +209,7 @@ export default function LandingPage() {
                           type="password"
                           required
                           disabled={isLoading}
+                          autoComplete="current-password"
                           className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                         />
                       </div>
@@ -261,6 +263,7 @@ export default function LandingPage() {
                           placeholder="you@company.com"
                           required
                           disabled={isLoading}
+                          autoComplete="email"
                           className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                         />
                       </div>
@@ -274,6 +277,7 @@ export default function LandingPage() {
                           required
                           disabled={isLoading}
                           minLength={12}
+                          autoComplete="new-password"
                           className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                         />
                         <p className="text-xs text-slate-300 flex items-center gap-1">
