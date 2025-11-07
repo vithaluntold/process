@@ -64,28 +64,33 @@ EPI X-Ray is an advanced process mining and automation platform that helps analy
 - Database constraints and foreign keys
 
 ## Authentication System
-- **Type**: Custom email/password authentication (independent, not Replit-specific)
-- **Password Security**: bcryptjs with 10 salt rounds for hashing
-- **Session Management**: express-session with PostgreSQL store (connect-pg-simple)
-- **Client State**: @tanstack/react-query for auth state management
+- **Type**: Custom JWT-based authentication (fully independent and portable)
+- **Password Security**: bcryptjs with 12 salt rounds for secure hashing
+- **Session Management**: JWT tokens with 7-day expiry, stored in httpOnly cookies
+- **Error Messages**: Specific errors ("Password is incorrect" vs "No account found with this email")
+- **Auto-login**: Users automatically logged in after successful signup
 - **API Routes**: 
-  - `/api/auth/signup` - User registration with email/password
-  - `/api/auth/login` - User login with credential verification
-  - `/api/auth/logout` - Session destruction
+  - `/api/auth/signup` - User registration with email/password (min 12 chars)
+  - `/api/auth/login` - User login with JWT token generation
+  - `/api/auth/logout` - Session cookie deletion
   - `/api/auth/user` - Current user info (returns 401 if not authenticated)
-- **Landing Page**: Shows for logged-out users with login/signup forms
+- **Landing Page**: Glass-morphism design with login/signup tabs
 - **Protected Routes**: Dashboard and feature pages require authentication
 - **User Menu**: Dropdown with logout functionality in dashboard header
+- **Toast Notifications**: Clear success/error feedback for all auth actions
 
 ## Recent Changes
-- 2025-11-07: Fixed authentication issues and improved UX
-  - Fixed signup API to correctly handle firstName and lastName fields
-  - Installed jose package for JWT token verification
-  - Added Toaster component for visual feedback on signup/login actions
-  - Increased vertical spacing in login/signup forms for better readability
-  - Fixed hydration error by removing Google Fonts link from layout
-  - Password validation requires minimum 12 characters
-  - All authentication fully functional with proper error/success notifications
+- 2025-11-07: Authentication system fully working and tested
+  - Fixed critical cookie bug: Changed from cookies().set to response.cookies.set
+  - JWT tokens now properly persist in httpOnly cookies with 7-day expiry
+  - Specific error messages: "Password is incorrect" vs "No account found with this email"
+  - Auto-login after signup with "Account created! Logging you in..." message
+  - Successful login/logout/re-login flow verified in production
+  - Dashboard access working with proper session management
+  - Toast notifications for all auth actions (success and errors)
+  - Password validation: minimum 12 characters, bcryptjs with 12 salt rounds
+  - Hydration error fixed with suppressHydrationWarning on html tag
+  - Cross-origin warnings resolved with allowedDevOrigins configuration
 - 2025-11-07: Implemented complete custom authentication system
   - Created custom auth with bcryptjs password hashing and JWT tokens
   - Added useAuth hook with React Query for client-side authentication state
