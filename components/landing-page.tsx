@@ -71,7 +71,8 @@ export default function LandingPage() {
         body: JSON.stringify({ 
           email, 
           password,
-          name: `${firstName} ${lastName}`.trim()
+          firstName,
+          lastName
         }),
       });
 

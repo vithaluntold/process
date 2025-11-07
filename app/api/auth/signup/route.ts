@@ -6,7 +6,7 @@ import { eq } from "drizzle-orm";
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, name } = await request.json();
+    const { email, password, firstName, lastName } = await request.json();
 
     if (!email || !password) {
       return NextResponse.json(
@@ -41,7 +41,8 @@ export async function POST(request: NextRequest) {
       .values({
         email,
         password: hashedPassword,
-        name: name || null,
+        firstName: firstName || null,
+        lastName: lastName || null,
         role: "user",
       })
       .returning();
@@ -62,7 +63,8 @@ export async function POST(request: NextRequest) {
         user: {
           id: user.id,
           email: user.email,
-          name: user.name,
+          firstName: user.firstName,
+          lastName: user.lastName,
           role: user.role,
         },
       },
