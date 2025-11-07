@@ -41,14 +41,17 @@ export default function LandingPage() {
         description: "Logged in successfully!",
       });
 
-      router.push("/");
-      router.refresh();
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 500);
     } catch (error: any) {
+      console.error("Login error:", error);
       toast({
         title: "Error",
         description: error.message || "Failed to login",
         variant: "destructive",
       });
+      alert("ERROR: " + (error.message || "Failed to login"));
     } finally {
       setIsLoading(false);
     }
@@ -99,14 +102,17 @@ export default function LandingPage() {
         throw new Error(loginData.error || "Auto-login failed. Please log in manually.");
       }
 
-      router.push("/");
-      router.refresh();
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 500);
     } catch (error: any) {
+      console.error("Signup error:", error);
       toast({
         title: "Error",
         description: error.message || "Failed to create account",
         variant: "destructive",
       });
+      alert("ERROR: " + (error.message || "Failed to create account"));
     } finally {
       setIsLoading(false);
     }
