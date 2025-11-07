@@ -108,7 +108,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
-                        "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium",
+                        "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer select-none transition-smooth",
                         isActive
                           ? "bg-brand/10 text-brand"
                           : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
@@ -165,7 +165,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium",
+                    "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer select-none transition-smooth",
                     isActive
                       ? "bg-brand/10 text-brand"
                       : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
