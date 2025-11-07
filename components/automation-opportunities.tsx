@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BotIcon as Robot, Zap, DollarSign, Clock, BarChart2 } from "lucide-react"
 import { SkeletonChart, SkeletonCard } from "@/components/ui/skeleton-card"
+import { EmptyState } from "@/components/ui/empty-state"
 
 export default function AutomationOpportunities() {
   const [selectedMetric, setSelectedMetric] = useState("automationPotential")
@@ -95,11 +96,11 @@ export default function AutomationOpportunities() {
 
   if (opportunities.length === 0) {
     return (
-      <Card className="border-[#11c1d6]/20">
-        <CardContent className="flex flex-col items-center justify-center h-64">
-          <p className="text-muted-foreground mb-4">No automation opportunities available. Upload event logs to see automation analysis.</p>
-        </CardContent>
-      </Card>
+      <EmptyState
+        icon={Robot}
+        title="No Automation Opportunities"
+        description="Upload event logs to analyze your processes and discover automation opportunities"
+      />
     )
   }
 
@@ -113,40 +114,40 @@ export default function AutomationOpportunities() {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Tasks</CardTitle>
-            <BarChart2 className="h-4 w-4 text-[#11c1d6]" />
+            <BarChart2 className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{totalTasks.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">tasks per month</p>
           </CardContent>
         </Card>
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Automation Potential</CardTitle>
-            <Robot className="h-4 w-4 text-[#11c1d6]" />
+            <Robot className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{avgAutomationPotential}%</div>
             <p className="text-xs text-muted-foreground">of tasks can be automated</p>
           </CardContent>
         </Card>
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Time Savings</CardTitle>
-            <Clock className="h-4 w-4 text-[#11c1d6]" />
+            <Clock className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{Math.round(totalTimeSavings)}</div>
             <p className="text-xs text-muted-foreground">hours per month</p>
           </CardContent>
         </Card>
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Cost Savings</CardTitle>
-            <DollarSign className="h-4 w-4 text-[#11c1d6]" />
+            <DollarSign className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${(totalCostSavings / 1000).toFixed(0)}K</div>
@@ -155,7 +156,7 @@ export default function AutomationOpportunities() {
         </Card>
       </div>
 
-      <Card className="border-[#11c1d6]/20">
+      <Card className="border-brand/20">
         <CardHeader>
           <CardTitle>Automation Opportunities</CardTitle>
           <CardDescription>Tasks with high automation potential.</CardDescription>
@@ -163,28 +164,28 @@ export default function AutomationOpportunities() {
         <CardContent>
           <div className="flex items-center justify-between mb-4">
             <Tabs defaultValue="automationPotential" onValueChange={setSelectedMetric}>
-              <TabsList className="bg-[#11c1d6]/10">
+              <TabsList className="bg-brand/10">
                 <TabsTrigger
                   value="automationPotential"
-                  className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white"
+                  className="data-[state=active]:bg-brand data-[state=active]:text-white"
                 >
                   Automation Potential
                 </TabsTrigger>
                 <TabsTrigger
                   value="frequency"
-                  className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white"
+                  className="data-[state=active]:bg-brand data-[state=active]:text-white"
                 >
                   Task Frequency
                 </TabsTrigger>
                 <TabsTrigger
                   value="duration"
-                  className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white"
+                  className="data-[state=active]:bg-brand data-[state=active]:text-white"
                 >
                   Task Duration
                 </TabsTrigger>
                 <TabsTrigger
                   value="savingsEstimate"
-                  className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white"
+                  className="data-[state=active]:bg-brand data-[state=active]:text-white"
                 >
                   Cost Savings
                 </TabsTrigger>
@@ -201,28 +202,28 @@ export default function AutomationOpportunities() {
               <YAxis label={{ value: getChartLabel(), angle: -90, position: "insideLeft" }} />
               <Tooltip />
               <Legend />
-              <Bar dataKey="value" fill="#11c1d6" name={getChartLabel()} />
+              <Bar dataKey="value" className="fill-brand" name={getChartLabel()} />
             </BarChart>
           </ResponsiveContainer>
         </CardContent>
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader>
             <CardTitle>Automation Recommendations</CardTitle>
             <CardDescription>Recommended automation solutions for high-potential tasks.</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="flex items-start gap-4 rounded-lg border border-[#11c1d6]/20 p-4">
-                <div className="rounded-full bg-[#11c1d6]/10 p-2">
-                  <Robot className="h-4 w-4 text-[#11c1d6]" />
+              <div className="flex items-start gap-4 rounded-lg border border-brand/20 p-4">
+                <div className="rounded-full bg-brand/10 p-2">
+                  <Robot className="h-4 w-4 text-brand" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
                     <h4 className="font-medium">Data Entry Automation</h4>
-                    <Badge className="ml-2 bg-[#11c1d6] hover:bg-[#11c1d6]/90">High ROI</Badge>
+                    <Badge className="ml-2 bg-brand hover:bg-brand/90">High ROI</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">
                     Implement RPA bots to automate data entry from various sources into the ERP system.
@@ -240,14 +241,14 @@ export default function AutomationOpportunities() {
                   </Button>
                 </div>
               </div>
-              <div className="flex items-start gap-4 rounded-lg border border-[#11c1d6]/20 p-4">
-                <div className="rounded-full bg-[#11c1d6]/10 p-2">
-                  <Zap className="h-4 w-4 text-[#11c1d6]" />
+              <div className="flex items-start gap-4 rounded-lg border border-brand/20 p-4">
+                <div className="rounded-full bg-brand/10 p-2">
+                  <Zap className="h-4 w-4 text-brand" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
                     <h4 className="font-medium">Payment Processing Automation</h4>
-                    <Badge className="ml-2 bg-[#11c1d6] hover:bg-[#11c1d6]/90">Quick Win</Badge>
+                    <Badge className="ml-2 bg-brand hover:bg-brand/90">Quick Win</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">
                     Implement API integrations between payment gateways and the order management system.
@@ -265,14 +266,14 @@ export default function AutomationOpportunities() {
                   </Button>
                 </div>
               </div>
-              <div className="flex items-start gap-4 rounded-lg border border-[#11c1d6]/20 p-4">
-                <div className="rounded-full bg-[#11c1d6]/10 p-2">
-                  <Robot className="h-4 w-4 text-[#11c1d6]" />
+              <div className="flex items-start gap-4 rounded-lg border border-brand/20 p-4">
+                <div className="rounded-full bg-brand/10 p-2">
+                  <Robot className="h-4 w-4 text-brand" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
                     <h4 className="font-medium">Order Verification Automation</h4>
-                    <Badge className="ml-2 bg-[#11c1d6] hover:bg-[#11c1d6]/90">High Impact</Badge>
+                    <Badge className="ml-2 bg-brand hover:bg-brand/90">High Impact</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground mt-1">
                     Implement ML-based verification system to automatically validate orders based on historical
@@ -294,7 +295,7 @@ export default function AutomationOpportunities() {
             </div>
           </CardContent>
         </Card>
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader>
             <CardTitle>Implementation Roadmap</CardTitle>
             <CardDescription>Phased approach to implementing automation solutions.</CardDescription>
@@ -305,7 +306,7 @@ export default function AutomationOpportunities() {
                 <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-muted ml-3"></div>
                 <div className="space-y-6">
                   <div className="relative">
-                    <div className="absolute left-0 top-0 h-6 w-6 rounded-full bg-[#11c1d6] flex items-center justify-center">
+                    <div className="absolute left-0 top-0 h-6 w-6 rounded-full bg-brand flex items-center justify-center">
                       <span className="text-xs font-bold text-white">1</span>
                     </div>
                     <div className="pl-10">
@@ -372,7 +373,7 @@ export default function AutomationOpportunities() {
                   </div>
                 </div>
               </div>
-              <div className="rounded-lg border border-[#11c1d6]/20 p-4 bg-[#11c1d6]/5">
+              <div className="rounded-lg border border-brand/20 p-4 bg-brand/5">
                 <h4 className="font-medium">Expected Outcomes</h4>
                 <div className="mt-2 space-y-2">
                   <div className="flex items-center justify-between text-sm">
@@ -380,21 +381,21 @@ export default function AutomationOpportunities() {
                     <span>45%</span>
                   </div>
                   <div className="h-2 w-full rounded-full bg-muted">
-                    <div className="h-full w-[45%] rounded-full bg-[#11c1d6]"></div>
+                    <div className="h-full w-[45%] rounded-full bg-brand"></div>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span>Error Rate Reduction</span>
                     <span>85%</span>
                   </div>
                   <div className="h-2 w-full rounded-full bg-muted">
-                    <div className="h-full w-[85%] rounded-full bg-[#11c1d6]"></div>
+                    <div className="h-full w-[85%] rounded-full bg-brand"></div>
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span>Staff Capacity Increase</span>
                     <span>35%</span>
                   </div>
                   <div className="h-2 w-full rounded-full bg-muted">
-                    <div className="h-full w-[35%] rounded-full bg-[#11c1d6]"></div>
+                    <div className="h-full w-[35%] rounded-full bg-brand"></div>
                   </div>
                 </div>
               </div>

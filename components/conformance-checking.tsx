@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { EmptyState } from "@/components/ui/empty-state"
+import { FileSearch } from "lucide-react"
 
 export default function ConformanceChecking() {
   const [processes, setProcesses] = useState<any[]>([])
@@ -62,17 +64,18 @@ export default function ConformanceChecking() {
   if (loading && processes.length === 0) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#11c1d6]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand"></div>
       </div>
     )
   }
 
   if (processes.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-64 text-center">
-        <p className="text-muted-foreground mb-4">No processes available</p>
-        <p className="text-sm text-muted-foreground">Create a process and upload event logs to see conformance analysis.</p>
-      </div>
+      <EmptyState
+        icon={FileSearch}
+        title="No Processes Available"
+        description="Create a process and upload event logs to see conformance analysis"
+      />
     )
   }
 
@@ -98,13 +101,13 @@ export default function ConformanceChecking() {
         </div>
       )}
       <div className="grid grid-cols-1 gap-4">
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader>
             <CardTitle>Conformance Analysis</CardTitle>
             <CardDescription>Analysis of process deviations and compliance issues.</CardDescription>
           </CardHeader>
           <CardContent>
-                <div className="rounded-md border border-[#11c1d6]/20">
+                <div className="rounded-md border border-brand/20">
                   <div className="relative w-full overflow-auto">
                     <table className="w-full caption-bottom text-sm">
                       <thead>
@@ -120,7 +123,7 @@ export default function ConformanceChecking() {
                           <tr>
                             <td colSpan={4} className="p-8 text-center">
                               <div className="flex justify-center">
-                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#11c1d6]"></div>
+                                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-brand"></div>
                               </div>
                             </td>
                           </tr>
@@ -145,7 +148,7 @@ export default function ConformanceChecking() {
                                         : "outline"
                                   }
                                   className={
-                                    item.impact === "Medium" ? "bg-[#11c1d6] text-white hover:bg-[#11c1d6]/90" : ""
+                                    item.impact === "Medium" ? "bg-brand text-white hover:bg-brand/90" : ""
                                   }
                                 >
                                   {item.impact}
