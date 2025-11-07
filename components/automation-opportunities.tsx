@@ -9,44 +9,6 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BotIcon as Robot, Zap, DollarSign, Clock, BarChart2, Loader2 } from "lucide-react"
 
-const automationData = [
-  {
-    name: "Data Entry",
-    frequency: 450,
-    duration: 8,
-    automationPotential: 95,
-    savingsEstimate: 28500,
-  },
-  {
-    name: "Order Verification",
-    frequency: 380,
-    duration: 12,
-    automationPotential: 75,
-    savingsEstimate: 34200,
-  },
-  {
-    name: "Payment Processing",
-    frequency: 320,
-    duration: 5,
-    automationPotential: 90,
-    savingsEstimate: 12000,
-  },
-  {
-    name: "Customer Communication",
-    frequency: 280,
-    duration: 15,
-    automationPotential: 65,
-    savingsEstimate: 21000,
-  },
-  {
-    name: "Inventory Check",
-    frequency: 250,
-    duration: 6,
-    automationPotential: 85,
-    savingsEstimate: 10625,
-  },
-]
-
 export default function AutomationOpportunities() {
   const [selectedMetric, setSelectedMetric] = useState("automationPotential")
   const [opportunities, setOpportunities] = useState<any[]>([])
