@@ -8,7 +8,10 @@ export async function POST(request: NextRequest) {
   try {
     const { email, password, firstName, lastName } = await request.json();
 
+    console.log("Signup attempt:", { email, firstName, lastName, passwordLength: password?.length });
+
     if (!email || !password) {
+      console.log("Validation failed: missing email or password");
       return NextResponse.json(
         { error: "Email and password are required" },
         { status: 400 }
@@ -16,6 +19,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (password.length < 12) {
+      console.log("Validation failed: password too short", password.length);
       return NextResponse.json(
         { error: "Password must be at least 12 characters long" },
         { status: 400 }
