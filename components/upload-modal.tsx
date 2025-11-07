@@ -127,7 +127,7 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
           <Button
             onClick={handleUpload}
             disabled={!file || !processName.trim() || uploading}
-            className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white"
+            className="bg-brand hover:bg-brand/90 text-white"
           >
             {uploading ? (
               <>

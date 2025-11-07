@@ -114,7 +114,7 @@ export default function NewAnalysisModal({ open, onOpenChange, onAnalysisCreated
           <Button
             onClick={handleCreate}
             disabled={!name.trim() || creating}
-            className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white"
+            className="bg-brand hover:bg-brand/90 text-white"
           >
             {creating ? (
               <>
