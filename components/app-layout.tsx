@@ -180,7 +180,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
         </aside>
 
         {/* Main Content */}
-        <main className="flex flex-1 flex-col">
+        <main className="flex flex-1 flex-col p-4 md:p-6 lg:p-8">
           {children}
         </main>
       </div>
