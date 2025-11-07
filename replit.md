@@ -78,10 +78,18 @@ EPI X-Ray is an advanced process mining and automation platform that helps analy
 - **User Menu**: Dropdown with logout functionality in dashboard header
 
 ## Recent Changes
+- 2025-11-07: Fixed authentication issues and improved UX
+  - Fixed signup API to correctly handle firstName and lastName fields
+  - Installed jose package for JWT token verification
+  - Added Toaster component for visual feedback on signup/login actions
+  - Increased vertical spacing in login/signup forms for better readability
+  - Fixed hydration error by removing Google Fonts link from layout
+  - Password validation requires minimum 12 characters
+  - All authentication fully functional with proper error/success notifications
 - 2025-11-07: Implemented complete custom authentication system
-  - Created custom auth with bcryptjs password hashing and PostgreSQL sessions
+  - Created custom auth with bcryptjs password hashing and JWT tokens
   - Added useAuth hook with React Query for client-side authentication state
-  - Created landing page with login and signup forms for logged-out users
+  - Created landing page with transparent glass design and white text
   - Updated root page routing to show landing page or dashboard based on auth status
   - Added user menu with logout button to dashboard header
   - All authentication is self-sufficient and portable (not dependent on Replit infrastructure)

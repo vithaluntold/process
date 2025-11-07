@@ -174,10 +174,10 @@ export default function LandingPage() {
           <div className="lg:pl-8">
             <Card className="shadow-2xl border-white/20 bg-transparent backdrop-blur-sm">
               <Tabs defaultValue="login" className="w-full">
-                <CardHeader className="space-y-4">
-                  <div className="text-center">
+                <CardHeader className="space-y-6 pb-6">
+                  <div className="text-center space-y-2">
                     <h2 className="text-2xl font-bold text-white">Welcome Back</h2>
-                    <p className="text-sm text-slate-300 mt-1">Sign in to access your dashboard</p>
+                    <p className="text-sm text-slate-300">Sign in to access your dashboard</p>
                   </div>
                   <TabsList className="grid w-full grid-cols-2 bg-white/10 border border-white/20">
                     <TabsTrigger value="login" className="data-[state=active]:bg-white/20 data-[state=active]:text-white text-slate-300">Login</TabsTrigger>
@@ -187,7 +187,7 @@ export default function LandingPage() {
 
                 <TabsContent value="login">
                   <form onSubmit={handleLogin}>
-                    <CardContent className="space-y-4">
+                    <CardContent className="space-y-6 pt-6">
                       <div className="space-y-2">
                         <Label htmlFor="login-email" className="text-white">Email</Label>
                         <Input
@@ -212,7 +212,7 @@ export default function LandingPage() {
                         />
                       </div>
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="pt-6">
                       <Button 
                         type="submit" 
                         className="w-full bg-gradient-to-r from-[#11c1d6] to-[#0e9fb0] hover:from-[#0da5b8] hover:to-[#0c8a9a] text-white font-semibold shadow-lg shadow-[#11c1d6]/30" 
@@ -227,7 +227,7 @@ export default function LandingPage() {
 
                 <TabsContent value="signup">
                   <form onSubmit={handleSignup}>
-                    <CardContent className="space-y-4">
+                    <CardContent className="space-y-6 pt-6">
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="signup-firstName" className="text-white">First Name</Label>
@@ -280,7 +280,7 @@ export default function LandingPage() {
                         </p>
                       </div>
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="pt-6">
                       <Button 
                         type="submit" 
                         className="w-full bg-gradient-to-r from-[#11c1d6] to-[#0e9fb0] hover:from-[#0da5b8] hover:to-[#0c8a9a] text-white font-semibold shadow-lg shadow-[#11c1d6]/30" 
