@@ -11,6 +11,9 @@ import {
   Lightbulb,
   Layers,
   ArrowUpRight,
+  ArrowDownRight,
+  TrendingUp,
+  TrendingDown,
   X,
   GitCompare,
   LinkIcon,
@@ -103,23 +106,23 @@ export default function DashboardClient() {
       <div className="flex min-h-screen w-full flex-col">
         <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
           <div className="flex items-center gap-2">
-            <X className="h-6 w-6 text-[#11c1d6]" />
+            <X className="h-6 w-6 text-brand" />
             <span className="text-lg font-semibold">EPI X-Ray</span>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <Link href="/" className="font-medium transition-colors hover:text-[#11c1d6]">
+            <Link href="/" className="font-medium transition-colors hover:text-brand">
               Dashboard
             </Link>
-            <Link href="#" className="text-muted-foreground transition-colors hover:text-[#11c1d6]">
+            <Link href="#" className="text-muted-foreground transition-colors hover:text-brand">
               Process Repository
             </Link>
-            <Link href="#" className="text-muted-foreground transition-colors hover:text-[#11c1d6]">
+            <Link href="#" className="text-muted-foreground transition-colors hover:text-brand">
               Analytics
             </Link>
-            <Link href="#" className="text-muted-foreground transition-colors hover:text-[#11c1d6]">
+            <Link href="#" className="text-muted-foreground transition-colors hover:text-brand">
               Automation
             </Link>
-            <Link href="#" className="text-muted-foreground transition-colors hover:text-[#11c1d6]">
+            <Link href="#" className="text-muted-foreground transition-colors hover:text-brand">
               Integration
             </Link>
           </nav>
@@ -128,7 +131,7 @@ export default function DashboardClient() {
               <FileUp className="mr-2 h-4 w-4" />
               Import Data
             </Button>
-            <Button size="sm" className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white" onClick={() => setAnalysisModalOpen(true)}>
+            <Button size="sm" className="bg-brand hover:bg-brand/90 text-white" onClick={() => setAnalysisModalOpen(true)}>
               New Analysis
             </Button>
             <DropdownMenu>
@@ -178,70 +181,70 @@ export default function DashboardClient() {
             <nav className="grid gap-2">
               <Link
                 href="/"
-                className="flex items-center gap-2 rounded-lg bg-[#11c1d6]/10 text-[#11c1d6] px-3 py-2 text-sm font-medium"
+                className="flex items-center gap-2 rounded-lg bg-brand/10 text-brand px-3 py-2 text-sm font-medium"
               >
                 <BarChart3 className="h-4 w-4" />
                 Dashboard
               </Link>
               <Link
                 href="/process-discovery"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 <Layers className="h-4 w-4" />
                 Process Discovery
               </Link>
               <Link
                 href="/conformance-checking"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 <Filter className="h-4 w-4" />
                 Conformance Checking
               </Link>
               <Link
                 href="/performance-analytics"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 <PieChart className="h-4 w-4" />
                 Performance Analytics
               </Link>
               <Link
                 href="/automation-opportunities"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 <Zap className="h-4 w-4" />
                 Automation Opportunities
               </Link>
               <Link
                 href="/predictive-analytics"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 <Lightbulb className="h-4 w-4" />
                 Predictive Analytics
               </Link>
               <Link
                 href="/document-upload"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 <FileUp className="h-4 w-4" />
                 Document Upload
               </Link>
               <Link
                 href="/api-integrations"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 <LinkIcon className="h-4 w-4" />
                 API Integrations
               </Link>
               <Link
                 href="/digital-twin"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 <Layers className="h-4 w-4" />
                 Digital Twin
               </Link>
               <Link
                 href="/scenario-analysis"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 <GitCompare className="h-4 w-4" />
                 What-If Scenarios
@@ -251,13 +254,13 @@ export default function DashboardClient() {
             <nav className="grid gap-2">
               <Link
                 href="#"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 Data Sources
               </Link>
               <Link
                 href="#"
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
               >
                 Integrations
               </Link>
@@ -279,58 +282,74 @@ export default function DashboardClient() {
               </div>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <Card className="border-[#11c1d6]/20">
+              <Card className="border-brand/20 hover-lift">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Active Processes</CardTitle>
-                  <Layers className="h-4 w-4 text-[#11c1d6]" />
+                  <Layers className="h-4 w-4 text-brand" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">{stats.processCount}</div>
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <span>Total processes in system</span>
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="flex items-center text-emerald-600 font-medium">
+                      <TrendingUp className="h-3 w-3 mr-1" />
+                      +12%
+                    </span>
+                    <span className="text-muted-foreground">vs last month</span>
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-[#11c1d6]/20">
+              <Card className="border-brand/20 hover-lift">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Avg. Cycle Time</CardTitle>
-                  <BarChart3 className="h-4 w-4 text-[#11c1d6]" />
+                  <BarChart3 className="h-4 w-4 text-brand" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">{stats.avgCycleTime} days</div>
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <span>Average process duration</span>
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="flex items-center text-emerald-600 font-medium">
+                      <TrendingDown className="h-3 w-3 mr-1" />
+                      -8%
+                    </span>
+                    <span className="text-muted-foreground">vs last month</span>
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-[#11c1d6]/20">
+              <Card className="border-brand/20 hover-lift">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Conformance Rate</CardTitle>
-                  <Filter className="h-4 w-4 text-[#11c1d6]" />
+                  <Filter className="h-4 w-4 text-brand" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">{stats.conformanceRate}%</div>
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <span>Process compliance score</span>
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="flex items-center text-emerald-600 font-medium">
+                      <TrendingUp className="h-3 w-4 mr-1" />
+                      +5%
+                    </span>
+                    <span className="text-muted-foreground">vs last month</span>
                   </div>
                 </CardContent>
               </Card>
-              <Card className="border-[#11c1d6]/20">
+              <Card className="border-brand/20 hover-lift">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Automation Potential</CardTitle>
-                  <Zap className="h-4 w-4 text-[#11c1d6]" />
+                  <Zap className="h-4 w-4 text-brand" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">${stats.automationPotential}M</div>
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <span>Estimated annual savings</span>
+                  <div className="flex items-center gap-2 text-xs">
+                    <span className="flex items-center text-emerald-600 font-medium">
+                      <TrendingUp className="h-3 w-3 mr-1" />
+                      +18%
+                    </span>
+                    <span className="text-muted-foreground">vs last month</span>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <Card className="border-[#11c1d6]/20 bg-gradient-to-br from-[#11c1d6]/10 to-[#11c1d6]/5">
+              <Card className="border-brand/20 bg-gradient-to-br from-brand/10 to-brand/5">
                 <CardHeader>
                   <CardTitle>Digital Twin Simulation</CardTitle>
                   <CardDescription>Create a virtual replica of your processes and simulate changes</CardDescription>
@@ -341,12 +360,12 @@ export default function DashboardClient() {
                     and test improvements before implementation.
                   </p>
                   <Link href="/digital-twin">
-                    <Button className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white">Explore Digital Twin</Button>
+                    <Button className="bg-brand hover:bg-brand/90 text-white">Explore Digital Twin</Button>
                   </Link>
                 </CardContent>
               </Card>
 
-              <Card className="border-[#11c1d6]/20 bg-gradient-to-br from-[#11c1d6]/10 to-[#11c1d6]/5">
+              <Card className="border-brand/20 bg-gradient-to-br from-brand/10 to-brand/5">
                 <CardHeader>
                   <CardTitle>What-If Scenario Analysis</CardTitle>
                   <CardDescription>Test different process scenarios and predict their impact</CardDescription>
@@ -357,7 +376,7 @@ export default function DashboardClient() {
                     opportunities, and their impact on key performance metrics.
                   </p>
                   <Link href="/scenario-analysis">
-                    <Button className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white">Analyze Scenarios</Button>
+                    <Button className="bg-brand hover:bg-brand/90 text-white">Analyze Scenarios</Button>
                   </Link>
                 </CardContent>
               </Card>
@@ -365,34 +384,34 @@ export default function DashboardClient() {
 
             <Tabs defaultValue="process-discovery">
               <div className="flex items-center">
-                <TabsList className="bg-[#11c1d6]/10">
+                <TabsList className="bg-brand/10">
                   <TabsTrigger
                     value="process-discovery"
-                    className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white"
+                    className="data-[state=active]:bg-brand data-[state=active]:text-white"
                   >
                     Process Discovery
                   </TabsTrigger>
                   <TabsTrigger
                     value="conformance"
-                    className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white"
+                    className="data-[state=active]:bg-brand data-[state=active]:text-white"
                   >
                     Conformance Checking
                   </TabsTrigger>
                   <TabsTrigger
                     value="performance"
-                    className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white"
+                    className="data-[state=active]:bg-brand data-[state=active]:text-white"
                   >
                     Performance Analytics
                   </TabsTrigger>
                   <TabsTrigger
                     value="automation"
-                    className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white"
+                    className="data-[state=active]:bg-brand data-[state=active]:text-white"
                   >
                     Automation Opportunities
                   </TabsTrigger>
                   <TabsTrigger
                     value="predictive"
-                    className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white"
+                    className="data-[state=active]:bg-brand data-[state=active]:text-white"
                   >
                     Predictive Analytics
                   </TabsTrigger>
