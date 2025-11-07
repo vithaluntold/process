@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     if (!user || !user.password) {
       console.log("User not found or no password");
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "No account found with this email" },
         { status: 401 }
       );
     }
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     if (!isValid) {
       console.log("Password comparison failed");
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "Password is incorrect" },
         { status: 401 }
       );
     }
@@ -55,15 +55,6 @@ export async function POST(request: NextRequest) {
       .setProtectedHeader({ alg: "HS256" })
       .setExpirationTime("7d")
       .sign(JWT_SECRET);
-
-    const cookieStore = await cookies();
-    cookieStore.set("session", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-      path: "/",
-    });
 
     await db.insert(schema.auditLogs).values({
       userId: user.id,
@@ -75,7 +66,7 @@ export async function POST(request: NextRequest) {
       metadata: { email: user.email },
     });
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         message: "Login successful",
         user: {
@@ -88,6 +79,15 @@ export async function POST(request: NextRequest) {
       },
       { status: 200 }
     );
+
+    response.cookies.set("session", token, {
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 7,
+      path: "/",
+    });
+
+    return response;
   } catch (error) {
     console.error("Login error:", error);
     return NextResponse.json(
