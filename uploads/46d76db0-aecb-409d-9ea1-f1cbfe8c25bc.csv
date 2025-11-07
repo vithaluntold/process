@@ -1,0 +1,31 @@
+﻿No.,Full Name,Corp ID,Position,HC,Email,Mobile,Manager,Date of Joining,Eligibility Date,Training Category,Training Status,Request Access Ticket no.,Attachment,Comments
+1,Aarav Sharma,CID1001,Software Engineer,FT,aarav.sharma@example.com,9876543210,Rohan Patel,01-Jan-23,01-Jul-23,Technical,Completed,TKT20230001,Yes,Cloud certified
+2,Aditi Banerjee,CID1002,HR Associate,FT,aditi.banerjee@example.com,8765432109,Priya Nair,15-Feb-23,15-Aug-23,Compliance,Pending,TKT20230002,No,Awaiting L&D approval
+3,Vikram Joshi,CID1003,Project Manager,FT,vikram.joshi@example.com,7654321098,Neha Gupta,05-Mar-23,05-Sep-23,Leadership,Completed,TKT20230003,Yes,
+4,Priyanka Reddy,CID1004,Data Analyst,FT,priyanka.reddy@example.com,6543210987,Arjun Malhotra,20-Apr-23,20-Oct-23,Technical,In Progress,TKT20230004,Yes,Python training ongoing
+5,Rohan Mehta,CID1005,Network Engineer,FT,rohan.mehta@example.com,9432109876,Sanjay Iyer,10-May-23,10-Nov-23,Technical,Completed,TKT20230005,Yes,CCNA certified
+6,Ananya Desai,CID1006,Marketing Executive,FT,ananya.desai@example.com,8321098765,Kavita Rao,25-Jun-23,25-Dec-23,Functional,Not Started,TKT20230006,No,New joiner
+7,Karthik Nair,CID1007,DevOps Engineer,FT,karthik.nair@example.com,9210987654,Rahul Menon,15-Jul-23,15-Jan-24,Technical,Completed,TKT20230007,Yes,Azure expert
+8,Sneha Iyer,CID1008,Finance Analyst,FT,sneha.iyer@example.com,8109876543,Meera Krishnan,01-Aug-23,01-Feb-24,Finance,Completed,TKT20230008,Yes,SOX compliance cleared
+9,Arjun Kapoor,CID1009,UI/UX Designer,FT,arjun.kapoor@example.com,7098765432,Deepika Sharma,20-Sep-23,20-Mar-24,Creative,In Progress,TKT20230009,Yes,Figma training
+10,Divya Chatterjee,CID1010,Business Analyst,FT,divya.chatterjee@example.com,8987654321,Rajiv Bajaj,05-Oct-23,05-Apr-24,Functional,Completed,TKT20230010,Yes,Agile certified
+11,Rahul Verma,CID1011,QA Engineer,FT,rahul.verma@example.com,9876543210,Nisha Thakur,15-Nov-23,15-May-24,Technical,Pending,TKT20230011,No,ISTQB pending
+12,Meera Patel,CID1012,Product Manager,FT,meera.patel@example.com,8765432109,Vikas Singh,01-Dec-23,01-Jun-24,Leadership,Completed,TKT20230012,Yes,
+13,Siddharth Malhotra,CID1013,Database Administrator,FT,siddharth.m@example.com,7654321098,Anil Kumar,10-Jan-24,10-Jul-24,Technical,Completed,TKT20230013,Yes,Oracle 19c certified
+14,Nandini Rao,CID1014,Legal Counsel,FT,nandini.rao@example.com,6543210987,Harish Joshi,25-Feb-24,25-Aug-24,Compliance,Not Started,TKT20230014,No,Joining next week
+15,Aditya Singh,CID1015,Sales Executive,FT,aditya.singh@example.com,9432109876,Priya Chopra,15-Mar-24,15-Sep-24,Functional,In Progress,TKT20230015,Yes,CRM training
+16,Pooja Gupta,CID1016,System Admin,FT,pooja.gupta@example.com,8321098765,Ramesh Nair,01-Apr-24,01-Oct-24,Technical,Completed,TKT20230016,Yes,Red Hat certified
+17,Rohit Khanna,CID1017,Content Writer,FT,rohit.khanna@example.com,9210987654,Sheetal Desai,20-May-24,20-Nov-24,Creative,Pending,TKT20230017,No,Style guide pending
+18,Anjali Mehta,CID1018,Data Scientist,FT,anjali.mehta@example.com,8109876543,Karan Johar,05-Jun-24,05-Dec-24,Technical,Completed,TKT20230018,Yes,TensorFlow specialization
+19,Varun Chawla,CID1019,IT Support,FT,varun.chawla@example.com,7098765432,Neha Reddy,15-Jul-24,15-Jan-25,Technical,In Progress,TKT20230019,Yes,ServiceNow training
+20,Ishita Sengupta,CID1020,Procurement Officer,FT,ishita.sengupta@example.com,8987654321,Arvind Patel,01-Aug-24,01-Feb-25,Functional,Completed,TKT20230020,Yes,Vendor management certified
+21,Rajat Bose,CID1021,Security Analyst,FT,rajat.bose@example.com,9876543210,Ananya Mishra,15-Sep-24,15-Mar-25,Technical,Not Started,TKT20230021,No,Clearance pending
+22,Tanvi Deshpande,CID1022,UX Researcher,FT,tanvi.deshpande@example.com,8765432109,Rahul Bajaj,01-Oct-24,01-Apr-25,Creative,Completed,TKT20230022,Yes,
+23,Akash Naik,CID1023,Cloud Architect,FT,akash.naik@example.com,7654321098,Sanjay Verma,15-Nov-24,15-May-25,Technical,Completed,TKT20230023,Yes,AWS Solutions Architect
+24,Shreya Pillai,CID1024,HR Business Partner,FT,shreya.pillai@example.com,6543210987,Meena Iyer,01-Dec-24,01-Jun-25,HR,In Progress,TKT20230024,Yes,Workday implementation
+25,Vivek Rana,CID1025,Scrum Master,FT,vivek.rana@example.com,9432109876,Aditi Banerjee,15-Jan-25,15-Jul-25,Agile,Pending,TKT20230025,No,SAFe certification
+26,Neha Bhatia,CID1026,Digital Marketer,FT,neha.bhatia@example.com,8321098765,Rohan Mehta,01-Feb-25,01-Aug-25,Marketing,Completed,TKT20230026,Yes,Google Ads certified
+27,Karan Malhotra,CID1027,BI Developer,FT,karan.malhotra@example.com,9210987654,Vidya Rao,15-Mar-25,15-Sep-25,Technical,Completed,TKT20230027,Yes,Power BI expert
+28,Anaya Trivedi,CID1028,Java Developer,FT,anaya.trivedi@example.com,8109876543,Siddharth Malhotra,01-Apr-25,01-Oct-25,Technical,In Progress,TKT20230028,Yes,Spring Boot training
+29,Rishi Kapoor,CID1029,IT Auditor,FT,rishi.kapoor@example.com,7098765432,Pooja Gupta,15-May-25,15-Nov-25,Compliance,Not Started,TKT20230029,No,
+30,Diya Srinivasan,CID1030,Frontend Developer,FT,diya.srinivasan@example.com,8987654321,Vikram Joshi,01-Jun-25,01-Dec-25,Technical,Completed,TKT20230030,Yes,React specialist
