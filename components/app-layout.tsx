@@ -20,6 +20,7 @@ import {
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -83,7 +84,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
       {/* Header */}
       <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
         <div className="flex items-center gap-2">
-          <X className="h-6 w-6 text-[#11c1d6]" />
+          <X className="h-6 w-6 text-brand" />
           <span className="text-lg font-semibold">EPI X-Ray</span>
         </div>
         
@@ -109,8 +110,8 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
                       className={cn(
                         "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium",
                         isActive
-                          ? "bg-[#11c1d6]/10 text-[#11c1d6]"
-                          : "text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                          ? "bg-brand/10 text-brand"
+                          : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
                       )}
                     >
                       <Icon className="h-4 w-4" />
@@ -123,7 +124,8 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
           </SheetContent>
         </Sheet>
 
-        <div className="ml-auto flex items-center gap-4">
+        <div className="ml-auto flex items-center gap-2">
+          <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm" className="gap-2">
@@ -165,8 +167,8 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
                   className={cn(
                     "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium",
                     isActive
-                      ? "bg-[#11c1d6]/10 text-[#11c1d6]"
-                      : "text-muted-foreground hover:bg-[#11c1d6]/10 hover:text-[#11c1d6]"
+                      ? "bg-brand/10 text-brand"
+                      : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
                   )}
                 >
                   <Icon className="h-4 w-4" />
