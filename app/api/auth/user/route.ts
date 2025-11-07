@@ -14,7 +14,11 @@ export async function GET(request: NextRequest) {
     const cookieStore = await cookies();
     const token = cookieStore.get("session");
 
+    console.log("Session cookie present:", !!token);
+    console.log("All cookies:", cookieStore.getAll().map(c => c.name));
+
     if (!token) {
+      console.log("No session cookie found");
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
 

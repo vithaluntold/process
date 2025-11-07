@@ -65,7 +65,7 @@ export default function LandingPage() {
     const lastName = formData.get("lastName") as string;
 
     try {
-      const res = await fetch("/api/auth/signup", {
+      const signupRes = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -76,21 +76,31 @@ export default function LandingPage() {
         }),
       });
 
-      const data = await res.json();
+      const signupData = await signupRes.json();
 
-      if (!res.ok) {
-        throw new Error(data.error || "Signup failed");
+      if (!signupRes.ok) {
+        throw new Error(signupData.error || "Signup failed");
       }
 
       toast({
         title: "Success",
-        description: "Account created! Please log in.",
+        description: "Account created! Logging you in...",
       });
 
-      setTimeout(() => {
-        const loginTab = document.querySelector('[value="login"]') as HTMLElement;
-        if (loginTab) loginTab.click();
-      }, 500);
+      const loginRes = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const loginData = await loginRes.json();
+
+      if (!loginRes.ok) {
+        throw new Error(loginData.error || "Auto-login failed. Please log in manually.");
+      }
+
+      router.push("/");
+      router.refresh();
     } catch (error: any) {
       toast({
         title: "Error",
