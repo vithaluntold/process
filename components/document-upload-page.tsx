@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -19,82 +19,44 @@ import {
   Sparkles,
   FolderOpen,
   BarChart3,
+  Loader2,
 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
-const uploadedDocuments = [
-  {
-    id: 1,
-    name: "Order-to-Cash-Process-SOP.pdf",
-    size: "2.4 MB",
-    uploadDate: "2024-01-15",
-    status: "processed",
-    extractedProcesses: 1,
-    activities: 12,
-  },
-  {
-    id: 2,
-    name: "Invoice-Processing-Workflow.docx",
-    size: "1.8 MB",
-    uploadDate: "2024-01-14",
-    status: "processing",
-    extractedProcesses: 0,
-    activities: 0,
-    progress: 65,
-  },
-  {
-    id: 3,
-    name: "Customer-Onboarding-Procedure.pdf",
-    size: "3.1 MB",
-    uploadDate: "2024-01-12",
-    status: "processed",
-    extractedProcesses: 1,
-    activities: 18,
-  },
-  {
-    id: 4,
-    name: "HR-Recruitment-Process.pdf",
-    size: "1.5 MB",
-    uploadDate: "2024-01-10",
-    status: "error",
-    extractedProcesses: 0,
-    activities: 0,
-  },
-]
-
-const processRepository = [
-  {
-    id: 1,
-    name: "Order to Cash",
-    source: "Order-to-Cash-Process-SOP.pdf",
-    activities: 12,
-    variants: 3,
-    avgDuration: "2.5 days",
-    status: "active",
-  },
-  {
-    id: 2,
-    name: "Customer Onboarding",
-    source: "Customer-Onboarding-Procedure.pdf",
-    activities: 18,
-    variants: 5,
-    avgDuration: "5.2 days",
-    status: "active",
-  },
-  {
-    id: 3,
-    name: "Invoice Processing",
-    source: "Manual Entry",
-    activities: 8,
-    variants: 2,
-    avgDuration: "1.8 days",
-    status: "active",
-  },
-]
+import { toast } from "sonner"
 
 export default function DocumentUploadPage() {
   const [dragActive, setDragActive] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [uploadedDocuments, setUploadedDocuments] = useState<any[]>([])
+  const [processRepository, setProcessRepository] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    try {
+      const [docsRes, procsRes] = await Promise.all([
+        fetch("/api/documents"),
+        fetch("/api/processes")
+      ])
+
+      if (docsRes.ok) {
+        const docs = await docsRes.json()
+        setUploadedDocuments(docs)
+      }
+
+      if (procsRes.ok) {
+        const procs = await procsRes.json()
+        setProcessRepository(procs)
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault()
@@ -115,12 +77,35 @@ export default function DocumentUploadPage() {
     }
   }, [])
 
-  const handleFiles = (files: FileList) => {
+  const handleFiles = async (files: FileList) => {
+    const file = files[0]
+    if (!file) return
+
     setUploading(true)
-    // Simulate upload
-    setTimeout(() => {
+
+    try {
+      const formData = new FormData()
+      formData.append("file", file)
+      formData.append("processName", file.name.replace(/\.[^/.]+$/, ""))
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      })
+
+      if (res.ok) {
+        toast.success("File uploaded successfully!")
+        fetchData()
+      } else {
+        const error = await res.json()
+        toast.error(error.error || "Upload failed")
+      }
+    } catch (error) {
+      console.error("Upload error:", error)
+      toast.error("Failed to upload file")
+    } finally {
       setUploading(false)
-    }, 2000)
+    }
   }
 
   const getStatusIcon = (status: string) => {
@@ -145,7 +130,7 @@ export default function DocumentUploadPage() {
       case "error":
         return <Badge variant="destructive">Error</Badge>
       default:
-        return <Badge variant="outline">Pending</Badge>
+        return <Badge variant="outline">Unknown</Badge>
     }
   }
 
@@ -208,12 +193,14 @@ export default function DocumentUploadPage() {
 
         <Card className="border-[#11c1d6]/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Success Rate</CardTitle>
+            <CardTitle className="text-sm font-medium">Completed</CardTitle>
             <CheckCircle className="h-4 w-4 text-[#11c1d6]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">75%</div>
-            <p className="text-xs text-muted-foreground">Processing success</p>
+            <div className="text-2xl font-bold">
+              {uploadedDocuments.filter((d) => d.status === "processed").length}
+            </div>
+            <p className="text-xs text-muted-foreground">Successfully processed</p>
           </CardContent>
         </Card>
       </div>
@@ -234,10 +221,9 @@ export default function DocumentUploadPage() {
         <TabsContent value="upload" className="space-y-4 pt-4">
           <Card className="border-[#11c1d6]/20">
             <CardHeader>
-              <CardTitle>Upload Process Documents</CardTitle>
+              <CardTitle>Upload Event Log Data</CardTitle>
               <CardDescription>
-                Upload SOPs, process documentation, or workflow descriptions. Our AI will automatically extract process
-                flows and create process models.
+                Upload CSV files containing event logs with caseId, activity, and timestamp columns. The system will automatically process and analyze your data.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -255,7 +241,7 @@ export default function DocumentUploadPage() {
                 <input
                   type="file"
                   multiple
-                  accept=".pdf,.doc,.docx,.txt"
+                  accept=".csv"
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   onChange={(e) => e.target.files && handleFiles(e.target.files)}
                 />
@@ -272,7 +258,7 @@ export default function DocumentUploadPage() {
                       {uploading ? "Uploading..." : "Drop files here or click to upload"}
                     </h3>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Supports PDF, Word documents, and text files up to 50MB
+                      Supports CSV files up to 50MB with event log data
                     </p>
                   </div>
                   {!uploading && (
@@ -313,59 +299,65 @@ export default function DocumentUploadPage() {
               <CardDescription>Manage your uploaded process documents and their processing status</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="rounded-md border">
-                <div className="relative w-full overflow-auto">
-                  <table className="w-full caption-bottom text-sm">
-                    <thead>
-                      <tr className="border-b transition-colors hover:bg-muted/50">
-                        <th className="h-12 px-4 text-left font-medium">Document Name</th>
-                        <th className="h-12 px-4 text-left font-medium">Size</th>
-                        <th className="h-12 px-4 text-left font-medium">Upload Date</th>
-                        <th className="h-12 px-4 text-left font-medium">Status</th>
-                        <th className="h-12 px-4 text-left font-medium">Processes</th>
-                        <th className="h-12 px-4 text-left font-medium">Activities</th>
-                        <th className="h-12 px-4 text-left font-medium">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {uploadedDocuments.map((doc) => (
-                        <tr key={doc.id} className="border-b transition-colors hover:bg-muted/50">
-                          <td className="p-4 align-middle">
-                            <div className="flex items-center gap-2">
-                              <FileText className="h-4 w-4 text-[#11c1d6]" />
-                              <span className="font-medium">{doc.name}</span>
-                            </div>
-                          </td>
-                          <td className="p-4 align-middle">{doc.size}</td>
-                          <td className="p-4 align-middle">{doc.uploadDate}</td>
-                          <td className="p-4 align-middle">
-                            <div className="flex items-center gap-2">
-                              {getStatusIcon(doc.status)}
-                              {getStatusBadge(doc.status)}
-                            </div>
-                            {doc.status === "processing" && <Progress value={doc.progress} className="mt-2 h-1" />}
-                          </td>
-                          <td className="p-4 align-middle">{doc.extractedProcesses}</td>
-                          <td className="p-4 align-middle">{doc.activities}</td>
-                          <td className="p-4 align-middle">
-                            <div className="flex items-center gap-2">
-                              <Button variant="ghost" size="icon">
-                                <Eye className="h-4 w-4" />
-                              </Button>
-                              <Button variant="ghost" size="icon">
-                                <Download className="h-4 w-4" />
-                              </Button>
-                              <Button variant="ghost" size="icon">
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+              {loading ? (
+                <div className="flex items-center justify-center py-12">
+                  <Loader2 className="h-8 w-8 text-[#11c1d6] animate-spin" />
                 </div>
-              </div>
+              ) : uploadedDocuments.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-12 text-center">
+                  <FileText className="h-12 w-12 text-muted-foreground mb-4" />
+                  <h3 className="font-semibold mb-2">No Documents Uploaded</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Upload CSV files to start analyzing your processes
+                  </p>
+                </div>
+              ) : (
+                <div className="rounded-md border">
+                  <div className="relative w-full overflow-auto">
+                    <table className="w-full caption-bottom text-sm">
+                      <thead>
+                        <tr className="border-b transition-colors hover:bg-muted/50">
+                          <th className="h-12 px-4 text-left font-medium">Document Name</th>
+                          <th className="h-12 px-4 text-left font-medium">Size</th>
+                          <th className="h-12 px-4 text-left font-medium">Upload Date</th>
+                          <th className="h-12 px-4 text-left font-medium">Status</th>
+                          <th className="h-12 px-4 text-left font-medium">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {uploadedDocuments.map((doc) => (
+                          <tr key={doc.id} className="border-b transition-colors hover:bg-muted/50">
+                            <td className="p-4 align-middle">
+                              <div className="flex items-center gap-2">
+                                <FileText className="h-4 w-4 text-[#11c1d6]" />
+                                <span className="font-medium">{doc.name}</span>
+                              </div>
+                            </td>
+                            <td className="p-4 align-middle">{doc.size}</td>
+                            <td className="p-4 align-middle">{new Date(doc.uploadDate).toLocaleDateString()}</td>
+                            <td className="p-4 align-middle">
+                              <div className="flex items-center gap-2">
+                                {getStatusIcon(doc.status)}
+                                {getStatusBadge(doc.status)}
+                              </div>
+                            </td>
+                            <td className="p-4 align-middle">
+                              <div className="flex items-center gap-2">
+                                <Button variant="ghost" size="icon">
+                                  <Download className="h-4 w-4" />
+                                </Button>
+                                <Button variant="ghost" size="icon">
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
@@ -377,39 +369,51 @@ export default function DocumentUploadPage() {
               <CardDescription>Extracted processes available for analysis and optimization</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-4">
-                {processRepository.map((process) => (
-                  <div
-                    key={process.id}
-                    className="flex items-center justify-between p-4 rounded-lg border border-[#11c1d6]/20 hover:bg-muted/50"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className="p-3 rounded-lg bg-[#11c1d6]/10">
-                        <BarChart3 className="h-6 w-6 text-[#11c1d6]" />
-                      </div>
-                      <div>
-                        <h3 className="font-medium">{process.name}</h3>
-                        <p className="text-sm text-muted-foreground">Source: {process.source}</p>
-                        <div className="flex items-center gap-4 mt-2">
-                          <span className="text-xs text-muted-foreground">Activities: {process.activities}</span>
-                          <span className="text-xs text-muted-foreground">Variants: {process.variants}</span>
-                          <span className="text-xs text-muted-foreground">Avg Duration: {process.avgDuration}</span>
+              {loading ? (
+                <div className="flex items-center justify-center py-12">
+                  <Loader2 className="h-8 w-8 text-[#11c1d6] animate-spin" />
+                </div>
+              ) : processRepository.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-12 text-center">
+                  <BarChart3 className="h-12 w-12 text-muted-foreground mb-4" />
+                  <h3 className="font-semibold mb-2">No Processes in Repository</h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Upload CSV files with event logs to populate your process repository
+                  </p>
+                </div>
+              ) : (
+                <div className="grid gap-4">
+                  {processRepository.map((process) => (
+                    <div
+                      key={process.id}
+                      className="flex items-center justify-between p-4 rounded-lg border border-[#11c1d6]/20 hover:bg-muted/50"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 rounded-lg bg-[#11c1d6]/10">
+                          <BarChart3 className="h-6 w-6 text-[#11c1d6]" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium">{process.name}</h3>
+                          <p className="text-sm text-muted-foreground">Source: {process.source}</p>
+                          <div className="flex items-center gap-4 mt-2">
+                            <span className="text-xs text-muted-foreground">Status: {process.status}</span>
+                          </div>
                         </div>
                       </div>
+                      <div className="flex items-center gap-2">
+                        <Badge className="bg-emerald-500">{process.status}</Badge>
+                        <Button variant="outline" size="sm">
+                          <Eye className="mr-2 h-4 w-4" />
+                          View Process
+                        </Button>
+                        <Button size="sm" className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white">
+                          Analyze
+                        </Button>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Badge className="bg-emerald-500">{process.status}</Badge>
-                      <Button variant="outline" size="sm">
-                        <Eye className="mr-2 h-4 w-4" />
-                        View Process
-                      </Button>
-                      <Button size="sm" className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white">
-                        Analyze
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>

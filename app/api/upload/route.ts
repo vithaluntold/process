@@ -8,7 +8,7 @@ import { randomUUID } from "crypto";
 
 const UPLOAD_DIR = join(process.cwd(), "uploads");
 const MAX_FILE_SIZE = 50 * 1024 * 1024;
-const ALLOWED_EXTENSIONS = [".csv", ".txt"];
+const ALLOWED_EXTENSIONS = [".csv"];
 
 function sanitizeFilename(filename: string): string {
   const ext = extname(filename).toLowerCase();
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       name: file.name,
       size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
       path: filePath,
-      status: "uploaded",
+      status: "processing",
     });
 
     if (originalExt === ".csv") {
@@ -77,7 +77,16 @@ export async function POST(request: NextRequest) {
           });
 
           if (validEvents.length === 0) {
-            throw new Error("No valid events found in CSV. Required columns: caseId, activity, timestamp");
+            const updatedDoc = await storage.updateDocument(document.id, {
+              status: "error",
+            });
+            return NextResponse.json(
+              { 
+                error: "No valid events found in CSV. Required columns: caseId, activity, timestamp",
+                document: updatedDoc || { ...document, status: "error" }
+              },
+              { status: 400 }
+            );
           }
 
           const eventLogs = validEvents.map((event: any) => ({
@@ -91,27 +100,45 @@ export async function POST(request: NextRequest) {
 
           await storage.insertEventLogs(eventLogs);
 
-          await storage.updateDocument(document.id, {
+          const updatedDoc = await storage.updateDocument(document.id, {
             status: "processed",
             extractedProcesses: 1,
             activities: new Set(events.map((e: any) => e.activity || e.Activity)).size,
           });
 
           return NextResponse.json({
-            document,
+            document: updatedDoc || { ...document, status: "processed" },
             process,
             eventsImported: eventLogs.length,
           });
+        } else {
+          const updatedDoc = await storage.updateDocument(document.id, {
+            status: "error",
+          });
+          return NextResponse.json(
+            { 
+              error: "CSV file is empty",
+              document: updatedDoc || { ...document, status: "error" }
+            },
+            { status: 400 }
+          );
         }
       } catch (error) {
         console.error("Error processing CSV:", error);
-        await storage.updateDocument(document.id, {
+        const updatedDoc = await storage.updateDocument(document.id, {
           status: "error",
         });
+        return NextResponse.json(
+          { 
+            error: error instanceof Error ? error.message : "Failed to process CSV",
+            document: updatedDoc || { ...document, status: "error" }
+          },
+          { status: 500 }
+        );
       }
     }
 
-    return NextResponse.json({ document });
+    return NextResponse.json({ error: "Unsupported file type" }, { status: 400 });
   } catch (error) {
     console.error("Error uploading file:", error);
     return NextResponse.json(

@@ -1,141 +1,56 @@
 "use client"
 
-import { useState } from "react"
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
-
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-
-const taskData = [
-  {
-    name: "Email Processing",
-    frequency: 120,
-    avgDuration: 5,
-    automationPotential: 80,
-  },
-  {
-    name: "Data Entry",
-    frequency: 85,
-    avgDuration: 12,
-    automationPotential: 90,
-  },
-  {
-    name: "Document Review",
-    frequency: 65,
-    avgDuration: 18,
-    automationPotential: 40,
-  },
-  {
-    name: "Approval",
-    frequency: 45,
-    avgDuration: 8,
-    automationPotential: 30,
-  },
-  {
-    name: "Customer Response",
-    frequency: 95,
-    avgDuration: 15,
-    automationPotential: 60,
-  },
-  {
-    name: "Report Generation",
-    frequency: 35,
-    avgDuration: 25,
-    automationPotential: 85,
-  },
-]
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { MousePointerClick, BarChart3, Zap } from "lucide-react"
 
 export default function TaskMiningDashboard() {
-  const [chartMetric, setChartMetric] = useState("frequency")
-
-  const getChartData = () => {
-    if (chartMetric === "frequency") {
-      return taskData.map((task) => ({
-        name: task.name,
-        value: task.frequency,
-      }))
-    } else if (chartMetric === "duration") {
-      return taskData.map((task) => ({
-        name: task.name,
-        value: task.avgDuration,
-      }))
-    } else {
-      return taskData.map((task) => ({
-        name: task.name,
-        value: task.automationPotential,
-      }))
-    }
-  }
-
-  const getChartLabel = () => {
-    if (chartMetric === "frequency") {
-      return "Task Frequency (per day)"
-    } else if (chartMetric === "duration") {
-      return "Avg. Duration (minutes)"
-    } else {
-      return "Automation Potential (%)"
-    }
-  }
-
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Select value={chartMetric} onValueChange={setChartMetric}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select metric" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="frequency">Task Frequency</SelectItem>
-              <SelectItem value="duration">Task Duration</SelectItem>
-              <SelectItem value="automation">Automation Potential</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <Button variant="outline" size="sm">
-          Export Data
-        </Button>
-      </div>
-
-      <Card>
-        <CardContent className="pt-6">
-          <ResponsiveContainer width="100%" height={350}>
-            <BarChart data={getChartData()} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis label={{ value: getChartLabel(), angle: -90, position: "insideLeft" }} />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="value" fill="#3b82f6" name={getChartLabel()} />
-            </BarChart>
-          </ResponsiveContainer>
+      <Card className="border-[#11c1d6]/20">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <MousePointerClick className="h-5 w-5 text-[#11c1d6]" />
+            Task Mining
+          </CardTitle>
+          <CardDescription>
+            Analyze task-level execution data to identify automation opportunities
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col items-center justify-center py-12 text-center">
+            <div className="rounded-full bg-[#11c1d6]/10 p-6 mb-4">
+              <BarChart3 className="h-12 w-12 text-[#11c1d6]" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Task Mining Coming Soon</h3>
+            <p className="text-muted-foreground max-w-md mb-6">
+              Upload task execution logs to analyze task frequency, duration, and automation potential at a granular level.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl">
+              <div className="rounded-lg border border-[#11c1d6]/20 p-4 text-left">
+                <MousePointerClick className="h-5 w-5 text-[#11c1d6] mb-2" />
+                <h4 className="font-medium mb-1">Task Frequency</h4>
+                <p className="text-sm text-muted-foreground">
+                  Track how often specific tasks are performed by users
+                </p>
+              </div>
+              <div className="rounded-lg border border-[#11c1d6]/20 p-4 text-left">
+                <BarChart3 className="h-5 w-5 text-blue-500 mb-2" />
+                <h4 className="font-medium mb-1">Duration Analysis</h4>
+                <p className="text-sm text-muted-foreground">
+                  Measure average time spent on different task types
+                </p>
+              </div>
+              <div className="rounded-lg border border-[#11c1d6]/20 p-4 text-left">
+                <Zap className="h-5 w-5 text-amber-500 mb-2" />
+                <h4 className="font-medium mb-1">Automation Scoring</h4>
+                <p className="text-sm text-muted-foreground">
+                  Identify tasks with highest automation potential
+                </p>
+              </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
-
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        {taskData.map((task, index) => (
-          <Card key={index}>
-            <CardContent className="pt-6">
-              <h3 className="font-semibold">{task.name}</h3>
-              <div className="mt-2 space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Frequency:</span>
-                  <span>{task.frequency}/day</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Avg. Duration:</span>
-                  <span>{task.avgDuration} min</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Automation:</span>
-                  <span>{task.automationPotential}%</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
     </div>
   )
 }
