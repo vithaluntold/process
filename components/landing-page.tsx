@@ -230,7 +230,7 @@ export default function LandingPage() {
                     <CardContent className="space-y-6 pt-6">
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <Label htmlFor="signup-firstName" className="text-white">First Name</Label>
+                          <Label htmlFor="signup-firstName" className="text-white">First Name <span className="text-slate-400 text-xs font-normal">(Optional)</span></Label>
                           <Input
                             id="signup-firstName"
                             name="firstName"
@@ -241,7 +241,7 @@ export default function LandingPage() {
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="signup-lastName" className="text-white">Last Name</Label>
+                          <Label htmlFor="signup-lastName" className="text-white">Last Name <span className="text-slate-400 text-xs font-normal">(Optional)</span></Label>
                           <Input
                             id="signup-lastName"
                             name="lastName"
@@ -270,13 +270,15 @@ export default function LandingPage() {
                           id="signup-password"
                           name="password"
                           type="password"
-                          placeholder="At least 12 characters"
+                          placeholder="Enter your password"
                           required
                           disabled={isLoading}
+                          minLength={12}
                           className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                         />
-                        <p className="text-xs text-slate-300">
-                          Must be at least 12 characters long
+                        <p className="text-xs text-slate-300 flex items-center gap-1">
+                          <span className="text-slate-400">ℹ️</span>
+                          Minimum 12 characters required
                         </p>
                       </div>
                     </CardContent>
