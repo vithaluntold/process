@@ -48,12 +48,14 @@ export default function ProcessDiscovery() {
     try {
       const response = await fetch("/api/processes")
       const data = await response.json()
-      setProcesses(data)
-      if (data.length > 0) {
-        setSelectedProcess(data[0].id.toString())
+      const processArray = data.processes || []
+      setProcesses(processArray)
+      if (processArray.length > 0) {
+        setSelectedProcess(processArray[0].id.toString())
       }
     } catch (error) {
       console.error("Failed to fetch processes:", error)
+      setProcesses([])
     } finally {
       setLoading(false)
     }

@@ -37,7 +37,7 @@ export default function NewAnalysisModal({ open, onOpenChange, onAnalysisCreated
         body: JSON.stringify({
           name: name.trim(),
           description: description.trim() || null,
-          type,
+          source: type,
         }),
       })
 
