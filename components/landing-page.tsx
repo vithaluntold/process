@@ -102,13 +102,15 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a1929] via-[#1e3a5f] to-[#0a1929] flex items-center">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
           <div className="text-white space-y-8">
             <div className="flex items-center gap-3 mb-8">
-              <Layers className="h-12 w-12 text-[#11c1d6]" />
-              <h1 className="text-5xl font-bold">EPI X-Ray</h1>
+              <div className="p-3 bg-gradient-to-br from-[#11c1d6] to-[#0e9fb0] rounded-xl shadow-lg">
+                <Layers className="h-10 w-10 text-white" />
+              </div>
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">EPI X-Ray</h1>
             </div>
             
             <h2 className="text-4xl font-bold leading-tight">
@@ -168,13 +170,17 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div>
-            <Card className="shadow-2xl border-slate-700">
+          <div className="lg:pl-8">
+            <Card className="shadow-2xl border-slate-700/50 bg-white/95 backdrop-blur-sm">
               <Tabs defaultValue="login" className="w-full">
-                <CardHeader>
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="login">Login</TabsTrigger>
-                    <TabsTrigger value="signup">Sign Up</TabsTrigger>
+                <CardHeader className="space-y-4">
+                  <div className="text-center">
+                    <h2 className="text-2xl font-bold text-slate-900">Welcome Back</h2>
+                    <p className="text-sm text-slate-600 mt-1">Sign in to access your dashboard</p>
+                  </div>
+                  <TabsList className="grid w-full grid-cols-2 bg-slate-100">
+                    <TabsTrigger value="login" className="data-[state=active]:bg-white">Login</TabsTrigger>
+                    <TabsTrigger value="signup" className="data-[state=active]:bg-white">Sign Up</TabsTrigger>
                   </TabsList>
                 </CardHeader>
 
@@ -204,7 +210,12 @@ export default function LandingPage() {
                       </div>
                     </CardContent>
                     <CardFooter>
-                      <Button type="submit" className="w-full bg-[#11c1d6] hover:bg-[#0da5b8]" disabled={isLoading}>
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-gradient-to-r from-[#11c1d6] to-[#0e9fb0] hover:from-[#0da5b8] hover:to-[#0c8a9a] text-white font-semibold shadow-lg shadow-[#11c1d6]/30" 
+                        disabled={isLoading}
+                        size="lg"
+                      >
                         {isLoading ? "Logging in..." : "Log In"}
                       </Button>
                     </CardFooter>
@@ -263,7 +274,12 @@ export default function LandingPage() {
                       </div>
                     </CardContent>
                     <CardFooter>
-                      <Button type="submit" className="w-full bg-[#11c1d6] hover:bg-[#0da5b8]" disabled={isLoading}>
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-gradient-to-r from-[#11c1d6] to-[#0e9fb0] hover:from-[#0da5b8] hover:to-[#0c8a9a] text-white font-semibold shadow-lg shadow-[#11c1d6]/30" 
+                        disabled={isLoading}
+                        size="lg"
+                      >
                         {isLoading ? "Creating account..." : "Create Account"}
                       </Button>
                     </CardFooter>
