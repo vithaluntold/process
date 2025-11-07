@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { BotIcon as Robot, Zap, DollarSign, Clock, BarChart2 } from "lucide-react"
+import { BotIcon as Robot, Zap, DollarSign, Clock, BarChart2, Loader2 } from "lucide-react"
 
 const automationData = [
   {
@@ -49,11 +49,57 @@ const automationData = [
 
 export default function AutomationOpportunities() {
   const [selectedMetric, setSelectedMetric] = useState("automationPotential")
+  const [opportunities, setOpportunities] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchOpportunities()
+  }, [])
+
+  const fetchOpportunities = async () => {
+    try {
+      const processesResponse = await fetch("/api/processes")
+      if (!processesResponse.ok) {
+        throw new Error("Failed to fetch processes")
+      }
+      const processesData = await processesResponse.json()
+      const processes = processesData.processes || []
+      
+      if (processes.length === 0) {
+        setOpportunities([])
+        setLoading(false)
+        return
+      }
+
+      const firstProcessId = processes[0].id
+      const opportunitiesResponse = await fetch(`/api/analytics/automation?processId=${firstProcessId}`)
+      
+      if (!opportunitiesResponse.ok) {
+        throw new Error("Failed to fetch automation opportunities")
+      }
+      
+      const opportunitiesData = await opportunitiesResponse.json()
+      setOpportunities(opportunitiesData.opportunities || [])
+    } catch (error) {
+      console.error("Failed to fetch automation opportunities:", error)
+      setOpportunities([])
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const getChartData = () => {
-    return automationData.map((item) => ({
-      name: item.name,
-      value: item[selectedMetric],
+    const metricMap: Record<string, string> = {
+      automationPotential: 'automation_potential',
+      savingsEstimate: 'savings_estimate',
+      frequency: 'frequency',
+      duration: 'duration',
+    }
+    const backendKey = metricMap[selectedMetric] || selectedMetric
+    
+    return opportunities.map((item: any) => ({
+      name: item.name || item.activity_name,
+      value: item[backendKey] || 0,
     }))
   }
 
@@ -69,6 +115,31 @@ export default function AutomationOpportunities() {
     }
   }
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
+      </div>
+    )
+  }
+
+  if (opportunities.length === 0) {
+    return (
+      <Card className="border-[#11c1d6]/20">
+        <CardContent className="flex flex-col items-center justify-center h-64">
+          <p className="text-muted-foreground mb-4">No automation opportunities available. Upload event logs to see automation analysis.</p>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  const totalTasks = opportunities.reduce((sum, opp) => sum + (opp.frequency || 0), 0)
+  const avgAutomationPotential = opportunities.length > 0
+    ? Math.round(opportunities.reduce((sum, opp) => sum + (opp.automation_potential || 0), 0) / opportunities.length)
+    : 0
+  const totalTimeSavings = opportunities.reduce((sum, opp) => sum + ((opp.duration || 0) * (opp.frequency || 0)), 0) / 60
+  const totalCostSavings = opportunities.reduce((sum, opp) => sum + (opp.savings_estimate || 0), 0)
+
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -78,7 +149,7 @@ export default function AutomationOpportunities() {
             <BarChart2 className="h-4 w-4 text-[#11c1d6]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">1,680</div>
+            <div className="text-2xl font-bold">{totalTasks.toLocaleString()}</div>
             <p className="text-xs text-muted-foreground">tasks per month</p>
           </CardContent>
         </Card>
@@ -88,7 +159,7 @@ export default function AutomationOpportunities() {
             <Robot className="h-4 w-4 text-[#11c1d6]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">82%</div>
+            <div className="text-2xl font-bold">{avgAutomationPotential}%</div>
             <p className="text-xs text-muted-foreground">of tasks can be automated</p>
           </CardContent>
         </Card>
@@ -98,7 +169,7 @@ export default function AutomationOpportunities() {
             <Clock className="h-4 w-4 text-[#11c1d6]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">320</div>
+            <div className="text-2xl font-bold">{Math.round(totalTimeSavings)}</div>
             <p className="text-xs text-muted-foreground">hours per month</p>
           </CardContent>
         </Card>
@@ -108,7 +179,7 @@ export default function AutomationOpportunities() {
             <DollarSign className="h-4 w-4 text-[#11c1d6]" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$106K</div>
+            <div className="text-2xl font-bold">${(totalCostSavings / 1000).toFixed(0)}K</div>
             <p className="text-xs text-muted-foreground">annual savings</p>
           </CardContent>
         </Card>

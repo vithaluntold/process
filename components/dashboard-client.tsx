@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import {
   BarChart3,
@@ -27,9 +27,55 @@ import PredictiveAnalytics from "@/components/predictive-analytics"
 import UploadModal from "@/components/upload-modal"
 import NewAnalysisModal from "@/components/new-analysis-modal"
 
+interface DashboardStats {
+  processCount: number
+  avgCycleTime: number
+  conformanceRate: number
+  automationPotential: number
+}
+
 export default function DashboardClient() {
   const [uploadModalOpen, setUploadModalOpen] = useState(false)
   const [analysisModalOpen, setAnalysisModalOpen] = useState(false)
+  const [stats, setStats] = useState<DashboardStats>({
+    processCount: 0,
+    avgCycleTime: 0,
+    conformanceRate: 0,
+    automationPotential: 0,
+  })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchDashboardStats()
+  }, [])
+
+  const fetchDashboardStats = async () => {
+    try {
+      const response = await fetch("/api/processes")
+      if (!response.ok) {
+        throw new Error("Failed to fetch processes")
+      }
+      const data = await response.json()
+      const processes = data.processes || []
+      
+      setStats({
+        processCount: processes.length,
+        avgCycleTime: 0,
+        conformanceRate: 0,
+        automationPotential: 0,
+      })
+    } catch (error) {
+      console.error("Failed to fetch dashboard stats:", error)
+      setStats({
+        processCount: 0,
+        avgCycleTime: 0,
+        conformanceRate: 0,
+        automationPotential: 0,
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const handleDataChange = () => {
     window.location.reload()
@@ -189,14 +235,13 @@ export default function DashboardClient() {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               <Card className="border-[#11c1d6]/20">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">Process Variants</CardTitle>
+                  <CardTitle className="text-sm font-medium">Active Processes</CardTitle>
                   <Layers className="h-4 w-4 text-[#11c1d6]" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">42</div>
+                  <div className="text-2xl font-bold">{stats.processCount}</div>
                   <div className="flex items-center text-xs text-muted-foreground">
-                    <ArrowUpRight className="mr-1 h-3 w-3 text-emerald-500" />
-                    <span className="text-emerald-500">+12%</span> from last month
+                    <span>Total processes in system</span>
                   </div>
                 </CardContent>
               </Card>
@@ -206,10 +251,9 @@ export default function DashboardClient() {
                   <BarChart3 className="h-4 w-4 text-[#11c1d6]" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">2.4 days</div>
+                  <div className="text-2xl font-bold">{stats.avgCycleTime} days</div>
                   <div className="flex items-center text-xs text-muted-foreground">
-                    <ArrowUpRight className="mr-1 h-3 w-3 text-emerald-500 rotate-90" />
-                    <span className="text-emerald-500">-8%</span> from last month
+                    <span>Average process duration</span>
                   </div>
                 </CardContent>
               </Card>
@@ -219,10 +263,9 @@ export default function DashboardClient() {
                   <Filter className="h-4 w-4 text-[#11c1d6]" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">78.5%</div>
+                  <div className="text-2xl font-bold">{stats.conformanceRate}%</div>
                   <div className="flex items-center text-xs text-muted-foreground">
-                    <ArrowUpRight className="mr-1 h-3 w-3 text-emerald-500" />
-                    <span className="text-emerald-500">+5.2%</span> from last month
+                    <span>Process compliance score</span>
                   </div>
                 </CardContent>
               </Card>
@@ -232,10 +275,9 @@ export default function DashboardClient() {
                   <Zap className="h-4 w-4 text-[#11c1d6]" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">$1.2M</div>
+                  <div className="text-2xl font-bold">${stats.automationPotential}M</div>
                   <div className="flex items-center text-xs text-muted-foreground">
-                    <ArrowUpRight className="mr-1 h-3 w-3 text-emerald-500" />
-                    <span className="text-emerald-500">+15%</span> from last quarter
+                    <span>Estimated annual savings</span>
                   </div>
                 </CardContent>
               </Card>
