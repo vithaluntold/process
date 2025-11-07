@@ -65,19 +65,12 @@ export default function DashboardClient() {
 
   const fetchDashboardStats = async () => {
     try {
-      const response = await fetch("/api/processes")
+      const response = await fetch("/api/dashboard/stats")
       if (!response.ok) {
-        throw new Error("Failed to fetch processes")
+        throw new Error("Failed to fetch dashboard stats")
       }
       const data = await response.json()
-      const processes = data.processes || []
-      
-      setStats({
-        processCount: processes.length,
-        avgCycleTime: 0,
-        conformanceRate: 0,
-        automationPotential: 0,
-      })
+      setStats(data.stats)
     } catch (error) {
       console.error("Failed to fetch dashboard stats:", error)
       setStats({
