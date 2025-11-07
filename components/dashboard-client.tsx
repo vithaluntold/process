@@ -93,16 +93,20 @@ export default function DashboardClient() {
 
   return (
     <>
-      <UploadModal
-        open={uploadModalOpen}
-        onOpenChange={setUploadModalOpen}
-        onUploadComplete={handleDataChange}
-      />
-      <NewAnalysisModal
-        open={analysisModalOpen}
-        onOpenChange={setAnalysisModalOpen}
-        onAnalysisCreated={handleDataChange}
-      />
+      {uploadModalOpen && (
+        <UploadModal
+          open={uploadModalOpen}
+          onOpenChange={setUploadModalOpen}
+          onUploadComplete={handleDataChange}
+        />
+      )}
+      {analysisModalOpen && (
+        <NewAnalysisModal
+          open={analysisModalOpen}
+          onOpenChange={setAnalysisModalOpen}
+          onAnalysisCreated={handleDataChange}
+        />
+      )}
       <div className="flex min-h-screen w-full flex-col">
         <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
           <div className="flex items-center gap-2">
