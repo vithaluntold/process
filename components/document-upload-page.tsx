@@ -44,12 +44,22 @@ export default function DocumentUploadPage() {
 
       if (docsRes.ok) {
         const docs = await docsRes.json()
-        setUploadedDocuments(docs)
+        if (Array.isArray(docs)) {
+          setUploadedDocuments(docs)
+        } else {
+          console.error("Invalid documents response:", docs)
+          setUploadedDocuments([])
+        }
       }
 
       if (procsRes.ok) {
-        const procs = await procsRes.json()
-        setProcessRepository(procs)
+        const data = await procsRes.json()
+        if (data && typeof data === 'object' && Array.isArray(data.processes)) {
+          setProcessRepository(data.processes)
+        } else {
+          console.error("Invalid processes response:", data)
+          setProcessRepository([])
+        }
       }
     } catch (error) {
       console.error("Error fetching data:", error)
