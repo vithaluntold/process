@@ -22,6 +22,7 @@ import {
 } from "lucide-react"
 import { SkeletonCard, SkeletonTable } from "@/components/ui/skeleton-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { toast } from "sonner"
 
 export default function DocumentUploadPage() {
@@ -158,7 +159,7 @@ export default function DocumentUploadPage() {
             <Download className="h-4 w-4" />
             Export All
           </Button>
-          <Button size="sm" className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white flex items-center gap-1">
+          <Button size="sm" className="bg-brand hover:bg-brand/90 text-white flex items-center gap-1">
             <FolderOpen className="h-4 w-4" />
             View Repository
           </Button>
@@ -166,10 +167,10 @@ export default function DocumentUploadPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Uploaded Documents</CardTitle>
-            <FileText className="h-4 w-4 text-[#11c1d6]" />
+            <FileText className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{uploadedDocuments.length}</div>
@@ -177,10 +178,10 @@ export default function DocumentUploadPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Extracted Processes</CardTitle>
-            <BarChart3 className="h-4 w-4 text-[#11c1d6]" />
+            <BarChart3 className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{processRepository.length}</div>
@@ -188,10 +189,10 @@ export default function DocumentUploadPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Processing</CardTitle>
-            <Clock className="h-4 w-4 text-[#11c1d6]" />
+            <Clock className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
@@ -201,10 +202,10 @@ export default function DocumentUploadPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Completed</CardTitle>
-            <CheckCircle className="h-4 w-4 text-[#11c1d6]" />
+            <CheckCircle className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
@@ -216,20 +217,20 @@ export default function DocumentUploadPage() {
       </div>
 
       <Tabs defaultValue="upload">
-        <TabsList className="bg-[#11c1d6]/10">
-          <TabsTrigger value="upload" className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white">
+        <TabsList className="bg-brand/10">
+          <TabsTrigger value="upload" className="data-[state=active]:bg-brand data-[state=active]:text-white">
             Upload Documents
           </TabsTrigger>
-          <TabsTrigger value="documents" className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white">
+          <TabsTrigger value="documents" className="data-[state=active]:bg-brand data-[state=active]:text-white">
             Uploaded Documents
           </TabsTrigger>
-          <TabsTrigger value="repository" className="data-[state=active]:bg-[#11c1d6] data-[state=active]:text-white">
+          <TabsTrigger value="repository" className="data-[state=active]:bg-brand data-[state=active]:text-white">
             Process Repository
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="upload" className="space-y-4 pt-4">
-          <Card className="border-[#11c1d6]/20">
+          <Card className="border-brand/20">
             <CardHeader>
               <CardTitle>Upload Event Log Data</CardTitle>
               <CardDescription>
@@ -240,8 +241,8 @@ export default function DocumentUploadPage() {
               <div
                 className={`relative border-2 border-dashed rounded-lg p-12 text-center transition-colors ${
                   dragActive
-                    ? "border-[#11c1d6] bg-[#11c1d6]/5"
-                    : "border-gray-300 hover:border-[#11c1d6] hover:bg-[#11c1d6]/5"
+                    ? "border-brand bg-brand/5"
+                    : "border-gray-300 hover:border-brand hover:bg-brand/5"
                 }`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
@@ -256,11 +257,11 @@ export default function DocumentUploadPage() {
                   onChange={(e) => e.target.files && handleFiles(e.target.files)}
                 />
                 <div className="flex flex-col items-center gap-4">
-                  <div className="rounded-full bg-[#11c1d6]/10 p-6">
+                  <div className="rounded-full bg-brand/10 p-6">
                     {uploading ? (
-                      <Upload className="h-10 w-10 text-[#11c1d6] animate-bounce" />
+                      <Upload className="h-10 w-10 text-brand animate-bounce" />
                     ) : (
-                      <Upload className="h-10 w-10 text-[#11c1d6]" />
+                      <Upload className="h-10 w-10 text-brand" />
                     )}
                   </div>
                   <div>
@@ -272,7 +273,7 @@ export default function DocumentUploadPage() {
                     </p>
                   </div>
                   {!uploading && (
-                    <Button className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white">
+                    <Button className="bg-brand hover:bg-brand/90 text-white">
                       <Upload className="mr-2 h-4 w-4" />
                       Select Files
                     </Button>
@@ -280,9 +281,9 @@ export default function DocumentUploadPage() {
                 </div>
               </div>
 
-              <div className="mt-6 rounded-lg border border-[#11c1d6]/20 p-4 bg-[#11c1d6]/5">
+              <div className="mt-6 rounded-lg border border-brand/20 p-4 bg-brand/5">
                 <div className="flex items-start gap-3">
-                  <Sparkles className="h-5 w-5 text-[#11c1d6] mt-0.5 shrink-0" />
+                  <Sparkles className="h-5 w-5 text-brand mt-0.5 shrink-0" />
                   <div>
                     <h4 className="font-medium">AI-Powered Process Extraction</h4>
                     <p className="text-sm text-muted-foreground mt-1">
@@ -303,7 +304,7 @@ export default function DocumentUploadPage() {
         </TabsContent>
 
         <TabsContent value="documents" className="pt-4">
-          <Card className="border-[#11c1d6]/20">
+          <Card className="border-brand/20">
             <CardHeader>
               <CardTitle>Uploaded Documents</CardTitle>
               <CardDescription>Manage your uploaded process documents and their processing status</CardDescription>
@@ -321,49 +322,47 @@ export default function DocumentUploadPage() {
                 </div>
               ) : (
                 <div className="rounded-md border">
-                  <div className="relative w-full overflow-auto">
-                    <table className="w-full caption-bottom text-sm">
-                      <thead>
-                        <tr className="border-b transition-colors hover:bg-muted/50">
-                          <th className="h-12 px-4 text-left font-medium">Document Name</th>
-                          <th className="h-12 px-4 text-left font-medium">Size</th>
-                          <th className="h-12 px-4 text-left font-medium">Upload Date</th>
-                          <th className="h-12 px-4 text-left font-medium">Status</th>
-                          <th className="h-12 px-4 text-left font-medium">Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {uploadedDocuments.map((doc) => (
-                          <tr key={doc.id} className="border-b transition-colors hover:bg-muted/50">
-                            <td className="p-4 align-middle">
-                              <div className="flex items-center gap-2">
-                                <FileText className="h-4 w-4 text-[#11c1d6]" />
-                                <span className="font-medium">{doc.name}</span>
-                              </div>
-                            </td>
-                            <td className="p-4 align-middle">{doc.size}</td>
-                            <td className="p-4 align-middle">{new Date(doc.uploadDate).toLocaleDateString()}</td>
-                            <td className="p-4 align-middle">
-                              <div className="flex items-center gap-2">
-                                {getStatusIcon(doc.status)}
-                                {getStatusBadge(doc.status)}
-                              </div>
-                            </td>
-                            <td className="p-4 align-middle">
-                              <div className="flex items-center gap-2">
-                                <Button variant="ghost" size="icon">
-                                  <Download className="h-4 w-4" />
-                                </Button>
-                                <Button variant="ghost" size="icon">
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Document Name</TableHead>
+                        <TableHead>Size</TableHead>
+                        <TableHead>Upload Date</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {uploadedDocuments.map((doc) => (
+                        <TableRow key={doc.id}>
+                          <TableCell>
+                            <div className="flex items-center gap-2">
+                              <FileText className="h-4 w-4 text-brand" />
+                              <span className="font-medium">{doc.name}</span>
+                            </div>
+                          </TableCell>
+                          <TableCell>{doc.size}</TableCell>
+                          <TableCell>{new Date(doc.uploadDate).toLocaleDateString()}</TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-2">
+                              {getStatusIcon(doc.status)}
+                              {getStatusBadge(doc.status)}
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-2">
+                              <Button variant="ghost" size="icon">
+                                <Download className="h-4 w-4" />
+                              </Button>
+                              <Button variant="ghost" size="icon">
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
                 </div>
               )}
             </CardContent>
@@ -371,7 +370,7 @@ export default function DocumentUploadPage() {
         </TabsContent>
 
         <TabsContent value="repository" className="pt-4">
-          <Card className="border-[#11c1d6]/20">
+          <Card className="border-brand/20">
             <CardHeader>
               <CardTitle>Process Repository</CardTitle>
               <CardDescription>Extracted processes available for analysis and optimization</CardDescription>
@@ -396,11 +395,11 @@ export default function DocumentUploadPage() {
                   {processRepository.map((process) => (
                     <div
                       key={process.id}
-                      className="flex items-center justify-between p-4 rounded-lg border border-[#11c1d6]/20 hover:bg-muted/50"
+                      className="flex items-center justify-between p-4 rounded-lg border border-brand/20 hover:bg-muted/50"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="p-3 rounded-lg bg-[#11c1d6]/10">
-                          <BarChart3 className="h-6 w-6 text-[#11c1d6]" />
+                        <div className="p-3 rounded-lg bg-brand/10">
+                          <BarChart3 className="h-6 w-6 text-brand" />
                         </div>
                         <div>
                           <h3 className="font-medium">{process.name}</h3>
@@ -416,7 +415,7 @@ export default function DocumentUploadPage() {
                           <Eye className="mr-2 h-4 w-4" />
                           View Process
                         </Button>
-                        <Button size="sm" className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white">
+                        <Button size="sm" className="bg-brand hover:bg-brand/90 text-white">
                           Analyze
                         </Button>
                       </div>

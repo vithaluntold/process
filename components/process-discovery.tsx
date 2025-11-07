@@ -44,10 +44,10 @@ export default function ProcessDiscovery() {
 
   if (processes.length === 0) {
     return (
-      <Card className="border-[#11c1d6]/20">
+      <Card className="border-brand/20">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Network className="h-5 w-5 text-[#11c1d6]" />
+            <Network className="h-5 w-5 text-brand" />
             Process Discovery
           </CardTitle>
           <CardDescription>
@@ -56,8 +56,8 @@ export default function ProcessDiscovery() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col items-center justify-center py-12 text-center">
-            <div className="rounded-full bg-[#11c1d6]/10 p-6 mb-4">
-              <Network className="h-12 w-12 text-[#11c1d6]" />
+            <div className="rounded-full bg-brand/10 p-6 mb-4">
+              <Network className="h-12 w-12 text-brand" />
             </div>
             <h3 className="text-lg font-semibold mb-2">No Processes Discovered Yet</h3>
             <p className="text-muted-foreground max-w-md mb-6">
@@ -90,7 +90,7 @@ export default function ProcessDiscovery() {
 
       {currentProcess && (
         <div className="grid gap-4 md:grid-cols-2">
-          <Card className="border-[#11c1d6]/20">
+          <Card className="border-brand/20">
             <CardHeader>
               <CardTitle>Process Information</CardTitle>
               <CardDescription>Details about the selected process</CardDescription>
@@ -121,15 +121,15 @@ export default function ProcessDiscovery() {
             </CardContent>
           </Card>
 
-          <Card className="border-[#11c1d6]/20">
+          <Card className="border-brand/20">
             <CardHeader>
               <CardTitle>Process Model Visualization</CardTitle>
               <CardDescription>Coming soon with Alpha Miner algorithm</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="rounded-full bg-[#11c1d6]/10 p-6 mb-4">
-                  <Network className="h-12 w-12 text-[#11c1d6]" />
+                <div className="rounded-full bg-brand/10 p-6 mb-4">
+                  <Network className="h-12 w-12 text-brand" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Process Discovery Coming Soon</h3>
                 <p className="text-sm text-muted-foreground max-w-md">
