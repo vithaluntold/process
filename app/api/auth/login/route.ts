@@ -14,7 +14,10 @@ export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json();
 
+    console.log("Login attempt for:", email);
+
     if (!email || !password) {
+      console.log("Missing email or password");
       return NextResponse.json(
         { error: "Email and password are required" },
         { status: 400 }
@@ -26,7 +29,10 @@ export async function POST(request: NextRequest) {
       .from(schema.users)
       .where(eq(schema.users.email, email));
 
+    console.log("User found:", !!user, "Has password:", !!user?.password);
+
     if (!user || !user.password) {
+      console.log("User not found or no password");
       return NextResponse.json(
         { error: "Invalid credentials" },
         { status: 401 }
@@ -35,7 +41,10 @@ export async function POST(request: NextRequest) {
 
     const isValid = await compare(password, user.password);
 
+    console.log("Password valid:", isValid);
+
     if (!isValid) {
+      console.log("Password comparison failed");
       return NextResponse.json(
         { error: "Invalid credentials" },
         { status: 401 }
