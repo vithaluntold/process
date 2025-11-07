@@ -63,7 +63,28 @@ EPI X-Ray is an advanced process mining and automation platform that helps analy
 - CSV validation (required fields: caseId, activity, timestamp)
 - Database constraints and foreign keys
 
+## Authentication System
+- **Type**: Custom email/password authentication (independent, not Replit-specific)
+- **Password Security**: bcryptjs with 10 salt rounds for hashing
+- **Session Management**: express-session with PostgreSQL store (connect-pg-simple)
+- **Client State**: @tanstack/react-query for auth state management
+- **API Routes**: 
+  - `/api/auth/signup` - User registration with email/password
+  - `/api/auth/login` - User login with credential verification
+  - `/api/auth/logout` - Session destruction
+  - `/api/auth/user` - Current user info (returns 401 if not authenticated)
+- **Landing Page**: Shows for logged-out users with login/signup forms
+- **Protected Routes**: Dashboard and feature pages require authentication
+- **User Menu**: Dropdown with logout functionality in dashboard header
+
 ## Recent Changes
+- 2025-11-07: Implemented complete custom authentication system
+  - Created custom auth with bcryptjs password hashing and PostgreSQL sessions
+  - Added useAuth hook with React Query for client-side authentication state
+  - Created landing page with login and signup forms for logged-out users
+  - Updated root page routing to show landing page or dashboard based on auth status
+  - Added user menu with logout button to dashboard header
+  - All authentication is self-sufficient and portable (not dependent on Replit infrastructure)
 - 2025-11-07: Connected all navigation pages
   - Created dedicated pages: /process-discovery, /conformance-checking, /performance-analytics, /automation-opportunities, /predictive-analytics
   - Updated all sidebar navigation links to route to actual pages

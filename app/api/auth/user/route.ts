@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 401 });
     }
 
-    return NextResponse.json(user);
+    return NextResponse.json({ user });
   } catch (error) {
     console.error("Get user error:", error);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
