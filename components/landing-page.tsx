@@ -171,16 +171,16 @@ export default function LandingPage() {
           </div>
 
           <div className="lg:pl-8">
-            <Card className="shadow-2xl border-slate-700/50 bg-white/95 backdrop-blur-sm">
+            <Card className="shadow-2xl border-white/20 bg-transparent backdrop-blur-sm">
               <Tabs defaultValue="login" className="w-full">
                 <CardHeader className="space-y-4">
                   <div className="text-center">
-                    <h2 className="text-2xl font-bold text-slate-900">Welcome Back</h2>
-                    <p className="text-sm text-slate-600 mt-1">Sign in to access your dashboard</p>
+                    <h2 className="text-2xl font-bold text-white">Welcome Back</h2>
+                    <p className="text-sm text-slate-300 mt-1">Sign in to access your dashboard</p>
                   </div>
-                  <TabsList className="grid w-full grid-cols-2 bg-slate-100">
-                    <TabsTrigger value="login" className="data-[state=active]:bg-white">Login</TabsTrigger>
-                    <TabsTrigger value="signup" className="data-[state=active]:bg-white">Sign Up</TabsTrigger>
+                  <TabsList className="grid w-full grid-cols-2 bg-white/10 border border-white/20">
+                    <TabsTrigger value="login" className="data-[state=active]:bg-white/20 data-[state=active]:text-white text-slate-300">Login</TabsTrigger>
+                    <TabsTrigger value="signup" className="data-[state=active]:bg-white/20 data-[state=active]:text-white text-slate-300">Sign Up</TabsTrigger>
                   </TabsList>
                 </CardHeader>
 
@@ -188,7 +188,7 @@ export default function LandingPage() {
                   <form onSubmit={handleLogin}>
                     <CardContent className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="login-email">Email</Label>
+                        <Label htmlFor="login-email" className="text-white">Email</Label>
                         <Input
                           id="login-email"
                           name="email"
@@ -196,16 +196,18 @@ export default function LandingPage() {
                           placeholder="you@company.com"
                           required
                           disabled={isLoading}
+                          className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="login-password">Password</Label>
+                        <Label htmlFor="login-password" className="text-white">Password</Label>
                         <Input
                           id="login-password"
                           name="password"
                           type="password"
                           required
                           disabled={isLoading}
+                          className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                         />
                       </div>
                     </CardContent>
@@ -227,28 +229,30 @@ export default function LandingPage() {
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <Label htmlFor="signup-firstName">First Name</Label>
+                          <Label htmlFor="signup-firstName" className="text-white">First Name</Label>
                           <Input
                             id="signup-firstName"
                             name="firstName"
                             type="text"
                             placeholder="John"
                             disabled={isLoading}
+                            className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="signup-lastName">Last Name</Label>
+                          <Label htmlFor="signup-lastName" className="text-white">Last Name</Label>
                           <Input
                             id="signup-lastName"
                             name="lastName"
                             type="text"
                             placeholder="Doe"
                             disabled={isLoading}
+                            className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                           />
                         </div>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="signup-email">Email</Label>
+                        <Label htmlFor="signup-email" className="text-white">Email</Label>
                         <Input
                           id="signup-email"
                           name="email"
@@ -256,10 +260,11 @@ export default function LandingPage() {
                           placeholder="you@company.com"
                           required
                           disabled={isLoading}
+                          className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="signup-password">Password</Label>
+                        <Label htmlFor="signup-password" className="text-white">Password</Label>
                         <Input
                           id="signup-password"
                           name="password"
@@ -267,8 +272,9 @@ export default function LandingPage() {
                           placeholder="At least 12 characters"
                           required
                           disabled={isLoading}
+                          className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
                         />
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs text-slate-300">
                           Must be at least 12 characters long
                         </p>
                       </div>
