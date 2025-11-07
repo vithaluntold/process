@@ -14,11 +14,23 @@ import {
   X,
   GitCompare,
   LinkIcon,
+  LogOut,
+  User,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useToast } from "@/hooks/use-toast"
+import { useAuth } from "@/hooks/useAuth"
 import ProcessDiscovery from "@/components/process-discovery"
 import ConformanceChecking from "@/components/conformance-checking"
 import PerformanceAnalytics from "@/components/performance-analytics"
@@ -35,6 +47,8 @@ interface DashboardStats {
 }
 
 export default function DashboardClient() {
+  const { user } = useAuth()
+  const { toast } = useToast()
   const [uploadModalOpen, setUploadModalOpen] = useState(false)
   const [analysisModalOpen, setAnalysisModalOpen] = useState(false)
   const [stats, setStats] = useState<DashboardStats>({
@@ -124,6 +138,45 @@ export default function DashboardClient() {
             <Button size="sm" className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white" onClick={() => setAnalysisModalOpen(true)}>
               New Analysis
             </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <User className="h-4 w-4" />
+                  <span className="hidden md:inline">{user?.email || "User"}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">{user?.firstName || user?.email}</p>
+                    <p className="text-xs leading-none text-muted-foreground">{user?.email}</p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="cursor-pointer"
+                  onClick={async () => {
+                    try {
+                      await fetch("/api/auth/logout", { method: "POST" })
+                      toast({
+                        title: "Logged out",
+                        description: "You have been logged out successfully.",
+                      })
+                      window.location.href = "/"
+                    } catch (error) {
+                      toast({
+                        title: "Error",
+                        description: "Failed to logout",
+                        variant: "destructive",
+                      })
+                    }
+                  }}
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </header>
         <div className="grid md:grid-cols-[240px_1fr]">
