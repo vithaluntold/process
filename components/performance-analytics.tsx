@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Loader2 } from "lucide-react"
+import { SkeletonChart, SkeletonCard } from "@/components/ui/skeleton-card"
 
 export default function PerformanceAnalytics() {
   const [timeframe, setTimeframe] = useState("6m")
@@ -52,8 +52,15 @@ export default function PerformanceAnalytics() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
+      <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <SkeletonCard />
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
+        <Card className="border-brand/20 p-6">
+          <SkeletonChart />
+        </Card>
       </div>
     )
   }

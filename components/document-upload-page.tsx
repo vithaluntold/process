@@ -19,8 +19,8 @@ import {
   Sparkles,
   FolderOpen,
   BarChart3,
-  Loader2,
 } from "lucide-react"
+import { SkeletonCard, SkeletonTable } from "@/components/ui/skeleton-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "sonner"
 
@@ -310,9 +310,7 @@ export default function DocumentUploadPage() {
             </CardHeader>
             <CardContent>
               {loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <Loader2 className="h-8 w-8 text-[#11c1d6] animate-spin" />
-                </div>
+                <SkeletonTable />
               ) : uploadedDocuments.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
                   <FileText className="h-12 w-12 text-muted-foreground mb-4" />
@@ -380,8 +378,10 @@ export default function DocumentUploadPage() {
             </CardHeader>
             <CardContent>
               {loading ? (
-                <div className="flex items-center justify-center py-12">
-                  <Loader2 className="h-8 w-8 text-[#11c1d6] animate-spin" />
+                <div className="space-y-4">
+                  <SkeletonCard />
+                  <SkeletonCard />
+                  <SkeletonCard />
                 </div>
               ) : processRepository.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-12 text-center">

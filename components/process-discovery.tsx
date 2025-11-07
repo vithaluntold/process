@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Loader2, Network } from "lucide-react"
+import { Network } from "lucide-react"
+import { SkeletonCard } from "@/components/ui/skeleton-card"
 
 export default function ProcessDiscovery() {
   const [processes, setProcesses] = useState<any[]>([])
@@ -33,8 +34,10 @@ export default function ProcessDiscovery() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
+      <div className="space-y-4">
+        <SkeletonCard />
+        <SkeletonCard />
+        <SkeletonCard />
       </div>
     )
   }
