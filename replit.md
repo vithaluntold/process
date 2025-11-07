@@ -64,6 +64,11 @@ EPI X-Ray is an advanced process mining and automation platform that helps analy
 - Database constraints and foreign keys
 
 ## Recent Changes
+- 2025-11-07: Connected all navigation pages
+  - Created dedicated pages: /process-discovery, /conformance-checking, /performance-analytics, /automation-opportunities, /predictive-analytics
+  - Updated all sidebar navigation links to route to actual pages
+  - All pages fetch real data from backend APIs with loading states and empty state handling
+  - Verified existing pages work correctly: /document-upload, /api-integrations, /digital-twin, /scenario-analysis
 - 2025-11-07: Completed functional dashboard implementation
   - Connected all dashboard tabs to backend APIs with proper error handling
   - Import Data button opens modal for CSV upload via /api/upload
