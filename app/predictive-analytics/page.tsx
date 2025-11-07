@@ -37,7 +37,7 @@ export default function PredictiveAnalyticsPage() {
     return (
       <AppLayout>
         <div className="flex items-center justify-center h-96">
-          <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
+          <Loader2 className="h-8 w-8 animate-spin text-brand" />
         </div>
       </AppLayout>
     )
@@ -51,7 +51,7 @@ export default function PredictiveAnalyticsPage() {
             <h1 className="text-3xl font-bold tracking-tight">Predictive Analytics</h1>
             <p className="text-muted-foreground">AI-powered forecasting and anomaly detection</p>
           </div>
-          <Card className="border-[#11c1d6]/20">
+          <Card className="border-brand/20">
             <CardContent className="flex flex-col items-center justify-center h-64">
               <p className="text-muted-foreground mb-4">No processes available. Upload event logs to start predictive analytics.</p>
             </CardContent>
@@ -89,10 +89,10 @@ export default function PredictiveAnalyticsPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Predicted Volume</CardTitle>
-            <TrendingUp className="h-4 w-4 text-[#11c1d6]" />
+            <TrendingUp className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">0</div>
@@ -100,7 +100,7 @@ export default function PredictiveAnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Anomalies Detected</CardTitle>
             <AlertTriangle className="h-4 w-4 text-amber-500" />
@@ -111,7 +111,7 @@ export default function PredictiveAnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Forecast Accuracy</CardTitle>
             <Target className="h-4 w-4 text-emerald-500" />
@@ -123,7 +123,7 @@ export default function PredictiveAnalyticsPage() {
         </Card>
       </div>
 
-      <Card className="border-[#11c1d6]/20">
+      <Card className="border-brand/20">
         <CardHeader>
           <CardTitle>Volume Forecast</CardTitle>
           <CardDescription>Predicted process volume for the next 6 months</CardDescription>

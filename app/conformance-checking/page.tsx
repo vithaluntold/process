@@ -37,7 +37,7 @@ export default function ConformanceCheckingPage() {
     return (
       <AppLayout>
         <div className="flex items-center justify-center h-96">
-          <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
+          <Loader2 className="h-8 w-8 animate-spin text-brand" />
         </div>
       </AppLayout>
     )
@@ -51,7 +51,7 @@ export default function ConformanceCheckingPage() {
             <h1 className="text-3xl font-bold tracking-tight">Conformance Checking</h1>
             <p className="text-muted-foreground">Analyze process deviations and compliance</p>
           </div>
-          <Card className="border-[#11c1d6]/20">
+          <Card className="border-brand/20">
             <CardContent className="flex flex-col items-center justify-center h-64">
               <p className="text-muted-foreground mb-4">No processes available. Upload event logs to start conformance checking.</p>
             </CardContent>
@@ -84,7 +84,7 @@ export default function ConformanceCheckingPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Conformance Rate</CardTitle>
             <CheckCircle2 className="h-4 w-4 text-emerald-500" />
@@ -95,7 +95,7 @@ export default function ConformanceCheckingPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Deviations</CardTitle>
             <AlertCircle className="h-4 w-4 text-amber-500" />
@@ -106,7 +106,7 @@ export default function ConformanceCheckingPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Compliance Score</CardTitle>
             <XCircle className="h-4 w-4 text-red-500" />
@@ -118,7 +118,7 @@ export default function ConformanceCheckingPage() {
         </Card>
       </div>
 
-      <Card className="border-[#11c1d6]/20">
+      <Card className="border-brand/20">
         <CardHeader>
           <CardTitle>Deviation Analysis</CardTitle>
           <CardDescription>Detected process deviations and their impact</CardDescription>

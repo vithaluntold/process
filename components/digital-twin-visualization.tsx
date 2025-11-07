@@ -5,10 +5,10 @@ import { Network } from "lucide-react"
 
 export default function DigitalTwinVisualization() {
   return (
-    <Card className="border-[#11c1d6]/20">
+    <Card className="border-brand/20">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Network className="h-5 w-5 text-[#11c1d6]" />
+          <Network className="h-5 w-5 text-brand" />
           Digital Twin Simulation
         </CardTitle>
         <CardDescription>
@@ -17,29 +17,29 @@ export default function DigitalTwinVisualization() {
       </CardHeader>
       <CardContent>
         <div className="flex flex-col items-center justify-center py-16 text-center">
-          <div className="rounded-full bg-[#11c1d6]/10 p-8 mb-4">
-            <Network className="h-16 w-16 text-[#11c1d6]" />
+          <div className="rounded-full bg-brand/10 p-8 mb-4">
+            <Network className="h-16 w-16 text-brand" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Digital Twin Coming Soon</h3>
           <p className="text-muted-foreground max-w-lg mb-8">
             Build interactive digital twins of your business processes to visualize flows, identify bottlenecks, test improvements, and simulate what-if scenarios before implementation.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl text-left">
-            <div className="rounded-lg border border-[#11c1d6]/20 p-4">
-              <Network className="h-5 w-5 text-[#11c1d6] mb-2" />
+            <div className="rounded-lg border border-brand/20 p-4 hover-lift">
+              <Network className="h-5 w-5 text-brand mb-2" />
               <h4 className="font-medium mb-1">Process Modeling</h4>
               <p className="text-sm text-muted-foreground">
                 Create virtual replicas of your business processes
               </p>
             </div>
-            <div className="rounded-lg border border-[#11c1d6]/20 p-4">
+            <div className="rounded-lg border border-brand/20 p-4 hover-lift">
               <Network className="h-5 w-5 text-blue-500 mb-2" />
               <h4 className="font-medium mb-1">What-If Analysis</h4>
               <p className="text-sm text-muted-foreground">
                 Test different scenarios and predict outcomes
               </p>
             </div>
-            <div className="rounded-lg border border-[#11c1d6]/20 p-4">
+            <div className="rounded-lg border border-brand/20 p-4 hover-lift">
               <Network className="h-5 w-5 text-emerald-500 mb-2" />
               <h4 className="font-medium mb-1">Impact Simulation</h4>
               <p className="text-sm text-muted-foreground">

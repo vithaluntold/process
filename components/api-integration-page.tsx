@@ -137,7 +137,7 @@ export default function ApiIntegrationPage() {
             <RefreshCw className="h-4 w-4" />
             Sync All
           </Button>
-          <Button size="sm" className="bg-[#11c1d6] hover:bg-[#0ea5b9] text-white flex items-center gap-1">
+          <Button size="sm" className="bg-brand hover:bg-brand-dark text-white flex items-center gap-1">
             <Plus className="h-4 w-4" />
             Add Integration
           </Button>
@@ -145,10 +145,10 @@ export default function ApiIntegrationPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Active Connections</CardTitle>
-            <LinkIcon className="h-4 w-4 text-[#11c1d6]" />
+            <LinkIcon className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">3</div>
@@ -156,10 +156,10 @@ export default function ApiIntegrationPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Records</CardTitle>
-            <Database className="h-4 w-4 text-[#11c1d6]" />
+            <Database className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">2.69M</div>
@@ -167,10 +167,10 @@ export default function ApiIntegrationPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Last Sync</CardTitle>
-            <RefreshCw className="h-4 w-4 text-[#11c1d6]" />
+            <RefreshCw className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">5m</div>
@@ -178,10 +178,10 @@ export default function ApiIntegrationPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Health Status</CardTitle>
-            <CheckCircle className="h-4 w-4 text-[#11c1d6]" />
+            <CheckCircle className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">83%</div>
@@ -191,7 +191,7 @@ export default function ApiIntegrationPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
-        <Card className="md:col-span-2 border-[#11c1d6]/20">
+        <Card className="md:col-span-2 border-brand/20">
           <CardHeader>
             <CardTitle>Available Integrations</CardTitle>
             <CardDescription>Connect and manage your data sources</CardDescription>
@@ -201,7 +201,7 @@ export default function ApiIntegrationPage() {
               {integrations.map((integration) => (
                 <div
                   key={integration.id}
-                  className="flex items-center justify-between p-4 rounded-lg border border-[#11c1d6]/20 hover:bg-muted/50 cursor-pointer"
+                  className="flex items-center justify-between p-4 rounded-lg border border-brand/20 hover:bg-muted/50 cursor-pointer"
                   onClick={() => setSelectedIntegration(integration.id)}
                 >
                   <div className="flex items-center gap-4">
@@ -227,7 +227,7 @@ export default function ApiIntegrationPage() {
           </CardContent>
         </Card>
 
-        <Card className="border-[#11c1d6]/20">
+        <Card className="border-brand/20">
           <CardHeader>
             <CardTitle>
               {selectedIntegration
@@ -285,7 +285,7 @@ export default function ApiIntegrationPage() {
                         "Test Connection"
                       )}
                     </Button>
-                    <Button className="flex-1 bg-[#11c1d6] hover:bg-[#0ea5b9]">Save</Button>
+                    <Button className="flex-1 bg-brand hover:bg-brand-dark">Save</Button>
                   </div>
                 </TabsContent>
                 <TabsContent value="settings" className="space-y-4">
@@ -321,7 +321,7 @@ export default function ApiIntegrationPage() {
                       <Trash2 className="mr-2 h-4 w-4" />
                       Remove
                     </Button>
-                    <Button className="flex-1 bg-[#11c1d6] hover:bg-[#0ea5b9]">Save Settings</Button>
+                    <Button className="flex-1 bg-brand hover:bg-brand-dark">Save Settings</Button>
                   </div>
                 </TabsContent>
               </Tabs>
@@ -337,7 +337,7 @@ export default function ApiIntegrationPage() {
         </Card>
       </div>
 
-      <Card className="border-[#11c1d6]/20">
+      <Card className="border-brand/20">
         <CardHeader>
           <CardTitle>Sync History</CardTitle>
           <CardDescription>Recent synchronization activities</CardDescription>
