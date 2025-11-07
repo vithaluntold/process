@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { AlertCircle, CheckCircle2, XCircle, Loader2 } from "lucide-react"
+import AppLayout from "@/components/app-layout"
 
 export default function ConformanceCheckingPage() {
   const [processes, setProcesses] = useState<any[]>([])
@@ -34,30 +35,35 @@ export default function ConformanceCheckingPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-96">
-        <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
-      </div>
+      <AppLayout>
+        <div className="flex items-center justify-center h-96">
+          <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
+        </div>
+      </AppLayout>
     )
   }
 
   if (processes.length === 0) {
     return (
-      <div className="flex flex-col gap-4 p-4 md:p-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Conformance Checking</h1>
-          <p className="text-muted-foreground">Analyze process deviations and compliance</p>
+      <AppLayout>
+        <div className="flex flex-col gap-4 p-4 md:p-6">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Conformance Checking</h1>
+            <p className="text-muted-foreground">Analyze process deviations and compliance</p>
+          </div>
+          <Card className="border-[#11c1d6]/20">
+            <CardContent className="flex flex-col items-center justify-center h-64">
+              <p className="text-muted-foreground mb-4">No processes available. Upload event logs to start conformance checking.</p>
+            </CardContent>
+          </Card>
         </div>
-        <Card className="border-[#11c1d6]/20">
-          <CardContent className="flex flex-col items-center justify-center h-64">
-            <p className="text-muted-foreground mb-4">No processes available. Upload event logs to start conformance checking.</p>
-          </CardContent>
-        </Card>
-      </div>
+      </AppLayout>
     )
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 md:p-6">
+    <AppLayout>
+      <div className="flex flex-col gap-4 p-4 md:p-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Conformance Checking</h1>
@@ -124,5 +130,6 @@ export default function ConformanceCheckingPage() {
         </CardContent>
       </Card>
     </div>
+    </AppLayout>
   )
 }

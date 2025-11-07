@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { TrendingUp, AlertTriangle, Target, Loader2 } from "lucide-react"
 import { Line, LineChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import AppLayout from "@/components/app-layout"
 
 export default function PredictiveAnalyticsPage() {
   const [processes, setProcesses] = useState<any[]>([])
@@ -34,30 +35,35 @@ export default function PredictiveAnalyticsPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-96">
-        <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
-      </div>
+      <AppLayout>
+        <div className="flex items-center justify-center h-96">
+          <Loader2 className="h-8 w-8 animate-spin text-[#11c1d6]" />
+        </div>
+      </AppLayout>
     )
   }
 
   if (processes.length === 0) {
     return (
-      <div className="flex flex-col gap-4 p-4 md:p-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Predictive Analytics</h1>
-          <p className="text-muted-foreground">AI-powered forecasting and anomaly detection</p>
+      <AppLayout>
+        <div className="flex flex-col gap-4 p-4 md:p-6">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Predictive Analytics</h1>
+            <p className="text-muted-foreground">AI-powered forecasting and anomaly detection</p>
+          </div>
+          <Card className="border-[#11c1d6]/20">
+            <CardContent className="flex flex-col items-center justify-center h-64">
+              <p className="text-muted-foreground mb-4">No processes available. Upload event logs to start predictive analytics.</p>
+            </CardContent>
+          </Card>
         </div>
-        <Card className="border-[#11c1d6]/20">
-          <CardContent className="flex flex-col items-center justify-center h-64">
-            <p className="text-muted-foreground mb-4">No processes available. Upload event logs to start predictive analytics.</p>
-          </CardContent>
-        </Card>
-      </div>
+      </AppLayout>
     )
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4 md:p-6">
+    <AppLayout>
+      <div className="flex flex-col gap-4 p-4 md:p-6">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Predictive Analytics</h1>
@@ -129,5 +135,6 @@ export default function PredictiveAnalyticsPage() {
         </CardContent>
       </Card>
     </div>
+    </AppLayout>
   )
 }

@@ -80,6 +80,13 @@ EPI X-Ray is an advanced process mining and automation platform that helps analy
 - **Toast Notifications**: Clear success/error feedback for all auth actions
 
 ## Recent Changes
+- 2025-11-07: Added shared navigation layout to all pages
+  - Created AppLayout component with sidebar navigation and user menu
+  - Applied to all 9 feature pages (Process Discovery, Conformance Checking, Performance Analytics, Automation Opportunities, Predictive Analytics, Digital Twin, Scenario Analysis, Document Upload, API Integrations)
+  - Mobile-responsive with hamburger menu for sidebar
+  - Active page highlighting in navigation
+  - User menu accessible from all pages
+  - Users can now navigate between all pages without getting stuck
 - 2025-11-07: Authentication system fully working and tested
   - Fixed critical cookie bug: Changed from cookies().set to response.cookies.set
   - JWT tokens now properly persist in httpOnly cookies with 7-day expiry

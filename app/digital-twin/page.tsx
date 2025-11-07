@@ -1,5 +1,10 @@
 import DigitalTwinPage from "@/components/digital-twin-page"
+import AppLayout from "@/components/app-layout"
 
 export default function Page() {
-  return <DigitalTwinPage />
+  return (
+    <AppLayout>
+      <DigitalTwinPage />
+    </AppLayout>
+  )
 }
