@@ -74,8 +74,10 @@ export async function POST(request: NextRequest) {
           source: sanitizeInput(file.name),
           status: "active",
         });
+        console.log(`Created process:`, process);
 
         const events = await parseCSVFile(buffer.toString());
+        console.log(`Parsed ${events.length} events from CSV`);
         
         if (events.length > 0) {
           const validEvents = events.filter((event: any) => {
@@ -107,7 +109,9 @@ export async function POST(request: NextRequest) {
             metadata: event,
           }));
 
-          await storage.insertEventLogs(eventLogs);
+          console.log(`Inserting ${eventLogs.length} event logs for process ${process.id}`);
+          const insertedLogs = await storage.insertEventLogs(eventLogs);
+          console.log(`Successfully inserted ${insertedLogs.length} event logs`);
 
           const updatedDoc = await storage.updateDocument(document.id, {
             status: "processed",
