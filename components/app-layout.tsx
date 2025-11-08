@@ -17,6 +17,7 @@ import {
   LogOut,
   User,
   Menu,
+  Activity,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -45,6 +46,7 @@ const navigationItems = [
   { href: "/performance-analytics", label: "Performance Analytics", icon: PieChart },
   { href: "/automation-opportunities", label: "Automation Opportunities", icon: Zap },
   { href: "/predictive-analytics", label: "Predictive Analytics", icon: Lightbulb },
+  { href: "/task-mining", label: "Task Mining", icon: Activity },
   { href: "/document-upload", label: "Document Upload", icon: FileUp },
   { href: "/api-integrations", label: "API Integrations", icon: LinkIcon },
   { href: "/digital-twin", label: "Digital Twin", icon: Layers },

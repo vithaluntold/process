@@ -53,10 +53,10 @@ Each platform is evaluated across 15 categories:
 | **11. Scalability** | **7** | **10** | **9** | **9** | **8** | **9** | **7** | **7** | **6** | **7** |
 | **12. Pricing/Value** | **10** | **3** | **6** | **4** | **8** | **5** | **6** | **7** | **8** | **6** |
 | **13. Security & Compliance** | **10** | **9** | **8** | **8** | **8** | **9** | **7** | **7** | **6** | **7** |
-| **14. Task Mining** | **0** | **8** | **10** | **3** | **5** | **7** | **6** | **4** | **3** | **5** |
+| **14. Task Mining** | **8** | **8** | **10** | **3** | **5** | **7** | **6** | **4** | **3** | **5** |
 | **15. Simulation** | **9** | **8** | **7** | **8** | **5** | **7** | **6** | **7** | **5** | **9** |
-| **TOTAL SCORE** | **124/150** | **119/150** | **124/150** | **105/150** | **102/150** | **110/150** | **102/150** | **104/150** | **91/150** | **109/150** |
-| **PERCENTAGE** | **82.7%** | **79.3%** | **82.7%** | **70.0%** | **68.0%** | **73.3%** | **68.0%** | **69.3%** | **60.7%** | **72.7%** |
+| **TOTAL SCORE** | **132/150** | **119/150** | **124/150** | **105/150** | **102/150** | **110/150** | **102/150** | **104/150** | **91/150** | **109/150** |
+| **PERCENTAGE** | **88.0%** | **79.3%** | **82.7%** | **70.0%** | **68.0%** | **73.3%** | **68.0%** | **69.3%** | **60.7%** | **72.7%** |
 
 ---
 
@@ -64,13 +64,14 @@ Each platform is evaluated across 15 categories:
 
 ### **🥇 Tier 1: Market Leaders (82%+)**
 
-**1. EPI X-Ray - 82.7% (124/150)**
-- **Strengths:** Best-in-class ease of use, fastest implementation, superior AI integration, excellent value
-- **Weaknesses:** No task mining, limited scalability proof, smaller data connector library
-- **Best For:** SMB/mid-market, fast deployment needs, modern tech-savvy users
+**1. EPI X-Ray - 88.0% (132/150)** 🏆 **NEW #1 OVERALL**
+- **Strengths:** Best-in-class ease of use, fastest implementation, superior AI integration, excellent value, **NOW with task mining**
+- **Weaknesses:** Limited scalability proof, smaller data connector library
+- **Best For:** SMB/mid-market, fast deployment needs, modern tech-savvy users, complete process+task visibility
+- **Recent Updates:** Added comprehensive task mining capabilities (desktop activity capture, pattern detection, automation recommendations)
 
-**1. UiPath Process Mining - 82.7% (124/150)** *(Tied)*
-- **Strengths:** Best task mining, strong RPA integration, good visualization
+**2. UiPath Process Mining - 82.7% (124/150)**
+- **Strengths:** Best task mining (10/10), strong RPA integration, good visualization
 - **Weaknesses:** Expensive, complex pricing, requires RPA knowledge
 - **Best For:** Organizations with automation-first strategy
 

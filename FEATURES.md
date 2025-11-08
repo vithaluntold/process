@@ -263,9 +263,87 @@ Activity: "Invoice Data Entry"
 
 ---
 
+### 8. **Task Mining** 🖱️ **NEW FEATURE**
+
+Capture and analyze desktop-level user activities to discover repetitive manual tasks and identify automation opportunities.
+
+**What It Captures:**
+- Desktop application usage
+- User interactions (clicks, keystrokes, form fills)
+- Window titles and application context
+- Task sequences and patterns
+- Time spent on each activity
+
+**Recording Sessions:**
+- Create recording sessions with privacy consent
+- Track device type, OS, and session duration
+- Capture activity timeline with timestamps
+- Store metadata for pattern analysis
+
+**Pattern Detection (AI-Powered):**
+- **Repetitive Sequence Identification**: Finds tasks performed multiple times
+- **Automation Potential Scoring**: Calculates 0-100% automation feasibility
+- **Time Savings Estimation**: Predicts hours saved through automation
+- **Activity Clustering**: Groups similar activities across sessions
+
+**Pattern Analysis Algorithms:**
+```
+- findRepetitiveSequences(): Detects recurring activity patterns
+- analyzePatternWithAI(): Uses GPT-4o-mini to analyze automation potential
+- detectBottlenecks(): Identifies slow, time-consuming activities
+- clusterSimilarActivities(): Groups related tasks by type and application
+```
+
+**Automation Recommendations:**
+- **RPA Scripts**: For UI-based repetitive tasks
+- **Macros**: For keyboard/mouse automation
+- **Scripts**: For programmatic task automation
+- **Workflows**: For multi-system orchestration
+
+**Automation Opportunity Types:**
+- Data entry automation (OCR + RPA)
+- Email processing and routing
+- Report generation
+- CRM/ERP updates
+- File management tasks
+
+**Application Usage Analytics:**
+- Top applications by time spent
+- Interaction counts per application
+- Productivity scoring
+- Category-based insights
+
+**Task Mining Dashboard:**
+- Active recording sessions
+- Total activities captured
+- Patterns discovered
+- Estimated time savings (monthly)
+- Top applications usage chart
+- Pattern cards with automation potential
+- Automation recommendation cards
+
+**Privacy & GDPR Compliance:**
+- Explicit user consent required before recording
+- Privacy controls for sensitive data
+- Data retention policies
+- Right to deletion
+- Audit trail of all recordings
+
+**Use Case Example:**
+> Task mining reveals Sarah performs "Copy invoice data from email to SAP" 45 times per week, taking 3 minutes each time. AI analysis shows 85% automation potential. Recommendation: Implement RPA bot with OCR to extract invoice data and auto-populate SAP. Estimated savings: 2.25 hours/week (120 hours/year), $6,000 annual ROI.
+
+**Competitive Advantage:**
+- Desktop-level visibility (complements process mining)
+- AI-powered pattern detection
+- Automated ROI calculations
+- Integration with process discovery
+- Enterprise-grade privacy controls
+
+---
+
 ## 🔄 Digital Twin & Simulation
 
-### 8. **Digital Twin Simulation**
+### 9. **Digital Twin Simulation**
 
 Create a virtual replica of your process to test changes before implementing them in reality.
 
@@ -296,7 +374,7 @@ Create a virtual replica of your process to test changes before implementing the
 
 ---
 
-### 9. **What-If Scenario Analysis** 🎯
+### 10. **What-If Scenario Analysis** 🎯
 
 Test potential process improvements before making real changes.
 
@@ -353,7 +431,7 @@ Results:
 
 ## 🔐 Security & Compliance
 
-### 10. **Enterprise-Grade Security**
+### 11. **Enterprise-Grade Security**
 
 **Authentication:**
 - Custom JWT-based authentication (portable, no external dependencies)
@@ -396,7 +474,7 @@ Results:
 
 ---
 
-### 11. **GDPR Compliance** ✅
+### 12. **GDPR Compliance** ✅
 
 Full compliance with EU General Data Protection Regulation.
 
@@ -477,7 +555,7 @@ Full compliance with EU General Data Protection Regulation.
 
 ## 📊 Visualization & UI
 
-### 12. **Interactive Process Flowcharts**
+### 13. **Interactive Process Flowcharts**
 
 **Technology:** ReactFlow with custom enhancements
 
@@ -499,7 +577,7 @@ Full compliance with EU General Data Protection Regulation.
 
 ---
 
-### 13. **Responsive Dashboard**
+### 14. **Responsive Dashboard**
 
 **Design:**
 - **Styling**: Tailwind CSS v4 with shadcn/ui components

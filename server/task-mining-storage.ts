@@ -45,7 +45,7 @@ export interface TaskPatternInput {
   description?: string;
   frequency: number;
   avgDuration?: number;
-  steps: any;
+  steps?: any;
   automationPotential: number;
   timeSavingsEstimate?: number;
   lastOccurrence?: Date;
