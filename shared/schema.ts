@@ -137,6 +137,69 @@ export const integrations = pgTable("integrations", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const discoveredModels = pgTable("discovered_models", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  algorithm: text("algorithm").notNull(),
+  version: integer("version").notNull().default(1),
+  modelData: jsonb("model_data").notNull(),
+  activities: jsonb("activities").notNull(),
+  transitions: jsonb("transitions").notNull(),
+  startActivities: jsonb("start_activities").notNull(),
+  endActivities: jsonb("end_activities").notNull(),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const aiInsights = pgTable("ai_insights", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  type: text("type").notNull(),
+  category: text("category").notNull(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  recommendations: jsonb("recommendations"),
+  impact: text("impact"),
+  confidence: real("confidence"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const conformanceResults = pgTable("conformance_results", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  modelId: integer("model_id").references(() => discoveredModels.id),
+  caseId: text("case_id").notNull(),
+  conformant: boolean("conformant").notNull(),
+  deviationType: text("deviation_type"),
+  deviationDetails: jsonb("deviation_details"),
+  fitness: real("fitness"),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+});
+
+export const simulationScenarios = pgTable("simulation_scenarios", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  name: text("name").notNull(),
+  description: text("description"),
+  parameters: jsonb("parameters").notNull(),
+  results: jsonb("results"),
+  status: text("status").notNull().default("pending"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  completedAt: timestamp("completed_at"),
+});
+
+export const kpiMetrics = pgTable("kpi_metrics", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  metricType: text("metric_type").notNull(),
+  value: real("value").notNull(),
+  unit: text("unit"),
+  calculationMethod: text("calculation_method"),
+  metadata: jsonb("metadata"),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+});
+
 export const processesRelations = relations(processes, ({ many, one }) => ({
   eventLogs: many(eventLogs),
   processModels: many(processModels),

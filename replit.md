@@ -92,6 +92,32 @@ EPI X-Ray is an advanced process mining and automation platform that helps analy
 - **Microinteractions**: Button click animations (active:scale-95), card hover lifts, smooth transitions
 
 ## Recent Changes
+- 2025-11-08: **STARTED AI-ENABLED ADVANCED PROCESS MINING FEATURES**
+  - **Critical Bug Fix**: Fixed completely broken dashboard navigation caused by Radix Dialog modals creating invisible overlay that blocked all clicks - wrapped modals in conditional render (only mount when open)
+  - **Database Schema Extended**: Added 5 new tables for advanced features:
+    - `discovered_models`: Stores Alpha Miner/Inductive Miner results with activities, transitions, relations
+    - `ai_insights`: AI-generated optimization suggestions, bottleneck detection, automation opportunities
+    - `conformance_results`: Token-based replay conformance checking with fitness scores
+    - `simulation_scenarios`: Digital twin simulation parameters and results
+    - `kpi_metrics`: Real-time KPI calculations with mathematical formulas
+  - **Alpha Miner Algorithm**: Complete implementation of Alpha Miner process discovery algorithm
+    - Discovers activities, start/end activities, direct succession relations
+    - Identifies causal, parallel, and choice relations between activities
+    - Calculates transition frequencies and builds process model
+    - Stored in database with full model metadata
+  - **AI Integration**: OpenAI GPT-4.1 integration using Replit AI Integrations (no API key needed)
+    - Installed openai, p-retry, p-limit packages
+    - AI-powered process insights generation (bottlenecks, optimization, automation, compliance)
+    - Anomaly detection for unusual activity sequences
+    - Optimization suggestions based on performance metrics
+    - Rate limiting and retry logic with exponential backoff
+  - **ReactFlow Visualization**: Interactive process flowchart component
+    - Auto-layout algorithm assigns activities to layers
+    - Color-coded nodes (green=start, blue=intermediate, red=end)
+    - Edge thickness based on transition frequency
+    - Animated edges for high-frequency paths
+    - MiniMap, controls, and background grid
+  - **API Endpoints**: New `/api/processes/[id]/discover` endpoint for process discovery
 - 2025-11-07: **COMPLETED COMPREHENSIVE UI MODERNIZATION** (13-task systematic overhaul)
   - Phase 0 (Design System): Tailwind v4 brand color tokens, skeleton loaders, empty states, hover utilities
   - Phase 1 (Experience Hygiene): Replaced all spinner loading with skeletons, eliminated hardcoded #11c1d6 colors (now use brand utilities), added smooth hover effects, enhanced empty states
