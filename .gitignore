@@ -25,3 +25,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Desktop app
+desktop/node_modules/
+desktop/dist/
+desktop/out/
+*.log

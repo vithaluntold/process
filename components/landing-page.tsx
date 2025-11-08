@@ -8,7 +8,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { Layers, BarChart3, Zap, Lightbulb, Shield } from "lucide-react";
+import { Layers, BarChart3, Zap, Lightbulb, Shield, Activity } from "lucide-react";
+import { Footer } from "@/components/footer";
 
 export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -129,8 +130,8 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0a1929] via-[#1e3a5f] to-[#0a1929] flex items-center">
-      <div className="container mx-auto px-4 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-[#0a1929] via-[#1e3a5f] to-[#0a1929] flex flex-col">
+      <div className="container mx-auto px-4 py-16 flex-1 flex items-center">
         <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
           <div className="text-white space-y-8">
             <div className="flex items-center gap-3 mb-8">
@@ -157,6 +158,16 @@ export default function LandingPage() {
                 <div>
                   <h3 className="font-semibold mb-1">Process Discovery</h3>
                   <p className="text-sm text-slate-400">Automatically discover process models from event logs</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="p-2 bg-[#11c1d6]/20 rounded-lg">
+                  <Activity className="h-6 w-6 text-[#11c1d6]" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Task Mining <span className="text-xs bg-[#11c1d6]/30 text-[#11c1d6] px-2 py-0.5 rounded-full ml-1">NEW</span></h3>
+                  <p className="text-sm text-slate-400">AI-powered desktop activity analysis and automation</p>
                 </div>
               </div>
 
@@ -329,6 +340,8 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 }

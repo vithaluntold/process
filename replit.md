@@ -10,6 +10,8 @@ EPI X-Ray is an advanced process mining and automation platform designed to anal
 - **FEATURES.md**: Complete technical feature documentation covering all platform capabilities, AI features, security, and GDPR compliance
 - **USER_GUIDE.md**: Comprehensive step-by-step user guide with examples, troubleshooting, and best practices
 - **TASK_MINING_ROADMAP.md**: Strategic 15-month implementation plan for Task Mining capabilities
+- **DESKTOP_BUILD.md**: Complete guide for building and distributing desktop installers for Windows, macOS, and Linux
+- **desktop/README.md**: Quick start guide for desktop app development and building
 
 ## System Architecture
 The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScript, utilizing pnpm as the package manager. The frontend runs on port 5000.
@@ -22,13 +24,15 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 - **Dark Mode**: Full dark/light mode support with a theme toggle in the header and theme persistence.
 - **Responsiveness**: Optimized for mobile with responsive navigation using a Sheet component and adaptive spacing (p-4 md:p-6 lg:p-8).
 - **Process Visualization**: Interactive process flowcharts powered by ReactFlow, featuring auto-layout, color-coded nodes (green=start, blue=intermediate, red=end), edge thickness based on transition frequency, and animated edges for high-frequency paths. Includes MiniMap, controls, and a background grid.
+- **Branding**: FinACEverse branded footer component (`components/footer.tsx`) displayed on all pages (landing page and dashboard) with logo and coral brand color (#E07A5F).
 
 **Technical Implementations & Feature Specifications:**
-- **Core Features**: Process Discovery (Alpha Miner, Inductive Miner), Conformance Checking (token-based replay), Performance Analytics (cycle time, throughput, bottleneck identification, activity statistics, rework rates), Automation Opportunities identification, Predictive Analytics (AI-powered forecasting and anomaly detection), Digital Twin Simulation, and Scenario Analysis.
+- **Core Features**: Process Discovery (Alpha Miner, Inductive Miner), Conformance Checking (token-based replay), Performance Analytics (cycle time, throughput, bottleneck identification, activity statistics, rework rates), Automation Opportunities identification, Predictive Analytics (AI-powered forecasting and anomaly detection), Digital Twin Simulation, Scenario Analysis, and Task Mining.
 - **Process Discovery Algorithm**: Implements the Alpha Miner algorithm to automatically discover process models from event logs, identifying activities, start/end activities, direct succession, causal, parallel, and choice relations, and calculating transition frequencies.
 - **Performance Analytics Engine**: Calculates average/median cycle times, throughput, identifies bottlenecks using statistical analysis (mean, median, std dev, 95th percentile), and analyzes activity statistics.
 - **Anomaly Detection**: Features five algorithms for detecting anomalies (duration outliers, sequence violations, resource anomalies, temporal patterns, frequency anomalies) with severity classification (critical, high, medium, low) and AI-generated insights.
 - **Token-Based Replay Conformance Checking**: Industry-standard Petri net conformance validation using forced firing algorithm. Replays event logs against discovered process models to detect deviations (unexpected activities, missing transitions, wrong-order execution). Calculates fitness scores using standard formula: (consumed - missing) / (consumed + remaining). Features parallel join support (counts ALL missing tokens for AND-joins), wrong-order detection (tracks executed activities to identify causal precedence violations), and latest model auto-selection. Results persisted in conformance_results table with detailed deviation tracking.
+- **Task Mining**: Comprehensive desktop activity analysis system with 5 database tables (`task_captures`, `task_sessions`, `task_patterns`, `task_automations`, `task_privacy_consents`), full REST API layer, AI-powered pattern detection using GPT-4o-mini, automation opportunity engine, and privacy consent tracking. Features tabbed UI dashboard at `/task-mining` route with KPIs, visualizations, and demo data generator. Achieves 8/10 competitive score (vs UiPath's 10/10) using API-based capture instead of native desktop agent.
 
 **Backend Architecture:**
 - **Database**: PostgreSQL, managed via Neon, utilizing Drizzle ORM for type-safe queries. Key tables include `users`, `processes`, `event_logs`, `process_models`, `discovered_models`, `ai_insights`, `conformance_results`, `simulation_scenarios`, `kpi_metrics`, and `integrations`. Session data is managed automatically by connect-pg-simple (not tracked in Drizzle schema).
@@ -86,8 +90,39 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 - **Authentication**: Reusable JWT-based auth helper (`lib/server-auth.ts`) for Next.js API routes
 - **Future Enhancements**: Probability overrides for transition paths, resource constraints, wait time tracking
 
+## Desktop Application
+EPI X-Ray is available as an installable desktop application built with Electron 28:
+
+**Platform Support:**
+- **Windows**: NSIS installer (.exe) and portable version
+- **macOS**: DMG installer and ZIP archive (ARM64 and x64)
+- **Linux**: AppImage, Debian (.deb), and RPM packages
+
+**Build Commands:**
+- `pnpm desktop:install` - Install Electron dependencies
+- `pnpm desktop:dev` - Run desktop app in development mode
+- `pnpm desktop:build:win` - Build Windows installer
+- `pnpm desktop:build:mac` - Build macOS installer
+- `pnpm desktop:build:linux` - Build Linux packages
+- `pnpm desktop:build` - Build for all platforms
+
+**Desktop Features:**
+- Native application menus with keyboard shortcuts
+- 1400x900 default window (min: 1024x768)
+- Context isolation and sandboxed security
+- External links open in system browser
+- About dialog with FinACEverse branding
+- Auto-update ready (configurable)
+
+**Desktop Structure:**
+- `desktop/main.js` - Electron main process
+- `desktop/preload.js` - Secure preload script
+- `desktop/package.json` - Desktop app configuration
+- `desktop/assets/` - Application icons (Windows .ico, macOS .icns, Linux .png)
+
 ## External Dependencies
 - **Database**: PostgreSQL (via Neon)
 - **ORM**: Drizzle ORM
 - **AI Integration**: OpenAI GPT-4.1 (using Replit AI Integrations, no API key needed), specifically utilizing `openai`, `p-retry`, and `p-limit` packages for AI-powered insights, anomaly detection, and optimization suggestions.
 - **UI Libraries**: ReactFlow for process model visualization.
+- **Desktop Framework**: Electron 28 with Electron Builder for cross-platform installers.
