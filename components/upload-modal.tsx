@@ -21,7 +21,17 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0])
+      const selectedFile = e.target.files[0]
+      const fileName = selectedFile.name.toLowerCase()
+      
+      if (!fileName.endsWith('.csv')) {
+        toast.error("Only CSV files are allowed. Please select a .csv file.")
+        e.target.value = ''
+        setFile(null)
+        return
+      }
+      
+      setFile(selectedFile)
     }
   }
 
@@ -33,6 +43,12 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
 
     if (!processName.trim()) {
       toast.error("Please enter a process name")
+      return
+    }
+
+    const fileName = file.name.toLowerCase()
+    if (!fileName.endsWith('.csv')) {
+      toast.error("Only CSV files are allowed. Please select a .csv file.")
       return
     }
 
@@ -54,7 +70,7 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
         throw new Error(data.error || "Upload failed")
       }
 
-      toast.success(`Successfully uploaded ${data.recordsProcessed} records`)
+      toast.success(`Successfully uploaded ${data.eventsImported || data.recordsProcessed || 0} records`)
       setFile(null)
       setProcessName("")
       onOpenChange(false)
