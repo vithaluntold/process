@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { AlertCircle, CheckCircle2, XCircle, Loader2, AlertTriangle, Search } from "lucide-react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { AlertCircle, CheckCircle2, XCircle, Loader2, AlertTriangle, Search, Play, Activity } from "lucide-react"
 import { toast } from "sonner"
 import AppLayout from "@/components/app-layout"
 
@@ -29,13 +30,44 @@ interface AnomalyReport {
   aiInsights: string[]
 }
 
+interface ConformanceResult {
+  caseId: string
+  conformant: boolean
+  fitness: number
+  deviationType: string | null
+  deviationDetails: {
+    missingTokens: number
+    remainingTokens: number
+    producedTokens: number
+    consumedTokens: number
+    totalActivities: number
+    deviations: Array<{
+      activity: string
+      type: 'missing' | 'unexpected' | 'wrong_order'
+      timestamp: string
+    }>
+  }
+}
+
+interface ConformanceSummary {
+  totalCases: number
+  conformantCases: number
+  nonConformantCases: number
+  averageFitness: number
+  commonDeviations: Array<{ type: string; count: number }>
+}
+
 export default function ConformanceCheckingPage() {
   const [processes, setProcesses] = useState<any[]>([])
   const [selectedProcess, setSelectedProcess] = useState("")
   const [loading, setLoading] = useState(true)
   const [analyzing, setAnalyzing] = useState(false)
+  const [checking, setChecking] = useState(false)
   const [anomalyReport, setAnomalyReport] = useState<AnomalyReport | null>(null)
+  const [conformanceResults, setConformanceResults] = useState<ConformanceResult[] | null>(null)
+  const [conformanceSummary, setConformanceSummary] = useState<ConformanceSummary | null>(null)
   const [showAllAnomalies, setShowAllAnomalies] = useState(false)
+  const [showAllResults, setShowAllResults] = useState(false)
 
   useEffect(() => {
     fetchProcesses()
@@ -89,6 +121,39 @@ export default function ConformanceCheckingPage() {
     }
   }
 
+  const checkConformance = async () => {
+    if (!selectedProcess) {
+      toast.error("Please select a process first")
+      return
+    }
+
+    setChecking(true)
+    try {
+      const response = await fetch(`/api/processes/${selectedProcess}/check-conformance`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.details || "Failed to check conformance")
+      }
+
+      const data = await response.json()
+      setConformanceResults(data.results)
+      setConformanceSummary(data.summary)
+      
+      const fitness = Math.round(data.summary.averageFitness * 100)
+      toast.success(`Conformance check complete! Average fitness: ${fitness}%`)
+    } catch (error) {
+      console.error("Failed to check conformance:", error)
+      toast.error(error instanceof Error ? error.message : "Failed to check process conformance")
+    } finally {
+      setChecking(false)
+    }
+  }
+
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case 'critical': return 'bg-red-500/10 text-red-500 border-red-500/20'
@@ -134,12 +199,11 @@ export default function ConformanceCheckingPage() {
   return (
     <AppLayout>
       <div className="flex flex-col gap-4 p-4 md:p-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Anomaly Detection</h1>
-          <p className="text-muted-foreground">AI-powered detection of unusual process patterns</p>
-        </div>
-        <div className="flex gap-2">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Conformance Checking</h1>
+            <p className="text-muted-foreground">Validate process compliance with token-based replay and anomaly detection</p>
+          </div>
           <Select value={selectedProcess} onValueChange={setSelectedProcess}>
             <SelectTrigger className="w-[280px]">
               <SelectValue placeholder="Select a process" />
@@ -152,25 +216,197 @@ export default function ConformanceCheckingPage() {
               ))}
             </SelectContent>
           </Select>
-          <Button 
-            onClick={detectAnomalies}
-            disabled={!selectedProcess || analyzing}
-            className="bg-brand hover:bg-brand/90"
-          >
-            {analyzing ? (
+        </div>
+
+        <Tabs defaultValue="token-replay" className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="token-replay" className="flex items-center gap-2">
+              <Play className="h-4 w-4" />
+              Token-Based Replay
+            </TabsTrigger>
+            <TabsTrigger value="anomalies" className="flex items-center gap-2">
+              <Activity className="h-4 w-4" />
+              Anomaly Detection
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="token-replay" className="space-y-4 mt-4">
+            <div className="flex justify-end">
+              <Button 
+                onClick={checkConformance}
+                disabled={!selectedProcess || checking}
+                className="bg-brand hover:bg-brand/90"
+              >
+                {checking ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Checking...
+                  </>
+                ) : (
+                  <>
+                    <Play className="mr-2 h-4 w-4" />
+                    Check Conformance
+                  </>
+                )}
+              </Button>
+            </div>
+
+            {conformanceSummary && (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Analyzing...
-              </>
-            ) : (
-              <>
-                <Search className="mr-2 h-4 w-4" />
-                Detect Anomalies
+                <div className="grid gap-4 md:grid-cols-4">
+                  <Card className="border-brand/20">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <CardTitle className="text-sm font-medium">Total Cases</CardTitle>
+                      <Activity className="h-4 w-4 text-brand" />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold">{conformanceSummary.totalCases}</div>
+                      <p className="text-xs text-muted-foreground">Process instances analyzed</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-brand/20">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <CardTitle className="text-sm font-medium">Conformant</CardTitle>
+                      <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold text-emerald-500">{conformanceSummary.conformantCases}</div>
+                      <p className="text-xs text-muted-foreground">Perfect model alignment</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-brand/20">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <CardTitle className="text-sm font-medium">Non-Conformant</CardTitle>
+                      <XCircle className="h-4 w-4 text-red-500" />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold text-red-500">{conformanceSummary.nonConformantCases}</div>
+                      <p className="text-xs text-muted-foreground">Model deviations found</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-brand/20">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <CardTitle className="text-sm font-medium">Avg Fitness</CardTitle>
+                      <AlertCircle className="h-4 w-4 text-blue-500" />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-2xl font-bold text-blue-500">
+                        {Math.round(conformanceSummary.averageFitness * 100)}%
+                      </div>
+                      <p className="text-xs text-muted-foreground">Token replay fitness score</p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                <Card className="border-brand/20">
+                  <CardHeader>
+                    <CardTitle>Conformance Results</CardTitle>
+                    <CardDescription>Token-based replay analysis for each process instance</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {conformanceResults && conformanceResults.length > 0 ? (
+                      <>
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Case ID</TableHead>
+                              <TableHead>Status</TableHead>
+                              <TableHead>Fitness Score</TableHead>
+                              <TableHead>Deviation Type</TableHead>
+                              <TableHead>Missing Tokens</TableHead>
+                              <TableHead>Remaining Tokens</TableHead>
+                              <TableHead>Activities</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {(showAllResults ? conformanceResults : conformanceResults.slice(0, 20)).map((result, idx) => (
+                              <TableRow key={idx} className="hover:bg-brand/5 transition-colors">
+                                <TableCell className="font-mono text-xs">{result.caseId}</TableCell>
+                                <TableCell>
+                                  {result.conformant ? (
+                                    <Badge className="bg-emerald-500/10 text-emerald-500 border-emerald-500/20">
+                                      CONFORMANT
+                                    </Badge>
+                                  ) : (
+                                    <Badge className="bg-red-500/10 text-red-500 border-red-500/20">
+                                      NON-CONFORMANT
+                                    </Badge>
+                                  )}
+                                </TableCell>
+                                <TableCell className="font-medium">
+                                  {Math.round(result.fitness * 100)}%
+                                </TableCell>
+                                <TableCell>
+                                  {result.deviationType ? (
+                                    <span className="text-sm">{result.deviationType.replace(/_/g, ' ')}</span>
+                                  ) : (
+                                    <span className="text-muted-foreground">-</span>
+                                  )}
+                                </TableCell>
+                                <TableCell>{result.deviationDetails.missingTokens}</TableCell>
+                                <TableCell>{result.deviationDetails.remainingTokens}</TableCell>
+                                <TableCell>{result.deviationDetails.totalActivities}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                        {conformanceResults.length > 20 && (
+                          <div className="mt-4 text-center">
+                            <Button
+                              variant="outline"
+                              onClick={() => setShowAllResults(!showAllResults)}
+                              className="border-brand/20 hover:bg-brand/5"
+                            >
+                              {showAllResults ? 'Show Top 20' : `Show All ${conformanceResults.length} Results`}
+                            </Button>
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      <div className="text-center text-muted-foreground py-8">
+                        Click "Check Conformance" to analyze process compliance
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
               </>
             )}
-          </Button>
-        </div>
-      </div>
+
+            {!conformanceSummary && (
+              <Card className="border-brand/20">
+                <CardContent className="flex flex-col items-center justify-center h-64">
+                  <Play className="h-12 w-12 text-muted-foreground mb-4" />
+                  <p className="text-muted-foreground text-center">
+                    Select a process and click "Check Conformance" to perform token-based replay analysis
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+          </TabsContent>
+
+          <TabsContent value="anomalies" className="space-y-4 mt-4">
+            <div className="flex justify-end">
+              <Button 
+                onClick={detectAnomalies}
+                disabled={!selectedProcess || analyzing}
+                className="bg-brand hover:bg-brand/90"
+              >
+                {analyzing ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Analyzing...
+                  </>
+                ) : (
+                  <>
+                    <Search className="mr-2 h-4 w-4" />
+                    Detect Anomalies
+                  </>
+                )}
+              </Button>
+            </div>
 
       <div className="grid gap-4 md:grid-cols-4">
         <Card className="border-brand/20">
@@ -298,7 +534,9 @@ export default function ConformanceCheckingPage() {
           )}
         </CardContent>
       </Card>
-    </div>
+          </TabsContent>
+        </Tabs>
+      </div>
     </AppLayout>
   )
 }
