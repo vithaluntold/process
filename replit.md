@@ -32,10 +32,19 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 
 **Authentication System:**
 - **Type**: Custom JWT-based authentication, fully independent and portable.
-- **Password Security**: `bcryptjs` with 12 salt rounds for hashing, requiring a minimum of 12 characters.
-- **Session Management**: JWT tokens with 7-day expiry, stored in `httpOnly` cookies.
+- **Password Security**: `bcryptjs` with 12 salt rounds for hashing, requiring a minimum of 12 characters with uppercase, lowercase, and number requirements.
+- **Session Management**: JWT tokens with 7-day expiry, stored in `httpOnly` cookies with `sameSite: lax` protection.
+- **Input Validation**: Comprehensive Zod schemas for all user inputs with email validation, name sanitization, and control character removal.
+- **Email Normalization**: All emails converted to lowercase and sanitized before storage to prevent duplicate account issues.
 - **API Routes**: Dedicated endpoints for user registration (`/api/auth/signup`), login (`/api/auth/login`), logout (`/api/auth/logout`), and fetching current user info (`/api/auth/user`).
 - **User Experience**: Features a glass-morphism landing page with login/signup tabs, protected routes for dashboard and feature pages, a user menu with logout functionality, and toast notifications for all authentication actions.
+- **Security Features**:
+  - Generic error messages prevent user enumeration ("Invalid email or password")
+  - All sensitive console.log statements removed from production code
+  - Authorization checks enforce data isolation (users can only access their own data)
+  - Database-level ownership enforcement in storage layer
+  - Input sanitization prevents XSS attacks
+  - Reusable JWT auth helper (`lib/server-auth.ts`) for API route protection
 
 **Digital Twin Simulation & What-If Scenarios:**
 - **Discrete-Event Simulator**: Production-ready simulation engine for creating process digital twins

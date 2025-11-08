@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
     const process = await storage.createProcess({
       userId: user.id,
       name: sanitizeInput(name),
-      description: description ? sanitizeInput(description) : null,
+      description: description ? sanitizeInput(description) : undefined,
       source: sanitizeInput(source),
       status: "active",
     });
