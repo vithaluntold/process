@@ -1,0 +1,6 @@
+caseId,activity,timestamp,resource
+CASE001,Order Received,2025-01-01T10:00:00Z,System
+CASE001,Payment Verified,2025-01-01T10:15:00Z,John
+CASE001,Order Shipped,2025-01-01T12:00:00Z,Warehouse
+CASE002,Order Received,2025-01-01T11:00:00Z,System
+CASE002,Payment Verified,2025-01-01T11:20:00Z,Jane

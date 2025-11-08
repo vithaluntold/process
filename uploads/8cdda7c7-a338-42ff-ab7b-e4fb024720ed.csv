@@ -1,0 +1,27 @@
+caseId,activity,timestamp,resource
+1,Order Received,1/1/2024 9:00,System
+1,Validate Order,1/1/2024 9:05,John
+1,Process Payment,1/1/2024 9:10,Payment System
+1,Ship Order,1/1/2024 9:30,Warehouse
+1,Complete,1/1/2024 10:00,System
+2,Order Received,1/1/2024 9:15,System
+2,Validate Order,1/1/2024 9:20,Sarah
+2,Process Payment,1/1/2024 9:25,Payment System
+2,Ship Order,1/1/2024 9:45,Warehouse
+2,Complete,1/1/2024 10:15,System
+3,Order Received,1/1/2024 10:00,System
+3,Validate Order,1/1/2024 10:05,John
+3,Process Payment,1/1/2024 10:10,Payment System
+3,Process Payment,1/1/2024 10:12,Payment System
+3,Ship Order,1/1/2024 10:35,Warehouse
+3,Complete,1/1/2024 11:00,System
+4,Order Received,1/1/2024 11:00,System
+4,Validate Order,1/1/2024 11:05,Sarah
+4,Process Payment,1/1/2024 11:10,Payment System
+4,Ship Order,1/1/2024 11:30,Warehouse
+4,Complete,1/1/2024 12:00,System
+5,Order Received,1/1/2024 12:00,System
+5,Validate Order,1/1/2024 12:08,John
+5,Process Payment,1/1/2024 12:15,Payment System
+5,Ship Order,1/1/2024 12:40,Warehouse
+5,Complete,1/1/2024 13:00,System
