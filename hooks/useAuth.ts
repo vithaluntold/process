@@ -1,17 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 
 async function fetchUser() {
-  const response = await fetch("/api/auth/user", {
-    credentials: "include",
-  });
-  if (!response.ok) {
+  try {
+    const response = await fetch("/api/auth/user", {
+      credentials: "include",
+    });
+    
     if (response.status === 401) {
       return null;
     }
-    throw new Error("Failed to fetch user");
+    
+    if (!response.ok) {
+      console.error("Auth check failed:", response.status);
+      return null;
+    }
+    
+    const data = await response.json();
+    return data.user;
+  } catch (error) {
+    console.error("Auth fetch error:", error);
+    return null;
   }
-  const data = await response.json();
-  return data.user;
 }
 
 export function useAuth() {
@@ -20,10 +29,12 @@ export function useAuth() {
     queryFn: fetchUser,
     retry: false,
     staleTime: 5 * 60 * 1000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   return {
-    user: user || null,
+    user: user ?? null,
     isAuthenticated: !!user,
     isLoading,
     error,
