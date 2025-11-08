@@ -14,7 +14,9 @@ export function Footer() {
             height={20}
             className="inline-block"
           />
-          <span className="font-medium text-[#E07A5F]">FinACEverse</span>
+          <span className="font-semibold bg-gradient-to-r from-teal-400 to-cyan-500 bg-clip-text text-transparent">
+            FinACEverse
+          </span>
         </div>
       </div>
     </footer>
