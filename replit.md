@@ -25,7 +25,7 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 - **Anomaly Detection**: Features five algorithms for detecting anomalies (duration outliers, sequence violations, resource anomalies, temporal patterns, frequency anomalies) with severity classification (critical, high, medium, low) and AI-generated insights.
 
 **Backend Architecture:**
-- **Database**: PostgreSQL, managed via Neon, utilizing Drizzle ORM for type-safe queries. Key tables include `users`, `processes`, `event_logs`, `process_models`, `discovered_models`, `ai_insights`, `conformance_results`, `simulation_scenarios`, `kpi_metrics`, and `integrations`.
+- **Database**: PostgreSQL, managed via Neon, utilizing Drizzle ORM for type-safe queries. Key tables include `users`, `processes`, `event_logs`, `process_models`, `discovered_models`, `ai_insights`, `conformance_results`, `simulation_scenarios`, `kpi_metrics`, and `integrations`. Session data is managed automatically by connect-pg-simple (not tracked in Drizzle schema).
 - **API Endpoints**: Comprehensive RESTful API for processes (`/api/processes`), event logs (`/api/event-logs`), analytics (`/api/analytics`), file uploads (`/api/upload`), and process analysis/discovery (`/api/processes/[id]/analyze`, `/api/processes/[id]/discover`, `/api/processes/[id]/detect-anomalies`).
 - **Security**: Implements UUID-based filename sanitization, file type/size validation (CSV, 50MB max), CSV validation (caseId, activity, timestamp required), and database constraints.
 
