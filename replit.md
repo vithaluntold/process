@@ -4,7 +4,12 @@
 EPI X-Ray is an advanced process mining and automation platform designed to analyze, optimize, and automate business processes. It provides deep insights into process performance, identifies areas for improvement, and simulates the impact of potential changes. Key capabilities include process discovery, conformance checking, performance analytics, automation opportunity identification, predictive analytics, digital twin simulation, and scenario analysis. The platform aims to revolutionize how businesses understand and improve their operational workflows.
 
 ## User Preferences
-- None specified yet
+- Prefers comprehensive documentation with detailed feature descriptions and step-by-step user guides
+
+## Project Documentation
+- **FEATURES.md**: Complete technical feature documentation covering all platform capabilities, AI features, security, and GDPR compliance
+- **USER_GUIDE.md**: Comprehensive step-by-step user guide with examples, troubleshooting, and best practices
+- **TASK_MINING_ROADMAP.md**: Strategic 15-month implementation plan for Task Mining capabilities
 
 ## System Architecture
 The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScript, utilizing pnpm as the package manager. The frontend runs on port 5000.

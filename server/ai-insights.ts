@@ -62,7 +62,10 @@ Return your analysis as a JSON array with objects containing: type, category, ti
           if (isRateLimitError(error)) {
             throw error;
           }
-          throw new pRetry.AbortError(error);
+          const abortError: any = new Error('Non-retryable error');
+          abortError.name = 'AbortError';
+          abortError.originalError = error;
+          throw abortError;
         }
       },
       {
@@ -134,7 +137,10 @@ Provide 3-5 specific, actionable suggestions to improve these metrics. Return as
           if (isRateLimitError(error)) {
             throw error;
           }
-          throw new pRetry.AbortError(error);
+          const abortError: any = new Error('Non-retryable error');
+          abortError.name = 'AbortError';
+          abortError.originalError = error;
+          throw abortError;
         }
       },
       {
@@ -192,7 +198,10 @@ Return as JSON with an "anomalies" array containing objects with: type, descript
           if (isRateLimitError(error)) {
             throw error;
           }
-          throw new pRetry.AbortError(error);
+          const abortError: any = new Error('Non-retryable error');
+          abortError.name = 'AbortError';
+          abortError.originalError = error;
+          throw abortError;
         }
       },
       {
