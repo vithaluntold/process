@@ -2,7 +2,6 @@
 
 import { memo } from "react";
 import { Handle, Position, NodeProps } from "reactflow";
-import { cn } from "@/lib/utils";
 
 interface ProcessNodeData {
   label: string;
@@ -12,46 +11,43 @@ interface ProcessNodeData {
 const ProcessNode = memo(({ data }: NodeProps<ProcessNodeData>) => {
   const { label, nodeType } = data;
 
-  const getNodeStyles = () => {
-    if (nodeType === "start") {
-      return {
-        container: "bg-gradient-to-br from-brand to-brand/80 text-white shadow-xl shadow-brand/30 border-2 border-brand",
-        handle: "!bg-white !border-brand",
-      };
-    } else if (nodeType === "end") {
-      return {
-        container: "bg-gradient-to-br from-destructive to-destructive/80 text-white shadow-xl shadow-destructive/30 border-2 border-destructive",
-        handle: "!bg-white !border-destructive",
-      };
-    } else {
-      return {
-        container: "bg-card text-foreground shadow-lg border-2 border-brand/20 hover:border-brand/40",
-        handle: "!bg-brand !border-brand",
-      };
-    }
-  };
-
-  const styles = getNodeStyles();
+  let bgGradient = "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)"; // cyan gradient for start
+  if (nodeType === "end") {
+    bgGradient = "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)"; // red gradient for end
+  } else if (nodeType === "activity") {
+    bgGradient = "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)"; // brand cyan gradient for process
+  }
 
   return (
-    <div className={cn(
-      "px-6 py-4 rounded-xl min-w-[180px] text-center font-semibold text-sm transition-all duration-300 hover:scale-105",
-      styles.container
-    )}>
+    <>
       <Handle
         type="target"
         position={Position.Left}
-        className={cn("!w-3 !h-3 !border-2", styles.handle)}
+        style={{ background: '#555' }}
       />
       
-      <div className="whitespace-nowrap">{label}</div>
+      <div
+        style={{
+          background: bgGradient,
+          padding: '10px 20px',
+          borderRadius: '8px',
+          color: 'white',
+          fontWeight: '600',
+          fontSize: '14px',
+          minWidth: '150px',
+          textAlign: 'center',
+          boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        }}
+      >
+        {label}
+      </div>
       
       <Handle
         type="source"
         position={Position.Right}
-        className={cn("!w-3 !h-3 !border-2", styles.handle)}
+        style={{ background: '#555' }}
       />
-    </div>
+    </>
   );
 });
 
