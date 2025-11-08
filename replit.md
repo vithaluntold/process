@@ -137,6 +137,16 @@ EPI X-Ray is an advanced process mining and automation platform that helps analy
     - **API Endpoint**: `/api/analytics/analyze` for triggering performance analysis
     - **UI Integration**: Enhanced Performance Analytics page with KPI cards, bottleneck tables, activity stats, resource utilization tabs
     - **Edge Case Handling**: Graceful empty data handling, terminal activity inclusion, documented duration calculations
+  - **AI-Powered Anomaly Detection**: Production-ready statistical and AI-based anomaly detection system
+    - **5 Detection Algorithms**: Duration outliers (Z-score >3), sequence violations (<10% frequency), resource anomalies, temporal patterns, frequency anomalies (rework)
+    - **Severity Classification**: Critical (Z>5 or unique sequence), high (Z>4 or <2%), medium (Z>3 or <5%), low (Z>3 or <10%)
+    - **Statistical Rigor**: Pre-computed mean, std dev, 95th percentile, zero-variance fallbacks for deterministic tasks
+    - **Per-Transition Reporting**: Single anomaly per rare transition with all affected cases in details
+    - **AI Integration**: GPT-4o generates insights with p-retry error handling and exponential backoff
+    - **Smart Persistence**: Delete-before-insert deduplication prevents report spam
+    - **API Endpoint**: `/api/processes/[id]/detect-anomalies` for triggering anomaly detection
+    - **UI Integration**: Anomaly Detection page (Conformance Checking) with KPI cards, severity badges, AI insights, full anomaly table with pagination
+    - **Production-Ready**: Optimized for Fortune 500 enterprise process mining with GDPR compliance
 - 2025-11-07: **COMPLETED COMPREHENSIVE UI MODERNIZATION** (13-task systematic overhaul)
   - Phase 0 (Design System): Tailwind v4 brand color tokens, skeleton loaders, empty states, hover utilities
   - Phase 1 (Experience Hygiene): Replaced all spinner loading with skeletons, eliminated hardcoded #11c1d6 colors (now use brand utilities), added smooth hover effects, enhanced empty states
