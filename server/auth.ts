@@ -10,7 +10,7 @@ export function getSession() {
     conString: process.env.DATABASE_URL,
     createTableIfMissing: false,
     ttl: sessionTtl,
-    tableName: "sessions",
+    tableName: "user_sessions",
   });
   
   return session({
