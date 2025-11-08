@@ -118,6 +118,15 @@ EPI X-Ray is an advanced process mining and automation platform that helps analy
     - Animated edges for high-frequency paths
     - MiniMap, controls, and background grid
   - **API Endpoints**: New `/api/processes/[id]/discover` endpoint for process discovery
+  - **UI Integration**: Complete process discovery page with:
+    - "Discover Process Model" button to trigger Alpha Miner
+    - Real-time visualization of discovered models using ReactFlow
+    - AI insights display with severity indicators and recommendations
+    - Process metadata showing causal/parallel/choice relations
+    - Toast notifications for success/error feedback
+    - Skeleton loading states and empty state handling
+  - **Sample Data**: Created `sample-event-log.csv` with realistic order processing workflow for testing
+  - **Database**: All schema changes pushed successfully with `npm run db:push --force`
 - 2025-11-07: **COMPLETED COMPREHENSIVE UI MODERNIZATION** (13-task systematic overhaul)
   - Phase 0 (Design System): Tailwind v4 brand color tokens, skeleton loaders, empty states, hover utilities
   - Phase 1 (Experience Hygiene): Replaced all spinner loading with skeletons, eliminated hardcoded #11c1d6 colors (now use brand utilities), added smooth hover effects, enhanced empty states
