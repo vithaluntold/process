@@ -127,6 +127,16 @@ EPI X-Ray is an advanced process mining and automation platform that helps analy
     - Skeleton loading states and empty state handling
   - **Sample Data**: Created `sample-event-log.csv` with realistic order processing workflow for testing
   - **Database**: All schema changes pushed successfully with `npm run db:push --force`
+  - **Performance Analytics Engine**: Complete mathematical analysis system
+    - **Cycle Time Analysis**: Average and median cycle time calculations from start to end
+    - **Throughput Calculation**: Cases per hour based on actual time span
+    - **Bottleneck Identification**: Statistical analysis with mean, median, std dev, 95th percentile
+    - **Activity Statistics**: Min/max/avg durations, execution counts, rework rates (includes terminal activities)
+    - **Resource Utilization**: Activity counts and utilization rates per resource/team member
+    - **KPI Persistence**: Automatic storage of calculated metrics in kpi_metrics table
+    - **API Endpoint**: `/api/analytics/analyze` for triggering performance analysis
+    - **UI Integration**: Enhanced Performance Analytics page with KPI cards, bottleneck tables, activity stats, resource utilization tabs
+    - **Edge Case Handling**: Graceful empty data handling, terminal activity inclusion, documented duration calculations
 - 2025-11-07: **COMPLETED COMPREHENSIVE UI MODERNIZATION** (13-task systematic overhaul)
   - Phase 0 (Design System): Tailwind v4 brand color tokens, skeleton loaders, empty states, hover utilities
   - Phase 1 (Experience Hygiene): Replaced all spinner loading with skeletons, eliminated hardcoded #11c1d6 colors (now use brand utilities), added smooth hover effects, enhanced empty states
