@@ -38,6 +38,7 @@ import {
 import { useToast } from "@/hooks/use-toast"
 import { useAuth } from "@/hooks/useAuth"
 import { cn } from "@/lib/utils"
+import { Footer } from "@/components/footer"
 
 const navigationItems = [
   { href: "/", label: "Dashboard", icon: BarChart3 },
@@ -182,10 +183,12 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
         </aside>
 
         {/* Main Content */}
-        <main className="flex flex-1 flex-col p-4 md:p-6 lg:p-8">
+        <main className="flex flex-1 flex-col p-4 md:p-6 lg:p-8 pb-16">
           {children}
         </main>
       </div>
+      
+      <Footer />
     </div>
   )
 }
