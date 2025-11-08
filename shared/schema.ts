@@ -272,3 +272,22 @@ export const auditLogsRelations = relations(auditLogs, ({ one }) => ({
     references: [users.id],
   }),
 }));
+
+export const userConsents = pgTable("user_consents", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  consentType: text("consent_type").notNull(),
+  accepted: boolean("accepted").notNull().default(false),
+  acceptedAt: timestamp("accepted_at"),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const userConsentsRelations = relations(userConsents, ({ one }) => ({
+  user: one(users, {
+    fields: [userConsents.userId],
+    references: [users.id],
+  }),
+}));

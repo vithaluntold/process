@@ -30,21 +30,29 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 - **API Endpoints**: Comprehensive RESTful API for processes (`/api/processes`), event logs (`/api/event-logs`), analytics (`/api/analytics`), file uploads (`/api/upload`), and process analysis/discovery (`/api/processes/[id]/analyze`, `/api/processes/[id]/discover`, `/api/processes/[id]/detect-anomalies`, `/api/processes/[id]/check-conformance`).
 - **Security**: Implements UUID-based filename sanitization, file type/size validation (CSV, 50MB max), CSV validation (caseId, activity, timestamp required), and database constraints.
 
-**Authentication System:**
+**Authentication & Security System:**
 - **Type**: Custom JWT-based authentication, fully independent and portable.
 - **Password Security**: `bcryptjs` with 12 salt rounds for hashing, requiring a minimum of 12 characters with uppercase, lowercase, and number requirements.
 - **Session Management**: JWT tokens with 7-day expiry, stored in `httpOnly` cookies with `sameSite: lax` protection.
 - **Input Validation**: Comprehensive Zod schemas for all user inputs with email validation, name sanitization, and control character removal.
 - **Email Normalization**: All emails converted to lowercase and sanitized before storage to prevent duplicate account issues.
-- **API Routes**: Dedicated endpoints for user registration (`/api/auth/signup`), login (`/api/auth/login`), logout (`/api/auth/logout`), and fetching current user info (`/api/auth/user`).
+- **API Routes**: Dedicated endpoints for user registration (`/api/auth/signup`), login (`/api/auth/login`), logout (`/api/auth/logout`), fetching current user info (`/api/auth/user`), and CSRF token generation (`/api/auth/csrf`).
 - **User Experience**: Features a glass-morphism landing page with login/signup tabs, protected routes for dashboard and feature pages, a user menu with logout functionality, and toast notifications for all authentication actions.
 - **Security Features**:
-  - Generic error messages prevent user enumeration ("Invalid email or password")
-  - All sensitive console.log statements removed from production code
-  - Authorization checks enforce data isolation (users can only access their own data)
-  - Database-level ownership enforcement in storage layer
-  - Input sanitization prevents XSS attacks
-  - Reusable JWT auth helper (`lib/server-auth.ts`) for API route protection
+  - **Rate Limiting**: In-memory rate limiting (5 login attempts per 15 min, 3 signups per hour) with IP-based tracking and trusted proxy validation
+  - **CSRF Protection**: Token-based CSRF protection for all state-changing operations (signup, account deletion, consent management)
+  - **Authorization**: Generic error messages prevent user enumeration, database-level ownership enforcement ensures data isolation
+  - **Input Sanitization**: Zod validation + XSS prevention on all inputs
+  - **Audit Logging**: All authentication and GDPR actions logged with IP, user agent, and timestamps
+  - **Reusable Auth Helper**: `lib/server-auth.ts` for consistent JWT verification across API routes
+
+**GDPR Compliance Features:**
+- **Data Export** (`/api/gdpr/export`): Complete user data export in JSON format including processes, event logs, documents, audit logs, simulation scenarios, and consent records (GDPR Article 20: Right to Data Portability)
+- **Right to Deletion** (`/api/gdpr/delete-account`): Cascading deletion of all user data with password confirmation (GDPR Article 17: Right to Erasure)
+- **Consent Management** (`/api/gdpr/consent`): Track and manage user consents with timestamps, IP addresses, and audit trail (GDPR Article 7: Conditions for Consent)
+- **Privacy Controls**: Users can view, update, and revoke consents at any time
+- **Data Minimization**: Only essential data captured and stored
+- **Audit Trail**: All data access and modifications logged in `audit_logs` table
 
 **Digital Twin Simulation & What-If Scenarios:**
 - **Discrete-Event Simulator**: Production-ready simulation engine for creating process digital twins

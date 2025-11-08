@@ -5,9 +5,15 @@ import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { signupSchema, sanitizeInput } from "@/lib/validation";
 import { checkRateLimit, getClientIdentifier, SIGNUP_RATE_LIMIT } from "@/lib/rate-limiter";
+import { requireCSRF } from "@/lib/csrf";
 
 export async function POST(request: NextRequest) {
   try {
+    const csrfError = requireCSRF(request);
+    if (csrfError) {
+      return csrfError;
+    }
+
     const clientId = getClientIdentifier(request);
     const rateLimit = checkRateLimit(`signup:${clientId}`, SIGNUP_RATE_LIMIT);
 

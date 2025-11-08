@@ -55,9 +55,33 @@ export function checkRateLimit(
 }
 
 export function getClientIdentifier(request: Request): string {
+  const trustedProxies = (process.env.TRUSTED_PROXIES || "")
+    .split(",")
+    .map(p => p.trim())
+    .filter(p => p.length > 0);
+
   const forwarded = request.headers.get("x-forwarded-for");
-  const ip = forwarded ? forwarded.split(",")[0].trim() : "unknown";
-  return ip;
+  if (forwarded && trustedProxies.length > 0) {
+    const ips = forwarded.split(",").map(ip => ip.trim());
+    
+    for (let i = ips.length - 1; i >= 0; i--) {
+      if (!trustedProxies.includes(ips[i])) {
+        return ips[i];
+      }
+    }
+  }
+
+  const xRealIp = request.headers.get("x-real-ip");
+  if (xRealIp && trustedProxies.length > 0) {
+    return xRealIp;
+  }
+
+  const cfConnectingIp = request.headers.get("cf-connecting-ip");
+  if (cfConnectingIp && trustedProxies.length > 0) {
+    return cfConnectingIp;
+  }
+
+  return `anon-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
 
 export const AUTH_RATE_LIMIT: RateLimitConfig = {

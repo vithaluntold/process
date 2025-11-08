@@ -110,6 +110,8 @@ export async function POST(request: NextRequest) {
       path: "/",
     });
 
+    addCSRFCookie(response);
+
     return response;
   } catch (error) {
     console.error("Login error:", error);
