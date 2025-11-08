@@ -1,0 +1,2592 @@
+caseId,activity,timestamp,resource
+TKT-00016,Ticket Created,2025-01-01 08:47:00,System
+TKT-00016,Assign to Agent,2025-01-01 09:16:00,System
+TKT-00022,Ticket Created,2025-01-01 09:17:00,System
+TKT-00022,Assign to Agent,2025-01-01 09:22:00,System
+TKT-00012,Ticket Created,2025-01-01 09:35:00,System
+TKT-00011,Ticket Created,2025-01-01 09:40:00,System
+TKT-00022,Initial Response,2025-01-01 09:43:00,Dave_Thompson
+TKT-00011,Assign to Agent,2025-01-01 09:45:00,System
+TKT-00012,Assign to Agent,2025-01-01 09:57:00,System
+TKT-00016,Initial Response,2025-01-01 10:02:00,Alice_Green
+TKT-00016,Provide Solution,2025-01-01 10:25:00,Alice_Green
+TKT-00011,Initial Response,2025-01-01 10:27:00,Dave_Thompson
+TKT-00003,Ticket Created,2025-01-01 10:31:00,System
+TKT-00016,Close Ticket,2025-01-01 10:36:00,Alice_Green
+TKT-00003,Assign to Agent,2025-01-01 10:44:00,System
+TKT-00011,Provide Solution,2025-01-01 10:46:00,Dave_Thompson
+TKT-00022,Escalate to Specialist,2025-01-01 10:46:00,Dave_Thompson
+TKT-00012,Initial Response,2025-01-01 10:53:00,Carol_Jackson
+TKT-00011,Close Ticket,2025-01-01 10:58:00,Dave_Thompson
+TKT-00003,Initial Response,2025-01-01 10:59:00,Carol_Jackson
+TKT-00003,Provide Solution,2025-01-01 11:13:00,Carol_Jackson
+TKT-00012,Provide Solution,2025-01-01 11:19:00,Carol_Jackson
+TKT-00003,Close Ticket,2025-01-01 11:27:00,Carol_Jackson
+TKT-00012,Close Ticket,2025-01-01 11:31:00,Carol_Jackson
+TKT-00014,Ticket Created,2025-01-01 12:00:00,System
+TKT-00014,Assign to Agent,2025-01-01 12:18:00,System
+TKT-00008,Ticket Created,2025-01-01 12:45:00,System
+TKT-00008,Assign to Agent,2025-01-01 12:52:00,System
+TKT-00014,Initial Response,2025-01-01 12:53:00,Alice_Green
+TKT-00014,Follow-up Required,2025-01-01 13:16:00,Alice_Green
+TKT-00008,Initial Response,2025-01-01 13:27:00,Alice_Green
+TKT-00008,Provide Solution,2025-01-01 13:54:00,Alice_Green
+TKT-00019,Ticket Created,2025-01-01 13:57:00,System
+TKT-00001,Ticket Created,2025-01-01 14:00:00,System
+TKT-00007,Ticket Created,2025-01-01 14:08:00,System
+TKT-00008,Close Ticket,2025-01-01 14:10:00,Alice_Green
+TKT-00001,Assign to Agent,2025-01-01 14:19:00,System
+TKT-00019,Assign to Agent,2025-01-01 14:20:00,System
+TKT-00001,Initial Response,2025-01-01 14:30:00,Bob_Martinez
+TKT-00007,Assign to Agent,2025-01-01 14:33:00,System
+TKT-00023,Ticket Created,2025-01-01 14:35:00,System
+TKT-00024,Ticket Created,2025-01-01 14:41:00,System
+TKT-00023,Assign to Agent,2025-01-01 14:49:00,System
+TKT-00024,Assign to Agent,2025-01-01 14:49:00,System
+TKT-00001,Provide Solution,2025-01-01 14:52:00,Bob_Martinez
+TKT-00021,Ticket Created,2025-01-01 14:58:00,System
+TKT-00001,Close Ticket,2025-01-01 15:06:00,Bob_Martinez
+TKT-00007,Initial Response,2025-01-01 15:10:00,Alice_Green
+TKT-00019,Initial Response,2025-01-01 15:10:00,Alice_Green
+TKT-00004,Ticket Created,2025-01-01 15:12:00,System
+TKT-00021,Assign to Agent,2025-01-01 15:12:00,System
+TKT-00023,Initial Response,2025-01-01 15:19:00,Bob_Martinez
+TKT-00024,Initial Response,2025-01-01 15:24:00,Alice_Green
+TKT-00019,Provide Solution,2025-01-01 15:36:00,Alice_Green
+TKT-00021,Initial Response,2025-01-01 15:38:00,Carol_Jackson
+TKT-00004,Assign to Agent,2025-01-01 15:39:00,System
+TKT-00019,Close Ticket,2025-01-01 15:46:00,Alice_Green
+TKT-00022,Specialist Review,2025-01-01 15:46:00,Expert_Tom
+TKT-00024,Provide Solution,2025-01-01 15:53:00,Alice_Green
+TKT-00007,Escalate to Specialist,2025-01-01 15:56:00,Alice_Green
+TKT-00024,Close Ticket,2025-01-01 16:01:00,Alice_Green
+TKT-00022,Provide Solution,2025-01-01 16:05:00,Expert_Lisa
+TKT-00004,Initial Response,2025-01-01 16:17:00,Alice_Green
+TKT-00022,Close Ticket,2025-01-01 16:22:00,Dave_Thompson
+TKT-00023,Escalate to Specialist,2025-01-01 16:24:00,Bob_Martinez
+TKT-00004,Provide Solution,2025-01-01 16:31:00,Alice_Green
+TKT-00010,Ticket Created,2025-01-01 16:44:00,System
+TKT-00021,Escalate to Specialist,2025-01-01 16:49:00,Carol_Jackson
+TKT-00004,Close Ticket,2025-01-01 16:51:00,Alice_Green
+TKT-00010,Assign to Agent,2025-01-01 17:02:00,System
+TKT-00010,Initial Response,2025-01-01 17:36:00,Carol_Jackson
+TKT-00015,Ticket Created,2025-01-01 17:37:00,System
+TKT-00002,Ticket Created,2025-01-01 17:40:00,System
+TKT-00002,Assign to Agent,2025-01-01 17:45:00,System
+TKT-00015,Assign to Agent,2025-01-01 17:46:00,System
+TKT-00010,Provide Solution,2025-01-01 17:50:00,Carol_Jackson
+TKT-00007,Specialist Review,2025-01-01 17:56:00,Expert_Lisa
+TKT-00015,Initial Response,2025-01-01 18:09:00,Bob_Martinez
+TKT-00010,Close Ticket,2025-01-01 18:10:00,Carol_Jackson
+TKT-00002,Initial Response,2025-01-01 18:19:00,Carol_Jackson
+TKT-00007,Follow-up Required,2025-01-01 18:43:00,Alice_Green
+TKT-00023,Specialist Review,2025-01-01 19:24:00,Expert_Lisa
+TKT-00015,Escalate to Specialist,2025-01-01 19:35:00,Bob_Martinez
+TKT-00023,Provide Solution,2025-01-01 19:43:00,Expert_Lisa
+TKT-00020,Ticket Created,2025-01-01 19:45:00,System
+TKT-00006,Ticket Created,2025-01-01 19:46:00,System
+TKT-00021,Specialist Review,2025-01-01 19:49:00,Expert_Tom
+TKT-00023,Close Ticket,2025-01-01 19:52:00,Bob_Martinez
+TKT-00020,Assign to Agent,2025-01-01 19:53:00,System
+TKT-00018,Ticket Created,2025-01-01 19:56:00,System
+TKT-00002,Escalate to Specialist,2025-01-01 19:57:00,Carol_Jackson
+TKT-00009,Ticket Created,2025-01-01 19:59:00,System
+TKT-00006,Assign to Agent,2025-01-01 20:03:00,System
+TKT-00018,Assign to Agent,2025-01-01 20:05:00,System
+TKT-00017,Ticket Created,2025-01-01 20:09:00,System
+TKT-00005,Ticket Created,2025-01-01 20:10:00,System
+TKT-00009,Assign to Agent,2025-01-01 20:13:00,System
+TKT-00020,Initial Response,2025-01-01 20:24:00,Dave_Thompson
+TKT-00017,Assign to Agent,2025-01-01 20:25:00,System
+TKT-00005,Assign to Agent,2025-01-01 20:26:00,System
+TKT-00009,Initial Response,2025-01-01 20:36:00,Bob_Martinez
+TKT-00020,Provide Solution,2025-01-01 20:43:00,Dave_Thompson
+TKT-00021,Follow-up Required,2025-01-01 20:43:00,Carol_Jackson
+TKT-00013,Ticket Created,2025-01-01 20:46:00,System
+TKT-00009,Provide Solution,2025-01-01 20:49:00,Bob_Martinez
+TKT-00020,Close Ticket,2025-01-01 20:52:00,Dave_Thompson
+TKT-00009,Close Ticket,2025-01-01 20:54:00,Bob_Martinez
+TKT-00018,Initial Response,2025-01-01 20:54:00,Alice_Green
+TKT-00006,Initial Response,2025-01-01 20:55:00,Bob_Martinez
+TKT-00013,Assign to Agent,2025-01-01 21:00:00,System
+TKT-00005,Initial Response,2025-01-01 21:11:00,Dave_Thompson
+TKT-00017,Initial Response,2025-01-01 21:14:00,Carol_Jackson
+TKT-00018,Provide Solution,2025-01-01 21:20:00,Alice_Green
+TKT-00018,Close Ticket,2025-01-01 21:31:00,Alice_Green
+TKT-00015,Specialist Review,2025-01-01 21:35:00,Expert_Lisa
+TKT-00006,Escalate to Specialist,2025-01-01 21:42:00,Bob_Martinez
+TKT-00013,Initial Response,2025-01-01 21:43:00,Bob_Martinez
+TKT-00015,Provide Solution,2025-01-01 21:46:00,Expert_Lisa
+TKT-00005,Escalate to Specialist,2025-01-01 21:49:00,Dave_Thompson
+TKT-00017,Escalate to Specialist,2025-01-01 21:58:00,Carol_Jackson
+TKT-00015,Close Ticket,2025-01-01 22:00:00,Bob_Martinez
+TKT-00013,Provide Solution,2025-01-01 22:11:00,Bob_Martinez
+TKT-00013,Close Ticket,2025-01-01 22:16:00,Bob_Martinez
+TKT-00006,Specialist Review,2025-01-01 22:42:00,Expert_Lisa
+TKT-00006,Provide Solution,2025-01-01 22:53:00,Expert_Tom
+TKT-00006,Close Ticket,2025-01-01 23:07:00,Bob_Martinez
+TKT-00005,Specialist Review,2025-01-02 00:49:00,Expert_Tom
+TKT-00005,Provide Solution,2025-01-02 01:17:00,Expert_Lisa
+TKT-00005,Close Ticket,2025-01-02 01:26:00,Dave_Thompson
+TKT-00002,Specialist Review,2025-01-02 01:57:00,Expert_Tom
+TKT-00002,Provide Solution,2025-01-02 02:08:00,Expert_Tom
+TKT-00002,Close Ticket,2025-01-02 02:16:00,Carol_Jackson
+TKT-00017,Specialist Review,2025-01-02 03:58:00,Expert_Lisa
+TKT-00017,Provide Solution,2025-01-02 04:15:00,Expert_Tom
+TKT-00017,Close Ticket,2025-01-02 04:28:00,Carol_Jackson
+TKT-00037,Ticket Created,2025-01-02 08:01:00,System
+TKT-00037,Assign to Agent,2025-01-02 08:17:00,System
+TKT-00037,Initial Response,2025-01-02 08:35:00,Carol_Jackson
+TKT-00038,Ticket Created,2025-01-02 08:54:00,System
+TKT-00038,Assign to Agent,2025-01-02 09:16:00,System
+TKT-00049,Ticket Created,2025-01-02 09:28:00,System
+TKT-00049,Assign to Agent,2025-01-02 09:34:00,System
+TKT-00049,Initial Response,2025-01-02 09:51:00,Alice_Green
+TKT-00037,Escalate to Specialist,2025-01-02 09:53:00,Carol_Jackson
+TKT-00038,Initial Response,2025-01-02 09:55:00,Dave_Thompson
+TKT-00038,Provide Solution,2025-01-02 10:09:00,Dave_Thompson
+TKT-00038,Close Ticket,2025-01-02 10:14:00,Dave_Thompson
+TKT-00044,Ticket Created,2025-01-02 10:14:00,System
+TKT-00049,Follow-up Required,2025-01-02 10:30:00,Alice_Green
+TKT-00044,Assign to Agent,2025-01-02 10:33:00,System
+TKT-00036,Ticket Created,2025-01-02 11:23:00,System
+TKT-00044,Initial Response,2025-01-02 11:29:00,Carol_Jackson
+TKT-00039,Ticket Created,2025-01-02 11:30:00,System
+TKT-00036,Assign to Agent,2025-01-02 11:31:00,System
+TKT-00034,Ticket Created,2025-01-02 11:48:00,System
+TKT-00039,Assign to Agent,2025-01-02 11:57:00,System
+TKT-00047,Ticket Created,2025-01-02 11:57:00,System
+TKT-00034,Assign to Agent,2025-01-02 11:58:00,System
+TKT-00034,Initial Response,2025-01-02 12:10:00,Bob_Martinez
+TKT-00047,Assign to Agent,2025-01-02 12:21:00,System
+TKT-00036,Initial Response,2025-01-02 12:23:00,Alice_Green
+TKT-00047,Initial Response,2025-01-02 12:42:00,Carol_Jackson
+TKT-00036,Provide Solution,2025-01-02 12:47:00,Alice_Green
+TKT-00036,Close Ticket,2025-01-02 12:52:00,Alice_Green
+TKT-00039,Initial Response,2025-01-02 12:52:00,Dave_Thompson
+TKT-00044,Escalate to Specialist,2025-01-02 12:52:00,Carol_Jackson
+TKT-00037,Specialist Review,2025-01-02 12:53:00,Expert_Lisa
+TKT-00047,Provide Solution,2025-01-02 13:12:00,Carol_Jackson
+TKT-00041,Ticket Created,2025-01-02 13:14:00,System
+TKT-00037,Provide Solution,2025-01-02 13:16:00,Expert_Lisa
+TKT-00039,Provide Solution,2025-01-02 13:20:00,Dave_Thompson
+TKT-00034,Escalate to Specialist,2025-01-02 13:29:00,Bob_Martinez
+TKT-00039,Close Ticket,2025-01-02 13:31:00,Dave_Thompson
+TKT-00047,Close Ticket,2025-01-02 13:32:00,Carol_Jackson
+TKT-00037,Close Ticket,2025-01-02 13:34:00,Carol_Jackson
+TKT-00041,Assign to Agent,2025-01-02 13:42:00,System
+TKT-00044,Specialist Review,2025-01-02 13:52:00,Expert_Tom
+TKT-00041,Initial Response,2025-01-02 14:00:00,Carol_Jackson
+TKT-00042,Ticket Created,2025-01-02 14:12:00,System
+TKT-00044,Provide Solution,2025-01-02 14:13:00,Expert_Lisa
+TKT-00044,Close Ticket,2025-01-02 14:29:00,Carol_Jackson
+TKT-00042,Assign to Agent,2025-01-02 14:35:00,System
+TKT-00042,Initial Response,2025-01-02 15:00:00,Dave_Thompson
+TKT-00030,Ticket Created,2025-01-02 15:13:00,System
+TKT-00041,Escalate to Specialist,2025-01-02 15:25:00,Carol_Jackson
+TKT-00025,Ticket Created,2025-01-02 15:28:00,System
+TKT-00025,Assign to Agent,2025-01-02 15:36:00,System
+TKT-00030,Assign to Agent,2025-01-02 15:39:00,System
+TKT-00042,Escalate to Specialist,2025-01-02 15:40:00,Dave_Thompson
+TKT-00030,Initial Response,2025-01-02 15:57:00,Carol_Jackson
+TKT-00025,Initial Response,2025-01-02 16:04:00,Dave_Thompson
+TKT-00026,Ticket Created,2025-01-02 16:08:00,System
+TKT-00030,Provide Solution,2025-01-02 16:10:00,Carol_Jackson
+TKT-00025,Provide Solution,2025-01-02 16:17:00,Dave_Thompson
+TKT-00030,Close Ticket,2025-01-02 16:20:00,Carol_Jackson
+TKT-00046,Ticket Created,2025-01-02 16:20:00,System
+TKT-00025,Close Ticket,2025-01-02 16:26:00,Dave_Thompson
+TKT-00026,Assign to Agent,2025-01-02 16:26:00,System
+TKT-00046,Assign to Agent,2025-01-02 16:41:00,System
+TKT-00048,Ticket Created,2025-01-02 16:46:00,System
+TKT-00029,Ticket Created,2025-01-02 16:53:00,System
+TKT-00031,Ticket Created,2025-01-02 17:03:00,System
+TKT-00029,Assign to Agent,2025-01-02 17:04:00,System
+TKT-00048,Assign to Agent,2025-01-02 17:07:00,System
+TKT-00031,Assign to Agent,2025-01-02 17:12:00,System
+TKT-00026,Initial Response,2025-01-02 17:22:00,Alice_Green
+TKT-00034,Specialist Review,2025-01-02 17:29:00,Expert_Tom
+TKT-00046,Initial Response,2025-01-02 17:38:00,Bob_Martinez
+TKT-00048,Initial Response,2025-01-02 17:44:00,Alice_Green
+TKT-00026,Provide Solution,2025-01-02 17:45:00,Alice_Green
+TKT-00034,Provide Solution,2025-01-02 17:50:00,Expert_Tom
+TKT-00031,Initial Response,2025-01-02 17:55:00,Alice_Green
+TKT-00034,Close Ticket,2025-01-02 17:58:00,Bob_Martinez
+TKT-00029,Initial Response,2025-01-02 18:00:00,Dave_Thompson
+TKT-00026,Close Ticket,2025-01-02 18:01:00,Alice_Green
+TKT-00032,Ticket Created,2025-01-02 18:01:00,System
+TKT-00048,Provide Solution,2025-01-02 18:03:00,Alice_Green
+TKT-00043,Ticket Created,2025-01-02 18:06:00,System
+TKT-00032,Assign to Agent,2025-01-02 18:10:00,System
+TKT-00048,Close Ticket,2025-01-02 18:14:00,Alice_Green
+TKT-00043,Assign to Agent,2025-01-02 18:23:00,System
+TKT-00031,Escalate to Specialist,2025-01-02 18:26:00,Alice_Green
+TKT-00040,Ticket Created,2025-01-02 18:26:00,System
+TKT-00029,Escalate to Specialist,2025-01-02 18:30:00,Dave_Thompson
+TKT-00028,Ticket Created,2025-01-02 18:34:00,System
+TKT-00040,Assign to Agent,2025-01-02 18:45:00,System
+TKT-00028,Assign to Agent,2025-01-02 18:53:00,System
+TKT-00027,Ticket Created,2025-01-02 18:56:00,System
+TKT-00027,Assign to Agent,2025-01-02 19:01:00,System
+TKT-00043,Initial Response,2025-01-02 19:02:00,Bob_Martinez
+TKT-00033,Ticket Created,2025-01-02 19:05:00,System
+TKT-00035,Ticket Created,2025-01-02 19:06:00,System
+TKT-00032,Initial Response,2025-01-02 19:07:00,Alice_Green
+TKT-00028,Initial Response,2025-01-02 19:12:00,Dave_Thompson
+TKT-00043,Provide Solution,2025-01-02 19:12:00,Bob_Martinez
+TKT-00046,Escalate to Specialist,2025-01-02 19:19:00,Bob_Martinez
+TKT-00045,Ticket Created,2025-01-02 19:20:00,System
+TKT-00043,Close Ticket,2025-01-02 19:27:00,Bob_Martinez
+TKT-00033,Assign to Agent,2025-01-02 19:28:00,System
+TKT-00032,Provide Solution,2025-01-02 19:31:00,Alice_Green
+TKT-00045,Assign to Agent,2025-01-02 19:31:00,System
+TKT-00035,Assign to Agent,2025-01-02 19:32:00,System
+TKT-00040,Initial Response,2025-01-02 19:36:00,Alice_Green
+TKT-00032,Close Ticket,2025-01-02 19:41:00,Alice_Green
+TKT-00027,Initial Response,2025-01-02 19:43:00,Dave_Thompson
+TKT-00035,Initial Response,2025-01-02 19:44:00,Bob_Martinez
+TKT-00033,Initial Response,2025-01-02 19:46:00,Alice_Green
+TKT-00040,Provide Solution,2025-01-02 19:50:00,Alice_Green
+TKT-00028,Follow-up Required,2025-01-02 19:58:00,Dave_Thompson
+TKT-00045,Initial Response,2025-01-02 19:58:00,Alice_Green
+TKT-00040,Close Ticket,2025-01-02 20:02:00,Alice_Green
+TKT-00045,Provide Solution,2025-01-02 20:15:00,Alice_Green
+TKT-00045,Close Ticket,2025-01-02 20:21:00,Alice_Green
+TKT-00033,Escalate to Specialist,2025-01-02 20:22:00,Alice_Green
+TKT-00029,Specialist Review,2025-01-02 20:30:00,Expert_Tom
+TKT-00027,Escalate to Specialist,2025-01-02 20:33:00,Dave_Thompson
+TKT-00035,Follow-up Required,2025-01-02 20:34:00,Bob_Martinez
+TKT-00042,Specialist Review,2025-01-02 20:40:00,Expert_Lisa
+TKT-00029,Provide Solution,2025-01-02 20:45:00,Expert_Lisa
+TKT-00029,Close Ticket,2025-01-02 20:53:00,Dave_Thompson
+TKT-00046,Specialist Review,2025-01-02 21:19:00,Expert_Tom
+TKT-00041,Specialist Review,2025-01-02 21:25:00,Expert_Lisa
+TKT-00042,Follow-up Required,2025-01-02 21:27:00,Dave_Thompson
+TKT-00046,Provide Solution,2025-01-02 21:30:00,Expert_Lisa
+TKT-00046,Close Ticket,2025-01-02 21:45:00,Bob_Martinez
+TKT-00041,Provide Solution,2025-01-02 21:49:00,Expert_Lisa
+TKT-00041,Close Ticket,2025-01-02 21:58:00,Carol_Jackson
+TKT-00027,Specialist Review,2025-01-02 23:33:00,Expert_Lisa
+TKT-00027,Provide Solution,2025-01-02 23:59:00,Expert_Lisa
+TKT-00027,Close Ticket,2025-01-03 00:06:00,Dave_Thompson
+TKT-00031,Specialist Review,2025-01-03 00:26:00,Expert_Tom
+TKT-00035,Follow-up Response,2025-01-03 00:34:00,Bob_Martinez
+TKT-00031,Provide Solution,2025-01-03 00:44:00,Expert_Tom
+TKT-00035,Provide Solution,2025-01-03 00:54:00,Bob_Martinez
+TKT-00031,Close Ticket,2025-01-03 01:04:00,Alice_Green
+TKT-00035,Close Ticket,2025-01-03 01:04:00,Bob_Martinez
+TKT-00033,Specialist Review,2025-01-03 01:22:00,Expert_Lisa
+TKT-00033,Provide Solution,2025-01-03 01:40:00,Expert_Lisa
+TKT-00033,Close Ticket,2025-01-03 01:58:00,Alice_Green
+TKT-00050,Ticket Created,2025-01-03 02:22:00,System
+TKT-00050,Assign to Agent,2025-01-03 02:47:00,System
+TKT-00050,Initial Response,2025-01-03 03:12:00,Bob_Martinez
+TKT-00050,Provide Solution,2025-01-03 03:37:00,Bob_Martinez
+TKT-00050,Close Ticket,2025-01-03 03:57:00,Bob_Martinez
+TKT-00021,Follow-up Response,2025-01-03 07:43:00,Carol_Jackson
+TKT-00021,Provide Solution,2025-01-03 08:07:00,Expert_Lisa
+TKT-00058,Ticket Created,2025-01-03 08:10:00,System
+TKT-00014,Follow-up Response,2025-01-03 08:16:00,Alice_Green
+TKT-00021,Close Ticket,2025-01-03 08:23:00,Carol_Jackson
+TKT-00014,Provide Solution,2025-01-03 08:27:00,Alice_Green
+TKT-00051,Ticket Created,2025-01-03 08:32:00,System
+TKT-00014,Close Ticket,2025-01-03 08:33:00,Alice_Green
+TKT-00058,Assign to Agent,2025-01-03 08:37:00,System
+TKT-00051,Assign to Agent,2025-01-03 08:42:00,System
+TKT-00071,Ticket Created,2025-01-03 08:57:00,System
+TKT-00028,Follow-up Response,2025-01-03 08:58:00,Dave_Thompson
+TKT-00071,Assign to Agent,2025-01-03 09:06:00,System
+TKT-00051,Initial Response,2025-01-03 09:19:00,Alice_Green
+TKT-00028,Provide Solution,2025-01-03 09:22:00,Dave_Thompson
+TKT-00061,Ticket Created,2025-01-03 09:23:00,System
+TKT-00070,Ticket Created,2025-01-03 09:27:00,System
+TKT-00028,Close Ticket,2025-01-03 09:32:00,Dave_Thompson
+TKT-00058,Initial Response,2025-01-03 09:33:00,Alice_Green
+TKT-00070,Assign to Agent,2025-01-03 09:33:00,System
+TKT-00071,Initial Response,2025-01-03 09:33:00,Bob_Martinez
+TKT-00051,Provide Solution,2025-01-03 09:37:00,Alice_Green
+TKT-00059,Ticket Created,2025-01-03 09:42:00,System
+TKT-00061,Assign to Agent,2025-01-03 09:47:00,System
+TKT-00071,Provide Solution,2025-01-03 09:48:00,Bob_Martinez
+TKT-00070,Initial Response,2025-01-03 09:51:00,Dave_Thompson
+TKT-00051,Close Ticket,2025-01-03 09:53:00,Alice_Green
+TKT-00067,Ticket Created,2025-01-03 10:03:00,System
+TKT-00064,Ticket Created,2025-01-03 10:06:00,System
+TKT-00071,Close Ticket,2025-01-03 10:06:00,Bob_Martinez
+TKT-00059,Assign to Agent,2025-01-03 10:08:00,System
+TKT-00067,Assign to Agent,2025-01-03 10:10:00,System
+TKT-00058,Escalate to Specialist,2025-01-03 10:13:00,Alice_Green
+TKT-00064,Assign to Agent,2025-01-03 10:14:00,System
+TKT-00057,Ticket Created,2025-01-03 10:22:00,System
+TKT-00069,Ticket Created,2025-01-03 10:29:00,System
+TKT-00057,Assign to Agent,2025-01-03 10:33:00,System
+TKT-00069,Assign to Agent,2025-01-03 10:39:00,System
+TKT-00061,Initial Response,2025-01-03 10:41:00,Alice_Green
+TKT-00067,Initial Response,2025-01-03 10:43:00,Dave_Thompson
+TKT-00059,Initial Response,2025-01-03 10:46:00,Carol_Jackson
+TKT-00061,Provide Solution,2025-01-03 10:53:00,Alice_Green
+TKT-00064,Initial Response,2025-01-03 10:54:00,Alice_Green
+TKT-00059,Provide Solution,2025-01-03 10:58:00,Carol_Jackson
+TKT-00061,Close Ticket,2025-01-03 11:04:00,Alice_Green
+TKT-00059,Close Ticket,2025-01-03 11:06:00,Carol_Jackson
+TKT-00057,Initial Response,2025-01-03 11:13:00,Dave_Thompson
+TKT-00070,Escalate to Specialist,2025-01-03 11:14:00,Dave_Thompson
+TKT-00069,Initial Response,2025-01-03 11:22:00,Carol_Jackson
+TKT-00067,Escalate to Specialist,2025-01-03 11:23:00,Dave_Thompson
+TKT-00064,Provide Solution,2025-01-03 11:24:00,Alice_Green
+TKT-00073,Ticket Created,2025-01-03 11:24:00,System
+TKT-00057,Provide Solution,2025-01-03 11:29:00,Dave_Thompson
+TKT-00065,Ticket Created,2025-01-03 11:33:00,System
+TKT-00073,Assign to Agent,2025-01-03 11:33:00,System
+TKT-00057,Close Ticket,2025-01-03 11:42:00,Dave_Thompson
+TKT-00007,Follow-up Response,2025-01-03 11:43:00,Alice_Green
+TKT-00064,Close Ticket,2025-01-03 11:44:00,Alice_Green
+TKT-00056,Ticket Created,2025-01-03 11:49:00,System
+TKT-00069,Provide Solution,2025-01-03 11:49:00,Carol_Jackson
+TKT-00056,Assign to Agent,2025-01-03 11:54:00,System
+TKT-00069,Close Ticket,2025-01-03 12:01:00,Carol_Jackson
+TKT-00065,Assign to Agent,2025-01-03 12:03:00,System
+TKT-00007,Provide Solution,2025-01-03 12:07:00,Expert_Lisa
+TKT-00056,Initial Response,2025-01-03 12:16:00,Alice_Green
+TKT-00007,Close Ticket,2025-01-03 12:24:00,Alice_Green
+TKT-00073,Initial Response,2025-01-03 12:24:00,Alice_Green
+TKT-00054,Ticket Created,2025-01-03 12:42:00,System
+TKT-00054,Assign to Agent,2025-01-03 12:56:00,System
+TKT-00065,Initial Response,2025-01-03 13:00:00,Carol_Jackson
+TKT-00056,Follow-up Required,2025-01-03 13:07:00,Alice_Green
+TKT-00058,Specialist Review,2025-01-03 13:13:00,Expert_Tom
+TKT-00073,Escalate to Specialist,2025-01-03 13:17:00,Alice_Green
+TKT-00054,Initial Response,2025-01-03 13:27:00,Carol_Jackson
+TKT-00065,Provide Solution,2025-01-03 13:27:00,Carol_Jackson
+TKT-00066,Ticket Created,2025-01-03 13:27:00,System
+TKT-00058,Provide Solution,2025-01-03 13:30:00,Expert_Lisa
+TKT-00066,Assign to Agent,2025-01-03 13:33:00,System
+TKT-00065,Close Ticket,2025-01-03 13:40:00,Carol_Jackson
+TKT-00074,Ticket Created,2025-01-03 13:43:00,System
+TKT-00072,Ticket Created,2025-01-03 13:44:00,System
+TKT-00058,Close Ticket,2025-01-03 13:48:00,Alice_Green
+TKT-00074,Assign to Agent,2025-01-03 13:57:00,System
+TKT-00066,Initial Response,2025-01-03 14:02:00,Carol_Jackson
+TKT-00053,Ticket Created,2025-01-03 14:06:00,System
+TKT-00072,Assign to Agent,2025-01-03 14:08:00,System
+TKT-00074,Initial Response,2025-01-03 14:10:00,Bob_Martinez
+TKT-00054,Escalate to Specialist,2025-01-03 14:13:00,Carol_Jackson
+TKT-00070,Specialist Review,2025-01-03 14:14:00,Expert_Tom
+TKT-00074,Provide Solution,2025-01-03 14:27:00,Bob_Martinez
+TKT-00053,Assign to Agent,2025-01-03 14:36:00,System
+TKT-00052,Ticket Created,2025-01-03 14:42:00,System
+TKT-00072,Initial Response,2025-01-03 14:43:00,Alice_Green
+TKT-00060,Ticket Created,2025-01-03 14:45:00,System
+TKT-00070,Follow-up Required,2025-01-03 14:45:00,Dave_Thompson
+TKT-00074,Close Ticket,2025-01-03 14:45:00,Bob_Martinez
+TKT-00052,Assign to Agent,2025-01-03 15:12:00,System
+TKT-00053,Initial Response,2025-01-03 15:12:00,Alice_Green
+TKT-00060,Assign to Agent,2025-01-03 15:13:00,System
+TKT-00073,Specialist Review,2025-01-03 15:17:00,Expert_Tom
+TKT-00066,Escalate to Specialist,2025-01-03 15:21:00,Carol_Jackson
+TKT-00067,Specialist Review,2025-01-03 15:23:00,Expert_Tom
+TKT-00060,Initial Response,2025-01-03 15:35:00,Carol_Jackson
+TKT-00053,Provide Solution,2025-01-03 15:38:00,Alice_Green
+TKT-00067,Provide Solution,2025-01-03 15:41:00,Expert_Tom
+TKT-00073,Provide Solution,2025-01-03 15:44:00,Expert_Lisa
+TKT-00053,Close Ticket,2025-01-03 15:51:00,Alice_Green
+TKT-00063,Ticket Created,2025-01-03 15:53:00,System
+TKT-00073,Close Ticket,2025-01-03 15:56:00,Alice_Green
+TKT-00052,Initial Response,2025-01-03 15:57:00,Dave_Thompson
+TKT-00067,Close Ticket,2025-01-03 15:58:00,Dave_Thompson
+TKT-00063,Assign to Agent,2025-01-03 16:06:00,System
+TKT-00072,Escalate to Specialist,2025-01-03 16:10:00,Alice_Green
+TKT-00052,Provide Solution,2025-01-03 16:13:00,Dave_Thompson
+TKT-00060,Escalate to Specialist,2025-01-03 16:13:00,Carol_Jackson
+TKT-00052,Close Ticket,2025-01-03 16:18:00,Dave_Thompson
+TKT-00066,Specialist Review,2025-01-03 16:21:00,Expert_Lisa
+TKT-00066,Provide Solution,2025-01-03 16:37:00,Expert_Tom
+TKT-00063,Initial Response,2025-01-03 16:43:00,Dave_Thompson
+TKT-00066,Close Ticket,2025-01-03 16:44:00,Carol_Jackson
+TKT-00055,Ticket Created,2025-01-03 17:02:00,System
+TKT-00054,Specialist Review,2025-01-03 17:13:00,Expert_Tom
+TKT-00055,Assign to Agent,2025-01-03 17:25:00,System
+TKT-00054,Provide Solution,2025-01-03 17:30:00,Expert_Tom
+TKT-00054,Close Ticket,2025-01-03 17:38:00,Carol_Jackson
+TKT-00063,Follow-up Required,2025-01-03 17:39:00,Dave_Thompson
+TKT-00055,Initial Response,2025-01-03 18:06:00,Dave_Thompson
+TKT-00068,Ticket Created,2025-01-03 18:21:00,System
+TKT-00068,Assign to Agent,2025-01-03 18:40:00,System
+TKT-00055,Escalate to Specialist,2025-01-03 18:47:00,Dave_Thompson
+TKT-00068,Initial Response,2025-01-03 18:57:00,Alice_Green
+TKT-00062,Ticket Created,2025-01-03 19:00:00,System
+TKT-00072,Specialist Review,2025-01-03 19:10:00,Expert_Tom
+TKT-00062,Assign to Agent,2025-01-03 19:21:00,System
+TKT-00062,Initial Response,2025-01-03 19:46:00,Alice_Green
+TKT-00068,Escalate to Specialist,2025-01-03 19:49:00,Alice_Green
+TKT-00072,Request Additional Info,2025-01-03 19:54:00,Expert_Tom
+TKT-00068,Specialist Review,2025-01-03 20:49:00,Expert_Lisa
+TKT-00068,Provide Solution,2025-01-03 21:11:00,Expert_Tom
+TKT-00060,Specialist Review,2025-01-03 21:13:00,Expert_Lisa
+TKT-00068,Close Ticket,2025-01-03 21:30:00,Alice_Green
+TKT-00062,Escalate to Specialist,2025-01-03 21:35:00,Alice_Green
+TKT-00060,Request Additional Info,2025-01-03 21:36:00,Expert_Lisa
+TKT-00055,Specialist Review,2025-01-03 21:47:00,Expert_Lisa
+TKT-00055,Provide Solution,2025-01-03 22:06:00,Expert_Tom
+TKT-00055,Close Ticket,2025-01-03 22:26:00,Dave_Thompson
+TKT-00072,Customer Response,2025-01-03 23:54:00,Customer
+TKT-00072,Specialist Review,2025-01-04 00:46:00,Expert_Lisa
+TKT-00072,Provide Solution,2025-01-04 01:03:00,Expert_Lisa
+TKT-00072,Close Ticket,2025-01-04 01:09:00,Alice_Green
+TKT-00062,Specialist Review,2025-01-04 01:35:00,Expert_Tom
+TKT-00062,Provide Solution,2025-01-04 01:57:00,Expert_Lisa
+TKT-00062,Close Ticket,2025-01-04 02:13:00,Alice_Green
+TKT-00049,Follow-up Response,2025-01-04 02:30:00,Alice_Green
+TKT-00049,Provide Solution,2025-01-04 02:47:00,Alice_Green
+TKT-00049,Close Ticket,2025-01-04 03:02:00,Alice_Green
+TKT-00056,Follow-up Response,2025-01-04 08:07:00,Alice_Green
+TKT-00056,Provide Solution,2025-01-04 08:35:00,Alice_Green
+TKT-00056,Close Ticket,2025-01-04 08:45:00,Alice_Green
+TKT-00070,Follow-up Response,2025-01-04 08:45:00,Dave_Thompson
+TKT-00070,Provide Solution,2025-01-04 08:58:00,Expert_Lisa
+TKT-00070,Close Ticket,2025-01-04 09:10:00,Dave_Thompson
+TKT-00095,Ticket Created,2025-01-04 09:35:00,System
+TKT-00084,Ticket Created,2025-01-04 09:46:00,System
+TKT-00051,Reopen Ticket,2025-01-04 09:53:00,Customer
+TKT-00095,Assign to Agent,2025-01-04 09:53:00,System
+TKT-00084,Assign to Agent,2025-01-04 10:02:00,System
+TKT-00095,Initial Response,2025-01-04 10:20:00,Bob_Martinez
+TKT-00077,Ticket Created,2025-01-04 10:33:00,System
+TKT-00095,Provide Solution,2025-01-04 10:33:00,Bob_Martinez
+TKT-00051,Provide Solution,2025-01-04 10:34:00,Alice_Green
+TKT-00085,Ticket Created,2025-01-04 10:36:00,System
+TKT-00093,Ticket Created,2025-01-04 10:38:00,System
+TKT-00085,Assign to Agent,2025-01-04 10:42:00,System
+TKT-00051,Close Ticket,2025-01-04 10:43:00,Alice_Green
+TKT-00095,Close Ticket,2025-01-04 10:44:00,Bob_Martinez
+TKT-00093,Assign to Agent,2025-01-04 10:50:00,System
+TKT-00084,Initial Response,2025-01-04 10:51:00,Dave_Thompson
+TKT-00077,Assign to Agent,2025-01-04 10:55:00,System
+TKT-00085,Initial Response,2025-01-04 11:09:00,Alice_Green
+TKT-00084,Escalate to Specialist,2025-01-04 11:29:00,Dave_Thompson
+TKT-00077,Initial Response,2025-01-04 11:30:00,Alice_Green
+TKT-00085,Provide Solution,2025-01-04 11:34:00,Alice_Green
+TKT-00093,Initial Response,2025-01-04 11:34:00,Dave_Thompson
+TKT-00063,Follow-up Response,2025-01-04 11:39:00,Dave_Thompson
+TKT-00085,Close Ticket,2025-01-04 11:42:00,Alice_Green
+TKT-00087,Ticket Created,2025-01-04 11:44:00,System
+TKT-00094,Ticket Created,2025-01-04 11:45:00,System
+TKT-00093,Provide Solution,2025-01-04 11:48:00,Dave_Thompson
+TKT-00093,Close Ticket,2025-01-04 11:53:00,Dave_Thompson
+TKT-00094,Assign to Agent,2025-01-04 11:59:00,System
+TKT-00063,Provide Solution,2025-01-04 12:09:00,Dave_Thompson
+TKT-00087,Assign to Agent,2025-01-04 12:10:00,System
+TKT-00088,Ticket Created,2025-01-04 12:14:00,System
+TKT-00063,Close Ticket,2025-01-04 12:17:00,Dave_Thompson
+TKT-00077,Follow-up Required,2025-01-04 12:19:00,Alice_Green
+TKT-00088,Assign to Agent,2025-01-04 12:37:00,System
+TKT-00089,Ticket Created,2025-01-04 12:40:00,System
+TKT-00089,Assign to Agent,2025-01-04 12:47:00,System
+TKT-00094,Initial Response,2025-01-04 12:48:00,Dave_Thompson
+TKT-00081,Ticket Created,2025-01-04 12:53:00,System
+TKT-00087,Initial Response,2025-01-04 12:57:00,Bob_Martinez
+TKT-00088,Initial Response,2025-01-04 13:06:00,Alice_Green
+TKT-00094,Provide Solution,2025-01-04 13:11:00,Dave_Thompson
+TKT-00081,Assign to Agent,2025-01-04 13:14:00,System
+TKT-00088,Provide Solution,2025-01-04 13:19:00,Alice_Green
+TKT-00089,Initial Response,2025-01-04 13:21:00,Alice_Green
+TKT-00094,Close Ticket,2025-01-04 13:24:00,Dave_Thompson
+TKT-00087,Provide Solution,2025-01-04 13:26:00,Bob_Martinez
+TKT-00088,Close Ticket,2025-01-04 13:34:00,Alice_Green
+TKT-00087,Close Ticket,2025-01-04 13:40:00,Bob_Martinez
+TKT-00098,Ticket Created,2025-01-04 13:43:00,System
+TKT-00081,Initial Response,2025-01-04 13:50:00,Dave_Thompson
+TKT-00082,Ticket Created,2025-01-04 13:53:00,System
+TKT-00098,Assign to Agent,2025-01-04 14:00:00,System
+TKT-00082,Assign to Agent,2025-01-04 14:13:00,System
+TKT-00081,Provide Solution,2025-01-04 14:19:00,Dave_Thompson
+TKT-00089,Escalate to Specialist,2025-01-04 14:23:00,Alice_Green
+TKT-00084,Specialist Review,2025-01-04 14:29:00,Expert_Tom
+TKT-00081,Close Ticket,2025-01-04 14:34:00,Dave_Thompson
+TKT-00060,Customer Response,2025-01-04 14:36:00,Customer
+TKT-00098,Initial Response,2025-01-04 14:41:00,Carol_Jackson
+TKT-00082,Initial Response,2025-01-04 14:53:00,Dave_Thompson
+TKT-00084,Request Additional Info,2025-01-04 14:53:00,Expert_Lisa
+TKT-00076,Ticket Created,2025-01-04 14:55:00,System
+TKT-00082,Provide Solution,2025-01-04 15:06:00,Dave_Thompson
+TKT-00076,Assign to Agent,2025-01-04 15:09:00,System
+TKT-00082,Close Ticket,2025-01-04 15:12:00,Dave_Thompson
+TKT-00060,Specialist Review,2025-01-04 15:16:00,Expert_Lisa
+TKT-00098,Escalate to Specialist,2025-01-04 15:21:00,Carol_Jackson
+TKT-00089,Specialist Review,2025-01-04 15:23:00,Expert_Tom
+TKT-00042,Follow-up Response,2025-01-04 15:27:00,Dave_Thompson
+TKT-00090,Ticket Created,2025-01-04 15:38:00,System
+TKT-00060,Provide Solution,2025-01-04 15:44:00,Expert_Tom
+TKT-00076,Initial Response,2025-01-04 15:44:00,Bob_Martinez
+TKT-00089,Provide Solution,2025-01-04 15:44:00,Expert_Tom
+TKT-00042,Provide Solution,2025-01-04 15:52:00,Expert_Tom
+TKT-00090,Assign to Agent,2025-01-04 15:53:00,System
+TKT-00060,Close Ticket,2025-01-04 16:01:00,Carol_Jackson
+TKT-00042,Close Ticket,2025-01-04 16:02:00,Dave_Thompson
+TKT-00089,Close Ticket,2025-01-04 16:03:00,Alice_Green
+TKT-00076,Provide Solution,2025-01-04 16:13:00,Bob_Martinez
+TKT-00076,Close Ticket,2025-01-04 16:19:00,Bob_Martinez
+TKT-00099,Ticket Created,2025-01-04 16:32:00,System
+TKT-00092,Ticket Created,2025-01-04 16:39:00,System
+TKT-00090,Initial Response,2025-01-04 16:45:00,Carol_Jackson
+TKT-00092,Assign to Agent,2025-01-04 16:49:00,System
+TKT-00084,Customer Response,2025-01-04 16:53:00,Customer
+TKT-00099,Assign to Agent,2025-01-04 16:53:00,System
+TKT-00083,Ticket Created,2025-01-04 16:59:00,System
+TKT-00079,Ticket Created,2025-01-04 17:01:00,System
+TKT-00078,Ticket Created,2025-01-04 17:05:00,System
+TKT-00079,Assign to Agent,2025-01-04 17:09:00,System
+TKT-00075,Ticket Created,2025-01-04 17:12:00,System
+TKT-00090,Provide Solution,2025-01-04 17:15:00,Carol_Jackson
+TKT-00078,Assign to Agent,2025-01-04 17:16:00,System
+TKT-00084,Specialist Review,2025-01-04 17:16:00,Expert_Lisa
+TKT-00083,Assign to Agent,2025-01-04 17:17:00,System
+TKT-00092,Initial Response,2025-01-04 17:20:00,Dave_Thompson
+TKT-00090,Close Ticket,2025-01-04 17:23:00,Carol_Jackson
+TKT-00075,Assign to Agent,2025-01-04 17:31:00,System
+TKT-00079,Initial Response,2025-01-04 17:45:00,Bob_Martinez
+TKT-00099,Initial Response,2025-01-04 17:51:00,Dave_Thompson
+TKT-00079,Provide Solution,2025-01-04 17:57:00,Bob_Martinez
+TKT-00083,Initial Response,2025-01-04 17:59:00,Alice_Green
+TKT-00079,Close Ticket,2025-01-04 18:08:00,Bob_Martinez
+TKT-00078,Initial Response,2025-01-04 18:09:00,Alice_Green
+TKT-00084,Follow-up Required,2025-01-04 18:09:00,Dave_Thompson
+TKT-00075,Initial Response,2025-01-04 18:19:00,Dave_Thompson
+TKT-00086,Ticket Created,2025-01-04 18:39:00,System
+TKT-00083,Escalate to Specialist,2025-01-04 18:42:00,Alice_Green
+TKT-00086,Assign to Agent,2025-01-04 18:47:00,System
+TKT-00099,Escalate to Specialist,2025-01-04 19:05:00,Dave_Thompson
+TKT-00092,Escalate to Specialist,2025-01-04 19:13:00,Dave_Thompson
+TKT-00078,Escalate to Specialist,2025-01-04 19:23:00,Alice_Green
+TKT-00097,Ticket Created,2025-01-04 19:32:00,System
+TKT-00086,Initial Response,2025-01-04 19:36:00,Dave_Thompson
+TKT-00075,Escalate to Specialist,2025-01-04 19:42:00,Dave_Thompson
+TKT-00097,Assign to Agent,2025-01-04 19:47:00,System
+TKT-00086,Provide Solution,2025-01-04 19:54:00,Dave_Thompson
+TKT-00097,Initial Response,2025-01-04 19:58:00,Dave_Thompson
+TKT-00086,Close Ticket,2025-01-04 20:07:00,Dave_Thompson
+TKT-00098,Specialist Review,2025-01-04 20:21:00,Expert_Tom
+TKT-00080,Ticket Created,2025-01-04 20:26:00,System
+TKT-00097,Provide Solution,2025-01-04 20:28:00,Dave_Thompson
+TKT-00091,Ticket Created,2025-01-04 20:32:00,System
+TKT-00098,Follow-up Required,2025-01-04 20:43:00,Carol_Jackson
+TKT-00097,Close Ticket,2025-01-04 20:46:00,Dave_Thompson
+TKT-00080,Assign to Agent,2025-01-04 20:51:00,System
+TKT-00091,Assign to Agent,2025-01-04 20:51:00,System
+TKT-00096,Ticket Created,2025-01-04 20:51:00,System
+TKT-00096,Assign to Agent,2025-01-04 21:01:00,System
+TKT-00091,Initial Response,2025-01-04 21:20:00,Alice_Green
+TKT-00080,Initial Response,2025-01-04 21:32:00,Alice_Green
+TKT-00075,Specialist Review,2025-01-04 21:42:00,Expert_Tom
+TKT-00046,Reopen Ticket,2025-01-04 21:45:00,Customer
+TKT-00096,Initial Response,2025-01-04 21:50:00,Alice_Green
+TKT-00075,Provide Solution,2025-01-04 21:52:00,Expert_Tom
+TKT-00075,Close Ticket,2025-01-04 22:12:00,Dave_Thompson
+TKT-00091,Escalate to Specialist,2025-01-04 22:13:00,Alice_Green
+TKT-00078,Specialist Review,2025-01-04 22:23:00,Expert_Tom
+TKT-00083,Specialist Review,2025-01-04 22:42:00,Expert_Lisa
+TKT-00078,Provide Solution,2025-01-04 22:44:00,Expert_Tom
+TKT-00046,Provide Solution,2025-01-04 22:47:00,Bob_Martinez
+TKT-00078,Close Ticket,2025-01-04 22:53:00,Alice_Green
+TKT-00080,Escalate to Specialist,2025-01-04 22:54:00,Alice_Green
+TKT-00046,Close Ticket,2025-01-04 22:59:00,Bob_Martinez
+TKT-00096,Escalate to Specialist,2025-01-04 22:59:00,Alice_Green
+TKT-00083,Provide Solution,2025-01-04 23:12:00,Expert_Tom
+TKT-00083,Close Ticket,2025-01-04 23:21:00,Alice_Green
+TKT-00080,Specialist Review,2025-01-04 23:54:00,Expert_Tom
+TKT-00080,Provide Solution,2025-01-05 00:09:00,Expert_Tom
+TKT-00091,Specialist Review,2025-01-05 00:13:00,Expert_Lisa
+TKT-00077,Follow-up Response,2025-01-05 00:19:00,Alice_Green
+TKT-00080,Close Ticket,2025-01-05 00:22:00,Alice_Green
+TKT-00091,Follow-up Required,2025-01-05 00:41:00,Alice_Green
+TKT-00077,Provide Solution,2025-01-05 00:46:00,Alice_Green
+TKT-00077,Close Ticket,2025-01-05 00:57:00,Alice_Green
+TKT-00096,Specialist Review,2025-01-05 00:59:00,Expert_Lisa
+TKT-00099,Specialist Review,2025-01-05 01:05:00,Expert_Tom
+TKT-00092,Specialist Review,2025-01-05 01:13:00,Expert_Tom
+TKT-00096,Request Additional Info,2025-01-05 01:30:00,Expert_Tom
+TKT-00099,Provide Solution,2025-01-05 01:31:00,Expert_Tom
+TKT-00099,Close Ticket,2025-01-05 01:40:00,Dave_Thompson
+TKT-00092,Provide Solution,2025-01-05 01:42:00,Expert_Tom
+TKT-00092,Close Ticket,2025-01-05 01:52:00,Dave_Thompson
+TKT-00100,Ticket Created,2025-01-05 02:40:00,System
+TKT-00100,Assign to Agent,2025-01-05 02:57:00,System
+TKT-00100,Initial Response,2025-01-05 03:51:00,Dave_Thompson
+TKT-00100,Escalate to Specialist,2025-01-05 05:04:00,Dave_Thompson
+TKT-00102,Ticket Created,2025-01-05 08:27:00,System
+TKT-00112,Ticket Created,2025-01-05 08:36:00,System
+TKT-00102,Assign to Agent,2025-01-05 08:50:00,System
+TKT-00112,Assign to Agent,2025-01-05 08:58:00,System
+TKT-00104,Ticket Created,2025-01-05 09:01:00,System
+TKT-00102,Initial Response,2025-01-05 09:08:00,Dave_Thompson
+TKT-00104,Assign to Agent,2025-01-05 09:13:00,System
+TKT-00115,Ticket Created,2025-01-05 09:29:00,System
+TKT-00104,Initial Response,2025-01-05 09:34:00,Alice_Green
+TKT-00112,Initial Response,2025-01-05 09:34:00,Alice_Green
+TKT-00115,Assign to Agent,2025-01-05 09:40:00,System
+TKT-00114,Ticket Created,2025-01-05 09:45:00,System
+TKT-00115,Initial Response,2025-01-05 09:53:00,Dave_Thompson
+TKT-00102,Escalate to Specialist,2025-01-05 10:08:00,Dave_Thompson
+TKT-00114,Assign to Agent,2025-01-05 10:09:00,System
+TKT-00115,Provide Solution,2025-01-05 10:11:00,Dave_Thompson
+TKT-00112,Follow-up Required,2025-01-05 10:14:00,Alice_Green
+TKT-00104,Escalate to Specialist,2025-01-05 10:20:00,Alice_Green
+TKT-00114,Initial Response,2025-01-05 10:22:00,Bob_Martinez
+TKT-00115,Close Ticket,2025-01-05 10:24:00,Dave_Thompson
+TKT-00114,Provide Solution,2025-01-05 10:49:00,Bob_Martinez
+TKT-00114,Close Ticket,2025-01-05 10:54:00,Bob_Martinez
+TKT-00100,Specialist Review,2025-01-05 11:04:00,Expert_Lisa
+TKT-00100,Provide Solution,2025-01-05 11:29:00,Expert_Lisa
+TKT-00124,Ticket Created,2025-01-05 11:29:00,System
+TKT-00096,Customer Response,2025-01-05 11:30:00,Customer
+TKT-00124,Assign to Agent,2025-01-05 11:34:00,System
+TKT-00098,Follow-up Response,2025-01-05 11:43:00,Carol_Jackson
+TKT-00100,Close Ticket,2025-01-05 11:43:00,Dave_Thompson
+TKT-00120,Ticket Created,2025-01-05 11:45:00,System
+TKT-00120,Assign to Agent,2025-01-05 11:58:00,System
+TKT-00113,Ticket Created,2025-01-05 12:08:00,System
+TKT-00116,Ticket Created,2025-01-05 12:11:00,System
+TKT-00098,Provide Solution,2025-01-05 12:13:00,Expert_Tom
+TKT-00113,Assign to Agent,2025-01-05 12:17:00,System
+TKT-00098,Close Ticket,2025-01-05 12:20:00,Carol_Jackson
+TKT-00096,Specialist Review,2025-01-05 12:22:00,Expert_Tom
+TKT-00120,Initial Response,2025-01-05 12:23:00,Alice_Green
+TKT-00116,Assign to Agent,2025-01-05 12:27:00,System
+TKT-00096,Provide Solution,2025-01-05 12:32:00,Expert_Tom
+TKT-00124,Initial Response,2025-01-05 12:34:00,Alice_Green
+TKT-00113,Initial Response,2025-01-05 12:35:00,Dave_Thompson
+TKT-00096,Close Ticket,2025-01-05 12:40:00,Alice_Green
+TKT-00118,Ticket Created,2025-01-05 12:43:00,System
+TKT-00111,Ticket Created,2025-01-05 12:47:00,System
+TKT-00111,Assign to Agent,2025-01-05 12:52:00,System
+TKT-00116,Initial Response,2025-01-05 12:55:00,Dave_Thompson
+TKT-00113,Provide Solution,2025-01-05 12:57:00,Dave_Thompson
+TKT-00118,Assign to Agent,2025-01-05 13:04:00,System
+TKT-00102,Specialist Review,2025-01-05 13:08:00,Expert_Lisa
+TKT-00084,Follow-up Response,2025-01-05 13:09:00,Dave_Thompson
+TKT-00113,Close Ticket,2025-01-05 13:11:00,Dave_Thompson
+TKT-00118,Initial Response,2025-01-05 13:19:00,Alice_Green
+TKT-00084,Provide Solution,2025-01-05 13:20:00,Expert_Tom
+TKT-00116,Provide Solution,2025-01-05 13:22:00,Dave_Thompson
+TKT-00102,Provide Solution,2025-01-05 13:30:00,Expert_Lisa
+TKT-00084,Close Ticket,2025-01-05 13:31:00,Dave_Thompson
+TKT-00116,Close Ticket,2025-01-05 13:41:00,Dave_Thompson
+TKT-00102,Close Ticket,2025-01-05 13:43:00,Dave_Thompson
+TKT-00124,Escalate to Specialist,2025-01-05 13:46:00,Alice_Green
+TKT-00111,Initial Response,2025-01-05 13:48:00,Bob_Martinez
+TKT-00108,Ticket Created,2025-01-05 13:51:00,System
+TKT-00111,Provide Solution,2025-01-05 14:06:00,Bob_Martinez
+TKT-00111,Close Ticket,2025-01-05 14:11:00,Bob_Martinez
+TKT-00120,Escalate to Specialist,2025-01-05 14:11:00,Alice_Green
+TKT-00108,Assign to Agent,2025-01-05 14:14:00,System
+TKT-00104,Specialist Review,2025-01-05 14:20:00,Expert_Tom
+TKT-00108,Initial Response,2025-01-05 14:24:00,Alice_Green
+TKT-00044,Reopen Ticket,2025-01-05 14:29:00,Customer
+TKT-00121,Ticket Created,2025-01-05 14:36:00,System
+TKT-00104,Provide Solution,2025-01-05 14:40:00,Expert_Tom
+TKT-00118,Escalate to Specialist,2025-01-05 14:43:00,Alice_Green
+TKT-00108,Provide Solution,2025-01-05 14:47:00,Alice_Green
+TKT-00104,Close Ticket,2025-01-05 14:52:00,Alice_Green
+TKT-00108,Close Ticket,2025-01-05 15:04:00,Alice_Green
+TKT-00121,Assign to Agent,2025-01-05 15:06:00,System
+TKT-00120,Specialist Review,2025-01-05 15:11:00,Expert_Tom
+TKT-00118,Specialist Review,2025-01-05 15:43:00,Expert_Tom
+TKT-00120,Request Additional Info,2025-01-05 15:50:00,Expert_Lisa
+TKT-00121,Initial Response,2025-01-05 15:50:00,Alice_Green
+TKT-00101,Ticket Created,2025-01-05 15:52:00,System
+TKT-00119,Ticket Created,2025-01-05 16:00:00,System
+TKT-00121,Provide Solution,2025-01-05 16:01:00,Alice_Green
+TKT-00101,Assign to Agent,2025-01-05 16:04:00,System
+TKT-00121,Close Ticket,2025-01-05 16:06:00,Alice_Green
+TKT-00118,Provide Solution,2025-01-05 16:08:00,Expert_Tom
+TKT-00117,Ticket Created,2025-01-05 16:09:00,System
+TKT-00117,Assign to Agent,2025-01-05 16:15:00,System
+TKT-00118,Close Ticket,2025-01-05 16:18:00,Alice_Green
+TKT-00044,Provide Solution,2025-01-05 16:26:00,Carol_Jackson
+TKT-00119,Assign to Agent,2025-01-05 16:30:00,System
+TKT-00044,Close Ticket,2025-01-05 16:41:00,Carol_Jackson
+TKT-00123,Ticket Created,2025-01-05 16:42:00,System
+TKT-00105,Ticket Created,2025-01-05 16:47:00,System
+TKT-00101,Initial Response,2025-01-05 16:55:00,Dave_Thompson
+TKT-00105,Assign to Agent,2025-01-05 16:55:00,System
+TKT-00123,Assign to Agent,2025-01-05 16:59:00,System
+TKT-00117,Initial Response,2025-01-05 17:07:00,Bob_Martinez
+TKT-00105,Initial Response,2025-01-05 17:12:00,Dave_Thompson
+TKT-00123,Initial Response,2025-01-05 17:17:00,Alice_Green
+TKT-00119,Initial Response,2025-01-05 17:22:00,Bob_Martinez
+TKT-00109,Ticket Created,2025-01-05 17:25:00,System
+TKT-00123,Provide Solution,2025-01-05 17:28:00,Alice_Green
+TKT-00123,Close Ticket,2025-01-05 17:40:00,Alice_Green
+TKT-00109,Assign to Agent,2025-01-05 17:53:00,System
+TKT-00105,Follow-up Required,2025-01-05 17:56:00,Dave_Thompson
+TKT-00119,Escalate to Specialist,2025-01-05 18:01:00,Bob_Martinez
+TKT-00117,Escalate to Specialist,2025-01-05 18:12:00,Bob_Martinez
+TKT-00101,Escalate to Specialist,2025-01-05 18:36:00,Dave_Thompson
+TKT-00107,Ticket Created,2025-01-05 18:45:00,System
+TKT-00124,Specialist Review,2025-01-05 18:46:00,Expert_Tom
+TKT-00109,Initial Response,2025-01-05 18:50:00,Alice_Green
+TKT-00107,Assign to Agent,2025-01-05 18:51:00,System
+TKT-00103,Ticket Created,2025-01-05 18:56:00,System
+TKT-00124,Provide Solution,2025-01-05 18:58:00,Expert_Lisa
+TKT-00124,Close Ticket,2025-01-05 19:03:00,Alice_Green
+TKT-00107,Initial Response,2025-01-05 19:10:00,Alice_Green
+TKT-00109,Provide Solution,2025-01-05 19:11:00,Alice_Green
+TKT-00103,Assign to Agent,2025-01-05 19:13:00,System
+TKT-00107,Provide Solution,2025-01-05 19:26:00,Alice_Green
+TKT-00109,Close Ticket,2025-01-05 19:28:00,Alice_Green
+TKT-00107,Close Ticket,2025-01-05 19:44:00,Alice_Green
+TKT-00103,Initial Response,2025-01-05 19:46:00,Dave_Thompson
+TKT-00122,Ticket Created,2025-01-05 19:48:00,System
+TKT-00122,Assign to Agent,2025-01-05 19:54:00,System
+TKT-00117,Specialist Review,2025-01-05 20:12:00,Expert_Tom
+TKT-00117,Provide Solution,2025-01-05 20:29:00,Expert_Lisa
+TKT-00106,Ticket Created,2025-01-05 20:31:00,System
+TKT-00122,Initial Response,2025-01-05 20:33:00,Alice_Green
+TKT-00117,Close Ticket,2025-01-05 20:48:00,Bob_Martinez
+TKT-00106,Assign to Agent,2025-01-05 20:51:00,System
+TKT-00110,Ticket Created,2025-01-05 20:59:00,System
+TKT-00119,Specialist Review,2025-01-05 21:01:00,Expert_Tom
+TKT-00122,Escalate to Specialist,2025-01-05 21:11:00,Alice_Green
+TKT-00103,Escalate to Specialist,2025-01-05 21:14:00,Dave_Thompson
+TKT-00119,Follow-up Required,2025-01-05 21:27:00,Bob_Martinez
+TKT-00110,Assign to Agent,2025-01-05 21:29:00,System
+TKT-00106,Initial Response,2025-01-05 21:51:00,Bob_Martinez
+TKT-00110,Initial Response,2025-01-05 21:57:00,Alice_Green
+TKT-00103,Specialist Review,2025-01-05 22:14:00,Expert_Lisa
+TKT-00110,Provide Solution,2025-01-05 22:14:00,Alice_Green
+TKT-00103,Provide Solution,2025-01-05 22:25:00,Expert_Tom
+TKT-00110,Close Ticket,2025-01-05 22:31:00,Alice_Green
+TKT-00103,Close Ticket,2025-01-05 22:37:00,Dave_Thompson
+TKT-00122,Specialist Review,2025-01-05 23:11:00,Expert_Tom
+TKT-00106,Escalate to Specialist,2025-01-05 23:28:00,Bob_Martinez
+TKT-00122,Provide Solution,2025-01-05 23:28:00,Expert_Tom
+TKT-00101,Specialist Review,2025-01-05 23:36:00,Expert_Lisa
+TKT-00122,Close Ticket,2025-01-05 23:37:00,Alice_Green
+TKT-00101,Provide Solution,2025-01-05 23:47:00,Expert_Lisa
+TKT-00101,Close Ticket,2025-01-06 00:00:00,Dave_Thompson
+TKT-00106,Specialist Review,2025-01-06 04:28:00,Expert_Lisa
+TKT-00105,Follow-up Response,2025-01-06 04:56:00,Dave_Thompson
+TKT-00106,Provide Solution,2025-01-06 04:57:00,Expert_Lisa
+TKT-00106,Close Ticket,2025-01-06 05:03:00,Bob_Martinez
+TKT-00105,Provide Solution,2025-01-06 05:10:00,Dave_Thompson
+TKT-00105,Close Ticket,2025-01-06 05:23:00,Dave_Thompson
+TKT-00112,Follow-up Response,2025-01-06 08:14:00,Alice_Green
+TKT-00142,Ticket Created,2025-01-06 08:21:00,System
+TKT-00126,Ticket Created,2025-01-06 08:34:00,System
+TKT-00141,Ticket Created,2025-01-06 08:35:00,System
+TKT-00112,Provide Solution,2025-01-06 08:37:00,Alice_Green
+TKT-00142,Assign to Agent,2025-01-06 08:39:00,System
+TKT-00126,Assign to Agent,2025-01-06 08:43:00,System
+TKT-00112,Close Ticket,2025-01-06 08:50:00,Alice_Green
+TKT-00141,Assign to Agent,2025-01-06 08:51:00,System
+TKT-00126,Initial Response,2025-01-06 09:07:00,Dave_Thompson
+TKT-00147,Ticket Created,2025-01-06 09:16:00,System
+TKT-00142,Initial Response,2025-01-06 09:21:00,Bob_Martinez
+TKT-00147,Assign to Agent,2025-01-06 09:24:00,System
+TKT-00119,Follow-up Response,2025-01-06 09:27:00,Bob_Martinez
+TKT-00142,Provide Solution,2025-01-06 09:34:00,Bob_Martinez
+TKT-00142,Close Ticket,2025-01-06 09:41:00,Bob_Martinez
+TKT-00119,Provide Solution,2025-01-06 09:49:00,Expert_Tom
+TKT-00141,Initial Response,2025-01-06 09:51:00,Carol_Jackson
+TKT-00147,Initial Response,2025-01-06 09:53:00,Alice_Green
+TKT-00119,Close Ticket,2025-01-06 09:54:00,Bob_Martinez
+TKT-00071,Reopen Ticket,2025-01-06 10:06:00,Customer
+TKT-00126,Escalate to Specialist,2025-01-06 10:34:00,Dave_Thompson
+TKT-00147,Escalate to Specialist,2025-01-06 11:00:00,Alice_Green
+TKT-00141,Escalate to Specialist,2025-01-06 11:07:00,Carol_Jackson
+TKT-00126,Specialist Review,2025-01-06 11:34:00,Expert_Lisa
+TKT-00127,Ticket Created,2025-01-06 11:36:00,System
+TKT-00085,Reopen Ticket,2025-01-06 11:42:00,Customer
+TKT-00139,Ticket Created,2025-01-06 11:48:00,System
+TKT-00120,Customer Response,2025-01-06 11:50:00,Customer
+TKT-00093,Reopen Ticket,2025-01-06 11:53:00,Customer
+TKT-00139,Assign to Agent,2025-01-06 12:00:00,System
+TKT-00126,Follow-up Required,2025-01-06 12:03:00,Dave_Thompson
+TKT-00127,Assign to Agent,2025-01-06 12:04:00,System
+TKT-00071,Provide Solution,2025-01-06 12:05:00,Bob_Martinez
+TKT-00071,Close Ticket,2025-01-06 12:10:00,Bob_Martinez
+TKT-00120,Specialist Review,2025-01-06 12:16:00,Expert_Lisa
+TKT-00148,Ticket Created,2025-01-06 12:17:00,System
+TKT-00139,Initial Response,2025-01-06 12:22:00,Alice_Green
+TKT-00085,Provide Solution,2025-01-06 12:27:00,Alice_Green
+TKT-00127,Initial Response,2025-01-06 12:27:00,Carol_Jackson
+TKT-00085,Close Ticket,2025-01-06 12:33:00,Alice_Green
+TKT-00120,Provide Solution,2025-01-06 12:33:00,Expert_Tom
+TKT-00139,Provide Solution,2025-01-06 12:39:00,Alice_Green
+TKT-00148,Assign to Agent,2025-01-06 12:43:00,System
+TKT-00139,Close Ticket,2025-01-06 12:51:00,Alice_Green
+TKT-00120,Close Ticket,2025-01-06 12:53:00,Alice_Green
+TKT-00127,Provide Solution,2025-01-06 12:54:00,Carol_Jackson
+TKT-00127,Close Ticket,2025-01-06 13:07:00,Carol_Jackson
+TKT-00141,Specialist Review,2025-01-06 13:07:00,Expert_Tom
+TKT-00148,Initial Response,2025-01-06 13:16:00,Dave_Thompson
+TKT-00128,Ticket Created,2025-01-06 13:26:00,System
+TKT-00141,Provide Solution,2025-01-06 13:28:00,Expert_Lisa
+TKT-00093,Provide Solution,2025-01-06 13:38:00,Dave_Thompson
+TKT-00128,Assign to Agent,2025-01-06 13:40:00,System
+TKT-00141,Close Ticket,2025-01-06 13:48:00,Carol_Jackson
+TKT-00093,Close Ticket,2025-01-06 13:49:00,Dave_Thompson
+TKT-00147,Specialist Review,2025-01-06 14:00:00,Expert_Tom
+TKT-00148,Escalate to Specialist,2025-01-06 14:16:00,Dave_Thompson
+TKT-00081,Reopen Ticket,2025-01-06 14:34:00,Customer
+TKT-00128,Initial Response,2025-01-06 14:40:00,Alice_Green
+TKT-00147,Follow-up Required,2025-01-06 14:42:00,Alice_Green
+TKT-00128,Provide Solution,2025-01-06 14:50:00,Alice_Green
+TKT-00128,Close Ticket,2025-01-06 15:10:00,Alice_Green
+TKT-00140,Ticket Created,2025-01-06 15:22:00,System
+TKT-00140,Assign to Agent,2025-01-06 15:33:00,System
+TKT-00081,Provide Solution,2025-01-06 15:36:00,Dave_Thompson
+TKT-00091,Follow-up Response,2025-01-06 15:41:00,Alice_Green
+TKT-00145,Ticket Created,2025-01-06 15:48:00,System
+TKT-00081,Close Ticket,2025-01-06 15:49:00,Dave_Thompson
+TKT-00134,Ticket Created,2025-01-06 15:58:00,System
+TKT-00091,Provide Solution,2025-01-06 16:03:00,Expert_Tom
+TKT-00145,Assign to Agent,2025-01-06 16:05:00,System
+TKT-00145,Initial Response,2025-01-06 16:19:00,Alice_Green
+TKT-00134,Assign to Agent,2025-01-06 16:21:00,System
+TKT-00091,Close Ticket,2025-01-06 16:22:00,Alice_Green
+TKT-00140,Initial Response,2025-01-06 16:22:00,Dave_Thompson
+TKT-00145,Provide Solution,2025-01-06 16:45:00,Alice_Green
+TKT-00145,Close Ticket,2025-01-06 16:54:00,Alice_Green
+TKT-00134,Initial Response,2025-01-06 17:04:00,Alice_Green
+TKT-00144,Ticket Created,2025-01-06 17:44:00,System
+TKT-00149,Ticket Created,2025-01-06 17:48:00,System
+TKT-00149,Assign to Agent,2025-01-06 17:54:00,System
+TKT-00144,Assign to Agent,2025-01-06 17:57:00,System
+TKT-00135,Ticket Created,2025-01-06 18:16:00,System
+TKT-00140,Escalate to Specialist,2025-01-06 18:16:00,Dave_Thompson
+TKT-00144,Initial Response,2025-01-06 18:19:00,Alice_Green
+TKT-00149,Initial Response,2025-01-06 18:33:00,Carol_Jackson
+TKT-00135,Assign to Agent,2025-01-06 18:41:00,System
+TKT-00136,Ticket Created,2025-01-06 18:44:00,System
+TKT-00134,Escalate to Specialist,2025-01-06 18:47:00,Alice_Green
+TKT-00144,Escalate to Specialist,2025-01-06 18:51:00,Alice_Green
+TKT-00136,Assign to Agent,2025-01-06 18:57:00,System
+TKT-00132,Ticket Created,2025-01-06 18:58:00,System
+TKT-00138,Ticket Created,2025-01-06 18:58:00,System
+TKT-00135,Initial Response,2025-01-06 19:05:00,Dave_Thompson
+TKT-00149,Escalate to Specialist,2025-01-06 19:06:00,Carol_Jackson
+TKT-00133,Ticket Created,2025-01-06 19:18:00,System
+TKT-00138,Assign to Agent,2025-01-06 19:19:00,System
+TKT-00135,Provide Solution,2025-01-06 19:22:00,Dave_Thompson
+TKT-00132,Assign to Agent,2025-01-06 19:23:00,System
+TKT-00133,Assign to Agent,2025-01-06 19:28:00,System
+TKT-00135,Close Ticket,2025-01-06 19:30:00,Dave_Thompson
+TKT-00136,Initial Response,2025-01-06 19:30:00,Alice_Green
+TKT-00129,Ticket Created,2025-01-06 19:45:00,System
+TKT-00130,Ticket Created,2025-01-06 19:46:00,System
+TKT-00136,Provide Solution,2025-01-06 19:51:00,Alice_Green
+TKT-00136,Close Ticket,2025-01-06 19:57:00,Alice_Green
+TKT-00129,Assign to Agent,2025-01-06 19:59:00,System
+TKT-00138,Initial Response,2025-01-06 20:05:00,Dave_Thompson
+TKT-00149,Specialist Review,2025-01-06 20:06:00,Expert_Tom
+TKT-00133,Initial Response,2025-01-06 20:10:00,Alice_Green
+TKT-00130,Assign to Agent,2025-01-06 20:11:00,System
+TKT-00138,Provide Solution,2025-01-06 20:15:00,Dave_Thompson
+TKT-00129,Initial Response,2025-01-06 20:16:00,Carol_Jackson
+TKT-00140,Specialist Review,2025-01-06 20:16:00,Expert_Tom
+TKT-00148,Specialist Review,2025-01-06 20:16:00,Expert_Lisa
+TKT-00132,Initial Response,2025-01-06 20:19:00,Bob_Martinez
+TKT-00146,Ticket Created,2025-01-06 20:19:00,System
+TKT-00146,Assign to Agent,2025-01-06 20:27:00,System
+TKT-00148,Provide Solution,2025-01-06 20:30:00,Expert_Tom
+TKT-00149,Provide Solution,2025-01-06 20:30:00,Expert_Lisa
+TKT-00132,Provide Solution,2025-01-06 20:32:00,Bob_Martinez
+TKT-00143,Ticket Created,2025-01-06 20:33:00,System
+TKT-00129,Provide Solution,2025-01-06 20:35:00,Carol_Jackson
+TKT-00130,Initial Response,2025-01-06 20:35:00,Dave_Thompson
+TKT-00138,Close Ticket,2025-01-06 20:35:00,Dave_Thompson
+TKT-00149,Close Ticket,2025-01-06 20:36:00,Carol_Jackson
+TKT-00137,Ticket Created,2025-01-06 20:39:00,System
+TKT-00131,Ticket Created,2025-01-06 20:42:00,System
+TKT-00132,Close Ticket,2025-01-06 20:43:00,Bob_Martinez
+TKT-00129,Close Ticket,2025-01-06 20:46:00,Carol_Jackson
+TKT-00146,Initial Response,2025-01-06 20:46:00,Bob_Martinez
+TKT-00148,Close Ticket,2025-01-06 20:46:00,Dave_Thompson
+TKT-00133,Follow-up Required,2025-01-06 20:49:00,Alice_Green
+TKT-00125,Ticket Created,2025-01-06 20:50:00,System
+TKT-00131,Assign to Agent,2025-01-06 20:50:00,System
+TKT-00137,Assign to Agent,2025-01-06 20:56:00,System
+TKT-00140,Follow-up Required,2025-01-06 20:56:00,Dave_Thompson
+TKT-00125,Assign to Agent,2025-01-06 20:57:00,System
+TKT-00143,Assign to Agent,2025-01-06 21:00:00,System
+TKT-00125,Initial Response,2025-01-06 21:09:00,Carol_Jackson
+TKT-00137,Initial Response,2025-01-06 21:22:00,Alice_Green
+TKT-00146,Escalate to Specialist,2025-01-06 21:27:00,Bob_Martinez
+TKT-00125,Provide Solution,2025-01-06 21:28:00,Carol_Jackson
+TKT-00137,Provide Solution,2025-01-06 21:35:00,Alice_Green
+TKT-00143,Initial Response,2025-01-06 21:38:00,Alice_Green
+TKT-00125,Close Ticket,2025-01-06 21:42:00,Carol_Jackson
+TKT-00131,Initial Response,2025-01-06 21:45:00,Carol_Jackson
+TKT-00137,Close Ticket,2025-01-06 21:45:00,Alice_Green
+TKT-00144,Specialist Review,2025-01-06 21:51:00,Expert_Lisa
+TKT-00131,Provide Solution,2025-01-06 22:03:00,Carol_Jackson
+TKT-00143,Provide Solution,2025-01-06 22:05:00,Alice_Green
+TKT-00131,Close Ticket,2025-01-06 22:13:00,Carol_Jackson
+TKT-00130,Escalate to Specialist,2025-01-06 22:14:00,Dave_Thompson
+TKT-00143,Close Ticket,2025-01-06 22:19:00,Alice_Green
+TKT-00144,Request Additional Info,2025-01-06 22:30:00,Expert_Lisa
+TKT-00134,Specialist Review,2025-01-06 23:47:00,Expert_Lisa
+TKT-00134,Provide Solution,2025-01-07 00:05:00,Expert_Tom
+TKT-00134,Close Ticket,2025-01-07 00:24:00,Alice_Green
+TKT-00133,Follow-up Response,2025-01-07 00:49:00,Alice_Green
+TKT-00133,Provide Solution,2025-01-07 01:06:00,Alice_Green
+TKT-00133,Close Ticket,2025-01-07 01:14:00,Alice_Green
+TKT-00146,Specialist Review,2025-01-07 02:27:00,Expert_Lisa
+TKT-00146,Provide Solution,2025-01-07 02:42:00,Expert_Tom
+TKT-00146,Close Ticket,2025-01-07 02:47:00,Bob_Martinez
+TKT-00150,Ticket Created,2025-01-07 02:54:00,System
+TKT-00150,Assign to Agent,2025-01-07 03:04:00,System
+TKT-00130,Specialist Review,2025-01-07 03:14:00,Expert_Lisa
+TKT-00130,Provide Solution,2025-01-07 03:40:00,Expert_Lisa
+TKT-00150,Initial Response,2025-01-07 03:48:00,Dave_Thompson
+TKT-00130,Close Ticket,2025-01-07 03:49:00,Dave_Thompson
+TKT-00150,Provide Solution,2025-01-07 04:10:00,Dave_Thompson
+TKT-00150,Close Ticket,2025-01-07 04:21:00,Dave_Thompson
+TKT-00170,Ticket Created,2025-01-07 08:03:00,System
+TKT-00161,Ticket Created,2025-01-07 08:10:00,System
+TKT-00158,Ticket Created,2025-01-07 08:11:00,System
+TKT-00166,Ticket Created,2025-01-07 08:14:00,System
+TKT-00170,Assign to Agent,2025-01-07 08:18:00,System
+TKT-00158,Assign to Agent,2025-01-07 08:25:00,System
+TKT-00161,Assign to Agent,2025-01-07 08:29:00,System
+TKT-00166,Assign to Agent,2025-01-07 08:38:00,System
+TKT-00161,Initial Response,2025-01-07 08:41:00,Dave_Thompson
+TKT-00158,Initial Response,2025-01-07 08:49:00,Alice_Green
+TKT-00166,Initial Response,2025-01-07 08:56:00,Carol_Jackson
+TKT-00170,Initial Response,2025-01-07 09:12:00,Dave_Thompson
+TKT-00158,Provide Solution,2025-01-07 09:15:00,Alice_Green
+TKT-00166,Provide Solution,2025-01-07 09:22:00,Carol_Jackson
+TKT-00174,Ticket Created,2025-01-07 09:22:00,System
+TKT-00168,Ticket Created,2025-01-07 09:25:00,System
+TKT-00158,Close Ticket,2025-01-07 09:30:00,Alice_Green
+TKT-00161,Follow-up Required,2025-01-07 09:32:00,Dave_Thompson
+TKT-00166,Close Ticket,2025-01-07 09:35:00,Carol_Jackson
+TKT-00168,Assign to Agent,2025-01-07 09:35:00,System
+TKT-00170,Provide Solution,2025-01-07 09:40:00,Dave_Thompson
+TKT-00174,Assign to Agent,2025-01-07 09:41:00,System
+TKT-00164,Ticket Created,2025-01-07 09:50:00,System
+TKT-00170,Close Ticket,2025-01-07 09:53:00,Dave_Thompson
+TKT-00174,Initial Response,2025-01-07 10:12:00,Bob_Martinez
+TKT-00164,Assign to Agent,2025-01-07 10:18:00,System
+TKT-00168,Initial Response,2025-01-07 10:29:00,Alice_Green
+TKT-00169,Ticket Created,2025-01-07 10:31:00,System
+TKT-00174,Provide Solution,2025-01-07 10:36:00,Bob_Martinez
+TKT-00152,Ticket Created,2025-01-07 10:40:00,System
+TKT-00164,Initial Response,2025-01-07 10:42:00,Dave_Thompson
+TKT-00169,Assign to Agent,2025-01-07 10:43:00,System
+TKT-00174,Close Ticket,2025-01-07 10:51:00,Bob_Martinez
+TKT-00140,Follow-up Response,2025-01-07 10:56:00,Dave_Thompson
+TKT-00168,Follow-up Required,2025-01-07 10:57:00,Alice_Green
+TKT-00152,Assign to Agent,2025-01-07 10:59:00,System
+TKT-00152,Initial Response,2025-01-07 11:09:00,Alice_Green
+TKT-00140,Provide Solution,2025-01-07 11:18:00,Expert_Lisa
+TKT-00169,Initial Response,2025-01-07 11:20:00,Alice_Green
+TKT-00140,Close Ticket,2025-01-07 11:34:00,Dave_Thompson
+TKT-00156,Ticket Created,2025-01-07 11:44:00,System
+TKT-00169,Provide Solution,2025-01-07 11:50:00,Alice_Green
+TKT-00156,Assign to Agent,2025-01-07 11:56:00,System
+TKT-00164,Escalate to Specialist,2025-01-07 12:07:00,Dave_Thompson
+TKT-00169,Close Ticket,2025-01-07 12:09:00,Alice_Green
+TKT-00098,Reopen Ticket,2025-01-07 12:20:00,Customer
+TKT-00156,Initial Response,2025-01-07 12:31:00,Carol_Jackson
+TKT-00152,Escalate to Specialist,2025-01-07 12:34:00,Alice_Green
+TKT-00096,Reopen Ticket,2025-01-07 12:40:00,Customer
+TKT-00156,Provide Solution,2025-01-07 12:58:00,Carol_Jackson
+TKT-00156,Close Ticket,2025-01-07 13:06:00,Carol_Jackson
+TKT-00155,Ticket Created,2025-01-07 13:11:00,System
+TKT-00096,Provide Solution,2025-01-07 13:17:00,Alice_Green
+TKT-00096,Close Ticket,2025-01-07 13:28:00,Alice_Green
+TKT-00157,Ticket Created,2025-01-07 13:30:00,System
+TKT-00155,Assign to Agent,2025-01-07 13:41:00,System
+TKT-00157,Assign to Agent,2025-01-07 13:46:00,System
+TKT-00098,Provide Solution,2025-01-07 14:05:00,Carol_Jackson
+TKT-00098,Close Ticket,2025-01-07 14:10:00,Carol_Jackson
+TKT-00155,Initial Response,2025-01-07 14:28:00,Carol_Jackson
+TKT-00157,Initial Response,2025-01-07 14:41:00,Carol_Jackson
+TKT-00167,Ticket Created,2025-01-07 14:48:00,System
+TKT-00157,Provide Solution,2025-01-07 14:52:00,Carol_Jackson
+TKT-00167,Assign to Agent,2025-01-07 15:02:00,System
+TKT-00157,Close Ticket,2025-01-07 15:11:00,Carol_Jackson
+TKT-00155,Escalate to Specialist,2025-01-07 15:21:00,Carol_Jackson
+TKT-00167,Initial Response,2025-01-07 15:24:00,Dave_Thompson
+TKT-00163,Ticket Created,2025-01-07 15:47:00,System
+TKT-00163,Assign to Agent,2025-01-07 15:57:00,System
+TKT-00167,Escalate to Specialist,2025-01-07 16:13:00,Dave_Thompson
+TKT-00159,Ticket Created,2025-01-07 16:18:00,System
+TKT-00152,Specialist Review,2025-01-07 16:34:00,Expert_Lisa
+TKT-00159,Assign to Agent,2025-01-07 16:42:00,System
+TKT-00159,Initial Response,2025-01-07 16:52:00,Bob_Martinez
+TKT-00163,Initial Response,2025-01-07 16:54:00,Bob_Martinez
+TKT-00162,Ticket Created,2025-01-07 16:55:00,System
+TKT-00152,Provide Solution,2025-01-07 16:59:00,Expert_Lisa
+TKT-00162,Assign to Agent,2025-01-07 17:13:00,System
+TKT-00159,Provide Solution,2025-01-07 17:17:00,Bob_Martinez
+TKT-00152,Close Ticket,2025-01-07 17:18:00,Alice_Green
+TKT-00159,Close Ticket,2025-01-07 17:27:00,Bob_Martinez
+TKT-00154,Ticket Created,2025-01-07 17:28:00,System
+TKT-00173,Ticket Created,2025-01-07 17:37:00,System
+TKT-00154,Assign to Agent,2025-01-07 17:45:00,System
+TKT-00163,Escalate to Specialist,2025-01-07 17:49:00,Bob_Martinez
+TKT-00173,Assign to Agent,2025-01-07 17:51:00,System
+TKT-00173,Initial Response,2025-01-07 18:06:00,Alice_Green
+TKT-00164,Specialist Review,2025-01-07 18:07:00,Expert_Tom
+TKT-00162,Initial Response,2025-01-07 18:13:00,Bob_Martinez
+TKT-00167,Specialist Review,2025-01-07 18:13:00,Expert_Lisa
+TKT-00172,Ticket Created,2025-01-07 18:16:00,System
+TKT-00154,Initial Response,2025-01-07 18:18:00,Dave_Thompson
+TKT-00155,Specialist Review,2025-01-07 18:21:00,Expert_Tom
+TKT-00164,Provide Solution,2025-01-07 18:21:00,Expert_Lisa
+TKT-00162,Provide Solution,2025-01-07 18:24:00,Bob_Martinez
+TKT-00155,Provide Solution,2025-01-07 18:34:00,Expert_Tom
+TKT-00155,Close Ticket,2025-01-07 18:39:00,Carol_Jackson
+TKT-00164,Close Ticket,2025-01-07 18:41:00,Dave_Thompson
+TKT-00167,Provide Solution,2025-01-07 18:42:00,Expert_Tom
+TKT-00162,Close Ticket,2025-01-07 18:43:00,Bob_Martinez
+TKT-00172,Assign to Agent,2025-01-07 18:43:00,System
+TKT-00165,Ticket Created,2025-01-07 18:54:00,System
+TKT-00167,Close Ticket,2025-01-07 18:59:00,Dave_Thompson
+TKT-00165,Assign to Agent,2025-01-07 19:04:00,System
+TKT-00173,Escalate to Specialist,2025-01-07 19:08:00,Alice_Green
+TKT-00154,Follow-up Required,2025-01-07 19:10:00,Dave_Thompson
+TKT-00171,Ticket Created,2025-01-07 19:21:00,System
+TKT-00172,Initial Response,2025-01-07 19:29:00,Alice_Green
+TKT-00153,Ticket Created,2025-01-07 19:39:00,System
+TKT-00171,Assign to Agent,2025-01-07 19:43:00,System
+TKT-00172,Provide Solution,2025-01-07 19:46:00,Alice_Green
+TKT-00153,Assign to Agent,2025-01-07 19:54:00,System
+TKT-00172,Close Ticket,2025-01-07 19:56:00,Alice_Green
+TKT-00151,Ticket Created,2025-01-07 19:57:00,System
+TKT-00165,Initial Response,2025-01-07 20:00:00,Bob_Martinez
+TKT-00153,Initial Response,2025-01-07 20:11:00,Alice_Green
+TKT-00151,Assign to Agent,2025-01-07 20:25:00,System
+TKT-00171,Initial Response,2025-01-07 20:29:00,Alice_Green
+TKT-00147,Follow-up Response,2025-01-07 20:42:00,Alice_Green
+TKT-00151,Initial Response,2025-01-07 20:53:00,Alice_Green
+TKT-00160,Ticket Created,2025-01-07 20:54:00,System
+TKT-00147,Provide Solution,2025-01-07 21:07:00,Expert_Tom
+TKT-00153,Escalate to Specialist,2025-01-07 21:07:00,Alice_Green
+TKT-00160,Assign to Agent,2025-01-07 21:12:00,System
+TKT-00165,Escalate to Specialist,2025-01-07 21:17:00,Bob_Martinez
+TKT-00151,Provide Solution,2025-01-07 21:22:00,Alice_Green
+TKT-00147,Close Ticket,2025-01-07 21:24:00,Alice_Green
+TKT-00151,Close Ticket,2025-01-07 21:28:00,Alice_Green
+TKT-00144,Customer Response,2025-01-07 21:30:00,Customer
+TKT-00160,Initial Response,2025-01-07 21:36:00,Alice_Green
+TKT-00171,Escalate to Specialist,2025-01-07 21:51:00,Alice_Green
+TKT-00144,Specialist Review,2025-01-07 21:57:00,Expert_Lisa
+TKT-00144,Provide Solution,2025-01-07 22:14:00,Expert_Tom
+TKT-00160,Escalate to Specialist,2025-01-07 22:20:00,Alice_Green
+TKT-00144,Close Ticket,2025-01-07 22:29:00,Alice_Green
+TKT-00153,Specialist Review,2025-01-07 23:07:00,Expert_Lisa
+TKT-00153,Provide Solution,2025-01-07 23:23:00,Expert_Tom
+TKT-00153,Close Ticket,2025-01-07 23:39:00,Alice_Green
+TKT-00163,Specialist Review,2025-01-07 23:49:00,Expert_Tom
+TKT-00171,Specialist Review,2025-01-07 23:51:00,Expert_Tom
+TKT-00163,Provide Solution,2025-01-08 00:10:00,Expert_Lisa
+TKT-00171,Provide Solution,2025-01-08 00:15:00,Expert_Tom
+TKT-00171,Close Ticket,2025-01-08 00:26:00,Alice_Green
+TKT-00163,Close Ticket,2025-01-08 00:28:00,Bob_Martinez
+TKT-00173,Specialist Review,2025-01-08 01:08:00,Expert_Lisa
+TKT-00173,Provide Solution,2025-01-08 01:34:00,Expert_Tom
+TKT-00173,Close Ticket,2025-01-08 01:44:00,Alice_Green
+TKT-00165,Specialist Review,2025-01-08 02:17:00,Expert_Tom
+TKT-00165,Provide Solution,2025-01-08 02:47:00,Expert_Lisa
+TKT-00165,Close Ticket,2025-01-08 03:03:00,Bob_Martinez
+TKT-00160,Specialist Review,2025-01-08 04:20:00,Expert_Lisa
+TKT-00160,Provide Solution,2025-01-08 04:38:00,Expert_Lisa
+TKT-00160,Close Ticket,2025-01-08 04:53:00,Alice_Green
+TKT-00126,Follow-up Response,2025-01-08 07:03:00,Dave_Thompson
+TKT-00126,Provide Solution,2025-01-08 07:16:00,Expert_Tom
+TKT-00126,Close Ticket,2025-01-08 07:27:00,Dave_Thompson
+TKT-00184,Ticket Created,2025-01-08 08:37:00,System
+TKT-00194,Ticket Created,2025-01-08 08:39:00,System
+TKT-00197,Ticket Created,2025-01-08 08:43:00,System
+TKT-00197,Assign to Agent,2025-01-08 08:49:00,System
+TKT-00194,Assign to Agent,2025-01-08 08:57:00,System
+TKT-00184,Assign to Agent,2025-01-08 09:07:00,System
+TKT-00197,Initial Response,2025-01-08 09:12:00,Alice_Green
+TKT-00194,Initial Response,2025-01-08 09:35:00,Bob_Martinez
+TKT-00197,Provide Solution,2025-01-08 09:39:00,Alice_Green
+TKT-00184,Initial Response,2025-01-08 09:43:00,Alice_Green
+TKT-00197,Close Ticket,2025-01-08 09:53:00,Alice_Green
+TKT-00199,Ticket Created,2025-01-08 09:58:00,System
+TKT-00184,Provide Solution,2025-01-08 10:06:00,Alice_Green
+TKT-00184,Close Ticket,2025-01-08 10:20:00,Alice_Green
+TKT-00185,Ticket Created,2025-01-08 10:20:00,System
+TKT-00199,Assign to Agent,2025-01-08 10:25:00,System
+TKT-00193,Ticket Created,2025-01-08 10:37:00,System
+TKT-00194,Escalate to Specialist,2025-01-08 10:41:00,Bob_Martinez
+TKT-00185,Assign to Agent,2025-01-08 10:49:00,System
+TKT-00199,Initial Response,2025-01-08 10:55:00,Bob_Martinez
+TKT-00188,Ticket Created,2025-01-08 11:01:00,System
+TKT-00193,Assign to Agent,2025-01-08 11:02:00,System
+TKT-00186,Ticket Created,2025-01-08 11:05:00,System
+TKT-00189,Ticket Created,2025-01-08 11:12:00,System
+TKT-00199,Provide Solution,2025-01-08 11:13:00,Bob_Martinez
+TKT-00189,Assign to Agent,2025-01-08 11:19:00,System
+TKT-00188,Assign to Agent,2025-01-08 11:20:00,System
+TKT-00186,Assign to Agent,2025-01-08 11:23:00,System
+TKT-00199,Close Ticket,2025-01-08 11:24:00,Bob_Martinez
+TKT-00191,Ticket Created,2025-01-08 11:37:00,System
+TKT-00193,Initial Response,2025-01-08 11:37:00,Carol_Jackson
+TKT-00194,Specialist Review,2025-01-08 11:41:00,Expert_Lisa
+TKT-00185,Initial Response,2025-01-08 11:45:00,Bob_Martinez
+TKT-00189,Initial Response,2025-01-08 11:48:00,Carol_Jackson
+TKT-00191,Assign to Agent,2025-01-08 11:53:00,System
+TKT-00193,Provide Solution,2025-01-08 11:53:00,Carol_Jackson
+TKT-00194,Provide Solution,2025-01-08 11:55:00,Expert_Tom
+TKT-00193,Close Ticket,2025-01-08 12:03:00,Carol_Jackson
+TKT-00175,Ticket Created,2025-01-08 12:04:00,System
+TKT-00175,Assign to Agent,2025-01-08 12:09:00,System
+TKT-00188,Initial Response,2025-01-08 12:12:00,Bob_Martinez
+TKT-00194,Close Ticket,2025-01-08 12:15:00,Bob_Martinez
+TKT-00186,Initial Response,2025-01-08 12:17:00,Bob_Martinez
+TKT-00191,Initial Response,2025-01-08 12:35:00,Alice_Green
+TKT-00188,Provide Solution,2025-01-08 12:39:00,Bob_Martinez
+TKT-00175,Initial Response,2025-01-08 12:41:00,Dave_Thompson
+TKT-00186,Provide Solution,2025-01-08 12:44:00,Bob_Martinez
+TKT-00186,Close Ticket,2025-01-08 12:53:00,Bob_Martinez
+TKT-00188,Close Ticket,2025-01-08 12:59:00,Bob_Martinez
+TKT-00183,Ticket Created,2025-01-08 13:02:00,System
+TKT-00175,Follow-up Required,2025-01-08 13:16:00,Dave_Thompson
+TKT-00183,Assign to Agent,2025-01-08 13:28:00,System
+TKT-00185,Escalate to Specialist,2025-01-08 13:28:00,Bob_Martinez
+TKT-00181,Ticket Created,2025-01-08 13:30:00,System
+TKT-00189,Escalate to Specialist,2025-01-08 13:36:00,Carol_Jackson
+TKT-00181,Assign to Agent,2025-01-08 13:59:00,System
+TKT-00191,Escalate to Specialist,2025-01-08 14:09:00,Alice_Green
+TKT-00181,Initial Response,2025-01-08 14:14:00,Carol_Jackson
+TKT-00183,Initial Response,2025-01-08 14:23:00,Alice_Green
+TKT-00176,Ticket Created,2025-01-08 14:24:00,System
+TKT-00176,Assign to Agent,2025-01-08 14:43:00,System
+TKT-00176,Initial Response,2025-01-08 14:55:00,Alice_Green
+TKT-00180,Ticket Created,2025-01-08 15:19:00,System
+TKT-00176,Provide Solution,2025-01-08 15:20:00,Alice_Green
+TKT-00180,Assign to Agent,2025-01-08 15:31:00,System
+TKT-00161,Follow-up Response,2025-01-08 15:32:00,Dave_Thompson
+TKT-00176,Close Ticket,2025-01-08 15:36:00,Alice_Green
+TKT-00183,Escalate to Specialist,2025-01-08 15:43:00,Alice_Green
+TKT-00190,Ticket Created,2025-01-08 15:51:00,System
+TKT-00195,Ticket Created,2025-01-08 15:53:00,System
+TKT-00192,Ticket Created,2025-01-08 15:57:00,System
+TKT-00161,Provide Solution,2025-01-08 15:58:00,Dave_Thompson
+TKT-00181,Escalate to Specialist,2025-01-08 15:59:00,Carol_Jackson
+TKT-00161,Close Ticket,2025-01-08 16:17:00,Dave_Thompson
+TKT-00190,Assign to Agent,2025-01-08 16:21:00,System
+TKT-00192,Assign to Agent,2025-01-08 16:23:00,System
+TKT-00195,Assign to Agent,2025-01-08 16:23:00,System
+TKT-00180,Initial Response,2025-01-08 16:30:00,Carol_Jackson
+TKT-00187,Ticket Created,2025-01-08 16:35:00,System
+TKT-00189,Specialist Review,2025-01-08 16:36:00,Expert_Tom
+TKT-00198,Ticket Created,2025-01-08 16:38:00,System
+TKT-00190,Initial Response,2025-01-08 16:42:00,Carol_Jackson
+TKT-00192,Initial Response,2025-01-08 16:43:00,Alice_Green
+TKT-00198,Assign to Agent,2025-01-08 16:44:00,System
+TKT-00179,Ticket Created,2025-01-08 16:50:00,System
+TKT-00187,Assign to Agent,2025-01-08 16:54:00,System
+TKT-00195,Initial Response,2025-01-08 16:55:00,Bob_Martinez
+TKT-00180,Provide Solution,2025-01-08 16:58:00,Carol_Jackson
+TKT-00182,Ticket Created,2025-01-08 16:58:00,System
+TKT-00181,Specialist Review,2025-01-08 16:59:00,Expert_Lisa
+TKT-00192,Provide Solution,2025-01-08 16:59:00,Alice_Green
+TKT-00190,Provide Solution,2025-01-08 17:00:00,Carol_Jackson
+TKT-00192,Close Ticket,2025-01-08 17:06:00,Alice_Green
+TKT-00179,Assign to Agent,2025-01-08 17:09:00,System
+TKT-00154,Follow-up Response,2025-01-08 17:10:00,Dave_Thompson
+TKT-00190,Close Ticket,2025-01-08 17:11:00,Carol_Jackson
+TKT-00182,Assign to Agent,2025-01-08 17:14:00,System
+TKT-00180,Close Ticket,2025-01-08 17:15:00,Carol_Jackson
+TKT-00181,Provide Solution,2025-01-08 17:25:00,Expert_Lisa
+TKT-00181,Close Ticket,2025-01-08 17:30:00,Carol_Jackson
+TKT-00198,Initial Response,2025-01-08 17:30:00,Dave_Thompson
+TKT-00179,Initial Response,2025-01-08 17:31:00,Carol_Jackson
+TKT-00189,Follow-up Required,2025-01-08 17:32:00,Carol_Jackson
+TKT-00195,Escalate to Specialist,2025-01-08 17:35:00,Bob_Martinez
+TKT-00196,Ticket Created,2025-01-08 17:36:00,System
+TKT-00154,Provide Solution,2025-01-08 17:39:00,Dave_Thompson
+TKT-00182,Initial Response,2025-01-08 17:41:00,Alice_Green
+TKT-00187,Initial Response,2025-01-08 17:53:00,Bob_Martinez
+TKT-00154,Close Ticket,2025-01-08 17:57:00,Dave_Thompson
+TKT-00182,Follow-up Required,2025-01-08 18:03:00,Alice_Green
+TKT-00196,Assign to Agent,2025-01-08 18:03:00,System
+TKT-00177,Ticket Created,2025-01-08 18:15:00,System
+TKT-00187,Provide Solution,2025-01-08 18:16:00,Bob_Martinez
+TKT-00196,Initial Response,2025-01-08 18:18:00,Dave_Thompson
+TKT-00177,Assign to Agent,2025-01-08 18:21:00,System
+TKT-00187,Close Ticket,2025-01-08 18:25:00,Bob_Martinez
+TKT-00178,Ticket Created,2025-01-08 18:27:00,System
+TKT-00178,Assign to Agent,2025-01-08 18:40:00,System
+TKT-00162,Reopen Ticket,2025-01-08 18:43:00,Customer
+TKT-00183,Specialist Review,2025-01-08 18:43:00,Expert_Lisa
+TKT-00179,Escalate to Specialist,2025-01-08 18:56:00,Carol_Jackson
+TKT-00183,Provide Solution,2025-01-08 18:57:00,Expert_Lisa
+TKT-00178,Initial Response,2025-01-08 19:03:00,Bob_Martinez
+TKT-00177,Initial Response,2025-01-08 19:05:00,Dave_Thompson
+TKT-00198,Escalate to Specialist,2025-01-08 19:14:00,Dave_Thompson
+TKT-00183,Close Ticket,2025-01-08 19:17:00,Alice_Green
+TKT-00178,Provide Solution,2025-01-08 19:25:00,Bob_Martinez
+TKT-00185,Specialist Review,2025-01-08 19:28:00,Expert_Tom
+TKT-00162,Provide Solution,2025-01-08 19:34:00,Bob_Martinez
+TKT-00185,Provide Solution,2025-01-08 19:39:00,Expert_Tom
+TKT-00178,Close Ticket,2025-01-08 19:43:00,Bob_Martinez
+TKT-00162,Close Ticket,2025-01-08 19:45:00,Bob_Martinez
+TKT-00185,Close Ticket,2025-01-08 19:53:00,Bob_Martinez
+TKT-00196,Escalate to Specialist,2025-01-08 19:55:00,Dave_Thompson
+TKT-00191,Specialist Review,2025-01-08 20:09:00,Expert_Lisa
+TKT-00177,Escalate to Specialist,2025-01-08 20:18:00,Dave_Thompson
+TKT-00191,Provide Solution,2025-01-08 20:32:00,Expert_Lisa
+TKT-00195,Specialist Review,2025-01-08 20:35:00,Expert_Tom
+TKT-00191,Close Ticket,2025-01-08 20:38:00,Alice_Green
+TKT-00195,Provide Solution,2025-01-08 20:54:00,Expert_Lisa
+TKT-00179,Specialist Review,2025-01-08 20:56:00,Expert_Lisa
+TKT-00195,Close Ticket,2025-01-08 21:05:00,Bob_Martinez
+TKT-00179,Provide Solution,2025-01-08 21:16:00,Expert_Lisa
+TKT-00179,Close Ticket,2025-01-08 21:28:00,Carol_Jackson
+TKT-00110,Reopen Ticket,2025-01-08 22:31:00,Customer
+TKT-00182,Follow-up Response,2025-01-09 00:03:00,Alice_Green
+TKT-00177,Specialist Review,2025-01-09 00:18:00,Expert_Tom
+TKT-00182,Provide Solution,2025-01-09 00:21:00,Alice_Green
+TKT-00110,Provide Solution,2025-01-09 00:22:00,Alice_Green
+TKT-00110,Close Ticket,2025-01-09 00:31:00,Alice_Green
+TKT-00177,Provide Solution,2025-01-09 00:32:00,Expert_Tom
+TKT-00182,Close Ticket,2025-01-09 00:33:00,Alice_Green
+TKT-00177,Close Ticket,2025-01-09 00:44:00,Dave_Thompson
+TKT-00196,Specialist Review,2025-01-09 00:55:00,Expert_Tom
+TKT-00168,Follow-up Response,2025-01-09 00:57:00,Alice_Green
+TKT-00168,Provide Solution,2025-01-09 01:09:00,Alice_Green
+TKT-00198,Specialist Review,2025-01-09 01:14:00,Expert_Tom
+TKT-00168,Close Ticket,2025-01-09 01:28:00,Alice_Green
+TKT-00198,Provide Solution,2025-01-09 01:34:00,Expert_Tom
+TKT-00196,Follow-up Required,2025-01-09 01:41:00,Dave_Thompson
+TKT-00198,Close Ticket,2025-01-09 01:52:00,Dave_Thompson
+TKT-00200,Ticket Created,2025-01-09 02:44:00,System
+TKT-00200,Assign to Agent,2025-01-09 03:06:00,System
+TKT-00200,Initial Response,2025-01-09 03:28:00,Alice_Green
+TKT-00130,Reopen Ticket,2025-01-09 03:49:00,Customer
+TKT-00200,Escalate to Specialist,2025-01-09 04:18:00,Alice_Green
+TKT-00130,Provide Solution,2025-01-09 04:39:00,Dave_Thompson
+TKT-00130,Close Ticket,2025-01-09 04:49:00,Dave_Thompson
+TKT-00205,Ticket Created,2025-01-09 08:10:00,System
+TKT-00205,Assign to Agent,2025-01-09 08:21:00,System
+TKT-00212,Ticket Created,2025-01-09 08:37:00,System
+TKT-00205,Initial Response,2025-01-09 08:45:00,Alice_Green
+TKT-00212,Assign to Agent,2025-01-09 08:54:00,System
+TKT-00205,Provide Solution,2025-01-09 09:03:00,Alice_Green
+TKT-00200,Specialist Review,2025-01-09 09:18:00,Expert_Lisa
+TKT-00205,Close Ticket,2025-01-09 09:18:00,Alice_Green
+TKT-00200,Provide Solution,2025-01-09 09:40:00,Expert_Tom
+TKT-00203,Ticket Created,2025-01-09 09:44:00,System
+TKT-00212,Initial Response,2025-01-09 09:52:00,Bob_Martinez
+TKT-00216,Ticket Created,2025-01-09 09:55:00,System
+TKT-00203,Assign to Agent,2025-01-09 09:57:00,System
+TKT-00200,Close Ticket,2025-01-09 10:00:00,Alice_Green
+TKT-00216,Assign to Agent,2025-01-09 10:15:00,System
+TKT-00203,Initial Response,2025-01-09 10:33:00,Alice_Green
+TKT-00208,Ticket Created,2025-01-09 10:45:00,System
+TKT-00210,Ticket Created,2025-01-09 10:48:00,System
+TKT-00216,Initial Response,2025-01-09 10:58:00,Alice_Green
+TKT-00210,Assign to Agent,2025-01-09 11:05:00,System
+TKT-00208,Assign to Agent,2025-01-09 11:07:00,System
+TKT-00212,Escalate to Specialist,2025-01-09 11:11:00,Bob_Martinez
+TKT-00221,Ticket Created,2025-01-09 11:14:00,System
+TKT-00221,Assign to Agent,2025-01-09 11:21:00,System
+TKT-00216,Provide Solution,2025-01-09 11:25:00,Alice_Green
+TKT-00203,Follow-up Required,2025-01-09 11:31:00,Alice_Green
+TKT-00221,Initial Response,2025-01-09 11:36:00,Dave_Thompson
+TKT-00210,Initial Response,2025-01-09 11:39:00,Dave_Thompson
+TKT-00216,Close Ticket,2025-01-09 11:42:00,Alice_Green
+TKT-00208,Initial Response,2025-01-09 11:53:00,Alice_Green
+TKT-00221,Provide Solution,2025-01-09 11:59:00,Dave_Thompson
+TKT-00221,Close Ticket,2025-01-09 12:07:00,Dave_Thompson
+TKT-00212,Specialist Review,2025-01-09 12:11:00,Expert_Tom
+TKT-00208,Provide Solution,2025-01-09 12:16:00,Alice_Green
+TKT-00210,Follow-up Required,2025-01-09 12:24:00,Dave_Thompson
+TKT-00212,Provide Solution,2025-01-09 12:24:00,Expert_Tom
+TKT-00208,Close Ticket,2025-01-09 12:32:00,Alice_Green
+TKT-00212,Close Ticket,2025-01-09 12:34:00,Bob_Martinez
+TKT-00201,Ticket Created,2025-01-09 12:42:00,System
+TKT-00206,Ticket Created,2025-01-09 13:02:00,System
+TKT-00201,Assign to Agent,2025-01-09 13:06:00,System
+TKT-00206,Assign to Agent,2025-01-09 13:27:00,System
+TKT-00217,Ticket Created,2025-01-09 13:32:00,System
+TKT-00222,Ticket Created,2025-01-09 13:43:00,System
+TKT-00206,Initial Response,2025-01-09 13:52:00,Bob_Martinez
+TKT-00213,Ticket Created,2025-01-09 13:57:00,System
+TKT-00217,Assign to Agent,2025-01-09 13:57:00,System
+TKT-00201,Initial Response,2025-01-09 13:59:00,Alice_Green
+TKT-00222,Assign to Agent,2025-01-09 14:08:00,System
+TKT-00201,Provide Solution,2025-01-09 14:09:00,Alice_Green
+TKT-00213,Assign to Agent,2025-01-09 14:17:00,System
+TKT-00206,Provide Solution,2025-01-09 14:20:00,Bob_Martinez
+TKT-00220,Ticket Created,2025-01-09 14:20:00,System
+TKT-00201,Close Ticket,2025-01-09 14:27:00,Alice_Green
+TKT-00222,Initial Response,2025-01-09 14:32:00,Dave_Thompson
+TKT-00206,Close Ticket,2025-01-09 14:35:00,Bob_Martinez
+TKT-00220,Assign to Agent,2025-01-09 14:38:00,System
+TKT-00217,Initial Response,2025-01-09 14:43:00,Carol_Jackson
+TKT-00213,Initial Response,2025-01-09 14:59:00,Bob_Martinez
+TKT-00220,Initial Response,2025-01-09 15:16:00,Carol_Jackson
+TKT-00202,Ticket Created,2025-01-09 15:26:00,System
+TKT-00213,Escalate to Specialist,2025-01-09 15:32:00,Bob_Martinez
+TKT-00222,Escalate to Specialist,2025-01-09 15:39:00,Dave_Thompson
+TKT-00220,Provide Solution,2025-01-09 15:43:00,Carol_Jackson
+TKT-00202,Assign to Agent,2025-01-09 15:46:00,System
+TKT-00220,Close Ticket,2025-01-09 16:02:00,Carol_Jackson
+TKT-00223,Ticket Created,2025-01-09 16:19:00,System
+TKT-00202,Initial Response,2025-01-09 16:20:00,Dave_Thompson
+TKT-00202,Provide Solution,2025-01-09 16:34:00,Dave_Thompson
+TKT-00217,Escalate to Specialist,2025-01-09 16:39:00,Carol_Jackson
+TKT-00223,Assign to Agent,2025-01-09 16:40:00,System
+TKT-00202,Close Ticket,2025-01-09 16:48:00,Dave_Thompson
+TKT-00209,Ticket Created,2025-01-09 17:22:00,System
+TKT-00223,Initial Response,2025-01-09 17:30:00,Carol_Jackson
+TKT-00204,Ticket Created,2025-01-09 17:33:00,System
+TKT-00219,Ticket Created,2025-01-09 17:35:00,System
+TKT-00209,Assign to Agent,2025-01-09 17:40:00,System
+TKT-00223,Provide Solution,2025-01-09 17:51:00,Carol_Jackson
+TKT-00204,Assign to Agent,2025-01-09 17:53:00,System
+TKT-00218,Ticket Created,2025-01-09 17:53:00,System
+TKT-00223,Close Ticket,2025-01-09 17:56:00,Carol_Jackson
+TKT-00219,Assign to Agent,2025-01-09 18:05:00,System
+TKT-00218,Assign to Agent,2025-01-09 18:06:00,System
+TKT-00207,Ticket Created,2025-01-09 18:09:00,System
+TKT-00219,Initial Response,2025-01-09 18:15:00,Dave_Thompson
+TKT-00218,Initial Response,2025-01-09 18:29:00,Dave_Thompson
+TKT-00209,Initial Response,2025-01-09 18:31:00,Carol_Jackson
+TKT-00207,Assign to Agent,2025-01-09 18:38:00,System
+TKT-00217,Specialist Review,2025-01-09 18:39:00,Expert_Tom
+TKT-00204,Initial Response,2025-01-09 18:43:00,Bob_Martinez
+TKT-00219,Provide Solution,2025-01-09 18:44:00,Dave_Thompson
+TKT-00209,Provide Solution,2025-01-09 18:46:00,Carol_Jackson
+TKT-00215,Ticket Created,2025-01-09 18:50:00,System
+TKT-00209,Close Ticket,2025-01-09 18:51:00,Carol_Jackson
+TKT-00211,Ticket Created,2025-01-09 18:52:00,System
+TKT-00218,Provide Solution,2025-01-09 18:53:00,Dave_Thompson
+TKT-00204,Provide Solution,2025-01-09 18:55:00,Bob_Martinez
+TKT-00219,Close Ticket,2025-01-09 18:58:00,Dave_Thompson
+TKT-00211,Assign to Agent,2025-01-09 18:59:00,System
+TKT-00214,Ticket Created,2025-01-09 19:06:00,System
+TKT-00204,Close Ticket,2025-01-09 19:09:00,Bob_Martinez
+TKT-00218,Close Ticket,2025-01-09 19:13:00,Dave_Thompson
+TKT-00215,Assign to Agent,2025-01-09 19:15:00,System
+TKT-00207,Initial Response,2025-01-09 19:19:00,Alice_Green
+TKT-00214,Assign to Agent,2025-01-09 19:26:00,System
+TKT-00215,Initial Response,2025-01-09 19:34:00,Dave_Thompson
+TKT-00217,Follow-up Required,2025-01-09 19:38:00,Carol_Jackson
+TKT-00222,Specialist Review,2025-01-09 19:39:00,Expert_Tom
+TKT-00211,Initial Response,2025-01-09 19:45:00,Carol_Jackson
+TKT-00222,Provide Solution,2025-01-09 19:49:00,Expert_Tom
+TKT-00207,Escalate to Specialist,2025-01-09 19:50:00,Alice_Green
+TKT-00211,Provide Solution,2025-01-09 20:02:00,Carol_Jackson
+TKT-00215,Provide Solution,2025-01-09 20:02:00,Dave_Thompson
+TKT-00222,Close Ticket,2025-01-09 20:02:00,Dave_Thompson
+TKT-00211,Close Ticket,2025-01-09 20:09:00,Carol_Jackson
+TKT-00214,Initial Response,2025-01-09 20:14:00,Carol_Jackson
+TKT-00215,Close Ticket,2025-01-09 20:18:00,Dave_Thompson
+TKT-00224,Ticket Created,2025-01-09 20:41:00,System
+TKT-00207,Specialist Review,2025-01-09 20:50:00,Expert_Tom
+TKT-00224,Assign to Agent,2025-01-09 21:07:00,System
+TKT-00207,Provide Solution,2025-01-09 21:13:00,Expert_Tom
+TKT-00207,Close Ticket,2025-01-09 21:18:00,Alice_Green
+TKT-00189,Follow-up Response,2025-01-09 21:32:00,Carol_Jackson
+TKT-00213,Specialist Review,2025-01-09 21:32:00,Expert_Tom
+TKT-00224,Initial Response,2025-01-09 21:37:00,Alice_Green
+TKT-00125,Reopen Ticket,2025-01-09 21:42:00,Customer
+TKT-00189,Provide Solution,2025-01-09 21:54:00,Expert_Tom
+TKT-00213,Provide Solution,2025-01-09 22:02:00,Expert_Lisa
+TKT-00189,Close Ticket,2025-01-09 22:06:00,Carol_Jackson
+TKT-00214,Escalate to Specialist,2025-01-09 22:06:00,Carol_Jackson
+TKT-00224,Follow-up Required,2025-01-09 22:15:00,Alice_Green
+TKT-00213,Close Ticket,2025-01-09 22:21:00,Bob_Martinez
+TKT-00125,Provide Solution,2025-01-09 22:54:00,Carol_Jackson
+TKT-00125,Close Ticket,2025-01-09 23:00:00,Carol_Jackson
+TKT-00214,Specialist Review,2025-01-09 23:06:00,Expert_Lisa
+TKT-00214,Provide Solution,2025-01-09 23:34:00,Expert_Lisa
+TKT-00214,Close Ticket,2025-01-09 23:46:00,Carol_Jackson
+TKT-00175,Follow-up Response,2025-01-10 02:16:00,Dave_Thompson
+TKT-00175,Provide Solution,2025-01-10 02:33:00,Dave_Thompson
+TKT-00175,Close Ticket,2025-01-10 02:46:00,Dave_Thompson
+TKT-00217,Follow-up Response,2025-01-10 05:38:00,Carol_Jackson
+TKT-00217,Provide Solution,2025-01-10 05:59:00,Expert_Tom
+TKT-00217,Close Ticket,2025-01-10 06:07:00,Carol_Jackson
+TKT-00248,Ticket Created,2025-01-10 08:00:00,System
+TKT-00248,Assign to Agent,2025-01-10 08:11:00,System
+TKT-00229,Ticket Created,2025-01-10 08:26:00,System
+TKT-00229,Assign to Agent,2025-01-10 08:31:00,System
+TKT-00229,Initial Response,2025-01-10 08:54:00,Alice_Green
+TKT-00237,Ticket Created,2025-01-10 09:05:00,System
+TKT-00248,Initial Response,2025-01-10 09:09:00,Alice_Green
+TKT-00229,Provide Solution,2025-01-10 09:18:00,Alice_Green
+TKT-00233,Ticket Created,2025-01-10 09:21:00,System
+TKT-00237,Assign to Agent,2025-01-10 09:24:00,System
+TKT-00248,Provide Solution,2025-01-10 09:24:00,Alice_Green
+TKT-00233,Assign to Agent,2025-01-10 09:28:00,System
+TKT-00229,Close Ticket,2025-01-10 09:30:00,Alice_Green
+TKT-00248,Close Ticket,2025-01-10 09:32:00,Alice_Green
+TKT-00237,Initial Response,2025-01-10 10:04:00,Carol_Jackson
+TKT-00233,Initial Response,2025-01-10 10:22:00,Dave_Thompson
+TKT-00233,Provide Solution,2025-01-10 10:35:00,Dave_Thompson
+TKT-00233,Close Ticket,2025-01-10 10:49:00,Dave_Thompson
+TKT-00237,Escalate to Specialist,2025-01-10 10:51:00,Carol_Jackson
+TKT-00247,Ticket Created,2025-01-10 11:16:00,System
+TKT-00247,Assign to Agent,2025-01-10 11:39:00,System
+TKT-00247,Initial Response,2025-01-10 11:54:00,Bob_Martinez
+TKT-00231,Ticket Created,2025-01-10 12:06:00,System
+TKT-00231,Assign to Agent,2025-01-10 12:28:00,System
+TKT-00228,Ticket Created,2025-01-10 12:40:00,System
+TKT-00228,Assign to Agent,2025-01-10 12:47:00,System
+TKT-00227,Ticket Created,2025-01-10 12:52:00,System
+TKT-00247,Escalate to Specialist,2025-01-10 12:58:00,Bob_Martinez
+TKT-00227,Assign to Agent,2025-01-10 13:01:00,System
+TKT-00228,Initial Response,2025-01-10 13:08:00,Carol_Jackson
+TKT-00234,Ticket Created,2025-01-10 13:13:00,System
+TKT-00231,Initial Response,2025-01-10 13:15:00,Dave_Thompson
+TKT-00234,Assign to Agent,2025-01-10 13:20:00,System
+TKT-00228,Provide Solution,2025-01-10 13:21:00,Carol_Jackson
+TKT-00246,Ticket Created,2025-01-10 13:21:00,System
+TKT-00228,Close Ticket,2025-01-10 13:28:00,Carol_Jackson
+TKT-00230,Ticket Created,2025-01-10 13:32:00,System
+TKT-00227,Initial Response,2025-01-10 13:33:00,Bob_Martinez
+TKT-00246,Assign to Agent,2025-01-10 13:44:00,System
+TKT-00230,Assign to Agent,2025-01-10 13:53:00,System
+TKT-00247,Specialist Review,2025-01-10 13:58:00,Expert_Lisa
+TKT-00227,Provide Solution,2025-01-10 13:59:00,Bob_Martinez
+TKT-00234,Initial Response,2025-01-10 14:08:00,Carol_Jackson
+TKT-00230,Initial Response,2025-01-10 14:14:00,Alice_Green
+TKT-00227,Close Ticket,2025-01-10 14:15:00,Bob_Martinez
+TKT-00246,Initial Response,2025-01-10 14:16:00,Carol_Jackson
+TKT-00239,Ticket Created,2025-01-10 14:26:00,System
+TKT-00247,Provide Solution,2025-01-10 14:27:00,Expert_Tom
+TKT-00231,Escalate to Specialist,2025-01-10 14:29:00,Dave_Thompson
+TKT-00230,Provide Solution,2025-01-10 14:35:00,Alice_Green
+TKT-00234,Provide Solution,2025-01-10 14:37:00,Carol_Jackson
+TKT-00247,Close Ticket,2025-01-10 14:37:00,Bob_Martinez
+TKT-00240,Ticket Created,2025-01-10 14:48:00,System
+TKT-00237,Specialist Review,2025-01-10 14:51:00,Expert_Lisa
+TKT-00230,Close Ticket,2025-01-10 14:53:00,Alice_Green
+TKT-00234,Close Ticket,2025-01-10 14:54:00,Carol_Jackson
+TKT-00239,Assign to Agent,2025-01-10 14:55:00,System
+TKT-00242,Ticket Created,2025-01-10 15:10:00,System
+TKT-00237,Provide Solution,2025-01-10 15:18:00,Expert_Lisa
+TKT-00240,Assign to Agent,2025-01-10 15:18:00,System
+TKT-00239,Initial Response,2025-01-10 15:23:00,Bob_Martinez
+TKT-00210,Follow-up Response,2025-01-10 15:24:00,Dave_Thompson
+TKT-00242,Assign to Agent,2025-01-10 15:26:00,System
+TKT-00237,Close Ticket,2025-01-10 15:29:00,Carol_Jackson
+TKT-00235,Ticket Created,2025-01-10 15:30:00,System
+TKT-00210,Provide Solution,2025-01-10 15:37:00,Dave_Thompson
+TKT-00239,Provide Solution,2025-01-10 15:40:00,Bob_Martinez
+TKT-00235,Assign to Agent,2025-01-10 15:46:00,System
+TKT-00239,Close Ticket,2025-01-10 15:46:00,Bob_Martinez
+TKT-00210,Close Ticket,2025-01-10 15:52:00,Dave_Thompson
+TKT-00240,Initial Response,2025-01-10 15:59:00,Alice_Green
+TKT-00242,Initial Response,2025-01-10 16:03:00,Dave_Thompson
+TKT-00245,Ticket Created,2025-01-10 16:03:00,System
+TKT-00246,Escalate to Specialist,2025-01-10 16:04:00,Carol_Jackson
+TKT-00245,Assign to Agent,2025-01-10 16:15:00,System
+TKT-00240,Provide Solution,2025-01-10 16:25:00,Alice_Green
+TKT-00240,Close Ticket,2025-01-10 16:31:00,Alice_Green
+TKT-00235,Initial Response,2025-01-10 16:39:00,Alice_Green
+TKT-00244,Ticket Created,2025-01-10 17:01:00,System
+TKT-00245,Initial Response,2025-01-10 17:14:00,Bob_Martinez
+TKT-00244,Assign to Agent,2025-01-10 17:16:00,System
+TKT-00159,Reopen Ticket,2025-01-10 17:27:00,Customer
+TKT-00242,Escalate to Specialist,2025-01-10 17:34:00,Dave_Thompson
+TKT-00245,Follow-up Required,2025-01-10 17:46:00,Bob_Martinez
+TKT-00235,Escalate to Specialist,2025-01-10 17:54:00,Alice_Green
+TKT-00243,Ticket Created,2025-01-10 18:08:00,System
+TKT-00244,Initial Response,2025-01-10 18:09:00,Carol_Jackson
+TKT-00236,Ticket Created,2025-01-10 18:28:00,System
+TKT-00241,Ticket Created,2025-01-10 18:30:00,System
+TKT-00159,Provide Solution,2025-01-10 18:35:00,Bob_Martinez
+TKT-00244,Provide Solution,2025-01-10 18:35:00,Carol_Jackson
+TKT-00243,Assign to Agent,2025-01-10 18:36:00,System
+TKT-00241,Assign to Agent,2025-01-10 18:38:00,System
+TKT-00244,Close Ticket,2025-01-10 18:41:00,Carol_Jackson
+TKT-00159,Close Ticket,2025-01-10 18:45:00,Bob_Martinez
+TKT-00236,Assign to Agent,2025-01-10 18:47:00,System
+TKT-00243,Initial Response,2025-01-10 18:55:00,Carol_Jackson
+TKT-00241,Initial Response,2025-01-10 18:59:00,Dave_Thompson
+TKT-00249,Ticket Created,2025-01-10 19:11:00,System
+TKT-00249,Assign to Agent,2025-01-10 19:19:00,System
+TKT-00249,Initial Response,2025-01-10 19:33:00,Dave_Thompson
+TKT-00236,Initial Response,2025-01-10 19:45:00,Bob_Martinez
+TKT-00249,Provide Solution,2025-01-10 19:49:00,Dave_Thompson
+TKT-00249,Close Ticket,2025-01-10 20:03:00,Dave_Thompson
+TKT-00243,Escalate to Specialist,2025-01-10 20:19:00,Carol_Jackson
+TKT-00232,Ticket Created,2025-01-10 20:21:00,System
+TKT-00225,Ticket Created,2025-01-10 20:22:00,System
+TKT-00231,Specialist Review,2025-01-10 20:29:00,Expert_Lisa
+TKT-00226,Ticket Created,2025-01-10 20:33:00,System
+TKT-00232,Assign to Agent,2025-01-10 20:36:00,System
+TKT-00238,Ticket Created,2025-01-10 20:36:00,System
+TKT-00241,Escalate to Specialist,2025-01-10 20:42:00,Dave_Thompson
+TKT-00225,Assign to Agent,2025-01-10 20:51:00,System
+TKT-00232,Initial Response,2025-01-10 20:57:00,Alice_Green
+TKT-00226,Assign to Agent,2025-01-10 20:58:00,System
+TKT-00246,Specialist Review,2025-01-10 21:04:00,Expert_Tom
+TKT-00238,Assign to Agent,2025-01-10 21:06:00,System
+TKT-00225,Initial Response,2025-01-10 21:07:00,Bob_Martinez
+TKT-00231,Follow-up Required,2025-01-10 21:15:00,Dave_Thompson
+TKT-00243,Specialist Review,2025-01-10 21:19:00,Expert_Tom
+TKT-00226,Initial Response,2025-01-10 21:27:00,Carol_Jackson
+TKT-00246,Provide Solution,2025-01-10 21:27:00,Expert_Lisa
+TKT-00236,Escalate to Specialist,2025-01-10 21:33:00,Bob_Martinez
+TKT-00246,Close Ticket,2025-01-10 21:36:00,Carol_Jackson
+TKT-00196,Follow-up Response,2025-01-10 21:41:00,Dave_Thompson
+TKT-00243,Provide Solution,2025-01-10 21:48:00,Expert_Tom
+TKT-00243,Close Ticket,2025-01-10 21:57:00,Carol_Jackson
+TKT-00238,Initial Response,2025-01-10 22:00:00,Dave_Thompson
+TKT-00196,Provide Solution,2025-01-10 22:05:00,Expert_Tom
+TKT-00196,Close Ticket,2025-01-10 22:23:00,Dave_Thompson
+TKT-00232,Escalate to Specialist,2025-01-10 22:25:00,Alice_Green
+TKT-00238,Follow-up Required,2025-01-10 22:32:00,Dave_Thompson
+TKT-00225,Escalate to Specialist,2025-01-10 22:50:00,Bob_Martinez
+TKT-00226,Escalate to Specialist,2025-01-10 23:07:00,Carol_Jackson
+TKT-00203,Follow-up Response,2025-01-10 23:31:00,Alice_Green
+TKT-00242,Specialist Review,2025-01-10 23:34:00,Expert_Lisa
+TKT-00203,Provide Solution,2025-01-10 23:51:00,Alice_Green
+TKT-00235,Specialist Review,2025-01-10 23:54:00,Expert_Lisa
+TKT-00242,Provide Solution,2025-01-10 23:59:00,Expert_Tom
+TKT-00203,Close Ticket,2025-01-11 00:07:00,Alice_Green
+TKT-00235,Provide Solution,2025-01-11 00:11:00,Expert_Lisa
+TKT-00242,Close Ticket,2025-01-11 00:14:00,Dave_Thompson
+TKT-00235,Close Ticket,2025-01-11 00:27:00,Alice_Green
+TKT-00241,Specialist Review,2025-01-11 00:42:00,Expert_Lisa
+TKT-00225,Specialist Review,2025-01-11 00:50:00,Expert_Lisa
+TKT-00241,Provide Solution,2025-01-11 00:52:00,Expert_Tom
+TKT-00241,Close Ticket,2025-01-11 00:57:00,Dave_Thompson
+TKT-00225,Provide Solution,2025-01-11 01:03:00,Expert_Tom
+TKT-00225,Close Ticket,2025-01-11 01:09:00,Bob_Martinez
+TKT-00232,Specialist Review,2025-01-11 01:25:00,Expert_Tom
+TKT-00236,Specialist Review,2025-01-11 01:33:00,Expert_Lisa
+TKT-00232,Provide Solution,2025-01-11 01:49:00,Expert_Tom
+TKT-00236,Provide Solution,2025-01-11 01:51:00,Expert_Lisa
+TKT-00232,Close Ticket,2025-01-11 02:03:00,Alice_Green
+TKT-00236,Close Ticket,2025-01-11 02:10:00,Bob_Martinez
+TKT-00250,Ticket Created,2025-01-11 02:46:00,System
+TKT-00250,Assign to Agent,2025-01-11 02:57:00,System
+TKT-00250,Initial Response,2025-01-11 03:14:00,Dave_Thompson
+TKT-00250,Escalate to Specialist,2025-01-11 04:26:00,Dave_Thompson
+TKT-00226,Specialist Review,2025-01-11 05:07:00,Expert_Lisa
+TKT-00226,Provide Solution,2025-01-11 05:28:00,Expert_Tom
+TKT-00226,Close Ticket,2025-01-11 05:33:00,Carol_Jackson
+TKT-00238,Follow-up Response,2025-01-11 08:32:00,Dave_Thompson
+TKT-00268,Ticket Created,2025-01-11 08:33:00,System
+TKT-00267,Ticket Created,2025-01-11 08:35:00,System
+TKT-00238,Provide Solution,2025-01-11 08:43:00,Dave_Thompson
+TKT-00268,Assign to Agent,2025-01-11 08:44:00,System
+TKT-00267,Assign to Agent,2025-01-11 08:54:00,System
+TKT-00238,Close Ticket,2025-01-11 08:55:00,Dave_Thompson
+TKT-00268,Initial Response,2025-01-11 08:57:00,Bob_Martinez
+TKT-00267,Initial Response,2025-01-11 09:18:00,Alice_Green
+TKT-00268,Escalate to Specialist,2025-01-11 09:53:00,Bob_Martinez
+TKT-00267,Escalate to Specialist,2025-01-11 09:56:00,Alice_Green
+TKT-00250,Specialist Review,2025-01-11 10:26:00,Expert_Tom
+TKT-00250,Provide Solution,2025-01-11 10:36:00,Expert_Tom
+TKT-00250,Close Ticket,2025-01-11 10:42:00,Dave_Thompson
+TKT-00257,Ticket Created,2025-01-11 11:19:00,System
+TKT-00257,Assign to Agent,2025-01-11 11:24:00,System
+TKT-00260,Ticket Created,2025-01-11 11:33:00,System
+TKT-00260,Assign to Agent,2025-01-11 11:52:00,System
+TKT-00268,Specialist Review,2025-01-11 11:53:00,Expert_Tom
+TKT-00257,Initial Response,2025-01-11 12:02:00,Alice_Green
+TKT-00268,Provide Solution,2025-01-11 12:18:00,Expert_Tom
+TKT-00268,Close Ticket,2025-01-11 12:37:00,Bob_Martinez
+TKT-00260,Initial Response,2025-01-11 12:46:00,Carol_Jackson
+TKT-00262,Ticket Created,2025-01-11 12:48:00,System
+TKT-00262,Assign to Agent,2025-01-11 12:57:00,System
+TKT-00260,Provide Solution,2025-01-11 13:07:00,Carol_Jackson
+TKT-00262,Initial Response,2025-01-11 13:08:00,Alice_Green
+TKT-00264,Ticket Created,2025-01-11 13:16:00,System
+TKT-00257,Escalate to Specialist,2025-01-11 13:17:00,Alice_Green
+TKT-00260,Close Ticket,2025-01-11 13:25:00,Carol_Jackson
+TKT-00251,Ticket Created,2025-01-11 13:40:00,System
+TKT-00264,Assign to Agent,2025-01-11 13:46:00,System
+TKT-00262,Escalate to Specialist,2025-01-11 14:09:00,Alice_Green
+TKT-00251,Assign to Agent,2025-01-11 14:10:00,System
+TKT-00264,Initial Response,2025-01-11 14:40:00,Alice_Green
+TKT-00261,Ticket Created,2025-01-11 14:54:00,System
+TKT-00267,Specialist Review,2025-01-11 14:56:00,Expert_Tom
+TKT-00251,Initial Response,2025-01-11 14:57:00,Bob_Martinez
+TKT-00264,Provide Solution,2025-01-11 14:59:00,Alice_Green
+TKT-00263,Ticket Created,2025-01-11 15:02:00,System
+TKT-00261,Assign to Agent,2025-01-11 15:06:00,System
+TKT-00264,Close Ticket,2025-01-11 15:07:00,Alice_Green
+TKT-00262,Specialist Review,2025-01-11 15:09:00,Expert_Tom
+TKT-00251,Provide Solution,2025-01-11 15:12:00,Bob_Martinez
+TKT-00224,Follow-up Response,2025-01-11 15:15:00,Alice_Green
+TKT-00267,Provide Solution,2025-01-11 15:15:00,Expert_Tom
+TKT-00251,Close Ticket,2025-01-11 15:19:00,Bob_Martinez
+TKT-00263,Assign to Agent,2025-01-11 15:23:00,System
+TKT-00255,Ticket Created,2025-01-11 15:24:00,System
+TKT-00258,Ticket Created,2025-01-11 15:26:00,System
+TKT-00237,Reopen Ticket,2025-01-11 15:29:00,Customer
+TKT-00267,Close Ticket,2025-01-11 15:31:00,Alice_Green
+TKT-00262,Provide Solution,2025-01-11 15:37:00,Expert_Lisa
+TKT-00224,Provide Solution,2025-01-11 15:45:00,Alice_Green
+TKT-00255,Assign to Agent,2025-01-11 15:45:00,System
+TKT-00261,Initial Response,2025-01-11 15:47:00,Dave_Thompson
+TKT-00262,Close Ticket,2025-01-11 15:54:00,Alice_Green
+TKT-00224,Close Ticket,2025-01-11 15:55:00,Alice_Green
+TKT-00258,Assign to Agent,2025-01-11 15:55:00,System
+TKT-00220,Reopen Ticket,2025-01-11 16:02:00,Customer
+TKT-00261,Provide Solution,2025-01-11 16:14:00,Dave_Thompson
+TKT-00237,Provide Solution,2025-01-11 16:16:00,Carol_Jackson
+TKT-00257,Specialist Review,2025-01-11 16:17:00,Expert_Lisa
+TKT-00263,Initial Response,2025-01-11 16:17:00,Carol_Jackson
+TKT-00258,Initial Response,2025-01-11 16:20:00,Carol_Jackson
+TKT-00261,Close Ticket,2025-01-11 16:24:00,Dave_Thompson
+TKT-00255,Initial Response,2025-01-11 16:28:00,Alice_Green
+TKT-00237,Close Ticket,2025-01-11 16:29:00,Carol_Jackson
+TKT-00263,Provide Solution,2025-01-11 16:30:00,Carol_Jackson
+TKT-00253,Ticket Created,2025-01-11 16:31:00,System
+TKT-00256,Ticket Created,2025-01-11 16:37:00,System
+TKT-00257,Provide Solution,2025-01-11 16:42:00,Expert_Lisa
+TKT-00271,Ticket Created,2025-01-11 16:46:00,System
+TKT-00263,Close Ticket,2025-01-11 16:47:00,Carol_Jackson
+TKT-00256,Assign to Agent,2025-01-11 16:49:00,System
+TKT-00257,Close Ticket,2025-01-11 16:51:00,Alice_Green
+TKT-00253,Assign to Agent,2025-01-11 16:54:00,System
+TKT-00255,Provide Solution,2025-01-11 16:55:00,Alice_Green
+TKT-00272,Ticket Created,2025-01-11 16:57:00,System
+TKT-00271,Assign to Agent,2025-01-11 17:07:00,System
+TKT-00253,Initial Response,2025-01-11 17:08:00,Bob_Martinez
+TKT-00272,Assign to Agent,2025-01-11 17:09:00,System
+TKT-00255,Close Ticket,2025-01-11 17:13:00,Alice_Green
+TKT-00256,Initial Response,2025-01-11 17:20:00,Alice_Green
+TKT-00254,Ticket Created,2025-01-11 17:24:00,System
+TKT-00271,Initial Response,2025-01-11 17:28:00,Carol_Jackson
+TKT-00272,Initial Response,2025-01-11 17:29:00,Alice_Green
+TKT-00220,Provide Solution,2025-01-11 17:31:00,Carol_Jackson
+TKT-00258,Escalate to Specialist,2025-01-11 17:31:00,Carol_Jackson
+TKT-00254,Assign to Agent,2025-01-11 17:39:00,System
+TKT-00220,Close Ticket,2025-01-11 17:40:00,Carol_Jackson
+TKT-00253,Escalate to Specialist,2025-01-11 17:45:00,Bob_Martinez
+TKT-00272,Provide Solution,2025-01-11 17:53:00,Alice_Green
+TKT-00256,Escalate to Specialist,2025-01-11 18:01:00,Alice_Green
+TKT-00272,Close Ticket,2025-01-11 18:05:00,Alice_Green
+TKT-00259,Ticket Created,2025-01-11 18:14:00,System
+TKT-00271,Escalate to Specialist,2025-01-11 18:22:00,Carol_Jackson
+TKT-00259,Assign to Agent,2025-01-11 18:26:00,System
+TKT-00254,Initial Response,2025-01-11 18:31:00,Alice_Green
+TKT-00258,Specialist Review,2025-01-11 18:31:00,Expert_Tom
+TKT-00273,Ticket Created,2025-01-11 18:39:00,System
+TKT-00252,Ticket Created,2025-01-11 18:41:00,System
+TKT-00253,Specialist Review,2025-01-11 18:45:00,Expert_Tom
+TKT-00258,Provide Solution,2025-01-11 18:47:00,Expert_Tom
+TKT-00252,Assign to Agent,2025-01-11 18:48:00,System
+TKT-00258,Close Ticket,2025-01-11 18:53:00,Carol_Jackson
+TKT-00265,Ticket Created,2025-01-11 18:54:00,System
+TKT-00254,Provide Solution,2025-01-11 18:58:00,Alice_Green
+TKT-00259,Initial Response,2025-01-11 18:58:00,Dave_Thompson
+TKT-00273,Assign to Agent,2025-01-11 19:04:00,System
+TKT-00265,Assign to Agent,2025-01-11 19:11:00,System
+TKT-00253,Provide Solution,2025-01-11 19:15:00,Expert_Tom
+TKT-00254,Close Ticket,2025-01-11 19:15:00,Alice_Green
+TKT-00183,Reopen Ticket,2025-01-11 19:17:00,Customer
+TKT-00265,Initial Response,2025-01-11 19:26:00,Dave_Thompson
+TKT-00253,Close Ticket,2025-01-11 19:34:00,Bob_Martinez
+TKT-00265,Provide Solution,2025-01-11 19:40:00,Dave_Thompson
+TKT-00273,Initial Response,2025-01-11 19:45:00,Carol_Jackson
+TKT-00252,Initial Response,2025-01-11 19:47:00,Dave_Thompson
+TKT-00259,Follow-up Required,2025-01-11 19:48:00,Dave_Thompson
+TKT-00265,Close Ticket,2025-01-11 19:50:00,Dave_Thompson
+TKT-00270,Ticket Created,2025-01-11 19:57:00,System
+TKT-00211,Reopen Ticket,2025-01-11 20:09:00,Customer
+TKT-00183,Provide Solution,2025-01-11 20:17:00,Alice_Green
+TKT-00266,Ticket Created,2025-01-11 20:22:00,System
+TKT-00270,Assign to Agent,2025-01-11 20:23:00,System
+TKT-00183,Close Ticket,2025-01-11 20:31:00,Alice_Green
+TKT-00266,Assign to Agent,2025-01-11 20:35:00,System
+TKT-00270,Initial Response,2025-01-11 20:47:00,Alice_Green
+TKT-00266,Initial Response,2025-01-11 20:51:00,Bob_Martinez
+TKT-00269,Ticket Created,2025-01-11 20:51:00,System
+TKT-00269,Assign to Agent,2025-01-11 20:57:00,System
+TKT-00274,Ticket Created,2025-01-11 20:59:00,System
+TKT-00269,Initial Response,2025-01-11 21:10:00,Dave_Thompson
+TKT-00274,Assign to Agent,2025-01-11 21:15:00,System
+TKT-00207,Reopen Ticket,2025-01-11 21:18:00,Customer
+TKT-00252,Escalate to Specialist,2025-01-11 21:23:00,Dave_Thompson
+TKT-00274,Initial Response,2025-01-11 21:26:00,Bob_Martinez
+TKT-00211,Provide Solution,2025-01-11 21:31:00,Carol_Jackson
+TKT-00211,Close Ticket,2025-01-11 21:38:00,Carol_Jackson
+TKT-00273,Escalate to Specialist,2025-01-11 21:41:00,Carol_Jackson
+TKT-00270,Escalate to Specialist,2025-01-11 21:43:00,Alice_Green
+TKT-00266,Follow-up Required,2025-01-11 21:46:00,Bob_Martinez
+TKT-00269,Escalate to Specialist,2025-01-11 21:46:00,Dave_Thompson
+TKT-00274,Escalate to Specialist,2025-01-11 22:02:00,Bob_Martinez
+TKT-00207,Provide Solution,2025-01-11 22:28:00,Alice_Green
+TKT-00207,Close Ticket,2025-01-11 22:39:00,Alice_Green
+TKT-00271,Specialist Review,2025-01-11 23:22:00,Expert_Tom
+TKT-00271,Provide Solution,2025-01-11 23:36:00,Expert_Lisa
+TKT-00259,Follow-up Response,2025-01-11 23:48:00,Dave_Thompson
+TKT-00271,Close Ticket,2025-01-11 23:54:00,Carol_Jackson
+TKT-00256,Specialist Review,2025-01-12 00:01:00,Expert_Lisa
+TKT-00259,Provide Solution,2025-01-12 00:13:00,Dave_Thompson
+TKT-00259,Close Ticket,2025-01-12 00:22:00,Dave_Thompson
+TKT-00252,Specialist Review,2025-01-12 00:23:00,Expert_Tom
+TKT-00256,Provide Solution,2025-01-12 00:31:00,Expert_Lisa
+TKT-00256,Close Ticket,2025-01-12 00:40:00,Alice_Green
+TKT-00270,Specialist Review,2025-01-12 00:43:00,Expert_Tom
+TKT-00245,Follow-up Response,2025-01-12 00:46:00,Bob_Martinez
+TKT-00252,Request Additional Info,2025-01-12 00:49:00,Expert_Lisa
+TKT-00274,Specialist Review,2025-01-12 01:02:00,Expert_Tom
+TKT-00245,Provide Solution,2025-01-12 01:03:00,Bob_Martinez
+TKT-00245,Close Ticket,2025-01-12 01:11:00,Bob_Martinez
+TKT-00270,Provide Solution,2025-01-12 01:12:00,Expert_Tom
+TKT-00274,Provide Solution,2025-01-12 01:14:00,Expert_Tom
+TKT-00231,Follow-up Response,2025-01-12 01:15:00,Dave_Thompson
+TKT-00270,Close Ticket,2025-01-12 01:19:00,Alice_Green
+TKT-00274,Close Ticket,2025-01-12 01:30:00,Bob_Martinez
+TKT-00231,Provide Solution,2025-01-12 01:44:00,Expert_Lisa
+TKT-00231,Close Ticket,2025-01-12 02:03:00,Dave_Thompson
+TKT-00273,Specialist Review,2025-01-12 02:41:00,Expert_Tom
+TKT-00175,Reopen Ticket,2025-01-12 02:46:00,Customer
+TKT-00269,Specialist Review,2025-01-12 02:46:00,Expert_Tom
+TKT-00269,Provide Solution,2025-01-12 03:15:00,Expert_Lisa
+TKT-00175,Provide Solution,2025-01-12 03:23:00,Dave_Thompson
+TKT-00269,Close Ticket,2025-01-12 03:35:00,Dave_Thompson
+TKT-00175,Close Ticket,2025-01-12 03:36:00,Dave_Thompson
+TKT-00273,Follow-up Required,2025-01-12 03:39:00,Carol_Jackson
+TKT-00284,Ticket Created,2025-01-12 08:33:00,System
+TKT-00284,Assign to Agent,2025-01-12 08:49:00,System
+TKT-00284,Initial Response,2025-01-12 09:28:00,Alice_Green
+TKT-00229,Reopen Ticket,2025-01-12 09:30:00,Customer
+TKT-00288,Ticket Created,2025-01-12 09:53:00,System
+TKT-00284,Provide Solution,2025-01-12 09:58:00,Alice_Green
+TKT-00288,Assign to Agent,2025-01-12 10:06:00,System
+TKT-00284,Close Ticket,2025-01-12 10:14:00,Alice_Green
+TKT-00299,Ticket Created,2025-01-12 10:30:00,System
+TKT-00229,Provide Solution,2025-01-12 10:31:00,Alice_Green
+TKT-00229,Close Ticket,2025-01-12 10:36:00,Alice_Green
+TKT-00288,Initial Response,2025-01-12 10:37:00,Alice_Green
+TKT-00299,Assign to Agent,2025-01-12 10:44:00,System
+TKT-00252,Customer Response,2025-01-12 10:49:00,Customer
+TKT-00288,Provide Solution,2025-01-12 11:07:00,Alice_Green
+TKT-00252,Specialist Review,2025-01-12 11:11:00,Expert_Lisa
+TKT-00282,Ticket Created,2025-01-12 11:16:00,System
+TKT-00288,Close Ticket,2025-01-12 11:22:00,Alice_Green
+TKT-00299,Initial Response,2025-01-12 11:33:00,Dave_Thompson
+TKT-00252,Follow-up Required,2025-01-12 11:38:00,Dave_Thompson
+TKT-00278,Ticket Created,2025-01-12 11:40:00,System
+TKT-00282,Assign to Agent,2025-01-12 11:45:00,System
+TKT-00278,Assign to Agent,2025-01-12 11:55:00,System
+TKT-00278,Initial Response,2025-01-12 12:21:00,Bob_Martinez
+TKT-00282,Initial Response,2025-01-12 12:33:00,Bob_Martinez
+TKT-00278,Provide Solution,2025-01-12 12:40:00,Bob_Martinez
+TKT-00294,Ticket Created,2025-01-12 12:40:00,System
+TKT-00293,Ticket Created,2025-01-12 12:55:00,System
+TKT-00278,Close Ticket,2025-01-12 12:56:00,Bob_Martinez
+TKT-00296,Ticket Created,2025-01-12 12:59:00,System
+TKT-00294,Assign to Agent,2025-01-12 13:03:00,System
+TKT-00299,Escalate to Specialist,2025-01-12 13:06:00,Dave_Thompson
+TKT-00298,Ticket Created,2025-01-12 13:16:00,System
+TKT-00296,Assign to Agent,2025-01-12 13:20:00,System
+TKT-00293,Assign to Agent,2025-01-12 13:22:00,System
+TKT-00298,Assign to Agent,2025-01-12 13:30:00,System
+TKT-00294,Initial Response,2025-01-12 13:38:00,Dave_Thompson
+TKT-00296,Initial Response,2025-01-12 13:46:00,Alice_Green
+TKT-00285,Ticket Created,2025-01-12 13:51:00,System
+TKT-00293,Initial Response,2025-01-12 13:52:00,Bob_Martinez
+TKT-00285,Assign to Agent,2025-01-12 13:58:00,System
+TKT-00282,Escalate to Specialist,2025-01-12 13:59:00,Bob_Martinez
+TKT-00286,Ticket Created,2025-01-12 13:59:00,System
+TKT-00286,Assign to Agent,2025-01-12 14:06:00,System
+TKT-00298,Initial Response,2025-01-12 14:13:00,Bob_Martinez
+TKT-00294,Follow-up Required,2025-01-12 14:15:00,Dave_Thompson
+TKT-00286,Initial Response,2025-01-12 14:24:00,Bob_Martinez
+TKT-00296,Escalate to Specialist,2025-01-12 14:26:00,Alice_Green
+TKT-00298,Provide Solution,2025-01-12 14:32:00,Bob_Martinez
+TKT-00286,Provide Solution,2025-01-12 14:45:00,Bob_Martinez
+TKT-00298,Close Ticket,2025-01-12 14:46:00,Bob_Martinez
+TKT-00285,Initial Response,2025-01-12 14:50:00,Alice_Green
+TKT-00286,Close Ticket,2025-01-12 14:57:00,Bob_Martinez
+TKT-00293,Escalate to Specialist,2025-01-12 15:22:00,Bob_Martinez
+TKT-00291,Ticket Created,2025-01-12 15:49:00,System
+TKT-00291,Assign to Agent,2025-01-12 16:12:00,System
+TKT-00285,Escalate to Specialist,2025-01-12 16:34:00,Alice_Green
+TKT-00287,Ticket Created,2025-01-12 16:34:00,System
+TKT-00291,Initial Response,2025-01-12 16:37:00,Carol_Jackson
+TKT-00279,Ticket Created,2025-01-12 16:41:00,System
+TKT-00287,Assign to Agent,2025-01-12 16:45:00,System
+TKT-00290,Ticket Created,2025-01-12 16:45:00,System
+TKT-00275,Ticket Created,2025-01-12 16:48:00,System
+TKT-00290,Assign to Agent,2025-01-12 16:51:00,System
+TKT-00279,Assign to Agent,2025-01-12 16:58:00,System
+TKT-00291,Provide Solution,2025-01-12 17:00:00,Carol_Jackson
+TKT-00290,Initial Response,2025-01-12 17:02:00,Carol_Jackson
+TKT-00287,Initial Response,2025-01-12 17:03:00,Alice_Green
+TKT-00291,Close Ticket,2025-01-12 17:06:00,Carol_Jackson
+TKT-00299,Specialist Review,2025-01-12 17:06:00,Expert_Lisa
+TKT-00275,Assign to Agent,2025-01-12 17:10:00,System
+TKT-00279,Initial Response,2025-01-12 17:14:00,Carol_Jackson
+TKT-00290,Provide Solution,2025-01-12 17:18:00,Carol_Jackson
+TKT-00287,Follow-up Required,2025-01-12 17:28:00,Alice_Green
+TKT-00290,Close Ticket,2025-01-12 17:30:00,Carol_Jackson
+TKT-00277,Ticket Created,2025-01-12 17:33:00,System
+TKT-00299,Provide Solution,2025-01-12 17:34:00,Expert_Tom
+TKT-00283,Ticket Created,2025-01-12 17:35:00,System
+TKT-00252,Follow-up Response,2025-01-12 17:38:00,Dave_Thompson
+TKT-00279,Provide Solution,2025-01-12 17:40:00,Carol_Jackson
+TKT-00277,Assign to Agent,2025-01-12 17:41:00,System
+TKT-00281,Ticket Created,2025-01-12 17:45:00,System
+TKT-00279,Close Ticket,2025-01-12 17:50:00,Carol_Jackson
+TKT-00299,Close Ticket,2025-01-12 17:52:00,Dave_Thompson
+TKT-00275,Initial Response,2025-01-12 17:54:00,Carol_Jackson
+TKT-00289,Ticket Created,2025-01-12 17:56:00,System
+TKT-00252,Provide Solution,2025-01-12 18:02:00,Expert_Tom
+TKT-00283,Assign to Agent,2025-01-12 18:04:00,System
+TKT-00281,Assign to Agent,2025-01-12 18:07:00,System
+TKT-00275,Provide Solution,2025-01-12 18:09:00,Carol_Jackson
+TKT-00289,Assign to Agent,2025-01-12 18:10:00,System
+TKT-00297,Ticket Created,2025-01-12 18:10:00,System
+TKT-00252,Close Ticket,2025-01-12 18:14:00,Dave_Thompson
+TKT-00275,Close Ticket,2025-01-12 18:15:00,Carol_Jackson
+TKT-00281,Initial Response,2025-01-12 18:18:00,Carol_Jackson
+TKT-00276,Ticket Created,2025-01-12 18:27:00,System
+TKT-00281,Provide Solution,2025-01-12 18:33:00,Carol_Jackson
+TKT-00285,Specialist Review,2025-01-12 18:34:00,Expert_Lisa
+TKT-00277,Initial Response,2025-01-12 18:37:00,Carol_Jackson
+TKT-00297,Assign to Agent,2025-01-12 18:37:00,System
+TKT-00283,Initial Response,2025-01-12 18:41:00,Carol_Jackson
+TKT-00289,Initial Response,2025-01-12 18:45:00,Carol_Jackson
+TKT-00276,Assign to Agent,2025-01-12 18:46:00,System
+TKT-00281,Close Ticket,2025-01-12 18:49:00,Carol_Jackson
+TKT-00285,Provide Solution,2025-01-12 18:53:00,Expert_Tom
+TKT-00297,Initial Response,2025-01-12 18:56:00,Carol_Jackson
+TKT-00283,Provide Solution,2025-01-12 18:57:00,Carol_Jackson
+TKT-00285,Close Ticket,2025-01-12 18:58:00,Alice_Green
+TKT-00282,Specialist Review,2025-01-12 18:59:00,Expert_Lisa
+TKT-00289,Provide Solution,2025-01-12 19:04:00,Carol_Jackson
+TKT-00297,Provide Solution,2025-01-12 19:06:00,Carol_Jackson
+TKT-00276,Initial Response,2025-01-12 19:08:00,Dave_Thompson
+TKT-00289,Close Ticket,2025-01-12 19:11:00,Carol_Jackson
+TKT-00283,Close Ticket,2025-01-12 19:12:00,Carol_Jackson
+TKT-00297,Close Ticket,2025-01-12 19:16:00,Carol_Jackson
+TKT-00282,Provide Solution,2025-01-12 19:22:00,Expert_Lisa
+TKT-00296,Specialist Review,2025-01-12 19:26:00,Expert_Tom
+TKT-00276,Provide Solution,2025-01-12 19:33:00,Dave_Thompson
+TKT-00282,Close Ticket,2025-01-12 19:40:00,Bob_Martinez
+TKT-00277,Escalate to Specialist,2025-01-12 19:41:00,Carol_Jackson
+TKT-00276,Close Ticket,2025-01-12 19:47:00,Dave_Thompson
+TKT-00296,Provide Solution,2025-01-12 19:50:00,Expert_Tom
+TKT-00292,Ticket Created,2025-01-12 19:58:00,System
+TKT-00295,Ticket Created,2025-01-12 20:02:00,System
+TKT-00296,Close Ticket,2025-01-12 20:05:00,Alice_Green
+TKT-00292,Assign to Agent,2025-01-12 20:11:00,System
+TKT-00215,Reopen Ticket,2025-01-12 20:18:00,Customer
+TKT-00295,Assign to Agent,2025-01-12 20:20:00,System
+TKT-00293,Specialist Review,2025-01-12 20:22:00,Expert_Tom
+TKT-00292,Initial Response,2025-01-12 20:32:00,Dave_Thompson
+TKT-00293,Provide Solution,2025-01-12 20:38:00,Expert_Lisa
+TKT-00277,Specialist Review,2025-01-12 20:41:00,Expert_Lisa
+TKT-00280,Ticket Created,2025-01-12 20:43:00,System
+TKT-00280,Assign to Agent,2025-01-12 20:56:00,System
+TKT-00293,Close Ticket,2025-01-12 20:58:00,Bob_Martinez
+TKT-00277,Provide Solution,2025-01-12 21:06:00,Expert_Lisa
+TKT-00277,Close Ticket,2025-01-12 21:15:00,Carol_Jackson
+TKT-00295,Initial Response,2025-01-12 21:15:00,Dave_Thompson
+TKT-00280,Initial Response,2025-01-12 21:17:00,Alice_Green
+TKT-00215,Provide Solution,2025-01-12 21:38:00,Dave_Thompson
+TKT-00215,Close Ticket,2025-01-12 21:45:00,Dave_Thompson
+TKT-00295,Escalate to Specialist,2025-01-12 21:56:00,Dave_Thompson
+TKT-00292,Escalate to Specialist,2025-01-12 21:58:00,Dave_Thompson
+TKT-00189,Reopen Ticket,2025-01-12 22:06:00,Customer
+TKT-00280,Escalate to Specialist,2025-01-12 22:42:00,Alice_Green
+TKT-00189,Provide Solution,2025-01-12 22:47:00,Carol_Jackson
+TKT-00189,Close Ticket,2025-01-12 22:52:00,Carol_Jackson
+TKT-00292,Specialist Review,2025-01-12 23:58:00,Expert_Lisa
+TKT-00292,Provide Solution,2025-01-13 00:23:00,Expert_Tom
+TKT-00292,Close Ticket,2025-01-13 00:30:00,Dave_Thompson
+TKT-00280,Specialist Review,2025-01-13 00:42:00,Expert_Lisa
+TKT-00280,Follow-up Required,2025-01-13 01:40:00,Alice_Green
+TKT-00300,Ticket Created,2025-01-13 02:17:00,System
+TKT-00300,Assign to Agent,2025-01-13 02:32:00,System
+TKT-00300,Initial Response,2025-01-13 03:01:00,Alice_Green
+TKT-00300,Provide Solution,2025-01-13 03:29:00,Alice_Green
+TKT-00300,Close Ticket,2025-01-13 03:45:00,Alice_Green
+TKT-00295,Specialist Review,2025-01-13 03:56:00,Expert_Tom
+TKT-00295,Provide Solution,2025-01-13 04:18:00,Expert_Lisa
+TKT-00295,Close Ticket,2025-01-13 04:25:00,Dave_Thompson
+TKT-00273,Follow-up Response,2025-01-13 05:39:00,Carol_Jackson
+TKT-00273,Provide Solution,2025-01-13 06:07:00,Expert_Tom
+TKT-00273,Close Ticket,2025-01-13 06:22:00,Carol_Jackson
+TKT-00294,Follow-up Response,2025-01-13 07:15:00,Dave_Thompson
+TKT-00294,Provide Solution,2025-01-13 07:43:00,Dave_Thompson
+TKT-00294,Close Ticket,2025-01-13 07:52:00,Dave_Thompson
+TKT-00303,Ticket Created,2025-01-13 08:14:00,System
+TKT-00303,Assign to Agent,2025-01-13 08:41:00,System
+TKT-00303,Initial Response,2025-01-13 09:03:00,Dave_Thompson
+TKT-00306,Ticket Created,2025-01-13 09:04:00,System
+TKT-00306,Assign to Agent,2025-01-13 09:30:00,System
+TKT-00307,Ticket Created,2025-01-13 09:42:00,System
+TKT-00307,Assign to Agent,2025-01-13 10:09:00,System
+TKT-00315,Ticket Created,2025-01-13 10:21:00,System
+TKT-00313,Ticket Created,2025-01-13 10:22:00,System
+TKT-00315,Assign to Agent,2025-01-13 10:26:00,System
+TKT-00306,Initial Response,2025-01-13 10:27:00,Carol_Jackson
+TKT-00307,Initial Response,2025-01-13 10:27:00,Bob_Martinez
+TKT-00314,Ticket Created,2025-01-13 10:28:00,System
+TKT-00313,Assign to Agent,2025-01-13 10:36:00,System
+TKT-00303,Escalate to Specialist,2025-01-13 10:49:00,Dave_Thompson
+TKT-00314,Assign to Agent,2025-01-13 10:50:00,System
+TKT-00307,Provide Solution,2025-01-13 10:55:00,Bob_Martinez
+TKT-00313,Initial Response,2025-01-13 10:55:00,Dave_Thompson
+TKT-00307,Close Ticket,2025-01-13 11:14:00,Bob_Martinez
+TKT-00306,Escalate to Specialist,2025-01-13 11:16:00,Carol_Jackson
+TKT-00313,Provide Solution,2025-01-13 11:16:00,Dave_Thompson
+TKT-00315,Initial Response,2025-01-13 11:19:00,Bob_Martinez
+TKT-00313,Close Ticket,2025-01-13 11:27:00,Dave_Thompson
+TKT-00314,Initial Response,2025-01-13 11:35:00,Bob_Martinez
+TKT-00315,Follow-up Required,2025-01-13 11:56:00,Bob_Martinez
+TKT-00302,Ticket Created,2025-01-13 12:35:00,System
+TKT-00324,Ticket Created,2025-01-13 12:43:00,System
+TKT-00324,Assign to Agent,2025-01-13 12:52:00,System
+TKT-00302,Assign to Agent,2025-01-13 13:04:00,System
+TKT-00314,Escalate to Specialist,2025-01-13 13:12:00,Bob_Martinez
+TKT-00302,Initial Response,2025-01-13 13:28:00,Alice_Green
+TKT-00324,Initial Response,2025-01-13 13:42:00,Bob_Martinez
+TKT-00323,Ticket Created,2025-01-13 13:43:00,System
+TKT-00324,Provide Solution,2025-01-13 14:09:00,Bob_Martinez
+TKT-00323,Assign to Agent,2025-01-13 14:10:00,System
+TKT-00324,Close Ticket,2025-01-13 14:16:00,Bob_Martinez
+TKT-00323,Initial Response,2025-01-13 14:39:00,Alice_Green
+TKT-00298,Reopen Ticket,2025-01-13 14:46:00,Customer
+TKT-00318,Ticket Created,2025-01-13 14:47:00,System
+TKT-00323,Provide Solution,2025-01-13 15:01:00,Alice_Green
+TKT-00323,Close Ticket,2025-01-13 15:10:00,Alice_Green
+TKT-00302,Escalate to Specialist,2025-01-13 15:16:00,Alice_Green
+TKT-00318,Assign to Agent,2025-01-13 15:17:00,System
+TKT-00312,Ticket Created,2025-01-13 15:33:00,System
+TKT-00305,Ticket Created,2025-01-13 15:52:00,System
+TKT-00309,Ticket Created,2025-01-13 15:54:00,System
+TKT-00318,Initial Response,2025-01-13 15:58:00,Bob_Martinez
+TKT-00312,Assign to Agent,2025-01-13 16:00:00,System
+TKT-00321,Ticket Created,2025-01-13 16:10:00,System
+TKT-00309,Assign to Agent,2025-01-13 16:13:00,System
+TKT-00321,Assign to Agent,2025-01-13 16:17:00,System
+TKT-00305,Assign to Agent,2025-01-13 16:21:00,System
+TKT-00298,Provide Solution,2025-01-13 16:28:00,Bob_Martinez
+TKT-00312,Initial Response,2025-01-13 16:32:00,Alice_Green
+TKT-00318,Escalate to Specialist,2025-01-13 16:34:00,Bob_Martinez
+TKT-00298,Close Ticket,2025-01-13 16:36:00,Bob_Martinez
+TKT-00321,Initial Response,2025-01-13 16:38:00,Carol_Jackson
+TKT-00309,Initial Response,2025-01-13 16:41:00,Dave_Thompson
+TKT-00303,Specialist Review,2025-01-13 16:49:00,Expert_Tom
+TKT-00305,Initial Response,2025-01-13 16:49:00,Dave_Thompson
+TKT-00312,Provide Solution,2025-01-13 16:49:00,Alice_Green
+TKT-00311,Ticket Created,2025-01-13 16:50:00,System
+TKT-00312,Close Ticket,2025-01-13 16:58:00,Alice_Green
+TKT-00305,Provide Solution,2025-01-13 17:01:00,Dave_Thompson
+TKT-00321,Provide Solution,2025-01-13 17:02:00,Carol_Jackson
+TKT-00321,Close Ticket,2025-01-13 17:09:00,Carol_Jackson
+TKT-00305,Close Ticket,2025-01-13 17:10:00,Dave_Thompson
+TKT-00303,Provide Solution,2025-01-13 17:13:00,Expert_Tom
+TKT-00306,Specialist Review,2025-01-13 17:16:00,Expert_Tom
+TKT-00316,Ticket Created,2025-01-13 17:19:00,System
+TKT-00311,Assign to Agent,2025-01-13 17:20:00,System
+TKT-00303,Close Ticket,2025-01-13 17:25:00,Dave_Thompson
+TKT-00306,Provide Solution,2025-01-13 17:26:00,Expert_Tom
+TKT-00316,Assign to Agent,2025-01-13 17:29:00,System
+TKT-00306,Close Ticket,2025-01-13 17:32:00,Carol_Jackson
+TKT-00304,Ticket Created,2025-01-13 17:39:00,System
+TKT-00316,Initial Response,2025-01-13 17:47:00,Carol_Jackson
+TKT-00304,Assign to Agent,2025-01-13 18:09:00,System
+TKT-00310,Ticket Created,2025-01-13 18:09:00,System
+TKT-00314,Specialist Review,2025-01-13 18:12:00,Expert_Tom
+TKT-00316,Provide Solution,2025-01-13 18:12:00,Carol_Jackson
+TKT-00311,Initial Response,2025-01-13 18:18:00,Carol_Jackson
+TKT-00317,Ticket Created,2025-01-13 18:21:00,System
+TKT-00316,Close Ticket,2025-01-13 18:25:00,Carol_Jackson
+TKT-00317,Assign to Agent,2025-01-13 18:26:00,System
+TKT-00309,Escalate to Specialist,2025-01-13 18:27:00,Dave_Thompson
+TKT-00310,Assign to Agent,2025-01-13 18:33:00,System
+TKT-00314,Provide Solution,2025-01-13 18:36:00,Expert_Tom
+TKT-00317,Initial Response,2025-01-13 18:37:00,Alice_Green
+TKT-00266,Follow-up Response,2025-01-13 18:46:00,Bob_Martinez
+TKT-00301,Ticket Created,2025-01-13 18:49:00,System
+TKT-00314,Close Ticket,2025-01-13 18:51:00,Bob_Martinez
+TKT-00320,Ticket Created,2025-01-13 19:04:00,System
+TKT-00304,Initial Response,2025-01-13 19:05:00,Alice_Green
+TKT-00317,Provide Solution,2025-01-13 19:05:00,Alice_Green
+TKT-00310,Initial Response,2025-01-13 19:09:00,Alice_Green
+TKT-00266,Provide Solution,2025-01-13 19:11:00,Bob_Martinez
+TKT-00302,Specialist Review,2025-01-13 19:16:00,Expert_Lisa
+TKT-00301,Assign to Agent,2025-01-13 19:19:00,System
+TKT-00317,Close Ticket,2025-01-13 19:22:00,Alice_Green
+TKT-00309,Specialist Review,2025-01-13 19:27:00,Expert_Lisa
+TKT-00266,Close Ticket,2025-01-13 19:31:00,Bob_Martinez
+TKT-00304,Provide Solution,2025-01-13 19:33:00,Alice_Green
+TKT-00320,Assign to Agent,2025-01-13 19:33:00,System
+TKT-00310,Provide Solution,2025-01-13 19:37:00,Alice_Green
+TKT-00302,Provide Solution,2025-01-13 19:39:00,Expert_Lisa
+TKT-00304,Close Ticket,2025-01-13 19:46:00,Alice_Green
+TKT-00265,Reopen Ticket,2025-01-13 19:50:00,Customer
+TKT-00308,Ticket Created,2025-01-13 19:52:00,System
+TKT-00310,Close Ticket,2025-01-13 19:53:00,Alice_Green
+TKT-00302,Close Ticket,2025-01-13 19:54:00,Alice_Green
+TKT-00309,Provide Solution,2025-01-13 19:57:00,Expert_Lisa
+TKT-00311,Escalate to Specialist,2025-01-13 19:59:00,Carol_Jackson
+TKT-00308,Assign to Agent,2025-01-13 20:00:00,System
+TKT-00319,Ticket Created,2025-01-13 20:10:00,System
+TKT-00309,Close Ticket,2025-01-13 20:14:00,Dave_Thompson
+TKT-00320,Initial Response,2025-01-13 20:15:00,Alice_Green
+TKT-00301,Initial Response,2025-01-13 20:16:00,Dave_Thompson
+TKT-00265,Provide Solution,2025-01-13 20:32:00,Dave_Thompson
+TKT-00319,Assign to Agent,2025-01-13 20:34:00,System
+TKT-00265,Close Ticket,2025-01-13 20:39:00,Dave_Thompson
+TKT-00308,Initial Response,2025-01-13 20:43:00,Carol_Jackson
+TKT-00322,Ticket Created,2025-01-13 20:48:00,System
+TKT-00311,Specialist Review,2025-01-13 20:59:00,Expert_Lisa
+TKT-00319,Initial Response,2025-01-13 21:08:00,Carol_Jackson
+TKT-00322,Assign to Agent,2025-01-13 21:08:00,System
+TKT-00308,Follow-up Required,2025-01-13 21:25:00,Carol_Jackson
+TKT-00311,Provide Solution,2025-01-13 21:26:00,Expert_Tom
+TKT-00319,Provide Solution,2025-01-13 21:31:00,Carol_Jackson
+TKT-00318,Specialist Review,2025-01-13 21:34:00,Expert_Lisa
+TKT-00301,Escalate to Specialist,2025-01-13 21:36:00,Dave_Thompson
+TKT-00311,Close Ticket,2025-01-13 21:38:00,Carol_Jackson
+TKT-00320,Escalate to Specialist,2025-01-13 21:47:00,Alice_Green
+TKT-00322,Initial Response,2025-01-13 21:48:00,Dave_Thompson
+TKT-00319,Close Ticket,2025-01-13 21:50:00,Carol_Jackson
+TKT-00318,Provide Solution,2025-01-13 22:03:00,Expert_Tom
+TKT-00318,Close Ticket,2025-01-13 22:11:00,Bob_Martinez
+TKT-00322,Follow-up Required,2025-01-13 22:41:00,Dave_Thompson
+TKT-00320,Specialist Review,2025-01-13 22:47:00,Expert_Lisa
+TKT-00320,Provide Solution,2025-01-13 23:02:00,Expert_Tom
+TKT-00320,Close Ticket,2025-01-13 23:10:00,Alice_Green
+TKT-00245,Reopen Ticket,2025-01-14 01:11:00,Customer
+TKT-00301,Specialist Review,2025-01-14 01:36:00,Expert_Lisa
+TKT-00301,Follow-up Required,2025-01-14 02:02:00,Dave_Thompson
+TKT-00245,Provide Solution,2025-01-14 03:02:00,Bob_Martinez
+TKT-00245,Close Ticket,2025-01-14 03:08:00,Bob_Martinez
+TKT-00295,Reopen Ticket,2025-01-14 04:25:00,Customer
+TKT-00295,Provide Solution,2025-01-14 05:08:00,Dave_Thompson
+TKT-00295,Close Ticket,2025-01-14 05:16:00,Dave_Thompson
+TKT-00315,Follow-up Response,2025-01-14 05:56:00,Bob_Martinez
+TKT-00315,Provide Solution,2025-01-14 06:23:00,Bob_Martinez
+TKT-00315,Close Ticket,2025-01-14 06:40:00,Bob_Martinez
+TKT-00332,Ticket Created,2025-01-14 08:18:00,System
+TKT-00346,Ticket Created,2025-01-14 08:35:00,System
+TKT-00332,Assign to Agent,2025-01-14 08:36:00,System
+TKT-00346,Assign to Agent,2025-01-14 08:40:00,System
+TKT-00330,Ticket Created,2025-01-14 09:07:00,System
+TKT-00332,Initial Response,2025-01-14 09:19:00,Carol_Jackson
+TKT-00330,Assign to Agent,2025-01-14 09:22:00,System
+TKT-00346,Initial Response,2025-01-14 09:22:00,Bob_Martinez
+TKT-00329,Ticket Created,2025-01-14 09:24:00,System
+TKT-00334,Ticket Created,2025-01-14 09:26:00,System
+TKT-00332,Provide Solution,2025-01-14 09:30:00,Carol_Jackson
+TKT-00329,Assign to Agent,2025-01-14 09:37:00,System
+TKT-00332,Close Ticket,2025-01-14 09:45:00,Carol_Jackson
+TKT-00334,Assign to Agent,2025-01-14 09:46:00,System
+TKT-00325,Ticket Created,2025-01-14 09:50:00,System
+TKT-00346,Provide Solution,2025-01-14 09:50:00,Bob_Martinez
+TKT-00334,Initial Response,2025-01-14 10:03:00,Dave_Thompson
+TKT-00329,Initial Response,2025-01-14 10:05:00,Dave_Thompson
+TKT-00346,Close Ticket,2025-01-14 10:06:00,Bob_Martinez
+TKT-00330,Initial Response,2025-01-14 10:12:00,Dave_Thompson
+TKT-00325,Assign to Agent,2025-01-14 10:20:00,System
+TKT-00344,Ticket Created,2025-01-14 10:21:00,System
+TKT-00330,Provide Solution,2025-01-14 10:22:00,Dave_Thompson
+TKT-00330,Close Ticket,2025-01-14 10:31:00,Dave_Thompson
+TKT-00334,Escalate to Specialist,2025-01-14 10:44:00,Dave_Thompson
+TKT-00344,Assign to Agent,2025-01-14 10:46:00,System
+TKT-00325,Initial Response,2025-01-14 11:11:00,Dave_Thompson
+TKT-00344,Initial Response,2025-01-14 11:11:00,Alice_Green
+TKT-00338,Ticket Created,2025-01-14 11:15:00,System
+TKT-00329,Escalate to Specialist,2025-01-14 11:26:00,Dave_Thompson
+TKT-00338,Assign to Agent,2025-01-14 11:30:00,System
+TKT-00344,Provide Solution,2025-01-14 11:34:00,Alice_Green
+TKT-00334,Specialist Review,2025-01-14 11:44:00,Expert_Lisa
+TKT-00338,Initial Response,2025-01-14 11:45:00,Bob_Martinez
+TKT-00344,Close Ticket,2025-01-14 11:52:00,Alice_Green
+TKT-00334,Provide Solution,2025-01-14 12:02:00,Expert_Lisa
+TKT-00343,Ticket Created,2025-01-14 12:02:00,System
+TKT-00343,Assign to Agent,2025-01-14 12:12:00,System
+TKT-00334,Close Ticket,2025-01-14 12:22:00,Dave_Thompson
+TKT-00338,Escalate to Specialist,2025-01-14 12:29:00,Bob_Martinez
+TKT-00325,Escalate to Specialist,2025-01-14 12:48:00,Dave_Thompson
+TKT-00343,Initial Response,2025-01-14 13:00:00,Carol_Jackson
+TKT-00301,Follow-up Response,2025-01-14 13:02:00,Dave_Thompson
+TKT-00301,Provide Solution,2025-01-14 13:28:00,Expert_Tom
+TKT-00301,Close Ticket,2025-01-14 13:33:00,Dave_Thompson
+TKT-00343,Follow-up Required,2025-01-14 14:00:00,Carol_Jackson
+TKT-00340,Ticket Created,2025-01-14 15:24:00,System
+TKT-00329,Specialist Review,2025-01-14 15:26:00,Expert_Tom
+TKT-00287,Follow-up Response,2025-01-14 15:28:00,Alice_Green
+TKT-00333,Ticket Created,2025-01-14 15:30:00,System
+TKT-00287,Provide Solution,2025-01-14 15:50:00,Alice_Green
+TKT-00333,Assign to Agent,2025-01-14 15:50:00,System
+TKT-00336,Ticket Created,2025-01-14 15:51:00,System
+TKT-00340,Assign to Agent,2025-01-14 15:51:00,System
+TKT-00347,Ticket Created,2025-01-14 15:52:00,System
+TKT-00327,Ticket Created,2025-01-14 16:01:00,System
+TKT-00287,Close Ticket,2025-01-14 16:06:00,Alice_Green
+TKT-00340,Initial Response,2025-01-14 16:09:00,Carol_Jackson
+TKT-00327,Assign to Agent,2025-01-14 16:12:00,System
+TKT-00336,Assign to Agent,2025-01-14 16:21:00,System
+TKT-00347,Assign to Agent,2025-01-14 16:22:00,System
+TKT-00329,Follow-up Required,2025-01-14 16:24:00,Dave_Thompson
+TKT-00340,Provide Solution,2025-01-14 16:28:00,Carol_Jackson
+TKT-00347,Initial Response,2025-01-14 16:37:00,Bob_Martinez
+TKT-00327,Initial Response,2025-01-14 16:44:00,Carol_Jackson
+TKT-00333,Initial Response,2025-01-14 16:45:00,Alice_Green
+TKT-00336,Initial Response,2025-01-14 16:45:00,Alice_Green
+TKT-00340,Close Ticket,2025-01-14 16:46:00,Carol_Jackson
+TKT-00348,Ticket Created,2025-01-14 16:54:00,System
+TKT-00333,Escalate to Specialist,2025-01-14 17:17:00,Alice_Green
+TKT-00348,Assign to Agent,2025-01-14 17:17:00,System
+TKT-00338,Specialist Review,2025-01-14 17:29:00,Expert_Tom
+TKT-00280,Follow-up Response,2025-01-14 17:40:00,Alice_Green
+TKT-00341,Ticket Created,2025-01-14 17:44:00,System
+TKT-00325,Specialist Review,2025-01-14 17:48:00,Expert_Tom
+TKT-00339,Ticket Created,2025-01-14 17:50:00,System
+TKT-00280,Provide Solution,2025-01-14 17:55:00,Expert_Lisa
+TKT-00341,Assign to Agent,2025-01-14 17:56:00,System
+TKT-00326,Ticket Created,2025-01-14 17:58:00,System
+TKT-00338,Provide Solution,2025-01-14 17:58:00,Expert_Tom
+TKT-00348,Initial Response,2025-01-14 17:58:00,Alice_Green
+TKT-00280,Close Ticket,2025-01-14 18:01:00,Alice_Green
+TKT-00339,Assign to Agent,2025-01-14 18:03:00,System
+TKT-00347,Escalate to Specialist,2025-01-14 18:05:00,Bob_Martinez
+TKT-00326,Assign to Agent,2025-01-14 18:09:00,System
+TKT-00325,Provide Solution,2025-01-14 18:11:00,Expert_Lisa
+TKT-00338,Close Ticket,2025-01-14 18:13:00,Bob_Martinez
+TKT-00337,Ticket Created,2025-01-14 18:17:00,System
+TKT-00325,Close Ticket,2025-01-14 18:21:00,Dave_Thompson
+TKT-00336,Escalate to Specialist,2025-01-14 18:25:00,Alice_Green
+TKT-00348,Provide Solution,2025-01-14 18:26:00,Alice_Green
+TKT-00335,Ticket Created,2025-01-14 18:28:00,System
+TKT-00327,Escalate to Specialist,2025-01-14 18:29:00,Carol_Jackson
+TKT-00337,Assign to Agent,2025-01-14 18:29:00,System
+TKT-00348,Close Ticket,2025-01-14 18:35:00,Alice_Green
+TKT-00337,Initial Response,2025-01-14 18:39:00,Alice_Green
+TKT-00335,Assign to Agent,2025-01-14 18:52:00,System
+TKT-00341,Initial Response,2025-01-14 18:52:00,Alice_Green
+TKT-00326,Initial Response,2025-01-14 18:57:00,Carol_Jackson
+TKT-00339,Initial Response,2025-01-14 19:01:00,Carol_Jackson
+TKT-00337,Provide Solution,2025-01-14 19:02:00,Alice_Green
+TKT-00349,Ticket Created,2025-01-14 19:03:00,System
+TKT-00337,Close Ticket,2025-01-14 19:14:00,Alice_Green
+TKT-00345,Ticket Created,2025-01-14 19:14:00,System
+TKT-00339,Provide Solution,2025-01-14 19:23:00,Carol_Jackson
+TKT-00349,Assign to Agent,2025-01-14 19:26:00,System
+TKT-00331,Ticket Created,2025-01-14 19:27:00,System
+TKT-00339,Close Ticket,2025-01-14 19:37:00,Carol_Jackson
+TKT-00345,Assign to Agent,2025-01-14 19:42:00,System
+TKT-00331,Assign to Agent,2025-01-14 19:44:00,System
+TKT-00335,Initial Response,2025-01-14 19:50:00,Bob_Martinez
+TKT-00335,Provide Solution,2025-01-14 20:00:00,Bob_Martinez
+TKT-00347,Specialist Review,2025-01-14 20:05:00,Expert_Lisa
+TKT-00331,Initial Response,2025-01-14 20:11:00,Alice_Green
+TKT-00349,Initial Response,2025-01-14 20:15:00,Alice_Green
+TKT-00335,Close Ticket,2025-01-14 20:17:00,Bob_Martinez
+TKT-00341,Escalate to Specialist,2025-01-14 20:21:00,Alice_Green
+TKT-00328,Ticket Created,2025-01-14 20:29:00,System
+TKT-00347,Provide Solution,2025-01-14 20:29:00,Expert_Lisa
+TKT-00345,Initial Response,2025-01-14 20:32:00,Carol_Jackson
+TKT-00331,Provide Solution,2025-01-14 20:34:00,Alice_Green
+TKT-00349,Provide Solution,2025-01-14 20:41:00,Alice_Green
+TKT-00331,Close Ticket,2025-01-14 20:46:00,Alice_Green
+TKT-00328,Assign to Agent,2025-01-14 20:49:00,System
+TKT-00347,Close Ticket,2025-01-14 20:49:00,Bob_Martinez
+TKT-00326,Escalate to Specialist,2025-01-14 20:52:00,Carol_Jackson
+TKT-00345,Provide Solution,2025-01-14 20:53:00,Carol_Jackson
+TKT-00342,Ticket Created,2025-01-14 20:55:00,System
+TKT-00349,Close Ticket,2025-01-14 20:55:00,Alice_Green
+TKT-00342,Assign to Agent,2025-01-14 21:01:00,System
+TKT-00345,Close Ticket,2025-01-14 21:09:00,Carol_Jackson
+TKT-00328,Initial Response,2025-01-14 21:16:00,Alice_Green
+TKT-00328,Provide Solution,2025-01-14 21:28:00,Alice_Green
+TKT-00342,Initial Response,2025-01-14 21:28:00,Bob_Martinez
+TKT-00327,Specialist Review,2025-01-14 21:29:00,Expert_Lisa
+TKT-00327,Provide Solution,2025-01-14 21:39:00,Expert_Lisa
+TKT-00328,Close Ticket,2025-01-14 21:40:00,Alice_Green
+TKT-00327,Close Ticket,2025-01-14 21:46:00,Carol_Jackson
+TKT-00342,Provide Solution,2025-01-14 21:56:00,Bob_Martinez
+TKT-00342,Close Ticket,2025-01-14 22:15:00,Bob_Martinez
+TKT-00333,Specialist Review,2025-01-14 22:17:00,Expert_Tom
+TKT-00333,Provide Solution,2025-01-14 22:32:00,Expert_Tom
+TKT-00333,Close Ticket,2025-01-14 22:44:00,Alice_Green
+TKT-00336,Specialist Review,2025-01-14 23:25:00,Expert_Lisa
+TKT-00336,Request Additional Info,2025-01-14 23:44:00,Expert_Tom
+TKT-00341,Specialist Review,2025-01-15 00:21:00,Expert_Tom
+TKT-00341,Provide Solution,2025-01-15 00:43:00,Expert_Lisa
+TKT-00326,Specialist Review,2025-01-15 00:52:00,Expert_Tom
+TKT-00341,Close Ticket,2025-01-15 01:03:00,Alice_Green
+TKT-00326,Provide Solution,2025-01-15 01:04:00,Expert_Tom
+TKT-00326,Close Ticket,2025-01-15 01:11:00,Carol_Jackson
+TKT-00350,Ticket Created,2025-01-15 02:31:00,System
+TKT-00350,Assign to Agent,2025-01-15 02:54:00,System
+TKT-00350,Initial Response,2025-01-15 03:33:00,Alice_Green
+TKT-00350,Follow-up Required,2025-01-15 04:10:00,Alice_Green
+TKT-00369,Ticket Created,2025-01-15 08:21:00,System
+TKT-00308,Follow-up Response,2025-01-15 08:25:00,Carol_Jackson
+TKT-00353,Ticket Created,2025-01-15 08:28:00,System
+TKT-00369,Assign to Agent,2025-01-15 08:28:00,System
+TKT-00362,Ticket Created,2025-01-15 08:30:00,System
+TKT-00355,Ticket Created,2025-01-15 08:31:00,System
+TKT-00353,Assign to Agent,2025-01-15 08:44:00,System
+TKT-00355,Assign to Agent,2025-01-15 08:45:00,System
+TKT-00308,Provide Solution,2025-01-15 08:48:00,Carol_Jackson
+TKT-00369,Initial Response,2025-01-15 08:55:00,Carol_Jackson
+TKT-00362,Assign to Agent,2025-01-15 08:58:00,System
+TKT-00308,Close Ticket,2025-01-15 09:07:00,Carol_Jackson
+TKT-00355,Initial Response,2025-01-15 09:12:00,Alice_Green
+TKT-00351,Ticket Created,2025-01-15 09:18:00,System
+TKT-00362,Initial Response,2025-01-15 09:23:00,Alice_Green
+TKT-00358,Ticket Created,2025-01-15 09:24:00,System
+TKT-00353,Initial Response,2025-01-15 09:28:00,Alice_Green
+TKT-00355,Provide Solution,2025-01-15 09:34:00,Alice_Green
+TKT-00352,Ticket Created,2025-01-15 09:38:00,System
+TKT-00369,Escalate to Specialist,2025-01-15 09:41:00,Carol_Jackson
+TKT-00351,Assign to Agent,2025-01-15 09:45:00,System
+TKT-00358,Assign to Agent,2025-01-15 09:46:00,System
+TKT-00355,Close Ticket,2025-01-15 09:50:00,Alice_Green
+TKT-00352,Assign to Agent,2025-01-15 10:01:00,System
+TKT-00351,Initial Response,2025-01-15 10:09:00,Bob_Martinez
+TKT-00353,Escalate to Specialist,2025-01-15 10:12:00,Alice_Green
+TKT-00362,Escalate to Specialist,2025-01-15 10:25:00,Alice_Green
+TKT-00358,Initial Response,2025-01-15 10:31:00,Alice_Green
+TKT-00352,Initial Response,2025-01-15 10:32:00,Alice_Green
+TKT-00351,Escalate to Specialist,2025-01-15 10:39:00,Bob_Martinez
+TKT-00370,Ticket Created,2025-01-15 10:41:00,System
+TKT-00352,Provide Solution,2025-01-15 10:49:00,Alice_Green
+TKT-00371,Ticket Created,2025-01-15 10:53:00,System
+TKT-00358,Provide Solution,2025-01-15 10:59:00,Alice_Green
+TKT-00370,Assign to Agent,2025-01-15 11:00:00,System
+TKT-00352,Close Ticket,2025-01-15 11:07:00,Alice_Green
+TKT-00358,Close Ticket,2025-01-15 11:08:00,Alice_Green
+TKT-00371,Assign to Agent,2025-01-15 11:09:00,System
+TKT-00353,Specialist Review,2025-01-15 11:12:00,Expert_Tom
+TKT-00363,Ticket Created,2025-01-15 11:13:00,System
+TKT-00370,Initial Response,2025-01-15 11:23:00,Bob_Martinez
+TKT-00363,Assign to Agent,2025-01-15 11:38:00,System
+TKT-00351,Specialist Review,2025-01-15 11:39:00,Expert_Tom
+TKT-00353,Provide Solution,2025-01-15 11:41:00,Expert_Lisa
+TKT-00370,Provide Solution,2025-01-15 11:48:00,Bob_Martinez
+TKT-00353,Close Ticket,2025-01-15 11:53:00,Alice_Green
+TKT-00370,Close Ticket,2025-01-15 11:55:00,Bob_Martinez
+TKT-00351,Provide Solution,2025-01-15 12:04:00,Expert_Tom
+TKT-00363,Initial Response,2025-01-15 12:04:00,Dave_Thompson
+TKT-00371,Initial Response,2025-01-15 12:08:00,Bob_Martinez
+TKT-00351,Close Ticket,2025-01-15 12:16:00,Bob_Martinez
+TKT-00362,Specialist Review,2025-01-15 12:25:00,Expert_Lisa
+TKT-00366,Ticket Created,2025-01-15 12:30:00,System
+TKT-00366,Assign to Agent,2025-01-15 12:35:00,System
+TKT-00362,Provide Solution,2025-01-15 12:44:00,Expert_Tom
+TKT-00362,Close Ticket,2025-01-15 12:51:00,Alice_Green
+TKT-00361,Ticket Created,2025-01-15 12:55:00,System
+TKT-00371,Follow-up Required,2025-01-15 12:56:00,Bob_Martinez
+TKT-00374,Ticket Created,2025-01-15 12:58:00,System
+TKT-00374,Assign to Agent,2025-01-15 13:14:00,System
+TKT-00354,Ticket Created,2025-01-15 13:16:00,System
+TKT-00361,Assign to Agent,2025-01-15 13:16:00,System
+TKT-00366,Initial Response,2025-01-15 13:28:00,Dave_Thompson
+TKT-00374,Initial Response,2025-01-15 13:28:00,Bob_Martinez
+TKT-00361,Initial Response,2025-01-15 13:35:00,Alice_Green
+TKT-00366,Provide Solution,2025-01-15 13:38:00,Dave_Thompson
+TKT-00354,Assign to Agent,2025-01-15 13:39:00,System
+TKT-00365,Ticket Created,2025-01-15 13:41:00,System
+TKT-00374,Provide Solution,2025-01-15 13:45:00,Bob_Martinez
+TKT-00366,Close Ticket,2025-01-15 13:47:00,Dave_Thompson
+TKT-00363,Escalate to Specialist,2025-01-15 13:57:00,Dave_Thompson
+TKT-00365,Assign to Agent,2025-01-15 13:58:00,System
+TKT-00374,Close Ticket,2025-01-15 14:00:00,Bob_Martinez
+TKT-00354,Initial Response,2025-01-15 14:27:00,Dave_Thompson
+TKT-00365,Initial Response,2025-01-15 14:41:00,Dave_Thompson
+TKT-00369,Specialist Review,2025-01-15 14:41:00,Expert_Lisa
+TKT-00354,Provide Solution,2025-01-15 14:47:00,Dave_Thompson
+TKT-00359,Ticket Created,2025-01-15 14:52:00,System
+TKT-00361,Escalate to Specialist,2025-01-15 14:53:00,Alice_Green
+TKT-00365,Provide Solution,2025-01-15 14:57:00,Dave_Thompson
+TKT-00354,Close Ticket,2025-01-15 14:59:00,Dave_Thompson
+TKT-00359,Assign to Agent,2025-01-15 14:59:00,System
+TKT-00373,Ticket Created,2025-01-15 15:00:00,System
+TKT-00365,Close Ticket,2025-01-15 15:04:00,Dave_Thompson
+TKT-00350,Follow-up Response,2025-01-15 15:10:00,Alice_Green
+TKT-00369,Provide Solution,2025-01-15 15:10:00,Expert_Tom
+TKT-00373,Assign to Agent,2025-01-15 15:10:00,System
+TKT-00359,Initial Response,2025-01-15 15:24:00,Carol_Jackson
+TKT-00369,Close Ticket,2025-01-15 15:27:00,Carol_Jackson
+TKT-00350,Provide Solution,2025-01-15 15:35:00,Alice_Green
+TKT-00360,Ticket Created,2025-01-15 15:41:00,System
+TKT-00373,Initial Response,2025-01-15 15:43:00,Alice_Green
+TKT-00350,Close Ticket,2025-01-15 15:49:00,Alice_Green
+TKT-00359,Provide Solution,2025-01-15 15:51:00,Carol_Jackson
+TKT-00360,Assign to Agent,2025-01-15 16:03:00,System
+TKT-00373,Provide Solution,2025-01-15 16:09:00,Alice_Green
+TKT-00359,Close Ticket,2025-01-15 16:11:00,Carol_Jackson
+TKT-00373,Close Ticket,2025-01-15 16:19:00,Alice_Green
+TKT-00360,Initial Response,2025-01-15 16:55:00,Alice_Green
+TKT-00364,Ticket Created,2025-01-15 17:10:00,System
+TKT-00360,Provide Solution,2025-01-15 17:12:00,Alice_Green
+TKT-00364,Assign to Agent,2025-01-15 17:19:00,System
+TKT-00360,Close Ticket,2025-01-15 17:28:00,Alice_Green
+TKT-00372,Ticket Created,2025-01-15 17:31:00,System
+TKT-00372,Assign to Agent,2025-01-15 17:48:00,System
+TKT-00367,Ticket Created,2025-01-15 18:02:00,System
+TKT-00252,Reopen Ticket,2025-01-15 18:14:00,Customer
+TKT-00364,Initial Response,2025-01-15 18:17:00,Carol_Jackson
+TKT-00367,Assign to Agent,2025-01-15 18:29:00,System
+TKT-00372,Initial Response,2025-01-15 18:40:00,Dave_Thompson
+TKT-00363,Specialist Review,2025-01-15 18:57:00,Expert_Tom
+TKT-00367,Initial Response,2025-01-15 18:57:00,Dave_Thompson
+TKT-00364,Follow-up Required,2025-01-15 19:10:00,Carol_Jackson
+TKT-00357,Ticket Created,2025-01-15 19:14:00,System
+TKT-00363,Provide Solution,2025-01-15 19:21:00,Expert_Tom
+TKT-00266,Reopen Ticket,2025-01-15 19:31:00,Customer
+TKT-00363,Close Ticket,2025-01-15 19:34:00,Dave_Thompson
+TKT-00357,Assign to Agent,2025-01-15 19:37:00,System
+TKT-00361,Specialist Review,2025-01-15 19:53:00,Expert_Tom
+TKT-00368,Ticket Created,2025-01-15 20:02:00,System
+TKT-00252,Provide Solution,2025-01-15 20:06:00,Dave_Thompson
+TKT-00357,Initial Response,2025-01-15 20:12:00,Dave_Thompson
+TKT-00361,Provide Solution,2025-01-15 20:14:00,Expert_Lisa
+TKT-00252,Close Ticket,2025-01-15 20:16:00,Dave_Thompson
+TKT-00368,Assign to Agent,2025-01-15 20:27:00,System
+TKT-00372,Escalate to Specialist,2025-01-15 20:30:00,Dave_Thompson
+TKT-00361,Close Ticket,2025-01-15 20:32:00,Alice_Green
+TKT-00356,Ticket Created,2025-01-15 20:45:00,System
+TKT-00368,Initial Response,2025-01-15 20:50:00,Alice_Green
+TKT-00349,Reopen Ticket,2025-01-15 20:55:00,Customer
+TKT-00367,Escalate to Specialist,2025-01-15 20:57:00,Dave_Thompson
+TKT-00356,Assign to Agent,2025-01-15 21:06:00,System
+TKT-00368,Provide Solution,2025-01-15 21:13:00,Alice_Green
+TKT-00357,Escalate to Specialist,2025-01-15 21:22:00,Dave_Thompson
+TKT-00266,Provide Solution,2025-01-15 21:24:00,Bob_Martinez
+TKT-00368,Close Ticket,2025-01-15 21:24:00,Alice_Green
+TKT-00356,Initial Response,2025-01-15 21:34:00,Dave_Thompson
+TKT-00266,Close Ticket,2025-01-15 21:36:00,Bob_Martinez
+TKT-00327,Reopen Ticket,2025-01-15 21:46:00,Customer
+TKT-00356,Provide Solution,2025-01-15 21:54:00,Dave_Thompson
+TKT-00356,Close Ticket,2025-01-15 22:09:00,Dave_Thompson
+TKT-00357,Specialist Review,2025-01-15 22:22:00,Expert_Lisa
+TKT-00349,Provide Solution,2025-01-15 22:33:00,Alice_Green
+TKT-00349,Close Ticket,2025-01-15 22:38:00,Alice_Green
+TKT-00322,Follow-up Response,2025-01-15 22:41:00,Dave_Thompson
+TKT-00336,Customer Response,2025-01-15 22:44:00,Customer
+TKT-00322,Provide Solution,2025-01-15 22:57:00,Dave_Thompson
+TKT-00322,Close Ticket,2025-01-15 23:08:00,Dave_Thompson
+TKT-00357,Follow-up Required,2025-01-15 23:08:00,Dave_Thompson
+TKT-00327,Provide Solution,2025-01-15 23:09:00,Carol_Jackson
+TKT-00327,Close Ticket,2025-01-15 23:16:00,Carol_Jackson
+TKT-00336,Specialist Review,2025-01-15 23:26:00,Expert_Tom
+TKT-00336,Follow-up Required,2025-01-16 00:12:00,Alice_Green
+TKT-00364,Follow-up Response,2025-01-16 01:10:00,Carol_Jackson
+TKT-00364,Provide Solution,2025-01-16 01:20:00,Carol_Jackson
+TKT-00372,Specialist Review,2025-01-16 01:30:00,Expert_Tom
+TKT-00364,Close Ticket,2025-01-16 01:35:00,Carol_Jackson
+TKT-00372,Request Additional Info,2025-01-16 01:55:00,Expert_Tom
+TKT-00367,Specialist Review,2025-01-16 01:57:00,Expert_Lisa
+TKT-00367,Provide Solution,2025-01-16 02:07:00,Expert_Lisa
+TKT-00367,Close Ticket,2025-01-16 02:18:00,Dave_Thompson
+TKT-00372,Customer Response,2025-01-16 04:55:00,Customer
+TKT-00372,Specialist Review,2025-01-16 05:53:00,Expert_Tom
+TKT-00372,Provide Solution,2025-01-16 06:16:00,Expert_Lisa
+TKT-00372,Close Ticket,2025-01-16 06:33:00,Dave_Thompson
+TKT-00380,Ticket Created,2025-01-16 09:36:00,System
+TKT-00380,Assign to Agent,2025-01-16 09:46:00,System
+TKT-00329,Follow-up Response,2025-01-16 10:24:00,Dave_Thompson
+TKT-00380,Initial Response,2025-01-16 10:26:00,Bob_Martinez
+TKT-00329,Provide Solution,2025-01-16 10:45:00,Expert_Lisa
+TKT-00329,Close Ticket,2025-01-16 10:59:00,Dave_Thompson
+TKT-00343,Follow-up Response,2025-01-16 11:00:00,Carol_Jackson
+TKT-00376,Ticket Created,2025-01-16 11:14:00,System
+TKT-00380,Escalate to Specialist,2025-01-16 11:17:00,Bob_Martinez
+TKT-00343,Provide Solution,2025-01-16 11:18:00,Carol_Jackson
+TKT-00376,Assign to Agent,2025-01-16 11:26:00,System
+TKT-00343,Close Ticket,2025-01-16 11:36:00,Carol_Jackson
+TKT-00375,Ticket Created,2025-01-16 11:50:00,System
+TKT-00389,Ticket Created,2025-01-16 11:50:00,System
+TKT-00344,Reopen Ticket,2025-01-16 11:52:00,Customer
+TKT-00375,Assign to Agent,2025-01-16 12:02:00,System
+TKT-00376,Initial Response,2025-01-16 12:06:00,Alice_Green
+TKT-00389,Assign to Agent,2025-01-16 12:19:00,System
+TKT-00382,Ticket Created,2025-01-16 12:20:00,System
+TKT-00387,Ticket Created,2025-01-16 12:20:00,System
+TKT-00375,Initial Response,2025-01-16 12:29:00,Dave_Thompson
+TKT-00376,Provide Solution,2025-01-16 12:35:00,Alice_Green
+TKT-00383,Ticket Created,2025-01-16 12:37:00,System
+TKT-00399,Ticket Created,2025-01-16 12:42:00,System
+TKT-00387,Assign to Agent,2025-01-16 12:44:00,System
+TKT-00376,Close Ticket,2025-01-16 12:47:00,Alice_Green
+TKT-00383,Assign to Agent,2025-01-16 12:47:00,System
+TKT-00382,Assign to Agent,2025-01-16 12:49:00,System
+TKT-00344,Provide Solution,2025-01-16 12:56:00,Alice_Green
+TKT-00399,Assign to Agent,2025-01-16 12:56:00,System
+TKT-00399,Initial Response,2025-01-16 13:06:00,Bob_Martinez
+TKT-00387,Initial Response,2025-01-16 13:07:00,Dave_Thompson
+TKT-00344,Close Ticket,2025-01-16 13:08:00,Alice_Green
+TKT-00396,Ticket Created,2025-01-16 13:14:00,System
+TKT-00389,Initial Response,2025-01-16 13:16:00,Alice_Green
+TKT-00375,Escalate to Specialist,2025-01-16 13:21:00,Dave_Thompson
+TKT-00387,Provide Solution,2025-01-16 13:23:00,Dave_Thompson
+TKT-00387,Close Ticket,2025-01-16 13:33:00,Dave_Thompson
+TKT-00389,Provide Solution,2025-01-16 13:35:00,Alice_Green
+TKT-00396,Assign to Agent,2025-01-16 13:40:00,System
+TKT-00389,Close Ticket,2025-01-16 13:42:00,Alice_Green
+TKT-00383,Initial Response,2025-01-16 13:45:00,Alice_Green
+TKT-00382,Initial Response,2025-01-16 13:48:00,Bob_Martinez
+TKT-00399,Escalate to Specialist,2025-01-16 13:50:00,Bob_Martinez
+TKT-00396,Initial Response,2025-01-16 14:10:00,Carol_Jackson
+TKT-00384,Ticket Created,2025-01-16 14:14:00,System
+TKT-00380,Specialist Review,2025-01-16 14:17:00,Expert_Tom
+TKT-00384,Assign to Agent,2025-01-16 14:25:00,System
+TKT-00380,Provide Solution,2025-01-16 14:29:00,Expert_Tom
+TKT-00395,Ticket Created,2025-01-16 14:36:00,System
+TKT-00396,Provide Solution,2025-01-16 14:38:00,Carol_Jackson
+TKT-00396,Close Ticket,2025-01-16 14:45:00,Carol_Jackson
+TKT-00380,Close Ticket,2025-01-16 14:47:00,Bob_Martinez
+TKT-00395,Assign to Agent,2025-01-16 14:48:00,System
+TKT-00383,Escalate to Specialist,2025-01-16 15:00:00,Alice_Green
+TKT-00384,Initial Response,2025-01-16 15:02:00,Alice_Green
+TKT-00384,Provide Solution,2025-01-16 15:16:00,Alice_Green
+TKT-00375,Specialist Review,2025-01-16 15:21:00,Expert_Tom
+TKT-00384,Close Ticket,2025-01-16 15:21:00,Alice_Green
+TKT-00395,Initial Response,2025-01-16 15:36:00,Bob_Martinez
+TKT-00375,Provide Solution,2025-01-16 15:41:00,Expert_Tom
+TKT-00382,Escalate to Specialist,2025-01-16 15:41:00,Bob_Martinez
+TKT-00375,Close Ticket,2025-01-16 15:48:00,Dave_Thompson
+TKT-00399,Specialist Review,2025-01-16 15:50:00,Expert_Lisa
+TKT-00394,Ticket Created,2025-01-16 16:05:00,System
+TKT-00399,Follow-up Required,2025-01-16 16:14:00,Bob_Martinez
+TKT-00386,Ticket Created,2025-01-16 16:19:00,System
+TKT-00394,Assign to Agent,2025-01-16 16:23:00,System
+TKT-00386,Assign to Agent,2025-01-16 16:29:00,System
+TKT-00381,Ticket Created,2025-01-16 16:31:00,System
+TKT-00393,Ticket Created,2025-01-16 16:40:00,System
+TKT-00381,Assign to Agent,2025-01-16 16:46:00,System
+TKT-00386,Initial Response,2025-01-16 16:54:00,Bob_Martinez
+TKT-00393,Assign to Agent,2025-01-16 16:56:00,System
+TKT-00395,Escalate to Specialist,2025-01-16 16:59:00,Bob_Martinez
+TKT-00379,Ticket Created,2025-01-16 17:09:00,System
+TKT-00381,Initial Response,2025-01-16 17:09:00,Bob_Martinez
+TKT-00379,Assign to Agent,2025-01-16 17:16:00,System
+TKT-00386,Provide Solution,2025-01-16 17:16:00,Bob_Martinez
+TKT-00393,Initial Response,2025-01-16 17:17:00,Bob_Martinez
+TKT-00394,Initial Response,2025-01-16 17:20:00,Bob_Martinez
+TKT-00386,Close Ticket,2025-01-16 17:35:00,Bob_Martinez
+TKT-00385,Ticket Created,2025-01-16 17:39:00,System
+TKT-00394,Provide Solution,2025-01-16 17:40:00,Bob_Martinez
+TKT-00394,Close Ticket,2025-01-16 17:45:00,Bob_Martinez
+TKT-00379,Initial Response,2025-01-16 17:47:00,Alice_Green
+TKT-00379,Provide Solution,2025-01-16 18:00:00,Alice_Green
+TKT-00385,Assign to Agent,2025-01-16 18:06:00,System
+TKT-00379,Close Ticket,2025-01-16 18:15:00,Alice_Green
+TKT-00385,Initial Response,2025-01-16 18:17:00,Dave_Thompson
+TKT-00390,Ticket Created,2025-01-16 18:21:00,System
+TKT-00391,Ticket Created,2025-01-16 18:25:00,System
+TKT-00382,Specialist Review,2025-01-16 18:41:00,Expert_Lisa
+TKT-00385,Follow-up Required,2025-01-16 18:43:00,Dave_Thompson
+TKT-00390,Assign to Agent,2025-01-16 18:47:00,System
+TKT-00381,Escalate to Specialist,2025-01-16 18:51:00,Bob_Martinez
+TKT-00391,Assign to Agent,2025-01-16 18:51:00,System
+TKT-00393,Escalate to Specialist,2025-01-16 18:59:00,Bob_Martinez
+TKT-00383,Specialist Review,2025-01-16 19:00:00,Expert_Lisa
+TKT-00382,Provide Solution,2025-01-16 19:02:00,Expert_Lisa
+TKT-00383,Provide Solution,2025-01-16 19:10:00,Expert_Tom
+TKT-00382,Close Ticket,2025-01-16 19:16:00,Bob_Martinez
+TKT-00390,Initial Response,2025-01-16 19:18:00,Dave_Thompson
+TKT-00383,Close Ticket,2025-01-16 19:25:00,Alice_Green
+TKT-00397,Ticket Created,2025-01-16 19:27:00,System
+TKT-00391,Initial Response,2025-01-16 19:30:00,Alice_Green
+TKT-00397,Assign to Agent,2025-01-16 19:40:00,System
+TKT-00390,Provide Solution,2025-01-16 19:44:00,Dave_Thompson
+TKT-00398,Ticket Created,2025-01-16 19:44:00,System
+TKT-00390,Close Ticket,2025-01-16 19:53:00,Dave_Thompson
+TKT-00397,Initial Response,2025-01-16 20:01:00,Carol_Jackson
+TKT-00377,Ticket Created,2025-01-16 20:03:00,System
+TKT-00378,Ticket Created,2025-01-16 20:07:00,System
+TKT-00388,Ticket Created,2025-01-16 20:07:00,System
+TKT-00398,Assign to Agent,2025-01-16 20:12:00,System
+TKT-00309,Reopen Ticket,2025-01-16 20:14:00,Customer
+TKT-00378,Assign to Agent,2025-01-16 20:26:00,System
+TKT-00388,Assign to Agent,2025-01-16 20:26:00,System
+TKT-00377,Assign to Agent,2025-01-16 20:30:00,System
+TKT-00391,Escalate to Specialist,2025-01-16 20:43:00,Alice_Green
+TKT-00378,Initial Response,2025-01-16 20:44:00,Bob_Martinez
+TKT-00392,Ticket Created,2025-01-16 20:50:00,System
+TKT-00309,Provide Solution,2025-01-16 20:53:00,Dave_Thompson
+TKT-00393,Specialist Review,2025-01-16 20:59:00,Expert_Lisa
+TKT-00377,Initial Response,2025-01-16 21:00:00,Carol_Jackson
+TKT-00398,Initial Response,2025-01-16 21:04:00,Carol_Jackson
+TKT-00309,Close Ticket,2025-01-16 21:05:00,Dave_Thompson
+TKT-00357,Follow-up Response,2025-01-16 21:08:00,Dave_Thompson
+TKT-00388,Initial Response,2025-01-16 21:08:00,Bob_Martinez
+TKT-00392,Assign to Agent,2025-01-16 21:13:00,System
+TKT-00393,Provide Solution,2025-01-16 21:13:00,Expert_Tom
+TKT-00393,Close Ticket,2025-01-16 21:20:00,Bob_Martinez
+TKT-00357,Provide Solution,2025-01-16 21:33:00,Expert_Tom
+TKT-00397,Escalate to Specialist,2025-01-16 21:33:00,Carol_Jackson
+TKT-00398,Provide Solution,2025-01-16 21:33:00,Carol_Jackson
+TKT-00388,Provide Solution,2025-01-16 21:37:00,Bob_Martinez
+TKT-00357,Close Ticket,2025-01-16 21:43:00,Dave_Thompson
+TKT-00398,Close Ticket,2025-01-16 21:46:00,Carol_Jackson
+TKT-00392,Initial Response,2025-01-16 21:47:00,Alice_Green
+TKT-00388,Close Ticket,2025-01-16 21:49:00,Bob_Martinez
+TKT-00378,Escalate to Specialist,2025-01-16 21:53:00,Bob_Martinez
+TKT-00371,Follow-up Response,2025-01-16 21:56:00,Bob_Martinez
+TKT-00371,Provide Solution,2025-01-16 22:24:00,Bob_Martinez
+TKT-00397,Specialist Review,2025-01-16 22:33:00,Expert_Lisa
+TKT-00371,Close Ticket,2025-01-16 22:43:00,Bob_Martinez
+TKT-00391,Specialist Review,2025-01-16 22:43:00,Expert_Tom
+TKT-00377,Escalate to Specialist,2025-01-16 22:44:00,Carol_Jackson
+TKT-00395,Specialist Review,2025-01-16 22:59:00,Expert_Lisa
+TKT-00391,Provide Solution,2025-01-16 23:01:00,Expert_Tom
+TKT-00397,Provide Solution,2025-01-16 23:03:00,Expert_Lisa
+TKT-00391,Close Ticket,2025-01-16 23:07:00,Alice_Green
+TKT-00392,Escalate to Specialist,2025-01-16 23:13:00,Alice_Green
+TKT-00397,Close Ticket,2025-01-16 23:17:00,Carol_Jackson
+TKT-00395,Provide Solution,2025-01-16 23:27:00,Expert_Lisa
+TKT-00395,Close Ticket,2025-01-16 23:46:00,Bob_Martinez
+TKT-00381,Specialist Review,2025-01-16 23:51:00,Expert_Tom
+TKT-00381,Provide Solution,2025-01-17 00:04:00,Expert_Lisa
+TKT-00381,Close Ticket,2025-01-17 00:17:00,Bob_Martinez
+TKT-00392,Specialist Review,2025-01-17 01:13:00,Expert_Lisa
+TKT-00392,Follow-up Required,2025-01-17 01:43:00,Alice_Green
+TKT-00400,Ticket Created,2025-01-17 02:38:00,System
+TKT-00377,Specialist Review,2025-01-17 02:44:00,Expert_Tom
+TKT-00400,Assign to Agent,2025-01-17 02:49:00,System
+TKT-00378,Specialist Review,2025-01-17 02:53:00,Expert_Lisa
+TKT-00377,Provide Solution,2025-01-17 03:11:00,Expert_Lisa
+TKT-00377,Close Ticket,2025-01-17 03:23:00,Carol_Jackson
+TKT-00400,Initial Response,2025-01-17 03:36:00,Alice_Green
+TKT-00378,Follow-up Required,2025-01-17 03:39:00,Bob_Martinez
+TKT-00400,Escalate to Specialist,2025-01-17 04:28:00,Alice_Green
+TKT-00336,Follow-up Response,2025-01-17 07:12:00,Alice_Green
+TKT-00336,Provide Solution,2025-01-17 07:28:00,Expert_Tom
+TKT-00400,Specialist Review,2025-01-17 07:28:00,Expert_Lisa
+TKT-00400,Provide Solution,2025-01-17 07:43:00,Expert_Lisa
+TKT-00336,Close Ticket,2025-01-17 07:47:00,Alice_Green
+TKT-00400,Close Ticket,2025-01-17 08:02:00,Alice_Green
+TKT-00352,Reopen Ticket,2025-01-17 11:07:00,Customer
+TKT-00352,Provide Solution,2025-01-17 12:14:00,Alice_Green
+TKT-00352,Close Ticket,2025-01-17 12:20:00,Alice_Green
+TKT-00396,Reopen Ticket,2025-01-17 14:45:00,Customer
+TKT-00399,Follow-up Response,2025-01-17 15:14:00,Bob_Martinez
+TKT-00399,Provide Solution,2025-01-17 15:32:00,Expert_Lisa
+TKT-00396,Provide Solution,2025-01-17 15:40:00,Carol_Jackson
+TKT-00396,Close Ticket,2025-01-17 15:48:00,Carol_Jackson
+TKT-00399,Close Ticket,2025-01-17 15:50:00,Bob_Martinez
+TKT-00392,Follow-up Response,2025-01-17 23:43:00,Alice_Green
+TKT-00392,Provide Solution,2025-01-17 23:53:00,Expert_Tom
+TKT-00392,Close Ticket,2025-01-18 00:00:00,Alice_Green
+TKT-00341,Reopen Ticket,2025-01-18 01:03:00,Customer
+TKT-00341,Provide Solution,2025-01-18 01:34:00,Alice_Green
+TKT-00341,Close Ticket,2025-01-18 01:39:00,Alice_Green
+TKT-00378,Follow-up Response,2025-01-18 04:39:00,Bob_Martinez
+TKT-00378,Provide Solution,2025-01-18 05:04:00,Expert_Tom
+TKT-00378,Close Ticket,2025-01-18 05:24:00,Bob_Martinez
+TKT-00385,Follow-up Response,2025-01-18 16:43:00,Dave_Thompson
+TKT-00385,Provide Solution,2025-01-18 17:10:00,Dave_Thompson
+TKT-00385,Close Ticket,2025-01-18 17:28:00,Dave_Thompson
+TKT-00395,Reopen Ticket,2025-01-18 23:46:00,Customer
+TKT-00395,Provide Solution,2025-01-19 00:39:00,Bob_Martinez
+TKT-00395,Close Ticket,2025-01-19 00:50:00,Bob_Martinez
+TKT-00378,Reopen Ticket,2025-01-21 05:24:00,Customer
+TKT-00378,Provide Solution,2025-01-21 06:41:00,Bob_Martinez
+TKT-00378,Close Ticket,2025-01-21 06:46:00,Bob_Martinez

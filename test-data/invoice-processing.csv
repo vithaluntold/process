@@ -1,0 +1,2310 @@
+caseId,activity,timestamp,resource
+INV-00002,Receive Invoice,2025-01-01 09:30:00,System_ERP
+INV-00012,Receive Invoice,2025-01-01 09:40:00,System_OCR
+INV-00002,OCR Scan,2025-01-01 09:45:00,System_OCR
+INV-00012,OCR Scan,2025-01-01 09:48:00,System_OCR
+INV-00012,Manual Data Entry,2025-01-01 10:04:00,Robert_Kim
+INV-00012,Match to PO,2025-01-01 10:10:00,System_ERP
+INV-00002,Manual Data Entry,2025-01-01 10:12:00,Robert_Kim
+INV-00002,Match to PO,2025-01-01 10:19:00,System_ERP
+INV-00009,Receive Invoice,2025-01-01 10:20:00,System_OCR
+INV-00012,Schedule Payment,2025-01-01 10:20:00,System_ERP
+INV-00009,OCR Scan,2025-01-01 10:32:00,System_OCR
+INV-00007,Receive Invoice,2025-01-01 10:36:00,System_ERP
+INV-00007,OCR Scan,2025-01-01 10:42:00,System_OCR
+INV-00002,Manager Approval,2025-01-01 10:50:00,Michael_Brown
+INV-00009,Manual Data Entry,2025-01-01 10:56:00,Susan_White
+INV-00007,Manual Data Entry,2025-01-01 10:59:00,Jennifer_Moore
+INV-00002,Schedule Payment,2025-01-01 11:03:00,System_ERP
+INV-00007,Match to PO,2025-01-01 11:05:00,System_ERP
+INV-00009,Match to PO,2025-01-01 11:05:00,System_ERP
+INV-00009,Schedule Payment,2025-01-01 11:14:00,System_ERP
+INV-00007,Schedule Payment,2025-01-01 11:18:00,System_ERP
+INV-00001,Receive Invoice,2025-01-01 11:34:00,System_ERP
+INV-00001,OCR Scan,2025-01-01 11:49:00,System_OCR
+INV-00001,Manual Data Entry,2025-01-01 12:18:00,Susan_White
+INV-00001,Match to PO,2025-01-01 12:25:00,System_ERP
+INV-00005,Receive Invoice,2025-01-01 12:25:00,System_OCR
+INV-00001,Schedule Payment,2025-01-01 12:35:00,System_ERP
+INV-00011,Receive Invoice,2025-01-01 12:36:00,System_ERP
+INV-00005,OCR Scan,2025-01-01 12:37:00,System_OCR
+INV-00011,OCR Scan,2025-01-01 12:43:00,System_OCR
+INV-00005,Manual Data Entry,2025-01-01 12:59:00,Jennifer_Moore
+INV-00005,Match to PO,2025-01-01 13:07:00,System_ERP
+INV-00014,Receive Invoice,2025-01-01 13:07:00,System_ERP
+INV-00011,Manual Data Entry,2025-01-01 13:11:00,Robert_Kim
+INV-00013,Receive Invoice,2025-01-01 13:12:00,System_OCR
+INV-00005,Schedule Payment,2025-01-01 13:15:00,System_ERP
+INV-00011,Match to PO,2025-01-01 13:16:00,System_ERP
+INV-00014,OCR Scan,2025-01-01 13:17:00,System_OCR
+INV-00013,OCR Scan,2025-01-01 13:22:00,System_OCR
+INV-00006,Receive Invoice,2025-01-01 13:36:00,System_ERP
+INV-00008,Receive Invoice,2025-01-01 13:36:00,System_OCR
+INV-00013,Manual Data Entry,2025-01-01 13:36:00,Susan_White
+INV-00013,Match to PO,2025-01-01 13:43:00,System_ERP
+INV-00014,Manual Data Entry,2025-01-01 13:43:00,Robert_Kim
+INV-00006,OCR Scan,2025-01-01 13:47:00,System_OCR
+INV-00008,OCR Scan,2025-01-01 13:47:00,System_OCR
+INV-00014,Match to PO,2025-01-01 13:49:00,System_ERP
+INV-00006,Manual Data Entry,2025-01-01 13:58:00,Susan_White
+INV-00014,Schedule Payment,2025-01-01 13:58:00,System_ERP
+INV-00008,Manual Data Entry,2025-01-01 14:00:00,Susan_White
+INV-00008,Match to PO,2025-01-01 14:06:00,System_ERP
+INV-00006,Match to PO,2025-01-01 14:07:00,System_ERP
+INV-00008,Schedule Payment,2025-01-01 14:21:00,System_ERP
+INV-00011,Manager Approval,2025-01-01 14:22:00,Patricia_Davis
+INV-00003,Receive Invoice,2025-01-01 14:42:00,System_OCR
+INV-00013,Manager Approval,2025-01-01 14:49:00,Patricia_Davis
+INV-00003,OCR Scan,2025-01-01 14:53:00,System_OCR
+INV-00003,Manual Data Entry,2025-01-01 15:10:00,Jennifer_Moore
+INV-00004,Receive Invoice,2025-01-01 15:15:00,System_OCR
+INV-00006,Manager Approval,2025-01-01 15:19:00,Michael_Brown
+INV-00003,Match to PO,2025-01-01 15:20:00,System_ERP
+INV-00004,OCR Scan,2025-01-01 15:21:00,System_OCR
+INV-00006,Schedule Payment,2025-01-01 15:31:00,System_ERP
+INV-00003,Schedule Payment,2025-01-01 15:33:00,System_ERP
+INV-00004,Manual Data Entry,2025-01-01 15:46:00,Jennifer_Moore
+INV-00010,Receive Invoice,2025-01-01 15:48:00,System_OCR
+INV-00004,Match to PO,2025-01-01 15:53:00,System_ERP
+INV-00010,OCR Scan,2025-01-01 16:01:00,System_OCR
+INV-00004,Schedule Payment,2025-01-01 16:06:00,System_ERP
+INV-00010,Manual Data Entry,2025-01-01 16:17:00,Susan_White
+INV-00010,Data Validation Failed,2025-01-01 16:28:00,System_ERP
+INV-00010,Manual Data Entry,2025-01-01 17:09:00,Robert_Kim
+INV-00010,Match to PO,2025-01-01 17:16:00,System_ERP
+INV-00010,Schedule Payment,2025-01-01 17:28:00,System_ERP
+INV-00011,CFO Approval,2025-01-01 21:22:00,James_Wilson
+INV-00011,Schedule Payment,2025-01-01 21:34:00,System_ERP
+INV-00013,CFO Approval,2025-01-01 21:49:00,James_Wilson
+INV-00013,Schedule Payment,2025-01-01 21:54:00,System_ERP
+INV-00016,Receive Invoice,2025-01-02 10:18:00,System_ERP
+INV-00024,Receive Invoice,2025-01-02 10:20:00,System_ERP
+INV-00024,OCR Scan,2025-01-02 10:27:00,System_OCR
+INV-00016,OCR Scan,2025-01-02 10:33:00,System_OCR
+INV-00024,Manual Data Entry,2025-01-02 10:42:00,Susan_White
+INV-00024,Match to PO,2025-01-02 10:47:00,System_ERP
+INV-00024,Schedule Payment,2025-01-02 10:57:00,System_ERP
+INV-00016,Manual Data Entry,2025-01-02 10:59:00,Jennifer_Moore
+INV-00016,Match to PO,2025-01-02 11:09:00,System_ERP
+INV-00016,Schedule Payment,2025-01-02 11:16:00,System_ERP
+INV-00029,Receive Invoice,2025-01-02 11:55:00,System_ERP
+INV-00029,OCR Scan,2025-01-02 12:06:00,System_OCR
+INV-00019,Receive Invoice,2025-01-02 12:12:00,System_OCR
+INV-00029,Manual Data Entry,2025-01-02 12:17:00,Jennifer_Moore
+INV-00021,Receive Invoice,2025-01-02 12:19:00,System_ERP
+INV-00021,OCR Scan,2025-01-02 12:24:00,System_OCR
+INV-00029,Match to PO,2025-01-02 12:24:00,System_ERP
+INV-00019,OCR Scan,2025-01-02 12:25:00,System_OCR
+INV-00029,Schedule Payment,2025-01-02 12:30:00,System_ERP
+INV-00019,Manual Data Entry,2025-01-02 12:45:00,Jennifer_Moore
+INV-00020,Receive Invoice,2025-01-02 12:49:00,System_ERP
+INV-00019,Match to PO,2025-01-02 12:53:00,System_ERP
+INV-00021,Manual Data Entry,2025-01-02 12:53:00,Robert_Kim
+INV-00020,OCR Scan,2025-01-02 12:55:00,System_OCR
+INV-00021,Match to PO,2025-01-02 13:01:00,System_ERP
+INV-00019,Schedule Payment,2025-01-02 13:06:00,System_ERP
+INV-00015,Receive Invoice,2025-01-02 13:09:00,System_OCR
+INV-00015,OCR Scan,2025-01-02 13:14:00,System_OCR
+INV-00021,Schedule Payment,2025-01-02 13:16:00,System_ERP
+INV-00025,Receive Invoice,2025-01-02 13:19:00,System_OCR
+INV-00020,Manual Data Entry,2025-01-02 13:22:00,Robert_Kim
+INV-00025,OCR Scan,2025-01-02 13:26:00,System_OCR
+INV-00026,Receive Invoice,2025-01-02 13:26:00,System_OCR
+INV-00026,OCR Scan,2025-01-02 13:32:00,System_OCR
+INV-00020,Data Validation Failed,2025-01-02 13:37:00,System_ERP
+INV-00015,Manual Data Entry,2025-01-02 13:39:00,Susan_White
+INV-00022,Receive Invoice,2025-01-02 13:43:00,System_OCR
+INV-00015,Match to PO,2025-01-02 13:44:00,System_ERP
+INV-00026,Manual Data Entry,2025-01-02 13:47:00,Robert_Kim
+INV-00022,OCR Scan,2025-01-02 13:49:00,System_OCR
+INV-00025,Manual Data Entry,2025-01-02 13:51:00,Jennifer_Moore
+INV-00015,Schedule Payment,2025-01-02 13:53:00,System_ERP
+INV-00025,Match to PO,2025-01-02 13:57:00,System_ERP
+INV-00026,Match to PO,2025-01-02 13:57:00,System_ERP
+INV-00026,Schedule Payment,2025-01-02 14:02:00,System_ERP
+INV-00020,Manual Data Entry,2025-01-02 14:07:00,Robert_Kim
+INV-00022,Manual Data Entry,2025-01-02 14:07:00,Jennifer_Moore
+INV-00017,Receive Invoice,2025-01-02 14:09:00,System_OCR
+INV-00017,OCR Scan,2025-01-02 14:15:00,System_OCR
+INV-00020,Match to PO,2025-01-02 14:15:00,System_ERP
+INV-00022,Match to PO,2025-01-02 14:15:00,System_ERP
+INV-00025,CFO Approval,2025-01-02 14:25:00,James_Wilson
+INV-00022,Schedule Payment,2025-01-02 14:27:00,System_ERP
+INV-00020,Schedule Payment,2025-01-02 14:30:00,System_ERP
+INV-00025,Schedule Payment,2025-01-02 14:35:00,System_ERP
+INV-00017,Manual Data Entry,2025-01-02 14:37:00,Jennifer_Moore
+INV-00017,Match to PO,2025-01-02 14:46:00,System_ERP
+INV-00027,Receive Invoice,2025-01-02 14:57:00,System_ERP
+INV-00017,Schedule Payment,2025-01-02 14:59:00,System_ERP
+INV-00027,OCR Scan,2025-01-02 15:02:00,System_OCR
+INV-00027,Manual Data Entry,2025-01-02 15:28:00,Robert_Kim
+INV-00028,Receive Invoice,2025-01-02 15:28:00,System_ERP
+INV-00018,Receive Invoice,2025-01-02 15:29:00,System_ERP
+INV-00028,OCR Scan,2025-01-02 15:36:00,System_OCR
+INV-00027,Match to PO,2025-01-02 15:37:00,System_ERP
+INV-00018,OCR Scan,2025-01-02 15:42:00,System_OCR
+INV-00023,Receive Invoice,2025-01-02 15:42:00,System_ERP
+INV-00027,Schedule Payment,2025-01-02 15:44:00,System_ERP
+INV-00023,OCR Scan,2025-01-02 15:50:00,System_OCR
+INV-00028,Manual Data Entry,2025-01-02 15:57:00,Susan_White
+INV-00023,Manual Data Entry,2025-01-02 16:00:00,Robert_Kim
+INV-00028,Match to PO,2025-01-02 16:04:00,System_ERP
+INV-00018,Manual Data Entry,2025-01-02 16:06:00,Robert_Kim
+INV-00023,Match to PO,2025-01-02 16:06:00,System_ERP
+INV-00028,Schedule Payment,2025-01-02 16:09:00,System_ERP
+INV-00018,Match to PO,2025-01-02 16:11:00,System_ERP
+INV-00023,Schedule Payment,2025-01-02 16:11:00,System_ERP
+INV-00018,Schedule Payment,2025-01-02 16:17:00,System_ERP
+INV-00033,Receive Invoice,2025-01-03 09:05:00,System_ERP
+INV-00033,OCR Scan,2025-01-03 09:11:00,System_OCR
+INV-00033,Manual Data Entry,2025-01-03 09:26:00,Susan_White
+INV-00033,Match to PO,2025-01-03 09:33:00,System_ERP
+INV-00033,Schedule Payment,2025-01-03 09:42:00,System_ERP
+INV-00042,Receive Invoice,2025-01-03 10:35:00,System_ERP
+INV-00042,OCR Scan,2025-01-03 10:41:00,System_OCR
+INV-00042,Manual Data Entry,2025-01-03 11:00:00,Jennifer_Moore
+INV-00042,Match to PO,2025-01-03 11:08:00,System_ERP
+INV-00042,Schedule Payment,2025-01-03 11:13:00,System_ERP
+INV-00030,Receive Invoice,2025-01-03 12:10:00,System_ERP
+INV-00030,OCR Scan,2025-01-03 12:19:00,System_OCR
+INV-00038,Receive Invoice,2025-01-03 12:24:00,System_ERP
+INV-00038,OCR Scan,2025-01-03 12:29:00,System_OCR
+INV-00030,Manual Data Entry,2025-01-03 12:32:00,Robert_Kim
+INV-00032,Receive Invoice,2025-01-03 12:39:00,System_OCR
+INV-00030,Data Validation Failed,2025-01-03 12:40:00,System_ERP
+INV-00032,OCR Scan,2025-01-03 12:48:00,System_OCR
+INV-00038,Manual Data Entry,2025-01-03 12:48:00,Susan_White
+INV-00038,Match to PO,2025-01-03 12:55:00,System_ERP
+INV-00030,Manual Data Entry,2025-01-03 13:01:00,Robert_Kim
+INV-00034,Receive Invoice,2025-01-03 13:02:00,System_OCR
+INV-00038,Schedule Payment,2025-01-03 13:04:00,System_ERP
+INV-00030,Match to PO,2025-01-03 13:07:00,System_ERP
+INV-00032,Manual Data Entry,2025-01-03 13:10:00,Jennifer_Moore
+INV-00034,OCR Scan,2025-01-03 13:12:00,System_OCR
+INV-00032,Match to PO,2025-01-03 13:18:00,System_ERP
+INV-00032,Schedule Payment,2025-01-03 13:30:00,System_ERP
+INV-00034,Manual Data Entry,2025-01-03 13:42:00,Susan_White
+INV-00034,Match to PO,2025-01-03 13:50:00,System_ERP
+INV-00034,Schedule Payment,2025-01-03 13:58:00,System_ERP
+INV-00044,Receive Invoice,2025-01-03 14:00:00,System_OCR
+INV-00044,OCR Scan,2025-01-03 14:12:00,System_OCR
+INV-00036,Receive Invoice,2025-01-03 14:13:00,System_ERP
+INV-00036,OCR Scan,2025-01-03 14:23:00,System_OCR
+INV-00030,Manager Approval,2025-01-03 14:24:00,Michael_Brown
+INV-00044,Manual Data Entry,2025-01-03 14:32:00,Susan_White
+INV-00036,Manual Data Entry,2025-01-03 14:33:00,Jennifer_Moore
+INV-00040,Receive Invoice,2025-01-03 14:33:00,System_ERP
+INV-00044,Match to PO,2025-01-03 14:41:00,System_ERP
+INV-00036,Match to PO,2025-01-03 14:43:00,System_ERP
+INV-00040,OCR Scan,2025-01-03 14:48:00,System_OCR
+INV-00041,Receive Invoice,2025-01-03 14:50:00,System_OCR
+INV-00044,Schedule Payment,2025-01-03 14:50:00,System_ERP
+INV-00030,Approval Rejected,2025-01-03 14:52:00,Michael_Brown
+INV-00036,Schedule Payment,2025-01-03 14:53:00,System_ERP
+INV-00037,Receive Invoice,2025-01-03 15:00:00,System_ERP
+INV-00041,OCR Scan,2025-01-03 15:04:00,System_OCR
+INV-00037,OCR Scan,2025-01-03 15:07:00,System_OCR
+INV-00043,Receive Invoice,2025-01-03 15:11:00,System_ERP
+INV-00031,Receive Invoice,2025-01-03 15:14:00,System_ERP
+INV-00035,Receive Invoice,2025-01-03 15:16:00,System_ERP
+INV-00040,Manual Data Entry,2025-01-03 15:17:00,Susan_White
+INV-00031,OCR Scan,2025-01-03 15:22:00,System_OCR
+INV-00035,OCR Scan,2025-01-03 15:23:00,System_OCR
+INV-00040,Data Validation Failed,2025-01-03 15:23:00,System_ERP
+INV-00043,OCR Scan,2025-01-03 15:23:00,System_OCR
+INV-00041,Manual Data Entry,2025-01-03 15:29:00,Susan_White
+INV-00037,Manual Data Entry,2025-01-03 15:32:00,Susan_White
+INV-00035,Manual Data Entry,2025-01-03 15:34:00,Robert_Kim
+INV-00041,Match to PO,2025-01-03 15:35:00,System_ERP
+INV-00039,Receive Invoice,2025-01-03 15:39:00,System_ERP
+INV-00035,Match to PO,2025-01-03 15:40:00,System_ERP
+INV-00037,Match to PO,2025-01-03 15:40:00,System_ERP
+INV-00043,Manual Data Entry,2025-01-03 15:42:00,Susan_White
+INV-00035,Schedule Payment,2025-01-03 15:45:00,System_ERP
+INV-00031,Manual Data Entry,2025-01-03 15:47:00,Robert_Kim
+INV-00043,Match to PO,2025-01-03 15:47:00,System_ERP
+INV-00041,Schedule Payment,2025-01-03 15:49:00,System_ERP
+INV-00039,OCR Scan,2025-01-03 15:51:00,System_OCR
+INV-00040,Manual Data Entry,2025-01-03 15:51:00,Robert_Kim
+INV-00031,Match to PO,2025-01-03 15:53:00,System_ERP
+INV-00040,Match to PO,2025-01-03 15:58:00,System_ERP
+INV-00043,Schedule Payment,2025-01-03 16:01:00,System_ERP
+INV-00031,Schedule Payment,2025-01-03 16:05:00,System_ERP
+INV-00040,Schedule Payment,2025-01-03 16:07:00,System_ERP
+INV-00039,Manual Data Entry,2025-01-03 16:19:00,Jennifer_Moore
+INV-00039,Match to PO,2025-01-03 16:26:00,System_ERP
+INV-00037,Manager Approval,2025-01-03 16:29:00,Patricia_Davis
+INV-00039,Schedule Payment,2025-01-03 16:33:00,System_ERP
+INV-00037,Schedule Payment,2025-01-03 16:38:00,System_ERP
+INV-00030,Clarification Request,2025-01-03 16:52:00,Robert_Kim
+INV-00030,Manager Approval,2025-01-04 06:52:00,Michael_Brown
+INV-00030,Schedule Payment,2025-01-04 06:57:00,System_ERP
+INV-00053,Receive Invoice,2025-01-04 09:42:00,System_OCR
+INV-00053,OCR Scan,2025-01-04 09:53:00,System_OCR
+INV-00049,Receive Invoice,2025-01-04 09:55:00,System_ERP
+INV-00049,OCR Scan,2025-01-04 10:03:00,System_OCR
+INV-00053,Manual Data Entry,2025-01-04 10:11:00,Jennifer_Moore
+INV-00049,Manual Data Entry,2025-01-04 10:14:00,Jennifer_Moore
+INV-00049,Match to PO,2025-01-04 10:19:00,System_ERP
+INV-00053,Match to PO,2025-01-04 10:21:00,System_ERP
+INV-00049,Schedule Payment,2025-01-04 10:29:00,System_ERP
+INV-00053,Manager Approval,2025-01-04 10:51:00,Michael_Brown
+INV-00045,Receive Invoice,2025-01-04 10:53:00,System_OCR
+INV-00053,Schedule Payment,2025-01-04 10:57:00,System_ERP
+INV-00045,OCR Scan,2025-01-04 10:59:00,System_OCR
+INV-00045,Manual Data Entry,2025-01-04 11:09:00,Robert_Kim
+INV-00048,Receive Invoice,2025-01-04 11:11:00,System_ERP
+INV-00045,Match to PO,2025-01-04 11:16:00,System_ERP
+INV-00048,OCR Scan,2025-01-04 11:16:00,System_OCR
+INV-00045,Schedule Payment,2025-01-04 11:31:00,System_ERP
+INV-00048,Manual Data Entry,2025-01-04 11:33:00,Susan_White
+INV-00048,Match to PO,2025-01-04 11:39:00,System_ERP
+INV-00056,Receive Invoice,2025-01-04 11:49:00,System_ERP
+INV-00048,Schedule Payment,2025-01-04 11:54:00,System_ERP
+INV-00056,OCR Scan,2025-01-04 11:59:00,System_OCR
+INV-00047,Receive Invoice,2025-01-04 12:10:00,System_OCR
+INV-00056,Manual Data Entry,2025-01-04 12:13:00,Jennifer_Moore
+INV-00047,OCR Scan,2025-01-04 12:17:00,System_OCR
+INV-00056,Match to PO,2025-01-04 12:20:00,System_ERP
+INV-00056,Schedule Payment,2025-01-04 12:31:00,System_ERP
+INV-00047,Manual Data Entry,2025-01-04 12:36:00,Jennifer_Moore
+INV-00046,Receive Invoice,2025-01-04 12:40:00,System_OCR
+INV-00047,Match to PO,2025-01-04 12:42:00,System_ERP
+INV-00047,Schedule Payment,2025-01-04 12:48:00,System_ERP
+INV-00046,OCR Scan,2025-01-04 12:53:00,System_OCR
+INV-00046,Manual Data Entry,2025-01-04 13:11:00,Jennifer_Moore
+INV-00046,Match to PO,2025-01-04 13:18:00,System_ERP
+INV-00050,Receive Invoice,2025-01-04 13:24:00,System_OCR
+INV-00059,Receive Invoice,2025-01-04 13:25:00,System_ERP
+INV-00046,Schedule Payment,2025-01-04 13:27:00,System_ERP
+INV-00050,OCR Scan,2025-01-04 13:30:00,System_OCR
+INV-00059,OCR Scan,2025-01-04 13:36:00,System_OCR
+INV-00052,Receive Invoice,2025-01-04 13:42:00,System_ERP
+INV-00052,OCR Scan,2025-01-04 13:48:00,System_OCR
+INV-00050,Manual Data Entry,2025-01-04 13:53:00,Robert_Kim
+INV-00052,Manual Data Entry,2025-01-04 13:59:00,Jennifer_Moore
+INV-00059,Manual Data Entry,2025-01-04 14:06:00,Jennifer_Moore
+INV-00050,Data Validation Failed,2025-01-04 14:08:00,System_ERP
+INV-00052,Match to PO,2025-01-04 14:09:00,System_ERP
+INV-00059,Match to PO,2025-01-04 14:12:00,System_ERP
+INV-00052,Schedule Payment,2025-01-04 14:14:00,System_ERP
+INV-00059,Schedule Payment,2025-01-04 14:23:00,System_ERP
+INV-00055,Receive Invoice,2025-01-04 14:26:00,System_ERP
+INV-00050,Manual Data Entry,2025-01-04 14:27:00,Susan_White
+INV-00050,Match to PO,2025-01-04 14:34:00,System_ERP
+INV-00055,OCR Scan,2025-01-04 14:39:00,System_OCR
+INV-00050,CFO Approval,2025-01-04 14:56:00,James_Wilson
+INV-00055,Manual Data Entry,2025-01-04 15:00:00,Susan_White
+INV-00050,Schedule Payment,2025-01-04 15:01:00,System_ERP
+INV-00055,Match to PO,2025-01-04 15:05:00,System_ERP
+INV-00057,Receive Invoice,2025-01-04 15:07:00,System_OCR
+INV-00055,Schedule Payment,2025-01-04 15:17:00,System_ERP
+INV-00057,OCR Scan,2025-01-04 15:18:00,System_OCR
+INV-00058,Receive Invoice,2025-01-04 15:20:00,System_ERP
+INV-00058,OCR Scan,2025-01-04 15:25:00,System_OCR
+INV-00057,Manual Data Entry,2025-01-04 15:42:00,Robert_Kim
+INV-00057,Match to PO,2025-01-04 15:47:00,System_ERP
+INV-00058,Manual Data Entry,2025-01-04 15:47:00,Susan_White
+INV-00054,Receive Invoice,2025-01-04 15:52:00,System_ERP
+INV-00051,Receive Invoice,2025-01-04 15:53:00,System_OCR
+INV-00057,Schedule Payment,2025-01-04 15:53:00,System_ERP
+INV-00054,OCR Scan,2025-01-04 15:57:00,System_OCR
+INV-00058,Match to PO,2025-01-04 15:57:00,System_ERP
+INV-00051,OCR Scan,2025-01-04 16:00:00,System_OCR
+INV-00054,Manual Data Entry,2025-01-04 16:15:00,Robert_Kim
+INV-00051,Manual Data Entry,2025-01-04 16:22:00,Jennifer_Moore
+INV-00054,Match to PO,2025-01-04 16:23:00,System_ERP
+INV-00051,Match to PO,2025-01-04 16:27:00,System_ERP
+INV-00058,Manager Approval,2025-01-04 16:55:00,Michael_Brown
+INV-00058,Schedule Payment,2025-01-04 17:02:00,System_ERP
+INV-00054,Manager Approval,2025-01-04 17:17:00,Michael_Brown
+INV-00051,Manager Approval,2025-01-04 17:28:00,Patricia_Davis
+INV-00054,Schedule Payment,2025-01-04 17:31:00,System_ERP
+INV-00051,Schedule Payment,2025-01-04 17:35:00,System_ERP
+INV-00063,Receive Invoice,2025-01-05 09:34:00,System_ERP
+INV-00063,OCR Scan,2025-01-05 09:45:00,System_OCR
+INV-00061,Receive Invoice,2025-01-05 09:56:00,System_ERP
+INV-00061,OCR Scan,2025-01-05 10:08:00,System_OCR
+INV-00063,Manual Data Entry,2025-01-05 10:13:00,Jennifer_Moore
+INV-00060,Receive Invoice,2025-01-05 10:14:00,System_ERP
+INV-00063,Match to PO,2025-01-05 10:18:00,System_ERP
+INV-00060,OCR Scan,2025-01-05 10:25:00,System_OCR
+INV-00061,Manual Data Entry,2025-01-05 10:32:00,Susan_White
+INV-00061,Match to PO,2025-01-05 10:40:00,System_ERP
+INV-00061,Schedule Payment,2025-01-05 10:45:00,System_ERP
+INV-00069,Receive Invoice,2025-01-05 10:45:00,System_ERP
+INV-00060,Manual Data Entry,2025-01-05 10:47:00,Susan_White
+INV-00064,Receive Invoice,2025-01-05 10:47:00,System_ERP
+INV-00064,OCR Scan,2025-01-05 10:57:00,System_OCR
+INV-00060,Data Validation Failed,2025-01-05 11:00:00,System_ERP
+INV-00063,Manager Approval,2025-01-05 11:00:00,Michael_Brown
+INV-00069,OCR Scan,2025-01-05 11:00:00,System_OCR
+INV-00074,Receive Invoice,2025-01-05 11:01:00,System_ERP
+INV-00074,OCR Scan,2025-01-05 11:12:00,System_OCR
+INV-00069,Manual Data Entry,2025-01-05 11:18:00,Robert_Kim
+INV-00060,Manual Data Entry,2025-01-05 11:22:00,Jennifer_Moore
+INV-00069,Match to PO,2025-01-05 11:24:00,System_ERP
+INV-00074,Manual Data Entry,2025-01-05 11:25:00,Robert_Kim
+INV-00060,Match to PO,2025-01-05 11:27:00,System_ERP
+INV-00064,Manual Data Entry,2025-01-05 11:27:00,Jennifer_Moore
+INV-00074,Match to PO,2025-01-05 11:32:00,System_ERP
+INV-00064,Match to PO,2025-01-05 11:37:00,System_ERP
+INV-00064,Schedule Payment,2025-01-05 11:46:00,System_ERP
+INV-00073,Receive Invoice,2025-01-05 11:58:00,System_OCR
+INV-00060,Manager Approval,2025-01-05 11:59:00,Michael_Brown
+INV-00073,OCR Scan,2025-01-05 12:03:00,System_OCR
+INV-00069,Manager Approval,2025-01-05 12:18:00,Michael_Brown
+INV-00060,Approval Rejected,2025-01-05 12:22:00,Patricia_Davis
+INV-00073,Manual Data Entry,2025-01-05 12:23:00,Robert_Kim
+INV-00069,Schedule Payment,2025-01-05 12:28:00,System_ERP
+INV-00073,Match to PO,2025-01-05 12:30:00,System_ERP
+INV-00065,Receive Invoice,2025-01-05 12:33:00,System_ERP
+INV-00065,OCR Scan,2025-01-05 12:39:00,System_OCR
+INV-00073,Schedule Payment,2025-01-05 12:41:00,System_ERP
+INV-00066,Receive Invoice,2025-01-05 12:47:00,System_OCR
+INV-00074,Manager Approval,2025-01-05 12:48:00,Michael_Brown
+INV-00066,OCR Scan,2025-01-05 12:56:00,System_OCR
+INV-00074,Schedule Payment,2025-01-05 12:58:00,System_ERP
+INV-00065,Manual Data Entry,2025-01-05 13:08:00,Susan_White
+INV-00062,Receive Invoice,2025-01-05 13:09:00,System_ERP
+INV-00065,Match to PO,2025-01-05 13:13:00,System_ERP
+INV-00066,Manual Data Entry,2025-01-05 13:16:00,Robert_Kim
+INV-00062,OCR Scan,2025-01-05 13:21:00,System_OCR
+INV-00066,Match to PO,2025-01-05 13:23:00,System_ERP
+INV-00070,Receive Invoice,2025-01-05 13:30:00,System_ERP
+INV-00070,OCR Scan,2025-01-05 13:45:00,System_OCR
+INV-00062,Manual Data Entry,2025-01-05 13:47:00,Susan_White
+INV-00072,Receive Invoice,2025-01-05 13:47:00,System_OCR
+INV-00062,Match to PO,2025-01-05 13:57:00,System_ERP
+INV-00072,OCR Scan,2025-01-05 14:02:00,System_OCR
+INV-00062,Schedule Payment,2025-01-05 14:03:00,System_ERP
+INV-00067,Receive Invoice,2025-01-05 14:04:00,System_ERP
+INV-00070,Manual Data Entry,2025-01-05 14:05:00,Susan_White
+INV-00070,Data Validation Failed,2025-01-05 14:12:00,System_ERP
+INV-00071,Receive Invoice,2025-01-05 14:15:00,System_OCR
+INV-00067,OCR Scan,2025-01-05 14:19:00,System_OCR
+INV-00072,Manual Data Entry,2025-01-05 14:24:00,Robert_Kim
+INV-00066,Manager Approval,2025-01-05 14:27:00,Patricia_Davis
+INV-00071,OCR Scan,2025-01-05 14:29:00,System_OCR
+INV-00072,Match to PO,2025-01-05 14:29:00,System_ERP
+INV-00065,Manager Approval,2025-01-05 14:40:00,Michael_Brown
+INV-00067,Manual Data Entry,2025-01-05 14:40:00,Jennifer_Moore
+INV-00067,Match to PO,2025-01-05 14:48:00,System_ERP
+INV-00070,Manual Data Entry,2025-01-05 14:49:00,Jennifer_Moore
+INV-00071,Manual Data Entry,2025-01-05 14:52:00,Susan_White
+INV-00070,Match to PO,2025-01-05 14:54:00,System_ERP
+INV-00067,Schedule Payment,2025-01-05 14:57:00,System_ERP
+INV-00065,Approval Rejected,2025-01-05 15:02:00,Michael_Brown
+INV-00071,Match to PO,2025-01-05 15:02:00,System_ERP
+INV-00068,Receive Invoice,2025-01-05 15:05:00,System_ERP
+INV-00070,Schedule Payment,2025-01-05 15:05:00,System_ERP
+INV-00071,Schedule Payment,2025-01-05 15:09:00,System_ERP
+INV-00068,OCR Scan,2025-01-05 15:20:00,System_OCR
+INV-00060,Clarification Request,2025-01-05 15:22:00,Jennifer_Moore
+INV-00068,Manual Data Entry,2025-01-05 15:40:00,Robert_Kim
+INV-00068,Match to PO,2025-01-05 15:49:00,System_ERP
+INV-00068,Schedule Payment,2025-01-05 15:57:00,System_ERP
+INV-00066,CFO Approval,2025-01-05 17:27:00,James_Wilson
+INV-00066,Schedule Payment,2025-01-05 17:34:00,System_ERP
+INV-00063,CFO Approval,2025-01-05 18:00:00,James_Wilson
+INV-00065,Clarification Request,2025-01-05 18:02:00,Jennifer_Moore
+INV-00063,Schedule Payment,2025-01-05 18:08:00,System_ERP
+INV-00060,Manager Approval,2025-01-05 19:22:00,Patricia_Davis
+INV-00072,Manager Approval,2025-01-05 19:29:00,Patricia_Davis
+INV-00072,CFO Approval,2025-01-05 20:29:00,James_Wilson
+INV-00072,Schedule Payment,2025-01-05 20:40:00,System_ERP
+INV-00060,CFO Approval,2025-01-05 23:22:00,James_Wilson
+INV-00060,Schedule Payment,2025-01-05 23:34:00,System_ERP
+INV-00083,Receive Invoice,2025-01-06 09:23:00,System_ERP
+INV-00083,OCR Scan,2025-01-06 09:34:00,System_OCR
+INV-00083,Manual Data Entry,2025-01-06 09:44:00,Jennifer_Moore
+INV-00083,Match to PO,2025-01-06 09:54:00,System_ERP
+INV-00083,Schedule Payment,2025-01-06 10:09:00,System_ERP
+INV-00087,Receive Invoice,2025-01-06 11:31:00,System_ERP
+INV-00087,OCR Scan,2025-01-06 11:38:00,System_OCR
+INV-00089,Receive Invoice,2025-01-06 11:50:00,System_OCR
+INV-00088,Receive Invoice,2025-01-06 12:00:00,System_ERP
+INV-00089,OCR Scan,2025-01-06 12:01:00,System_OCR
+INV-00087,Manual Data Entry,2025-01-06 12:03:00,Susan_White
+INV-00079,Receive Invoice,2025-01-06 12:04:00,System_ERP
+INV-00082,Receive Invoice,2025-01-06 12:04:00,System_OCR
+INV-00088,OCR Scan,2025-01-06 12:08:00,System_OCR
+INV-00087,Match to PO,2025-01-06 12:13:00,System_ERP
+INV-00089,Manual Data Entry,2025-01-06 12:15:00,Susan_White
+INV-00082,OCR Scan,2025-01-06 12:16:00,System_OCR
+INV-00079,OCR Scan,2025-01-06 12:19:00,System_OCR
+INV-00089,Match to PO,2025-01-06 12:24:00,System_ERP
+INV-00088,Manual Data Entry,2025-01-06 12:28:00,Robert_Kim
+INV-00079,Manual Data Entry,2025-01-06 12:29:00,Jennifer_Moore
+INV-00084,Receive Invoice,2025-01-06 12:30:00,System_ERP
+INV-00079,Match to PO,2025-01-06 12:35:00,System_ERP
+INV-00084,OCR Scan,2025-01-06 12:35:00,System_OCR
+INV-00088,Match to PO,2025-01-06 12:35:00,System_ERP
+INV-00089,Schedule Payment,2025-01-06 12:39:00,System_ERP
+INV-00081,Receive Invoice,2025-01-06 12:42:00,System_OCR
+INV-00075,Receive Invoice,2025-01-06 12:43:00,System_OCR
+INV-00082,Manual Data Entry,2025-01-06 12:44:00,Jennifer_Moore
+INV-00082,Match to PO,2025-01-06 12:49:00,System_ERP
+INV-00088,Schedule Payment,2025-01-06 12:49:00,System_ERP
+INV-00075,OCR Scan,2025-01-06 12:53:00,System_OCR
+INV-00081,OCR Scan,2025-01-06 12:53:00,System_OCR
+INV-00084,Manual Data Entry,2025-01-06 12:57:00,Susan_White
+INV-00082,Schedule Payment,2025-01-06 13:03:00,System_ERP
+INV-00084,Match to PO,2025-01-06 13:03:00,System_ERP
+INV-00084,Schedule Payment,2025-01-06 13:09:00,System_ERP
+INV-00081,Manual Data Entry,2025-01-06 13:13:00,Jennifer_Moore
+INV-00087,Manager Approval,2025-01-06 13:15:00,Michael_Brown
+INV-00085,Receive Invoice,2025-01-06 13:16:00,System_ERP
+INV-00075,Manual Data Entry,2025-01-06 13:19:00,Robert_Kim
+INV-00079,Manager Approval,2025-01-06 13:20:00,Patricia_Davis
+INV-00081,Match to PO,2025-01-06 13:20:00,System_ERP
+INV-00085,OCR Scan,2025-01-06 13:21:00,System_OCR
+INV-00075,Match to PO,2025-01-06 13:29:00,System_ERP
+INV-00077,Receive Invoice,2025-01-06 13:29:00,System_OCR
+INV-00079,Schedule Payment,2025-01-06 13:34:00,System_ERP
+INV-00077,OCR Scan,2025-01-06 13:39:00,System_OCR
+INV-00085,Manual Data Entry,2025-01-06 13:41:00,Robert_Kim
+INV-00080,Receive Invoice,2025-01-06 13:45:00,System_ERP
+INV-00085,Match to PO,2025-01-06 13:46:00,System_ERP
+INV-00080,OCR Scan,2025-01-06 13:51:00,System_OCR
+INV-00085,Schedule Payment,2025-01-06 13:52:00,System_ERP
+INV-00077,Manual Data Entry,2025-01-06 13:55:00,Robert_Kim
+INV-00075,CFO Approval,2025-01-06 13:56:00,James_Wilson
+INV-00081,Manager Approval,2025-01-06 13:57:00,Michael_Brown
+INV-00077,Match to PO,2025-01-06 14:04:00,System_ERP
+INV-00075,Schedule Payment,2025-01-06 14:10:00,System_ERP
+INV-00080,Manual Data Entry,2025-01-06 14:17:00,Jennifer_Moore
+INV-00077,Schedule Payment,2025-01-06 14:18:00,System_ERP
+INV-00080,Data Validation Failed,2025-01-06 14:25:00,System_ERP
+INV-00078,Receive Invoice,2025-01-06 14:39:00,System_ERP
+INV-00078,OCR Scan,2025-01-06 14:50:00,System_OCR
+INV-00086,Receive Invoice,2025-01-06 15:06:00,System_OCR
+INV-00080,Manual Data Entry,2025-01-06 15:09:00,Susan_White
+INV-00080,Match to PO,2025-01-06 15:14:00,System_ERP
+INV-00086,OCR Scan,2025-01-06 15:14:00,System_OCR
+INV-00078,Manual Data Entry,2025-01-06 15:20:00,Susan_White
+INV-00080,Schedule Payment,2025-01-06 15:29:00,System_ERP
+INV-00078,Match to PO,2025-01-06 15:30:00,System_ERP
+INV-00086,Manual Data Entry,2025-01-06 15:31:00,Susan_White
+INV-00086,Match to PO,2025-01-06 15:37:00,System_ERP
+INV-00076,Receive Invoice,2025-01-06 15:38:00,System_ERP
+INV-00086,Schedule Payment,2025-01-06 15:42:00,System_ERP
+INV-00078,Schedule Payment,2025-01-06 15:44:00,System_ERP
+INV-00076,OCR Scan,2025-01-06 15:46:00,System_OCR
+INV-00076,Manual Data Entry,2025-01-06 16:00:00,Jennifer_Moore
+INV-00076,Match to PO,2025-01-06 16:10:00,System_ERP
+INV-00076,Manager Approval,2025-01-06 16:46:00,Michael_Brown
+INV-00065,Manager Approval,2025-01-06 17:02:00,Michael_Brown
+INV-00065,Schedule Payment,2025-01-06 17:08:00,System_ERP
+INV-00087,CFO Approval,2025-01-06 17:15:00,James_Wilson
+INV-00087,Schedule Payment,2025-01-06 17:30:00,System_ERP
+INV-00081,CFO Approval,2025-01-06 20:57:00,James_Wilson
+INV-00081,Schedule Payment,2025-01-06 21:07:00,System_ERP
+INV-00076,CFO Approval,2025-01-06 23:46:00,James_Wilson
+INV-00076,Schedule Payment,2025-01-06 23:57:00,System_ERP
+INV-00103,Receive Invoice,2025-01-07 09:38:00,System_ERP
+INV-00103,OCR Scan,2025-01-07 09:46:00,System_OCR
+INV-00103,Manual Data Entry,2025-01-07 10:02:00,Jennifer_Moore
+INV-00096,Receive Invoice,2025-01-07 10:07:00,System_ERP
+INV-00103,Match to PO,2025-01-07 10:07:00,System_ERP
+INV-00103,Schedule Payment,2025-01-07 10:12:00,System_ERP
+INV-00096,OCR Scan,2025-01-07 10:13:00,System_OCR
+INV-00091,Receive Invoice,2025-01-07 10:14:00,System_OCR
+INV-00091,OCR Scan,2025-01-07 10:24:00,System_OCR
+INV-00096,Manual Data Entry,2025-01-07 10:26:00,Susan_White
+INV-00104,Receive Invoice,2025-01-07 10:27:00,System_OCR
+INV-00104,OCR Scan,2025-01-07 10:33:00,System_OCR
+INV-00096,Match to PO,2025-01-07 10:35:00,System_ERP
+INV-00091,Manual Data Entry,2025-01-07 10:37:00,Robert_Kim
+INV-00091,Match to PO,2025-01-07 10:45:00,System_ERP
+INV-00104,Manual Data Entry,2025-01-07 10:53:00,Jennifer_Moore
+INV-00104,Match to PO,2025-01-07 11:02:00,System_ERP
+INV-00104,Schedule Payment,2025-01-07 11:12:00,System_ERP
+INV-00092,Receive Invoice,2025-01-07 11:37:00,System_ERP
+INV-00092,OCR Scan,2025-01-07 11:51:00,System_OCR
+INV-00099,Receive Invoice,2025-01-07 11:53:00,System_ERP
+INV-00091,Manager Approval,2025-01-07 11:57:00,Patricia_Davis
+INV-00094,Receive Invoice,2025-01-07 11:57:00,System_ERP
+INV-00099,OCR Scan,2025-01-07 12:04:00,System_OCR
+INV-00094,OCR Scan,2025-01-07 12:05:00,System_OCR
+INV-00091,Schedule Payment,2025-01-07 12:08:00,System_ERP
+INV-00092,Manual Data Entry,2025-01-07 12:18:00,Robert_Kim
+INV-00092,Match to PO,2025-01-07 12:26:00,System_ERP
+INV-00100,Receive Invoice,2025-01-07 12:27:00,System_ERP
+INV-00094,Manual Data Entry,2025-01-07 12:32:00,Jennifer_Moore
+INV-00099,Manual Data Entry,2025-01-07 12:32:00,Jennifer_Moore
+INV-00100,OCR Scan,2025-01-07 12:36:00,System_OCR
+INV-00094,Match to PO,2025-01-07 12:39:00,System_ERP
+INV-00092,Schedule Payment,2025-01-07 12:40:00,System_ERP
+INV-00099,Match to PO,2025-01-07 12:41:00,System_ERP
+INV-00094,Schedule Payment,2025-01-07 12:46:00,System_ERP
+INV-00099,Schedule Payment,2025-01-07 12:48:00,System_ERP
+INV-00093,Receive Invoice,2025-01-07 12:50:00,System_ERP
+INV-00093,OCR Scan,2025-01-07 13:01:00,System_OCR
+INV-00100,Manual Data Entry,2025-01-07 13:06:00,Jennifer_Moore
+INV-00098,Receive Invoice,2025-01-07 13:12:00,System_OCR
+INV-00100,Data Validation Failed,2025-01-07 13:18:00,System_ERP
+INV-00097,Receive Invoice,2025-01-07 13:21:00,System_OCR
+INV-00093,Manual Data Entry,2025-01-07 13:22:00,Susan_White
+INV-00098,OCR Scan,2025-01-07 13:22:00,System_OCR
+INV-00101,Receive Invoice,2025-01-07 13:26:00,System_ERP
+INV-00093,Match to PO,2025-01-07 13:28:00,System_ERP
+INV-00101,OCR Scan,2025-01-07 13:34:00,System_OCR
+INV-00097,OCR Scan,2025-01-07 13:36:00,System_OCR
+INV-00098,Manual Data Entry,2025-01-07 13:47:00,Jennifer_Moore
+INV-00100,Manual Data Entry,2025-01-07 13:51:00,Robert_Kim
+INV-00097,Manual Data Entry,2025-01-07 13:53:00,Robert_Kim
+INV-00098,Match to PO,2025-01-07 13:53:00,System_ERP
+INV-00101,Manual Data Entry,2025-01-07 14:00:00,Jennifer_Moore
+INV-00097,Match to PO,2025-01-07 14:01:00,System_ERP
+INV-00100,Match to PO,2025-01-07 14:01:00,System_ERP
+INV-00097,Schedule Payment,2025-01-07 14:06:00,System_ERP
+INV-00098,Schedule Payment,2025-01-07 14:07:00,System_ERP
+INV-00101,Match to PO,2025-01-07 14:08:00,System_ERP
+INV-00100,CFO Approval,2025-01-07 14:15:00,James_Wilson
+INV-00101,Schedule Payment,2025-01-07 14:18:00,System_ERP
+INV-00100,Schedule Payment,2025-01-07 14:22:00,System_ERP
+INV-00093,Manager Approval,2025-01-07 14:25:00,Patricia_Davis
+INV-00102,Receive Invoice,2025-01-07 14:57:00,System_ERP
+INV-00102,OCR Scan,2025-01-07 15:08:00,System_OCR
+INV-00093,CFO Approval,2025-01-07 15:25:00,James_Wilson
+INV-00102,Manual Data Entry,2025-01-07 15:26:00,Susan_White
+INV-00093,Schedule Payment,2025-01-07 15:30:00,System_ERP
+INV-00102,Match to PO,2025-01-07 15:35:00,System_ERP
+INV-00095,Receive Invoice,2025-01-07 15:40:00,System_OCR
+INV-00102,Schedule Payment,2025-01-07 15:42:00,System_ERP
+INV-00090,Receive Invoice,2025-01-07 15:43:00,System_OCR
+INV-00095,OCR Scan,2025-01-07 15:47:00,System_OCR
+INV-00090,OCR Scan,2025-01-07 15:52:00,System_OCR
+INV-00095,Manual Data Entry,2025-01-07 16:10:00,Susan_White
+INV-00095,Match to PO,2025-01-07 16:15:00,System_ERP
+INV-00090,Manual Data Entry,2025-01-07 16:17:00,Robert_Kim
+INV-00090,Data Validation Failed,2025-01-07 16:30:00,System_ERP
+INV-00096,Manager Approval,2025-01-07 16:35:00,Patricia_Davis
+INV-00096,Schedule Payment,2025-01-07 16:47:00,System_ERP
+INV-00090,Manual Data Entry,2025-01-07 16:52:00,Robert_Kim
+INV-00090,Match to PO,2025-01-07 16:58:00,System_ERP
+INV-00090,Manager Approval,2025-01-07 17:30:00,Michael_Brown
+INV-00095,Manager Approval,2025-01-07 17:43:00,Patricia_Davis
+INV-00090,Approval Rejected,2025-01-07 17:52:00,Patricia_Davis
+INV-00095,Approval Rejected,2025-01-07 17:55:00,Michael_Brown
+INV-00090,Clarification Request,2025-01-07 20:52:00,Robert_Kim
+INV-00095,Clarification Request,2025-01-07 20:55:00,Jennifer_Moore
+INV-00090,Manager Approval,2025-01-08 06:52:00,Patricia_Davis
+INV-00090,CFO Approval,2025-01-08 08:52:00,James_Wilson
+INV-00090,Schedule Payment,2025-01-08 09:03:00,System_ERP
+INV-00115,Receive Invoice,2025-01-08 09:10:00,System_OCR
+INV-00115,OCR Scan,2025-01-08 09:23:00,System_OCR
+INV-00116,Receive Invoice,2025-01-08 09:26:00,System_ERP
+INV-00109,Receive Invoice,2025-01-08 09:35:00,System_ERP
+INV-00107,Receive Invoice,2025-01-08 09:36:00,System_ERP
+INV-00116,OCR Scan,2025-01-08 09:41:00,System_OCR
+INV-00107,OCR Scan,2025-01-08 09:48:00,System_OCR
+INV-00109,OCR Scan,2025-01-08 09:49:00,System_OCR
+INV-00111,Receive Invoice,2025-01-08 09:49:00,System_OCR
+INV-00115,Manual Data Entry,2025-01-08 09:50:00,Susan_White
+INV-00111,OCR Scan,2025-01-08 09:55:00,System_OCR
+INV-00116,Manual Data Entry,2025-01-08 09:57:00,Robert_Kim
+INV-00115,Match to PO,2025-01-08 09:58:00,System_ERP
+INV-00116,Match to PO,2025-01-08 10:06:00,System_ERP
+INV-00109,Manual Data Entry,2025-01-08 10:07:00,Susan_White
+INV-00107,Manual Data Entry,2025-01-08 10:08:00,Susan_White
+INV-00115,Schedule Payment,2025-01-08 10:11:00,System_ERP
+INV-00107,Match to PO,2025-01-08 10:13:00,System_ERP
+INV-00109,Match to PO,2025-01-08 10:13:00,System_ERP
+INV-00116,Schedule Payment,2025-01-08 10:14:00,System_ERP
+INV-00107,Schedule Payment,2025-01-08 10:18:00,System_ERP
+INV-00109,Schedule Payment,2025-01-08 10:21:00,System_ERP
+INV-00111,Manual Data Entry,2025-01-08 10:23:00,Jennifer_Moore
+INV-00111,Match to PO,2025-01-08 10:31:00,System_ERP
+INV-00111,Schedule Payment,2025-01-08 10:45:00,System_ERP
+INV-00114,Receive Invoice,2025-01-08 11:01:00,System_OCR
+INV-00114,OCR Scan,2025-01-08 11:09:00,System_OCR
+INV-00117,Receive Invoice,2025-01-08 11:12:00,System_ERP
+INV-00009,Process Payment,2025-01-08 11:14:00,System_ERP
+INV-00009,Payment Complete,2025-01-08 11:15:00,System_ERP
+INV-00117,OCR Scan,2025-01-08 11:19:00,System_OCR
+INV-00114,Manual Data Entry,2025-01-08 11:20:00,Susan_White
+INV-00114,Match to PO,2025-01-08 11:25:00,System_ERP
+INV-00117,Manual Data Entry,2025-01-08 11:43:00,Jennifer_Moore
+INV-00117,Match to PO,2025-01-08 11:48:00,System_ERP
+INV-00112,Receive Invoice,2025-01-08 12:08:00,System_OCR
+INV-00114,Manager Approval,2025-01-08 12:13:00,Patricia_Davis
+INV-00112,OCR Scan,2025-01-08 12:22:00,System_OCR
+INV-00114,Schedule Payment,2025-01-08 12:23:00,System_ERP
+INV-00106,Receive Invoice,2025-01-08 12:41:00,System_ERP
+INV-00118,Receive Invoice,2025-01-08 12:47:00,System_OCR
+INV-00112,Manual Data Entry,2025-01-08 12:49:00,Jennifer_Moore
+INV-00106,OCR Scan,2025-01-08 12:52:00,System_OCR
+INV-00112,Match to PO,2025-01-08 12:56:00,System_ERP
+INV-00108,Receive Invoice,2025-01-08 13:00:00,System_OCR
+INV-00117,Manager Approval,2025-01-08 13:00:00,Patricia_Davis
+INV-00118,OCR Scan,2025-01-08 13:02:00,System_OCR
+INV-00117,Schedule Payment,2025-01-08 13:05:00,System_ERP
+INV-00113,Receive Invoice,2025-01-08 13:06:00,System_ERP
+INV-00112,Schedule Payment,2025-01-08 13:07:00,System_ERP
+INV-00108,OCR Scan,2025-01-08 13:09:00,System_OCR
+INV-00113,OCR Scan,2025-01-08 13:14:00,System_OCR
+INV-00106,Manual Data Entry,2025-01-08 13:16:00,Susan_White
+INV-00106,Match to PO,2025-01-08 13:23:00,System_ERP
+INV-00118,Manual Data Entry,2025-01-08 13:23:00,Susan_White
+INV-00106,Schedule Payment,2025-01-08 13:31:00,System_ERP
+INV-00118,Match to PO,2025-01-08 13:31:00,System_ERP
+INV-00108,Manual Data Entry,2025-01-08 13:32:00,Robert_Kim
+INV-00108,Match to PO,2025-01-08 13:39:00,System_ERP
+INV-00113,Manual Data Entry,2025-01-08 13:44:00,Robert_Kim
+INV-00113,Match to PO,2025-01-08 13:49:00,System_ERP
+INV-00113,Schedule Payment,2025-01-08 14:04:00,System_ERP
+INV-00119,Receive Invoice,2025-01-08 14:05:00,System_OCR
+INV-00119,OCR Scan,2025-01-08 14:20:00,System_OCR
+INV-00108,Manager Approval,2025-01-08 14:35:00,Michael_Brown
+INV-00108,Schedule Payment,2025-01-08 14:41:00,System_ERP
+INV-00119,Manual Data Entry,2025-01-08 14:50:00,Jennifer_Moore
+INV-00105,Receive Invoice,2025-01-08 14:55:00,System_ERP
+INV-00118,Manager Approval,2025-01-08 14:56:00,Patricia_Davis
+INV-00119,Match to PO,2025-01-08 14:57:00,System_ERP
+INV-00105,OCR Scan,2025-01-08 15:05:00,System_OCR
+INV-00119,Schedule Payment,2025-01-08 15:11:00,System_ERP
+INV-00105,Manual Data Entry,2025-01-08 15:29:00,Robert_Kim
+INV-00110,Receive Invoice,2025-01-08 15:30:00,System_OCR
+INV-00105,Match to PO,2025-01-08 15:34:00,System_ERP
+INV-00110,OCR Scan,2025-01-08 15:37:00,System_OCR
+INV-00105,Schedule Payment,2025-01-08 15:43:00,System_ERP
+INV-00110,Manual Data Entry,2025-01-08 15:49:00,Susan_White
+INV-00110,Data Validation Failed,2025-01-08 16:02:00,System_ERP
+INV-00110,Manual Data Entry,2025-01-08 16:26:00,Susan_White
+INV-00110,Match to PO,2025-01-08 16:35:00,System_ERP
+INV-00110,Schedule Payment,2025-01-08 16:42:00,System_ERP
+INV-00095,Manager Approval,2025-01-08 16:55:00,Patricia_Davis
+INV-00118,CFO Approval,2025-01-08 17:56:00,James_Wilson
+INV-00118,Schedule Payment,2025-01-08 18:01:00,System_ERP
+INV-00095,CFO Approval,2025-01-08 19:55:00,James_Wilson
+INV-00095,Schedule Payment,2025-01-08 20:07:00,System_ERP
+INV-00133,Receive Invoice,2025-01-09 09:13:00,System_ERP
+INV-00133,OCR Scan,2025-01-09 09:23:00,System_OCR
+INV-00133,Manual Data Entry,2025-01-09 09:50:00,Jennifer_Moore
+INV-00133,Match to PO,2025-01-09 09:56:00,System_ERP
+INV-00131,Receive Invoice,2025-01-09 09:58:00,System_OCR
+INV-00131,OCR Scan,2025-01-09 10:10:00,System_OCR
+INV-00131,Manual Data Entry,2025-01-09 10:22:00,Susan_White
+INV-00131,Match to PO,2025-01-09 10:29:00,System_ERP
+INV-00133,Manager Approval,2025-01-09 10:31:00,Michael_Brown
+INV-00133,Schedule Payment,2025-01-09 10:40:00,System_ERP
+INV-00131,Schedule Payment,2025-01-09 10:43:00,System_ERP
+INV-00132,Receive Invoice,2025-01-09 10:50:00,System_ERP
+INV-00132,OCR Scan,2025-01-09 11:00:00,System_OCR
+INV-00120,Receive Invoice,2025-01-09 11:14:00,System_OCR
+INV-00132,Manual Data Entry,2025-01-09 11:18:00,Susan_White
+INV-00120,OCR Scan,2025-01-09 11:20:00,System_OCR
+INV-00132,Match to PO,2025-01-09 11:27:00,System_ERP
+INV-00121,Receive Invoice,2025-01-09 11:29:00,System_OCR
+INV-00132,Schedule Payment,2025-01-09 11:33:00,System_ERP
+INV-00120,Manual Data Entry,2025-01-09 11:36:00,Susan_White
+INV-00121,OCR Scan,2025-01-09 11:39:00,System_OCR
+INV-00120,Data Validation Failed,2025-01-09 11:48:00,System_ERP
+INV-00121,Manual Data Entry,2025-01-09 11:53:00,Susan_White
+INV-00121,Match to PO,2025-01-09 12:00:00,System_ERP
+INV-00120,Manual Data Entry,2025-01-09 12:08:00,Robert_Kim
+INV-00120,Match to PO,2025-01-09 12:17:00,System_ERP
+INV-00120,Schedule Payment,2025-01-09 12:25:00,System_ERP
+INV-00134,Receive Invoice,2025-01-09 13:02:00,System_ERP
+INV-00128,Receive Invoice,2025-01-09 13:03:00,System_OCR
+INV-00134,OCR Scan,2025-01-09 13:13:00,System_OCR
+INV-00128,OCR Scan,2025-01-09 13:18:00,System_OCR
+INV-00121,Manager Approval,2025-01-09 13:20:00,Michael_Brown
+INV-00130,Receive Invoice,2025-01-09 13:21:00,System_OCR
+INV-00130,OCR Scan,2025-01-09 13:27:00,System_OCR
+INV-00126,Receive Invoice,2025-01-09 13:39:00,System_ERP
+INV-00122,Receive Invoice,2025-01-09 13:40:00,System_OCR
+INV-00130,Manual Data Entry,2025-01-09 13:40:00,Robert_Kim
+INV-00134,Manual Data Entry,2025-01-09 13:42:00,Susan_White
+INV-00128,Manual Data Entry,2025-01-09 13:45:00,Susan_White
+INV-00130,Data Validation Failed,2025-01-09 13:46:00,System_ERP
+INV-00126,OCR Scan,2025-01-09 13:48:00,System_OCR
+INV-00134,Match to PO,2025-01-09 13:50:00,System_ERP
+INV-00122,OCR Scan,2025-01-09 13:53:00,System_OCR
+INV-00128,Match to PO,2025-01-09 13:54:00,System_ERP
+INV-00129,Receive Invoice,2025-01-09 13:58:00,System_OCR
+INV-00134,Schedule Payment,2025-01-09 13:59:00,System_ERP
+INV-00124,Receive Invoice,2025-01-09 14:05:00,System_ERP
+INV-00122,Manual Data Entry,2025-01-09 14:09:00,Jennifer_Moore
+INV-00126,Manual Data Entry,2025-01-09 14:09:00,Robert_Kim
+INV-00129,OCR Scan,2025-01-09 14:09:00,System_OCR
+INV-00124,OCR Scan,2025-01-09 14:10:00,System_OCR
+INV-00122,Match to PO,2025-01-09 14:14:00,System_ERP
+INV-00126,Match to PO,2025-01-09 14:15:00,System_ERP
+INV-00130,Manual Data Entry,2025-01-09 14:18:00,Robert_Kim
+INV-00122,Schedule Payment,2025-01-09 14:23:00,System_ERP
+INV-00126,Schedule Payment,2025-01-09 14:27:00,System_ERP
+INV-00130,Match to PO,2025-01-09 14:27:00,System_ERP
+INV-00123,Receive Invoice,2025-01-09 14:31:00,System_OCR
+INV-00127,Receive Invoice,2025-01-09 14:31:00,System_ERP
+INV-00124,Manual Data Entry,2025-01-09 14:35:00,Robert_Kim
+INV-00130,Schedule Payment,2025-01-09 14:38:00,System_ERP
+INV-00129,Manual Data Entry,2025-01-09 14:39:00,Robert_Kim
+INV-00127,OCR Scan,2025-01-09 14:41:00,System_OCR
+INV-00124,Match to PO,2025-01-09 14:42:00,System_ERP
+INV-00129,Match to PO,2025-01-09 14:44:00,System_ERP
+INV-00123,OCR Scan,2025-01-09 14:45:00,System_OCR
+INV-00123,Manual Data Entry,2025-01-09 14:55:00,Susan_White
+INV-00129,Schedule Payment,2025-01-09 14:59:00,System_ERP
+INV-00123,Match to PO,2025-01-09 15:01:00,System_ERP
+INV-00127,Manual Data Entry,2025-01-09 15:05:00,Robert_Kim
+INV-00127,Match to PO,2025-01-09 15:14:00,System_ERP
+INV-00121,CFO Approval,2025-01-09 15:20:00,James_Wilson
+INV-00127,Schedule Payment,2025-01-09 15:26:00,System_ERP
+INV-00121,Schedule Payment,2025-01-09 15:31:00,System_ERP
+INV-00124,Manager Approval,2025-01-09 15:37:00,Patricia_Davis
+INV-00124,Schedule Payment,2025-01-09 15:49:00,System_ERP
+INV-00125,Receive Invoice,2025-01-09 15:55:00,System_ERP
+INV-00123,Manager Approval,2025-01-09 15:58:00,Patricia_Davis
+INV-00125,OCR Scan,2025-01-09 16:09:00,System_OCR
+INV-00123,Schedule Payment,2025-01-09 16:12:00,System_ERP
+INV-00125,Manual Data Entry,2025-01-09 16:31:00,Susan_White
+INV-00125,Match to PO,2025-01-09 16:36:00,System_ERP
+INV-00125,Manager Approval,2025-01-09 17:55:00,Michael_Brown
+INV-00125,Approval Rejected,2025-01-09 18:12:00,Patricia_Davis
+INV-00128,Manager Approval,2025-01-09 18:54:00,Patricia_Davis
+INV-00128,Schedule Payment,2025-01-09 19:02:00,System_ERP
+INV-00125,Clarification Request,2025-01-09 22:12:00,Susan_White
+INV-00138,Receive Invoice,2025-01-10 09:34:00,System_ERP
+INV-00138,OCR Scan,2025-01-10 09:39:00,System_OCR
+INV-00140,Receive Invoice,2025-01-10 09:50:00,System_OCR
+INV-00140,OCR Scan,2025-01-10 10:00:00,System_OCR
+INV-00138,Manual Data Entry,2025-01-10 10:05:00,Susan_White
+INV-00140,Manual Data Entry,2025-01-10 10:13:00,Robert_Kim
+INV-00138,Match to PO,2025-01-10 10:15:00,System_ERP
+INV-00140,Data Validation Failed,2025-01-10 10:21:00,System_ERP
+INV-00143,Receive Invoice,2025-01-10 10:39:00,System_ERP
+INV-00140,Manual Data Entry,2025-01-10 10:42:00,Jennifer_Moore
+INV-00140,Match to PO,2025-01-10 10:51:00,System_ERP
+INV-00143,OCR Scan,2025-01-10 10:52:00,System_OCR
+INV-00138,Manager Approval,2025-01-10 10:55:00,Patricia_Davis
+INV-00138,Schedule Payment,2025-01-10 11:05:00,System_ERP
+INV-00143,Manual Data Entry,2025-01-10 11:21:00,Jennifer_Moore
+INV-00144,Receive Invoice,2025-01-10 11:23:00,System_OCR
+INV-00145,Receive Invoice,2025-01-10 11:25:00,System_OCR
+INV-00143,Match to PO,2025-01-10 11:29:00,System_ERP
+INV-00144,OCR Scan,2025-01-10 11:33:00,System_OCR
+INV-00143,Schedule Payment,2025-01-10 11:34:00,System_ERP
+INV-00145,OCR Scan,2025-01-10 11:36:00,System_OCR
+INV-00144,Manual Data Entry,2025-01-10 11:49:00,Susan_White
+INV-00144,Match to PO,2025-01-10 11:59:00,System_ERP
+INV-00145,Manual Data Entry,2025-01-10 12:03:00,Robert_Kim
+INV-00144,Schedule Payment,2025-01-10 12:09:00,System_ERP
+INV-00145,Match to PO,2025-01-10 12:10:00,System_ERP
+INV-00145,Schedule Payment,2025-01-10 12:16:00,System_ERP
+INV-00140,Manager Approval,2025-01-10 12:17:00,Patricia_Davis
+INV-00146,Receive Invoice,2025-01-10 12:30:00,System_OCR
+INV-00140,Approval Rejected,2025-01-10 12:36:00,Patricia_Davis
+INV-00146,OCR Scan,2025-01-10 12:45:00,System_OCR
+INV-00135,Receive Invoice,2025-01-10 12:59:00,System_ERP
+INV-00135,OCR Scan,2025-01-10 13:13:00,System_OCR
+INV-00146,Manual Data Entry,2025-01-10 13:15:00,Susan_White
+INV-00146,Match to PO,2025-01-10 13:24:00,System_ERP
+INV-00146,Schedule Payment,2025-01-10 13:29:00,System_ERP
+INV-00135,Manual Data Entry,2025-01-10 13:32:00,Robert_Kim
+INV-00147,Receive Invoice,2025-01-10 13:41:00,System_OCR
+INV-00135,Match to PO,2025-01-10 13:42:00,System_ERP
+INV-00147,OCR Scan,2025-01-10 13:51:00,System_OCR
+INV-00141,Receive Invoice,2025-01-10 13:52:00,System_OCR
+INV-00135,Schedule Payment,2025-01-10 13:54:00,System_ERP
+INV-00141,OCR Scan,2025-01-10 13:58:00,System_OCR
+INV-00139,Receive Invoice,2025-01-10 14:02:00,System_ERP
+INV-00147,Manual Data Entry,2025-01-10 14:04:00,Susan_White
+INV-00147,Match to PO,2025-01-10 14:09:00,System_ERP
+INV-00139,OCR Scan,2025-01-10 14:13:00,System_OCR
+INV-00147,Schedule Payment,2025-01-10 14:16:00,System_ERP
+INV-00141,Manual Data Entry,2025-01-10 14:26:00,Susan_White
+INV-00149,Receive Invoice,2025-01-10 14:29:00,System_ERP
+INV-00139,Manual Data Entry,2025-01-10 14:34:00,Robert_Kim
+INV-00141,Match to PO,2025-01-10 14:34:00,System_ERP
+INV-00149,OCR Scan,2025-01-10 14:34:00,System_OCR
+INV-00139,Match to PO,2025-01-10 14:44:00,System_ERP
+INV-00141,Schedule Payment,2025-01-10 14:47:00,System_ERP
+INV-00139,Schedule Payment,2025-01-10 14:57:00,System_ERP
+INV-00142,Receive Invoice,2025-01-10 15:01:00,System_ERP
+INV-00149,Manual Data Entry,2025-01-10 15:03:00,Robert_Kim
+INV-00142,OCR Scan,2025-01-10 15:10:00,System_OCR
+INV-00149,Match to PO,2025-01-10 15:10:00,System_ERP
+INV-00137,Receive Invoice,2025-01-10 15:14:00,System_OCR
+INV-00137,OCR Scan,2025-01-10 15:19:00,System_OCR
+INV-00148,Receive Invoice,2025-01-10 15:20:00,System_OCR
+INV-00136,Receive Invoice,2025-01-10 15:23:00,System_OCR
+INV-00149,Schedule Payment,2025-01-10 15:25:00,System_ERP
+INV-00136,OCR Scan,2025-01-10 15:30:00,System_OCR
+INV-00142,Manual Data Entry,2025-01-10 15:30:00,Susan_White
+INV-00137,Manual Data Entry,2025-01-10 15:32:00,Robert_Kim
+INV-00148,OCR Scan,2025-01-10 15:33:00,System_OCR
+INV-00140,Clarification Request,2025-01-10 15:36:00,Jennifer_Moore
+INV-00142,Match to PO,2025-01-10 15:40:00,System_ERP
+INV-00137,Match to PO,2025-01-10 15:41:00,System_ERP
+INV-00136,Manual Data Entry,2025-01-10 15:50:00,Susan_White
+INV-00136,Match to PO,2025-01-10 15:58:00,System_ERP
+INV-00148,Manual Data Entry,2025-01-10 15:59:00,Susan_White
+INV-00148,Match to PO,2025-01-10 16:04:00,System_ERP
+INV-00136,Schedule Payment,2025-01-10 16:10:00,System_ERP
+INV-00148,Schedule Payment,2025-01-10 16:10:00,System_ERP
+INV-00137,Manager Approval,2025-01-10 16:17:00,Michael_Brown
+INV-00137,Schedule Payment,2025-01-10 16:22:00,System_ERP
+INV-00037,Process Payment,2025-01-10 16:38:00,System_ERP
+INV-00037,Payment Complete,2025-01-10 16:40:00,System_ERP
+INV-00142,Manager Approval,2025-01-10 17:08:00,Michael_Brown
+INV-00125,Manager Approval,2025-01-10 17:12:00,Patricia_Davis
+INV-00142,Schedule Payment,2025-01-10 17:16:00,System_ERP
+INV-00125,CFO Approval,2025-01-10 17:37:00,James_Wilson
+INV-00125,Schedule Payment,2025-01-10 17:48:00,System_ERP
+INV-00140,Manager Approval,2025-01-11 01:36:00,Michael_Brown
+INV-00140,CFO Approval,2025-01-11 07:36:00,James_Wilson
+INV-00140,Schedule Payment,2025-01-11 07:48:00,System_ERP
+INV-00156,Receive Invoice,2025-01-11 09:16:00,System_OCR
+INV-00156,OCR Scan,2025-01-11 09:28:00,System_OCR
+INV-00156,Manual Data Entry,2025-01-11 09:44:00,Susan_White
+INV-00156,Match to PO,2025-01-11 09:54:00,System_ERP
+INV-00158,Receive Invoice,2025-01-11 09:55:00,System_ERP
+INV-00156,Schedule Payment,2025-01-11 10:02:00,System_ERP
+INV-00158,OCR Scan,2025-01-11 10:06:00,System_OCR
+INV-00158,Manual Data Entry,2025-01-11 10:20:00,Robert_Kim
+INV-00158,Match to PO,2025-01-11 10:26:00,System_ERP
+INV-00164,Receive Invoice,2025-01-11 10:42:00,System_OCR
+INV-00164,OCR Scan,2025-01-11 10:47:00,System_OCR
+INV-00154,Receive Invoice,2025-01-11 10:53:00,System_ERP
+INV-00154,OCR Scan,2025-01-11 10:58:00,System_OCR
+INV-00155,Receive Invoice,2025-01-11 10:58:00,System_ERP
+INV-00153,Receive Invoice,2025-01-11 10:59:00,System_ERP
+INV-00164,Manual Data Entry,2025-01-11 10:59:00,Susan_White
+INV-00160,Receive Invoice,2025-01-11 11:00:00,System_ERP
+INV-00155,OCR Scan,2025-01-11 11:06:00,System_OCR
+INV-00164,Match to PO,2025-01-11 11:09:00,System_ERP
+INV-00153,OCR Scan,2025-01-11 11:11:00,System_OCR
+INV-00154,Manual Data Entry,2025-01-11 11:13:00,Jennifer_Moore
+INV-00160,OCR Scan,2025-01-11 11:15:00,System_OCR
+INV-00154,Match to PO,2025-01-11 11:20:00,System_ERP
+INV-00155,Manual Data Entry,2025-01-11 11:25:00,Robert_Kim
+INV-00155,Match to PO,2025-01-11 11:30:00,System_ERP
+INV-00154,Schedule Payment,2025-01-11 11:31:00,System_ERP
+INV-00160,Manual Data Entry,2025-01-11 11:33:00,Susan_White
+INV-00153,Manual Data Entry,2025-01-11 11:36:00,Susan_White
+INV-00158,Manager Approval,2025-01-11 11:36:00,Michael_Brown
+INV-00161,Receive Invoice,2025-01-11 11:36:00,System_ERP
+INV-00155,Schedule Payment,2025-01-11 11:39:00,System_ERP
+INV-00153,Match to PO,2025-01-11 11:41:00,System_ERP
+INV-00158,Schedule Payment,2025-01-11 11:41:00,System_ERP
+INV-00160,Data Validation Failed,2025-01-11 11:45:00,System_ERP
+INV-00161,OCR Scan,2025-01-11 11:50:00,System_OCR
+INV-00153,Schedule Payment,2025-01-11 11:56:00,System_ERP
+INV-00161,Manual Data Entry,2025-01-11 12:00:00,Robert_Kim
+INV-00157,Receive Invoice,2025-01-11 12:04:00,System_ERP
+INV-00161,Match to PO,2025-01-11 12:09:00,System_ERP
+INV-00164,Manager Approval,2025-01-11 12:10:00,Patricia_Davis
+INV-00157,OCR Scan,2025-01-11 12:15:00,System_OCR
+INV-00161,Schedule Payment,2025-01-11 12:16:00,System_ERP
+INV-00164,Schedule Payment,2025-01-11 12:16:00,System_ERP
+INV-00160,Manual Data Entry,2025-01-11 12:17:00,Jennifer_Moore
+INV-00160,Match to PO,2025-01-11 12:22:00,System_ERP
+INV-00157,Manual Data Entry,2025-01-11 12:33:00,Susan_White
+INV-00159,Receive Invoice,2025-01-11 12:34:00,System_ERP
+INV-00160,Schedule Payment,2025-01-11 12:35:00,System_ERP
+INV-00157,Match to PO,2025-01-11 12:39:00,System_ERP
+INV-00159,OCR Scan,2025-01-11 12:40:00,System_OCR
+INV-00157,Schedule Payment,2025-01-11 12:45:00,System_ERP
+INV-00159,Manual Data Entry,2025-01-11 12:53:00,Susan_White
+INV-00159,Match to PO,2025-01-11 13:00:00,System_ERP
+INV-00159,Schedule Payment,2025-01-11 13:06:00,System_ERP
+INV-00150,Receive Invoice,2025-01-11 13:22:00,System_ERP
+INV-00150,OCR Scan,2025-01-11 13:27:00,System_OCR
+INV-00150,Manual Data Entry,2025-01-11 13:42:00,Jennifer_Moore
+INV-00150,Data Validation Failed,2025-01-11 13:48:00,System_ERP
+INV-00150,Manual Data Entry,2025-01-11 14:28:00,Robert_Kim
+INV-00152,Receive Invoice,2025-01-11 14:30:00,System_ERP
+INV-00150,Match to PO,2025-01-11 14:35:00,System_ERP
+INV-00152,OCR Scan,2025-01-11 14:36:00,System_OCR
+INV-00150,CFO Approval,2025-01-11 14:52:00,James_Wilson
+INV-00150,Schedule Payment,2025-01-11 15:00:00,System_ERP
+INV-00152,Manual Data Entry,2025-01-11 15:02:00,Robert_Kim
+INV-00152,Match to PO,2025-01-11 15:12:00,System_ERP
+INV-00162,Receive Invoice,2025-01-11 15:20:00,System_OCR
+INV-00152,Schedule Payment,2025-01-11 15:22:00,System_ERP
+INV-00163,Receive Invoice,2025-01-11 15:23:00,System_OCR
+INV-00163,OCR Scan,2025-01-11 15:30:00,System_OCR
+INV-00162,OCR Scan,2025-01-11 15:35:00,System_OCR
+INV-00151,Receive Invoice,2025-01-11 15:45:00,System_ERP
+INV-00163,Manual Data Entry,2025-01-11 15:46:00,Robert_Kim
+INV-00163,Match to PO,2025-01-11 15:52:00,System_ERP
+INV-00151,OCR Scan,2025-01-11 15:59:00,System_OCR
+INV-00162,Manual Data Entry,2025-01-11 16:00:00,Jennifer_Moore
+INV-00162,Match to PO,2025-01-11 16:08:00,System_ERP
+INV-00151,Manual Data Entry,2025-01-11 16:17:00,Jennifer_Moore
+INV-00162,Schedule Payment,2025-01-11 16:20:00,System_ERP
+INV-00151,Match to PO,2025-01-11 16:23:00,System_ERP
+INV-00151,Schedule Payment,2025-01-11 16:32:00,System_ERP
+INV-00163,Manager Approval,2025-01-11 17:05:00,Patricia_Davis
+INV-00163,Schedule Payment,2025-01-11 17:16:00,System_ERP
+INV-00172,Receive Invoice,2025-01-12 09:05:00,System_OCR
+INV-00176,Receive Invoice,2025-01-12 09:08:00,System_OCR
+INV-00172,OCR Scan,2025-01-12 09:17:00,System_OCR
+INV-00176,OCR Scan,2025-01-12 09:23:00,System_OCR
+INV-00171,Receive Invoice,2025-01-12 09:33:00,System_OCR
+INV-00167,Receive Invoice,2025-01-12 09:35:00,System_ERP
+INV-00167,OCR Scan,2025-01-12 09:40:00,System_OCR
+INV-00172,Manual Data Entry,2025-01-12 09:42:00,Robert_Kim
+INV-00176,Manual Data Entry,2025-01-12 09:43:00,Susan_White
+INV-00172,Match to PO,2025-01-12 09:47:00,System_ERP
+INV-00171,OCR Scan,2025-01-12 09:48:00,System_OCR
+INV-00176,Match to PO,2025-01-12 09:49:00,System_ERP
+INV-00166,Receive Invoice,2025-01-12 09:56:00,System_ERP
+INV-00167,Manual Data Entry,2025-01-12 09:56:00,Robert_Kim
+INV-00167,Match to PO,2025-01-12 10:02:00,System_ERP
+INV-00172,Schedule Payment,2025-01-12 10:02:00,System_ERP
+INV-00176,Schedule Payment,2025-01-12 10:03:00,System_ERP
+INV-00171,Manual Data Entry,2025-01-12 10:06:00,Robert_Kim
+INV-00166,OCR Scan,2025-01-12 10:07:00,System_OCR
+INV-00167,Schedule Payment,2025-01-12 10:07:00,System_ERP
+INV-00171,Match to PO,2025-01-12 10:11:00,System_ERP
+INV-00166,Manual Data Entry,2025-01-12 10:18:00,Jennifer_Moore
+INV-00171,Schedule Payment,2025-01-12 10:20:00,System_ERP
+INV-00166,Match to PO,2025-01-12 10:23:00,System_ERP
+INV-00166,Schedule Payment,2025-01-12 10:31:00,System_ERP
+INV-00168,Receive Invoice,2025-01-12 10:53:00,System_OCR
+INV-00168,OCR Scan,2025-01-12 10:59:00,System_OCR
+INV-00168,Manual Data Entry,2025-01-12 11:09:00,Robert_Kim
+INV-00168,Match to PO,2025-01-12 11:16:00,System_ERP
+INV-00169,Receive Invoice,2025-01-12 12:13:00,System_OCR
+INV-00169,OCR Scan,2025-01-12 12:18:00,System_OCR
+INV-00175,Receive Invoice,2025-01-12 12:29:00,System_OCR
+INV-00169,Manual Data Entry,2025-01-12 12:35:00,Susan_White
+INV-00178,Receive Invoice,2025-01-12 12:37:00,System_ERP
+INV-00169,Match to PO,2025-01-12 12:40:00,System_ERP
+INV-00175,OCR Scan,2025-01-12 12:41:00,System_OCR
+INV-00178,OCR Scan,2025-01-12 12:45:00,System_OCR
+INV-00047,Process Payment,2025-01-12 12:48:00,System_ERP
+INV-00169,Schedule Payment,2025-01-12 12:50:00,System_ERP
+INV-00047,Payment Complete,2025-01-12 12:51:00,System_ERP
+INV-00175,Manual Data Entry,2025-01-12 13:07:00,Susan_White
+INV-00175,Match to PO,2025-01-12 13:12:00,System_ERP
+INV-00178,Manual Data Entry,2025-01-12 13:14:00,Robert_Kim
+INV-00178,Match to PO,2025-01-12 13:20:00,System_ERP
+INV-00175,CFO Approval,2025-01-12 13:41:00,James_Wilson
+INV-00175,Schedule Payment,2025-01-12 13:56:00,System_ERP
+INV-00178,Manager Approval,2025-01-12 14:04:00,Michael_Brown
+INV-00178,Schedule Payment,2025-01-12 14:11:00,System_ERP
+INV-00170,Receive Invoice,2025-01-12 14:13:00,System_OCR
+INV-00179,Receive Invoice,2025-01-12 14:19:00,System_OCR
+INV-00022,Process Payment,2025-01-12 14:27:00,System_ERP
+INV-00170,OCR Scan,2025-01-12 14:28:00,System_OCR
+INV-00022,Payment Complete,2025-01-12 14:29:00,System_ERP
+INV-00179,OCR Scan,2025-01-12 14:29:00,System_OCR
+INV-00170,Manual Data Entry,2025-01-12 14:38:00,Susan_White
+INV-00170,Data Validation Failed,2025-01-12 14:46:00,System_ERP
+INV-00179,Manual Data Entry,2025-01-12 14:46:00,Robert_Kim
+INV-00044,Process Payment,2025-01-12 14:50:00,System_ERP
+INV-00044,Payment Complete,2025-01-12 14:51:00,System_ERP
+INV-00179,Match to PO,2025-01-12 14:54:00,System_ERP
+INV-00177,Receive Invoice,2025-01-12 14:56:00,System_OCR
+INV-00177,OCR Scan,2025-01-12 15:06:00,System_OCR
+INV-00179,Schedule Payment,2025-01-12 15:09:00,System_ERP
+INV-00173,Receive Invoice,2025-01-12 15:11:00,System_OCR
+INV-00170,Manual Data Entry,2025-01-12 15:12:00,Susan_White
+INV-00177,Manual Data Entry,2025-01-12 15:17:00,Jennifer_Moore
+INV-00170,Match to PO,2025-01-12 15:20:00,System_ERP
+INV-00174,Receive Invoice,2025-01-12 15:20:00,System_ERP
+INV-00177,Match to PO,2025-01-12 15:22:00,System_ERP
+INV-00173,OCR Scan,2025-01-12 15:25:00,System_OCR
+INV-00170,Schedule Payment,2025-01-12 15:31:00,System_ERP
+INV-00174,OCR Scan,2025-01-12 15:31:00,System_OCR
+INV-00174,Manual Data Entry,2025-01-12 15:49:00,Robert_Kim
+INV-00173,Manual Data Entry,2025-01-12 15:52:00,Jennifer_Moore
+INV-00177,Manager Approval,2025-01-12 15:52:00,Michael_Brown
+INV-00174,Match to PO,2025-01-12 15:56:00,System_ERP
+INV-00165,Receive Invoice,2025-01-12 16:00:00,System_OCR
+INV-00173,Match to PO,2025-01-12 16:02:00,System_ERP
+INV-00177,Schedule Payment,2025-01-12 16:06:00,System_ERP
+INV-00165,OCR Scan,2025-01-12 16:08:00,System_OCR
+INV-00174,Schedule Payment,2025-01-12 16:10:00,System_ERP
+INV-00173,Schedule Payment,2025-01-12 16:16:00,System_ERP
+INV-00165,Manual Data Entry,2025-01-12 16:21:00,Robert_Kim
+INV-00165,Match to PO,2025-01-12 16:30:00,System_ERP
+INV-00165,Schedule Payment,2025-01-12 16:37:00,System_ERP
+INV-00168,Manager Approval,2025-01-12 17:16:00,Michael_Brown
+INV-00168,Schedule Payment,2025-01-12 17:31:00,System_ERP
+INV-00186,Receive Invoice,2025-01-13 09:04:00,System_ERP
+INV-00186,OCR Scan,2025-01-13 09:16:00,System_OCR
+INV-00188,Receive Invoice,2025-01-13 09:20:00,System_ERP
+INV-00188,OCR Scan,2025-01-13 09:31:00,System_OCR
+INV-00186,Manual Data Entry,2025-01-13 09:38:00,Susan_White
+INV-00188,Manual Data Entry,2025-01-13 09:41:00,Jennifer_Moore
+INV-00190,Receive Invoice,2025-01-13 09:43:00,System_OCR
+INV-00186,Match to PO,2025-01-13 09:47:00,System_ERP
+INV-00188,Match to PO,2025-01-13 09:47:00,System_ERP
+INV-00190,OCR Scan,2025-01-13 09:54:00,System_OCR
+INV-00186,Schedule Payment,2025-01-13 09:59:00,System_ERP
+INV-00190,Manual Data Entry,2025-01-13 10:10:00,Susan_White
+INV-00194,Receive Invoice,2025-01-13 10:16:00,System_OCR
+INV-00190,Data Validation Failed,2025-01-13 10:19:00,System_ERP
+INV-00194,OCR Scan,2025-01-13 10:27:00,System_OCR
+INV-00188,Manager Approval,2025-01-13 10:35:00,Michael_Brown
+INV-00190,Manual Data Entry,2025-01-13 10:40:00,Robert_Kim
+INV-00194,Manual Data Entry,2025-01-13 10:40:00,Susan_White
+INV-00190,Match to PO,2025-01-13 10:48:00,System_ERP
+INV-00188,Schedule Payment,2025-01-13 10:50:00,System_ERP
+INV-00194,Match to PO,2025-01-13 10:50:00,System_ERP
+INV-00194,Schedule Payment,2025-01-13 10:56:00,System_ERP
+INV-00190,Schedule Payment,2025-01-13 11:01:00,System_ERP
+INV-00182,Receive Invoice,2025-01-13 11:55:00,System_OCR
+INV-00182,OCR Scan,2025-01-13 12:07:00,System_OCR
+INV-00189,Receive Invoice,2025-01-13 12:20:00,System_OCR
+INV-00182,Manual Data Entry,2025-01-13 12:26:00,Jennifer_Moore
+INV-00185,Receive Invoice,2025-01-13 12:32:00,System_OCR
+INV-00182,Match to PO,2025-01-13 12:34:00,System_ERP
+INV-00189,OCR Scan,2025-01-13 12:34:00,System_OCR
+INV-00089,Process Payment,2025-01-13 12:39:00,System_ERP
+INV-00182,Schedule Payment,2025-01-13 12:40:00,System_ERP
+INV-00185,OCR Scan,2025-01-13 12:40:00,System_OCR
+INV-00089,Payment Complete,2025-01-13 12:44:00,System_ERP
+INV-00189,Manual Data Entry,2025-01-13 12:48:00,Jennifer_Moore
+INV-00189,Match to PO,2025-01-13 12:55:00,System_ERP
+INV-00181,Receive Invoice,2025-01-13 12:58:00,System_ERP
+INV-00192,Receive Invoice,2025-01-13 13:01:00,System_OCR
+INV-00181,OCR Scan,2025-01-13 13:03:00,System_OCR
+INV-00184,Receive Invoice,2025-01-13 13:07:00,System_OCR
+INV-00185,Manual Data Entry,2025-01-13 13:08:00,Jennifer_Moore
+INV-00192,OCR Scan,2025-01-13 13:09:00,System_OCR
+INV-00189,Schedule Payment,2025-01-13 13:10:00,System_ERP
+INV-00184,OCR Scan,2025-01-13 13:13:00,System_OCR
+INV-00185,Match to PO,2025-01-13 13:15:00,System_ERP
+INV-00181,Manual Data Entry,2025-01-13 13:16:00,Robert_Kim
+INV-00181,Match to PO,2025-01-13 13:21:00,System_ERP
+INV-00191,Receive Invoice,2025-01-13 13:22:00,System_OCR
+INV-00185,Schedule Payment,2025-01-13 13:23:00,System_ERP
+INV-00191,OCR Scan,2025-01-13 13:29:00,System_OCR
+INV-00192,Manual Data Entry,2025-01-13 13:30:00,Robert_Kim
+INV-00184,Manual Data Entry,2025-01-13 13:32:00,Jennifer_Moore
+INV-00181,Schedule Payment,2025-01-13 13:33:00,System_ERP
+INV-00192,Match to PO,2025-01-13 13:40:00,System_ERP
+INV-00184,Match to PO,2025-01-13 13:42:00,System_ERP
+INV-00180,Receive Invoice,2025-01-13 13:48:00,System_OCR
+INV-00191,Manual Data Entry,2025-01-13 13:50:00,Jennifer_Moore
+INV-00192,Schedule Payment,2025-01-13 13:51:00,System_ERP
+INV-00184,Schedule Payment,2025-01-13 13:52:00,System_ERP
+INV-00191,Match to PO,2025-01-13 13:56:00,System_ERP
+INV-00014,Process Payment,2025-01-13 13:58:00,System_ERP
+INV-00180,OCR Scan,2025-01-13 14:02:00,System_OCR
+INV-00014,Payment Complete,2025-01-13 14:03:00,System_ERP
+INV-00191,Schedule Payment,2025-01-13 14:07:00,System_ERP
+INV-00193,Receive Invoice,2025-01-13 14:22:00,System_OCR
+INV-00180,Manual Data Entry,2025-01-13 14:30:00,Susan_White
+INV-00193,OCR Scan,2025-01-13 14:36:00,System_OCR
+INV-00180,Data Validation Failed,2025-01-13 14:39:00,System_ERP
+INV-00183,Receive Invoice,2025-01-13 14:43:00,System_ERP
+INV-00183,OCR Scan,2025-01-13 14:52:00,System_OCR
+INV-00193,Manual Data Entry,2025-01-13 15:01:00,Jennifer_Moore
+INV-00193,Match to PO,2025-01-13 15:06:00,System_ERP
+INV-00180,Manual Data Entry,2025-01-13 15:09:00,Jennifer_Moore
+INV-00187,Receive Invoice,2025-01-13 15:14:00,System_ERP
+INV-00193,Schedule Payment,2025-01-13 15:18:00,System_ERP
+INV-00180,Match to PO,2025-01-13 15:19:00,System_ERP
+INV-00183,Manual Data Entry,2025-01-13 15:20:00,Susan_White
+INV-00187,OCR Scan,2025-01-13 15:24:00,System_OCR
+INV-00180,Schedule Payment,2025-01-13 15:26:00,System_ERP
+INV-00183,Match to PO,2025-01-13 15:28:00,System_ERP
+INV-00183,Schedule Payment,2025-01-13 15:35:00,System_ERP
+INV-00187,Manual Data Entry,2025-01-13 15:37:00,Robert_Kim
+INV-00187,Match to PO,2025-01-13 15:45:00,System_ERP
+INV-00187,Schedule Payment,2025-01-13 15:51:00,System_ERP
+INV-00023,Process Payment,2025-01-13 16:11:00,System_ERP
+INV-00023,Payment Complete,2025-01-13 16:12:00,System_ERP
+INV-00205,Receive Invoice,2025-01-14 09:52:00,System_OCR
+INV-00199,Receive Invoice,2025-01-14 09:59:00,System_ERP
+INV-00205,OCR Scan,2025-01-14 10:00:00,System_OCR
+INV-00203,Receive Invoice,2025-01-14 10:01:00,System_OCR
+INV-00203,OCR Scan,2025-01-14 10:08:00,System_OCR
+INV-00199,OCR Scan,2025-01-14 10:09:00,System_OCR
+INV-00103,Process Payment,2025-01-14 10:12:00,System_ERP
+INV-00103,Payment Complete,2025-01-14 10:15:00,System_ERP
+INV-00203,Manual Data Entry,2025-01-14 10:19:00,Susan_White
+INV-00203,Match to PO,2025-01-14 10:29:00,System_ERP
+INV-00205,Manual Data Entry,2025-01-14 10:30:00,Robert_Kim
+INV-00199,Manual Data Entry,2025-01-14 10:32:00,Susan_White
+INV-00199,Match to PO,2025-01-14 10:37:00,System_ERP
+INV-00201,Receive Invoice,2025-01-14 10:37:00,System_ERP
+INV-00203,Schedule Payment,2025-01-14 10:38:00,System_ERP
+INV-00205,Match to PO,2025-01-14 10:39:00,System_ERP
+INV-00196,Receive Invoice,2025-01-14 10:43:00,System_ERP
+INV-00195,Receive Invoice,2025-01-14 10:49:00,System_OCR
+INV-00201,OCR Scan,2025-01-14 10:49:00,System_OCR
+INV-00196,OCR Scan,2025-01-14 10:50:00,System_OCR
+INV-00205,Schedule Payment,2025-01-14 10:50:00,System_ERP
+INV-00195,OCR Scan,2025-01-14 10:59:00,System_OCR
+INV-00196,Manual Data Entry,2025-01-14 11:04:00,Jennifer_Moore
+INV-00196,Match to PO,2025-01-14 11:10:00,System_ERP
+INV-00201,Manual Data Entry,2025-01-14 11:16:00,Jennifer_Moore
+INV-00196,Schedule Payment,2025-01-14 11:19:00,System_ERP
+INV-00206,Receive Invoice,2025-01-14 11:19:00,System_ERP
+INV-00201,Match to PO,2025-01-14 11:25:00,System_ERP
+INV-00195,Manual Data Entry,2025-01-14 11:27:00,Susan_White
+INV-00206,OCR Scan,2025-01-14 11:31:00,System_OCR
+INV-00195,Match to PO,2025-01-14 11:36:00,System_ERP
+INV-00201,Schedule Payment,2025-01-14 11:37:00,System_ERP
+INV-00195,Schedule Payment,2025-01-14 11:45:00,System_ERP
+INV-00197,Receive Invoice,2025-01-14 11:47:00,System_OCR
+INV-00206,Manual Data Entry,2025-01-14 11:50:00,Susan_White
+INV-00206,Match to PO,2025-01-14 11:58:00,System_ERP
+INV-00197,OCR Scan,2025-01-14 12:00:00,System_OCR
+INV-00209,Receive Invoice,2025-01-14 12:03:00,System_ERP
+INV-00199,Manager Approval,2025-01-14 12:07:00,Michael_Brown
+INV-00209,OCR Scan,2025-01-14 12:12:00,System_OCR
+INV-00197,Manual Data Entry,2025-01-14 12:23:00,Robert_Kim
+INV-00202,Receive Invoice,2025-01-14 12:25:00,System_OCR
+INV-00204,Receive Invoice,2025-01-14 12:25:00,System_OCR
+INV-00056,Process Payment,2025-01-14 12:31:00,System_ERP
+INV-00204,OCR Scan,2025-01-14 12:31:00,System_OCR
+INV-00197,Match to PO,2025-01-14 12:32:00,System_ERP
+INV-00202,OCR Scan,2025-01-14 12:32:00,System_OCR
+INV-00056,Payment Complete,2025-01-14 12:36:00,System_ERP
+INV-00197,Schedule Payment,2025-01-14 12:37:00,System_ERP
+INV-00209,Manual Data Entry,2025-01-14 12:38:00,Jennifer_Moore
+INV-00204,Manual Data Entry,2025-01-14 12:45:00,Susan_White
+INV-00209,Match to PO,2025-01-14 12:48:00,System_ERP
+INV-00202,Manual Data Entry,2025-01-14 12:52:00,Robert_Kim
+INV-00204,Match to PO,2025-01-14 12:55:00,System_ERP
+INV-00206,Manager Approval,2025-01-14 12:56:00,Michael_Brown
+INV-00074,Process Payment,2025-01-14 12:58:00,System_ERP
+INV-00202,Match to PO,2025-01-14 12:59:00,System_ERP
+INV-00209,Schedule Payment,2025-01-14 13:02:00,System_ERP
+INV-00074,Payment Complete,2025-01-14 13:03:00,System_ERP
+INV-00206,Schedule Payment,2025-01-14 13:07:00,System_ERP
+INV-00202,Schedule Payment,2025-01-14 13:12:00,System_ERP
+INV-00208,Receive Invoice,2025-01-14 13:21:00,System_OCR
+INV-00208,OCR Scan,2025-01-14 13:35:00,System_OCR
+INV-00208,Manual Data Entry,2025-01-14 13:51:00,Jennifer_Moore
+INV-00200,Receive Invoice,2025-01-14 13:55:00,System_OCR
+INV-00208,Match to PO,2025-01-14 13:57:00,System_ERP
+INV-00204,Manager Approval,2025-01-14 14:01:00,Michael_Brown
+INV-00200,OCR Scan,2025-01-14 14:06:00,System_OCR
+INV-00075,Process Payment,2025-01-14 14:10:00,System_ERP
+INV-00208,Schedule Payment,2025-01-14 14:11:00,System_ERP
+INV-00075,Payment Complete,2025-01-14 14:15:00,System_ERP
+INV-00204,Schedule Payment,2025-01-14 14:15:00,System_ERP
+INV-00207,Receive Invoice,2025-01-14 14:20:00,System_ERP
+INV-00200,Manual Data Entry,2025-01-14 14:29:00,Susan_White
+INV-00207,OCR Scan,2025-01-14 14:32:00,System_OCR
+INV-00200,Data Validation Failed,2025-01-14 14:35:00,System_ERP
+INV-00207,Manual Data Entry,2025-01-14 14:43:00,Robert_Kim
+INV-00207,Match to PO,2025-01-14 14:48:00,System_ERP
+INV-00198,Receive Invoice,2025-01-14 14:52:00,System_OCR
+INV-00198,OCR Scan,2025-01-14 15:00:00,System_OCR
+INV-00200,Manual Data Entry,2025-01-14 15:10:00,Robert_Kim
+INV-00198,Manual Data Entry,2025-01-14 15:14:00,Robert_Kim
+INV-00200,Match to PO,2025-01-14 15:18:00,System_ERP
+INV-00198,Match to PO,2025-01-14 15:23:00,System_ERP
+INV-00198,Schedule Payment,2025-01-14 15:29:00,System_ERP
+INV-00200,CFO Approval,2025-01-14 15:43:00,James_Wilson
+INV-00200,Schedule Payment,2025-01-14 15:48:00,System_ERP
+INV-00207,Manager Approval,2025-01-14 15:51:00,Michael_Brown
+INV-00207,Schedule Payment,2025-01-14 16:02:00,System_ERP
+INV-00087,Process Payment,2025-01-14 17:30:00,System_ERP
+INV-00087,Payment Complete,2025-01-14 17:31:00,System_ERP
+INV-00199,CFO Approval,2025-01-14 18:07:00,James_Wilson
+INV-00199,Schedule Payment,2025-01-14 18:13:00,System_ERP
+INV-00090,Process Payment,2025-01-15 09:03:00,System_ERP
+INV-00090,Payment Complete,2025-01-15 09:04:00,System_ERP
+INV-00218,Receive Invoice,2025-01-15 10:27:00,System_ERP
+INV-00218,OCR Scan,2025-01-15 10:35:00,System_OCR
+INV-00217,Receive Invoice,2025-01-15 10:39:00,System_ERP
+INV-00211,Receive Invoice,2025-01-15 10:43:00,System_ERP
+INV-00061,Process Payment,2025-01-15 10:45:00,System_ERP
+INV-00218,Manual Data Entry,2025-01-15 10:46:00,Robert_Kim
+INV-00217,OCR Scan,2025-01-15 10:47:00,System_OCR
+INV-00061,Payment Complete,2025-01-15 10:48:00,System_ERP
+INV-00218,Match to PO,2025-01-15 10:55:00,System_ERP
+INV-00211,OCR Scan,2025-01-15 10:56:00,System_OCR
+INV-00220,Receive Invoice,2025-01-15 11:01:00,System_OCR
+INV-00217,Manual Data Entry,2025-01-15 11:07:00,Susan_White
+INV-00220,OCR Scan,2025-01-15 11:09:00,System_OCR
+INV-00211,Manual Data Entry,2025-01-15 11:11:00,Robert_Kim
+INV-00217,Match to PO,2025-01-15 11:16:00,System_ERP
+INV-00211,Match to PO,2025-01-15 11:21:00,System_ERP
+INV-00213,Receive Invoice,2025-01-15 11:27:00,System_OCR
+INV-00213,OCR Scan,2025-01-15 11:33:00,System_OCR
+INV-00211,Schedule Payment,2025-01-15 11:36:00,System_ERP
+INV-00220,Manual Data Entry,2025-01-15 11:37:00,Susan_White
+INV-00220,Data Validation Failed,2025-01-15 11:42:00,System_ERP
+INV-00218,Manager Approval,2025-01-15 11:45:00,Patricia_Davis
+INV-00213,Manual Data Entry,2025-01-15 11:54:00,Robert_Kim
+INV-00213,Match to PO,2025-01-15 12:04:00,System_ERP
+INV-00220,Manual Data Entry,2025-01-15 12:14:00,Jennifer_Moore
+INV-00213,Schedule Payment,2025-01-15 12:18:00,System_ERP
+INV-00217,Manager Approval,2025-01-15 12:18:00,Michael_Brown
+INV-00220,Match to PO,2025-01-15 12:21:00,System_ERP
+INV-00220,Schedule Payment,2025-01-15 12:28:00,System_ERP
+INV-00222,Receive Invoice,2025-01-15 12:37:00,System_ERP
+INV-00222,OCR Scan,2025-01-15 12:48:00,System_OCR
+INV-00222,Manual Data Entry,2025-01-15 13:00:00,Susan_White
+INV-00222,Match to PO,2025-01-15 13:05:00,System_ERP
+INV-00222,Schedule Payment,2025-01-15 13:15:00,System_ERP
+INV-00212,Receive Invoice,2025-01-15 13:46:00,System_OCR
+INV-00212,OCR Scan,2025-01-15 13:53:00,System_OCR
+INV-00212,Manual Data Entry,2025-01-15 14:03:00,Jennifer_Moore
+INV-00223,Receive Invoice,2025-01-15 14:04:00,System_ERP
+INV-00212,Match to PO,2025-01-15 14:10:00,System_ERP
+INV-00223,OCR Scan,2025-01-15 14:18:00,System_OCR
+INV-00219,Receive Invoice,2025-01-15 14:19:00,System_OCR
+INV-00212,Schedule Payment,2025-01-15 14:20:00,System_ERP
+INV-00215,Receive Invoice,2025-01-15 14:22:00,System_OCR
+INV-00210,Receive Invoice,2025-01-15 14:24:00,System_ERP
+INV-00215,OCR Scan,2025-01-15 14:29:00,System_OCR
+INV-00219,OCR Scan,2025-01-15 14:34:00,System_OCR
+INV-00210,OCR Scan,2025-01-15 14:36:00,System_OCR
+INV-00223,Manual Data Entry,2025-01-15 14:38:00,Jennifer_Moore
+INV-00223,Match to PO,2025-01-15 14:45:00,System_ERP
+INV-00221,Receive Invoice,2025-01-15 14:50:00,System_OCR
+INV-00210,Manual Data Entry,2025-01-15 14:52:00,Susan_White
+INV-00221,OCR Scan,2025-01-15 14:56:00,System_OCR
+INV-00210,Data Validation Failed,2025-01-15 14:57:00,System_ERP
+INV-00223,Schedule Payment,2025-01-15 14:57:00,System_ERP
+INV-00215,Manual Data Entry,2025-01-15 14:58:00,Jennifer_Moore
+INV-00219,Manual Data Entry,2025-01-15 15:03:00,Robert_Kim
+INV-00215,Match to PO,2025-01-15 15:04:00,System_ERP
+INV-00216,Receive Invoice,2025-01-15 15:04:00,System_OCR
+INV-00219,Match to PO,2025-01-15 15:09:00,System_ERP
+INV-00210,Manual Data Entry,2025-01-15 15:12:00,Robert_Kim
+INV-00216,OCR Scan,2025-01-15 15:12:00,System_OCR
+INV-00215,Schedule Payment,2025-01-15 15:15:00,System_ERP
+INV-00219,Schedule Payment,2025-01-15 15:16:00,System_ERP
+INV-00221,Manual Data Entry,2025-01-15 15:18:00,Jennifer_Moore
+INV-00224,Receive Invoice,2025-01-15 15:18:00,System_OCR
+INV-00210,Match to PO,2025-01-15 15:20:00,System_ERP
+INV-00221,Match to PO,2025-01-15 15:26:00,System_ERP
+INV-00224,OCR Scan,2025-01-15 15:26:00,System_OCR
+INV-00216,Manual Data Entry,2025-01-15 15:32:00,Robert_Kim
+INV-00221,Schedule Payment,2025-01-15 15:34:00,System_ERP
+INV-00216,Match to PO,2025-01-15 15:41:00,System_ERP
+INV-00224,Manual Data Entry,2025-01-15 15:41:00,Jennifer_Moore
+INV-00035,Process Payment,2025-01-15 15:45:00,System_ERP
+INV-00035,Payment Complete,2025-01-15 15:46:00,System_ERP
+INV-00216,Schedule Payment,2025-01-15 15:49:00,System_ERP
+INV-00224,Match to PO,2025-01-15 15:49:00,System_ERP
+INV-00224,Schedule Payment,2025-01-15 15:58:00,System_ERP
+INV-00214,Receive Invoice,2025-01-15 15:59:00,System_OCR
+INV-00214,OCR Scan,2025-01-15 16:09:00,System_OCR
+INV-00214,Manual Data Entry,2025-01-15 16:27:00,Robert_Kim
+INV-00214,Match to PO,2025-01-15 16:34:00,System_ERP
+INV-00214,Schedule Payment,2025-01-15 16:40:00,System_ERP
+INV-00210,Manager Approval,2025-01-15 16:42:00,Michael_Brown
+INV-00210,Approval Rejected,2025-01-15 17:09:00,Michael_Brown
+INV-00210,Clarification Request,2025-01-15 18:09:00,Susan_White
+INV-00217,CFO Approval,2025-01-15 19:18:00,James_Wilson
+INV-00217,Schedule Payment,2025-01-15 19:32:00,System_ERP
+INV-00218,CFO Approval,2025-01-15 19:45:00,James_Wilson
+INV-00218,Schedule Payment,2025-01-15 19:50:00,System_ERP
+INV-00210,Manager Approval,2025-01-16 04:09:00,Michael_Brown
+INV-00238,Receive Invoice,2025-01-16 09:25:00,System_OCR
+INV-00238,OCR Scan,2025-01-16 09:34:00,System_OCR
+INV-00230,Receive Invoice,2025-01-16 09:52:00,System_ERP
+INV-00238,Manual Data Entry,2025-01-16 09:56:00,Robert_Kim
+INV-00238,Match to PO,2025-01-16 10:03:00,System_ERP
+INV-00230,OCR Scan,2025-01-16 10:05:00,System_OCR
+INV-00226,Receive Invoice,2025-01-16 10:06:00,System_ERP
+INV-00115,Process Payment,2025-01-16 10:11:00,System_ERP
+INV-00115,Payment Complete,2025-01-16 10:13:00,System_ERP
+INV-00238,Schedule Payment,2025-01-16 10:15:00,System_ERP
+INV-00231,Receive Invoice,2025-01-16 10:16:00,System_OCR
+INV-00226,OCR Scan,2025-01-16 10:19:00,System_OCR
+INV-00231,OCR Scan,2025-01-16 10:21:00,System_OCR
+INV-00230,Manual Data Entry,2025-01-16 10:26:00,Robert_Kim
+INV-00230,Data Validation Failed,2025-01-16 10:33:00,System_ERP
+INV-00226,Manual Data Entry,2025-01-16 10:36:00,Robert_Kim
+INV-00231,Manual Data Entry,2025-01-16 10:37:00,Robert_Kim
+INV-00226,Match to PO,2025-01-16 10:43:00,System_ERP
+INV-00231,Match to PO,2025-01-16 10:45:00,System_ERP
+INV-00230,Manual Data Entry,2025-01-16 10:54:00,Susan_White
+INV-00024,Process Payment,2025-01-16 10:57:00,System_ERP
+INV-00226,Schedule Payment,2025-01-16 10:57:00,System_ERP
+INV-00231,Schedule Payment,2025-01-16 10:57:00,System_ERP
+INV-00024,Payment Complete,2025-01-16 11:00:00,System_ERP
+INV-00230,Match to PO,2025-01-16 11:01:00,System_ERP
+INV-00104,Process Payment,2025-01-16 11:12:00,System_ERP
+INV-00225,Receive Invoice,2025-01-16 11:12:00,System_OCR
+INV-00228,Receive Invoice,2025-01-16 11:13:00,System_OCR
+INV-00230,Schedule Payment,2025-01-16 11:16:00,System_ERP
+INV-00104,Payment Complete,2025-01-16 11:17:00,System_ERP
+INV-00225,OCR Scan,2025-01-16 11:18:00,System_OCR
+INV-00228,OCR Scan,2025-01-16 11:21:00,System_OCR
+INV-00225,Manual Data Entry,2025-01-16 11:32:00,Robert_Kim
+INV-00239,Receive Invoice,2025-01-16 11:35:00,System_ERP
+INV-00225,Match to PO,2025-01-16 11:37:00,System_ERP
+INV-00239,OCR Scan,2025-01-16 11:48:00,System_OCR
+INV-00228,Manual Data Entry,2025-01-16 11:50:00,Robert_Kim
+INV-00225,CFO Approval,2025-01-16 11:56:00,James_Wilson
+INV-00228,Match to PO,2025-01-16 11:59:00,System_ERP
+INV-00239,Manual Data Entry,2025-01-16 12:00:00,Susan_White
+INV-00228,Schedule Payment,2025-01-16 12:08:00,System_ERP
+INV-00210,CFO Approval,2025-01-16 12:09:00,James_Wilson
+INV-00225,Schedule Payment,2025-01-16 12:10:00,System_ERP
+INV-00239,Match to PO,2025-01-16 12:10:00,System_ERP
+INV-00210,Schedule Payment,2025-01-16 12:16:00,System_ERP
+INV-00239,Schedule Payment,2025-01-16 12:17:00,System_ERP
+INV-00229,Receive Invoice,2025-01-16 13:00:00,System_OCR
+INV-00229,OCR Scan,2025-01-16 13:12:00,System_OCR
+INV-00235,Receive Invoice,2025-01-16 13:29:00,System_OCR
+INV-00237,Receive Invoice,2025-01-16 13:30:00,System_OCR
+INV-00229,Manual Data Entry,2025-01-16 13:37:00,Robert_Kim
+INV-00235,OCR Scan,2025-01-16 13:37:00,System_OCR
+INV-00232,Receive Invoice,2025-01-16 13:39:00,System_OCR
+INV-00237,OCR Scan,2025-01-16 13:39:00,System_OCR
+INV-00229,Match to PO,2025-01-16 13:45:00,System_ERP
+INV-00232,OCR Scan,2025-01-16 13:46:00,System_OCR
+INV-00237,Manual Data Entry,2025-01-16 13:59:00,Robert_Kim
+INV-00234,Receive Invoice,2025-01-16 14:01:00,System_OCR
+INV-00235,Manual Data Entry,2025-01-16 14:04:00,Susan_White
+INV-00237,Match to PO,2025-01-16 14:07:00,System_ERP
+INV-00232,Manual Data Entry,2025-01-16 14:08:00,Robert_Kim
+INV-00234,OCR Scan,2025-01-16 14:08:00,System_OCR
+INV-00235,Match to PO,2025-01-16 14:13:00,System_ERP
+INV-00232,Match to PO,2025-01-16 14:14:00,System_ERP
+INV-00235,Schedule Payment,2025-01-16 14:24:00,System_ERP
+INV-00234,Manual Data Entry,2025-01-16 14:36:00,Jennifer_Moore
+INV-00234,Match to PO,2025-01-16 14:42:00,System_ERP
+INV-00227,Receive Invoice,2025-01-16 14:49:00,System_OCR
+INV-00234,Schedule Payment,2025-01-16 14:53:00,System_ERP
+INV-00237,Manager Approval,2025-01-16 14:54:00,Michael_Brown
+INV-00227,OCR Scan,2025-01-16 14:59:00,System_OCR
+INV-00229,Manager Approval,2025-01-16 15:11:00,Patricia_Davis
+INV-00055,Process Payment,2025-01-16 15:17:00,System_ERP
+INV-00227,Manual Data Entry,2025-01-16 15:20:00,Robert_Kim
+INV-00055,Payment Complete,2025-01-16 15:21:00,System_ERP
+INV-00227,Match to PO,2025-01-16 15:26:00,System_ERP
+INV-00233,Receive Invoice,2025-01-16 15:36:00,System_OCR
+INV-00236,Receive Invoice,2025-01-16 15:37:00,System_ERP
+INV-00227,Schedule Payment,2025-01-16 15:41:00,System_ERP
+INV-00236,OCR Scan,2025-01-16 15:48:00,System_OCR
+INV-00233,OCR Scan,2025-01-16 15:50:00,System_OCR
+INV-00233,Manual Data Entry,2025-01-16 16:08:00,Jennifer_Moore
+INV-00236,Manual Data Entry,2025-01-16 16:10:00,Jennifer_Moore
+INV-00229,CFO Approval,2025-01-16 16:11:00,James_Wilson
+INV-00123,Process Payment,2025-01-16 16:12:00,System_ERP
+INV-00123,Payment Complete,2025-01-16 16:15:00,System_ERP
+INV-00233,Match to PO,2025-01-16 16:15:00,System_ERP
+INV-00236,Match to PO,2025-01-16 16:16:00,System_ERP
+INV-00229,Schedule Payment,2025-01-16 16:24:00,System_ERP
+INV-00236,Schedule Payment,2025-01-16 16:27:00,System_ERP
+INV-00233,Manager Approval,2025-01-16 17:28:00,Michael_Brown
+INV-00233,Schedule Payment,2025-01-16 17:43:00,System_ERP
+INV-00232,Manager Approval,2025-01-16 20:14:00,Patricia_Davis
+INV-00232,Schedule Payment,2025-01-16 20:23:00,System_ERP
+INV-00237,CFO Approval,2025-01-16 22:54:00,James_Wilson
+INV-00237,Schedule Payment,2025-01-16 23:02:00,System_ERP
+INV-00254,Receive Invoice,2025-01-17 09:47:00,System_OCR
+INV-00254,OCR Scan,2025-01-17 09:55:00,System_OCR
+INV-00242,Receive Invoice,2025-01-17 10:08:00,System_OCR
+INV-00254,Manual Data Entry,2025-01-17 10:11:00,Jennifer_Moore
+INV-00242,OCR Scan,2025-01-17 10:13:00,System_OCR
+INV-00247,Receive Invoice,2025-01-17 10:15:00,System_OCR
+INV-00254,Match to PO,2025-01-17 10:18:00,System_ERP
+INV-00247,OCR Scan,2025-01-17 10:20:00,System_OCR
+INV-00242,Manual Data Entry,2025-01-17 10:25:00,Jennifer_Moore
+INV-00246,Receive Invoice,2025-01-17 10:25:00,System_ERP
+INV-00242,Match to PO,2025-01-17 10:30:00,System_ERP
+INV-00254,Schedule Payment,2025-01-17 10:30:00,System_ERP
+INV-00246,OCR Scan,2025-01-17 10:34:00,System_OCR
+INV-00242,Schedule Payment,2025-01-17 10:36:00,System_ERP
+INV-00247,Manual Data Entry,2025-01-17 10:48:00,Susan_White
+INV-00246,Manual Data Entry,2025-01-17 10:49:00,Robert_Kim
+INV-00246,Match to PO,2025-01-17 10:55:00,System_ERP
+INV-00247,Match to PO,2025-01-17 10:56:00,System_ERP
+INV-00246,Schedule Payment,2025-01-17 11:03:00,System_ERP
+INV-00247,Schedule Payment,2025-01-17 11:07:00,System_ERP
+INV-00016,Process Payment,2025-01-17 11:16:00,System_ERP
+INV-00007,Process Payment,2025-01-17 11:18:00,System_ERP
+INV-00016,Payment Complete,2025-01-17 11:21:00,System_ERP
+INV-00007,Payment Complete,2025-01-17 11:23:00,System_ERP
+INV-00048,Process Payment,2025-01-17 11:54:00,System_ERP
+INV-00253,Receive Invoice,2025-01-17 11:54:00,System_OCR
+INV-00048,Payment Complete,2025-01-17 11:58:00,System_ERP
+INV-00253,OCR Scan,2025-01-17 12:09:00,System_OCR
+INV-00253,Manual Data Entry,2025-01-17 12:28:00,Robert_Kim
+INV-00253,Match to PO,2025-01-17 12:37:00,System_ERP
+INV-00253,Schedule Payment,2025-01-17 12:51:00,System_ERP
+INV-00106,Process Payment,2025-01-17 13:31:00,System_ERP
+INV-00106,Payment Complete,2025-01-17 13:32:00,System_ERP
+INV-00250,Receive Invoice,2025-01-17 13:37:00,System_ERP
+INV-00250,OCR Scan,2025-01-17 13:42:00,System_OCR
+INV-00244,Receive Invoice,2025-01-17 13:58:00,System_OCR
+INV-00250,Manual Data Entry,2025-01-17 14:01:00,Jennifer_Moore
+INV-00250,Data Validation Failed,2025-01-17 14:08:00,System_ERP
+INV-00244,OCR Scan,2025-01-17 14:10:00,System_OCR
+INV-00244,Manual Data Entry,2025-01-17 14:21:00,Jennifer_Moore
+INV-00059,Process Payment,2025-01-17 14:23:00,System_ERP
+INV-00252,Receive Invoice,2025-01-17 14:24:00,System_OCR
+INV-00250,Manual Data Entry,2025-01-17 14:25:00,Robert_Kim
+INV-00059,Payment Complete,2025-01-17 14:26:00,System_ERP
+INV-00244,Match to PO,2025-01-17 14:26:00,System_ERP
+INV-00250,Match to PO,2025-01-17 14:32:00,System_ERP
+INV-00252,OCR Scan,2025-01-17 14:34:00,System_OCR
+INV-00244,Schedule Payment,2025-01-17 14:40:00,System_ERP
+INV-00249,Receive Invoice,2025-01-17 14:40:00,System_ERP
+INV-00249,OCR Scan,2025-01-17 14:45:00,System_OCR
+INV-00252,Manual Data Entry,2025-01-17 14:51:00,Robert_Kim
+INV-00252,Match to PO,2025-01-17 14:56:00,System_ERP
+INV-00251,Receive Invoice,2025-01-17 15:01:00,System_ERP
+INV-00249,Manual Data Entry,2025-01-17 15:06:00,Jennifer_Moore
+INV-00252,Schedule Payment,2025-01-17 15:07:00,System_ERP
+INV-00249,Match to PO,2025-01-17 15:15:00,System_ERP
+INV-00251,OCR Scan,2025-01-17 15:16:00,System_OCR
+INV-00243,Receive Invoice,2025-01-17 15:17:00,System_OCR
+INV-00249,Schedule Payment,2025-01-17 15:20:00,System_ERP
+INV-00241,Receive Invoice,2025-01-17 15:23:00,System_OCR
+INV-00245,Receive Invoice,2025-01-17 15:25:00,System_OCR
+INV-00243,OCR Scan,2025-01-17 15:32:00,System_OCR
+INV-00241,OCR Scan,2025-01-17 15:35:00,System_OCR
+INV-00250,Manager Approval,2025-01-17 15:35:00,Michael_Brown
+INV-00245,OCR Scan,2025-01-17 15:40:00,System_OCR
+INV-00240,Receive Invoice,2025-01-17 15:41:00,System_OCR
+INV-00243,Manual Data Entry,2025-01-17 15:45:00,Robert_Kim
+INV-00251,Manual Data Entry,2025-01-17 15:46:00,Susan_White
+INV-00248,Receive Invoice,2025-01-17 15:47:00,System_OCR
+INV-00240,OCR Scan,2025-01-17 15:50:00,System_OCR
+INV-00243,Match to PO,2025-01-17 15:51:00,System_ERP
+INV-00251,Match to PO,2025-01-17 15:52:00,System_ERP
+INV-00248,OCR Scan,2025-01-17 15:56:00,System_OCR
+INV-00250,Approval Rejected,2025-01-17 15:56:00,Michael_Brown
+INV-00251,Schedule Payment,2025-01-17 15:57:00,System_ERP
+INV-00241,Manual Data Entry,2025-01-17 15:58:00,Jennifer_Moore
+INV-00245,Manual Data Entry,2025-01-17 15:58:00,Susan_White
+INV-00245,Match to PO,2025-01-17 16:04:00,System_ERP
+INV-00240,Manual Data Entry,2025-01-17 16:05:00,Susan_White
+INV-00241,Match to PO,2025-01-17 16:08:00,System_ERP
+INV-00241,Schedule Payment,2025-01-17 16:13:00,System_ERP
+INV-00245,Schedule Payment,2025-01-17 16:17:00,System_ERP
+INV-00240,Data Validation Failed,2025-01-17 16:18:00,System_ERP
+INV-00248,Manual Data Entry,2025-01-17 16:23:00,Robert_Kim
+INV-00248,Match to PO,2025-01-17 16:32:00,System_ERP
+INV-00240,Manual Data Entry,2025-01-17 16:37:00,Jennifer_Moore
+INV-00243,Manager Approval,2025-01-17 16:38:00,Michael_Brown
+INV-00240,Match to PO,2025-01-17 16:45:00,System_ERP
+INV-00248,Schedule Payment,2025-01-17 16:46:00,System_ERP
+INV-00243,Schedule Payment,2025-01-17 16:49:00,System_ERP
+INV-00240,Schedule Payment,2025-01-17 16:57:00,System_ERP
+INV-00051,Process Payment,2025-01-17 17:35:00,System_ERP
+INV-00051,Payment Complete,2025-01-17 17:39:00,System_ERP
+INV-00250,Clarification Request,2025-01-17 19:56:00,Robert_Kim
+INV-00250,Manager Approval,2025-01-18 00:56:00,Michael_Brown
+INV-00250,CFO Approval,2025-01-18 01:13:00,James_Wilson
+INV-00250,Schedule Payment,2025-01-18 01:27:00,System_ERP
+INV-00267,Receive Invoice,2025-01-18 09:22:00,System_OCR
+INV-00267,OCR Scan,2025-01-18 09:34:00,System_OCR
+INV-00267,Manual Data Entry,2025-01-18 10:02:00,Robert_Kim
+INV-00267,Match to PO,2025-01-18 10:11:00,System_ERP
+INV-00258,Receive Invoice,2025-01-18 10:12:00,System_ERP
+INV-00116,Process Payment,2025-01-18 10:14:00,System_ERP
+INV-00116,Payment Complete,2025-01-18 10:16:00,System_ERP
+INV-00258,OCR Scan,2025-01-18 10:25:00,System_OCR
+INV-00265,Receive Invoice,2025-01-18 10:32:00,System_OCR
+INV-00265,OCR Scan,2025-01-18 10:40:00,System_OCR
+INV-00264,Receive Invoice,2025-01-18 10:43:00,System_ERP
+INV-00258,Manual Data Entry,2025-01-18 10:54:00,Robert_Kim
+INV-00264,OCR Scan,2025-01-18 10:54:00,System_OCR
+INV-00256,Receive Invoice,2025-01-18 11:01:00,System_OCR
+INV-00258,Match to PO,2025-01-18 11:02:00,System_ERP
+INV-00264,Manual Data Entry,2025-01-18 11:04:00,Robert_Kim
+INV-00264,Match to PO,2025-01-18 11:09:00,System_ERP
+INV-00265,Manual Data Entry,2025-01-18 11:09:00,Susan_White
+INV-00258,Schedule Payment,2025-01-18 11:10:00,System_ERP
+INV-00256,OCR Scan,2025-01-18 11:15:00,System_OCR
+INV-00267,Manager Approval,2025-01-18 11:18:00,Michael_Brown
+INV-00265,Match to PO,2025-01-18 11:19:00,System_ERP
+INV-00267,Schedule Payment,2025-01-18 11:24:00,System_ERP
+INV-00256,Manual Data Entry,2025-01-18 11:25:00,Jennifer_Moore
+INV-00261,Receive Invoice,2025-01-18 11:31:00,System_ERP
+INV-00256,Match to PO,2025-01-18 11:35:00,System_ERP
+INV-00263,Receive Invoice,2025-01-18 11:37:00,System_OCR
+INV-00261,OCR Scan,2025-01-18 11:41:00,System_OCR
+INV-00255,Receive Invoice,2025-01-18 11:49:00,System_OCR
+INV-00263,OCR Scan,2025-01-18 11:50:00,System_OCR
+INV-00265,Manager Approval,2025-01-18 11:54:00,Patricia_Davis
+INV-00255,OCR Scan,2025-01-18 12:01:00,System_OCR
+INV-00263,Manual Data Entry,2025-01-18 12:09:00,Jennifer_Moore
+INV-00261,Manual Data Entry,2025-01-18 12:11:00,Susan_White
+INV-00255,Manual Data Entry,2025-01-18 12:14:00,Robert_Kim
+INV-00263,Match to PO,2025-01-18 12:17:00,System_ERP
+INV-00257,Receive Invoice,2025-01-18 12:18:00,System_ERP
+INV-00261,Match to PO,2025-01-18 12:20:00,System_ERP
+INV-00255,Match to PO,2025-01-18 12:21:00,System_ERP
+INV-00265,Approval Rejected,2025-01-18 12:21:00,Patricia_Davis
+INV-00263,Schedule Payment,2025-01-18 12:25:00,System_ERP
+INV-00255,Schedule Payment,2025-01-18 12:32:00,System_ERP
+INV-00257,OCR Scan,2025-01-18 12:33:00,System_OCR
+INV-00001,Process Payment,2025-01-18 12:35:00,System_ERP
+INV-00261,Schedule Payment,2025-01-18 12:35:00,System_ERP
+INV-00001,Payment Complete,2025-01-18 12:36:00,System_ERP
+INV-00073,Process Payment,2025-01-18 12:41:00,System_ERP
+INV-00269,Receive Invoice,2025-01-18 12:42:00,System_ERP
+INV-00257,Manual Data Entry,2025-01-18 12:43:00,Robert_Kim
+INV-00073,Payment Complete,2025-01-18 12:46:00,System_ERP
+INV-00269,OCR Scan,2025-01-18 12:49:00,System_OCR
+INV-00257,Match to PO,2025-01-18 12:51:00,System_ERP
+INV-00257,Schedule Payment,2025-01-18 13:00:00,System_ERP
+INV-00269,Manual Data Entry,2025-01-18 13:08:00,Jennifer_Moore
+INV-00269,Match to PO,2025-01-18 13:16:00,System_ERP
+INV-00265,Clarification Request,2025-01-18 13:21:00,Robert_Kim
+INV-00260,Receive Invoice,2025-01-18 13:24:00,System_ERP
+INV-00260,OCR Scan,2025-01-18 13:32:00,System_OCR
+INV-00260,Manual Data Entry,2025-01-18 13:47:00,Susan_White
+INV-00268,Receive Invoice,2025-01-18 13:53:00,System_ERP
+INV-00260,Data Validation Failed,2025-01-18 13:55:00,System_ERP
+INV-00268,OCR Scan,2025-01-18 13:58:00,System_OCR
+INV-00097,Process Payment,2025-01-18 14:06:00,System_ERP
+INV-00097,Payment Complete,2025-01-18 14:07:00,System_ERP
+INV-00100,Process Payment,2025-01-18 14:22:00,System_ERP
+INV-00100,Payment Complete,2025-01-18 14:27:00,System_ERP
+INV-00268,Manual Data Entry,2025-01-18 14:27:00,Jennifer_Moore
+INV-00269,Manager Approval,2025-01-18 14:29:00,Michael_Brown
+INV-00260,Manual Data Entry,2025-01-18 14:33:00,Robert_Kim
+INV-00268,Match to PO,2025-01-18 14:34:00,System_ERP
+INV-00025,Process Payment,2025-01-18 14:35:00,System_ERP
+INV-00269,Schedule Payment,2025-01-18 14:36:00,System_ERP
+INV-00260,Match to PO,2025-01-18 14:38:00,System_ERP
+INV-00025,Payment Complete,2025-01-18 14:39:00,System_ERP
+INV-00268,Schedule Payment,2025-01-18 14:45:00,System_ERP
+INV-00017,Process Payment,2025-01-18 14:59:00,System_ERP
+INV-00017,Payment Complete,2025-01-18 15:03:00,System_ERP
+INV-00070,Process Payment,2025-01-18 15:05:00,System_ERP
+INV-00070,Payment Complete,2025-01-18 15:06:00,System_ERP
+INV-00264,Manager Approval,2025-01-18 15:09:00,Patricia_Davis
+INV-00260,Manager Approval,2025-01-18 15:18:00,Patricia_Davis
+INV-00264,Schedule Payment,2025-01-18 15:21:00,System_ERP
+INV-00121,Process Payment,2025-01-18 15:31:00,System_ERP
+INV-00121,Payment Complete,2025-01-18 15:32:00,System_ERP
+INV-00260,Approval Rejected,2025-01-18 15:40:00,Patricia_Davis
+INV-00259,Receive Invoice,2025-01-18 15:42:00,System_OCR
+INV-00262,Receive Invoice,2025-01-18 15:50:00,System_ERP
+INV-00259,OCR Scan,2025-01-18 15:57:00,System_OCR
+INV-00266,Receive Invoice,2025-01-18 15:58:00,System_ERP
+INV-00262,OCR Scan,2025-01-18 16:02:00,System_OCR
+INV-00266,OCR Scan,2025-01-18 16:06:00,System_OCR
+INV-00040,Process Payment,2025-01-18 16:07:00,System_ERP
+INV-00040,Payment Complete,2025-01-18 16:10:00,System_ERP
+INV-00259,Manual Data Entry,2025-01-18 16:16:00,Jennifer_Moore
+INV-00162,Process Payment,2025-01-18 16:20:00,System_ERP
+INV-00162,Payment Complete,2025-01-18 16:22:00,System_ERP
+INV-00259,Match to PO,2025-01-18 16:22:00,System_ERP
+INV-00262,Manual Data Entry,2025-01-18 16:25:00,Robert_Kim
+INV-00259,Schedule Payment,2025-01-18 16:27:00,System_ERP
+INV-00266,Manual Data Entry,2025-01-18 16:29:00,Robert_Kim
+INV-00262,Match to PO,2025-01-18 16:30:00,System_ERP
+INV-00266,Match to PO,2025-01-18 16:34:00,System_ERP
+INV-00260,Clarification Request,2025-01-18 16:40:00,Robert_Kim
+INV-00262,Schedule Payment,2025-01-18 16:40:00,System_ERP
+INV-00266,Schedule Payment,2025-01-18 16:40:00,System_ERP
+INV-00058,Process Payment,2025-01-18 17:02:00,System_ERP
+INV-00058,Payment Complete,2025-01-18 17:03:00,System_ERP
+INV-00256,Manager Approval,2025-01-18 17:35:00,Michael_Brown
+INV-00125,Process Payment,2025-01-18 17:48:00,System_ERP
+INV-00125,Payment Complete,2025-01-18 17:50:00,System_ERP
+INV-00081,Process Payment,2025-01-18 21:07:00,System_ERP
+INV-00081,Payment Complete,2025-01-18 21:08:00,System_ERP
+INV-00256,CFO Approval,2025-01-18 22:35:00,James_Wilson
+INV-00256,Schedule Payment,2025-01-18 22:44:00,System_ERP
+INV-00260,Manager Approval,2025-01-19 05:40:00,Patricia_Davis
+INV-00030,Process Payment,2025-01-19 06:57:00,System_ERP
+INV-00030,Payment Complete,2025-01-19 06:59:00,System_ERP
+INV-00140,Process Payment,2025-01-19 07:48:00,System_ERP
+INV-00140,Payment Complete,2025-01-19 07:49:00,System_ERP
+INV-00265,Manager Approval,2025-01-19 09:21:00,Michael_Brown
+INV-00272,Receive Invoice,2025-01-19 09:26:00,System_ERP
+INV-00272,OCR Scan,2025-01-19 09:31:00,System_OCR
+INV-00265,Schedule Payment,2025-01-19 09:36:00,System_ERP
+INV-00260,CFO Approval,2025-01-19 09:40:00,James_Wilson
+INV-00276,Receive Invoice,2025-01-19 09:42:00,System_OCR
+INV-00260,Schedule Payment,2025-01-19 09:51:00,System_ERP
+INV-00271,Receive Invoice,2025-01-19 09:54:00,System_OCR
+INV-00278,Receive Invoice,2025-01-19 09:56:00,System_OCR
+INV-00276,OCR Scan,2025-01-19 09:57:00,System_OCR
+INV-00272,Manual Data Entry,2025-01-19 09:59:00,Susan_White
+INV-00282,Receive Invoice,2025-01-19 10:02:00,System_ERP
+INV-00271,OCR Scan,2025-01-19 10:04:00,System_OCR
+INV-00272,Match to PO,2025-01-19 10:06:00,System_ERP
+INV-00282,OCR Scan,2025-01-19 10:07:00,System_OCR
+INV-00278,OCR Scan,2025-01-19 10:08:00,System_OCR
+INV-00277,Receive Invoice,2025-01-19 10:13:00,System_OCR
+INV-00272,Schedule Payment,2025-01-19 10:14:00,System_ERP
+INV-00276,Manual Data Entry,2025-01-19 10:21:00,Jennifer_Moore
+INV-00271,Manual Data Entry,2025-01-19 10:22:00,Susan_White
+INV-00282,Manual Data Entry,2025-01-19 10:23:00,Susan_White
+INV-00277,OCR Scan,2025-01-19 10:24:00,System_OCR
+INV-00276,Match to PO,2025-01-19 10:28:00,System_ERP
+INV-00282,Match to PO,2025-01-19 10:28:00,System_ERP
+INV-00271,Match to PO,2025-01-19 10:29:00,System_ERP
+INV-00278,Manual Data Entry,2025-01-19 10:30:00,Robert_Kim
+INV-00282,Schedule Payment,2025-01-19 10:35:00,System_ERP
+INV-00278,Match to PO,2025-01-19 10:36:00,System_ERP
+INV-00271,Schedule Payment,2025-01-19 10:39:00,System_ERP
+INV-00276,Schedule Payment,2025-01-19 10:40:00,System_ERP
+INV-00277,Manual Data Entry,2025-01-19 10:49:00,Jennifer_Moore
+INV-00278,Schedule Payment,2025-01-19 10:51:00,System_ERP
+INV-00277,Match to PO,2025-01-19 10:56:00,System_ERP
+INV-00277,Schedule Payment,2025-01-19 11:10:00,System_ERP
+INV-00284,Receive Invoice,2025-01-19 11:26:00,System_OCR
+INV-00283,Receive Invoice,2025-01-19 11:33:00,System_OCR
+INV-00284,OCR Scan,2025-01-19 11:39:00,System_OCR
+INV-00281,Receive Invoice,2025-01-19 11:40:00,System_OCR
+INV-00283,OCR Scan,2025-01-19 11:42:00,System_OCR
+INV-00275,Receive Invoice,2025-01-19 11:43:00,System_ERP
+INV-00281,OCR Scan,2025-01-19 11:49:00,System_OCR
+INV-00284,Manual Data Entry,2025-01-19 11:52:00,Susan_White
+INV-00283,Manual Data Entry,2025-01-19 11:56:00,Susan_White
+INV-00275,OCR Scan,2025-01-19 11:58:00,System_OCR
+INV-00284,Match to PO,2025-01-19 12:00:00,System_ERP
+INV-00283,Match to PO,2025-01-19 12:03:00,System_ERP
+INV-00284,Schedule Payment,2025-01-19 12:13:00,System_ERP
+INV-00275,Manual Data Entry,2025-01-19 12:15:00,Robert_Kim
+INV-00281,Manual Data Entry,2025-01-19 12:17:00,Susan_White
+INV-00275,Match to PO,2025-01-19 12:21:00,System_ERP
+INV-00281,Match to PO,2025-01-19 12:22:00,System_ERP
+INV-00160,Process Payment,2025-01-19 12:35:00,System_ERP
+INV-00160,Payment Complete,2025-01-19 12:37:00,System_ERP
+INV-00038,Process Payment,2025-01-19 13:04:00,System_ERP
+INV-00038,Payment Complete,2025-01-19 13:05:00,System_ERP
+INV-00283,Manager Approval,2025-01-19 13:08:00,Michael_Brown
+INV-00283,Schedule Payment,2025-01-19 13:23:00,System_ERP
+INV-00274,Receive Invoice,2025-01-19 13:26:00,System_ERP
+INV-00280,Receive Invoice,2025-01-19 13:27:00,System_OCR
+INV-00279,Receive Invoice,2025-01-19 13:33:00,System_ERP
+INV-00280,OCR Scan,2025-01-19 13:33:00,System_OCR
+INV-00274,OCR Scan,2025-01-19 13:34:00,System_OCR
+INV-00281,Manager Approval,2025-01-19 13:37:00,Patricia_Davis
+INV-00279,OCR Scan,2025-01-19 13:38:00,System_OCR
+INV-00281,Schedule Payment,2025-01-19 13:46:00,System_ERP
+INV-00275,Manager Approval,2025-01-19 13:51:00,Michael_Brown
+INV-00274,Manual Data Entry,2025-01-19 13:53:00,Jennifer_Moore
+INV-00280,Manual Data Entry,2025-01-19 13:56:00,Susan_White
+INV-00274,Match to PO,2025-01-19 13:59:00,System_ERP
+INV-00279,Manual Data Entry,2025-01-19 14:00:00,Susan_White
+INV-00280,Data Validation Failed,2025-01-19 14:03:00,System_ERP
+INV-00279,Match to PO,2025-01-19 14:10:00,System_ERP
+INV-00275,Approval Rejected,2025-01-19 14:14:00,Michael_Brown
+INV-00270,Receive Invoice,2025-01-19 14:20:00,System_OCR
+INV-00279,Schedule Payment,2025-01-19 14:24:00,System_ERP
+INV-00270,OCR Scan,2025-01-19 14:31:00,System_OCR
+INV-00280,Manual Data Entry,2025-01-19 14:32:00,Jennifer_Moore
+INV-00280,Match to PO,2025-01-19 14:40:00,System_ERP
+INV-00273,Receive Invoice,2025-01-19 14:46:00,System_OCR
+INV-00280,Schedule Payment,2025-01-19 14:48:00,System_ERP
+INV-00270,Manual Data Entry,2025-01-19 14:57:00,Jennifer_Moore
+INV-00273,OCR Scan,2025-01-19 15:01:00,System_OCR
+INV-00270,Data Validation Failed,2025-01-19 15:04:00,System_ERP
+INV-00275,Clarification Request,2025-01-19 15:14:00,Jennifer_Moore
+INV-00274,Manager Approval,2025-01-19 15:15:00,Patricia_Davis
+INV-00274,Schedule Payment,2025-01-19 15:23:00,System_ERP
+INV-00273,Manual Data Entry,2025-01-19 15:29:00,Robert_Kim
+INV-00093,Process Payment,2025-01-19 15:30:00,System_ERP
+INV-00270,Manual Data Entry,2025-01-19 15:31:00,Susan_White
+INV-00093,Payment Complete,2025-01-19 15:35:00,System_ERP
+INV-00273,Match to PO,2025-01-19 15:36:00,System_ERP
+INV-00270,Match to PO,2025-01-19 15:40:00,System_ERP
+INV-00105,Process Payment,2025-01-19 15:43:00,System_ERP
+INV-00105,Payment Complete,2025-01-19 15:46:00,System_ERP
+INV-00270,Manager Approval,2025-01-19 16:31:00,Michael_Brown
+INV-00273,Manager Approval,2025-01-19 16:38:00,Michael_Brown
+INV-00270,Approval Rejected,2025-01-19 16:49:00,Michael_Brown
+INV-00270,Clarification Request,2025-01-19 17:49:00,Robert_Kim
+INV-00063,Process Payment,2025-01-19 18:08:00,System_ERP
+INV-00063,Payment Complete,2025-01-19 18:11:00,System_ERP
+INV-00273,CFO Approval,2025-01-19 22:38:00,James_Wilson
+INV-00273,Schedule Payment,2025-01-19 22:49:00,System_ERP
+INV-00076,Process Payment,2025-01-19 23:57:00,System_ERP
+INV-00076,Payment Complete,2025-01-20 00:01:00,System_ERP
+INV-00270,Manager Approval,2025-01-20 07:49:00,Michael_Brown
+INV-00270,Schedule Payment,2025-01-20 07:57:00,System_ERP
+INV-00286,Receive Invoice,2025-01-20 09:32:00,System_ERP
+INV-00286,OCR Scan,2025-01-20 09:40:00,System_OCR
+INV-00285,Receive Invoice,2025-01-20 09:50:00,System_ERP
+INV-00285,OCR Scan,2025-01-20 09:59:00,System_OCR
+INV-00286,Manual Data Entry,2025-01-20 10:08:00,Jennifer_Moore
+INV-00275,Manager Approval,2025-01-20 10:14:00,Michael_Brown
+INV-00286,Match to PO,2025-01-20 10:17:00,System_ERP
+INV-00285,Manual Data Entry,2025-01-20 10:25:00,Susan_White
+INV-00285,Match to PO,2025-01-20 10:30:00,System_ERP
+INV-00286,Schedule Payment,2025-01-20 10:32:00,System_ERP
+INV-00285,Schedule Payment,2025-01-20 10:37:00,System_ERP
+INV-00291,Receive Invoice,2025-01-20 10:43:00,System_OCR
+INV-00287,Receive Invoice,2025-01-20 10:46:00,System_OCR
+INV-00291,OCR Scan,2025-01-20 10:51:00,System_OCR
+INV-00296,Receive Invoice,2025-01-20 10:52:00,System_OCR
+INV-00287,OCR Scan,2025-01-20 11:01:00,System_OCR
+INV-00296,OCR Scan,2025-01-20 11:02:00,System_OCR
+INV-00293,Receive Invoice,2025-01-20 11:06:00,System_ERP
+INV-00291,Manual Data Entry,2025-01-20 11:09:00,Susan_White
+INV-00293,OCR Scan,2025-01-20 11:12:00,System_OCR
+INV-00291,Match to PO,2025-01-20 11:15:00,System_ERP
+INV-00292,Receive Invoice,2025-01-20 11:16:00,System_OCR
+INV-00287,Manual Data Entry,2025-01-20 11:19:00,Jennifer_Moore
+INV-00294,Receive Invoice,2025-01-20 11:19:00,System_OCR
+INV-00293,Manual Data Entry,2025-01-20 11:23:00,Jennifer_Moore
+INV-00296,Manual Data Entry,2025-01-20 11:25:00,Robert_Kim
+INV-00291,Schedule Payment,2025-01-20 11:26:00,System_ERP
+INV-00294,OCR Scan,2025-01-20 11:27:00,System_OCR
+INV-00287,Match to PO,2025-01-20 11:29:00,System_ERP
+INV-00292,OCR Scan,2025-01-20 11:30:00,System_OCR
+INV-00293,Match to PO,2025-01-20 11:30:00,System_ERP
+INV-00296,Match to PO,2025-01-20 11:35:00,System_ERP
+INV-00293,Schedule Payment,2025-01-20 11:39:00,System_ERP
+INV-00287,Schedule Payment,2025-01-20 11:43:00,System_ERP
+INV-00294,Manual Data Entry,2025-01-20 11:46:00,Robert_Kim
+INV-00292,Manual Data Entry,2025-01-20 11:50:00,Susan_White
+INV-00296,Schedule Payment,2025-01-20 11:50:00,System_ERP
+INV-00294,Match to PO,2025-01-20 11:52:00,System_ERP
+INV-00292,Match to PO,2025-01-20 11:56:00,System_ERP
+INV-00295,Receive Invoice,2025-01-20 11:57:00,System_ERP
+INV-00294,Schedule Payment,2025-01-20 11:59:00,System_ERP
+INV-00295,OCR Scan,2025-01-20 12:02:00,System_OCR
+INV-00292,Schedule Payment,2025-01-20 12:11:00,System_ERP
+INV-00298,Receive Invoice,2025-01-20 12:12:00,System_OCR
+INV-00275,CFO Approval,2025-01-20 12:14:00,James_Wilson
+INV-00299,Receive Invoice,2025-01-20 12:19:00,System_OCR
+INV-00295,Manual Data Entry,2025-01-20 12:21:00,Susan_White
+INV-00298,OCR Scan,2025-01-20 12:25:00,System_OCR
+INV-00295,Match to PO,2025-01-20 12:27:00,System_ERP
+INV-00299,OCR Scan,2025-01-20 12:27:00,System_OCR
+INV-00275,Schedule Payment,2025-01-20 12:29:00,System_ERP
+INV-00295,Schedule Payment,2025-01-20 12:34:00,System_ERP
+INV-00298,Manual Data Entry,2025-01-20 12:47:00,Susan_White
+INV-00298,Match to PO,2025-01-20 12:56:00,System_ERP
+INV-00299,Manual Data Entry,2025-01-20 12:56:00,Jennifer_Moore
+INV-00298,Schedule Payment,2025-01-20 13:05:00,System_ERP
+INV-00299,Match to PO,2025-01-20 13:05:00,System_ERP
+INV-00299,Schedule Payment,2025-01-20 13:11:00,System_ERP
+INV-00288,Receive Invoice,2025-01-20 13:37:00,System_ERP
+INV-00288,OCR Scan,2025-01-20 13:43:00,System_OCR
+INV-00015,Process Payment,2025-01-20 13:53:00,System_ERP
+INV-00015,Payment Complete,2025-01-20 13:54:00,System_ERP
+INV-00135,Process Payment,2025-01-20 13:54:00,System_ERP
+INV-00135,Payment Complete,2025-01-20 13:56:00,System_ERP
+INV-00288,Manual Data Entry,2025-01-20 13:57:00,Jennifer_Moore
+INV-00034,Process Payment,2025-01-20 13:58:00,System_ERP
+INV-00034,Payment Complete,2025-01-20 14:01:00,System_ERP
+INV-00288,Match to PO,2025-01-20 14:05:00,System_ERP
+INV-00290,Receive Invoice,2025-01-20 14:08:00,System_ERP
+INV-00289,Receive Invoice,2025-01-20 14:10:00,System_OCR
+INV-00052,Process Payment,2025-01-20 14:14:00,System_ERP
+INV-00289,OCR Scan,2025-01-20 14:15:00,System_OCR
+INV-00052,Payment Complete,2025-01-20 14:18:00,System_ERP
+INV-00101,Process Payment,2025-01-20 14:18:00,System_ERP
+INV-00101,Payment Complete,2025-01-20 14:19:00,System_ERP
+INV-00008,Process Payment,2025-01-20 14:21:00,System_ERP
+INV-00290,OCR Scan,2025-01-20 14:22:00,System_OCR
+INV-00008,Payment Complete,2025-01-20 14:23:00,System_ERP
+INV-00289,Manual Data Entry,2025-01-20 14:34:00,Susan_White
+INV-00130,Process Payment,2025-01-20 14:38:00,System_ERP
+INV-00130,Payment Complete,2025-01-20 14:39:00,System_ERP
+INV-00289,Match to PO,2025-01-20 14:39:00,System_ERP
+INV-00290,Manual Data Entry,2025-01-20 14:42:00,Robert_Kim
+INV-00289,Schedule Payment,2025-01-20 14:50:00,System_ERP
+INV-00290,Data Validation Failed,2025-01-20 14:51:00,System_ERP
+INV-00290,Manual Data Entry,2025-01-20 15:21:00,Robert_Kim
+INV-00127,Process Payment,2025-01-20 15:26:00,System_ERP
+INV-00127,Payment Complete,2025-01-20 15:30:00,System_ERP
+INV-00290,Match to PO,2025-01-20 15:31:00,System_ERP
+INV-00290,Schedule Payment,2025-01-20 15:40:00,System_ERP
+INV-00297,Receive Invoice,2025-01-20 15:59:00,System_ERP
+INV-00297,OCR Scan,2025-01-20 16:12:00,System_OCR
+INV-00297,Manual Data Entry,2025-01-20 16:36:00,Robert_Kim
+INV-00297,Match to PO,2025-01-20 16:43:00,System_ERP
+INV-00297,Schedule Payment,2025-01-20 16:54:00,System_ERP
+INV-00288,Manager Approval,2025-01-20 18:05:00,Patricia_Davis
+INV-00288,CFO Approval,2025-01-21 01:05:00,James_Wilson
+INV-00288,Schedule Payment,2025-01-21 01:11:00,System_ERP
+INV-00300,Receive Invoice,2025-01-21 09:12:00,System_ERP
+INV-00300,OCR Scan,2025-01-21 09:17:00,System_OCR
+INV-00300,Manual Data Entry,2025-01-21 09:47:00,Susan_White
+INV-00300,Data Validation Failed,2025-01-21 09:54:00,System_ERP
+INV-00083,Process Payment,2025-01-21 10:09:00,System_ERP
+INV-00083,Payment Complete,2025-01-21 10:12:00,System_ERP
+INV-00300,Manual Data Entry,2025-01-21 10:16:00,Jennifer_Moore
+INV-00300,Match to PO,2025-01-21 10:24:00,System_ERP
+INV-00300,CFO Approval,2025-01-21 10:45:00,James_Wilson
+INV-00300,Schedule Payment,2025-01-21 10:53:00,System_ERP
+INV-00029,Process Payment,2025-01-21 12:30:00,System_ERP
+INV-00029,Payment Complete,2025-01-21 12:32:00,System_ERP
+INV-00092,Process Payment,2025-01-21 12:40:00,System_ERP
+INV-00092,Payment Complete,2025-01-21 12:42:00,System_ERP
+INV-00082,Process Payment,2025-01-21 13:03:00,System_ERP
+INV-00082,Payment Complete,2025-01-21 13:05:00,System_ERP
+INV-00184,Process Payment,2025-01-21 13:52:00,System_ERP
+INV-00184,Payment Complete,2025-01-21 13:56:00,System_ERP
+INV-00147,Process Payment,2025-01-21 14:16:00,System_ERP
+INV-00147,Payment Complete,2025-01-21 14:21:00,System_ERP
+INV-00003,Process Payment,2025-01-21 15:33:00,System_ERP
+INV-00003,Payment Complete,2025-01-21 15:35:00,System_ERP
+INV-00057,Process Payment,2025-01-21 15:53:00,System_ERP
+INV-00057,Payment Complete,2025-01-21 15:58:00,System_ERP
+INV-00110,Process Payment,2025-01-21 16:42:00,System_ERP
+INV-00110,Payment Complete,2025-01-21 16:45:00,System_ERP
+INV-00060,Process Payment,2025-01-21 23:34:00,System_ERP
+INV-00060,Payment Complete,2025-01-21 23:38:00,System_ERP
+INV-00201,Process Payment,2025-01-22 11:37:00,System_ERP
+INV-00201,Payment Complete,2025-01-22 11:38:00,System_ERP
+INV-00005,Process Payment,2025-01-22 13:15:00,System_ERP
+INV-00005,Payment Complete,2025-01-22 13:17:00,System_ERP
+INV-00026,Process Payment,2025-01-22 14:02:00,System_ERP
+INV-00026,Payment Complete,2025-01-22 14:06:00,System_ERP
+INV-00098,Process Payment,2025-01-22 14:07:00,System_ERP
+INV-00098,Payment Complete,2025-01-22 14:11:00,System_ERP
+INV-00122,Process Payment,2025-01-22 14:23:00,System_ERP
+INV-00122,Payment Complete,2025-01-22 14:26:00,System_ERP
+INV-00027,Process Payment,2025-01-22 15:44:00,System_ERP
+INV-00078,Process Payment,2025-01-22 15:44:00,System_ERP
+INV-00078,Payment Complete,2025-01-22 15:45:00,System_ERP
+INV-00027,Payment Complete,2025-01-22 15:48:00,System_ERP
+INV-00004,Process Payment,2025-01-22 16:06:00,System_ERP
+INV-00004,Payment Complete,2025-01-22 16:07:00,System_ERP
+INV-00028,Process Payment,2025-01-22 16:09:00,System_ERP
+INV-00028,Payment Complete,2025-01-22 16:12:00,System_ERP
+INV-00118,Process Payment,2025-01-22 18:01:00,System_ERP
+INV-00118,Payment Complete,2025-01-22 18:04:00,System_ERP
+INV-00011,Process Payment,2025-01-22 21:34:00,System_ERP
+INV-00011,Payment Complete,2025-01-22 21:35:00,System_ERP
+INV-00013,Process Payment,2025-01-22 21:54:00,System_ERP
+INV-00013,Payment Complete,2025-01-22 21:57:00,System_ERP
+INV-00167,Process Payment,2025-01-23 10:07:00,System_ERP
+INV-00167,Payment Complete,2025-01-23 10:08:00,System_ERP
+INV-00158,Process Payment,2025-01-23 11:41:00,System_ERP
+INV-00158,Payment Complete,2025-01-23 11:43:00,System_ERP
+INV-00169,Process Payment,2025-01-23 12:50:00,System_ERP
+INV-00169,Payment Complete,2025-01-23 12:53:00,System_ERP
+INV-00223,Process Payment,2025-01-23 14:57:00,System_ERP
+INV-00223,Payment Complete,2025-01-23 14:59:00,System_ERP
+INV-00086,Process Payment,2025-01-23 15:42:00,System_ERP
+INV-00086,Payment Complete,2025-01-23 15:44:00,System_ERP
+INV-00136,Process Payment,2025-01-23 16:10:00,System_ERP
+INV-00136,Payment Complete,2025-01-23 16:13:00,System_ERP
+INV-00165,Process Payment,2025-01-23 16:37:00,System_ERP
+INV-00165,Payment Complete,2025-01-23 16:38:00,System_ERP
+INV-00154,Process Payment,2025-01-24 11:31:00,System_ERP
+INV-00143,Process Payment,2025-01-24 11:34:00,System_ERP
+INV-00154,Payment Complete,2025-01-24 11:35:00,System_ERP
+INV-00143,Payment Complete,2025-01-24 11:36:00,System_ERP
+INV-00064,Process Payment,2025-01-24 11:46:00,System_ERP
+INV-00064,Payment Complete,2025-01-24 11:51:00,System_ERP
+INV-00145,Process Payment,2025-01-24 12:16:00,System_ERP
+INV-00145,Payment Complete,2025-01-24 12:17:00,System_ERP
+INV-00239,Process Payment,2025-01-24 12:17:00,System_ERP
+INV-00239,Payment Complete,2025-01-24 12:20:00,System_ERP
+INV-00094,Process Payment,2025-01-24 12:46:00,System_ERP
+INV-00094,Payment Complete,2025-01-24 12:47:00,System_ERP
+INV-00020,Process Payment,2025-01-24 14:30:00,System_ERP
+INV-00020,Payment Complete,2025-01-24 14:35:00,System_ERP
+INV-00198,Process Payment,2025-01-24 15:29:00,System_ERP
+INV-00198,Payment Complete,2025-01-24 15:33:00,System_ERP
+INV-00041,Process Payment,2025-01-24 15:49:00,System_ERP
+INV-00041,Payment Complete,2025-01-24 15:53:00,System_ERP
+INV-00224,Process Payment,2025-01-24 15:58:00,System_ERP
+INV-00224,Payment Complete,2025-01-24 16:03:00,System_ERP
+INV-00148,Process Payment,2025-01-24 16:10:00,System_ERP
+INV-00148,Payment Complete,2025-01-24 16:11:00,System_ERP
+INV-00229,Process Payment,2025-01-24 16:24:00,System_ERP
+INV-00229,Payment Complete,2025-01-24 16:28:00,System_ERP
+INV-00240,Process Payment,2025-01-24 16:57:00,System_ERP
+INV-00240,Payment Complete,2025-01-24 16:58:00,System_ERP
+INV-00049,Process Payment,2025-01-25 10:29:00,System_ERP
+INV-00049,Payment Complete,2025-01-25 10:34:00,System_ERP
+INV-00242,Process Payment,2025-01-25 10:36:00,System_ERP
+INV-00242,Payment Complete,2025-01-25 10:41:00,System_ERP
+INV-00091,Process Payment,2025-01-25 12:08:00,System_ERP
+INV-00091,Payment Complete,2025-01-25 12:11:00,System_ERP
+INV-00120,Process Payment,2025-01-25 12:25:00,System_ERP
+INV-00263,Process Payment,2025-01-25 12:25:00,System_ERP
+INV-00120,Payment Complete,2025-01-25 12:27:00,System_ERP
+INV-00220,Process Payment,2025-01-25 12:28:00,System_ERP
+INV-00263,Payment Complete,2025-01-25 12:30:00,System_ERP
+INV-00220,Payment Complete,2025-01-25 12:33:00,System_ERP
+INV-00079,Process Payment,2025-01-25 13:34:00,System_ERP
+INV-00079,Payment Complete,2025-01-25 13:38:00,System_ERP
+INV-00108,Process Payment,2025-01-25 14:41:00,System_ERP
+INV-00108,Payment Complete,2025-01-25 14:45:00,System_ERP
+INV-00234,Process Payment,2025-01-25 14:53:00,System_ERP
+INV-00234,Payment Complete,2025-01-25 14:56:00,System_ERP
+INV-00006,Process Payment,2025-01-25 15:31:00,System_ERP
+INV-00006,Payment Complete,2025-01-25 15:34:00,System_ERP
+INV-00177,Process Payment,2025-01-25 16:06:00,System_ERP
+INV-00177,Payment Complete,2025-01-25 16:07:00,System_ERP
+INV-00259,Process Payment,2025-01-25 16:27:00,System_ERP
+INV-00259,Payment Complete,2025-01-25 16:30:00,System_ERP
+INV-00096,Process Payment,2025-01-25 16:47:00,System_ERP
+INV-00096,Payment Complete,2025-01-25 16:49:00,System_ERP
+INV-00250,Process Payment,2025-01-26 01:27:00,System_ERP
+INV-00250,Payment Complete,2025-01-26 01:31:00,System_ERP
+INV-00265,Process Payment,2025-01-26 09:36:00,System_ERP
+INV-00265,Payment Complete,2025-01-26 09:41:00,System_ERP
+INV-00260,Process Payment,2025-01-26 09:51:00,System_ERP
+INV-00260,Payment Complete,2025-01-26 09:55:00,System_ERP
+INV-00238,Process Payment,2025-01-26 10:15:00,System_ERP
+INV-00238,Payment Complete,2025-01-26 10:17:00,System_ERP
+INV-00226,Process Payment,2025-01-26 10:57:00,System_ERP
+INV-00226,Payment Complete,2025-01-26 10:58:00,System_ERP
+INV-00002,Process Payment,2025-01-26 11:03:00,System_ERP
+INV-00002,Payment Complete,2025-01-26 11:07:00,System_ERP
+INV-00042,Process Payment,2025-01-26 11:13:00,System_ERP
+INV-00042,Payment Complete,2025-01-26 11:16:00,System_ERP
+INV-00153,Process Payment,2025-01-26 11:56:00,System_ERP
+INV-00153,Payment Complete,2025-01-26 12:01:00,System_ERP
+INV-00197,Process Payment,2025-01-26 12:37:00,System_ERP
+INV-00197,Payment Complete,2025-01-26 12:38:00,System_ERP
+INV-00157,Process Payment,2025-01-26 12:45:00,System_ERP
+INV-00157,Payment Complete,2025-01-26 12:46:00,System_ERP
+INV-00209,Process Payment,2025-01-26 13:02:00,System_ERP
+INV-00209,Payment Complete,2025-01-26 13:05:00,System_ERP
+INV-00084,Process Payment,2025-01-26 13:09:00,System_ERP
+INV-00084,Payment Complete,2025-01-26 13:14:00,System_ERP
+INV-00244,Process Payment,2025-01-26 14:40:00,System_ERP
+INV-00244,Payment Complete,2025-01-26 14:42:00,System_ERP
+INV-00036,Process Payment,2025-01-26 14:53:00,System_ERP
+INV-00036,Payment Complete,2025-01-26 14:58:00,System_ERP
+INV-00050,Process Payment,2025-01-26 15:01:00,System_ERP
+INV-00050,Payment Complete,2025-01-26 15:05:00,System_ERP
+INV-00071,Process Payment,2025-01-26 15:09:00,System_ERP
+INV-00071,Payment Complete,2025-01-26 15:12:00,System_ERP
+INV-00080,Process Payment,2025-01-26 15:29:00,System_ERP
+INV-00080,Payment Complete,2025-01-26 15:32:00,System_ERP
+INV-00031,Process Payment,2025-01-26 16:05:00,System_ERP
+INV-00031,Payment Complete,2025-01-26 16:08:00,System_ERP
+INV-00174,Process Payment,2025-01-26 16:10:00,System_ERP
+INV-00174,Payment Complete,2025-01-26 16:11:00,System_ERP
+INV-00107,Process Payment,2025-01-27 10:18:00,System_ERP
+INV-00107,Payment Complete,2025-01-27 10:20:00,System_ERP
+INV-00285,Process Payment,2025-01-27 10:37:00,System_ERP
+INV-00285,Payment Complete,2025-01-27 10:39:00,System_ERP
+INV-00131,Process Payment,2025-01-27 10:43:00,System_ERP
+INV-00131,Payment Complete,2025-01-27 10:47:00,System_ERP
+INV-00069,Process Payment,2025-01-27 12:28:00,System_ERP
+INV-00069,Payment Complete,2025-01-27 12:31:00,System_ERP
+INV-00261,Process Payment,2025-01-27 12:35:00,System_ERP
+INV-00261,Payment Complete,2025-01-27 12:39:00,System_ERP
+INV-00182,Process Payment,2025-01-27 12:40:00,System_ERP
+INV-00182,Payment Complete,2025-01-27 12:45:00,System_ERP
+INV-00019,Process Payment,2025-01-27 13:06:00,System_ERP
+INV-00019,Payment Complete,2025-01-27 13:07:00,System_ERP
+INV-00212,Process Payment,2025-01-27 14:20:00,System_ERP
+INV-00212,Payment Complete,2025-01-27 14:24:00,System_ERP
+INV-00067,Process Payment,2025-01-27 14:57:00,System_ERP
+INV-00067,Payment Complete,2025-01-27 15:01:00,System_ERP
+INV-00152,Process Payment,2025-01-27 15:22:00,System_ERP
+INV-00152,Payment Complete,2025-01-27 15:25:00,System_ERP
+INV-00102,Process Payment,2025-01-27 15:42:00,System_ERP
+INV-00102,Payment Complete,2025-01-27 15:43:00,System_ERP
+INV-00236,Process Payment,2025-01-27 16:27:00,System_ERP
+INV-00236,Payment Complete,2025-01-27 16:29:00,System_ERP
+INV-00039,Process Payment,2025-01-27 16:33:00,System_ERP
+INV-00039,Payment Complete,2025-01-27 16:35:00,System_ERP
+INV-00272,Process Payment,2025-01-28 10:14:00,System_ERP
+INV-00272,Payment Complete,2025-01-28 10:18:00,System_ERP
+INV-00294,Process Payment,2025-01-28 11:59:00,System_ERP
+INV-00294,Payment Complete,2025-01-28 12:01:00,System_ERP
+INV-00117,Process Payment,2025-01-28 13:05:00,System_ERP
+INV-00117,Payment Complete,2025-01-28 13:06:00,System_ERP
+INV-00077,Process Payment,2025-01-28 14:18:00,System_ERP
+INV-00077,Payment Complete,2025-01-28 14:19:00,System_ERP
+INV-00150,Process Payment,2025-01-28 15:00:00,System_ERP
+INV-00150,Payment Complete,2025-01-28 15:05:00,System_ERP
+INV-00264,Process Payment,2025-01-28 15:21:00,System_ERP
+INV-00264,Payment Complete,2025-01-28 15:26:00,System_ERP
+INV-00068,Process Payment,2025-01-28 15:57:00,System_ERP
+INV-00068,Payment Complete,2025-01-28 15:59:00,System_ERP
+INV-00095,Process Payment,2025-01-28 20:07:00,System_ERP
+INV-00095,Payment Complete,2025-01-28 20:09:00,System_ERP
+INV-00237,Process Payment,2025-01-28 23:02:00,System_ERP
+INV-00237,Payment Complete,2025-01-28 23:06:00,System_ERP
+INV-00111,Process Payment,2025-01-29 10:45:00,System_ERP
+INV-00111,Payment Complete,2025-01-29 10:50:00,System_ERP
+INV-00292,Process Payment,2025-01-29 12:11:00,System_ERP
+INV-00292,Payment Complete,2025-01-29 12:15:00,System_ERP
+INV-00112,Process Payment,2025-01-29 13:07:00,System_ERP
+INV-00112,Payment Complete,2025-01-29 13:10:00,System_ERP
+INV-00021,Process Payment,2025-01-29 13:16:00,System_ERP
+INV-00021,Payment Complete,2025-01-29 13:20:00,System_ERP
+INV-00170,Process Payment,2025-01-29 15:31:00,System_ERP
+INV-00170,Payment Complete,2025-01-29 15:36:00,System_ERP
+INV-00043,Process Payment,2025-01-29 16:01:00,System_ERP
+INV-00043,Payment Complete,2025-01-29 16:05:00,System_ERP
+INV-00010,Process Payment,2025-01-29 17:28:00,System_ERP
+INV-00010,Payment Complete,2025-01-29 17:31:00,System_ERP
+INV-00287,Process Payment,2025-01-30 11:43:00,System_ERP
+INV-00287,Payment Complete,2025-01-30 11:45:00,System_ERP
+INV-00295,Process Payment,2025-01-30 12:34:00,System_ERP
+INV-00295,Payment Complete,2025-01-30 12:37:00,System_ERP
+INV-00113,Process Payment,2025-01-30 14:04:00,System_ERP
+INV-00113,Payment Complete,2025-01-30 14:07:00,System_ERP
+INV-00279,Process Payment,2025-01-30 14:24:00,System_ERP
+INV-00279,Payment Complete,2025-01-30 14:27:00,System_ERP
+INV-00180,Process Payment,2025-01-30 15:26:00,System_ERP
+INV-00180,Payment Complete,2025-01-30 15:29:00,System_ERP
+INV-00124,Process Payment,2025-01-30 15:49:00,System_ERP
+INV-00124,Payment Complete,2025-01-30 15:53:00,System_ERP
+INV-00018,Process Payment,2025-01-30 16:17:00,System_ERP
+INV-00018,Payment Complete,2025-01-30 16:22:00,System_ERP
+INV-00142,Process Payment,2025-01-30 17:16:00,System_ERP
+INV-00142,Payment Complete,2025-01-30 17:19:00,System_ERP
+INV-00012,Process Payment,2025-01-31 10:20:00,System_ERP
+INV-00012,Payment Complete,2025-01-31 10:21:00,System_ERP
+INV-00132,Process Payment,2025-01-31 11:33:00,System_ERP
+INV-00132,Payment Complete,2025-01-31 11:36:00,System_ERP
+INV-00222,Process Payment,2025-01-31 13:15:00,System_ERP
+INV-00222,Payment Complete,2025-01-31 13:18:00,System_ERP
+INV-00204,Process Payment,2025-01-31 14:15:00,System_ERP
+INV-00204,Payment Complete,2025-01-31 14:17:00,System_ERP
+INV-00245,Process Payment,2025-01-31 16:17:00,System_ERP
+INV-00245,Payment Complete,2025-01-31 16:19:00,System_ERP
+INV-00072,Process Payment,2025-01-31 20:40:00,System_ERP
+INV-00072,Payment Complete,2025-01-31 20:43:00,System_ERP
+INV-00270,Process Payment,2025-02-01 07:57:00,System_ERP
+INV-00270,Payment Complete,2025-02-01 07:59:00,System_ERP
+INV-00282,Process Payment,2025-02-01 10:35:00,System_ERP
+INV-00282,Payment Complete,2025-02-01 10:39:00,System_ERP
+INV-00278,Process Payment,2025-02-01 10:51:00,System_ERP
+INV-00300,Process Payment,2025-02-01 10:53:00,System_ERP
+INV-00278,Payment Complete,2025-02-01 10:55:00,System_ERP
+INV-00300,Payment Complete,2025-02-01 10:57:00,System_ERP
+INV-00045,Process Payment,2025-02-01 11:31:00,System_ERP
+INV-00045,Payment Complete,2025-02-01 11:35:00,System_ERP
+INV-00114,Process Payment,2025-02-01 12:23:00,System_ERP
+INV-00114,Payment Complete,2025-02-01 12:26:00,System_ERP
+INV-00099,Process Payment,2025-02-01 12:48:00,System_ERP
+INV-00099,Payment Complete,2025-02-01 12:49:00,System_ERP
+INV-00299,Process Payment,2025-02-01 13:11:00,System_ERP
+INV-00299,Payment Complete,2025-02-01 13:14:00,System_ERP
+INV-00185,Process Payment,2025-02-01 13:23:00,System_ERP
+INV-00185,Payment Complete,2025-02-01 13:27:00,System_ERP
+INV-00032,Process Payment,2025-02-01 13:30:00,System_ERP
+INV-00032,Payment Complete,2025-02-01 13:32:00,System_ERP
+INV-00085,Process Payment,2025-02-01 13:52:00,System_ERP
+INV-00085,Payment Complete,2025-02-01 13:56:00,System_ERP
+INV-00141,Process Payment,2025-02-01 14:47:00,System_ERP
+INV-00141,Payment Complete,2025-02-01 14:49:00,System_ERP
+INV-00249,Process Payment,2025-02-01 15:20:00,System_ERP
+INV-00249,Payment Complete,2025-02-01 15:24:00,System_ERP
+INV-00065,Process Payment,2025-02-01 17:08:00,System_ERP
+INV-00065,Payment Complete,2025-02-01 17:09:00,System_ERP
+INV-00033,Process Payment,2025-02-02 09:42:00,System_ERP
+INV-00033,Payment Complete,2025-02-02 09:45:00,System_ERP
+INV-00109,Process Payment,2025-02-02 10:21:00,System_ERP
+INV-00109,Payment Complete,2025-02-02 10:23:00,System_ERP
+INV-00138,Process Payment,2025-02-02 11:05:00,System_ERP
+INV-00138,Payment Complete,2025-02-02 11:06:00,System_ERP
+INV-00230,Process Payment,2025-02-02 11:16:00,System_ERP
+INV-00230,Payment Complete,2025-02-02 11:21:00,System_ERP
+INV-00267,Process Payment,2025-02-02 11:24:00,System_ERP
+INV-00267,Payment Complete,2025-02-02 11:26:00,System_ERP
+INV-00225,Process Payment,2025-02-02 12:10:00,System_ERP
+INV-00225,Payment Complete,2025-02-02 12:14:00,System_ERP
+INV-00210,Process Payment,2025-02-02 12:16:00,System_ERP
+INV-00210,Payment Complete,2025-02-02 12:19:00,System_ERP
+INV-00255,Process Payment,2025-02-02 12:32:00,System_ERP
+INV-00255,Payment Complete,2025-02-02 12:33:00,System_ERP
+INV-00159,Process Payment,2025-02-02 13:06:00,System_ERP
+INV-00159,Payment Complete,2025-02-02 13:10:00,System_ERP
+INV-00269,Process Payment,2025-02-02 14:36:00,System_ERP
+INV-00269,Payment Complete,2025-02-02 14:41:00,System_ERP
+INV-00290,Process Payment,2025-02-02 15:40:00,System_ERP
+INV-00290,Payment Complete,2025-02-02 15:45:00,System_ERP
+INV-00200,Process Payment,2025-02-02 15:48:00,System_ERP
+INV-00200,Payment Complete,2025-02-02 15:51:00,System_ERP
+INV-00151,Process Payment,2025-02-02 16:32:00,System_ERP
+INV-00151,Payment Complete,2025-02-02 16:35:00,System_ERP
+INV-00266,Process Payment,2025-02-02 16:40:00,System_ERP
+INV-00266,Payment Complete,2025-02-02 16:43:00,System_ERP
+INV-00163,Process Payment,2025-02-02 17:16:00,System_ERP
+INV-00163,Payment Complete,2025-02-02 17:19:00,System_ERP
+INV-00054,Process Payment,2025-02-02 17:31:00,System_ERP
+INV-00054,Payment Complete,2025-02-02 17:32:00,System_ERP
+INV-00066,Process Payment,2025-02-02 17:34:00,System_ERP
+INV-00066,Payment Complete,2025-02-02 17:37:00,System_ERP
+INV-00233,Process Payment,2025-02-02 17:43:00,System_ERP
+INV-00233,Payment Complete,2025-02-02 17:48:00,System_ERP
+INV-00271,Process Payment,2025-02-03 10:39:00,System_ERP
+INV-00271,Payment Complete,2025-02-03 10:40:00,System_ERP
+INV-00053,Process Payment,2025-02-03 10:57:00,System_ERP
+INV-00231,Process Payment,2025-02-03 10:57:00,System_ERP
+INV-00053,Payment Complete,2025-02-03 10:59:00,System_ERP
+INV-00231,Payment Complete,2025-02-03 11:00:00,System_ERP
+INV-00046,Process Payment,2025-02-03 13:27:00,System_ERP
+INV-00046,Payment Complete,2025-02-03 13:32:00,System_ERP
+INV-00208,Process Payment,2025-02-03 14:11:00,System_ERP
+INV-00208,Payment Complete,2025-02-03 14:16:00,System_ERP
+INV-00235,Process Payment,2025-02-03 14:24:00,System_ERP
+INV-00235,Payment Complete,2025-02-03 14:26:00,System_ERP
+INV-00126,Process Payment,2025-02-03 14:27:00,System_ERP
+INV-00126,Payment Complete,2025-02-03 14:28:00,System_ERP
+INV-00129,Process Payment,2025-02-03 14:59:00,System_ERP
+INV-00129,Payment Complete,2025-02-03 15:03:00,System_ERP
+INV-00199,Process Payment,2025-02-03 18:13:00,System_ERP
+INV-00199,Payment Complete,2025-02-03 18:16:00,System_ERP
+INV-00166,Process Payment,2025-02-04 10:31:00,System_ERP
+INV-00166,Payment Complete,2025-02-04 10:36:00,System_ERP
+INV-00133,Process Payment,2025-02-04 10:40:00,System_ERP
+INV-00133,Payment Complete,2025-02-04 10:41:00,System_ERP
+INV-00258,Process Payment,2025-02-04 11:10:00,System_ERP
+INV-00258,Payment Complete,2025-02-04 11:12:00,System_ERP
+INV-00144,Process Payment,2025-02-04 12:09:00,System_ERP
+INV-00144,Payment Complete,2025-02-04 12:14:00,System_ERP
+INV-00062,Process Payment,2025-02-04 14:03:00,System_ERP
+INV-00062,Payment Complete,2025-02-04 14:05:00,System_ERP
+INV-00119,Process Payment,2025-02-04 15:11:00,System_ERP
+INV-00119,Payment Complete,2025-02-04 15:12:00,System_ERP
+INV-00193,Process Payment,2025-02-04 15:18:00,System_ERP
+INV-00193,Payment Complete,2025-02-04 15:22:00,System_ERP
+INV-00262,Process Payment,2025-02-04 16:40:00,System_ERP
+INV-00262,Payment Complete,2025-02-04 16:44:00,System_ERP
+INV-00211,Process Payment,2025-02-05 11:36:00,System_ERP
+INV-00211,Payment Complete,2025-02-05 11:38:00,System_ERP
+INV-00228,Process Payment,2025-02-05 12:08:00,System_ERP
+INV-00228,Payment Complete,2025-02-05 12:09:00,System_ERP
+INV-00088,Process Payment,2025-02-05 12:49:00,System_ERP
+INV-00088,Payment Complete,2025-02-05 12:50:00,System_ERP
+INV-00181,Process Payment,2025-02-05 13:33:00,System_ERP
+INV-00181,Payment Complete,2025-02-05 13:37:00,System_ERP
+INV-00175,Process Payment,2025-02-05 13:56:00,System_ERP
+INV-00175,Payment Complete,2025-02-05 13:58:00,System_ERP
+INV-00227,Process Payment,2025-02-05 15:41:00,System_ERP
+INV-00227,Payment Complete,2025-02-05 15:43:00,System_ERP
+INV-00173,Process Payment,2025-02-05 16:16:00,System_ERP
+INV-00173,Payment Complete,2025-02-05 16:20:00,System_ERP
+INV-00137,Process Payment,2025-02-05 16:22:00,System_ERP
+INV-00137,Payment Complete,2025-02-05 16:26:00,System_ERP
+INV-00217,Process Payment,2025-02-05 19:32:00,System_ERP
+INV-00217,Payment Complete,2025-02-05 19:34:00,System_ERP
+INV-00161,Process Payment,2025-02-06 12:16:00,System_ERP
+INV-00161,Payment Complete,2025-02-06 12:18:00,System_ERP
+INV-00213,Process Payment,2025-02-06 12:18:00,System_ERP
+INV-00213,Payment Complete,2025-02-06 12:23:00,System_ERP
+INV-00189,Process Payment,2025-02-06 13:10:00,System_ERP
+INV-00189,Payment Complete,2025-02-06 13:13:00,System_ERP
+INV-00179,Process Payment,2025-02-06 15:09:00,System_ERP
+INV-00179,Payment Complete,2025-02-06 15:14:00,System_ERP
+INV-00216,Process Payment,2025-02-06 15:49:00,System_ERP
+INV-00187,Process Payment,2025-02-06 15:51:00,System_ERP
+INV-00216,Payment Complete,2025-02-06 15:52:00,System_ERP
+INV-00187,Payment Complete,2025-02-06 15:55:00,System_ERP
+INV-00297,Process Payment,2025-02-06 16:54:00,System_ERP
+INV-00297,Payment Complete,2025-02-06 16:56:00,System_ERP
+INV-00128,Process Payment,2025-02-06 19:02:00,System_ERP
+INV-00128,Payment Complete,2025-02-06 19:05:00,System_ERP
+INV-00288,Process Payment,2025-02-07 01:11:00,System_ERP
+INV-00288,Payment Complete,2025-02-07 01:14:00,System_ERP
+INV-00205,Process Payment,2025-02-07 10:50:00,System_ERP
+INV-00205,Payment Complete,2025-02-07 10:53:00,System_ERP
+INV-00277,Process Payment,2025-02-07 11:10:00,System_ERP
+INV-00277,Payment Complete,2025-02-07 11:13:00,System_ERP
+INV-00146,Process Payment,2025-02-07 13:29:00,System_ERP
+INV-00146,Payment Complete,2025-02-07 13:33:00,System_ERP
+INV-00139,Process Payment,2025-02-07 14:57:00,System_ERP
+INV-00139,Payment Complete,2025-02-07 15:00:00,System_ERP
+INV-00149,Process Payment,2025-02-07 15:25:00,System_ERP
+INV-00149,Payment Complete,2025-02-07 15:29:00,System_ERP
+INV-00214,Process Payment,2025-02-07 16:40:00,System_ERP
+INV-00214,Payment Complete,2025-02-07 16:44:00,System_ERP
+INV-00168,Process Payment,2025-02-07 17:31:00,System_ERP
+INV-00168,Payment Complete,2025-02-07 17:34:00,System_ERP
+INV-00156,Process Payment,2025-02-08 10:02:00,System_ERP
+INV-00156,Payment Complete,2025-02-08 10:04:00,System_ERP
+INV-00164,Process Payment,2025-02-08 12:16:00,System_ERP
+INV-00164,Payment Complete,2025-02-08 12:18:00,System_ERP
+INV-00134,Process Payment,2025-02-08 13:59:00,System_ERP
+INV-00134,Payment Complete,2025-02-08 14:04:00,System_ERP
+INV-00188,Process Payment,2025-02-09 10:50:00,System_ERP
+INV-00188,Payment Complete,2025-02-09 10:53:00,System_ERP
+INV-00196,Process Payment,2025-02-09 11:19:00,System_ERP
+INV-00196,Payment Complete,2025-02-09 11:23:00,System_ERP
+INV-00155,Process Payment,2025-02-09 11:39:00,System_ERP
+INV-00155,Payment Complete,2025-02-09 11:44:00,System_ERP
+INV-00296,Process Payment,2025-02-09 11:50:00,System_ERP
+INV-00296,Payment Complete,2025-02-09 11:54:00,System_ERP
+INV-00257,Process Payment,2025-02-09 13:00:00,System_ERP
+INV-00257,Payment Complete,2025-02-09 13:04:00,System_ERP
+INV-00178,Process Payment,2025-02-09 14:11:00,System_ERP
+INV-00178,Payment Complete,2025-02-09 14:13:00,System_ERP
+INV-00289,Process Payment,2025-02-09 14:50:00,System_ERP
+INV-00289,Payment Complete,2025-02-09 14:51:00,System_ERP
+INV-00256,Process Payment,2025-02-09 22:44:00,System_ERP
+INV-00256,Payment Complete,2025-02-09 22:49:00,System_ERP
+INV-00176,Process Payment,2025-02-10 10:03:00,System_ERP
+INV-00176,Payment Complete,2025-02-10 10:08:00,System_ERP
+INV-00171,Process Payment,2025-02-10 10:20:00,System_ERP
+INV-00171,Payment Complete,2025-02-10 10:24:00,System_ERP
+INV-00194,Process Payment,2025-02-10 10:56:00,System_ERP
+INV-00194,Payment Complete,2025-02-10 11:00:00,System_ERP
+INV-00190,Process Payment,2025-02-10 11:01:00,System_ERP
+INV-00190,Payment Complete,2025-02-10 11:02:00,System_ERP
+INV-00195,Process Payment,2025-02-10 11:45:00,System_ERP
+INV-00195,Payment Complete,2025-02-10 11:46:00,System_ERP
+INV-00253,Process Payment,2025-02-10 12:51:00,System_ERP
+INV-00253,Payment Complete,2025-02-10 12:54:00,System_ERP
+INV-00221,Process Payment,2025-02-10 15:34:00,System_ERP
+INV-00183,Process Payment,2025-02-10 15:35:00,System_ERP
+INV-00221,Payment Complete,2025-02-10 15:35:00,System_ERP
+INV-00183,Payment Complete,2025-02-10 15:40:00,System_ERP
+INV-00243,Process Payment,2025-02-10 16:49:00,System_ERP
+INV-00243,Payment Complete,2025-02-10 16:51:00,System_ERP
+INV-00273,Process Payment,2025-02-10 22:49:00,System_ERP
+INV-00273,Payment Complete,2025-02-10 22:50:00,System_ERP
+INV-00172,Process Payment,2025-02-11 10:02:00,System_ERP
+INV-00172,Payment Complete,2025-02-11 10:04:00,System_ERP
+INV-00286,Process Payment,2025-02-11 10:32:00,System_ERP
+INV-00286,Payment Complete,2025-02-11 10:35:00,System_ERP
+INV-00203,Process Payment,2025-02-11 10:38:00,System_ERP
+INV-00276,Process Payment,2025-02-11 10:40:00,System_ERP
+INV-00276,Payment Complete,2025-02-11 10:41:00,System_ERP
+INV-00203,Payment Complete,2025-02-11 10:43:00,System_ERP
+INV-00275,Process Payment,2025-02-11 12:29:00,System_ERP
+INV-00275,Payment Complete,2025-02-11 12:32:00,System_ERP
+INV-00281,Process Payment,2025-02-11 13:46:00,System_ERP
+INV-00281,Payment Complete,2025-02-11 13:49:00,System_ERP
+INV-00280,Process Payment,2025-02-11 14:48:00,System_ERP
+INV-00280,Payment Complete,2025-02-11 14:51:00,System_ERP
+INV-00215,Process Payment,2025-02-11 15:15:00,System_ERP
+INV-00215,Payment Complete,2025-02-11 15:17:00,System_ERP
+INV-00207,Process Payment,2025-02-11 16:02:00,System_ERP
+INV-00207,Payment Complete,2025-02-11 16:03:00,System_ERP
+INV-00186,Process Payment,2025-02-12 09:59:00,System_ERP
+INV-00186,Payment Complete,2025-02-12 10:04:00,System_ERP
+INV-00206,Process Payment,2025-02-12 13:07:00,System_ERP
+INV-00206,Payment Complete,2025-02-12 13:11:00,System_ERP
+INV-00202,Process Payment,2025-02-12 13:12:00,System_ERP
+INV-00202,Payment Complete,2025-02-12 13:13:00,System_ERP
+INV-00192,Process Payment,2025-02-12 13:51:00,System_ERP
+INV-00192,Payment Complete,2025-02-12 13:55:00,System_ERP
+INV-00191,Process Payment,2025-02-12 14:07:00,System_ERP
+INV-00191,Payment Complete,2025-02-12 14:09:00,System_ERP
+INV-00219,Process Payment,2025-02-13 15:16:00,System_ERP
+INV-00219,Payment Complete,2025-02-13 15:17:00,System_ERP
+INV-00241,Process Payment,2025-02-13 16:13:00,System_ERP
+INV-00241,Payment Complete,2025-02-13 16:14:00,System_ERP
+INV-00291,Process Payment,2025-02-14 11:26:00,System_ERP
+INV-00291,Payment Complete,2025-02-14 11:27:00,System_ERP
+INV-00284,Process Payment,2025-02-14 12:13:00,System_ERP
+INV-00284,Payment Complete,2025-02-14 12:17:00,System_ERP
+INV-00252,Process Payment,2025-02-14 15:07:00,System_ERP
+INV-00252,Payment Complete,2025-02-14 15:08:00,System_ERP
+INV-00218,Process Payment,2025-02-14 19:50:00,System_ERP
+INV-00218,Payment Complete,2025-02-14 19:54:00,System_ERP
+INV-00232,Process Payment,2025-02-14 20:23:00,System_ERP
+INV-00232,Payment Complete,2025-02-14 20:27:00,System_ERP
+INV-00247,Process Payment,2025-02-15 11:07:00,System_ERP
+INV-00247,Payment Complete,2025-02-15 11:08:00,System_ERP
+INV-00298,Process Payment,2025-02-15 13:05:00,System_ERP
+INV-00298,Payment Complete,2025-02-15 13:10:00,System_ERP
+INV-00283,Process Payment,2025-02-15 13:23:00,System_ERP
+INV-00283,Payment Complete,2025-02-15 13:26:00,System_ERP
+INV-00248,Process Payment,2025-02-15 16:46:00,System_ERP
+INV-00248,Payment Complete,2025-02-15 16:47:00,System_ERP
+INV-00254,Process Payment,2025-02-16 10:30:00,System_ERP
+INV-00254,Payment Complete,2025-02-16 10:34:00,System_ERP
+INV-00246,Process Payment,2025-02-16 11:03:00,System_ERP
+INV-00246,Payment Complete,2025-02-16 11:06:00,System_ERP
+INV-00251,Process Payment,2025-02-16 15:57:00,System_ERP
+INV-00251,Payment Complete,2025-02-16 16:02:00,System_ERP
+INV-00293,Process Payment,2025-02-17 11:39:00,System_ERP
+INV-00293,Payment Complete,2025-02-17 11:40:00,System_ERP
+INV-00268,Process Payment,2025-02-17 14:45:00,System_ERP
+INV-00268,Payment Complete,2025-02-17 14:48:00,System_ERP
+INV-00274,Process Payment,2025-02-18 15:23:00,System_ERP
+INV-00274,Payment Complete,2025-02-18 15:26:00,System_ERP

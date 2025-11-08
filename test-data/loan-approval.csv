@@ -1,0 +1,2413 @@
+caseId,activity,timestamp,resource
+LOAN-00004,Application Received,2025-01-01 09:11:00,System
+LOAN-00001,Application Received,2025-01-01 09:41:00,System
+LOAN-00004,Document Collection,2025-01-01 09:41:00,Officer_Sarah
+LOAN-00001,Document Collection,2025-01-01 10:02:00,Officer_Sarah
+LOAN-00004,Initial Review,2025-01-01 10:09:00,Officer_Mike
+LOAN-00004,Credit Check,2025-01-01 10:20:00,System_Credit
+LOAN-00004,Income Verification,2025-01-01 10:37:00,Officer_Sarah
+LOAN-00001,Initial Review,2025-01-01 10:46:00,Officer_Jessica
+LOAN-00001,Credit Check,2025-01-01 11:01:00,System_Credit
+LOAN-00005,Application Received,2025-01-01 11:02:00,System
+LOAN-00001,Income Verification,2025-01-01 11:19:00,Officer_Sarah
+LOAN-00005,Document Collection,2025-01-01 11:31:00,Officer_Mike
+LOAN-00004,Risk Assessment,2025-01-01 11:37:00,UW_Rachel
+LOAN-00005,Initial Review,2025-01-01 11:51:00,Officer_Mike
+LOAN-00005,Credit Check,2025-01-01 12:00:00,System_Credit
+LOAN-00006,Application Received,2025-01-01 12:05:00,System
+LOAN-00006,Document Collection,2025-01-01 12:15:00,Officer_Jessica
+LOAN-00005,Income Verification,2025-01-01 12:17:00,Officer_Jessica
+LOAN-00001,Risk Assessment,2025-01-01 12:19:00,UW_Rachel
+LOAN-00006,Initial Review,2025-01-01 12:41:00,Officer_Jessica
+LOAN-00006,Credit Check,2025-01-01 12:49:00,System_Credit
+LOAN-00006,Income Verification,2025-01-01 13:05:00,Officer_Sarah
+LOAN-00003,Application Received,2025-01-01 13:40:00,System
+LOAN-00007,Application Received,2025-01-01 13:48:00,System
+LOAN-00007,Document Collection,2025-01-01 14:06:00,Officer_Mike
+LOAN-00003,Document Collection,2025-01-01 14:09:00,Officer_Jessica
+LOAN-00005,Risk Assessment,2025-01-01 14:17:00,UW_David
+LOAN-00002,Application Received,2025-01-01 14:34:00,System
+LOAN-00003,Initial Review,2025-01-01 14:37:00,Officer_Mike
+LOAN-00007,Initial Review,2025-01-01 14:47:00,Officer_Sarah
+LOAN-00003,Credit Check,2025-01-01 14:48:00,System_Credit
+LOAN-00002,Document Collection,2025-01-01 14:54:00,Officer_Sarah
+LOAN-00007,Credit Check,2025-01-01 15:00:00,System_Credit
+LOAN-00002,Initial Review,2025-01-01 15:14:00,Officer_Mike
+LOAN-00007,Income Verification,2025-01-01 15:15:00,Officer_Mike
+LOAN-00003,Income Verification,2025-01-01 15:18:00,Officer_Jessica
+LOAN-00002,Credit Check,2025-01-01 15:19:00,System_Credit
+LOAN-00008,Application Received,2025-01-01 15:20:00,System
+LOAN-00009,Application Received,2025-01-01 15:36:00,System
+LOAN-00002,Income Verification,2025-01-01 15:38:00,Officer_Mike
+LOAN-00008,Document Collection,2025-01-01 15:44:00,Officer_Mike
+LOAN-00009,Document Collection,2025-01-01 15:55:00,Officer_Jessica
+LOAN-00009,Initial Review,2025-01-01 16:37:00,Officer_Jessica
+LOAN-00009,Credit Check,2025-01-01 16:44:00,System_Credit
+LOAN-00009,Income Verification,2025-01-01 17:00:00,Officer_Mike
+LOAN-00006,Risk Assessment,2025-01-01 17:05:00,UW_Rachel
+LOAN-00007,Risk Assessment,2025-01-01 17:15:00,UW_David
+LOAN-00004,Underwriting,2025-01-01 17:37:00,UW_Rachel
+LOAN-00009,Risk Assessment,2025-01-01 18:00:00,UW_David
+LOAN-00004,Compliance Check,2025-01-01 18:04:00,System_Compliance
+LOAN-00003,Risk Assessment,2025-01-01 18:18:00,UW_David
+LOAN-00002,Risk Assessment,2025-01-01 18:38:00,UW_Rachel
+LOAN-00004,Loan Denied,2025-01-01 19:08:00,UW_Rachel
+LOAN-00003,Underwriting,2025-01-01 22:18:00,UW_David
+LOAN-00001,Underwriting,2025-01-01 22:19:00,UW_David
+LOAN-00001,Compliance Check,2025-01-01 22:36:00,System_Compliance
+LOAN-00001,Loan Approved,2025-01-01 22:53:00,UW_Rachel
+LOAN-00003,Manager Approval,2025-01-02 03:18:00,Manager_John
+LOAN-00003,Compliance Check,2025-01-02 03:42:00,System_Compliance
+LOAN-00003,Loan Denied,2025-01-02 05:16:00,UW_David
+LOAN-00006,Underwriting,2025-01-02 08:05:00,UW_David
+LOAN-00007,Underwriting,2025-01-02 08:15:00,UW_Rachel
+LOAN-00007,Compliance Check,2025-01-02 08:42:00,System_Compliance
+LOAN-00007,Loan Approved,2025-01-02 09:12:00,UW_Rachel
+LOAN-00006,Additional Review Required,2025-01-02 10:05:00,UW_David
+LOAN-00011,Application Received,2025-01-02 10:20:00,System
+LOAN-00011,Document Collection,2025-01-02 10:34:00,Officer_Jessica
+LOAN-00017,Application Received,2025-01-02 10:56:00,System
+LOAN-00014,Application Received,2025-01-02 10:57:00,System
+LOAN-00011,Initial Review,2025-01-02 10:59:00,Officer_Mike
+LOAN-00011,Credit Check,2025-01-02 11:09:00,System_Credit
+LOAN-00012,Application Received,2025-01-02 11:11:00,System
+LOAN-00012,Document Collection,2025-01-02 11:21:00,Officer_Mike
+LOAN-00010,Application Received,2025-01-02 11:23:00,System
+LOAN-00017,Document Collection,2025-01-02 11:23:00,Officer_Mike
+LOAN-00014,Document Collection,2025-01-02 11:25:00,Officer_Sarah
+LOAN-00011,Income Verification,2025-01-02 11:29:00,Officer_Jessica
+LOAN-00014,Initial Review,2025-01-02 11:40:00,Officer_Mike
+LOAN-00010,Document Collection,2025-01-02 11:52:00,Officer_Sarah
+LOAN-00014,Credit Check,2025-01-02 11:53:00,System_Credit
+LOAN-00012,Initial Review,2025-01-02 11:57:00,Officer_Jessica
+LOAN-00017,Initial Review,2025-01-02 12:08:00,Officer_Sarah
+LOAN-00012,Credit Check,2025-01-02 12:12:00,System_Credit
+LOAN-00014,Income Verification,2025-01-02 12:12:00,Officer_Mike
+LOAN-00017,Credit Check,2025-01-02 12:17:00,System_Credit
+LOAN-00010,Initial Review,2025-01-02 12:25:00,Officer_Sarah
+LOAN-00010,Credit Check,2025-01-02 12:30:00,System_Credit
+LOAN-00019,Application Received,2025-01-02 12:35:00,System
+LOAN-00012,Income Verification,2025-01-02 12:41:00,Officer_Sarah
+LOAN-00017,Income Verification,2025-01-02 12:44:00,Officer_Sarah
+LOAN-00010,Income Verification,2025-01-02 12:54:00,Officer_Jessica
+LOAN-00009,Underwriting,2025-01-02 13:00:00,UW_Rachel
+LOAN-00019,Document Collection,2025-01-02 13:01:00,Officer_Jessica
+LOAN-00009,Compliance Check,2025-01-02 13:12:00,System_Compliance
+LOAN-00013,Application Received,2025-01-02 13:35:00,System
+LOAN-00019,Initial Review,2025-01-02 13:38:00,Officer_Sarah
+LOAN-00009,Loan Approved,2025-01-02 13:48:00,UW_Rachel
+LOAN-00019,Credit Check,2025-01-02 13:51:00,System_Credit
+LOAN-00013,Document Collection,2025-01-02 13:54:00,Officer_Jessica
+LOAN-00019,Income Verification,2025-01-02 14:02:00,Officer_Jessica
+LOAN-00005,Underwriting,2025-01-02 14:17:00,UW_David
+LOAN-00011,Risk Assessment,2025-01-02 14:29:00,UW_Rachel
+LOAN-00005,Compliance Check,2025-01-02 14:32:00,System_Compliance
+LOAN-00013,Initial Review,2025-01-02 14:32:00,Officer_Mike
+LOAN-00002,Underwriting,2025-01-02 14:38:00,UW_Rachel
+LOAN-00013,Credit Check,2025-01-02 14:39:00,System_Credit
+LOAN-00002,Compliance Check,2025-01-02 15:05:00,System_Compliance
+LOAN-00013,Income Verification,2025-01-02 15:06:00,Officer_Jessica
+LOAN-00014,Risk Assessment,2025-01-02 15:12:00,UW_Rachel
+LOAN-00005,Loan Approved,2025-01-02 15:14:00,UW_Rachel
+LOAN-00016,Application Received,2025-01-02 15:36:00,System
+LOAN-00002,Loan Denied,2025-01-02 15:37:00,UW_Rachel
+LOAN-00012,Risk Assessment,2025-01-02 15:41:00,UW_Rachel
+LOAN-00018,Application Received,2025-01-02 15:41:00,System
+LOAN-00017,Risk Assessment,2025-01-02 15:44:00,UW_Rachel
+LOAN-00016,Document Collection,2025-01-02 15:52:00,Officer_Sarah
+LOAN-00015,Application Received,2025-01-02 15:53:00,System
+LOAN-00018,Document Collection,2025-01-02 16:01:00,Officer_Jessica
+LOAN-00019,Risk Assessment,2025-01-02 16:02:00,UW_Rachel
+LOAN-00015,Document Collection,2025-01-02 16:03:00,Officer_Jessica
+LOAN-00015,Initial Review,2025-01-02 16:36:00,Officer_Sarah
+LOAN-00018,Initial Review,2025-01-02 16:37:00,Officer_Mike
+LOAN-00015,Credit Check,2025-01-02 16:51:00,System_Credit
+LOAN-00018,Credit Check,2025-01-02 16:51:00,System_Credit
+LOAN-00010,Risk Assessment,2025-01-02 16:54:00,UW_David
+LOAN-00018,Income Verification,2025-01-02 17:05:00,Officer_Mike
+LOAN-00015,Income Verification,2025-01-02 17:16:00,Officer_Sarah
+LOAN-00013,Risk Assessment,2025-01-02 18:06:00,UW_Rachel
+LOAN-00018,Risk Assessment,2025-01-02 20:05:00,UW_David
+LOAN-00015,Risk Assessment,2025-01-02 20:16:00,UW_David
+LOAN-00006,Underwriting,2025-01-03 04:05:00,UW_David
+LOAN-00019,Underwriting,2025-01-03 05:02:00,UW_Rachel
+LOAN-00019,Compliance Check,2025-01-03 05:28:00,System_Compliance
+LOAN-00019,Loan Approved,2025-01-03 05:57:00,UW_Rachel
+LOAN-00006,Manager Approval,2025-01-03 06:05:00,Manager_John
+LOAN-00006,Compliance Check,2025-01-03 06:29:00,System_Compliance
+LOAN-00006,Loan Approved,2025-01-03 06:52:00,UW_Rachel
+LOAN-00013,Underwriting,2025-01-03 07:06:00,UW_David
+LOAN-00014,Underwriting,2025-01-03 07:12:00,UW_Rachel
+LOAN-00014,Compliance Check,2025-01-03 07:29:00,System_Compliance
+LOAN-00014,Loan Approved,2025-01-03 07:44:00,UW_David
+LOAN-00017,Underwriting,2025-01-03 07:44:00,UW_David
+LOAN-00010,Underwriting,2025-01-03 07:54:00,UW_Rachel
+LOAN-00017,Compliance Check,2025-01-03 07:55:00,System_Compliance
+LOAN-00010,Compliance Check,2025-01-03 08:24:00,System_Compliance
+LOAN-00017,Loan Approved,2025-01-03 08:28:00,UW_Rachel
+LOAN-00010,Loan Approved,2025-01-03 09:04:00,UW_David
+LOAN-00011,Underwriting,2025-01-03 09:29:00,UW_Rachel
+LOAN-00013,Manager Approval,2025-01-03 10:06:00,Manager_John
+LOAN-00013,Compliance Check,2025-01-03 10:17:00,System_Compliance
+LOAN-00012,Underwriting,2025-01-03 11:41:00,UW_David
+LOAN-00013,Loan Denied,2025-01-03 11:50:00,UW_Rachel
+LOAN-00023,Application Received,2025-01-03 12:18:00,System
+LOAN-00023,Document Collection,2025-01-03 12:28:00,Officer_Jessica
+LOAN-00029,Application Received,2025-01-03 12:38:00,System
+LOAN-00029,Document Collection,2025-01-03 12:55:00,Officer_Sarah
+LOAN-00023,Initial Review,2025-01-03 13:09:00,Officer_Sarah
+LOAN-00023,Credit Check,2025-01-03 13:17:00,System_Credit
+LOAN-00029,Initial Review,2025-01-03 13:18:00,Officer_Sarah
+LOAN-00020,Application Received,2025-01-03 13:22:00,System
+LOAN-00024,Application Received,2025-01-03 13:28:00,System
+LOAN-00011,Manager Approval,2025-01-03 13:29:00,Manager_John
+LOAN-00029,Credit Check,2025-01-03 13:30:00,System_Credit
+LOAN-00023,Income Verification,2025-01-03 13:31:00,Officer_Mike
+LOAN-00025,Application Received,2025-01-03 13:38:00,System
+LOAN-00022,Application Received,2025-01-03 13:40:00,System
+LOAN-00020,Document Collection,2025-01-03 13:41:00,Officer_Mike
+LOAN-00029,Income Verification,2025-01-03 13:42:00,Officer_Mike
+LOAN-00009,Document Signing,2025-01-03 13:48:00,Officer_Jessica
+LOAN-00011,Compliance Check,2025-01-03 13:50:00,System_Compliance
+LOAN-00022,Document Collection,2025-01-03 13:50:00,Officer_Sarah
+LOAN-00025,Document Collection,2025-01-03 13:52:00,Officer_Sarah
+LOAN-00024,Document Collection,2025-01-03 13:54:00,Officer_Mike
+LOAN-00020,Initial Review,2025-01-03 14:07:00,Officer_Sarah
+LOAN-00025,Initial Review,2025-01-03 14:12:00,Officer_Mike
+LOAN-00020,Credit Check,2025-01-03 14:13:00,System_Credit
+LOAN-00011,Loan Approved,2025-01-03 14:21:00,UW_David
+LOAN-00020,Income Verification,2025-01-03 14:27:00,Officer_Mike
+LOAN-00025,Credit Check,2025-01-03 14:27:00,System_Credit
+LOAN-00022,Initial Review,2025-01-03 14:28:00,Officer_Mike
+LOAN-00028,Application Received,2025-01-03 14:34:00,System
+LOAN-00022,Credit Check,2025-01-03 14:37:00,System_Credit
+LOAN-00025,Income Verification,2025-01-03 14:39:00,Officer_Sarah
+LOAN-00026,Application Received,2025-01-03 14:40:00,System
+LOAN-00021,Application Received,2025-01-03 14:52:00,System
+LOAN-00022,Income Verification,2025-01-03 14:55:00,Officer_Sarah
+LOAN-00026,Document Collection,2025-01-03 14:58:00,Officer_Mike
+LOAN-00028,Document Collection,2025-01-03 15:00:00,Officer_Jessica
+LOAN-00021,Document Collection,2025-01-03 15:17:00,Officer_Sarah
+LOAN-00020,Risk Assessment,2025-01-03 15:27:00,UW_Rachel
+LOAN-00028,Initial Review,2025-01-03 15:34:00,Officer_Sarah
+LOAN-00026,Initial Review,2025-01-03 15:39:00,Officer_Mike
+LOAN-00028,Credit Check,2025-01-03 15:40:00,System_Credit
+LOAN-00012,Additional Review Required,2025-01-03 15:41:00,UW_Rachel
+LOAN-00008,Request Missing Documents,2025-01-03 15:44:00,Officer_Mike
+LOAN-00027,Application Received,2025-01-03 15:45:00,System
+LOAN-00026,Credit Check,2025-01-03 15:49:00,System_Credit
+LOAN-00021,Initial Review,2025-01-03 15:50:00,Officer_Sarah
+LOAN-00028,Income Verification,2025-01-03 15:56:00,Officer_Jessica
+LOAN-00021,Credit Check,2025-01-03 15:59:00,System_Credit
+LOAN-00018,Underwriting,2025-01-03 16:05:00,UW_David
+LOAN-00027,Document Collection,2025-01-03 16:11:00,Officer_Jessica
+LOAN-00026,Income Verification,2025-01-03 16:17:00,Officer_Sarah
+LOAN-00021,Income Verification,2025-01-03 16:27:00,Officer_Mike
+LOAN-00027,Initial Review,2025-01-03 16:29:00,Officer_Mike
+LOAN-00027,Credit Check,2025-01-03 16:38:00,System_Credit
+LOAN-00029,Risk Assessment,2025-01-03 16:42:00,UW_Rachel
+LOAN-00027,Income Verification,2025-01-03 16:54:00,Officer_Sarah
+LOAN-00022,Risk Assessment,2025-01-03 16:55:00,UW_David
+LOAN-00028,Risk Assessment,2025-01-03 16:56:00,UW_Rachel
+LOAN-00023,Risk Assessment,2025-01-03 17:31:00,UW_David
+LOAN-00025,Risk Assessment,2025-01-03 18:39:00,UW_Rachel
+LOAN-00026,Risk Assessment,2025-01-03 19:17:00,UW_David
+LOAN-00018,Additional Review Required,2025-01-03 20:05:00,UW_David
+LOAN-00021,Risk Assessment,2025-01-03 20:27:00,UW_Rachel
+LOAN-00027,Risk Assessment,2025-01-03 20:54:00,UW_David
+LOAN-00001,Document Signing,2025-01-03 22:53:00,Officer_Mike
+LOAN-00020,Underwriting,2025-01-04 02:27:00,UW_David
+LOAN-00020,Compliance Check,2025-01-04 02:41:00,System_Compliance
+LOAN-00020,Loan Approved,2025-01-04 03:13:00,UW_David
+LOAN-00021,Underwriting,2025-01-04 03:27:00,UW_David
+LOAN-00021,Compliance Check,2025-01-04 03:46:00,System_Compliance
+LOAN-00021,Loan Approved,2025-01-04 04:06:00,UW_David
+LOAN-00022,Underwriting,2025-01-04 04:55:00,UW_Rachel
+LOAN-00012,Underwriting,2025-01-04 05:41:00,UW_David
+LOAN-00029,Underwriting,2025-01-04 05:42:00,UW_David
+LOAN-00012,Compliance Check,2025-01-04 05:57:00,System_Compliance
+LOAN-00019,Document Signing,2025-01-04 05:57:00,Officer_Mike
+LOAN-00029,Compliance Check,2025-01-04 06:12:00,System_Compliance
+LOAN-00023,Underwriting,2025-01-04 06:31:00,UW_Rachel
+LOAN-00029,Loan Approved,2025-01-04 06:43:00,UW_David
+LOAN-00012,Loan Denied,2025-01-04 07:10:00,UW_David
+LOAN-00014,Document Signing,2025-01-04 07:44:00,Officer_Sarah
+LOAN-00017,Document Signing,2025-01-04 08:28:00,Officer_Mike
+LOAN-00010,Document Signing,2025-01-04 09:04:00,Officer_Mike
+LOAN-00007,Document Signing,2025-01-04 09:12:00,Officer_Mike
+LOAN-00016,Request Missing Documents,2025-01-04 09:52:00,Officer_Sarah
+LOAN-00028,Underwriting,2025-01-04 09:56:00,UW_Rachel
+LOAN-00028,Compliance Check,2025-01-04 10:22:00,System_Compliance
+LOAN-00031,Application Received,2025-01-04 10:24:00,System
+LOAN-00031,Document Collection,2025-01-04 10:42:00,Officer_Mike
+LOAN-00022,Manager Approval,2025-01-04 10:55:00,Manager_John
+LOAN-00028,Loan Approved,2025-01-04 11:04:00,UW_Rachel
+LOAN-00031,Initial Review,2025-01-04 11:09:00,Officer_Jessica
+LOAN-00022,Compliance Check,2025-01-04 11:15:00,System_Compliance
+LOAN-00026,Underwriting,2025-01-04 11:17:00,UW_David
+LOAN-00031,Credit Check,2025-01-04 11:24:00,System_Credit
+LOAN-00022,Loan Approved,2025-01-04 11:31:00,UW_David
+LOAN-00023,Manager Approval,2025-01-04 11:31:00,Manager_John
+LOAN-00026,Compliance Check,2025-01-04 11:40:00,System_Compliance
+LOAN-00035,Application Received,2025-01-04 11:41:00,System
+LOAN-00031,Income Verification,2025-01-04 11:51:00,Officer_Jessica
+LOAN-00035,Document Collection,2025-01-04 11:55:00,Officer_Mike
+LOAN-00026,Loan Approved,2025-01-04 11:57:00,UW_Rachel
+LOAN-00023,Compliance Check,2025-01-04 12:00:00,System_Compliance
+LOAN-00037,Application Received,2025-01-04 12:14:00,System
+LOAN-00035,Initial Review,2025-01-04 12:19:00,Officer_Sarah
+LOAN-00023,Loan Approved,2025-01-04 12:21:00,UW_David
+LOAN-00035,Credit Check,2025-01-04 12:30:00,System_Credit
+LOAN-00037,Document Collection,2025-01-04 12:33:00,Officer_Mike
+LOAN-00037,Initial Review,2025-01-04 12:57:00,Officer_Mike
+LOAN-00035,Income Verification,2025-01-04 12:58:00,Officer_Mike
+LOAN-00037,Credit Check,2025-01-04 13:02:00,System_Credit
+LOAN-00037,Income Verification,2025-01-04 13:15:00,Officer_Jessica
+LOAN-00038,Application Received,2025-01-04 13:32:00,System
+LOAN-00009,Funds Disbursed,2025-01-04 13:48:00,System
+LOAN-00031,Risk Assessment,2025-01-04 13:51:00,UW_David
+LOAN-00036,Application Received,2025-01-04 13:59:00,System
+LOAN-00034,Application Received,2025-01-04 14:01:00,System
+LOAN-00038,Document Collection,2025-01-04 14:01:00,Officer_Mike
+LOAN-00032,Application Received,2025-01-04 14:11:00,System
+LOAN-00034,Document Collection,2025-01-04 14:15:00,Officer_Sarah
+LOAN-00037,Risk Assessment,2025-01-04 14:15:00,UW_Rachel
+LOAN-00036,Document Collection,2025-01-04 14:18:00,Officer_Sarah
+LOAN-00011,Document Signing,2025-01-04 14:21:00,Officer_Jessica
+LOAN-00038,Initial Review,2025-01-04 14:24:00,Officer_Mike
+LOAN-00032,Document Collection,2025-01-04 14:30:00,Officer_Mike
+LOAN-00038,Credit Check,2025-01-04 14:38:00,System_Credit
+LOAN-00025,Underwriting,2025-01-04 14:39:00,UW_David
+LOAN-00030,Application Received,2025-01-04 14:44:00,System
+LOAN-00036,Initial Review,2025-01-04 14:44:00,Officer_Mike
+LOAN-00036,Credit Check,2025-01-04 14:53:00,System_Credit
+LOAN-00039,Application Received,2025-01-04 14:53:00,System
+LOAN-00034,Initial Review,2025-01-04 14:56:00,Officer_Sarah
+LOAN-00030,Document Collection,2025-01-04 15:01:00,Officer_Jessica
+LOAN-00034,Credit Check,2025-01-04 15:03:00,System_Credit
+LOAN-00038,Income Verification,2025-01-04 15:08:00,Officer_Sarah
+LOAN-00025,Compliance Check,2025-01-04 15:09:00,System_Compliance
+LOAN-00039,Document Collection,2025-01-04 15:10:00,Officer_Jessica
+LOAN-00034,Income Verification,2025-01-04 15:17:00,Officer_Jessica
+LOAN-00036,Income Verification,2025-01-04 15:23:00,Officer_Mike
+LOAN-00030,Initial Review,2025-01-04 15:30:00,Officer_Jessica
+LOAN-00033,Application Received,2025-01-04 15:38:00,System
+LOAN-00025,Loan Approved,2025-01-04 15:39:00,UW_Rachel
+LOAN-00030,Credit Check,2025-01-04 15:45:00,System_Credit
+LOAN-00039,Initial Review,2025-01-04 15:51:00,Officer_Sarah
+LOAN-00024,Request Missing Documents,2025-01-04 15:54:00,Officer_Mike
+LOAN-00033,Document Collection,2025-01-04 15:55:00,Officer_Jessica
+LOAN-00035,Risk Assessment,2025-01-04 15:58:00,UW_Rachel
+LOAN-00039,Credit Check,2025-01-04 15:59:00,System_Credit
+LOAN-00030,Income Verification,2025-01-04 16:05:00,Officer_Sarah
+LOAN-00039,Income Verification,2025-01-04 16:18:00,Officer_Sarah
+LOAN-00033,Initial Review,2025-01-04 16:38:00,Officer_Mike
+LOAN-00033,Credit Check,2025-01-04 16:43:00,System_Credit
+LOAN-00033,Income Verification,2025-01-04 17:04:00,Officer_Mike
+LOAN-00038,Risk Assessment,2025-01-04 17:08:00,UW_Rachel
+LOAN-00036,Risk Assessment,2025-01-04 17:23:00,UW_David
+LOAN-00034,Risk Assessment,2025-01-04 18:17:00,UW_Rachel
+LOAN-00030,Risk Assessment,2025-01-04 19:05:00,UW_Rachel
+LOAN-00027,Underwriting,2025-01-04 19:54:00,UW_Rachel
+LOAN-00027,Compliance Check,2025-01-04 20:11:00,System_Compliance
+LOAN-00039,Risk Assessment,2025-01-04 20:18:00,UW_Rachel
+LOAN-00027,Loan Approved,2025-01-04 20:38:00,UW_David
+LOAN-00033,Risk Assessment,2025-01-04 21:04:00,UW_David
+LOAN-00015,Underwriting,2025-01-04 21:16:00,UW_Rachel
+LOAN-00015,Compliance Check,2025-01-04 21:33:00,System_Compliance
+LOAN-00015,Loan Approved,2025-01-04 21:54:00,UW_Rachel
+LOAN-00021,Document Signing,2025-01-05 04:06:00,Officer_Jessica
+LOAN-00034,Underwriting,2025-01-05 04:17:00,UW_Rachel
+LOAN-00019,Funds Disbursed,2025-01-05 05:57:00,System
+LOAN-00034,Manager Approval,2025-01-05 07:17:00,Manager_John
+LOAN-00034,Compliance Check,2025-01-05 07:42:00,System_Compliance
+LOAN-00034,Loan Approved,2025-01-05 08:05:00,UW_Rachel
+LOAN-00017,Funds Disbursed,2025-01-05 08:28:00,System
+LOAN-00035,Underwriting,2025-01-05 08:58:00,UW_David
+LOAN-00010,Funds Disbursed,2025-01-05 09:04:00,System
+LOAN-00038,Underwriting,2025-01-05 09:08:00,UW_David
+LOAN-00037,Underwriting,2025-01-05 09:15:00,UW_David
+LOAN-00046,Application Received,2025-01-05 09:16:00,System
+LOAN-00035,Compliance Check,2025-01-05 09:26:00,System_Compliance
+LOAN-00046,Document Collection,2025-01-05 09:29:00,Officer_Mike
+LOAN-00038,Compliance Check,2025-01-05 09:34:00,System_Compliance
+LOAN-00037,Compliance Check,2025-01-05 09:35:00,System_Compliance
+LOAN-00035,Loan Approved,2025-01-05 09:42:00,UW_Rachel
+LOAN-00040,Application Received,2025-01-05 09:56:00,System
+LOAN-00046,Initial Review,2025-01-05 09:58:00,Officer_Mike
+LOAN-00037,Loan Approved,2025-01-05 10:06:00,UW_David
+LOAN-00041,Application Received,2025-01-05 10:07:00,System
+LOAN-00046,Credit Check,2025-01-05 10:09:00,System_Credit
+LOAN-00040,Document Collection,2025-01-05 10:14:00,Officer_Sarah
+LOAN-00038,Loan Approved,2025-01-05 10:17:00,UW_Rachel
+LOAN-00046,Income Verification,2025-01-05 10:21:00,Officer_Sarah
+LOAN-00032,Request Missing Documents,2025-01-05 10:30:00,Officer_Sarah
+LOAN-00041,Document Collection,2025-01-05 10:36:00,Officer_Jessica
+LOAN-00031,Underwriting,2025-01-05 10:51:00,UW_David
+LOAN-00044,Application Received,2025-01-05 11:03:00,System
+LOAN-00041,Initial Review,2025-01-05 11:18:00,Officer_Mike
+LOAN-00041,Credit Check,2025-01-05 11:27:00,System_Credit
+LOAN-00044,Document Collection,2025-01-05 11:33:00,Officer_Mike
+LOAN-00047,Application Received,2025-01-05 11:50:00,System
+LOAN-00031,Manager Approval,2025-01-05 11:51:00,Manager_John
+LOAN-00041,Income Verification,2025-01-05 11:51:00,Officer_Sarah
+LOAN-00045,Application Received,2025-01-05 11:52:00,System
+LOAN-00044,Initial Review,2025-01-05 11:53:00,Officer_Mike
+LOAN-00026,Document Signing,2025-01-05 11:57:00,Officer_Jessica
+LOAN-00044,Credit Check,2025-01-05 11:59:00,System_Credit
+LOAN-00031,Compliance Check,2025-01-05 12:03:00,System_Compliance
+LOAN-00045,Document Collection,2025-01-05 12:05:00,Officer_Mike
+LOAN-00047,Document Collection,2025-01-05 12:06:00,Officer_Sarah
+LOAN-00046,Risk Assessment,2025-01-05 12:21:00,UW_Rachel
+LOAN-00031,Loan Approved,2025-01-05 12:22:00,UW_David
+LOAN-00044,Income Verification,2025-01-05 12:24:00,Officer_Sarah
+LOAN-00045,Initial Review,2025-01-05 12:26:00,Officer_Mike
+LOAN-00045,Credit Check,2025-01-05 12:35:00,System_Credit
+LOAN-00047,Initial Review,2025-01-05 12:43:00,Officer_Jessica
+LOAN-00047,Credit Check,2025-01-05 12:54:00,System_Credit
+LOAN-00045,Income Verification,2025-01-05 13:03:00,Officer_Sarah
+LOAN-00047,Income Verification,2025-01-05 13:16:00,Officer_Jessica
+LOAN-00039,Underwriting,2025-01-05 13:18:00,UW_David
+LOAN-00048,Application Received,2025-01-05 13:23:00,System
+LOAN-00048,Document Collection,2025-01-05 13:39:00,Officer_Sarah
+LOAN-00049,Application Received,2025-01-05 13:55:00,System
+LOAN-00049,Document Collection,2025-01-05 14:14:00,Officer_Mike
+LOAN-00044,Risk Assessment,2025-01-05 14:24:00,UW_David
+LOAN-00049,Initial Review,2025-01-05 14:29:00,Officer_Mike
+LOAN-00049,Credit Check,2025-01-05 14:43:00,System_Credit
+LOAN-00049,Income Verification,2025-01-05 14:55:00,Officer_Jessica
+LOAN-00005,Document Signing,2025-01-05 15:14:00,Officer_Sarah
+LOAN-00042,Application Received,2025-01-05 15:38:00,System
+LOAN-00041,Risk Assessment,2025-01-05 15:51:00,UW_David
+LOAN-00043,Application Received,2025-01-05 15:52:00,System
+LOAN-00042,Document Collection,2025-01-05 16:00:00,Officer_Sarah
+LOAN-00018,Underwriting,2025-01-05 16:05:00,UW_Rachel
+LOAN-00018,Compliance Check,2025-01-05 16:15:00,System_Compliance
+LOAN-00043,Document Collection,2025-01-05 16:16:00,Officer_Sarah
+LOAN-00036,Underwriting,2025-01-05 16:23:00,UW_Rachel
+LOAN-00042,Initial Review,2025-01-05 16:33:00,Officer_Jessica
+LOAN-00043,Initial Review,2025-01-05 16:42:00,Officer_Mike
+LOAN-00042,Credit Check,2025-01-05 16:44:00,System_Credit
+LOAN-00043,Credit Check,2025-01-05 16:53:00,System_Credit
+LOAN-00018,Loan Denied,2025-01-05 16:59:00,UW_David
+LOAN-00045,Risk Assessment,2025-01-05 17:03:00,UW_David
+LOAN-00042,Income Verification,2025-01-05 17:14:00,Officer_Jessica
+LOAN-00047,Risk Assessment,2025-01-05 17:16:00,UW_Rachel
+LOAN-00046,Underwriting,2025-01-05 17:21:00,UW_David
+LOAN-00043,Income Verification,2025-01-05 17:23:00,Officer_Mike
+LOAN-00046,Compliance Check,2025-01-05 17:38:00,System_Compliance
+LOAN-00049,Risk Assessment,2025-01-05 17:55:00,UW_Rachel
+LOAN-00033,Underwriting,2025-01-05 18:04:00,UW_David
+LOAN-00046,Loan Approved,2025-01-05 18:05:00,UW_Rachel
+LOAN-00033,Compliance Check,2025-01-05 18:33:00,System_Compliance
+LOAN-00033,Loan Approved,2025-01-05 18:53:00,UW_David
+LOAN-00039,Manager Approval,2025-01-05 19:18:00,Manager_John
+LOAN-00039,Compliance Check,2025-01-05 19:35:00,System_Compliance
+LOAN-00039,Loan Approved,2025-01-05 19:57:00,UW_Rachel
+LOAN-00042,Risk Assessment,2025-01-05 20:14:00,UW_David
+LOAN-00043,Risk Assessment,2025-01-05 20:23:00,UW_David
+LOAN-00015,Document Signing,2025-01-05 21:54:00,Officer_Mike
+LOAN-00041,Underwriting,2025-01-05 22:51:00,UW_David
+LOAN-00001,Funds Disbursed,2025-01-05 22:53:00,System
+LOAN-00041,Compliance Check,2025-01-05 23:17:00,System_Compliance
+LOAN-00036,Additional Review Required,2025-01-05 23:23:00,UW_David
+LOAN-00041,Loan Approved,2025-01-05 23:35:00,UW_Rachel
+LOAN-00044,Underwriting,2025-01-06 00:24:00,UW_David
+LOAN-00020,Document Signing,2025-01-06 03:13:00,Officer_Mike
+LOAN-00042,Underwriting,2025-01-06 03:14:00,UW_Rachel
+LOAN-00042,Additional Review Required,2025-01-06 05:14:00,UW_David
+LOAN-00044,Manager Approval,2025-01-06 05:24:00,Manager_John
+LOAN-00044,Compliance Check,2025-01-06 05:38:00,System_Compliance
+LOAN-00044,Loan Approved,2025-01-06 06:18:00,UW_David
+LOAN-00006,Document Signing,2025-01-06 06:52:00,Officer_Jessica
+LOAN-00014,Funds Disbursed,2025-01-06 07:44:00,System
+LOAN-00055,Application Received,2025-01-06 09:04:00,System
+LOAN-00059,Application Received,2025-01-06 09:11:00,System
+LOAN-00007,Funds Disbursed,2025-01-06 09:12:00,System
+LOAN-00059,Document Collection,2025-01-06 09:27:00,Officer_Sarah
+LOAN-00055,Document Collection,2025-01-06 09:33:00,Officer_Jessica
+LOAN-00055,Initial Review,2025-01-06 09:58:00,Officer_Mike
+LOAN-00055,Credit Check,2025-01-06 10:12:00,System_Credit
+LOAN-00059,Initial Review,2025-01-06 10:12:00,Officer_Jessica
+LOAN-00047,Underwriting,2025-01-06 10:16:00,UW_David
+LOAN-00053,Application Received,2025-01-06 10:21:00,System
+LOAN-00059,Credit Check,2025-01-06 10:26:00,System_Credit
+LOAN-00055,Income Verification,2025-01-06 10:31:00,Officer_Jessica
+LOAN-00053,Document Collection,2025-01-06 10:44:00,Officer_Jessica
+LOAN-00054,Application Received,2025-01-06 10:47:00,System
+LOAN-00059,Income Verification,2025-01-06 10:55:00,Officer_Jessica
+LOAN-00054,Document Collection,2025-01-06 11:08:00,Officer_Sarah
+LOAN-00053,Initial Review,2025-01-06 11:15:00,Officer_Mike
+LOAN-00053,Credit Check,2025-01-06 11:21:00,System_Credit
+LOAN-00022,Document Signing,2025-01-06 11:31:00,Officer_Sarah
+LOAN-00053,Income Verification,2025-01-06 11:32:00,Officer_Sarah
+LOAN-00054,Initial Review,2025-01-06 11:37:00,Officer_Sarah
+LOAN-00054,Credit Check,2025-01-06 11:47:00,System_Credit
+LOAN-00026,Funds Disbursed,2025-01-06 11:57:00,System
+LOAN-00054,Income Verification,2025-01-06 11:58:00,Officer_Jessica
+LOAN-00055,Risk Assessment,2025-01-06 12:31:00,UW_David
+LOAN-00059,Risk Assessment,2025-01-06 12:55:00,UW_Rachel
+LOAN-00051,Application Received,2025-01-06 13:11:00,System
+LOAN-00047,Manager Approval,2025-01-06 13:16:00,Manager_John
+LOAN-00051,Document Collection,2025-01-06 13:21:00,Officer_Mike
+LOAN-00047,Compliance Check,2025-01-06 13:27:00,System_Compliance
+LOAN-00056,Application Received,2025-01-06 13:29:00,System
+LOAN-00056,Document Collection,2025-01-06 13:43:00,Officer_Jessica
+LOAN-00052,Application Received,2025-01-06 13:48:00,System
+LOAN-00058,Application Received,2025-01-06 13:48:00,System
+LOAN-00049,Underwriting,2025-01-06 13:55:00,UW_David
+LOAN-00051,Initial Review,2025-01-06 14:02:00,Officer_Jessica
+LOAN-00052,Document Collection,2025-01-06 14:05:00,Officer_Jessica
+LOAN-00051,Credit Check,2025-01-06 14:07:00,System_Credit
+LOAN-00058,Document Collection,2025-01-06 14:08:00,Officer_Sarah
+LOAN-00047,Loan Approved,2025-01-06 14:11:00,UW_Rachel
+LOAN-00049,Compliance Check,2025-01-06 14:11:00,System_Compliance
+LOAN-00011,Funds Disbursed,2025-01-06 14:21:00,System
+LOAN-00051,Income Verification,2025-01-06 14:35:00,Officer_Mike
+LOAN-00058,Initial Review,2025-01-06 14:35:00,Officer_Mike
+LOAN-00058,Credit Check,2025-01-06 14:41:00,System_Credit
+LOAN-00052,Initial Review,2025-01-06 14:47:00,Officer_Sarah
+LOAN-00049,Loan Approved,2025-01-06 14:53:00,UW_Rachel
+LOAN-00052,Credit Check,2025-01-06 15:02:00,System_Credit
+LOAN-00058,Income Verification,2025-01-06 15:05:00,Officer_Jessica
+LOAN-00052,Income Verification,2025-01-06 15:26:00,Officer_Sarah
+LOAN-00053,Risk Assessment,2025-01-06 15:32:00,UW_Rachel
+LOAN-00025,Document Signing,2025-01-06 15:39:00,Officer_Mike
+LOAN-00050,Application Received,2025-01-06 15:43:00,System
+LOAN-00057,Application Received,2025-01-06 15:52:00,System
+LOAN-00054,Risk Assessment,2025-01-06 15:58:00,UW_David
+LOAN-00050,Document Collection,2025-01-06 16:04:00,Officer_Jessica
+LOAN-00057,Document Collection,2025-01-06 16:07:00,Officer_Mike
+LOAN-00050,Initial Review,2025-01-06 16:26:00,Officer_Mike
+LOAN-00050,Credit Check,2025-01-06 16:40:00,System_Credit
+LOAN-00057,Initial Review,2025-01-06 16:44:00,Officer_Mike
+LOAN-00057,Credit Check,2025-01-06 16:59:00,System_Credit
+LOAN-00050,Income Verification,2025-01-06 17:05:00,Officer_Mike
+LOAN-00057,Income Verification,2025-01-06 17:09:00,Officer_Jessica
+LOAN-00046,Document Signing,2025-01-06 18:05:00,Officer_Jessica
+LOAN-00050,Risk Assessment,2025-01-06 18:05:00,UW_Rachel
+LOAN-00057,Risk Assessment,2025-01-06 18:09:00,UW_David
+LOAN-00051,Risk Assessment,2025-01-06 18:35:00,UW_David
+LOAN-00058,Risk Assessment,2025-01-06 19:05:00,UW_Rachel
+LOAN-00052,Risk Assessment,2025-01-06 19:26:00,UW_David
+LOAN-00059,Underwriting,2025-01-06 19:55:00,UW_Rachel
+LOAN-00043,Underwriting,2025-01-06 20:23:00,UW_David
+LOAN-00043,Compliance Check,2025-01-06 20:36:00,System_Compliance
+LOAN-00027,Document Signing,2025-01-06 20:38:00,Officer_Sarah
+LOAN-00048,Request Missing Documents,2025-01-06 20:39:00,Officer_Jessica
+LOAN-00043,Loan Approved,2025-01-06 21:17:00,UW_Rachel
+LOAN-00041,Document Signing,2025-01-06 23:35:00,Officer_Mike
+LOAN-00051,Underwriting,2025-01-06 23:35:00,UW_Rachel
+LOAN-00051,Manager Approval,2025-01-07 00:35:00,Manager_John
+LOAN-00051,Compliance Check,2025-01-07 00:48:00,System_Compliance
+LOAN-00059,Manager Approval,2025-01-07 00:55:00,Manager_John
+LOAN-00051,Loan Approved,2025-01-07 01:14:00,UW_David
+LOAN-00059,Compliance Check,2025-01-07 01:24:00,System_Compliance
+LOAN-00016,Document Collection,2025-01-07 02:52:00,Officer_Mike
+LOAN-00054,Underwriting,2025-01-07 02:58:00,UW_David
+LOAN-00020,Funds Disbursed,2025-01-07 03:13:00,System
+LOAN-00059,Loan Denied,2025-01-07 03:18:00,UW_David
+LOAN-00021,Funds Disbursed,2025-01-07 04:06:00,System
+LOAN-00055,Underwriting,2025-01-07 04:31:00,UW_Rachel
+LOAN-00055,Compliance Check,2025-01-07 04:43:00,System_Compliance
+LOAN-00055,Loan Approved,2025-01-07 05:03:00,UW_David
+LOAN-00050,Underwriting,2025-01-07 06:05:00,UW_Rachel
+LOAN-00040,Request Missing Documents,2025-01-07 06:14:00,Officer_Jessica
+LOAN-00050,Compliance Check,2025-01-07 06:15:00,System_Compliance
+LOAN-00029,Document Signing,2025-01-07 06:43:00,Officer_Mike
+LOAN-00050,Loan Denied,2025-01-07 07:47:00,UW_David
+LOAN-00034,Document Signing,2025-01-07 08:05:00,Officer_Sarah
+LOAN-00069,Application Received,2025-01-07 09:04:00,System
+LOAN-00067,Application Received,2025-01-07 09:15:00,System
+LOAN-00061,Application Received,2025-01-07 09:27:00,System
+LOAN-00069,Document Collection,2025-01-07 09:30:00,Officer_Sarah
+LOAN-00067,Document Collection,2025-01-07 09:33:00,Officer_Mike
+LOAN-00008,Document Collection,2025-01-07 09:44:00,Officer_Sarah
+LOAN-00061,Document Collection,2025-01-07 09:45:00,Officer_Mike
+LOAN-00062,Application Received,2025-01-07 09:49:00,System
+LOAN-00067,Initial Review,2025-01-07 09:57:00,Officer_Jessica
+LOAN-00069,Initial Review,2025-01-07 10:04:00,Officer_Mike
+LOAN-00030,Underwriting,2025-01-07 10:05:00,UW_David
+LOAN-00037,Document Signing,2025-01-07 10:06:00,Officer_Jessica
+LOAN-00067,Credit Check,2025-01-07 10:07:00,System_Credit
+LOAN-00062,Document Collection,2025-01-07 10:12:00,Officer_Jessica
+LOAN-00069,Credit Check,2025-01-07 10:16:00,System_Credit
+LOAN-00067,Income Verification,2025-01-07 10:17:00,Officer_Mike
+LOAN-00069,Income Verification,2025-01-07 10:27:00,Officer_Jessica
+LOAN-00061,Initial Review,2025-01-07 10:28:00,Officer_Jessica
+LOAN-00062,Initial Review,2025-01-07 10:34:00,Officer_Mike
+LOAN-00061,Credit Check,2025-01-07 10:35:00,System_Credit
+LOAN-00062,Credit Check,2025-01-07 10:43:00,System_Credit
+LOAN-00054,Additional Review Required,2025-01-07 10:58:00,UW_David
+LOAN-00061,Income Verification,2025-01-07 11:01:00,Officer_Jessica
+LOAN-00028,Document Signing,2025-01-07 11:04:00,Officer_Sarah
+LOAN-00062,Income Verification,2025-01-07 11:05:00,Officer_Sarah
+LOAN-00066,Application Received,2025-01-07 11:21:00,System
+LOAN-00022,Funds Disbursed,2025-01-07 11:31:00,System
+LOAN-00066,Document Collection,2025-01-07 11:32:00,Officer_Sarah
+LOAN-00058,Underwriting,2025-01-07 12:05:00,UW_David
+LOAN-00066,Initial Review,2025-01-07 12:09:00,Officer_Sarah
+LOAN-00065,Application Received,2025-01-07 12:16:00,System
+LOAN-00058,Compliance Check,2025-01-07 12:18:00,System_Compliance
+LOAN-00023,Document Signing,2025-01-07 12:21:00,Officer_Mike
+LOAN-00066,Credit Check,2025-01-07 12:21:00,System_Credit
+LOAN-00068,Application Received,2025-01-07 12:25:00,System
+LOAN-00069,Risk Assessment,2025-01-07 12:27:00,UW_David
+LOAN-00065,Document Collection,2025-01-07 12:29:00,Officer_Jessica
+LOAN-00066,Income Verification,2025-01-07 12:31:00,Officer_Jessica
+LOAN-00068,Document Collection,2025-01-07 12:41:00,Officer_Mike
+LOAN-00058,Loan Denied,2025-01-07 12:57:00,UW_Rachel
+LOAN-00061,Risk Assessment,2025-01-07 13:01:00,UW_David
+LOAN-00065,Initial Review,2025-01-07 13:11:00,Officer_Jessica
+LOAN-00067,Risk Assessment,2025-01-07 13:17:00,UW_Rachel
+LOAN-00065,Credit Check,2025-01-07 13:19:00,System_Credit
+LOAN-00068,Initial Review,2025-01-07 13:22:00,Officer_Mike
+LOAN-00052,Underwriting,2025-01-07 13:26:00,UW_Rachel
+LOAN-00068,Credit Check,2025-01-07 13:29:00,System_Credit
+LOAN-00065,Income Verification,2025-01-07 13:49:00,Officer_Mike
+LOAN-00068,Income Verification,2025-01-07 13:57:00,Officer_Jessica
+LOAN-00062,Risk Assessment,2025-01-07 14:05:00,UW_David
+LOAN-00060,Application Received,2025-01-07 14:06:00,System
+LOAN-00060,Document Collection,2025-01-07 14:21:00,Officer_Sarah
+LOAN-00063,Application Received,2025-01-07 14:21:00,System
+LOAN-00066,Risk Assessment,2025-01-07 14:31:00,UW_Rachel
+LOAN-00053,Underwriting,2025-01-07 14:32:00,UW_Rachel
+LOAN-00064,Application Received,2025-01-07 14:36:00,System
+LOAN-00063,Document Collection,2025-01-07 14:45:00,Officer_Jessica
+LOAN-00049,Document Signing,2025-01-07 14:53:00,Officer_Jessica
+LOAN-00064,Document Collection,2025-01-07 14:59:00,Officer_Sarah
+LOAN-00053,Compliance Check,2025-01-07 15:02:00,System_Compliance
+LOAN-00060,Initial Review,2025-01-07 15:02:00,Officer_Mike
+LOAN-00057,Underwriting,2025-01-07 15:09:00,UW_Rachel
+LOAN-00060,Credit Check,2025-01-07 15:11:00,System_Credit
+LOAN-00063,Initial Review,2025-01-07 15:13:00,Officer_Sarah
+LOAN-00005,Funds Disbursed,2025-01-07 15:14:00,System
+LOAN-00063,Credit Check,2025-01-07 15:25:00,System_Credit
+LOAN-00025,Funds Disbursed,2025-01-07 15:39:00,System
+LOAN-00060,Income Verification,2025-01-07 15:39:00,Officer_Mike
+LOAN-00056,Request Missing Documents,2025-01-07 15:43:00,Officer_Jessica
+LOAN-00063,Income Verification,2025-01-07 15:55:00,Officer_Jessica
+LOAN-00053,Loan Denied,2025-01-07 16:23:00,UW_Rachel
+LOAN-00068,Risk Assessment,2025-01-07 16:57:00,UW_David
+LOAN-00052,Manager Approval,2025-01-07 17:26:00,Manager_John
+LOAN-00065,Risk Assessment,2025-01-07 17:49:00,UW_Rachel
+LOAN-00052,Compliance Check,2025-01-07 17:56:00,System_Compliance
+LOAN-00030,Additional Review Required,2025-01-07 18:05:00,UW_Rachel
+LOAN-00057,Manager Approval,2025-01-07 18:09:00,Manager_John
+LOAN-00052,Loan Approved,2025-01-07 18:30:00,UW_Rachel
+LOAN-00057,Compliance Check,2025-01-07 18:32:00,System_Compliance
+LOAN-00033,Document Signing,2025-01-07 18:53:00,Officer_Sarah
+LOAN-00063,Risk Assessment,2025-01-07 18:55:00,UW_Rachel
+LOAN-00057,Loan Approved,2025-01-07 19:15:00,UW_Rachel
+LOAN-00060,Risk Assessment,2025-01-07 19:39:00,UW_David
+LOAN-00039,Document Signing,2025-01-07 19:57:00,Officer_Jessica
+LOAN-00036,Underwriting,2025-01-07 20:23:00,UW_Rachel
+LOAN-00036,Compliance Check,2025-01-07 20:50:00,System_Compliance
+LOAN-00036,Loan Approved,2025-01-07 21:27:00,UW_David
+LOAN-00069,Underwriting,2025-01-07 21:27:00,UW_David
+LOAN-00015,Funds Disbursed,2025-01-07 21:54:00,System
+LOAN-00069,Compliance Check,2025-01-07 21:55:00,System_Compliance
+LOAN-00069,Loan Approved,2025-01-07 22:16:00,UW_David
+LOAN-00054,Underwriting,2025-01-07 23:58:00,UW_Rachel
+LOAN-00054,Compliance Check,2025-01-08 00:09:00,System_Compliance
+LOAN-00054,Loan Approved,2025-01-08 00:45:00,UW_Rachel
+LOAN-00061,Underwriting,2025-01-08 01:01:00,UW_Rachel
+LOAN-00061,Compliance Check,2025-01-08 01:15:00,System_Compliance
+LOAN-00066,Underwriting,2025-01-08 01:31:00,UW_David
+LOAN-00061,Loan Approved,2025-01-08 01:58:00,UW_David
+LOAN-00042,Underwriting,2025-01-08 03:14:00,UW_David
+LOAN-00066,Additional Review Required,2025-01-08 03:31:00,UW_Rachel
+LOAN-00042,Compliance Check,2025-01-08 03:38:00,System_Compliance
+LOAN-00063,Underwriting,2025-01-08 03:55:00,UW_David
+LOAN-00042,Loan Approved,2025-01-08 04:08:00,UW_Rachel
+LOAN-00063,Compliance Check,2025-01-08 04:16:00,System_Compliance
+LOAN-00063,Loan Approved,2025-01-08 04:37:00,UW_David
+LOAN-00044,Document Signing,2025-01-08 06:18:00,Officer_Jessica
+LOAN-00006,Funds Disbursed,2025-01-08 06:52:00,System
+LOAN-00034,Funds Disbursed,2025-01-08 08:05:00,System
+LOAN-00040,Document Collection,2025-01-08 08:14:00,Officer_Sarah
+LOAN-00079,Application Received,2025-01-08 09:33:00,System
+LOAN-00035,Document Signing,2025-01-08 09:42:00,Officer_Sarah
+LOAN-00079,Document Collection,2025-01-08 09:51:00,Officer_Jessica
+LOAN-00079,Initial Review,2025-01-08 10:09:00,Officer_Sarah
+LOAN-00038,Document Signing,2025-01-08 10:17:00,Officer_Jessica
+LOAN-00067,Underwriting,2025-01-08 10:17:00,UW_David
+LOAN-00079,Credit Check,2025-01-08 10:19:00,System_Credit
+LOAN-00071,Application Received,2025-01-08 10:30:00,System
+LOAN-00079,Income Verification,2025-01-08 10:31:00,Officer_Sarah
+LOAN-00067,Compliance Check,2025-01-08 10:34:00,System_Compliance
+LOAN-00067,Loan Approved,2025-01-08 10:53:00,UW_Rachel
+LOAN-00071,Document Collection,2025-01-08 10:55:00,Officer_Mike
+LOAN-00028,Funds Disbursed,2025-01-08 11:04:00,System
+LOAN-00071,Initial Review,2025-01-08 11:15:00,Officer_Jessica
+LOAN-00071,Credit Check,2025-01-08 11:24:00,System_Credit
+LOAN-00071,Income Verification,2025-01-08 11:42:00,Officer_Sarah
+LOAN-00016,Request Missing Documents,2025-01-08 11:52:00,Officer_Mike
+LOAN-00024,Document Collection,2025-01-08 11:54:00,Officer_Sarah
+LOAN-00076,Application Received,2025-01-08 11:54:00,System
+LOAN-00072,Application Received,2025-01-08 12:18:00,System
+LOAN-00078,Application Received,2025-01-08 12:21:00,System
+LOAN-00031,Document Signing,2025-01-08 12:22:00,Officer_Mike
+LOAN-00076,Document Collection,2025-01-08 12:24:00,Officer_Mike
+LOAN-00070,Application Received,2025-01-08 12:43:00,System
+LOAN-00078,Document Collection,2025-01-08 12:44:00,Officer_Mike
+LOAN-00072,Document Collection,2025-01-08 12:45:00,Officer_Sarah
+LOAN-00074,Application Received,2025-01-08 12:45:00,System
+LOAN-00073,Application Received,2025-01-08 12:47:00,System
+LOAN-00076,Initial Review,2025-01-08 12:47:00,Officer_Sarah
+LOAN-00076,Credit Check,2025-01-08 12:55:00,System_Credit
+LOAN-00068,Underwriting,2025-01-08 12:57:00,UW_Rachel
+LOAN-00078,Initial Review,2025-01-08 13:01:00,Officer_Mike
+LOAN-00062,Underwriting,2025-01-08 13:05:00,UW_Rachel
+LOAN-00078,Credit Check,2025-01-08 13:09:00,System_Credit
+LOAN-00070,Document Collection,2025-01-08 13:10:00,Officer_Mike
+LOAN-00073,Document Collection,2025-01-08 13:10:00,Officer_Mike
+LOAN-00074,Document Collection,2025-01-08 13:10:00,Officer_Jessica
+LOAN-00076,Income Verification,2025-01-08 13:10:00,Officer_Jessica
+LOAN-00079,Risk Assessment,2025-01-08 13:31:00,UW_David
+LOAN-00074,Initial Review,2025-01-08 13:35:00,Officer_Mike
+LOAN-00070,Initial Review,2025-01-08 13:37:00,Officer_Mike
+LOAN-00078,Income Verification,2025-01-08 13:39:00,Officer_Sarah
+LOAN-00073,Initial Review,2025-01-08 13:44:00,Officer_Mike
+LOAN-00070,Credit Check,2025-01-08 13:47:00,System_Credit
+LOAN-00073,Credit Check,2025-01-08 13:49:00,System_Credit
+LOAN-00074,Credit Check,2025-01-08 13:49:00,System_Credit
+LOAN-00073,Income Verification,2025-01-08 13:59:00,Officer_Jessica
+LOAN-00047,Document Signing,2025-01-08 14:11:00,Officer_Sarah
+LOAN-00070,Income Verification,2025-01-08 14:14:00,Officer_Jessica
+LOAN-00074,Income Verification,2025-01-08 14:14:00,Officer_Sarah
+LOAN-00077,Application Received,2025-01-08 14:18:00,System
+LOAN-00078,Risk Assessment,2025-01-08 14:39:00,UW_Rachel
+LOAN-00077,Document Collection,2025-01-08 14:41:00,Officer_Sarah
+LOAN-00065,Underwriting,2025-01-08 14:49:00,UW_David
+LOAN-00049,Funds Disbursed,2025-01-08 14:53:00,System
+LOAN-00077,Initial Review,2025-01-08 15:01:00,Officer_Sarah
+LOAN-00070,Risk Assessment,2025-01-08 15:14:00,UW_David
+LOAN-00077,Credit Check,2025-01-08 15:14:00,System_Credit
+LOAN-00077,Income Verification,2025-01-08 15:37:00,Officer_Mike
+LOAN-00071,Risk Assessment,2025-01-08 15:42:00,UW_Rachel
+LOAN-00075,Application Received,2025-01-08 15:42:00,System
+LOAN-00075,Document Collection,2025-01-08 15:57:00,Officer_Mike
+LOAN-00062,Manager Approval,2025-01-08 16:05:00,Manager_John
+LOAN-00076,Risk Assessment,2025-01-08 16:10:00,UW_David
+LOAN-00062,Compliance Check,2025-01-08 16:20:00,System_Compliance
+LOAN-00075,Initial Review,2025-01-08 16:30:00,Officer_Mike
+LOAN-00075,Credit Check,2025-01-08 16:36:00,System_Credit
+LOAN-00073,Risk Assessment,2025-01-08 16:59:00,UW_Rachel
+LOAN-00075,Income Verification,2025-01-08 17:00:00,Officer_Mike
+LOAN-00077,Risk Assessment,2025-01-08 17:37:00,UW_Rachel
+LOAN-00065,Manager Approval,2025-01-08 17:49:00,Manager_John
+LOAN-00046,Funds Disbursed,2025-01-08 18:05:00,System
+LOAN-00065,Compliance Check,2025-01-08 18:11:00,System_Compliance
+LOAN-00074,Risk Assessment,2025-01-08 18:14:00,UW_David
+LOAN-00062,Loan Denied,2025-01-08 18:20:00,UW_Rachel
+LOAN-00052,Document Signing,2025-01-08 18:30:00,Officer_Mike
+LOAN-00065,Loan Approved,2025-01-08 18:50:00,UW_David
+LOAN-00068,Manager Approval,2025-01-08 18:57:00,Manager_John
+LOAN-00068,Compliance Check,2025-01-08 19:09:00,System_Compliance
+LOAN-00057,Document Signing,2025-01-08 19:15:00,Officer_Mike
+LOAN-00068,Loan Approved,2025-01-08 19:24:00,UW_Rachel
+LOAN-00064,Request Missing Documents,2025-01-08 19:59:00,Officer_Sarah
+LOAN-00075,Risk Assessment,2025-01-08 20:00:00,UW_Rachel
+LOAN-00027,Funds Disbursed,2025-01-08 20:38:00,System
+LOAN-00008,Request Missing Documents,2025-01-08 20:44:00,Officer_Jessica
+LOAN-00043,Document Signing,2025-01-08 21:17:00,Officer_Jessica
+LOAN-00066,Underwriting,2025-01-08 21:31:00,UW_Rachel
+LOAN-00066,Compliance Check,2025-01-08 22:01:00,System_Compliance
+LOAN-00041,Funds Disbursed,2025-01-08 23:35:00,System
+LOAN-00066,Loan Denied,2025-01-08 23:42:00,UW_Rachel
+LOAN-00048,Document Collection,2025-01-09 00:39:00,Officer_Sarah
+LOAN-00054,Document Signing,2025-01-09 00:45:00,Officer_Mike
+LOAN-00072,Request Missing Documents,2025-01-09 01:45:00,Officer_Sarah
+LOAN-00061,Document Signing,2025-01-09 01:58:00,Officer_Jessica
+LOAN-00077,Underwriting,2025-01-09 03:37:00,UW_David
+LOAN-00077,Compliance Check,2025-01-09 03:49:00,System_Compliance
+LOAN-00042,Document Signing,2025-01-09 04:08:00,Officer_Sarah
+LOAN-00079,Underwriting,2025-01-09 04:31:00,UW_David
+LOAN-00077,Loan Approved,2025-01-09 04:33:00,UW_Rachel
+LOAN-00055,Document Signing,2025-01-09 05:03:00,Officer_Jessica
+LOAN-00076,Underwriting,2025-01-09 05:10:00,UW_David
+LOAN-00032,Document Collection,2025-01-09 05:30:00,Officer_Jessica
+LOAN-00076,Manager Approval,2025-01-09 06:10:00,Manager_John
+LOAN-00076,Compliance Check,2025-01-09 06:27:00,System_Compliance
+LOAN-00079,Manager Approval,2025-01-09 06:31:00,Manager_John
+LOAN-00029,Funds Disbursed,2025-01-09 06:43:00,System
+LOAN-00079,Compliance Check,2025-01-09 06:55:00,System_Compliance
+LOAN-00076,Loan Approved,2025-01-09 07:09:00,UW_David
+LOAN-00079,Loan Approved,2025-01-09 07:30:00,UW_Rachel
+LOAN-00056,Document Collection,2025-01-09 07:43:00,Officer_Mike
+LOAN-00045,Underwriting,2025-01-09 09:03:00,UW_Rachel
+LOAN-00081,Application Received,2025-01-09 09:24:00,System
+LOAN-00035,Funds Disbursed,2025-01-09 09:42:00,System
+LOAN-00081,Document Collection,2025-01-09 09:53:00,Officer_Sarah
+LOAN-00037,Funds Disbursed,2025-01-09 10:06:00,System
+LOAN-00038,Funds Disbursed,2025-01-09 10:17:00,System
+LOAN-00081,Initial Review,2025-01-09 10:28:00,Officer_Jessica
+LOAN-00081,Credit Check,2025-01-09 10:35:00,System_Credit
+LOAN-00078,Underwriting,2025-01-09 10:39:00,UW_David
+LOAN-00081,Income Verification,2025-01-09 11:00:00,Officer_Jessica
+LOAN-00082,Application Received,2025-01-09 11:02:00,System
+LOAN-00030,Underwriting,2025-01-09 11:05:00,UW_David
+LOAN-00084,Application Received,2025-01-09 11:07:00,System
+LOAN-00082,Document Collection,2025-01-09 11:13:00,Officer_Sarah
+LOAN-00030,Compliance Check,2025-01-09 11:26:00,System_Compliance
+LOAN-00084,Document Collection,2025-01-09 11:34:00,Officer_Sarah
+LOAN-00082,Initial Review,2025-01-09 11:45:00,Officer_Jessica
+LOAN-00085,Application Received,2025-01-09 11:47:00,System
+LOAN-00082,Credit Check,2025-01-09 11:55:00,System_Credit
+LOAN-00084,Initial Review,2025-01-09 11:58:00,Officer_Jessica
+LOAN-00030,Loan Approved,2025-01-09 12:01:00,UW_Rachel
+LOAN-00045,Manager Approval,2025-01-09 12:03:00,Manager_John
+LOAN-00087,Application Received,2025-01-09 12:09:00,System
+LOAN-00084,Credit Check,2025-01-09 12:10:00,System_Credit
+LOAN-00082,Income Verification,2025-01-09 12:13:00,Officer_Jessica
+LOAN-00070,Underwriting,2025-01-09 12:14:00,UW_Rachel
+LOAN-00085,Document Collection,2025-01-09 12:15:00,Officer_Mike
+LOAN-00023,Funds Disbursed,2025-01-09 12:21:00,System
+LOAN-00031,Funds Disbursed,2025-01-09 12:22:00,System
+LOAN-00045,Compliance Check,2025-01-09 12:26:00,System_Compliance
+LOAN-00084,Income Verification,2025-01-09 12:26:00,Officer_Sarah
+LOAN-00087,Document Collection,2025-01-09 12:34:00,Officer_Mike
+LOAN-00088,Application Received,2025-01-09 12:37:00,System
+LOAN-00070,Compliance Check,2025-01-09 12:41:00,System_Compliance
+LOAN-00085,Initial Review,2025-01-09 12:46:00,Officer_Sarah
+LOAN-00088,Document Collection,2025-01-09 12:54:00,Officer_Mike
+LOAN-00070,Loan Approved,2025-01-09 12:56:00,UW_David
+LOAN-00085,Credit Check,2025-01-09 12:59:00,System_Credit
+LOAN-00081,Risk Assessment,2025-01-09 13:00:00,UW_Rachel
+LOAN-00087,Initial Review,2025-01-09 13:18:00,Officer_Mike
+LOAN-00085,Income Verification,2025-01-09 13:25:00,Officer_Jessica
+LOAN-00084,Risk Assessment,2025-01-09 13:26:00,UW_Rachel
+LOAN-00087,Credit Check,2025-01-09 13:32:00,System_Credit
+LOAN-00045,Loan Denied,2025-01-09 13:33:00,UW_Rachel
+LOAN-00080,Application Received,2025-01-09 13:36:00,System
+LOAN-00083,Application Received,2025-01-09 13:42:00,System
+LOAN-00087,Income Verification,2025-01-09 13:45:00,Officer_Jessica
+LOAN-00080,Document Collection,2025-01-09 13:49:00,Officer_Mike
+LOAN-00083,Document Collection,2025-01-09 13:52:00,Officer_Mike
+LOAN-00047,Funds Disbursed,2025-01-09 14:11:00,System
+LOAN-00089,Application Received,2025-01-09 14:13:00,System
+LOAN-00089,Document Collection,2025-01-09 14:23:00,Officer_Jessica
+LOAN-00085,Risk Assessment,2025-01-09 14:25:00,UW_David
+LOAN-00086,Application Received,2025-01-09 14:28:00,System
+LOAN-00083,Initial Review,2025-01-09 14:30:00,Officer_Sarah
+LOAN-00083,Credit Check,2025-01-09 14:38:00,System_Credit
+LOAN-00086,Document Collection,2025-01-09 14:38:00,Officer_Mike
+LOAN-00071,Underwriting,2025-01-09 14:42:00,UW_David
+LOAN-00083,Income Verification,2025-01-09 14:52:00,Officer_Mike
+LOAN-00071,Compliance Check,2025-01-09 14:57:00,System_Compliance
+LOAN-00089,Initial Review,2025-01-09 14:59:00,Officer_Jessica
+LOAN-00089,Credit Check,2025-01-09 15:09:00,System_Credit
+LOAN-00089,Income Verification,2025-01-09 15:22:00,Officer_Sarah
+LOAN-00086,Initial Review,2025-01-09 15:23:00,Officer_Jessica
+LOAN-00086,Credit Check,2025-01-09 15:36:00,System_Credit
+LOAN-00071,Loan Denied,2025-01-09 15:43:00,UW_David
+LOAN-00083,Risk Assessment,2025-01-09 15:52:00,UW_David
+LOAN-00086,Income Verification,2025-01-09 15:55:00,Officer_Sarah
+LOAN-00073,Underwriting,2025-01-09 15:59:00,UW_David
+LOAN-00082,Risk Assessment,2025-01-09 16:13:00,UW_Rachel
+LOAN-00074,Underwriting,2025-01-09 16:14:00,UW_Rachel
+LOAN-00087,Risk Assessment,2025-01-09 16:45:00,UW_David
+LOAN-00086,Risk Assessment,2025-01-09 16:55:00,UW_Rachel
+LOAN-00074,Manager Approval,2025-01-09 17:14:00,Manager_John
+LOAN-00089,Risk Assessment,2025-01-09 17:22:00,UW_Rachel
+LOAN-00074,Compliance Check,2025-01-09 17:31:00,System_Compliance
+LOAN-00078,Additional Review Required,2025-01-09 17:39:00,UW_David
+LOAN-00016,Document Collection,2025-01-09 17:52:00,Officer_Jessica
+LOAN-00074,Loan Approved,2025-01-09 18:04:00,UW_David
+LOAN-00052,Funds Disbursed,2025-01-09 18:30:00,System
+LOAN-00048,Request Missing Documents,2025-01-09 18:39:00,Officer_Jessica
+LOAN-00065,Document Signing,2025-01-09 18:50:00,Officer_Mike
+LOAN-00033,Funds Disbursed,2025-01-09 18:53:00,System
+LOAN-00068,Document Signing,2025-01-09 19:24:00,Officer_Sarah
+LOAN-00039,Funds Disbursed,2025-01-09 19:57:00,System
+LOAN-00036,Document Signing,2025-01-09 21:27:00,Officer_Sarah
+LOAN-00073,Manager Approval,2025-01-09 21:59:00,Manager_John
+LOAN-00081,Underwriting,2025-01-09 22:00:00,UW_Rachel
+LOAN-00081,Compliance Check,2025-01-09 22:14:00,System_Compliance
+LOAN-00073,Compliance Check,2025-01-09 22:17:00,System_Compliance
+LOAN-00081,Loan Approved,2025-01-09 22:35:00,UW_Rachel
+LOAN-00073,Loan Approved,2025-01-09 23:00:00,UW_Rachel
+LOAN-00089,Underwriting,2025-01-09 23:22:00,UW_David
+LOAN-00089,Compliance Check,2025-01-09 23:33:00,System_Compliance
+LOAN-00089,Loan Approved,2025-01-10 00:06:00,UW_Rachel
+LOAN-00054,Funds Disbursed,2025-01-10 00:45:00,System
+LOAN-00051,Document Signing,2025-01-10 01:14:00,Officer_Mike
+LOAN-00061,Funds Disbursed,2025-01-10 01:58:00,System
+LOAN-00082,Underwriting,2025-01-10 02:13:00,UW_David
+LOAN-00082,Compliance Check,2025-01-10 02:40:00,System_Compliance
+LOAN-00024,Request Missing Documents,2025-01-10 02:54:00,Officer_Mike
+LOAN-00082,Loan Approved,2025-01-10 02:57:00,UW_Rachel
+LOAN-00040,Request Missing Documents,2025-01-10 04:14:00,Officer_Sarah
+LOAN-00086,Underwriting,2025-01-10 04:55:00,UW_David
+LOAN-00086,Compliance Check,2025-01-10 05:06:00,System_Compliance
+LOAN-00060,Underwriting,2025-01-10 05:39:00,UW_David
+LOAN-00086,Loan Approved,2025-01-10 05:43:00,UW_Rachel
+LOAN-00083,Underwriting,2025-01-10 05:52:00,UW_Rachel
+LOAN-00044,Funds Disbursed,2025-01-10 06:18:00,System
+LOAN-00078,Underwriting,2025-01-10 06:39:00,UW_David
+LOAN-00087,Underwriting,2025-01-10 06:45:00,UW_David
+LOAN-00078,Compliance Check,2025-01-10 07:03:00,System_Compliance
+LOAN-00087,Compliance Check,2025-01-10 07:15:00,System_Compliance
+LOAN-00078,Loan Approved,2025-01-10 07:39:00,UW_Rachel
+LOAN-00087,Loan Approved,2025-01-10 07:45:00,UW_David
+LOAN-00085,Underwriting,2025-01-10 08:25:00,UW_Rachel
+LOAN-00084,Underwriting,2025-01-10 08:26:00,UW_Rachel
+LOAN-00085,Compliance Check,2025-01-10 08:44:00,System_Compliance
+LOAN-00085,Loan Approved,2025-01-10 09:23:00,UW_Rachel
+LOAN-00097,Application Received,2025-01-10 09:36:00,System
+LOAN-00056,Request Missing Documents,2025-01-10 09:43:00,Officer_Jessica
+LOAN-00094,Application Received,2025-01-10 09:50:00,System
+LOAN-00097,Document Collection,2025-01-10 09:54:00,Officer_Sarah
+LOAN-00097,Initial Review,2025-01-10 10:17:00,Officer_Sarah
+LOAN-00094,Document Collection,2025-01-10 10:20:00,Officer_Jessica
+LOAN-00097,Credit Check,2025-01-10 10:31:00,System_Credit
+LOAN-00094,Initial Review,2025-01-10 10:35:00,Officer_Mike
+LOAN-00094,Credit Check,2025-01-10 10:40:00,System_Credit
+LOAN-00094,Income Verification,2025-01-10 10:53:00,Officer_Mike
+LOAN-00097,Income Verification,2025-01-10 10:55:00,Officer_Mike
+LOAN-00083,Manager Approval,2025-01-10 11:52:00,Manager_John
+LOAN-00091,Application Received,2025-01-10 11:56:00,System
+LOAN-00099,Application Received,2025-01-10 12:05:00,System
+LOAN-00083,Compliance Check,2025-01-10 12:12:00,System_Compliance
+LOAN-00091,Document Collection,2025-01-10 12:15:00,Officer_Jessica
+LOAN-00099,Document Collection,2025-01-10 12:26:00,Officer_Jessica
+LOAN-00083,Loan Approved,2025-01-10 12:35:00,UW_Rachel
+LOAN-00091,Initial Review,2025-01-10 12:50:00,Officer_Jessica
+LOAN-00091,Credit Check,2025-01-10 13:05:00,System_Credit
+LOAN-00099,Initial Review,2025-01-10 13:11:00,Officer_Jessica
+LOAN-00099,Credit Check,2025-01-10 13:19:00,System_Credit
+LOAN-00084,Additional Review Required,2025-01-10 13:26:00,UW_Rachel
+LOAN-00091,Income Verification,2025-01-10 13:29:00,Officer_Jessica
+LOAN-00099,Income Verification,2025-01-10 13:33:00,Officer_Jessica
+LOAN-00060,Additional Review Required,2025-01-10 13:39:00,UW_David
+LOAN-00094,Risk Assessment,2025-01-10 13:53:00,UW_David
+LOAN-00097,Risk Assessment,2025-01-10 13:55:00,UW_David
+LOAN-00098,Application Received,2025-01-10 14:00:00,System
+LOAN-00096,Application Received,2025-01-10 14:11:00,System
+LOAN-00095,Application Received,2025-01-10 14:13:00,System
+LOAN-00098,Document Collection,2025-01-10 14:16:00,Officer_Sarah
+LOAN-00092,Application Received,2025-01-10 14:17:00,System
+LOAN-00096,Document Collection,2025-01-10 14:22:00,Officer_Sarah
+LOAN-00091,Risk Assessment,2025-01-10 14:29:00,UW_Rachel
+LOAN-00095,Document Collection,2025-01-10 14:31:00,Officer_Mike
+LOAN-00098,Initial Review,2025-01-10 14:36:00,Officer_Sarah
+LOAN-00092,Document Collection,2025-01-10 14:40:00,Officer_Sarah
+LOAN-00098,Credit Check,2025-01-10 14:44:00,System_Credit
+LOAN-00095,Initial Review,2025-01-10 14:49:00,Officer_Sarah
+LOAN-00092,Initial Review,2025-01-10 15:01:00,Officer_Sarah
+LOAN-00095,Credit Check,2025-01-10 15:03:00,System_Credit
+LOAN-00098,Income Verification,2025-01-10 15:07:00,Officer_Jessica
+LOAN-00092,Credit Check,2025-01-10 15:12:00,System_Credit
+LOAN-00095,Income Verification,2025-01-10 15:15:00,Officer_Sarah
+LOAN-00093,Application Received,2025-01-10 15:29:00,System
+LOAN-00092,Income Verification,2025-01-10 15:40:00,Officer_Mike
+LOAN-00093,Document Collection,2025-01-10 15:44:00,Officer_Mike
+LOAN-00090,Application Received,2025-01-10 15:56:00,System
+LOAN-00093,Initial Review,2025-01-10 16:07:00,Officer_Jessica
+LOAN-00095,Risk Assessment,2025-01-10 16:15:00,UW_Rachel
+LOAN-00090,Document Collection,2025-01-10 16:17:00,Officer_Mike
+LOAN-00093,Credit Check,2025-01-10 16:18:00,System_Credit
+LOAN-00099,Risk Assessment,2025-01-10 16:33:00,UW_Rachel
+LOAN-00093,Income Verification,2025-01-10 16:46:00,Officer_Mike
+LOAN-00090,Initial Review,2025-01-10 16:56:00,Officer_Sarah
+LOAN-00090,Credit Check,2025-01-10 17:04:00,System_Credit
+LOAN-00098,Risk Assessment,2025-01-10 17:07:00,UW_Rachel
+LOAN-00090,Income Verification,2025-01-10 17:14:00,Officer_Mike
+LOAN-00074,Document Signing,2025-01-10 18:04:00,Officer_Mike
+LOAN-00092,Risk Assessment,2025-01-10 18:40:00,UW_Rachel
+LOAN-00093,Risk Assessment,2025-01-10 18:46:00,UW_Rachel
+LOAN-00065,Funds Disbursed,2025-01-10 18:50:00,System
+LOAN-00090,Risk Assessment,2025-01-10 19:14:00,UW_David
+LOAN-00057,Funds Disbursed,2025-01-10 19:15:00,System
+LOAN-00068,Funds Disbursed,2025-01-10 19:24:00,System
+LOAN-00043,Funds Disbursed,2025-01-10 21:17:00,System
+LOAN-00069,Document Signing,2025-01-10 22:16:00,Officer_Sarah
+LOAN-00099,Underwriting,2025-01-10 23:33:00,UW_David
+LOAN-00048,Document Collection,2025-01-10 23:39:00,Officer_Jessica
+LOAN-00099,Compliance Check,2025-01-10 23:57:00,System_Compliance
+LOAN-00089,Document Signing,2025-01-11 00:06:00,Officer_Sarah
+LOAN-00099,Loan Approved,2025-01-11 00:12:00,UW_Rachel
+LOAN-00048,Initial Review,2025-01-11 00:19:00,Officer_Mike
+LOAN-00048,Credit Check,2025-01-11 00:24:00,System_Credit
+LOAN-00048,Income Verification,2025-01-11 00:53:00,Officer_Mike
+LOAN-00093,Underwriting,2025-01-11 01:46:00,UW_David
+LOAN-00093,Compliance Check,2025-01-11 02:06:00,System_Compliance
+LOAN-00093,Loan Approved,2025-01-11 02:36:00,UW_David
+LOAN-00060,Underwriting,2025-01-11 02:39:00,UW_Rachel
+LOAN-00088,Request Missing Documents,2025-01-11 02:54:00,Officer_Mike
+LOAN-00060,Compliance Check,2025-01-11 02:55:00,System_Compliance
+LOAN-00032,Request Missing Documents,2025-01-11 03:30:00,Officer_Sarah
+LOAN-00060,Loan Approved,2025-01-11 03:30:00,UW_David
+LOAN-00048,Risk Assessment,2025-01-11 03:53:00,UW_David
+LOAN-00042,Funds Disbursed,2025-01-11 04:08:00,System
+LOAN-00095,Underwriting,2025-01-11 04:15:00,UW_Rachel
+LOAN-00077,Document Signing,2025-01-11 04:33:00,Officer_Jessica
+LOAN-00095,Compliance Check,2025-01-11 04:33:00,System_Compliance
+LOAN-00063,Document Signing,2025-01-11 04:37:00,Officer_Sarah
+LOAN-00097,Underwriting,2025-01-11 04:55:00,UW_David
+LOAN-00095,Loan Approved,2025-01-11 04:59:00,UW_Rachel
+LOAN-00055,Funds Disbursed,2025-01-11 05:03:00,System
+LOAN-00097,Compliance Check,2025-01-11 05:06:00,System_Compliance
+LOAN-00097,Loan Approved,2025-01-11 05:31:00,UW_David
+LOAN-00092,Underwriting,2025-01-11 05:40:00,UW_David
+LOAN-00092,Compliance Check,2025-01-11 05:51:00,System_Compliance
+LOAN-00092,Loan Approved,2025-01-11 06:24:00,UW_Rachel
+LOAN-00084,Underwriting,2025-01-11 06:26:00,UW_Rachel
+LOAN-00076,Document Signing,2025-01-11 07:09:00,Officer_Sarah
+LOAN-00087,Document Signing,2025-01-11 07:45:00,Officer_Sarah
+LOAN-00098,Underwriting,2025-01-11 09:07:00,UW_Rachel
+LOAN-00084,Manager Approval,2025-01-11 09:26:00,Manager_John
+LOAN-00102,Application Received,2025-01-11 09:32:00,System
+LOAN-00098,Compliance Check,2025-01-11 09:34:00,System_Compliance
+LOAN-00084,Compliance Check,2025-01-11 09:40:00,System_Compliance
+LOAN-00102,Document Collection,2025-01-11 09:43:00,Officer_Mike
+LOAN-00098,Loan Approved,2025-01-11 09:51:00,UW_David
+LOAN-00094,Underwriting,2025-01-11 09:53:00,UW_Rachel
+LOAN-00108,Application Received,2025-01-11 10:00:00,System
+LOAN-00084,Loan Approved,2025-01-11 10:02:00,UW_David
+LOAN-00094,Compliance Check,2025-01-11 10:08:00,System_Compliance
+LOAN-00102,Initial Review,2025-01-11 10:08:00,Officer_Sarah
+LOAN-00108,Document Collection,2025-01-11 10:20:00,Officer_Mike
+LOAN-00102,Credit Check,2025-01-11 10:23:00,System_Credit
+LOAN-00094,Loan Approved,2025-01-11 10:35:00,UW_Rachel
+LOAN-00067,Document Signing,2025-01-11 10:53:00,Officer_Sarah
+LOAN-00102,Income Verification,2025-01-11 10:53:00,Officer_Sarah
+LOAN-00107,Application Received,2025-01-11 11:02:00,System
+LOAN-00108,Initial Review,2025-01-11 11:05:00,Officer_Jessica
+LOAN-00108,Credit Check,2025-01-11 11:11:00,System_Credit
+LOAN-00107,Document Collection,2025-01-11 11:27:00,Officer_Jessica
+LOAN-00108,Income Verification,2025-01-11 11:34:00,Officer_Mike
+LOAN-00107,Initial Review,2025-01-11 12:09:00,Officer_Mike
+LOAN-00100,Application Received,2025-01-11 12:24:00,System
+LOAN-00107,Credit Check,2025-01-11 12:24:00,System_Credit
+LOAN-00091,Underwriting,2025-01-11 12:29:00,UW_Rachel
+LOAN-00083,Document Signing,2025-01-11 12:35:00,Officer_Mike
+LOAN-00103,Application Received,2025-01-11 12:39:00,System
+LOAN-00091,Compliance Check,2025-01-11 12:45:00,System_Compliance
+LOAN-00107,Income Verification,2025-01-11 12:47:00,Officer_Mike
+LOAN-00102,Risk Assessment,2025-01-11 12:53:00,UW_David
+LOAN-00103,Document Collection,2025-01-11 12:53:00,Officer_Sarah
+LOAN-00100,Document Collection,2025-01-11 12:54:00,Officer_Mike
+LOAN-00070,Document Signing,2025-01-11 12:56:00,Officer_Jessica
+LOAN-00100,Initial Review,2025-01-11 13:10:00,Officer_Sarah
+LOAN-00103,Initial Review,2025-01-11 13:21:00,Officer_Mike
+LOAN-00100,Credit Check,2025-01-11 13:24:00,System_Credit
+LOAN-00091,Loan Approved,2025-01-11 13:25:00,UW_David
+LOAN-00103,Credit Check,2025-01-11 13:31:00,System_Credit
+LOAN-00080,Request Missing Documents,2025-01-11 13:49:00,Officer_Jessica
+LOAN-00016,Request Missing Documents,2025-01-11 13:52:00,Officer_Jessica
+LOAN-00103,Income Verification,2025-01-11 13:52:00,Officer_Mike
+LOAN-00100,Income Verification,2025-01-11 13:53:00,Officer_Jessica
+LOAN-00106,Application Received,2025-01-11 14:19:00,System
+LOAN-00104,Application Received,2025-01-11 14:20:00,System
+LOAN-00096,Request Missing Documents,2025-01-11 14:22:00,Officer_Sarah
+LOAN-00106,Document Collection,2025-01-11 14:32:00,Officer_Jessica
+LOAN-00101,Application Received,2025-01-11 14:35:00,System
+LOAN-00104,Document Collection,2025-01-11 14:41:00,Officer_Mike
+LOAN-00056,Document Collection,2025-01-11 14:43:00,Officer_Mike
+LOAN-00101,Document Collection,2025-01-11 14:47:00,Officer_Jessica
+LOAN-00107,Risk Assessment,2025-01-11 14:47:00,UW_Rachel
+LOAN-00105,Application Received,2025-01-11 15:02:00,System
+LOAN-00109,Application Received,2025-01-11 15:05:00,System
+LOAN-00056,Initial Review,2025-01-11 15:11:00,Officer_Jessica
+LOAN-00106,Initial Review,2025-01-11 15:12:00,Officer_Jessica
+LOAN-00101,Initial Review,2025-01-11 15:17:00,Officer_Jessica
+LOAN-00056,Credit Check,2025-01-11 15:19:00,System_Credit
+LOAN-00106,Credit Check,2025-01-11 15:23:00,System_Credit
+LOAN-00109,Document Collection,2025-01-11 15:26:00,Officer_Sarah
+LOAN-00101,Credit Check,2025-01-11 15:27:00,System_Credit
+LOAN-00105,Document Collection,2025-01-11 15:28:00,Officer_Sarah
+LOAN-00056,Income Verification,2025-01-11 15:32:00,Officer_Sarah
+LOAN-00108,Risk Assessment,2025-01-11 15:34:00,UW_Rachel
+LOAN-00101,Income Verification,2025-01-11 15:38:00,Officer_Sarah
+LOAN-00106,Income Verification,2025-01-11 15:43:00,Officer_Jessica
+LOAN-00105,Initial Review,2025-01-11 15:47:00,Officer_Mike
+LOAN-00100,Risk Assessment,2025-01-11 15:53:00,UW_David
+LOAN-00109,Initial Review,2025-01-11 15:53:00,Officer_Jessica
+LOAN-00105,Credit Check,2025-01-11 15:56:00,System_Credit
+LOAN-00109,Credit Check,2025-01-11 16:05:00,System_Credit
+LOAN-00105,Income Verification,2025-01-11 16:13:00,Officer_Sarah
+LOAN-00109,Income Verification,2025-01-11 16:27:00,Officer_Jessica
+LOAN-00101,Risk Assessment,2025-01-11 17:38:00,UW_Rachel
+LOAN-00106,Risk Assessment,2025-01-11 17:43:00,UW_David
+LOAN-00103,Risk Assessment,2025-01-11 17:52:00,UW_David
+LOAN-00048,Underwriting,2025-01-11 17:53:00,UW_David
+LOAN-00075,Underwriting,2025-01-11 18:00:00,UW_Rachel
+LOAN-00074,Funds Disbursed,2025-01-11 18:04:00,System
+LOAN-00075,Compliance Check,2025-01-11 18:27:00,System_Compliance
+LOAN-00109,Risk Assessment,2025-01-11 18:27:00,UW_Rachel
+LOAN-00075,Loan Approved,2025-01-11 18:42:00,UW_David
+LOAN-00105,Risk Assessment,2025-01-11 19:13:00,UW_Rachel
+LOAN-00056,Risk Assessment,2025-01-11 19:32:00,UW_Rachel
+LOAN-00008,Document Collection,2025-01-11 19:44:00,Officer_Sarah
+LOAN-00102,Underwriting,2025-01-11 19:53:00,UW_Rachel
+LOAN-00008,Initial Review,2025-01-11 20:18:00,Officer_Jessica
+LOAN-00008,Credit Check,2025-01-11 20:23:00,System_Credit
+LOAN-00008,Income Verification,2025-01-11 20:44:00,Officer_Sarah
+LOAN-00036,Funds Disbursed,2025-01-11 21:27:00,System
+LOAN-00102,Additional Review Required,2025-01-11 21:53:00,UW_David
+LOAN-00069,Funds Disbursed,2025-01-11 22:16:00,System
+LOAN-00008,Risk Assessment,2025-01-11 22:44:00,UW_David
+LOAN-00048,Additional Review Required,2025-01-11 22:53:00,UW_Rachel
+LOAN-00051,Funds Disbursed,2025-01-12 01:14:00,System
+LOAN-00100,Underwriting,2025-01-12 01:53:00,UW_David
+LOAN-00100,Compliance Check,2025-01-12 02:11:00,System_Compliance
+LOAN-00056,Underwriting,2025-01-12 02:32:00,UW_David
+LOAN-00093,Document Signing,2025-01-12 02:36:00,Officer_Sarah
+LOAN-00106,Underwriting,2025-01-12 02:43:00,UW_David
+LOAN-00056,Compliance Check,2025-01-12 02:55:00,System_Compliance
+LOAN-00100,Loan Approved,2025-01-12 02:56:00,UW_David
+LOAN-00106,Compliance Check,2025-01-12 03:01:00,System_Compliance
+LOAN-00056,Loan Approved,2025-01-12 03:10:00,UW_Rachel
+LOAN-00060,Document Signing,2025-01-12 03:30:00,Officer_Jessica
+LOAN-00106,Loan Denied,2025-01-12 04:27:00,UW_David
+LOAN-00063,Funds Disbursed,2025-01-12 04:37:00,System
+LOAN-00103,Underwriting,2025-01-12 04:52:00,UW_David
+LOAN-00095,Document Signing,2025-01-12 04:59:00,Officer_Jessica
+LOAN-00103,Compliance Check,2025-01-12 05:11:00,System_Compliance
+LOAN-00103,Loan Approved,2025-01-12 05:29:00,UW_Rachel
+LOAN-00092,Document Signing,2025-01-12 06:24:00,Officer_Mike
+LOAN-00064,Document Collection,2025-01-12 06:59:00,Officer_Sarah
+LOAN-00076,Funds Disbursed,2025-01-12 07:09:00,System
+LOAN-00079,Document Signing,2025-01-12 07:30:00,Officer_Mike
+LOAN-00108,Underwriting,2025-01-12 07:34:00,UW_Rachel
+LOAN-00078,Document Signing,2025-01-12 07:39:00,Officer_Mike
+LOAN-00040,Document Collection,2025-01-12 09:14:00,Officer_Sarah
+LOAN-00085,Document Signing,2025-01-12 09:23:00,Officer_Jessica
+LOAN-00113,Application Received,2025-01-12 09:38:00,System
+LOAN-00114,Application Received,2025-01-12 09:44:00,System
+LOAN-00113,Document Collection,2025-01-12 09:55:00,Officer_Sarah
+LOAN-00112,Application Received,2025-01-12 10:02:00,System
+LOAN-00115,Application Received,2025-01-12 10:06:00,System
+LOAN-00117,Application Received,2025-01-12 10:07:00,System
+LOAN-00112,Document Collection,2025-01-12 10:12:00,Officer_Sarah
+LOAN-00114,Document Collection,2025-01-12 10:12:00,Officer_Jessica
+LOAN-00115,Document Collection,2025-01-12 10:16:00,Officer_Jessica
+LOAN-00117,Document Collection,2025-01-12 10:19:00,Officer_Jessica
+LOAN-00108,Additional Review Required,2025-01-12 10:34:00,UW_David
+LOAN-00114,Initial Review,2025-01-12 10:34:00,Officer_Jessica
+LOAN-00094,Document Signing,2025-01-12 10:35:00,Officer_Mike
+LOAN-00113,Initial Review,2025-01-12 10:35:00,Officer_Mike
+LOAN-00115,Initial Review,2025-01-12 10:43:00,Officer_Mike
+LOAN-00113,Credit Check,2025-01-12 10:48:00,System_Credit
+LOAN-00114,Credit Check,2025-01-12 10:49:00,System_Credit
+LOAN-00067,Funds Disbursed,2025-01-12 10:53:00,System
+LOAN-00088,Document Collection,2025-01-12 10:54:00,Officer_Sarah
+LOAN-00115,Credit Check,2025-01-12 10:55:00,System_Credit
+LOAN-00117,Initial Review,2025-01-12 11:00:00,Officer_Mike
+LOAN-00114,Income Verification,2025-01-12 11:04:00,Officer_Mike
+LOAN-00115,Income Verification,2025-01-12 11:07:00,Officer_Mike
+LOAN-00113,Income Verification,2025-01-12 11:09:00,Officer_Mike
+LOAN-00117,Credit Check,2025-01-12 11:13:00,System_Credit
+LOAN-00117,Income Verification,2025-01-12 11:29:00,Officer_Jessica
+LOAN-00101,Underwriting,2025-01-12 11:38:00,UW_David
+LOAN-00119,Application Received,2025-01-12 11:40:00,System
+LOAN-00024,Document Collection,2025-01-12 11:54:00,Officer_Jessica
+LOAN-00101,Compliance Check,2025-01-12 11:56:00,System_Compliance
+LOAN-00030,Document Signing,2025-01-12 12:01:00,Officer_Sarah
+LOAN-00119,Document Collection,2025-01-12 12:01:00,Officer_Mike
+LOAN-00119,Initial Review,2025-01-12 12:24:00,Officer_Jessica
+LOAN-00119,Credit Check,2025-01-12 12:31:00,System_Credit
+LOAN-00101,Loan Approved,2025-01-12 12:32:00,UW_Rachel
+LOAN-00024,Initial Review,2025-01-12 12:35:00,Officer_Jessica
+LOAN-00024,Credit Check,2025-01-12 12:41:00,System_Credit
+LOAN-00119,Income Verification,2025-01-12 12:57:00,Officer_Sarah
+LOAN-00111,Application Received,2025-01-12 12:59:00,System
+LOAN-00024,Income Verification,2025-01-12 13:03:00,Officer_Mike
+LOAN-00115,Risk Assessment,2025-01-12 13:07:00,UW_Rachel
+LOAN-00116,Application Received,2025-01-12 13:08:00,System
+LOAN-00111,Document Collection,2025-01-12 13:15:00,Officer_Mike
+LOAN-00116,Document Collection,2025-01-12 13:28:00,Officer_Jessica
+LOAN-00117,Risk Assessment,2025-01-12 13:29:00,UW_David
+LOAN-00110,Application Received,2025-01-12 13:42:00,System
+LOAN-00111,Initial Review,2025-01-12 13:47:00,Officer_Mike
+LOAN-00110,Document Collection,2025-01-12 13:53:00,Officer_Sarah
+LOAN-00116,Initial Review,2025-01-12 13:55:00,Officer_Jessica
+LOAN-00111,Credit Check,2025-01-12 14:01:00,System_Credit
+LOAN-00116,Credit Check,2025-01-12 14:04:00,System_Credit
+LOAN-00113,Risk Assessment,2025-01-12 14:09:00,UW_David
+LOAN-00110,Initial Review,2025-01-12 14:14:00,Officer_Mike
+LOAN-00111,Income Verification,2025-01-12 14:14:00,Officer_Jessica
+LOAN-00110,Credit Check,2025-01-12 14:23:00,System_Credit
+LOAN-00116,Income Verification,2025-01-12 14:26:00,Officer_Sarah
+LOAN-00072,Document Collection,2025-01-12 14:45:00,Officer_Mike
+LOAN-00110,Income Verification,2025-01-12 14:45:00,Officer_Jessica
+LOAN-00107,Underwriting,2025-01-12 14:47:00,UW_David
+LOAN-00107,Compliance Check,2025-01-12 15:00:00,System_Compliance
+LOAN-00114,Risk Assessment,2025-01-12 15:04:00,UW_Rachel
+LOAN-00107,Loan Approved,2025-01-12 15:16:00,UW_Rachel
+LOAN-00116,Risk Assessment,2025-01-12 15:26:00,UW_Rachel
+LOAN-00109,Underwriting,2025-01-12 15:27:00,UW_Rachel
+LOAN-00118,Application Received,2025-01-12 15:57:00,System
+LOAN-00118,Document Collection,2025-01-12 16:15:00,Officer_Mike
+LOAN-00109,Manager Approval,2025-01-12 16:27:00,Manager_John
+LOAN-00118,Initial Review,2025-01-12 16:46:00,Officer_Jessica
+LOAN-00109,Compliance Check,2025-01-12 16:54:00,System_Compliance
+LOAN-00118,Credit Check,2025-01-12 16:57:00,System_Credit
+LOAN-00119,Risk Assessment,2025-01-12 16:57:00,UW_Rachel
+LOAN-00024,Risk Assessment,2025-01-12 17:03:00,UW_David
+LOAN-00118,Income Verification,2025-01-12 17:20:00,Officer_Mike
+LOAN-00109,Loan Approved,2025-01-12 17:29:00,UW_Rachel
+LOAN-00110,Risk Assessment,2025-01-12 17:45:00,UW_David
+LOAN-00111,Risk Assessment,2025-01-12 18:14:00,UW_Rachel
+LOAN-00118,Risk Assessment,2025-01-12 19:20:00,UW_Rachel
+LOAN-00032,Document Collection,2025-01-12 19:30:00,Officer_Jessica
+LOAN-00008,Underwriting,2025-01-12 20:44:00,UW_David
+LOAN-00008,Compliance Check,2025-01-12 21:00:00,System_Compliance
+LOAN-00008,Loan Denied,2025-01-12 22:31:00,UW_David
+LOAN-00081,Document Signing,2025-01-12 22:35:00,Officer_Mike
+LOAN-00119,Underwriting,2025-01-12 22:57:00,UW_Rachel
+LOAN-00073,Document Signing,2025-01-12 23:00:00,Officer_Sarah
+LOAN-00119,Compliance Check,2025-01-12 23:26:00,System_Compliance
+LOAN-00110,Underwriting,2025-01-12 23:45:00,UW_David
+LOAN-00110,Compliance Check,2025-01-13 00:02:00,System_Compliance
+LOAN-00089,Funds Disbursed,2025-01-13 00:06:00,System
+LOAN-00119,Loan Denied,2025-01-13 00:29:00,UW_Rachel
+LOAN-00110,Loan Approved,2025-01-13 00:37:00,UW_Rachel
+LOAN-00093,Funds Disbursed,2025-01-13 02:36:00,System
+LOAN-00082,Document Signing,2025-01-13 02:57:00,Officer_Sarah
+LOAN-00114,Underwriting,2025-01-13 03:04:00,UW_Rachel
+LOAN-00056,Document Signing,2025-01-13 03:10:00,Officer_Sarah
+LOAN-00060,Funds Disbursed,2025-01-13 03:30:00,System
+LOAN-00102,Underwriting,2025-01-13 03:53:00,UW_David
+LOAN-00102,Compliance Check,2025-01-13 04:12:00,System_Compliance
+LOAN-00116,Underwriting,2025-01-13 04:26:00,UW_Rachel
+LOAN-00077,Funds Disbursed,2025-01-13 04:33:00,System
+LOAN-00116,Compliance Check,2025-01-13 04:43:00,System_Compliance
+LOAN-00102,Loan Approved,2025-01-13 04:56:00,UW_David
+LOAN-00116,Loan Approved,2025-01-13 05:15:00,UW_David
+LOAN-00103,Document Signing,2025-01-13 05:29:00,Officer_Jessica
+LOAN-00117,Underwriting,2025-01-13 05:29:00,UW_David
+LOAN-00097,Document Signing,2025-01-13 05:31:00,Officer_Sarah
+LOAN-00086,Document Signing,2025-01-13 05:43:00,Officer_Mike
+LOAN-00114,Additional Review Required,2025-01-13 07:04:00,UW_David
+LOAN-00117,Manager Approval,2025-01-13 07:29:00,Manager_John
+LOAN-00087,Funds Disbursed,2025-01-13 07:45:00,System
+LOAN-00117,Compliance Check,2025-01-13 07:51:00,System_Compliance
+LOAN-00040,Request Missing Documents,2025-01-13 08:14:00,Officer_Jessica
+LOAN-00118,Underwriting,2025-01-13 08:20:00,UW_David
+LOAN-00117,Loan Approved,2025-01-13 08:21:00,UW_Rachel
+LOAN-00118,Compliance Check,2025-01-13 08:35:00,System_Compliance
+LOAN-00118,Loan Approved,2025-01-13 08:58:00,UW_David
+LOAN-00024,Underwriting,2025-01-13 09:03:00,UW_Rachel
+LOAN-00126,Application Received,2025-01-13 09:25:00,System
+LOAN-00126,Document Collection,2025-01-13 09:44:00,Officer_Mike
+LOAN-00084,Document Signing,2025-01-13 10:02:00,Officer_Jessica
+LOAN-00122,Application Received,2025-01-13 10:07:00,System
+LOAN-00126,Initial Review,2025-01-13 10:08:00,Officer_Sarah
+LOAN-00126,Credit Check,2025-01-13 10:20:00,System_Credit
+LOAN-00122,Document Collection,2025-01-13 10:30:00,Officer_Mike
+LOAN-00126,Income Verification,2025-01-13 10:30:00,Officer_Jessica
+LOAN-00094,Funds Disbursed,2025-01-13 10:35:00,System
+LOAN-00122,Initial Review,2025-01-13 10:45:00,Officer_Sarah
+LOAN-00122,Credit Check,2025-01-13 11:00:00,System_Credit
+LOAN-00122,Income Verification,2025-01-13 11:23:00,Officer_Sarah
+LOAN-00125,Application Received,2025-01-13 11:50:00,System
+LOAN-00127,Application Received,2025-01-13 11:56:00,System
+LOAN-00125,Document Collection,2025-01-13 12:17:00,Officer_Sarah
+LOAN-00127,Document Collection,2025-01-13 12:18:00,Officer_Mike
+LOAN-00126,Risk Assessment,2025-01-13 12:30:00,UW_Rachel
+LOAN-00083,Funds Disbursed,2025-01-13 12:35:00,System
+LOAN-00127,Initial Review,2025-01-13 12:42:00,Officer_Mike
+LOAN-00125,Initial Review,2025-01-13 12:45:00,Officer_Mike
+LOAN-00125,Credit Check,2025-01-13 12:51:00,System_Credit
+LOAN-00127,Credit Check,2025-01-13 12:52:00,System_Credit
+LOAN-00070,Funds Disbursed,2025-01-13 12:56:00,System
+LOAN-00115,Underwriting,2025-01-13 13:07:00,UW_Rachel
+LOAN-00113,Underwriting,2025-01-13 13:09:00,UW_David
+LOAN-00127,Income Verification,2025-01-13 13:11:00,Officer_Mike
+LOAN-00115,Compliance Check,2025-01-13 13:17:00,System_Compliance
+LOAN-00125,Income Verification,2025-01-13 13:18:00,Officer_Sarah
+LOAN-00113,Compliance Check,2025-01-13 13:37:00,System_Compliance
+LOAN-00048,Underwriting,2025-01-13 13:53:00,UW_David
+LOAN-00113,Loan Approved,2025-01-13 13:57:00,UW_Rachel
+LOAN-00115,Loan Approved,2025-01-13 13:57:00,UW_Rachel
+LOAN-00120,Application Received,2025-01-13 14:01:00,System
+LOAN-00120,Document Collection,2025-01-13 14:11:00,Officer_Sarah
+LOAN-00048,Compliance Check,2025-01-13 14:13:00,System_Compliance
+LOAN-00122,Risk Assessment,2025-01-13 14:23:00,UW_Rachel
+LOAN-00123,Application Received,2025-01-13 14:39:00,System
+LOAN-00104,Request Missing Documents,2025-01-13 14:41:00,Officer_Sarah
+LOAN-00128,Application Received,2025-01-13 14:48:00,System
+LOAN-00048,Loan Approved,2025-01-13 14:57:00,UW_David
+LOAN-00123,Document Collection,2025-01-13 15:05:00,Officer_Jessica
+LOAN-00128,Document Collection,2025-01-13 15:09:00,Officer_Mike
+LOAN-00111,Underwriting,2025-01-13 15:14:00,UW_Rachel
+LOAN-00123,Initial Review,2025-01-13 15:24:00,Officer_Mike
+LOAN-00121,Application Received,2025-01-13 15:27:00,System
+LOAN-00129,Application Received,2025-01-13 15:27:00,System
+LOAN-00111,Compliance Check,2025-01-13 15:30:00,System_Compliance
+LOAN-00123,Credit Check,2025-01-13 15:37:00,System_Credit
+LOAN-00124,Application Received,2025-01-13 15:40:00,System
+LOAN-00123,Income Verification,2025-01-13 15:48:00,Officer_Jessica
+LOAN-00121,Document Collection,2025-01-13 15:55:00,Officer_Sarah
+LOAN-00129,Document Collection,2025-01-13 15:56:00,Officer_Mike
+LOAN-00024,Additional Review Required,2025-01-13 16:03:00,UW_Rachel
+LOAN-00124,Document Collection,2025-01-13 16:05:00,Officer_Jessica
+LOAN-00125,Risk Assessment,2025-01-13 16:18:00,UW_Rachel
+LOAN-00121,Initial Review,2025-01-13 16:24:00,Officer_Jessica
+LOAN-00129,Initial Review,2025-01-13 16:29:00,Officer_Mike
+LOAN-00032,Request Missing Documents,2025-01-13 16:30:00,Officer_Jessica
+LOAN-00121,Credit Check,2025-01-13 16:32:00,System_Credit
+LOAN-00129,Credit Check,2025-01-13 16:35:00,System_Credit
+LOAN-00124,Initial Review,2025-01-13 16:38:00,Officer_Jessica
+LOAN-00121,Income Verification,2025-01-13 16:45:00,Officer_Sarah
+LOAN-00124,Credit Check,2025-01-13 16:49:00,System_Credit
+LOAN-00129,Income Verification,2025-01-13 16:58:00,Officer_Sarah
+LOAN-00124,Income Verification,2025-01-13 17:11:00,Officer_Sarah
+LOAN-00127,Risk Assessment,2025-01-13 17:11:00,UW_Rachel
+LOAN-00111,Loan Denied,2025-01-13 17:21:00,UW_David
+LOAN-00108,Underwriting,2025-01-13 18:34:00,UW_David
+LOAN-00075,Document Signing,2025-01-13 18:42:00,Officer_Sarah
+LOAN-00121,Risk Assessment,2025-01-13 18:45:00,UW_David
+LOAN-00108,Compliance Check,2025-01-13 18:46:00,System_Compliance
+LOAN-00129,Risk Assessment,2025-01-13 18:58:00,UW_Rachel
+LOAN-00123,Risk Assessment,2025-01-13 19:48:00,UW_Rachel
+LOAN-00108,Loan Denied,2025-01-13 20:21:00,UW_David
+LOAN-00072,Request Missing Documents,2025-01-13 20:45:00,Officer_Jessica
+LOAN-00124,Risk Assessment,2025-01-13 21:11:00,UW_David
+LOAN-00122,Underwriting,2025-01-13 21:23:00,UW_Rachel
+LOAN-00122,Compliance Check,2025-01-13 21:53:00,System_Compliance
+LOAN-00096,Document Collection,2025-01-13 22:22:00,Officer_Jessica
+LOAN-00122,Loan Approved,2025-01-13 22:23:00,UW_David
+LOAN-00126,Underwriting,2025-01-13 22:30:00,UW_Rachel
+LOAN-00064,Request Missing Documents,2025-01-13 23:59:00,Officer_Sarah
+LOAN-00099,Document Signing,2025-01-14 00:12:00,Officer_Sarah
+LOAN-00110,Document Signing,2025-01-14 00:37:00,Officer_Mike
+LOAN-00125,Underwriting,2025-01-14 01:18:00,UW_Rachel
+LOAN-00125,Compliance Check,2025-01-14 01:29:00,System_Compliance
+LOAN-00126,Additional Review Required,2025-01-14 01:30:00,UW_Rachel
+LOAN-00125,Loan Approved,2025-01-14 02:09:00,UW_David
+LOAN-00124,Underwriting,2025-01-14 03:11:00,UW_David
+LOAN-00127,Underwriting,2025-01-14 03:11:00,UW_Rachel
+LOAN-00124,Compliance Check,2025-01-14 03:32:00,System_Compliance
+LOAN-00124,Loan Approved,2025-01-14 04:06:00,UW_David
+LOAN-00102,Document Signing,2025-01-14 04:56:00,Officer_Jessica
+LOAN-00095,Funds Disbursed,2025-01-14 04:59:00,System
+LOAN-00116,Document Signing,2025-01-14 05:15:00,Officer_Mike
+LOAN-00103,Funds Disbursed,2025-01-14 05:29:00,System
+LOAN-00097,Funds Disbursed,2025-01-14 05:31:00,System
+LOAN-00086,Funds Disbursed,2025-01-14 05:43:00,System
+LOAN-00088,Request Missing Documents,2025-01-14 05:54:00,Officer_Jessica
+LOAN-00092,Funds Disbursed,2025-01-14 06:24:00,System
+LOAN-00127,Manager Approval,2025-01-14 07:11:00,Manager_John
+LOAN-00079,Funds Disbursed,2025-01-14 07:30:00,System
+LOAN-00127,Compliance Check,2025-01-14 07:34:00,System_Compliance
+LOAN-00078,Funds Disbursed,2025-01-14 07:39:00,System
+LOAN-00127,Loan Approved,2025-01-14 08:04:00,UW_Rachel
+LOAN-00117,Document Signing,2025-01-14 08:21:00,Officer_Mike
+LOAN-00085,Funds Disbursed,2025-01-14 09:23:00,System
+LOAN-00123,Underwriting,2025-01-14 09:48:00,UW_Rachel
+LOAN-00138,Application Received,2025-01-14 09:49:00,System
+LOAN-00098,Document Signing,2025-01-14 09:51:00,Officer_Jessica
+LOAN-00084,Funds Disbursed,2025-01-14 10:02:00,System
+LOAN-00137,Application Received,2025-01-14 10:04:00,System
+LOAN-00112,Request Missing Documents,2025-01-14 10:12:00,Officer_Sarah
+LOAN-00134,Application Received,2025-01-14 10:19:00,System
+LOAN-00138,Document Collection,2025-01-14 10:19:00,Officer_Jessica
+LOAN-00137,Document Collection,2025-01-14 10:21:00,Officer_Jessica
+LOAN-00134,Document Collection,2025-01-14 10:34:00,Officer_Jessica
+LOAN-00137,Initial Review,2025-01-14 10:40:00,Officer_Sarah
+LOAN-00137,Credit Check,2025-01-14 10:47:00,System_Credit
+LOAN-00138,Initial Review,2025-01-14 10:47:00,Officer_Mike
+LOAN-00080,Document Collection,2025-01-14 10:49:00,Officer_Mike
+LOAN-00129,Underwriting,2025-01-14 10:58:00,UW_David
+LOAN-00138,Credit Check,2025-01-14 10:58:00,System_Credit
+LOAN-00134,Initial Review,2025-01-14 11:07:00,Officer_Mike
+LOAN-00131,Application Received,2025-01-14 11:08:00,System
+LOAN-00138,Income Verification,2025-01-14 11:09:00,Officer_Jessica
+LOAN-00090,Underwriting,2025-01-14 11:14:00,UW_David
+LOAN-00137,Income Verification,2025-01-14 11:17:00,Officer_Mike
+LOAN-00131,Document Collection,2025-01-14 11:22:00,Officer_Mike
+LOAN-00134,Credit Check,2025-01-14 11:22:00,System_Credit
+LOAN-00129,Compliance Check,2025-01-14 11:26:00,System_Compliance
+LOAN-00134,Income Verification,2025-01-14 11:35:00,Officer_Jessica
+LOAN-00121,Underwriting,2025-01-14 11:45:00,UW_David
+LOAN-00030,Funds Disbursed,2025-01-14 12:01:00,System
+LOAN-00131,Initial Review,2025-01-14 12:05:00,Officer_Jessica
+LOAN-00129,Loan Denied,2025-01-14 12:08:00,UW_David
+LOAN-00131,Credit Check,2025-01-14 12:12:00,System_Credit
+LOAN-00040,Document Collection,2025-01-14 12:14:00,Officer_Jessica
+LOAN-00131,Income Verification,2025-01-14 12:24:00,Officer_Sarah
+LOAN-00123,Manager Approval,2025-01-14 12:48:00,Manager_John
+LOAN-00123,Compliance Check,2025-01-14 13:06:00,System_Compliance
+LOAN-00133,Application Received,2025-01-14 13:06:00,System
+LOAN-00137,Risk Assessment,2025-01-14 13:17:00,UW_Rachel
+LOAN-00091,Document Signing,2025-01-14 13:25:00,Officer_Sarah
+LOAN-00123,Loan Approved,2025-01-14 13:27:00,UW_David
+LOAN-00133,Document Collection,2025-01-14 13:30:00,Officer_Jessica
+LOAN-00133,Initial Review,2025-01-14 13:52:00,Officer_Sarah
+LOAN-00113,Document Signing,2025-01-14 13:57:00,Officer_Jessica
+LOAN-00115,Document Signing,2025-01-14 13:57:00,Officer_Mike
+LOAN-00133,Credit Check,2025-01-14 14:07:00,System_Credit
+LOAN-00138,Risk Assessment,2025-01-14 14:09:00,UW_Rachel
+LOAN-00131,Risk Assessment,2025-01-14 14:24:00,UW_Rachel
+LOAN-00133,Income Verification,2025-01-14 14:36:00,Officer_Mike
+LOAN-00121,Manager Approval,2025-01-14 14:45:00,Manager_John
+LOAN-00048,Document Signing,2025-01-14 14:57:00,Officer_Sarah
+LOAN-00121,Compliance Check,2025-01-14 14:58:00,System_Compliance
+LOAN-00136,Application Received,2025-01-14 14:58:00,System
+LOAN-00107,Document Signing,2025-01-14 15:16:00,Officer_Jessica
+LOAN-00132,Application Received,2025-01-14 15:19:00,System
+LOAN-00130,Application Received,2025-01-14 15:20:00,System
+LOAN-00135,Application Received,2025-01-14 15:20:00,System
+LOAN-00136,Document Collection,2025-01-14 15:20:00,Officer_Mike
+LOAN-00134,Risk Assessment,2025-01-14 15:35:00,UW_David
+LOAN-00121,Loan Approved,2025-01-14 15:39:00,UW_David
+LOAN-00132,Document Collection,2025-01-14 15:42:00,Officer_Sarah
+LOAN-00135,Document Collection,2025-01-14 15:43:00,Officer_Mike
+LOAN-00139,Application Received,2025-01-14 15:45:00,System
+LOAN-00130,Document Collection,2025-01-14 15:50:00,Officer_Mike
+LOAN-00139,Document Collection,2025-01-14 15:58:00,Officer_Jessica
+LOAN-00132,Initial Review,2025-01-14 16:12:00,Officer_Jessica
+LOAN-00135,Initial Review,2025-01-14 16:20:00,Officer_Jessica
+LOAN-00132,Credit Check,2025-01-14 16:23:00,System_Credit
+LOAN-00135,Credit Check,2025-01-14 16:26:00,System_Credit
+LOAN-00130,Initial Review,2025-01-14 16:27:00,Officer_Sarah
+LOAN-00139,Initial Review,2025-01-14 16:28:00,Officer_Sarah
+LOAN-00139,Credit Check,2025-01-14 16:35:00,System_Credit
+LOAN-00133,Risk Assessment,2025-01-14 16:36:00,UW_David
+LOAN-00130,Credit Check,2025-01-14 16:40:00,System_Credit
+LOAN-00132,Income Verification,2025-01-14 16:43:00,Officer_Jessica
+LOAN-00135,Income Verification,2025-01-14 16:51:00,Officer_Sarah
+LOAN-00130,Income Verification,2025-01-14 16:53:00,Officer_Jessica
+LOAN-00139,Income Verification,2025-01-14 16:58:00,Officer_Sarah
+LOAN-00135,Risk Assessment,2025-01-14 17:51:00,UW_Rachel
+LOAN-00075,Funds Disbursed,2025-01-14 18:42:00,System
+LOAN-00132,Risk Assessment,2025-01-14 18:43:00,UW_David
+LOAN-00130,Risk Assessment,2025-01-14 18:53:00,UW_Rachel
+LOAN-00090,Additional Review Required,2025-01-14 19:14:00,UW_David
+LOAN-00139,Risk Assessment,2025-01-14 19:58:00,UW_Rachel
+LOAN-00122,Document Signing,2025-01-14 22:23:00,Officer_Jessica
+LOAN-00081,Funds Disbursed,2025-01-14 22:35:00,System
+LOAN-00080,Request Missing Documents,2025-01-14 22:49:00,Officer_Jessica
+LOAN-00073,Funds Disbursed,2025-01-14 23:00:00,System
+LOAN-00099,Funds Disbursed,2025-01-15 00:12:00,System
+LOAN-00110,Funds Disbursed,2025-01-15 00:37:00,System
+LOAN-00133,Underwriting,2025-01-15 02:36:00,UW_Rachel
+LOAN-00100,Document Signing,2025-01-15 02:56:00,Officer_Jessica
+LOAN-00082,Funds Disbursed,2025-01-15 02:57:00,System
+LOAN-00133,Compliance Check,2025-01-15 03:06:00,System_Compliance
+LOAN-00056,Funds Disbursed,2025-01-15 03:10:00,System
+LOAN-00124,Document Signing,2025-01-15 04:06:00,Officer_Sarah
+LOAN-00133,Loan Denied,2025-01-15 04:51:00,UW_Rachel
+LOAN-00116,Funds Disbursed,2025-01-15 05:15:00,System
+LOAN-00137,Underwriting,2025-01-15 05:17:00,UW_David
+LOAN-00137,Compliance Check,2025-01-15 05:44:00,System_Compliance
+LOAN-00139,Underwriting,2025-01-15 05:58:00,UW_Rachel
+LOAN-00139,Compliance Check,2025-01-15 06:13:00,System_Compliance
+LOAN-00137,Loan Approved,2025-01-15 06:19:00,UW_David
+LOAN-00131,Underwriting,2025-01-15 06:24:00,UW_Rachel
+LOAN-00131,Compliance Check,2025-01-15 06:40:00,System_Compliance
+LOAN-00016,Document Collection,2025-01-15 06:52:00,Officer_Sarah
+LOAN-00131,Loan Approved,2025-01-15 06:56:00,UW_Rachel
+LOAN-00024,Underwriting,2025-01-15 07:03:00,UW_Rachel
+LOAN-00114,Underwriting,2025-01-15 07:04:00,UW_David
+LOAN-00096,Request Missing Documents,2025-01-15 07:22:00,Officer_Jessica
+LOAN-00114,Compliance Check,2025-01-15 07:24:00,System_Compliance
+LOAN-00024,Compliance Check,2025-01-15 07:30:00,System_Compliance
+LOAN-00016,Initial Review,2025-01-15 07:34:00,Officer_Mike
+LOAN-00139,Loan Denied,2025-01-15 07:39:00,UW_David
+LOAN-00016,Credit Check,2025-01-15 07:45:00,System_Credit
+LOAN-00024,Loan Approved,2025-01-15 07:46:00,UW_David
+LOAN-00114,Loan Approved,2025-01-15 08:05:00,UW_Rachel
+LOAN-00016,Income Verification,2025-01-15 08:12:00,Officer_Jessica
+LOAN-00117,Funds Disbursed,2025-01-15 08:21:00,System
+LOAN-00118,Document Signing,2025-01-15 08:58:00,Officer_Jessica
+LOAN-00142,Application Received,2025-01-15 09:04:00,System
+LOAN-00120,Request Missing Documents,2025-01-15 09:11:00,Officer_Sarah
+LOAN-00142,Document Collection,2025-01-15 09:17:00,Officer_Jessica
+LOAN-00145,Application Received,2025-01-15 09:32:00,System
+LOAN-00143,Application Received,2025-01-15 09:42:00,System
+LOAN-00145,Document Collection,2025-01-15 09:44:00,Officer_Jessica
+LOAN-00098,Funds Disbursed,2025-01-15 09:51:00,System
+LOAN-00142,Initial Review,2025-01-15 09:52:00,Officer_Jessica
+LOAN-00142,Credit Check,2025-01-15 10:00:00,System_Credit
+LOAN-00143,Document Collection,2025-01-15 10:00:00,Officer_Sarah
+LOAN-00145,Initial Review,2025-01-15 10:03:00,Officer_Sarah
+LOAN-00128,Request Missing Documents,2025-01-15 10:09:00,Officer_Jessica
+LOAN-00016,Risk Assessment,2025-01-15 10:12:00,UW_Rachel
+LOAN-00145,Credit Check,2025-01-15 10:12:00,System_Credit
+LOAN-00142,Income Verification,2025-01-15 10:17:00,Officer_Sarah
+LOAN-00140,Application Received,2025-01-15 10:21:00,System
+LOAN-00143,Initial Review,2025-01-15 10:29:00,Officer_Mike
+LOAN-00145,Income Verification,2025-01-15 10:30:00,Officer_Mike
+LOAN-00147,Application Received,2025-01-15 10:30:00,System
+LOAN-00143,Credit Check,2025-01-15 10:42:00,System_Credit
+LOAN-00149,Application Received,2025-01-15 10:49:00,System
+LOAN-00147,Document Collection,2025-01-15 10:50:00,Officer_Jessica
+LOAN-00140,Document Collection,2025-01-15 10:51:00,Officer_Jessica
+LOAN-00143,Income Verification,2025-01-15 11:00:00,Officer_Jessica
+LOAN-00149,Document Collection,2025-01-15 11:04:00,Officer_Mike
+LOAN-00138,Underwriting,2025-01-15 11:09:00,UW_Rachel
+LOAN-00140,Initial Review,2025-01-15 11:09:00,Officer_Jessica
+LOAN-00140,Credit Check,2025-01-15 11:17:00,System_Credit
+LOAN-00142,Risk Assessment,2025-01-15 11:17:00,UW_Rachel
+LOAN-00140,Income Verification,2025-01-15 11:33:00,Officer_Sarah
+LOAN-00147,Initial Review,2025-01-15 11:35:00,Officer_Sarah
+LOAN-00149,Initial Review,2025-01-15 11:37:00,Officer_Mike
+LOAN-00149,Credit Check,2025-01-15 11:45:00,System_Credit
+LOAN-00147,Credit Check,2025-01-15 11:49:00,System_Credit
+LOAN-00149,Income Verification,2025-01-15 11:59:00,Officer_Mike
+LOAN-00143,Risk Assessment,2025-01-15 12:00:00,UW_Rachel
+LOAN-00147,Income Verification,2025-01-15 12:01:00,Officer_Sarah
+LOAN-00145,Risk Assessment,2025-01-15 12:30:00,UW_Rachel
+LOAN-00101,Document Signing,2025-01-15 12:32:00,Officer_Mike
+LOAN-00141,Application Received,2025-01-15 12:36:00,System
+LOAN-00148,Application Received,2025-01-15 12:41:00,System
+LOAN-00141,Document Collection,2025-01-15 12:51:00,Officer_Mike
+LOAN-00144,Application Received,2025-01-15 13:01:00,System
+LOAN-00148,Document Collection,2025-01-15 13:07:00,Officer_Jessica
+LOAN-00141,Initial Review,2025-01-15 13:11:00,Officer_Jessica
+LOAN-00146,Application Received,2025-01-15 13:16:00,System
+LOAN-00141,Credit Check,2025-01-15 13:18:00,System_Credit
+LOAN-00144,Document Collection,2025-01-15 13:24:00,Officer_Sarah
+LOAN-00134,Underwriting,2025-01-15 13:35:00,UW_Rachel
+LOAN-00141,Income Verification,2025-01-15 13:37:00,Officer_Sarah
+LOAN-00148,Initial Review,2025-01-15 13:37:00,Officer_Mike
+LOAN-00104,Document Collection,2025-01-15 13:41:00,Officer_Sarah
+LOAN-00148,Credit Check,2025-01-15 13:44:00,System_Credit
+LOAN-00146,Document Collection,2025-01-15 13:45:00,Officer_Jessica
+LOAN-00130,Underwriting,2025-01-15 13:53:00,UW_Rachel
+LOAN-00148,Income Verification,2025-01-15 13:58:00,Officer_Jessica
+LOAN-00147,Risk Assessment,2025-01-15 14:01:00,UW_Rachel
+LOAN-00130,Compliance Check,2025-01-15 14:07:00,System_Compliance
+LOAN-00146,Initial Review,2025-01-15 14:22:00,Officer_Jessica
+LOAN-00146,Credit Check,2025-01-15 14:28:00,System_Credit
+LOAN-00126,Underwriting,2025-01-15 14:30:00,UW_Rachel
+LOAN-00140,Risk Assessment,2025-01-15 14:33:00,UW_David
+LOAN-00134,Manager Approval,2025-01-15 14:35:00,Manager_John
+LOAN-00146,Income Verification,2025-01-15 14:45:00,Officer_Sarah
+LOAN-00126,Compliance Check,2025-01-15 14:56:00,System_Compliance
+LOAN-00048,Funds Disbursed,2025-01-15 14:57:00,System
+LOAN-00148,Risk Assessment,2025-01-15 14:58:00,UW_Rachel
+LOAN-00149,Risk Assessment,2025-01-15 14:59:00,UW_David
+LOAN-00134,Compliance Check,2025-01-15 15:02:00,System_Compliance
+LOAN-00107,Funds Disbursed,2025-01-15 15:16:00,System
+LOAN-00126,Loan Approved,2025-01-15 15:41:00,UW_Rachel
+LOAN-00132,Underwriting,2025-01-15 15:43:00,UW_Rachel
+LOAN-00134,Loan Approved,2025-01-15 15:47:00,UW_David
+LOAN-00130,Loan Denied,2025-01-15 15:57:00,UW_Rachel
+LOAN-00138,Additional Review Required,2025-01-15 16:09:00,UW_David
+LOAN-00105,Underwriting,2025-01-15 16:13:00,UW_Rachel
+LOAN-00040,Request Missing Documents,2025-01-15 16:14:00,Officer_Mike
+LOAN-00145,Underwriting,2025-01-15 16:30:00,UW_David
+LOAN-00141,Risk Assessment,2025-01-15 16:37:00,UW_Rachel
+LOAN-00105,Compliance Check,2025-01-15 16:42:00,System_Compliance
+LOAN-00145,Compliance Check,2025-01-15 16:58:00,System_Compliance
+LOAN-00105,Loan Approved,2025-01-15 17:23:00,UW_David
+LOAN-00109,Document Signing,2025-01-15 17:29:00,Officer_Sarah
+LOAN-00145,Loan Approved,2025-01-15 17:36:00,UW_Rachel
+LOAN-00146,Risk Assessment,2025-01-15 17:45:00,UW_David
+LOAN-00143,Underwriting,2025-01-15 22:00:00,UW_David
+LOAN-00142,Underwriting,2025-01-15 22:17:00,UW_David
+LOAN-00122,Funds Disbursed,2025-01-15 22:23:00,System
+LOAN-00140,Underwriting,2025-01-15 22:33:00,UW_David
+LOAN-00142,Compliance Check,2025-01-15 22:45:00,System_Compliance
+LOAN-00140,Compliance Check,2025-01-15 22:58:00,System_Compliance
+LOAN-00142,Loan Approved,2025-01-15 23:19:00,UW_David
+LOAN-00140,Loan Approved,2025-01-15 23:28:00,UW_Rachel
+LOAN-00132,Additional Review Required,2025-01-15 23:43:00,UW_David
+LOAN-00146,Underwriting,2025-01-16 00:45:00,UW_Rachel
+LOAN-00143,Manager Approval,2025-01-16 01:00:00,Manager_John
+LOAN-00016,Underwriting,2025-01-16 01:12:00,UW_Rachel
+LOAN-00146,Compliance Check,2025-01-16 01:12:00,System_Compliance
+LOAN-00143,Compliance Check,2025-01-16 01:14:00,System_Compliance
+LOAN-00032,Document Collection,2025-01-16 01:30:00,Officer_Sarah
+LOAN-00143,Loan Approved,2025-01-16 01:31:00,UW_Rachel
+LOAN-00146,Loan Approved,2025-01-16 01:34:00,UW_David
+LOAN-00016,Compliance Check,2025-01-16 01:35:00,System_Compliance
+LOAN-00125,Document Signing,2025-01-16 02:09:00,Officer_Jessica
+LOAN-00016,Loan Approved,2025-01-16 02:10:00,UW_David
+LOAN-00100,Funds Disbursed,2025-01-16 02:56:00,System
+LOAN-00102,Funds Disbursed,2025-01-16 04:56:00,System
+LOAN-00131,Document Signing,2025-01-16 06:56:00,Officer_Mike
+LOAN-00148,Underwriting,2025-01-16 06:58:00,UW_Rachel
+LOAN-00147,Underwriting,2025-01-16 07:01:00,UW_Rachel
+LOAN-00096,Document Collection,2025-01-16 07:22:00,Officer_Jessica
+LOAN-00148,Compliance Check,2025-01-16 07:25:00,System_Compliance
+LOAN-00147,Compliance Check,2025-01-16 07:27:00,System_Compliance
+LOAN-00141,Underwriting,2025-01-16 07:37:00,UW_Rachel
+LOAN-00147,Loan Approved,2025-01-16 07:55:00,UW_Rachel
+LOAN-00127,Document Signing,2025-01-16 08:04:00,Officer_Mike
+LOAN-00148,Loan Approved,2025-01-16 08:09:00,UW_David
+LOAN-00158,Application Received,2025-01-16 09:12:00,System
+LOAN-00090,Underwriting,2025-01-16 09:14:00,UW_Rachel
+LOAN-00158,Document Collection,2025-01-16 09:33:00,Officer_Mike
+LOAN-00090,Compliance Check,2025-01-16 09:43:00,System_Compliance
+LOAN-00153,Application Received,2025-01-16 09:48:00,System
+LOAN-00158,Initial Review,2025-01-16 09:55:00,Officer_Sarah
+LOAN-00158,Credit Check,2025-01-16 10:01:00,System_Credit
+LOAN-00153,Document Collection,2025-01-16 10:12:00,Officer_Jessica
+LOAN-00150,Application Received,2025-01-16 10:13:00,System
+LOAN-00090,Loan Approved,2025-01-16 10:17:00,UW_Rachel
+LOAN-00158,Income Verification,2025-01-16 10:19:00,Officer_Mike
+LOAN-00150,Document Collection,2025-01-16 10:37:00,Officer_Mike
+LOAN-00157,Application Received,2025-01-16 10:43:00,System
+LOAN-00150,Initial Review,2025-01-16 10:52:00,Officer_Jessica
+LOAN-00153,Initial Review,2025-01-16 10:55:00,Officer_Sarah
+LOAN-00149,Underwriting,2025-01-16 10:59:00,UW_David
+LOAN-00150,Credit Check,2025-01-16 10:59:00,System_Credit
+LOAN-00154,Application Received,2025-01-16 11:02:00,System
+LOAN-00157,Document Collection,2025-01-16 11:04:00,Officer_Sarah
+LOAN-00153,Credit Check,2025-01-16 11:09:00,System_Credit
+LOAN-00136,Request Missing Documents,2025-01-16 11:20:00,Officer_Jessica
+LOAN-00157,Initial Review,2025-01-16 11:20:00,Officer_Sarah
+LOAN-00150,Income Verification,2025-01-16 11:28:00,Officer_Mike
+LOAN-00153,Income Verification,2025-01-16 11:28:00,Officer_Jessica
+LOAN-00154,Document Collection,2025-01-16 11:28:00,Officer_Jessica
+LOAN-00157,Credit Check,2025-01-16 11:34:00,System_Credit
+LOAN-00141,Manager Approval,2025-01-16 11:37:00,Manager_John
+LOAN-00151,Application Received,2025-01-16 11:40:00,System
+LOAN-00141,Compliance Check,2025-01-16 11:52:00,System_Compliance
+LOAN-00154,Initial Review,2025-01-16 11:58:00,Officer_Sarah
+LOAN-00157,Income Verification,2025-01-16 12:02:00,Officer_Mike
+LOAN-00151,Document Collection,2025-01-16 12:03:00,Officer_Jessica
+LOAN-00154,Credit Check,2025-01-16 12:05:00,System_Credit
+LOAN-00158,Risk Assessment,2025-01-16 12:19:00,UW_Rachel
+LOAN-00154,Income Verification,2025-01-16 12:21:00,Officer_Mike
+LOAN-00151,Initial Review,2025-01-16 12:23:00,Officer_Sarah
+LOAN-00151,Credit Check,2025-01-16 12:28:00,System_Credit
+LOAN-00101,Funds Disbursed,2025-01-16 12:32:00,System
+LOAN-00141,Loan Approved,2025-01-16 12:37:00,UW_Rachel
+LOAN-00151,Income Verification,2025-01-16 12:40:00,Officer_Sarah
+LOAN-00091,Funds Disbursed,2025-01-16 13:25:00,System
+LOAN-00123,Document Signing,2025-01-16 13:27:00,Officer_Jessica
+LOAN-00153,Risk Assessment,2025-01-16 13:28:00,UW_David
+LOAN-00104,Request Missing Documents,2025-01-16 13:41:00,Officer_Mike
+LOAN-00113,Funds Disbursed,2025-01-16 13:57:00,System
+LOAN-00115,Funds Disbursed,2025-01-16 13:57:00,System
+LOAN-00150,Risk Assessment,2025-01-16 14:28:00,UW_David
+LOAN-00157,Risk Assessment,2025-01-16 15:02:00,UW_Rachel
+LOAN-00152,Application Received,2025-01-16 15:06:00,System
+LOAN-00159,Application Received,2025-01-16 15:13:00,System
+LOAN-00156,Application Received,2025-01-16 15:17:00,System
+LOAN-00152,Document Collection,2025-01-16 15:21:00,Officer_Jessica
+LOAN-00154,Risk Assessment,2025-01-16 15:21:00,UW_Rachel
+LOAN-00159,Document Collection,2025-01-16 15:33:00,Officer_Mike
+LOAN-00121,Document Signing,2025-01-16 15:39:00,Officer_Mike
+LOAN-00156,Document Collection,2025-01-16 15:44:00,Officer_Mike
+LOAN-00155,Application Received,2025-01-16 15:47:00,System
+LOAN-00155,Document Collection,2025-01-16 16:04:00,Officer_Jessica
+LOAN-00159,Initial Review,2025-01-16 16:07:00,Officer_Sarah
+LOAN-00138,Underwriting,2025-01-16 16:09:00,UW_David
+LOAN-00159,Credit Check,2025-01-16 16:12:00,System_Credit
+LOAN-00155,Initial Review,2025-01-16 16:21:00,Officer_Jessica
+LOAN-00156,Initial Review,2025-01-16 16:26:00,Officer_Mike
+LOAN-00155,Credit Check,2025-01-16 16:29:00,System_Credit
+LOAN-00156,Credit Check,2025-01-16 16:32:00,System_Credit
+LOAN-00159,Income Verification,2025-01-16 16:39:00,Officer_Jessica
+LOAN-00151,Risk Assessment,2025-01-16 16:40:00,UW_Rachel
+LOAN-00155,Income Verification,2025-01-16 16:54:00,Officer_Sarah
+LOAN-00149,Manager Approval,2025-01-16 16:59:00,Manager_John
+LOAN-00156,Income Verification,2025-01-16 17:01:00,Officer_Mike
+LOAN-00149,Compliance Check,2025-01-16 17:22:00,System_Compliance
+LOAN-00105,Document Signing,2025-01-16 17:23:00,Officer_Mike
+LOAN-00109,Funds Disbursed,2025-01-16 17:29:00,System
+LOAN-00145,Document Signing,2025-01-16 17:36:00,Officer_Sarah
+LOAN-00132,Underwriting,2025-01-16 17:43:00,UW_Rachel
+LOAN-00155,Risk Assessment,2025-01-16 17:54:00,UW_Rachel
+LOAN-00132,Compliance Check,2025-01-16 17:55:00,System_Compliance
+LOAN-00149,Loan Approved,2025-01-16 18:02:00,UW_David
+LOAN-00132,Loan Approved,2025-01-16 18:16:00,UW_Rachel
+LOAN-00153,Underwriting,2025-01-16 18:28:00,UW_Rachel
+LOAN-00153,Compliance Check,2025-01-16 18:58:00,System_Compliance
+LOAN-00156,Risk Assessment,2025-01-16 19:01:00,UW_David
+LOAN-00153,Loan Approved,2025-01-16 19:26:00,UW_David
+LOAN-00159,Risk Assessment,2025-01-16 19:39:00,UW_David
+LOAN-00138,Manager Approval,2025-01-16 20:09:00,Manager_John
+LOAN-00138,Compliance Check,2025-01-16 20:25:00,System_Compliance
+LOAN-00138,Loan Approved,2025-01-16 20:50:00,UW_Rachel
+LOAN-00154,Underwriting,2025-01-16 21:21:00,UW_David
+LOAN-00154,Compliance Check,2025-01-16 21:44:00,System_Compliance
+LOAN-00112,Document Collection,2025-01-16 22:12:00,Officer_Jessica
+LOAN-00154,Loan Denied,2025-01-16 22:34:00,UW_Rachel
+LOAN-00120,Document Collection,2025-01-16 23:11:00,Officer_Sarah
+LOAN-00040,Document Collection,2025-01-16 23:14:00,Officer_Sarah
+LOAN-00142,Document Signing,2025-01-16 23:19:00,Officer_Mike
+LOAN-00040,Initial Review,2025-01-16 23:49:00,Officer_Sarah
+LOAN-00040,Credit Check,2025-01-16 23:59:00,System_Credit
+LOAN-00040,Income Verification,2025-01-17 00:25:00,Officer_Jessica
+LOAN-00143,Document Signing,2025-01-17 01:31:00,Officer_Mike
+LOAN-00146,Document Signing,2025-01-17 01:34:00,Officer_Jessica
+LOAN-00125,Funds Disbursed,2025-01-17 02:09:00,System
+LOAN-00040,Risk Assessment,2025-01-17 03:25:00,UW_David
+LOAN-00124,Funds Disbursed,2025-01-17 04:06:00,System
+LOAN-00072,Document Collection,2025-01-17 04:45:00,Officer_Sarah
+LOAN-00072,Initial Review,2025-01-17 05:14:00,Officer_Sarah
+LOAN-00072,Credit Check,2025-01-17 05:26:00,System_Credit
+LOAN-00072,Income Verification,2025-01-17 05:38:00,Officer_Sarah
+LOAN-00080,Document Collection,2025-01-17 05:49:00,Officer_Mike
+LOAN-00137,Document Signing,2025-01-17 06:19:00,Officer_Mike
+LOAN-00072,Risk Assessment,2025-01-17 06:38:00,UW_David
+LOAN-00131,Funds Disbursed,2025-01-17 06:56:00,System
+LOAN-00096,Request Missing Documents,2025-01-17 07:22:00,Officer_Sarah
+LOAN-00024,Document Signing,2025-01-17 07:46:00,Officer_Jessica
+LOAN-00088,Document Collection,2025-01-17 07:54:00,Officer_Sarah
+LOAN-00155,Underwriting,2025-01-17 07:54:00,UW_David
+LOAN-00147,Document Signing,2025-01-17 07:55:00,Officer_Jessica
+LOAN-00127,Funds Disbursed,2025-01-17 08:04:00,System
+LOAN-00148,Document Signing,2025-01-17 08:09:00,Officer_Mike
+LOAN-00155,Compliance Check,2025-01-17 08:20:00,System_Compliance
+LOAN-00088,Initial Review,2025-01-17 08:22:00,Officer_Mike
+LOAN-00088,Credit Check,2025-01-17 08:34:00,System_Credit
+LOAN-00159,Underwriting,2025-01-17 08:39:00,UW_David
+LOAN-00155,Loan Approved,2025-01-17 08:43:00,UW_Rachel
+LOAN-00159,Compliance Check,2025-01-17 08:55:00,System_Compliance
+LOAN-00118,Funds Disbursed,2025-01-17 08:58:00,System
+LOAN-00088,Income Verification,2025-01-17 08:59:00,Officer_Jessica
+LOAN-00159,Loan Approved,2025-01-17 09:24:00,UW_Rachel
+LOAN-00151,Underwriting,2025-01-17 09:40:00,UW_Rachel
+LOAN-00167,Application Received,2025-01-17 09:53:00,System
+LOAN-00088,Risk Assessment,2025-01-17 09:59:00,UW_David
+LOAN-00151,Compliance Check,2025-01-17 10:09:00,System_Compliance
+LOAN-00167,Document Collection,2025-01-17 10:09:00,Officer_Sarah
+LOAN-00090,Document Signing,2025-01-17 10:17:00,Officer_Jessica
+LOAN-00144,Request Missing Documents,2025-01-17 10:24:00,Officer_Mike
+LOAN-00072,Underwriting,2025-01-17 10:38:00,UW_David
+LOAN-00167,Initial Review,2025-01-17 10:41:00,Officer_Sarah
+LOAN-00167,Credit Check,2025-01-17 10:50:00,System_Credit
+LOAN-00151,Loan Approved,2025-01-17 10:51:00,UW_Rachel
+LOAN-00161,Application Received,2025-01-17 11:01:00,System
+LOAN-00167,Income Verification,2025-01-17 11:13:00,Officer_Sarah
+LOAN-00158,Underwriting,2025-01-17 11:19:00,UW_Rachel
+LOAN-00161,Document Collection,2025-01-17 11:26:00,Officer_Mike
+LOAN-00163,Application Received,2025-01-17 11:35:00,System
+LOAN-00164,Application Received,2025-01-17 11:42:00,System
+LOAN-00163,Document Collection,2025-01-17 11:54:00,Officer_Sarah
+LOAN-00164,Document Collection,2025-01-17 11:55:00,Officer_Sarah
+LOAN-00161,Initial Review,2025-01-17 11:56:00,Officer_Jessica
+LOAN-00157,Underwriting,2025-01-17 12:02:00,UW_Rachel
+LOAN-00161,Credit Check,2025-01-17 12:08:00,System_Credit
+LOAN-00168,Application Received,2025-01-17 12:08:00,System
+LOAN-00163,Initial Review,2025-01-17 12:14:00,Officer_Mike
+LOAN-00168,Document Collection,2025-01-17 12:18:00,Officer_Mike
+LOAN-00157,Compliance Check,2025-01-17 12:21:00,System_Compliance
+LOAN-00163,Credit Check,2025-01-17 12:29:00,System_Credit
+LOAN-00161,Income Verification,2025-01-17 12:31:00,Officer_Mike
+LOAN-00164,Initial Review,2025-01-17 12:40:00,Officer_Mike
+LOAN-00164,Credit Check,2025-01-17 12:47:00,System_Credit
+LOAN-00163,Income Verification,2025-01-17 12:55:00,Officer_Sarah
+LOAN-00157,Loan Approved,2025-01-17 12:59:00,UW_Rachel
+LOAN-00164,Income Verification,2025-01-17 13:08:00,Officer_Mike
+LOAN-00158,Manager Approval,2025-01-17 13:19:00,Manager_John
+LOAN-00123,Funds Disbursed,2025-01-17 13:27:00,System
+LOAN-00158,Compliance Check,2025-01-17 13:44:00,System_Compliance
+LOAN-00064,Document Collection,2025-01-17 13:59:00,Officer_Mike
+LOAN-00167,Risk Assessment,2025-01-17 14:13:00,UW_David
+LOAN-00064,Initial Review,2025-01-17 14:43:00,Officer_Jessica
+LOAN-00163,Risk Assessment,2025-01-17 14:55:00,UW_Rachel
+LOAN-00064,Credit Check,2025-01-17 14:57:00,System_Credit
+LOAN-00165,Application Received,2025-01-17 14:58:00,System
+LOAN-00158,Loan Denied,2025-01-17 15:11:00,UW_David
+LOAN-00169,Application Received,2025-01-17 15:19:00,System
+LOAN-00064,Income Verification,2025-01-17 15:22:00,Officer_Jessica
+LOAN-00160,Application Received,2025-01-17 15:22:00,System
+LOAN-00165,Document Collection,2025-01-17 15:23:00,Officer_Sarah
+LOAN-00160,Document Collection,2025-01-17 15:33:00,Officer_Mike
+LOAN-00121,Funds Disbursed,2025-01-17 15:39:00,System
+LOAN-00169,Document Collection,2025-01-17 15:44:00,Officer_Jessica
+LOAN-00166,Application Received,2025-01-17 15:46:00,System
+LOAN-00162,Application Received,2025-01-17 15:52:00,System
+LOAN-00156,Underwriting,2025-01-17 16:01:00,UW_David
+LOAN-00162,Document Collection,2025-01-17 16:02:00,Officer_Jessica
+LOAN-00165,Initial Review,2025-01-17 16:05:00,Officer_Jessica
+LOAN-00165,Credit Check,2025-01-17 16:11:00,System_Credit
+LOAN-00166,Document Collection,2025-01-17 16:11:00,Officer_Mike
+LOAN-00162,Initial Review,2025-01-17 16:23:00,Officer_Jessica
+LOAN-00165,Income Verification,2025-01-17 16:25:00,Officer_Sarah
+LOAN-00169,Initial Review,2025-01-17 16:26:00,Officer_Jessica
+LOAN-00161,Risk Assessment,2025-01-17 16:31:00,UW_David
+LOAN-00072,Additional Review Required,2025-01-17 16:38:00,UW_David
+LOAN-00162,Credit Check,2025-01-17 16:38:00,System_Credit
+LOAN-00169,Credit Check,2025-01-17 16:40:00,System_Credit
+LOAN-00166,Initial Review,2025-01-17 16:41:00,Officer_Sarah
+LOAN-00166,Credit Check,2025-01-17 16:55:00,System_Credit
+LOAN-00162,Income Verification,2025-01-17 16:57:00,Officer_Sarah
+LOAN-00169,Income Verification,2025-01-17 17:04:00,Officer_Mike
+LOAN-00164,Risk Assessment,2025-01-17 17:08:00,UW_David
+LOAN-00166,Income Verification,2025-01-17 17:12:00,Officer_Jessica
+LOAN-00064,Risk Assessment,2025-01-17 17:22:00,UW_Rachel
+LOAN-00145,Funds Disbursed,2025-01-17 17:36:00,System
+LOAN-00128,Document Collection,2025-01-17 18:09:00,Officer_Jessica
+LOAN-00135,Underwriting,2025-01-17 18:51:00,UW_David
+LOAN-00162,Risk Assessment,2025-01-17 18:57:00,UW_David
+LOAN-00169,Risk Assessment,2025-01-17 19:04:00,UW_Rachel
+LOAN-00135,Compliance Check,2025-01-17 19:09:00,System_Compliance
+LOAN-00167,Underwriting,2025-01-17 19:13:00,UW_David
+LOAN-00167,Compliance Check,2025-01-17 19:24:00,System_Compliance
+LOAN-00135,Loan Approved,2025-01-17 19:47:00,UW_Rachel
+LOAN-00167,Loan Approved,2025-01-17 19:53:00,UW_Rachel
+LOAN-00088,Underwriting,2025-01-17 19:59:00,UW_David
+LOAN-00088,Compliance Check,2025-01-17 20:11:00,System_Compliance
+LOAN-00166,Risk Assessment,2025-01-17 20:12:00,UW_Rachel
+LOAN-00165,Risk Assessment,2025-01-17 20:25:00,UW_David
+LOAN-00088,Loan Approved,2025-01-17 20:43:00,UW_David
+LOAN-00138,Document Signing,2025-01-17 20:50:00,Officer_Jessica
+LOAN-00164,Underwriting,2025-01-17 21:08:00,UW_Rachel
+LOAN-00164,Compliance Check,2025-01-17 21:34:00,System_Compliance
+LOAN-00152,Request Missing Documents,2025-01-17 22:21:00,Officer_Sarah
+LOAN-00040,Underwriting,2025-01-17 22:25:00,UW_Rachel
+LOAN-00040,Compliance Check,2025-01-17 22:41:00,System_Compliance
+LOAN-00156,Additional Review Required,2025-01-17 23:01:00,UW_David
+LOAN-00040,Loan Approved,2025-01-17 23:07:00,UW_Rachel
+LOAN-00164,Loan Denied,2025-01-17 23:13:00,UW_Rachel
+LOAN-00142,Funds Disbursed,2025-01-17 23:19:00,System
+LOAN-00112,Request Missing Documents,2025-01-18 00:12:00,Officer_Mike
+LOAN-00032,Request Missing Documents,2025-01-18 00:30:00,Officer_Sarah
+LOAN-00161,Underwriting,2025-01-18 00:31:00,UW_David
+LOAN-00161,Compliance Check,2025-01-18 00:58:00,System_Compliance
+LOAN-00146,Funds Disbursed,2025-01-18 01:34:00,System
+LOAN-00161,Loan Approved,2025-01-18 01:41:00,UW_Rachel
+LOAN-00016,Document Signing,2025-01-18 02:10:00,Officer_Mike
+LOAN-00120,Request Missing Documents,2025-01-18 02:11:00,Officer_Sarah
+LOAN-00168,Request Missing Documents,2025-01-18 04:18:00,Officer_Jessica
+LOAN-00162,Underwriting,2025-01-18 04:57:00,UW_David
+LOAN-00137,Funds Disbursed,2025-01-18 06:19:00,System
+LOAN-00064,Underwriting,2025-01-18 06:22:00,UW_Rachel
+LOAN-00162,Additional Review Required,2025-01-18 06:57:00,UW_David
+LOAN-00024,Funds Disbursed,2025-01-18 07:46:00,System
+LOAN-00114,Document Signing,2025-01-18 08:05:00,Officer_Sarah
+LOAN-00159,Document Signing,2025-01-18 09:24:00,Officer_Sarah
+LOAN-00176,Application Received,2025-01-18 09:42:00,System
+LOAN-00176,Document Collection,2025-01-18 10:04:00,Officer_Sarah
+LOAN-00166,Underwriting,2025-01-18 10:12:00,UW_Rachel
+LOAN-00090,Funds Disbursed,2025-01-18 10:17:00,System
+LOAN-00064,Manager Approval,2025-01-18 10:22:00,Manager_John
+LOAN-00177,Application Received,2025-01-18 10:28:00,System
+LOAN-00166,Compliance Check,2025-01-18 10:39:00,System_Compliance
+LOAN-00064,Compliance Check,2025-01-18 10:40:00,System_Compliance
+LOAN-00177,Document Collection,2025-01-18 10:47:00,Officer_Sarah
+LOAN-00171,Application Received,2025-01-18 10:48:00,System
+LOAN-00064,Loan Approved,2025-01-18 10:59:00,UW_David
+LOAN-00171,Document Collection,2025-01-18 11:07:00,Officer_Jessica
+LOAN-00166,Loan Approved,2025-01-18 11:12:00,UW_David
+LOAN-00144,Document Collection,2025-01-18 11:24:00,Officer_Sarah
+LOAN-00171,Initial Review,2025-01-18 11:28:00,Officer_Jessica
+LOAN-00177,Initial Review,2025-01-18 11:30:00,Officer_Jessica
+LOAN-00177,Credit Check,2025-01-18 11:36:00,System_Credit
+LOAN-00174,Application Received,2025-01-18 11:40:00,System
+LOAN-00171,Credit Check,2025-01-18 11:42:00,System_Credit
+LOAN-00163,Underwriting,2025-01-18 11:55:00,UW_Rachel
+LOAN-00174,Document Collection,2025-01-18 11:58:00,Officer_Mike
+LOAN-00177,Income Verification,2025-01-18 12:03:00,Officer_Sarah
+LOAN-00171,Income Verification,2025-01-18 12:04:00,Officer_Sarah
+LOAN-00174,Initial Review,2025-01-18 12:20:00,Officer_Jessica
+LOAN-00163,Compliance Check,2025-01-18 12:22:00,System_Compliance
+LOAN-00174,Credit Check,2025-01-18 12:34:00,System_Credit
+LOAN-00141,Document Signing,2025-01-18 12:37:00,Officer_Jessica
+LOAN-00170,Application Received,2025-01-18 12:47:00,System
+LOAN-00163,Loan Approved,2025-01-18 12:51:00,UW_David
+LOAN-00174,Income Verification,2025-01-18 12:56:00,Officer_Mike
+LOAN-00175,Application Received,2025-01-18 12:56:00,System
+LOAN-00170,Document Collection,2025-01-18 13:12:00,Officer_Sarah
+LOAN-00175,Document Collection,2025-01-18 13:13:00,Officer_Sarah
+LOAN-00170,Initial Review,2025-01-18 13:28:00,Officer_Jessica
+LOAN-00175,Initial Review,2025-01-18 13:28:00,Officer_Jessica
+LOAN-00170,Credit Check,2025-01-18 13:38:00,System_Credit
+LOAN-00175,Credit Check,2025-01-18 13:42:00,System_Credit
+LOAN-00175,Income Verification,2025-01-18 13:57:00,Officer_Jessica
+LOAN-00170,Income Verification,2025-01-18 13:58:00,Officer_Jessica
+LOAN-00179,Application Received,2025-01-18 14:20:00,System
+LOAN-00179,Document Collection,2025-01-18 14:31:00,Officer_Sarah
+LOAN-00072,Underwriting,2025-01-18 14:38:00,UW_David
+LOAN-00172,Application Received,2025-01-18 14:43:00,System
+LOAN-00173,Application Received,2025-01-18 14:55:00,System
+LOAN-00175,Risk Assessment,2025-01-18 14:57:00,UW_David
+LOAN-00172,Document Collection,2025-01-18 14:59:00,Officer_Sarah
+LOAN-00179,Initial Review,2025-01-18 15:02:00,Officer_Mike
+LOAN-00173,Document Collection,2025-01-18 15:13:00,Officer_Mike
+LOAN-00178,Application Received,2025-01-18 15:14:00,System
+LOAN-00172,Initial Review,2025-01-18 15:16:00,Officer_Jessica
+LOAN-00179,Credit Check,2025-01-18 15:16:00,System_Credit
+LOAN-00172,Credit Check,2025-01-18 15:24:00,System_Credit
+LOAN-00179,Income Verification,2025-01-18 15:27:00,Officer_Sarah
+LOAN-00173,Initial Review,2025-01-18 15:32:00,Officer_Mike
+LOAN-00072,Manager Approval,2025-01-18 15:38:00,Manager_John
+LOAN-00178,Document Collection,2025-01-18 15:39:00,Officer_Sarah
+LOAN-00126,Document Signing,2025-01-18 15:41:00,Officer_Sarah
+LOAN-00173,Credit Check,2025-01-18 15:41:00,System_Credit
+LOAN-00172,Income Verification,2025-01-18 15:44:00,Officer_Mike
+LOAN-00134,Document Signing,2025-01-18 15:47:00,Officer_Sarah
+LOAN-00173,Income Verification,2025-01-18 15:55:00,Officer_Sarah
+LOAN-00170,Risk Assessment,2025-01-18 15:58:00,UW_Rachel
+LOAN-00072,Compliance Check,2025-01-18 16:02:00,System_Compliance
+LOAN-00177,Risk Assessment,2025-01-18 16:03:00,UW_David
+LOAN-00171,Risk Assessment,2025-01-18 16:04:00,UW_Rachel
+LOAN-00178,Initial Review,2025-01-18 16:07:00,Officer_Mike
+LOAN-00178,Credit Check,2025-01-18 16:17:00,System_Credit
+LOAN-00072,Loan Approved,2025-01-18 16:41:00,UW_David
+LOAN-00178,Income Verification,2025-01-18 16:43:00,Officer_Jessica
+LOAN-00174,Risk Assessment,2025-01-18 16:56:00,UW_Rachel
+LOAN-00105,Funds Disbursed,2025-01-18 17:23:00,System
+LOAN-00173,Risk Assessment,2025-01-18 17:55:00,UW_David
+LOAN-00132,Document Signing,2025-01-18 18:16:00,Officer_Mike
+LOAN-00179,Risk Assessment,2025-01-18 18:27:00,UW_David
+LOAN-00160,Request Missing Documents,2025-01-18 18:33:00,Officer_Sarah
+LOAN-00169,Underwriting,2025-01-18 19:04:00,UW_David
+LOAN-00169,Compliance Check,2025-01-18 19:18:00,System_Compliance
+LOAN-00136,Document Collection,2025-01-18 19:20:00,Officer_Mike
+LOAN-00169,Loan Approved,2025-01-18 19:37:00,UW_Rachel
+LOAN-00178,Risk Assessment,2025-01-18 19:43:00,UW_David
+LOAN-00172,Risk Assessment,2025-01-18 19:44:00,UW_Rachel
+LOAN-00135,Document Signing,2025-01-18 19:47:00,Officer_Jessica
+LOAN-00080,Request Missing Documents,2025-01-18 19:49:00,Officer_Sarah
+LOAN-00138,Funds Disbursed,2025-01-18 20:50:00,System
+LOAN-00156,Underwriting,2025-01-18 21:01:00,UW_Rachel
+LOAN-00156,Compliance Check,2025-01-18 21:15:00,System_Compliance
+LOAN-00156,Loan Denied,2025-01-18 21:54:00,UW_David
+LOAN-00040,Document Signing,2025-01-18 23:07:00,Officer_Sarah
+LOAN-00140,Document Signing,2025-01-18 23:28:00,Officer_Mike
+LOAN-00128,Request Missing Documents,2025-01-19 00:09:00,Officer_Sarah
+LOAN-00096,Document Collection,2025-01-19 00:22:00,Officer_Mike
+LOAN-00143,Funds Disbursed,2025-01-19 01:31:00,System
+LOAN-00161,Document Signing,2025-01-19 01:41:00,Officer_Jessica
+LOAN-00171,Underwriting,2025-01-19 02:04:00,UW_Rachel
+LOAN-00171,Compliance Check,2025-01-19 02:25:00,System_Compliance
+LOAN-00171,Loan Approved,2025-01-19 03:09:00,UW_David
+LOAN-00178,Underwriting,2025-01-19 03:43:00,UW_David
+LOAN-00168,Document Collection,2025-01-19 04:18:00,Officer_Sarah
+LOAN-00144,Request Missing Documents,2025-01-19 05:24:00,Officer_Sarah
+LOAN-00178,Manager Approval,2025-01-19 05:43:00,Manager_John
+LOAN-00178,Compliance Check,2025-01-19 06:11:00,System_Compliance
+LOAN-00178,Loan Approved,2025-01-19 06:41:00,UW_David
+LOAN-00147,Funds Disbursed,2025-01-19 07:55:00,System
+LOAN-00148,Funds Disbursed,2025-01-19 08:09:00,System
+LOAN-00155,Document Signing,2025-01-19 08:43:00,Officer_Jessica
+LOAN-00174,Underwriting,2025-01-19 08:56:00,UW_Rachel
+LOAN-00175,Underwriting,2025-01-19 08:57:00,UW_David
+LOAN-00177,Underwriting,2025-01-19 09:03:00,UW_Rachel
+LOAN-00183,Application Received,2025-01-19 09:09:00,System
+LOAN-00181,Application Received,2025-01-19 09:28:00,System
+LOAN-00183,Document Collection,2025-01-19 09:35:00,Officer_Mike
+LOAN-00185,Application Received,2025-01-19 09:36:00,System
+LOAN-00181,Document Collection,2025-01-19 09:50:00,Officer_Mike
+LOAN-00185,Document Collection,2025-01-19 09:58:00,Officer_Jessica
+LOAN-00182,Application Received,2025-01-19 09:59:00,System
+LOAN-00182,Document Collection,2025-01-19 10:14:00,Officer_Sarah
+LOAN-00183,Initial Review,2025-01-19 10:16:00,Officer_Sarah
+LOAN-00181,Initial Review,2025-01-19 10:19:00,Officer_Mike
+LOAN-00152,Document Collection,2025-01-19 10:21:00,Officer_Sarah
+LOAN-00183,Credit Check,2025-01-19 10:23:00,System_Credit
+LOAN-00181,Credit Check,2025-01-19 10:26:00,System_Credit
+LOAN-00185,Initial Review,2025-01-19 10:32:00,Officer_Jessica
+LOAN-00183,Income Verification,2025-01-19 10:39:00,Officer_Mike
+LOAN-00181,Income Verification,2025-01-19 10:41:00,Officer_Mike
+LOAN-00182,Initial Review,2025-01-19 10:43:00,Officer_Mike
+LOAN-00185,Credit Check,2025-01-19 10:46:00,System_Credit
+LOAN-00182,Credit Check,2025-01-19 10:53:00,System_Credit
+LOAN-00174,Additional Review Required,2025-01-19 10:56:00,UW_David
+LOAN-00189,Application Received,2025-01-19 11:03:00,System
+LOAN-00185,Income Verification,2025-01-19 11:10:00,Officer_Sarah
+LOAN-00182,Income Verification,2025-01-19 11:23:00,Officer_Sarah
+LOAN-00187,Application Received,2025-01-19 11:24:00,System
+LOAN-00189,Document Collection,2025-01-19 11:25:00,Officer_Mike
+LOAN-00187,Document Collection,2025-01-19 11:48:00,Officer_Jessica
+LOAN-00173,Underwriting,2025-01-19 11:55:00,UW_David
+LOAN-00189,Initial Review,2025-01-19 12:05:00,Officer_Jessica
+LOAN-00187,Initial Review,2025-01-19 12:06:00,Officer_Jessica
+LOAN-00185,Risk Assessment,2025-01-19 12:10:00,UW_David
+LOAN-00187,Credit Check,2025-01-19 12:11:00,System_Credit
+LOAN-00189,Credit Check,2025-01-19 12:20:00,System_Credit
+LOAN-00189,Income Verification,2025-01-19 12:30:00,Officer_Jessica
+LOAN-00187,Income Verification,2025-01-19 12:35:00,Officer_Mike
+LOAN-00184,Application Received,2025-01-19 12:49:00,System
+LOAN-00163,Document Signing,2025-01-19 12:51:00,Officer_Sarah
+LOAN-00162,Underwriting,2025-01-19 12:57:00,UW_Rachel
+LOAN-00170,Underwriting,2025-01-19 12:58:00,UW_David
+LOAN-00157,Document Signing,2025-01-19 12:59:00,Officer_Jessica
+LOAN-00177,Manager Approval,2025-01-19 13:03:00,Manager_John
+LOAN-00170,Compliance Check,2025-01-19 13:09:00,System_Compliance
+LOAN-00112,Document Collection,2025-01-19 13:12:00,Officer_Jessica
+LOAN-00184,Document Collection,2025-01-19 13:15:00,Officer_Jessica
+LOAN-00182,Risk Assessment,2025-01-19 13:23:00,UW_Rachel
+LOAN-00162,Compliance Check,2025-01-19 13:26:00,System_Compliance
+LOAN-00177,Compliance Check,2025-01-19 13:33:00,System_Compliance
+LOAN-00170,Loan Approved,2025-01-19 13:36:00,UW_Rachel
+LOAN-00104,Document Collection,2025-01-19 13:41:00,Officer_Sarah
+LOAN-00181,Risk Assessment,2025-01-19 13:41:00,UW_David
+LOAN-00162,Loan Approved,2025-01-19 13:52:00,UW_David
+LOAN-00177,Loan Approved,2025-01-19 13:53:00,UW_Rachel
+LOAN-00173,Manager Approval,2025-01-19 13:55:00,Manager_John
+LOAN-00175,Manager Approval,2025-01-19 13:57:00,Manager_John
+LOAN-00173,Compliance Check,2025-01-19 14:09:00,System_Compliance
+LOAN-00186,Application Received,2025-01-19 14:16:00,System
+LOAN-00096,Request Missing Documents,2025-01-19 14:22:00,Officer_Mike
+LOAN-00175,Compliance Check,2025-01-19 14:26:00,System_Compliance
+LOAN-00179,Underwriting,2025-01-19 14:27:00,UW_Rachel
+LOAN-00183,Risk Assessment,2025-01-19 14:39:00,UW_David
+LOAN-00179,Compliance Check,2025-01-19 14:40:00,System_Compliance
+LOAN-00173,Loan Approved,2025-01-19 14:45:00,UW_Rachel
+LOAN-00186,Document Collection,2025-01-19 14:46:00,Officer_Jessica
+LOAN-00188,Application Received,2025-01-19 14:56:00,System
+LOAN-00179,Loan Approved,2025-01-19 15:02:00,UW_David
+LOAN-00186,Initial Review,2025-01-19 15:05:00,Officer_Sarah
+LOAN-00175,Loan Approved,2025-01-19 15:07:00,UW_David
+LOAN-00186,Credit Check,2025-01-19 15:13:00,System_Credit
+LOAN-00188,Document Collection,2025-01-19 15:23:00,Officer_Mike
+LOAN-00180,Application Received,2025-01-19 15:27:00,System
+LOAN-00186,Income Verification,2025-01-19 15:33:00,Officer_Mike
+LOAN-00187,Risk Assessment,2025-01-19 15:35:00,UW_Rachel
+LOAN-00180,Document Collection,2025-01-19 15:40:00,Officer_Sarah
+LOAN-00134,Funds Disbursed,2025-01-19 15:47:00,System
+LOAN-00180,Initial Review,2025-01-19 15:59:00,Officer_Sarah
+LOAN-00188,Initial Review,2025-01-19 16:04:00,Officer_Jessica
+LOAN-00180,Credit Check,2025-01-19 16:13:00,System_Credit
+LOAN-00188,Credit Check,2025-01-19 16:16:00,System_Credit
+LOAN-00180,Income Verification,2025-01-19 16:26:00,Officer_Mike
+LOAN-00189,Risk Assessment,2025-01-19 16:30:00,UW_Rachel
+LOAN-00188,Income Verification,2025-01-19 16:34:00,Officer_Sarah
+LOAN-00185,Underwriting,2025-01-19 17:10:00,UW_David
+LOAN-00168,Request Missing Documents,2025-01-19 17:18:00,Officer_Sarah
+LOAN-00185,Compliance Check,2025-01-19 17:33:00,System_Compliance
+LOAN-00172,Underwriting,2025-01-19 17:44:00,UW_David
+LOAN-00149,Document Signing,2025-01-19 18:02:00,Officer_Mike
+LOAN-00172,Compliance Check,2025-01-19 18:03:00,System_Compliance
+LOAN-00185,Loan Approved,2025-01-19 18:12:00,UW_Rachel
+LOAN-00132,Funds Disbursed,2025-01-19 18:16:00,System
+LOAN-00172,Loan Approved,2025-01-19 18:32:00,UW_David
+LOAN-00186,Risk Assessment,2025-01-19 18:33:00,UW_Rachel
+LOAN-00153,Document Signing,2025-01-19 19:26:00,Officer_Jessica
+LOAN-00180,Risk Assessment,2025-01-19 19:26:00,UW_Rachel
+LOAN-00032,Document Collection,2025-01-19 19:30:00,Officer_Sarah
+LOAN-00188,Risk Assessment,2025-01-19 19:34:00,UW_David
+LOAN-00169,Document Signing,2025-01-19 19:37:00,Officer_Jessica
+LOAN-00167,Document Signing,2025-01-19 19:53:00,Officer_Mike
+LOAN-00032,Initial Review,2025-01-19 20:02:00,Officer_Mike
+LOAN-00032,Credit Check,2025-01-19 20:11:00,System_Credit
+LOAN-00032,Income Verification,2025-01-19 20:37:00,Officer_Jessica
+LOAN-00187,Underwriting,2025-01-19 22:35:00,UW_Rachel
+LOAN-00032,Risk Assessment,2025-01-19 22:37:00,UW_David
+LOAN-00080,Document Collection,2025-01-19 22:49:00,Officer_Jessica
+LOAN-00080,Initial Review,2025-01-19 23:05:00,Officer_Sarah
+LOAN-00040,Funds Disbursed,2025-01-19 23:07:00,System
+LOAN-00080,Credit Check,2025-01-19 23:14:00,System_Credit
+LOAN-00152,Request Missing Documents,2025-01-19 23:21:00,Officer_Sarah
+LOAN-00140,Funds Disbursed,2025-01-19 23:28:00,System
+LOAN-00080,Income Verification,2025-01-19 23:31:00,Officer_Jessica
+LOAN-00176,Request Missing Documents,2025-01-20 00:04:00,Officer_Mike
+LOAN-00183,Underwriting,2025-01-20 01:39:00,UW_Rachel
+LOAN-00016,Funds Disbursed,2025-01-20 02:10:00,System
+LOAN-00171,Document Signing,2025-01-20 03:09:00,Officer_Sarah
+LOAN-00136,Request Missing Documents,2025-01-20 03:20:00,Officer_Mike
+LOAN-00080,Risk Assessment,2025-01-20 03:31:00,UW_David
+LOAN-00187,Manager Approval,2025-01-20 03:35:00,Manager_John
+LOAN-00183,Manager Approval,2025-01-20 03:39:00,Manager_John
+LOAN-00181,Underwriting,2025-01-20 03:41:00,UW_David
+LOAN-00187,Compliance Check,2025-01-20 03:50:00,System_Compliance
+LOAN-00183,Compliance Check,2025-01-20 03:56:00,System_Compliance
+LOAN-00183,Loan Approved,2025-01-20 04:24:00,UW_Rachel
+LOAN-00187,Loan Approved,2025-01-20 04:32:00,UW_Rachel
+LOAN-00178,Document Signing,2025-01-20 06:41:00,Officer_Mike
+LOAN-00114,Funds Disbursed,2025-01-20 08:05:00,System
+LOAN-00159,Funds Disbursed,2025-01-20 09:24:00,System
+LOAN-00197,Application Received,2025-01-20 09:34:00,System
+LOAN-00032,Underwriting,2025-01-20 09:37:00,UW_Rachel
+LOAN-00181,Manager Approval,2025-01-20 09:41:00,Manager_John
+LOAN-00181,Compliance Check,2025-01-20 09:51:00,System_Compliance
+LOAN-00197,Document Collection,2025-01-20 09:52:00,Officer_Mike
+LOAN-00032,Compliance Check,2025-01-20 10:05:00,System_Compliance
+LOAN-00197,Initial Review,2025-01-20 10:10:00,Officer_Mike
+LOAN-00181,Loan Approved,2025-01-20 10:12:00,UW_Rachel
+LOAN-00197,Credit Check,2025-01-20 10:15:00,System_Credit
+LOAN-00197,Income Verification,2025-01-20 10:43:00,Officer_Mike
+LOAN-00151,Document Signing,2025-01-20 10:51:00,Officer_Mike
+LOAN-00194,Application Received,2025-01-20 10:53:00,System
+LOAN-00064,Document Signing,2025-01-20 10:59:00,Officer_Sarah
+LOAN-00032,Loan Denied,2025-01-20 11:11:00,UW_Rachel
+LOAN-00166,Document Signing,2025-01-20 11:12:00,Officer_Jessica
+LOAN-00194,Document Collection,2025-01-20 11:20:00,Officer_Sarah
+LOAN-00191,Application Received,2025-01-20 11:26:00,System
+LOAN-00191,Document Collection,2025-01-20 11:47:00,Officer_Mike
+LOAN-00194,Initial Review,2025-01-20 11:50:00,Officer_Jessica
+LOAN-00194,Credit Check,2025-01-20 11:57:00,System_Credit
+LOAN-00194,Income Verification,2025-01-20 12:12:00,Officer_Sarah
+LOAN-00191,Initial Review,2025-01-20 12:16:00,Officer_Sarah
+LOAN-00191,Credit Check,2025-01-20 12:29:00,System_Credit
+LOAN-00198,Application Received,2025-01-20 12:30:00,System
+LOAN-00141,Funds Disbursed,2025-01-20 12:37:00,System
+LOAN-00198,Document Collection,2025-01-20 12:41:00,Officer_Mike
+LOAN-00191,Income Verification,2025-01-20 12:42:00,Officer_Jessica
+LOAN-00163,Funds Disbursed,2025-01-20 12:51:00,System
+LOAN-00193,Application Received,2025-01-20 12:56:00,System
+LOAN-00157,Funds Disbursed,2025-01-20 12:59:00,System
+LOAN-00198,Initial Review,2025-01-20 13:13:00,Officer_Jessica
+LOAN-00193,Document Collection,2025-01-20 13:19:00,Officer_Mike
+LOAN-00195,Application Received,2025-01-20 13:20:00,System
+LOAN-00182,Underwriting,2025-01-20 13:23:00,UW_Rachel
+LOAN-00198,Credit Check,2025-01-20 13:26:00,System_Credit
+LOAN-00195,Document Collection,2025-01-20 13:31:00,Officer_Jessica
+LOAN-00193,Initial Review,2025-01-20 13:37:00,Officer_Mike
+LOAN-00193,Credit Check,2025-01-20 13:49:00,System_Credit
+LOAN-00195,Initial Review,2025-01-20 13:51:00,Officer_Jessica
+LOAN-00162,Document Signing,2025-01-20 13:52:00,Officer_Jessica
+LOAN-00182,Compliance Check,2025-01-20 13:53:00,System_Compliance
+LOAN-00198,Income Verification,2025-01-20 13:55:00,Officer_Jessica
+LOAN-00195,Credit Check,2025-01-20 13:57:00,System_Credit
+LOAN-00190,Application Received,2025-01-20 13:58:00,System
+LOAN-00190,Document Collection,2025-01-20 14:08:00,Officer_Mike
+LOAN-00195,Income Verification,2025-01-20 14:09:00,Officer_Sarah
+LOAN-00193,Income Verification,2025-01-20 14:18:00,Officer_Sarah
+LOAN-00182,Loan Approved,2025-01-20 14:19:00,UW_David
+LOAN-00192,Application Received,2025-01-20 14:33:00,System
+LOAN-00197,Risk Assessment,2025-01-20 14:43:00,UW_David
+LOAN-00190,Initial Review,2025-01-20 14:44:00,Officer_Sarah
+LOAN-00173,Document Signing,2025-01-20 14:45:00,Officer_Mike
+LOAN-00192,Document Collection,2025-01-20 14:50:00,Officer_Jessica
+LOAN-00196,Application Received,2025-01-20 14:52:00,System
+LOAN-00190,Credit Check,2025-01-20 14:55:00,System_Credit
+LOAN-00198,Risk Assessment,2025-01-20 14:55:00,UW_Rachel
+LOAN-00175,Document Signing,2025-01-20 15:07:00,Officer_Jessica
+LOAN-00196,Document Collection,2025-01-20 15:09:00,Officer_Jessica
+LOAN-00190,Income Verification,2025-01-20 15:25:00,Officer_Mike
+LOAN-00189,Underwriting,2025-01-20 15:30:00,UW_Rachel
+LOAN-00080,Underwriting,2025-01-20 15:31:00,UW_David
+LOAN-00199,Application Received,2025-01-20 15:31:00,System
+LOAN-00126,Funds Disbursed,2025-01-20 15:41:00,System
+LOAN-00080,Compliance Check,2025-01-20 15:46:00,System_Compliance
+LOAN-00196,Initial Review,2025-01-20 15:48:00,Officer_Jessica
+LOAN-00199,Document Collection,2025-01-20 15:48:00,Officer_Jessica
+LOAN-00174,Underwriting,2025-01-20 15:56:00,UW_David
+LOAN-00196,Credit Check,2025-01-20 16:02:00,System_Credit
+LOAN-00174,Compliance Check,2025-01-20 16:07:00,System_Compliance
+LOAN-00128,Document Collection,2025-01-20 16:09:00,Officer_Mike
+LOAN-00199,Initial Review,2025-01-20 16:10:00,Officer_Jessica
+LOAN-00194,Risk Assessment,2025-01-20 16:12:00,UW_Rachel
+LOAN-00080,Loan Approved,2025-01-20 16:14:00,UW_David
+LOAN-00196,Income Verification,2025-01-20 16:17:00,Officer_Mike
+LOAN-00193,Risk Assessment,2025-01-20 16:18:00,UW_Rachel
+LOAN-00199,Credit Check,2025-01-20 16:18:00,System_Credit
+LOAN-00190,Risk Assessment,2025-01-20 16:25:00,UW_David
+LOAN-00188,Underwriting,2025-01-20 16:34:00,UW_Rachel
+LOAN-00072,Document Signing,2025-01-20 16:41:00,Officer_Jessica
+LOAN-00191,Risk Assessment,2025-01-20 16:42:00,UW_David
+LOAN-00174,Loan Approved,2025-01-20 16:43:00,UW_Rachel
+LOAN-00199,Income Verification,2025-01-20 16:44:00,Officer_Sarah
+LOAN-00112,Request Missing Documents,2025-01-20 17:12:00,Officer_Sarah
+LOAN-00196,Risk Assessment,2025-01-20 17:17:00,UW_Rachel
+LOAN-00186,Underwriting,2025-01-20 17:33:00,UW_David
+LOAN-00149,Funds Disbursed,2025-01-20 18:02:00,System
+LOAN-00195,Risk Assessment,2025-01-20 18:09:00,UW_David
+LOAN-00188,Manager Approval,2025-01-20 18:34:00,Manager_John
+LOAN-00188,Compliance Check,2025-01-20 18:51:00,System_Compliance
+LOAN-00188,Loan Approved,2025-01-20 19:10:00,UW_David
+LOAN-00153,Funds Disbursed,2025-01-20 19:26:00,System
+LOAN-00189,Manager Approval,2025-01-20 19:30:00,Manager_John
+LOAN-00104,Request Missing Documents,2025-01-20 19:41:00,Officer_Sarah
+LOAN-00199,Risk Assessment,2025-01-20 19:44:00,UW_David
+LOAN-00135,Funds Disbursed,2025-01-20 19:47:00,System
+LOAN-00167,Funds Disbursed,2025-01-20 19:53:00,System
+LOAN-00189,Compliance Check,2025-01-20 19:54:00,System_Compliance
+LOAN-00189,Loan Approved,2025-01-20 20:26:00,UW_David
+LOAN-00088,Document Signing,2025-01-20 20:43:00,Officer_Jessica
+LOAN-00184,Request Missing Documents,2025-01-20 21:15:00,Officer_Sarah
+LOAN-00120,Document Collection,2025-01-20 23:11:00,Officer_Mike
+LOAN-00186,Additional Review Required,2025-01-20 23:33:00,UW_Rachel
+LOAN-00198,Underwriting,2025-01-21 00:55:00,UW_David
+LOAN-00161,Funds Disbursed,2025-01-21 01:41:00,System
+LOAN-00171,Funds Disbursed,2025-01-21 03:09:00,System
+LOAN-00150,Underwriting,2025-01-21 04:28:00,UW_David
+LOAN-00187,Document Signing,2025-01-21 04:32:00,Officer_Jessica
+LOAN-00178,Funds Disbursed,2025-01-21 06:41:00,System
+LOAN-00197,Underwriting,2025-01-21 06:43:00,UW_David
+LOAN-00190,Underwriting,2025-01-21 07:25:00,UW_David
+LOAN-00190,Compliance Check,2025-01-21 07:51:00,System_Compliance
+LOAN-00176,Document Collection,2025-01-21 08:04:00,Officer_Jessica
+LOAN-00190,Loan Approved,2025-01-21 08:36:00,UW_David
+LOAN-00155,Funds Disbursed,2025-01-21 08:43:00,System
+LOAN-00198,Additional Review Required,2025-01-21 08:55:00,UW_David
+LOAN-00197,Manager Approval,2025-01-21 09:43:00,Manager_John
+LOAN-00197,Compliance Check,2025-01-21 10:03:00,System_Compliance
+LOAN-00197,Loan Approved,2025-01-21 10:36:00,UW_Rachel
+LOAN-00064,Funds Disbursed,2025-01-21 10:59:00,System
+LOAN-00200,Application Received,2025-01-21 11:02:00,System
+LOAN-00166,Funds Disbursed,2025-01-21 11:12:00,System
+LOAN-00200,Document Collection,2025-01-21 11:27:00,Officer_Sarah
+LOAN-00150,Additional Review Required,2025-01-21 12:28:00,UW_David
+LOAN-00191,Underwriting,2025-01-21 12:42:00,UW_Rachel
+LOAN-00191,Compliance Check,2025-01-21 13:05:00,System_Compliance
+LOAN-00194,Underwriting,2025-01-21 13:12:00,UW_David
+LOAN-00191,Loan Approved,2025-01-21 13:45:00,UW_David
+LOAN-00177,Document Signing,2025-01-21 13:53:00,Officer_Jessica
+LOAN-00128,Request Missing Documents,2025-01-21 14:09:00,Officer_Sarah
+LOAN-00182,Document Signing,2025-01-21 14:19:00,Officer_Sarah
+LOAN-00179,Document Signing,2025-01-21 15:02:00,Officer_Jessica
+LOAN-00175,Funds Disbursed,2025-01-21 15:07:00,System
+LOAN-00193,Underwriting,2025-01-21 15:18:00,UW_Rachel
+LOAN-00120,Request Missing Documents,2025-01-21 16:11:00,Officer_Jessica
+LOAN-00196,Underwriting,2025-01-21 16:17:00,UW_David
+LOAN-00196,Compliance Check,2025-01-21 16:40:00,System_Compliance
+LOAN-00072,Funds Disbursed,2025-01-21 16:41:00,System
+LOAN-00174,Document Signing,2025-01-21 16:43:00,Officer_Jessica
+LOAN-00196,Loan Approved,2025-01-21 17:13:00,UW_Rachel
+LOAN-00193,Manager Approval,2025-01-21 17:18:00,Manager_John
+LOAN-00199,Underwriting,2025-01-21 17:44:00,UW_David
+LOAN-00193,Compliance Check,2025-01-21 17:48:00,System_Compliance
+LOAN-00185,Document Signing,2025-01-21 18:12:00,Officer_Sarah
+LOAN-00193,Loan Approved,2025-01-21 18:19:00,UW_David
+LOAN-00172,Document Signing,2025-01-21 18:32:00,Officer_Mike
+LOAN-00194,Manager Approval,2025-01-21 19:12:00,Manager_John
+LOAN-00169,Funds Disbursed,2025-01-21 19:37:00,System
+LOAN-00194,Compliance Check,2025-01-21 19:39:00,System_Compliance
+LOAN-00192,Request Missing Documents,2025-01-21 19:50:00,Officer_Sarah
+LOAN-00194,Loan Approved,2025-01-21 20:14:00,UW_Rachel
+LOAN-00165,Underwriting,2025-01-21 20:25:00,UW_Rachel
+LOAN-00165,Compliance Check,2025-01-21 20:41:00,System_Compliance
+LOAN-00165,Loan Approved,2025-01-21 21:22:00,UW_David
+LOAN-00199,Manager Approval,2025-01-21 22:44:00,Manager_John
+LOAN-00199,Compliance Check,2025-01-21 23:05:00,System_Compliance
+LOAN-00199,Loan Denied,2025-01-22 01:00:00,UW_David
+LOAN-00183,Document Signing,2025-01-22 04:24:00,Officer_Jessica
+LOAN-00187,Funds Disbursed,2025-01-22 04:32:00,System
+LOAN-00168,Document Collection,2025-01-22 05:18:00,Officer_Sarah
+LOAN-00186,Underwriting,2025-01-22 07:33:00,UW_Rachel
+LOAN-00186,Compliance Check,2025-01-22 07:58:00,System_Compliance
+LOAN-00190,Document Signing,2025-01-22 08:36:00,Officer_Jessica
+LOAN-00186,Loan Approved,2025-01-22 08:37:00,UW_David
+LOAN-00181,Document Signing,2025-01-22 10:12:00,Officer_Mike
+LOAN-00152,Document Collection,2025-01-22 10:21:00,Officer_Jessica
+LOAN-00151,Funds Disbursed,2025-01-22 10:51:00,System
+LOAN-00198,Underwriting,2025-01-22 10:55:00,UW_David
+LOAN-00200,Request Missing Documents,2025-01-22 11:27:00,Officer_Sarah
+LOAN-00170,Document Signing,2025-01-22 13:36:00,Officer_Sarah
+LOAN-00162,Funds Disbursed,2025-01-22 13:52:00,System
+LOAN-00177,Funds Disbursed,2025-01-22 13:53:00,System
+LOAN-00198,Manager Approval,2025-01-22 13:55:00,Manager_John
+LOAN-00198,Compliance Check,2025-01-22 14:15:00,System_Compliance
+LOAN-00182,Funds Disbursed,2025-01-22 14:19:00,System
+LOAN-00150,Underwriting,2025-01-22 14:28:00,UW_Rachel
+LOAN-00198,Loan Approved,2025-01-22 14:30:00,UW_David
+LOAN-00173,Funds Disbursed,2025-01-22 14:45:00,System
+LOAN-00179,Funds Disbursed,2025-01-22 15:02:00,System
+LOAN-00160,Document Collection,2025-01-22 15:33:00,Officer_Sarah
+LOAN-00080,Document Signing,2025-01-22 16:14:00,Officer_Jessica
+LOAN-00174,Funds Disbursed,2025-01-22 16:43:00,System
+LOAN-00196,Document Signing,2025-01-22 17:13:00,Officer_Jessica
+LOAN-00150,Manager Approval,2025-01-22 17:28:00,Manager_John
+LOAN-00150,Compliance Check,2025-01-22 17:46:00,System_Compliance
+LOAN-00150,Loan Approved,2025-01-22 18:23:00,UW_Rachel
+LOAN-00172,Funds Disbursed,2025-01-22 18:32:00,System
+LOAN-00188,Document Signing,2025-01-22 19:10:00,Officer_Sarah
+LOAN-00144,Document Collection,2025-01-22 20:24:00,Officer_Sarah
+LOAN-00088,Funds Disbursed,2025-01-22 20:43:00,System
+LOAN-00165,Document Signing,2025-01-22 21:22:00,Officer_Sarah
+LOAN-00176,Request Missing Documents,2025-01-23 03:04:00,Officer_Jessica
+LOAN-00096,Document Collection,2025-01-23 03:22:00,Officer_Mike
+LOAN-00096,Initial Review,2025-01-23 03:56:00,Officer_Sarah
+LOAN-00096,Credit Check,2025-01-23 04:04:00,System_Credit
+LOAN-00183,Funds Disbursed,2025-01-23 04:24:00,System
+LOAN-00096,Income Verification,2025-01-23 04:28:00,Officer_Jessica
+LOAN-00136,Document Collection,2025-01-23 05:20:00,Officer_Jessica
+LOAN-00096,Risk Assessment,2025-01-23 06:28:00,UW_Rachel
+LOAN-00152,Request Missing Documents,2025-01-23 07:21:00,Officer_Mike
+LOAN-00186,Document Signing,2025-01-23 08:37:00,Officer_Jessica
+LOAN-00112,Document Collection,2025-01-23 09:12:00,Officer_Jessica
+LOAN-00181,Funds Disbursed,2025-01-23 10:12:00,System
+LOAN-00197,Document Signing,2025-01-23 10:36:00,Officer_Sarah
+LOAN-00144,Request Missing Documents,2025-01-23 11:24:00,Officer_Jessica
+LOAN-00168,Request Missing Documents,2025-01-23 12:18:00,Officer_Jessica
+LOAN-00170,Funds Disbursed,2025-01-23 13:36:00,System
+LOAN-00191,Document Signing,2025-01-23 13:45:00,Officer_Sarah
+LOAN-00198,Document Signing,2025-01-23 14:30:00,Officer_Sarah
+LOAN-00196,Funds Disbursed,2025-01-23 17:13:00,System
+LOAN-00185,Funds Disbursed,2025-01-23 18:12:00,System
+LOAN-00188,Funds Disbursed,2025-01-23 19:10:00,System
+LOAN-00194,Document Signing,2025-01-23 20:14:00,Officer_Sarah
+LOAN-00189,Document Signing,2025-01-23 20:26:00,Officer_Jessica
+LOAN-00192,Document Collection,2025-01-23 23:50:00,Officer_Jessica
+LOAN-00096,Underwriting,2025-01-24 00:28:00,UW_David
+LOAN-00160,Request Missing Documents,2025-01-24 02:33:00,Officer_Jessica
+LOAN-00104,Document Collection,2025-01-24 02:41:00,Officer_Jessica
+LOAN-00184,Document Collection,2025-01-24 03:15:00,Officer_Mike
+LOAN-00176,Document Collection,2025-01-24 04:04:00,Officer_Sarah
+LOAN-00096,Additional Review Required,2025-01-24 04:28:00,UW_Rachel
+LOAN-00180,Underwriting,2025-01-24 06:26:00,UW_Rachel
+LOAN-00112,Request Missing Documents,2025-01-24 07:12:00,Officer_Sarah
+LOAN-00152,Document Collection,2025-01-24 07:21:00,Officer_Jessica
+LOAN-00152,Initial Review,2025-01-24 07:41:00,Officer_Sarah
+LOAN-00152,Credit Check,2025-01-24 07:53:00,System_Credit
+LOAN-00152,Income Verification,2025-01-24 08:14:00,Officer_Jessica
+LOAN-00136,Request Missing Documents,2025-01-24 08:20:00,Officer_Mike
+LOAN-00190,Funds Disbursed,2025-01-24 08:36:00,System
+LOAN-00180,Additional Review Required,2025-01-24 10:26:00,UW_David
+LOAN-00197,Funds Disbursed,2025-01-24 10:36:00,System
+LOAN-00152,Risk Assessment,2025-01-24 11:14:00,UW_David
+LOAN-00195,Underwriting,2025-01-24 13:09:00,UW_Rachel
+LOAN-00195,Compliance Check,2025-01-24 13:33:00,System_Compliance
+LOAN-00195,Loan Approved,2025-01-24 13:54:00,UW_Rachel
+LOAN-00080,Funds Disbursed,2025-01-24 16:14:00,System
+LOAN-00152,Underwriting,2025-01-24 16:14:00,UW_David
+LOAN-00144,Document Collection,2025-01-24 16:24:00,Officer_Sarah
+LOAN-00120,Document Collection,2025-01-24 18:11:00,Officer_Sarah
+LOAN-00193,Document Signing,2025-01-24 18:19:00,Officer_Jessica
+LOAN-00194,Funds Disbursed,2025-01-24 20:14:00,System
+LOAN-00189,Funds Disbursed,2025-01-24 20:26:00,System
+LOAN-00152,Manager Approval,2025-01-24 21:14:00,Manager_John
+LOAN-00165,Funds Disbursed,2025-01-24 21:22:00,System
+LOAN-00152,Compliance Check,2025-01-24 21:25:00,System_Compliance
+LOAN-00152,Loan Approved,2025-01-24 22:03:00,UW_David
+LOAN-00104,Request Missing Documents,2025-01-25 07:41:00,Officer_Jessica
+LOAN-00180,Underwriting,2025-01-25 08:26:00,UW_David
+LOAN-00200,Document Collection,2025-01-25 08:27:00,Officer_Mike
+LOAN-00186,Funds Disbursed,2025-01-25 08:37:00,System
+LOAN-00180,Compliance Check,2025-01-25 08:41:00,System_Compliance
+LOAN-00192,Request Missing Documents,2025-01-25 08:50:00,Officer_Mike
+LOAN-00128,Document Collection,2025-01-25 09:09:00,Officer_Jessica
+LOAN-00128,Initial Review,2025-01-25 09:37:00,Officer_Mike
+LOAN-00128,Credit Check,2025-01-25 09:42:00,System_Credit
+LOAN-00128,Income Verification,2025-01-25 10:06:00,Officer_Jessica
+LOAN-00180,Loan Denied,2025-01-25 10:08:00,UW_David
+LOAN-00128,Risk Assessment,2025-01-25 13:06:00,UW_Rachel
+LOAN-00191,Funds Disbursed,2025-01-25 13:45:00,System
+LOAN-00198,Funds Disbursed,2025-01-25 14:30:00,System
+LOAN-00184,Request Missing Documents,2025-01-25 16:15:00,Officer_Mike
+LOAN-00128,Underwriting,2025-01-25 17:06:00,UW_Rachel
+LOAN-00128,Compliance Check,2025-01-25 17:30:00,System_Compliance
+LOAN-00128,Loan Approved,2025-01-25 18:02:00,UW_Rachel
+LOAN-00150,Document Signing,2025-01-25 18:23:00,Officer_Jessica
+LOAN-00176,Request Missing Documents,2025-01-25 19:04:00,Officer_Mike
+LOAN-00096,Underwriting,2025-01-25 23:28:00,UW_Rachel
+LOAN-00160,Document Collection,2025-01-25 23:33:00,Officer_Jessica
+LOAN-00096,Compliance Check,2025-01-25 23:49:00,System_Compliance
+LOAN-00160,Initial Review,2025-01-26 00:08:00,Officer_Jessica
+LOAN-00096,Loan Approved,2025-01-26 00:19:00,UW_Rachel
+LOAN-00160,Credit Check,2025-01-26 00:21:00,System_Credit
+LOAN-00160,Income Verification,2025-01-26 00:40:00,Officer_Jessica
+LOAN-00160,Risk Assessment,2025-01-26 01:40:00,UW_David
+LOAN-00144,Request Missing Documents,2025-01-26 06:24:00,Officer_Mike
+LOAN-00160,Underwriting,2025-01-26 09:40:00,UW_Rachel
+LOAN-00104,Document Collection,2025-01-26 10:41:00,Officer_Mike
+LOAN-00104,Initial Review,2025-01-26 11:16:00,Officer_Sarah
+LOAN-00104,Credit Check,2025-01-26 11:26:00,System_Credit
+LOAN-00104,Income Verification,2025-01-26 11:54:00,Officer_Jessica
+LOAN-00112,Document Collection,2025-01-26 12:12:00,Officer_Mike
+LOAN-00112,Initial Review,2025-01-26 12:38:00,Officer_Jessica
+LOAN-00160,Manager Approval,2025-01-26 12:40:00,Manager_John
+LOAN-00112,Credit Check,2025-01-26 12:52:00,System_Credit
+LOAN-00160,Compliance Check,2025-01-26 13:00:00,System_Compliance
+LOAN-00120,Request Missing Documents,2025-01-26 13:11:00,Officer_Mike
+LOAN-00112,Income Verification,2025-01-26 13:14:00,Officer_Jessica
+LOAN-00160,Loan Approved,2025-01-26 13:39:00,UW_David
+LOAN-00195,Document Signing,2025-01-26 13:54:00,Officer_Mike
+LOAN-00112,Risk Assessment,2025-01-26 14:14:00,UW_Rachel
+LOAN-00104,Risk Assessment,2025-01-26 14:54:00,UW_Rachel
+LOAN-00193,Funds Disbursed,2025-01-26 18:19:00,System
+LOAN-00152,Document Signing,2025-01-26 22:03:00,Officer_Sarah
+LOAN-00112,Underwriting,2025-01-26 23:14:00,UW_Rachel
+LOAN-00136,Document Collection,2025-01-26 23:20:00,Officer_Jessica
+LOAN-00200,Request Missing Documents,2025-01-26 23:27:00,Officer_Mike
+LOAN-00168,Document Collection,2025-01-27 03:18:00,Officer_Sarah
+LOAN-00112,Manager Approval,2025-01-27 04:14:00,Manager_John
+LOAN-00112,Compliance Check,2025-01-27 04:33:00,System_Compliance
+LOAN-00112,Loan Approved,2025-01-27 05:00:00,UW_David
+LOAN-00104,Underwriting,2025-01-27 05:54:00,UW_David
+LOAN-00104,Compliance Check,2025-01-27 06:08:00,System_Compliance
+LOAN-00104,Loan Approved,2025-01-27 06:47:00,UW_Rachel
+LOAN-00160,Document Signing,2025-01-27 13:39:00,Officer_Jessica
+LOAN-00195,Funds Disbursed,2025-01-27 13:54:00,System
+LOAN-00176,Document Collection,2025-01-27 15:04:00,Officer_Sarah
+LOAN-00128,Document Signing,2025-01-27 18:02:00,Officer_Sarah
+LOAN-00150,Funds Disbursed,2025-01-27 18:23:00,System
+LOAN-00152,Funds Disbursed,2025-01-27 22:03:00,System
+LOAN-00192,Document Collection,2025-01-28 00:50:00,Officer_Mike
+LOAN-00192,Initial Review,2025-01-28 01:05:00,Officer_Sarah
+LOAN-00192,Credit Check,2025-01-28 01:17:00,System_Credit
+LOAN-00136,Request Missing Documents,2025-01-28 01:20:00,Officer_Mike
+LOAN-00192,Income Verification,2025-01-28 01:47:00,Officer_Sarah
+LOAN-00192,Risk Assessment,2025-01-28 04:47:00,UW_Rachel
+LOAN-00112,Document Signing,2025-01-28 05:00:00,Officer_Jessica
+LOAN-00104,Document Signing,2025-01-28 06:47:00,Officer_Mike
+LOAN-00144,Document Collection,2025-01-28 07:24:00,Officer_Mike
+LOAN-00144,Initial Review,2025-01-28 07:54:00,Officer_Mike
+LOAN-00144,Credit Check,2025-01-28 08:06:00,System_Credit
+LOAN-00144,Income Verification,2025-01-28 08:34:00,Officer_Jessica
+LOAN-00192,Underwriting,2025-01-28 09:47:00,UW_Rachel
+LOAN-00168,Request Missing Documents,2025-01-28 10:18:00,Officer_Mike
+LOAN-00120,Document Collection,2025-01-28 12:11:00,Officer_Mike
+LOAN-00144,Risk Assessment,2025-01-28 12:34:00,UW_David
+LOAN-00120,Initial Review,2025-01-28 12:48:00,Officer_Mike
+LOAN-00120,Credit Check,2025-01-28 12:59:00,System_Credit
+LOAN-00120,Income Verification,2025-01-28 13:12:00,Officer_Mike
+LOAN-00160,Funds Disbursed,2025-01-28 13:39:00,System
+LOAN-00192,Additional Review Required,2025-01-28 14:47:00,UW_Rachel
+LOAN-00120,Risk Assessment,2025-01-28 17:12:00,UW_David
+LOAN-00128,Funds Disbursed,2025-01-28 18:02:00,System
+LOAN-00184,Document Collection,2025-01-28 18:15:00,Officer_Mike
+LOAN-00144,Underwriting,2025-01-28 18:34:00,UW_Rachel
+LOAN-00184,Initial Review,2025-01-28 19:00:00,Officer_Jessica
+LOAN-00184,Credit Check,2025-01-28 19:13:00,System_Credit
+LOAN-00184,Income Verification,2025-01-28 19:26:00,Officer_Jessica
+LOAN-00144,Additional Review Required,2025-01-28 21:34:00,UW_David
+LOAN-00184,Risk Assessment,2025-01-28 22:26:00,UW_David
+LOAN-00176,Request Missing Documents,2025-01-28 23:04:00,Officer_Mike
+LOAN-00096,Document Signing,2025-01-29 00:19:00,Officer_Jessica
+LOAN-00104,Funds Disbursed,2025-01-29 06:47:00,System
+LOAN-00200,Document Collection,2025-01-29 10:27:00,Officer_Jessica
+LOAN-00200,Initial Review,2025-01-29 11:08:00,Officer_Jessica
+LOAN-00200,Credit Check,2025-01-29 11:18:00,System_Credit
+LOAN-00200,Income Verification,2025-01-29 11:38:00,Officer_Sarah
+LOAN-00184,Underwriting,2025-01-29 14:26:00,UW_David
+LOAN-00200,Risk Assessment,2025-01-29 14:38:00,UW_David
+LOAN-00184,Compliance Check,2025-01-29 14:40:00,System_Compliance
+LOAN-00192,Underwriting,2025-01-29 14:47:00,UW_Rachel
+LOAN-00184,Loan Approved,2025-01-29 15:19:00,UW_David
+LOAN-00144,Underwriting,2025-01-29 17:34:00,UW_David
+LOAN-00192,Manager Approval,2025-01-29 18:47:00,Manager_John
+LOAN-00192,Compliance Check,2025-01-29 19:14:00,System_Compliance
+LOAN-00192,Loan Approved,2025-01-29 19:34:00,UW_Rachel
+LOAN-00200,Underwriting,2025-01-29 19:38:00,UW_David
+LOAN-00200,Compliance Check,2025-01-29 20:04:00,System_Compliance
+LOAN-00144,Manager Approval,2025-01-29 20:34:00,Manager_John
+LOAN-00200,Loan Approved,2025-01-29 20:37:00,UW_Rachel
+LOAN-00144,Compliance Check,2025-01-29 20:51:00,System_Compliance
+LOAN-00144,Loan Approved,2025-01-29 21:10:00,UW_Rachel
+LOAN-00112,Funds Disbursed,2025-01-30 05:00:00,System
+LOAN-00176,Document Collection,2025-01-30 09:04:00,Officer_Mike
+LOAN-00176,Initial Review,2025-01-30 09:26:00,Officer_Mike
+LOAN-00176,Credit Check,2025-01-30 09:33:00,System_Credit
+LOAN-00176,Income Verification,2025-01-30 09:51:00,Officer_Jessica
+LOAN-00176,Risk Assessment,2025-01-30 10:51:00,UW_Rachel
+LOAN-00136,Document Collection,2025-01-30 14:20:00,Officer_Sarah
+LOAN-00136,Initial Review,2025-01-30 14:48:00,Officer_Sarah
+LOAN-00136,Credit Check,2025-01-30 14:56:00,System_Credit
+LOAN-00136,Income Verification,2025-01-30 15:10:00,Officer_Sarah
+LOAN-00136,Risk Assessment,2025-01-30 18:10:00,UW_Rachel
+LOAN-00136,Underwriting,2025-01-31 00:10:00,UW_David
+LOAN-00096,Funds Disbursed,2025-01-31 00:19:00,System
+LOAN-00136,Compliance Check,2025-01-31 00:30:00,System_Compliance
+LOAN-00176,Underwriting,2025-01-31 00:51:00,UW_David
+LOAN-00176,Compliance Check,2025-01-31 01:02:00,System_Compliance
+LOAN-00136,Loan Approved,2025-01-31 01:08:00,UW_David
+LOAN-00168,Document Collection,2025-01-31 01:18:00,Officer_Mike
+LOAN-00176,Loan Approved,2025-01-31 01:18:00,UW_David
+LOAN-00168,Initial Review,2025-01-31 01:35:00,Officer_Sarah
+LOAN-00168,Credit Check,2025-01-31 01:45:00,System_Credit
+LOAN-00168,Income Verification,2025-01-31 02:09:00,Officer_Sarah
+LOAN-00168,Risk Assessment,2025-01-31 05:09:00,UW_David
+LOAN-00120,Underwriting,2025-01-31 06:12:00,UW_David
+LOAN-00120,Additional Review Required,2025-01-31 13:12:00,UW_Rachel
+LOAN-00200,Document Signing,2025-01-31 20:37:00,Officer_Sarah
+LOAN-00168,Underwriting,2025-02-01 01:09:00,UW_David
+LOAN-00168,Additional Review Required,2025-02-01 06:09:00,UW_Rachel
+LOAN-00184,Document Signing,2025-02-01 15:19:00,Officer_Jessica
+LOAN-00192,Document Signing,2025-02-01 19:34:00,Officer_Sarah
+LOAN-00200,Funds Disbursed,2025-02-01 20:37:00,System
+LOAN-00144,Document Signing,2025-02-01 21:10:00,Officer_Jessica
+LOAN-00120,Underwriting,2025-02-02 00:12:00,UW_David
+LOAN-00120,Compliance Check,2025-02-02 00:41:00,System_Compliance
+LOAN-00176,Document Signing,2025-02-02 01:18:00,Officer_Jessica
+LOAN-00120,Loan Approved,2025-02-02 01:20:00,UW_Rachel
+LOAN-00168,Underwriting,2025-02-02 02:09:00,UW_Rachel
+LOAN-00168,Compliance Check,2025-02-02 02:28:00,System_Compliance
+LOAN-00168,Loan Approved,2025-02-02 03:04:00,UW_David
+LOAN-00136,Document Signing,2025-02-03 01:08:00,Officer_Jessica
+LOAN-00168,Document Signing,2025-02-03 03:04:00,Officer_Sarah
+LOAN-00184,Funds Disbursed,2025-02-03 15:19:00,System
+LOAN-00192,Funds Disbursed,2025-02-03 19:34:00,System
+LOAN-00144,Funds Disbursed,2025-02-03 21:10:00,System
+LOAN-00136,Funds Disbursed,2025-02-04 01:08:00,System
+LOAN-00176,Funds Disbursed,2025-02-04 01:18:00,System
+LOAN-00120,Document Signing,2025-02-05 01:20:00,Officer_Mike
+LOAN-00168,Funds Disbursed,2025-02-05 03:04:00,System
+LOAN-00120,Funds Disbursed,2025-02-06 01:20:00,System
