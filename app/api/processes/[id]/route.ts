@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as storage from "@/server/storage";
+import { getCurrentUser } from "@/lib/server-auth";
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { id } = await params;
     const processId = parseInt(id);
     
@@ -16,7 +22,7 @@ export async function GET(
       );
     }
 
-    const process = await storage.getProcessById(processId);
+    const process = await storage.getProcessById(processId, user.id);
 
     if (!process) {
       return NextResponse.json(
@@ -40,6 +46,11 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { id } = await params;
     const processId = parseInt(id);
     
@@ -65,8 +76,8 @@ export async function PATCH(
       );
     }
 
-    const process = await storage.updateProcess(processId, updates);
-
+    const process = await storage.updateProcess(processId, updates, user.id);
+    
     if (!process) {
       return NextResponse.json(
         { error: "Process not found" },
@@ -89,6 +100,11 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { id } = await params;
     const processId = parseInt(id);
     
@@ -99,8 +115,8 @@ export async function DELETE(
       );
     }
 
-    const success = await storage.deleteProcess(processId);
-
+    const success = await storage.deleteProcess(processId, user.id);
+    
     if (!success) {
       return NextResponse.json(
         { error: "Process not found" },

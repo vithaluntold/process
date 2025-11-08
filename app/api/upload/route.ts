@@ -5,6 +5,8 @@ import * as storage from "@/server/storage";
 import csvParser from "csv-parser";
 import { Readable } from "stream";
 import { randomUUID } from "crypto";
+import { getCurrentUser } from "@/lib/server-auth";
+import { sanitizeInput } from "@/lib/validation";
 
 const UPLOAD_DIR = join(process.cwd(), "uploads");
 const MAX_FILE_SIZE = 50 * 1024 * 1024;
@@ -18,6 +20,11 @@ function sanitizeFilename(filename: string): string {
 
 export async function POST(request: NextRequest) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const formData = await request.formData();
     const file = formData.get("file") as File;
     const processName = formData.get("processName") as string;
@@ -51,7 +58,8 @@ export async function POST(request: NextRequest) {
     await writeFile(filePath, buffer);
 
     const document = await storage.createDocument({
-      name: file.name,
+      userId: user.id,
+      name: sanitizeInput(file.name),
       size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
       path: filePath,
       status: "processing",
@@ -60,9 +68,10 @@ export async function POST(request: NextRequest) {
     if (originalExt === ".csv") {
       try {
         const process = await storage.createProcess({
-          name: processName || file.name.replace(".csv", ""),
+          userId: user.id,
+          name: sanitizeInput(processName || file.name.replace(".csv", "")),
           description: `Imported from ${file.name}`,
-          source: file.name,
+          source: sanitizeInput(file.name),
           status: "active",
         });
 

@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as storage from "@/server/storage";
+import { getCurrentUser } from "@/lib/server-auth";
+import { processSchema, sanitizeInput } from "@/lib/validation";
 
 export async function GET(request: NextRequest) {
   try {
-    const processes = await storage.getProcesses();
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const processes = await storage.getProcessesByUser(user.id);
     return NextResponse.json({ processes });
   } catch (error) {
     console.error("Error fetching processes:", error);
@@ -16,20 +23,28 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { name, description, source } = body;
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
-    if (!name || !source) {
+    const body = await request.json();
+    
+    const validation = processSchema.safeParse(body);
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Name and source are required" },
+        { error: validation.error.errors[0].message },
         { status: 400 }
       );
     }
 
+    const { name, description, source } = validation.data;
+
     const process = await storage.createProcess({
-      name,
-      description,
-      source,
+      userId: user.id,
+      name: sanitizeInput(name),
+      description: description ? sanitizeInput(description) : null,
+      source: sanitizeInput(source),
       status: "active",
     });
 

@@ -60,9 +60,13 @@ export async function getProcesses(userId?: number) {
   });
 }
 
-export async function getProcessById(id: number) {
+export async function getProcessById(id: number, userId?: number) {
+  const where = userId 
+    ? and(eq(schema.processes.id, id), eq(schema.processes.userId, userId))
+    : eq(schema.processes.id, id);
+    
   return await db.query.processes.findFirst({
-    where: eq(schema.processes.id, id),
+    where,
     with: {
       eventLogs: true,
       processModels: true,
@@ -74,17 +78,29 @@ export async function getProcessById(id: number) {
   });
 }
 
-export async function updateProcess(id: number, data: Partial<ProcessInput>) {
+export async function getProcessesByUser(userId: number) {
+  return await getProcesses(userId);
+}
+
+export async function updateProcess(id: number, data: Partial<ProcessInput>, userId?: number) {
+  const where = userId
+    ? and(eq(schema.processes.id, id), eq(schema.processes.userId, userId))
+    : eq(schema.processes.id, id);
+    
   const [process] = await db.update(schema.processes)
     .set({ ...data, updatedAt: new Date() })
-    .where(eq(schema.processes.id, id))
+    .where(where)
     .returning();
   return process;
 }
 
-export async function deleteProcess(id: number) {
+export async function deleteProcess(id: number, userId?: number) {
+  const where = userId
+    ? and(eq(schema.processes.id, id), eq(schema.processes.userId, userId))
+    : eq(schema.processes.id, id);
+    
   const result = await db.delete(schema.processes)
-    .where(eq(schema.processes.id, id))
+    .where(where)
     .returning();
   return result.length > 0;
 }
