@@ -50,7 +50,6 @@ interface SimulationResults {
   throughput: number;
   activityStats: Array<{
     activity: string;
-    avgWaitTime: number;
     avgProcessingTime: number;
     utilizationRate: number;
     completionCount: number;
@@ -240,10 +239,6 @@ export class DiscreteEventSimulator {
       const avgProcessingTime = durations.length > 0
         ? durations.reduce((sum, d) => sum + d, 0) / durations.length
         : 0;
-      const waitTimes = this.activityWaitTimes.get(activity) || [];
-      const avgWaitTime = waitTimes.length > 0
-        ? waitTimes.reduce((sum, w) => sum + w, 0) / waitTimes.length
-        : 0;
 
       const utilizationRate = this.completedCases.length > 0
         ? durations.length / this.completedCases.length
@@ -251,7 +246,6 @@ export class DiscreteEventSimulator {
 
       activityStats.push({
         activity,
-        avgWaitTime,
         avgProcessingTime,
         utilizationRate: Math.min(utilizationRate, 1.0),
         completionCount: durations.length,

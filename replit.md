@@ -37,6 +37,33 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 - **API Routes**: Dedicated endpoints for user registration (`/api/auth/signup`), login (`/api/auth/login`), logout (`/api/auth/logout`), and fetching current user info (`/api/auth/user`).
 - **User Experience**: Features a glass-morphism landing page with login/signup tabs, protected routes for dashboard and feature pages, a user menu with logout functionality, and toast notifications for all authentication actions.
 
+**Digital Twin Simulation & What-If Scenarios:**
+- **Discrete-Event Simulator**: Production-ready simulation engine for creating process digital twins
+  - Event queue with time-based execution for accurate process flow simulation
+  - Probabilistic activity duration sampling using Box-Muller normal distribution
+  - Case lifecycle management (start → activities → completion)
+  - Token flow through discovered process models
+- **Scenario Parameters**: 
+  - Duration multipliers (global "*" or activity-specific) for testing process improvements
+  - Number of cases to simulate (default: 100)
+  - Arrival rate (ms between case starts, default: 300,000ms = 5min)
+- **Simulation Results**:
+  - Total and completed cases count
+  - Average cycle time across all cases
+  - Throughput (cases/hour)
+  - Activity-level statistics: processing time, utilization rate, completion count
+  - Bottleneck identification (top 3 slowest activities)
+  - Case time distribution for histogram analysis
+- **Robust Error Handling**: Guards against zero cases, empty arrays, deadlocked processes
+- **API Endpoints**: 
+  - POST `/api/simulations` - Create and run simulation scenario
+  - GET `/api/simulations?processId=X` - List all scenarios for a process
+  - GET `/api/simulations/[id]` - Get specific scenario details
+  - DELETE `/api/simulations/[id]` - Delete scenario
+- **UI Integration**: What-If Scenarios page with tabbed interface (Create Scenario + Saved Scenarios), scenario configuration form, results visualization with KPI cards
+- **Authentication**: Reusable JWT-based auth helper (`lib/server-auth.ts`) for Next.js API routes
+- **Future Enhancements**: Probability overrides for transition paths, resource constraints, wait time tracking
+
 ## External Dependencies
 - **Database**: PostgreSQL (via Neon)
 - **ORM**: Drizzle ORM
