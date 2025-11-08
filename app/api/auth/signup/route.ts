@@ -4,9 +4,29 @@ import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { signupSchema, sanitizeInput } from "@/lib/validation";
+import { checkRateLimit, getClientIdentifier, SIGNUP_RATE_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(request: NextRequest) {
   try {
+    const clientId = getClientIdentifier(request);
+    const rateLimit = checkRateLimit(`signup:${clientId}`, SIGNUP_RATE_LIMIT);
+
+    if (!rateLimit.allowed) {
+      const retryAfter = Math.ceil((rateLimit.resetTime - Date.now()) / 1000);
+      return NextResponse.json(
+        { error: "Too many signup attempts. Please try again later." },
+        { 
+          status: 429,
+          headers: {
+            "Retry-After": retryAfter.toString(),
+            "X-RateLimit-Limit": SIGNUP_RATE_LIMIT.maxAttempts.toString(),
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+          }
+        }
+      );
+    }
+
     const body = await request.json();
     
     const validation = signupSchema.safeParse(body);
@@ -67,7 +87,14 @@ export async function POST(request: NextRequest) {
           role: user.role,
         },
       },
-      { status: 201 }
+      { 
+        status: 201,
+        headers: {
+          "X-RateLimit-Limit": SIGNUP_RATE_LIMIT.maxAttempts.toString(),
+          "X-RateLimit-Remaining": rateLimit.remaining.toString(),
+          "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+        }
+      }
     );
   } catch (error) {
     console.error("Signup error:", error);

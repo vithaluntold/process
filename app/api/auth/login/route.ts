@@ -6,6 +6,8 @@ import { eq } from "drizzle-orm";
 import { cookies } from "next/headers";
 import { SignJWT } from "jose";
 import { loginSchema } from "@/lib/validation";
+import { checkRateLimit, getClientIdentifier, AUTH_RATE_LIMIT } from "@/lib/rate-limiter";
+import { addCSRFCookie } from "@/lib/csrf";
 
 const JWT_SECRET = new TextEncoder().encode(
   process.env.SESSION_SECRET || "dev-secret-change-in-production"
@@ -13,6 +15,25 @@ const JWT_SECRET = new TextEncoder().encode(
 
 export async function POST(request: NextRequest) {
   try {
+    const clientId = getClientIdentifier(request);
+    const rateLimit = checkRateLimit(`login:${clientId}`, AUTH_RATE_LIMIT);
+
+    if (!rateLimit.allowed) {
+      const retryAfter = Math.ceil((rateLimit.resetTime - Date.now()) / 1000);
+      return NextResponse.json(
+        { error: "Too many login attempts. Please try again later." },
+        { 
+          status: 429,
+          headers: {
+            "Retry-After": retryAfter.toString(),
+            "X-RateLimit-Limit": AUTH_RATE_LIMIT.maxAttempts.toString(),
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+          }
+        }
+      );
+    }
+
     const body = await request.json();
     
     const validation = loginSchema.safeParse(body);
@@ -72,7 +93,14 @@ export async function POST(request: NextRequest) {
           role: user.role,
         },
       },
-      { status: 200 }
+      { 
+        status: 200,
+        headers: {
+          "X-RateLimit-Limit": AUTH_RATE_LIMIT.maxAttempts.toString(),
+          "X-RateLimit-Remaining": rateLimit.remaining.toString(),
+          "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
+        }
+      }
     );
 
     response.cookies.set("session", token, {
