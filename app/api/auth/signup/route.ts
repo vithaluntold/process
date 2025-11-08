@@ -3,33 +3,28 @@ import { hash } from "bcryptjs";
 import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
+import { signupSchema, sanitizeInput } from "@/lib/validation";
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, firstName, lastName } = await request.json();
-
-    console.log("Signup attempt:", { email, firstName, lastName, passwordLength: password?.length });
-
-    if (!email || !password) {
-      console.log("Validation failed: missing email or password");
+    const body = await request.json();
+    
+    const validation = signupSchema.safeParse(body);
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Email and password are required" },
+        { error: validation.error.errors[0].message },
         { status: 400 }
       );
     }
 
-    if (password.length < 12) {
-      console.log("Validation failed: password too short", password.length);
-      return NextResponse.json(
-        { error: "Password must be at least 12 characters long" },
-        { status: 400 }
-      );
-    }
+    const { email, password, firstName, lastName } = validation.data;
+    
+    const normalizedEmail = sanitizeInput(email.toLowerCase());
 
     const [existingUser] = await db
       .select()
       .from(schema.users)
-      .where(eq(schema.users.email, email));
+      .where(eq(schema.users.email, normalizedEmail));
 
     if (existingUser) {
       return NextResponse.json(
@@ -43,10 +38,10 @@ export async function POST(request: NextRequest) {
     const [user] = await db
       .insert(schema.users)
       .values({
-        email,
+        email: normalizedEmail,
         password: hashedPassword,
-        firstName: firstName || null,
-        lastName: lastName || null,
+        firstName: firstName ? sanitizeInput(firstName) : null,
+        lastName: lastName ? sanitizeInput(lastName) : null,
         role: "user",
       })
       .returning();

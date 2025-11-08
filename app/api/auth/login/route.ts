@@ -5,6 +5,7 @@ import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { cookies } from "next/headers";
 import { SignJWT } from "jose";
+import { loginSchema } from "@/lib/validation";
 
 const JWT_SECRET = new TextEncoder().encode(
   process.env.SESSION_SECRET || "dev-secret-change-in-production"
@@ -12,41 +13,35 @@ const JWT_SECRET = new TextEncoder().encode(
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password } = await request.json();
-
-    console.log("Login attempt for:", email);
-
-    if (!email || !password) {
-      console.log("Missing email or password");
+    const body = await request.json();
+    
+    const validation = loginSchema.safeParse(body);
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Email and password are required" },
+        { error: validation.error.errors[0].message },
         { status: 400 }
       );
     }
 
+    const { email, password } = validation.data;
+
     const [user] = await db
       .select()
       .from(schema.users)
-      .where(eq(schema.users.email, email));
-
-    console.log("User found:", !!user, "Has password:", !!user?.password);
+      .where(eq(schema.users.email, email.toLowerCase()));
 
     if (!user || !user.password) {
-      console.log("User not found or no password");
       return NextResponse.json(
-        { error: "No account found with this email" },
+        { error: "Invalid email or password" },
         { status: 401 }
       );
     }
 
     const isValid = await compare(password, user.password);
 
-    console.log("Password valid:", isValid);
-
     if (!isValid) {
-      console.log("Password comparison failed");
       return NextResponse.json(
-        { error: "Password is incorrect" },
+        { error: "Invalid email or password" },
         { status: 401 }
       );
     }
