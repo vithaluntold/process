@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,8 +12,17 @@ import { Layers, BarChart3, Zap, Lightbulb, Shield } from "lucide-react";
 
 export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [csrfToken, setCsrfToken] = useState<string>("");
   const { toast } = useToast();
   const router = useRouter();
+
+  // Fetch CSRF token on component mount
+  useEffect(() => {
+    fetch("/api/auth/csrf")
+      .then(res => res.json())
+      .then(data => setCsrfToken(data.token))
+      .catch(err => console.error("Failed to fetch CSRF token:", err));
+  }, []);
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -51,7 +60,6 @@ export default function LandingPage() {
         description: error.message || "Failed to login",
         variant: "destructive",
       });
-      alert("ERROR: " + (error.message || "Failed to login"));
     } finally {
       setIsLoading(false);
     }
@@ -70,7 +78,10 @@ export default function LandingPage() {
     try {
       const signupRes = await fetch("/api/auth/signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken
+        },
         body: JSON.stringify({ 
           email, 
           password,
@@ -112,7 +123,6 @@ export default function LandingPage() {
         description: error.message || "Failed to create account",
         variant: "destructive",
       });
-      alert("ERROR: " + (error.message || "Failed to create account"));
     } finally {
       setIsLoading(false);
     }
