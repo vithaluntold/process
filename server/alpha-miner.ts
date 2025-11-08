@@ -172,21 +172,29 @@ export class AlphaMiner {
     parallelRelations: Array<[string, string]>
   ): Array<[string, string]> {
     const choiceRelations: Array<[string, string]> = [];
-    const causalSet = new Set(causalRelations.map(([a, b]) => `${a}→${b}`));
+    const causalMap = new Map<string, Set<string>>();
     const parallelSet = new Set(parallelRelations.map(([a, b]) => [a, b].sort().join("→")));
     
-    const activitiesArray = Array.from(activities);
-    for (let i = 0; i < activitiesArray.length; i++) {
-      for (let j = i + 1; j < activitiesArray.length; j++) {
-        const a = activitiesArray[i];
-        const b = activitiesArray[j];
-        const pairKey = [a, b].sort().join("→");
-        
-        const isCausal = causalSet.has(`${a}→${b}`) || causalSet.has(`${b}→${a}`);
-        const isParallel = parallelSet.has(pairKey);
-        
-        if (!isCausal && !isParallel) {
-          choiceRelations.push([a, b]);
+    for (const [from, to] of causalRelations) {
+      if (!causalMap.has(from)) {
+        causalMap.set(from, new Set());
+      }
+      causalMap.get(from)!.add(to);
+    }
+    
+    for (const activity of activities) {
+      const outputs = causalMap.get(activity) || new Set();
+      const outputsArray = Array.from(outputs);
+      
+      for (let i = 0; i < outputsArray.length; i++) {
+        for (let j = i + 1; j < outputsArray.length; j++) {
+          const a = outputsArray[i];
+          const b = outputsArray[j];
+          const pairKey = [a, b].sort().join("→");
+          
+          if (!parallelSet.has(pairKey)) {
+            choiceRelations.push([a, b]);
+          }
         }
       }
     }
