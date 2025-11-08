@@ -40,7 +40,6 @@ import PerformanceAnalytics from "@/components/performance-analytics"
 import AutomationOpportunities from "@/components/automation-opportunities"
 import PredictiveAnalytics from "@/components/predictive-analytics"
 import UploadModal from "@/components/upload-modal"
-import NewAnalysisModal from "@/components/new-analysis-modal"
 
 interface DashboardStats {
   processCount: number
@@ -93,20 +92,14 @@ export default function DashboardClient() {
 
   return (
     <>
-      {uploadModalOpen && (
-        <UploadModal
-          open={uploadModalOpen}
-          onOpenChange={setUploadModalOpen}
-          onUploadComplete={handleDataChange}
-        />
-      )}
-      {analysisModalOpen && (
-        <NewAnalysisModal
-          open={analysisModalOpen}
-          onOpenChange={setAnalysisModalOpen}
-          onAnalysisCreated={handleDataChange}
-        />
-      )}
+      <UploadModal
+        open={uploadModalOpen || analysisModalOpen}
+        onOpenChange={(open) => {
+          setUploadModalOpen(open)
+          setAnalysisModalOpen(open)
+        }}
+        onUploadComplete={handleDataChange}
+      />
       <div className="flex min-h-screen w-full flex-col">
         <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
           <div className="flex items-center gap-2">
