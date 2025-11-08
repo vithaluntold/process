@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import ReactFlow, {
   Node,
   Edge,
@@ -17,6 +17,7 @@ import ReactFlow, {
 import "reactflow/dist/style.css";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import ProcessNode from "@/components/process-node";
 
 interface ProcessFlowchartProps {
   activities: string[];
@@ -34,6 +35,8 @@ export default function ProcessFlowchart({
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
+  const nodeTypes = useMemo(() => ({ process: ProcessNode }), []);
+
   useEffect(() => {
     buildFlowchart();
   }, [activities, transitions]);
@@ -42,64 +45,30 @@ export default function ProcessFlowchart({
     const layers = assignLayers(startActivities, endActivities, transitions);
     
     const newNodes: Node[] = [];
-    const nodeSpacing = 180;
-    const layerSpacing = 280;
+    const nodeSpacing = 160;
+    const layerSpacing = 300;
 
     layers.forEach((layerActivities, layerIndex) => {
       layerActivities.forEach((activity, activityIndex) => {
         const x = layerIndex * layerSpacing;
         const y = activityIndex * nodeSpacing;
 
-        let nodeStyle = {};
-        let nodeClass = "";
+        let nodeType: "start" | "activity" | "end" = "activity";
 
         if (startActivities.includes(activity)) {
-          nodeStyle = {
-            background: "linear-gradient(135deg, hsl(var(--brand)) 0%, hsl(var(--brand) / 0.8) 100%)",
-            color: "white",
-            border: "2px solid hsl(var(--brand))",
-            borderRadius: "16px",
-            padding: "16px 24px",
-            fontSize: "15px",
-            fontWeight: "600",
-            boxShadow: "0 8px 24px -4px hsl(var(--brand) / 0.3), 0 0 0 1px hsl(var(--brand) / 0.1)",
-            minWidth: "180px",
-            textAlign: "center",
-          };
+          nodeType = "start";
         } else if (endActivities.includes(activity)) {
-          nodeStyle = {
-            background: "linear-gradient(135deg, hsl(var(--destructive)) 0%, hsl(var(--destructive) / 0.8) 100%)",
-            color: "white",
-            border: "2px solid hsl(var(--destructive))",
-            borderRadius: "16px",
-            padding: "16px 24px",
-            fontSize: "15px",
-            fontWeight: "600",
-            boxShadow: "0 8px 24px -4px hsl(var(--destructive) / 0.3), 0 0 0 1px hsl(var(--destructive) / 0.1)",
-            minWidth: "180px",
-            textAlign: "center",
-          };
-        } else {
-          nodeStyle = {
-            background: "hsl(var(--card))",
-            color: "hsl(var(--foreground))",
-            border: "2px solid hsl(var(--brand) / 0.2)",
-            borderRadius: "12px",
-            padding: "14px 20px",
-            fontSize: "14px",
-            fontWeight: "500",
-            boxShadow: "0 4px 12px -2px hsl(var(--foreground) / 0.1)",
-            minWidth: "160px",
-            textAlign: "center",
-          };
+          nodeType = "end";
         }
 
         newNodes.push({
           id: activity,
-          type: "default",
+          type: "process",
           position: { x, y },
-          data: { label: activity },
-          style: nodeStyle,
+          data: { 
+            label: activity,
+            nodeType: nodeType,
+          },
         });
       });
     });
@@ -230,6 +199,7 @@ export default function ProcessFlowchart({
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
+            nodeTypes={nodeTypes}
             fitView
             fitViewOptions={{ padding: 0.2 }}
             attributionPosition="bottom-right"
@@ -244,8 +214,9 @@ export default function ProcessFlowchart({
             <Controls className="bg-card border-border" />
             <MiniMap
               nodeColor={(node) => {
-                if (startActivities.includes(node.id)) return "hsl(var(--brand))";
-                if (endActivities.includes(node.id)) return "hsl(var(--destructive))";
+                const data = node.data as any;
+                if (data.nodeType === "start") return "hsl(var(--brand))";
+                if (data.nodeType === "end") return "hsl(var(--destructive))";
                 return "hsl(var(--muted))";
               }}
               nodeBorderRadius={12}
