@@ -259,13 +259,6 @@ export const integrationsRelations = relations(integrations, ({ one }) => ({
   }),
 }));
 
-export const usersRelations = relations(users, ({ many }) => ({
-  processes: many(processes),
-  documents: many(documents),
-  integrations: many(integrations),
-  auditLogs: many(auditLogs),
-}));
-
 export const auditLogsRelations = relations(auditLogs, ({ one }) => ({
   user: one(users, {
     fields: [auditLogs.userId],
@@ -290,4 +283,142 @@ export const userConsentsRelations = relations(userConsents, ({ one }) => ({
     fields: [userConsents.userId],
     references: [users.id],
   }),
+}));
+
+export const taskSessions = pgTable("task_sessions", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  sessionName: text("session_name"),
+  startTime: timestamp("start_time").notNull(),
+  endTime: timestamp("end_time"),
+  duration: integer("duration"),
+  deviceType: text("device_type"),
+  osType: text("os_type"),
+  status: text("status").notNull().default("active"),
+  totalActivities: integer("total_activities").default(0),
+  automationPotential: real("automation_potential"),
+  privacyConsent: boolean("privacy_consent").notNull().default(false),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const userActivities = pgTable("user_activities", {
+  id: serial("id").primaryKey(),
+  sessionId: integer("session_id").references(() => taskSessions.id).notNull(),
+  activityType: text("activity_type").notNull(),
+  application: text("application"),
+  windowTitle: text("window_title"),
+  action: text("action").notNull(),
+  targetElement: text("target_element"),
+  inputData: text("input_data"),
+  timestamp: timestamp("timestamp").notNull(),
+  duration: integer("duration"),
+  screenshot: text("screenshot"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  sessionIdx: index("user_activities_session_idx").on(table.sessionId),
+  timestampIdx: index("user_activities_timestamp_idx").on(table.timestamp),
+}));
+
+export const applicationUsage = pgTable("application_usage", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  sessionId: integer("session_id").references(() => taskSessions.id),
+  applicationName: text("application_name").notNull(),
+  category: text("category"),
+  timeSpent: integer("time_spent").notNull(),
+  interactions: integer("interactions").notNull().default(0),
+  productivityScore: real("productivity_score"),
+  date: timestamp("date").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  userDateIdx: index("app_usage_user_date_idx").on(table.userId, table.date),
+}));
+
+export const taskPatterns = pgTable("task_patterns", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  patternName: text("pattern_name").notNull(),
+  description: text("description"),
+  frequency: integer("frequency").notNull().default(1),
+  avgDuration: real("avg_duration"),
+  steps: jsonb("steps").notNull(),
+  automationPotential: real("automation_potential").notNull(),
+  timeSavingsEstimate: real("time_savings_estimate"),
+  lastOccurrence: timestamp("last_occurrence"),
+  status: text("status").notNull().default("identified"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const taskAutomations = pgTable("task_automations", {
+  id: serial("id").primaryKey(),
+  patternId: integer("pattern_id").references(() => taskPatterns.id),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  name: text("name").notNull(),
+  description: text("description"),
+  automationType: text("automation_type").notNull(),
+  script: text("script"),
+  configuration: jsonb("configuration"),
+  estimatedSavings: real("estimated_savings"),
+  status: text("status").notNull().default("recommended"),
+  implementedAt: timestamp("implemented_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const taskSessionsRelations = relations(taskSessions, ({ one, many }) => ({
+  user: one(users, {
+    fields: [taskSessions.userId],
+    references: [users.id],
+  }),
+  activities: many(userActivities),
+  applicationUsage: many(applicationUsage),
+}));
+
+export const userActivitiesRelations = relations(userActivities, ({ one }) => ({
+  session: one(taskSessions, {
+    fields: [userActivities.sessionId],
+    references: [taskSessions.id],
+  }),
+}));
+
+export const applicationUsageRelations = relations(applicationUsage, ({ one }) => ({
+  user: one(users, {
+    fields: [applicationUsage.userId],
+    references: [users.id],
+  }),
+  session: one(taskSessions, {
+    fields: [applicationUsage.sessionId],
+    references: [taskSessions.id],
+  }),
+}));
+
+export const taskPatternsRelations = relations(taskPatterns, ({ one, many }) => ({
+  user: one(users, {
+    fields: [taskPatterns.userId],
+    references: [users.id],
+  }),
+  automations: many(taskAutomations),
+}));
+
+export const taskAutomationsRelations = relations(taskAutomations, ({ one }) => ({
+  pattern: one(taskPatterns, {
+    fields: [taskAutomations.patternId],
+    references: [taskPatterns.id],
+  }),
+  user: one(users, {
+    fields: [taskAutomations.userId],
+    references: [users.id],
+  }),
+}));
+
+export const usersRelations = relations(users, ({ many }) => ({
+  processes: many(processes),
+  documents: many(documents),
+  integrations: many(integrations),
+  auditLogs: many(auditLogs),
+  taskSessions: many(taskSessions),
+  taskPatterns: many(taskPatterns),
+  taskAutomations: many(taskAutomations),
 }));
