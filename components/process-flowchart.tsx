@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState, useMemo } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
   Node,
   Edge,
@@ -12,12 +12,9 @@ import ReactFlow, {
   useNodesState,
   useEdgesState,
   MarkerType,
-  BackgroundVariant,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import ProcessNode from "@/components/process-node";
 
 interface ProcessFlowchartProps {
   activities: string[];
@@ -35,78 +32,84 @@ export default function ProcessFlowchart({
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
-  const nodeTypes = useMemo(() => ({ process: ProcessNode }), []);
-
   useEffect(() => {
     buildFlowchart();
   }, [activities, transitions]);
 
   const buildFlowchart = () => {
+    const activitySet = new Set(activities);
+    const nodeMap = new Map<string, { x: number; y: number }>();
+    
     const layers = assignLayers(startActivities, endActivities, transitions);
     
     const newNodes: Node[] = [];
-    const nodeSpacing = 160;
-    const layerSpacing = 300;
+    const nodeSpacing = 250;
+    const layerSpacing = 200;
 
     layers.forEach((layerActivities, layerIndex) => {
       layerActivities.forEach((activity, activityIndex) => {
         const x = layerIndex * layerSpacing;
         const y = activityIndex * nodeSpacing;
+        
+        nodeMap.set(activity, { x, y });
 
-        let nodeType: "start" | "activity" | "end" = "activity";
+        let nodeType = "default";
+        let nodeColor = "#3b82f6";
 
         if (startActivities.includes(activity)) {
-          nodeType = "start";
+          nodeType = "input";
+          nodeColor = "#10b981";
         } else if (endActivities.includes(activity)) {
-          nodeType = "end";
+          nodeType = "output";
+          nodeColor = "#ef4444";
         }
 
         newNodes.push({
           id: activity,
-          type: "process",
+          type: nodeType,
           position: { x, y },
-          data: { 
-            label: activity,
-            nodeType: nodeType,
+          data: { label: activity },
+          style: {
+            background: nodeColor,
+            color: "white",
+            border: "2px solid #1e293b",
+            borderRadius: "8px",
+            padding: "12px 20px",
+            fontSize: "14px",
+            fontWeight: "500",
           },
         });
       });
     });
 
-    const maxFrequency = Math.max(...transitions.map((t) => t.frequency), 1);
-
     const newEdges: Edge[] = transitions.map((transition) => {
-      const width = Math.max(2, Math.min(6, (transition.frequency / maxFrequency) * 6));
-      const isHighFrequency = transition.frequency > maxFrequency * 0.5;
+      const maxFrequency = Math.max(...transitions.map((t) => t.frequency));
+      const width = Math.max(1, Math.min(5, (transition.frequency / maxFrequency) * 5));
 
       return {
         id: `${transition.from}-${transition.to}`,
         source: transition.from,
         target: transition.to,
         type: "smoothstep",
-        animated: isHighFrequency,
-        label: `${transition.frequency}×`,
+        animated: transition.frequency > maxFrequency * 0.5,
+        label: `${transition.frequency}`,
         style: {
-          stroke: isHighFrequency ? "hsl(var(--brand))" : "hsl(var(--muted-foreground) / 0.4)",
+          stroke: "#64748b",
           strokeWidth: width,
         },
         markerEnd: {
           type: MarkerType.ArrowClosed,
-          color: isHighFrequency ? "hsl(var(--brand))" : "hsl(var(--muted-foreground) / 0.4)",
-          width: 20,
-          height: 20,
+          color: "#64748b",
         },
         labelStyle: {
-          fill: "hsl(var(--foreground))",
-          fontSize: "13px",
+          fill: "#1e293b",
+          fontSize: "12px",
           fontWeight: "600",
         },
         labelBgStyle: {
-          fill: "hsl(var(--background))",
-          fillOpacity: 0.95,
-          rx: 4,
+          fill: "#f1f5f9",
+          fillOpacity: 0.9,
         },
-        labelBgPadding: [8, 4],
       };
     });
 
@@ -172,78 +175,48 @@ export default function ProcessFlowchart({
   );
 
   return (
-    <Card className="border-brand/20 overflow-hidden">
-      <CardHeader className="bg-gradient-to-r from-brand/5 to-transparent">
-        <div className="flex items-center justify-between">
-          <div>
-            <CardTitle className="text-2xl">Discovered Process Flow</CardTitle>
-            <CardDescription className="mt-1">
-              Interactive visualization of your process model
-            </CardDescription>
-          </div>
-          <div className="flex gap-2">
-            <Badge variant="outline" className="border-brand/30 bg-brand/5 text-brand">
-              {activities.length} Activities
-            </Badge>
-            <Badge variant="outline" className="border-brand/30 bg-brand/5 text-brand">
-              {transitions.length} Transitions
-            </Badge>
-          </div>
-        </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Process Flow Diagram</CardTitle>
+        <CardDescription>
+          Discovered process model with {activities.length} activities and {transitions.length} transitions
+        </CardDescription>
       </CardHeader>
-      <CardContent className="p-0">
-        <div className="relative" style={{ height: "700px", width: "100%" }}>
+      <CardContent>
+        <div style={{ height: "600px", width: "100%", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
-            nodeTypes={nodeTypes}
             fitView
-            fitViewOptions={{ padding: 0.2 }}
-            attributionPosition="bottom-right"
-            className="bg-gradient-to-br from-background to-muted/20"
+            attributionPosition="bottom-left"
           >
-            <Background 
-              variant={BackgroundVariant.Dots}
-              gap={16}
-              size={1}
-              color="hsl(var(--brand) / 0.1)"
-            />
-            <Controls className="bg-card border-border" />
+            <Background />
+            <Controls />
             <MiniMap
               nodeColor={(node) => {
-                const data = node.data as any;
-                if (data.nodeType === "start") return "hsl(var(--brand))";
-                if (data.nodeType === "end") return "hsl(var(--destructive))";
-                return "hsl(var(--muted))";
+                if (node.type === "input") return "#10b981";
+                if (node.type === "output") return "#ef4444";
+                return "#3b82f6";
               }}
-              nodeBorderRadius={12}
-              className="bg-card/80 border-border"
-              maskColor="hsl(var(--background) / 0.8)"
+              nodeBorderRadius={8}
             />
           </ReactFlow>
         </div>
-        
-        <div className="px-6 py-4 border-t border-border bg-muted/30">
-          <div className="flex flex-wrap gap-6 text-sm">
-            <div className="flex items-center gap-2.5">
-              <div className="h-3 w-3 rounded-full bg-gradient-to-br from-brand to-brand/80 shadow-lg shadow-brand/30" />
-              <span className="font-medium">Start Activity</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <div className="h-3 w-3 rounded border-2 border-brand/30 bg-card shadow" />
-              <span className="font-medium">Process Step</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <div className="h-3 w-3 rounded-full bg-gradient-to-br from-destructive to-destructive/80 shadow-lg shadow-destructive/30" />
-              <span className="font-medium">End Activity</span>
-            </div>
-            <div className="flex items-center gap-2.5 ml-auto">
-              <div className="h-0.5 w-8 bg-gradient-to-r from-brand to-brand/60" />
-              <span className="font-medium text-muted-foreground">High Frequency Path</span>
-            </div>
+        <div className="mt-4 flex gap-4 text-sm">
+          <div className="flex items-center gap-2">
+            <div className="h-3 w-3 rounded bg-[#10b981]" />
+            <span>Start Activity</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-3 w-3 rounded bg-[#3b82f6]" />
+            <span>Intermediate Activity</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-3 w-3 rounded bg-[#ef4444]" />
+            <span>End Activity</span>
           </div>
         </div>
       </CardContent>
