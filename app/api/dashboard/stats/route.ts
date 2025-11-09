@@ -1,40 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getProcesses, getPerformanceMetrics, getAutomationOpportunities } from "@/server/storage";
+import { db } from "@/lib/db";
+import { processes, performanceMetrics, automationOpportunities } from "@/shared/schema";
+import { eq, sql, count, avg } from "drizzle-orm";
+import { getCurrentUser } from "@/lib/server-auth";
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 30;
 
 export async function GET(request: NextRequest) {
   try {
-    const processes = await getProcesses();
-    
-    let totalCycleTime = 0;
-    let totalConformance = 0;
-    let totalAutomation = 0;
-    let processesWithMetrics = 0;
-    let processesWithAutomation = 0;
-
-    for (const process of processes) {
-      const metrics = await getPerformanceMetrics(process.id, 1);
-      if (metrics.length > 0) {
-        totalCycleTime += metrics[0].cycleTime || 0;
-        totalConformance += metrics[0].conformanceRate || 0;
-        processesWithMetrics++;
-      }
-
-      const opportunities = await getAutomationOpportunities(process.id);
-      if (opportunities.length > 0) {
-        const avgPotential = opportunities.reduce((sum: number, opp: any) => sum + (opp.automationPotential || 0), 0) / opportunities.length;
-        totalAutomation += avgPotential;
-        processesWithAutomation++;
-      }
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const [processStats] = await db
+      .select({
+        processCount: count(processes.id),
+      })
+      .from(processes)
+      .where(eq(processes.userId, user.id));
+
+    const [metricsStats] = await db
+      .select({
+        avgCycleTime: avg(performanceMetrics.cycleTime),
+        avgConformance: avg(performanceMetrics.conformanceRate),
+      })
+      .from(performanceMetrics)
+      .innerJoin(processes, eq(processes.id, performanceMetrics.processId))
+      .where(eq(processes.userId, user.id));
+
+    const [automationStats] = await db
+      .select({
+        avgAutomation: avg(automationOpportunities.automationPotential),
+      })
+      .from(automationOpportunities)
+      .innerJoin(processes, eq(processes.id, automationOpportunities.processId))
+      .where(eq(processes.userId, user.id));
+
     const stats = {
-      processCount: processes.length,
-      avgCycleTime: processesWithMetrics > 0 ? Math.round((totalCycleTime / processesWithMetrics) * 10) / 10 : 0,
-      conformanceRate: processesWithMetrics > 0 ? Math.round((totalConformance / processesWithMetrics) * 10) / 10 : 0,
-      automationPotential: processesWithAutomation > 0 ? Math.round((totalAutomation / processesWithAutomation) * 10) / 10 : 0,
+      processCount: processStats?.processCount || 0,
+      avgCycleTime: metricsStats?.avgCycleTime ? Math.round(Number(metricsStats.avgCycleTime) * 10) / 10 : 0,
+      conformanceRate: metricsStats?.avgConformance ? Math.round(Number(metricsStats.avgConformance) * 10) / 10 : 0,
+      automationPotential: automationStats?.avgAutomation ? Math.round(Number(automationStats.avgAutomation) * 10) / 10 : 0,
     };
 
-    return NextResponse.json({ stats });
+    return NextResponse.json({ stats }, {
+      headers: {
+        'Cache-Control': 'private, max-age=30',
+      },
+    });
   } catch (error) {
     console.error("Error fetching dashboard stats:", error);
     return NextResponse.json(

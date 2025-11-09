@@ -3,6 +3,9 @@ import * as storage from "@/server/storage";
 import { getCurrentUser } from "@/lib/server-auth";
 import { processSchema, sanitizeInput } from "@/lib/validation";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 30;
+
 export async function GET(request: NextRequest) {
   try {
     const user = await getCurrentUser();
@@ -11,7 +14,12 @@ export async function GET(request: NextRequest) {
     }
 
     const processes = await storage.getProcessesByUser(user.id);
-    return NextResponse.json({ processes });
+    
+    return NextResponse.json({ processes }, {
+      headers: {
+        'Cache-Control': 'private, max-age=30',
+      },
+    });
   } catch (error) {
     console.error("Error fetching processes:", error);
     return NextResponse.json(
@@ -48,7 +56,7 @@ export async function POST(request: NextRequest) {
       status: "active",
     });
 
-    return NextResponse.json({ process }, { status: 201 });
+    return NextResponse.json(process, { status: 201 });
   } catch (error) {
     console.error("Error creating process:", error);
     return NextResponse.json(

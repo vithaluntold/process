@@ -9,6 +9,9 @@ const JWT_SECRET = new TextEncoder().encode(
   process.env.SESSION_SECRET || "dev-secret-change-in-production"
 );
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 60;
+
 export async function GET(request: NextRequest) {
   try {
     const cookieStore = await cookies();
@@ -42,7 +45,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 401 });
     }
 
-    return NextResponse.json({ user });
+    return NextResponse.json({ user }, {
+      headers: {
+        'Cache-Control': 'private, max-age=60',
+      },
+    });
   } catch (error) {
     console.error("Get user error:", error);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
