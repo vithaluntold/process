@@ -1,0 +1,26 @@
+Lead_ID,Timestamp,Activity,User,Status,Property_Type,Loan_Amount,Borrower_Name,Property_Address,DSCR,LTV_Ratio
+LN-2024-001,2024-10-01 09:15:00,Lead Capture,Sarah Martinez,Completed,Multifamily,2500000,Greenwood Properties LLC,455 Oak Street Boston MA,1.35,65
+LN-2024-001,2024-10-01 14:30:00,Initial Screening,Sarah Martinez,Completed,Multifamily,2500000,Greenwood Properties LLC,455 Oak Street Boston MA,1.35,65
+LN-2024-002,2024-10-02 10:22:00,Lead Capture,Michael Chen,Completed,Multifamily,1800000,Riverside Apartments Inc,892 River Road Portland OR,1.28,70
+LN-2024-002,2024-10-02 11:45:00,Initial Screening,Michael Chen,Completed,Multifamily,1800000,Riverside Apartments Inc,892 River Road Portland OR,1.28,70
+LN-2024-003,2024-10-03 08:00:00,Lead Capture,Jennifer Lopez,Completed,Multifamily,3200000,Summit Housing Partners,1234 Highland Ave Seattle WA,1.42,60
+LN-2024-003,2024-10-03 13:20:00,Initial Screening,Jennifer Lopez,Completed,Multifamily,3200000,Summit Housing Partners,1234 Highland Ave Seattle WA,1.42,60
+LN-2024-004,2024-10-04 09:30:00,Lead Capture,David Kim,Completed,Multifamily,950000,Metro Living LLC,567 Urban Plaza Denver CO,1.15,75
+LN-2024-004,2024-10-04 15:00:00,Initial Screening,David Kim,Completed,Multifamily,950000,Metro Living LLC,567 Urban Plaza Denver CO,1.15,75
+LN-2024-005,2024-10-07 10:15:00,Lead Capture,Sarah Martinez,Completed,Multifamily,4100000,Parkside Residential Group,789 Park Avenue Austin TX,1.48,58
+LN-2024-005,2024-10-07 14:45:00,Initial Screening,Sarah Martinez,Completed,Multifamily,4100000,Parkside Residential Group,789 Park Avenue Austin TX,1.48,58
+LN-2024-001,2024-10-03 09:00:00,Document Request Sent,Sarah Martinez,Completed,Multifamily,2500000,Greenwood Properties LLC,455 Oak Street Boston MA,1.35,65
+LN-2024-002,2024-10-04 10:30:00,Document Request Sent,Michael Chen,Completed,Multifamily,1800000,Riverside Apartments Inc,892 River Road Portland OR,1.28,70
+LN-2024-003,2024-10-05 11:15:00,Document Request Sent,Jennifer Lopez,Completed,Multifamily,3200000,Summit Housing Partners,1234 Highland Ave Seattle WA,1.42,60
+LN-2024-004,2024-10-06 08:45:00,Document Request Sent,David Kim,Completed,Multifamily,950000,Metro Living LLC,567 Urban Plaza Denver CO,1.15,75
+LN-2024-005,2024-10-09 09:30:00,Document Request Sent,Sarah Martinez,Completed,Multifamily,4100000,Parkside Residential Group,789 Park Avenue Austin TX,1.48,58
+LN-2024-001,2024-10-08 14:20:00,Documents Received,Sarah Martinez,Completed,Multifamily,2500000,Greenwood Properties LLC,455 Oak Street Boston MA,1.35,65
+LN-2024-002,2024-10-09 15:45:00,Documents Received,Michael Chen,Completed,Multifamily,1800000,Riverside Apartments Inc,892 River Road Portland OR,1.28,70
+LN-2024-003,2024-10-11 10:30:00,Documents Received,Jennifer Lopez,Completed,Multifamily,3200000,Summit Housing Partners,1234 Highland Ave Seattle WA,1.42,60
+LN-2024-004,2024-10-10 16:00:00,Documents Received,David Kim,Delayed,Multifamily,950000,Metro Living LLC,567 Urban Plaza Denver CO,1.15,75
+LN-2024-005,2024-10-15 11:20:00,Documents Received,Sarah Martinez,Delayed,Multifamily,4100000,Parkside Residential Group,789 Park Avenue Austin TX,1.48,58
+LN-2024-001,2024-10-09 09:15:00,Assign to Underwriter,Operations Team,Completed,Multifamily,2500000,Greenwood Properties LLC,455 Oak Street Boston MA,1.35,65
+LN-2024-002,2024-10-10 10:00:00,Assign to Underwriter,Operations Team,Completed,Multifamily,1800000,Riverside Apartments Inc,892 River Road Portland OR,1.28,70
+LN-2024-003,2024-10-12 08:30:00,Assign to Underwriter,Operations Team,Completed,Multifamily,3200000,Summit Housing Partners,1234 Highland Ave Seattle WA,1.42,60
+LN-2024-004,2024-10-14 09:00:00,Assign to Underwriter,Operations Team,Delayed,Multifamily,950000,Metro Living LLC,567 Urban Plaza Denver CO,1.15,75
+LN-2024-005,2024-10-17 10:45:00,Assign to Underwriter,Operations Team,Delayed,Multifamily,4100000,Parkside Residential Group,789 Park Avenue Austin TX,1.48,58

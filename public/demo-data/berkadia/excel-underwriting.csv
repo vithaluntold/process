@@ -1,0 +1,30 @@
+Loan_ID,Timestamp,Activity,User,Status,Credit_Score,Appraisal_Value,Risk_Rating,Freddie_Mac_Eligible,Manual_Review_Required
+LN-2024-001,2024-10-10 09:30:00,Credit Report Retrieved,System Auto,Completed,742,3850000,Low,Yes,No
+LN-2024-001,2024-10-10 09:45:00,Credit Analysis,Robert Johnson,Completed,742,3850000,Low,Yes,No
+LN-2024-001,2024-10-11 10:00:00,Property Appraisal Ordered,Robert Johnson,Completed,742,3850000,Low,Yes,No
+LN-2024-001,2024-10-15 14:30:00,Appraisal Received,System Auto,Completed,742,3850000,Low,Yes,No
+LN-2024-001,2024-10-16 09:00:00,Financial Analysis,Robert Johnson,Completed,742,3850000,Low,Yes,No
+LN-2024-001,2024-10-17 11:20:00,Risk Assessment,Robert Johnson,Completed,742,3850000,Low,Yes,No
+LN-2024-001,2024-10-18 10:15:00,Underwriting Approval,Robert Johnson,Approved,742,3850000,Low,Yes,No
+LN-2024-002,2024-10-11 08:45:00,Credit Report Retrieved,System Auto,Completed,698,2570000,Medium,Yes,Yes
+LN-2024-002,2024-10-11 09:00:00,Credit Analysis,Amanda Stevens,Completed,698,2570000,Medium,Yes,Yes
+LN-2024-002,2024-10-12 10:30:00,Property Appraisal Ordered,Amanda Stevens,Completed,698,2570000,Medium,Yes,Yes
+LN-2024-002,2024-10-17 15:00:00,Appraisal Received,System Auto,Completed,698,2570000,Medium,Yes,Yes
+LN-2024-002,2024-10-18 09:30:00,Financial Analysis,Amanda Stevens,Completed,698,2570000,Medium,Yes,Yes
+LN-2024-002,2024-10-19 14:00:00,Risk Assessment,Amanda Stevens,Completed,698,2570000,Medium,Yes,Yes
+LN-2024-002,2024-10-20 10:00:00,Manual Review,Senior Underwriter,In Progress,698,2570000,Medium,Yes,Yes
+LN-2024-003,2024-10-13 09:15:00,Credit Report Retrieved,System Auto,Completed,775,5330000,Low,Yes,No
+LN-2024-003,2024-10-13 09:30:00,Credit Analysis,Robert Johnson,Completed,775,5330000,Low,Yes,No
+LN-2024-003,2024-10-14 11:00:00,Property Appraisal Ordered,Robert Johnson,Completed,775,5330000,Low,Yes,No
+LN-2024-003,2024-10-19 13:45:00,Appraisal Received,System Auto,Completed,775,5330000,Low,Yes,No
+LN-2024-003,2024-10-20 08:30:00,Financial Analysis,Robert Johnson,Completed,775,5330000,Low,Yes,No
+LN-2024-003,2024-10-21 10:15:00,Risk Assessment,Robert Johnson,Completed,775,5330000,Low,Yes,No
+LN-2024-003,2024-10-22 09:45:00,Underwriting Approval,Robert Johnson,Approved,775,5330000,Low,Yes,No
+LN-2024-004,2024-10-16 10:00:00,Credit Report Retrieved,System Auto,Delayed,665,1270000,High,No,Yes
+LN-2024-004,2024-10-21 09:00:00,Credit Analysis,Amanda Stevens,Completed,665,1270000,High,No,Yes
+LN-2024-004,2024-10-22 14:30:00,Additional Documentation Request,Amanda Stevens,Pending,665,1270000,High,No,Yes
+LN-2024-005,2024-10-18 11:30:00,Credit Report Retrieved,System Auto,Completed,788,7070000,Low,Yes,No
+LN-2024-005,2024-10-18 11:45:00,Credit Analysis,Robert Johnson,Completed,788,7070000,Low,Yes,No
+LN-2024-005,2024-10-19 09:00:00,Property Appraisal Ordered,Robert Johnson,Completed,788,7070000,Low,Yes,No
+LN-2024-005,2024-10-24 16:00:00,Appraisal Received,System Auto,Completed,788,7070000,Low,Yes,No
+LN-2024-005,2024-10-25 09:15:00,Financial Analysis,Robert Johnson,In Progress,788,7070000,Low,Yes,No

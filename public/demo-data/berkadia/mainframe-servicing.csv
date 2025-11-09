@@ -1,0 +1,15 @@
+Loan_ID,Timestamp,Activity,User,Status,Loan_Status,Monthly_Payment,Days_Since_Approval,Compliance_Check
+LN-2024-001,2024-10-19 09:00:00,Loan Boarding Initiated,System Auto,Completed,Boarding,0,1,Pending
+LN-2024-001,2024-10-19 14:30:00,Data Entry - Borrower Info,Jane Wilson,Completed,Boarding,0,1,Pending
+LN-2024-001,2024-10-20 10:15:00,Data Entry - Property Info,Jane Wilson,Completed,Boarding,0,2,Pending
+LN-2024-001,2024-10-21 09:45:00,Data Entry - Loan Terms,Jane Wilson,Completed,Boarding,0,3,Pending
+LN-2024-001,2024-10-22 11:00:00,Data Verification,QA Team,Completed,Boarding,0,4,Pending
+LN-2024-001,2024-10-24 13:30:00,Compliance Documentation,Compliance Officer,Completed,Boarding,0,6,Passed
+LN-2024-001,2024-10-25 09:15:00,System Setup Complete,System Auto,Completed,Active,15420,7,Passed
+LN-2024-001,2024-10-26 08:00:00,First Payment Scheduled,System Auto,Completed,Active,15420,8,Passed
+LN-2024-003,2024-10-23 10:00:00,Loan Boarding Initiated,System Auto,Completed,Boarding,0,1,Pending
+LN-2024-003,2024-10-23 15:45:00,Data Entry - Borrower Info,Marcus Thompson,Completed,Boarding,0,1,Pending
+LN-2024-003,2024-10-24 11:20:00,Data Entry - Property Info,Marcus Thompson,Completed,Boarding,0,2,Pending
+LN-2024-003,2024-10-25 10:00:00,Data Entry - Loan Terms,Marcus Thompson,Completed,Boarding,0,3,Pending
+LN-2024-003,2024-10-26 14:15:00,Data Verification,QA Team,In Progress,Boarding,0,4,Pending
+LN-2024-002,2024-10-21 09:30:00,Awaiting Final Approval,Senior Management,Pending,Underwriting,0,0,Pending
