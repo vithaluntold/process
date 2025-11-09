@@ -1,0 +1,91 @@
+BERKADIA LOAN PROCESSING WORKFLOW - INTERNAL DOCUMENT
+Property: Summit Highland Apartments, 1234 Highland Ave, Seattle, WA
+Loan ID: LN-2024-003
+Borrower: Summit Housing Partners LLC
+Loan Amount: $3,200,000
+Property Type: Multifamily (72 units)
+
+PROCESSING TIMELINE:
+
+October 3, 2024 - 08:00 AM
+Lead received in Salesforce from borrower inquiry. Property details captured including 72-unit multifamily building with strong occupancy (95%) and cash flow. Sarah Martinez assigned as relationship manager.
+
+October 3, 2024 - 01:20 PM
+Initial screening completed. DSCR calculated at 1.42, LTV at 60%. Borrower pre-qualified for Freddie Mac financing. Document request list prepared and sent via email to borrower contact.
+
+October 5, 2024 - 11:15 AM
+Document request email sent to borrower requesting:
+- Last 3 years tax returns
+- Current rent roll
+- Property operating statements
+- Entity documents
+- Purchase agreement
+- Environmental reports
+
+October 11, 2024 - 10:30 AM
+Documents received via email from borrower. Some items incomplete - appraisal not yet completed, environmental Phase I report pending. Jennifer Lopez forwarded documents to underwriting team for preliminary review.
+
+October 12, 2024 - 08:30 AM
+File assigned to Robert Johnson, Senior Underwriter. Initial review of borrower financials shows strong credit (estimated 775 score). Property cash flow analysis initiated in Excel.
+
+October 13, 2024 - 09:15 AM
+Credit report retrieved automatically through bureau integration. Confirmed credit score: 775. No adverse findings.
+
+October 13, 2024 - 09:30 AM
+Credit analysis completed by Robert Johnson. Borrower meets all Freddie Mac credit requirements. Strong payment history on existing portfolio properties.
+
+October 14, 2024 - 11:00 AM
+Property appraisal ordered from approved vendor. Estimated turnaround: 5-7 business days.
+
+**DELAY NOTED**: Appraisal scheduling delayed 2 days due to appraiser availability in Seattle market.
+
+October 19, 2024 - 01:45 PM
+Appraisal received. Property valued at $5,330,000. LTV confirms at 60%, within acceptable range for Freddie Mac financing.
+
+October 20, 2024 - 08:30 AM
+Financial analysis completed in Excel. Cash flow projections show debt service coverage of 1.42x, exceeding Freddie Mac minimum of 1.25x. Property performance strong.
+
+October 21, 2024 - 10:15 AM
+Risk assessment completed by Robert Johnson. Loan categorized as "Low Risk" based on:
+- Strong borrower credit (775)
+- Solid DSCR (1.42)
+- Conservative LTV (60%)
+- Established market location
+- Strong property performance
+
+October 22, 2024 - 09:45 AM
+Underwriting approval granted by Robert Johnson. Loan approved for Freddie Mac submission. File forwarded to Freddie Mac relationship manager for formal submission.
+
+**BOTTLENECK IDENTIFIED**: Manual data entry required to transfer all underwriting data from Excel spreadsheets into mainframe loan servicing system. This process typically takes 3-5 days and requires quality assurance review.
+
+October 23, 2024 - 10:00 AM
+Loan boarding initiated in mainframe system. Marcus Thompson assigned as loan processor.
+
+October 23-25, 2024
+Manual data entry process:
+- Day 1: Borrower information entered
+- Day 2: Property information entered  
+- Day 3: Loan terms and structure entered
+
+October 26, 2024 - 02:15 PM
+QA Team review in progress. Data verification comparing mainframe entries against original Salesforce lead and Excel underwriting file.
+
+**COMPLIANCE CHECKPOINT**: All documentation verified for Freddie Mac compliance requirements. Environmental reports, appraisal, and entity documents all on file and complete.
+
+PROCESS INSIGHTS:
+- Total processing time from lead to loan boarding: 23 days
+- Industry target: 15-18 days
+- Primary delays: 
+  1. Document collection (6 days) - borrower response time
+  2. Appraisal scheduling (2 days) - vendor availability
+  3. Manual data entry (3 days) - system limitations
+
+AUTOMATION OPPORTUNITIES:
+1. Automated document verification using AI - could save 2-3 days
+2. Direct system integration (Salesforce → Mainframe) - eliminate 3-day data entry process
+3. Automated compliance checking - reduce QA review time by 50%
+
+Estimated time savings with automation: 5-8 days per loan
+Estimated cost savings: $2,400/loan in labor costs
+Annual volume: ~500 loans
+Total annual savings potential: $1,200,000

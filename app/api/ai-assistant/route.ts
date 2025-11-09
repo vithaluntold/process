@@ -4,6 +4,7 @@ import { processes, eventLogs, aiInsights } from "@/shared/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/server-auth";
 import { generateAIResponse } from "@/lib/ai";
+import { getEnhancedSystemPrompt, getBerkadiaContext } from "@/server/ai-knowledge-base";
 
 export async function POST(req: NextRequest) {
   const user = await getCurrentUser();
@@ -12,13 +13,14 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { query, processId } = await req.json();
+    const { query, processId, domain } = await req.json();
 
     if (!query) {
       return NextResponse.json({ error: "Query required" }, { status: 400 });
     }
 
     let context = "";
+    let domainContext = "";
     
     if (processId) {
       const userProcess = await db.query.processes.findFirst({
@@ -54,14 +56,28 @@ Activities: ${new Set(logs.map(l => l.activity)).size}`;
 Process Names: ${userProcesses.map(p => p.name).join(", ")}`;
     }
 
-    const prompt = `You are an expert process mining AI assistant. Based on the following process data, answer the user's question:
+    if (domain === "berkadia") {
+      domainContext = getBerkadiaContext();
+    }
 
-Context:
+    let basePrompt = `You are an expert process mining AI assistant specializing in business process optimization and automation.`;
+
+    if (domainContext) {
+      basePrompt = `${basePrompt}
+
+${domainContext}
+
+Use this domain knowledge to provide context-aware insights and recommendations.`;
+    }
+
+    const prompt = `${basePrompt}
+
+Process Data Context:
 ${context}
 
 User Question: ${query}
 
-Provide a helpful, concise answer with actionable insights and recommendations.`;
+Provide a helpful, concise answer with actionable insights and specific recommendations. If relevant, reference industry benchmarks, common pain points, and ROI estimates from the domain knowledge above.`;
 
     const response = await generateAIResponse(prompt);
 
