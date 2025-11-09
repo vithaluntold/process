@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Activity, Clock, TrendingUp, Zap, CheckCircle2, AlertCircle, BarChart3 } from "lucide-react";
 import { toast } from "sonner";
+import { ApiKeyManager } from "@/components/api-key-manager";
 
 interface TaskSession {
   id: number;
@@ -494,6 +495,13 @@ export default function TaskMiningPage() {
                     <li className="flex gap-3">
                       <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">1</span>
                       <div>
+                        <p className="font-medium">Generate API Key (see below)</p>
+                        <p className="text-muted-foreground">Create a secure API key for desktop agent authentication</p>
+                      </div>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">2</span>
+                      <div>
                         <p className="font-medium">Download the Desktop Agent</p>
                         <p className="text-muted-foreground">Available for Windows, macOS, and Linux</p>
                         <div className="mt-2 flex gap-2">
@@ -513,28 +521,26 @@ export default function TaskMiningPage() {
                       </div>
                     </li>
                     <li className="flex gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">2</span>
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">3</span>
                       <div>
                         <p className="font-medium">Configure the Agent</p>
-                        <p className="text-muted-foreground">Enter your platform URL and API key</p>
+                        <p className="text-muted-foreground">Enter your platform URL and generated API key</p>
                         <div className="mt-2 bg-muted rounded-md p-3 font-mono text-xs space-y-1">
                           <div><span className="text-muted-foreground">Platform URL:</span> {typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5000'}</div>
-                          <div><span className="text-muted-foreground">API Key:</span> Use your email address (demo only)</div>
-                        </div>
-                        <div className="mt-2 bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-900 rounded-md p-2 text-xs">
-                          <strong>⚠️ Security Note:</strong> The current API key system uses email for demo purposes only. In production, implement proper API key generation with secure secrets storage and validation.
+                          <div><span className="text-muted-foreground">API Key:</span> epix_••••••••••••••••••••••••</div>
+                          <div><span className="text-muted-foreground">Encryption Key:</span> (optional, for encrypted transmission)</div>
                         </div>
                       </div>
                     </li>
                     <li className="flex gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">3</span>
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">4</span>
                       <div>
                         <p className="font-medium">Grant Privacy Consent</p>
                         <p className="text-muted-foreground">Review and accept the privacy policy to enable tracking</p>
                       </div>
                     </li>
                     <li className="flex gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">4</span>
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">5</span>
                       <div>
                         <p className="font-medium">Start Tracking</p>
                         <p className="text-muted-foreground">Agent runs in system tray with real-time activity capture</p>
@@ -577,6 +583,8 @@ export default function TaskMiningPage() {
               </div>
             </CardContent>
           </Card>
+
+          <ApiKeyManager />
 
           <Card>
             <CardHeader>
