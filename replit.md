@@ -32,7 +32,7 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 - **Performance Analytics Engine**: Calculates cycle times, throughput, and identifies bottlenecks using statistical analysis.
 - **Anomaly Detection**: Features five algorithms for detecting anomalies (duration outliers, sequence violations, resource anomalies, temporal patterns, frequency anomalies) with severity classification and AI-generated insights.
 - **Token-Based Replay Conformance Checking**: Industry-standard Petri net conformance validation using forced firing algorithm to detect deviations and calculate fitness scores.
-- **Task Mining**: Comprehensive desktop activity analysis system with 5 database tables, a full REST API layer, AI-powered pattern detection, automation opportunity engine, and privacy consent tracking.
+- **Task Mining**: Comprehensive desktop activity analysis system with 5 database tables, a full REST API layer, AI-powered pattern detection, automation opportunity engine, and privacy consent tracking. Includes a standalone **Desktop Capture Agent** built with Electron for real-time keystroke, mouse, and application activity monitoring. The agent features AES-256 encryption, system tray integration, configurable privacy controls, and cross-platform support (Windows, macOS, Linux).
 - **Digital Twin Simulation & What-If Scenarios**: Production-ready discrete-event simulator for creating process digital twins with probabilistic activity duration sampling, case lifecycle management, and token flow. Supports scenario parameters like duration multipliers, number of cases, and arrival rate, providing results on total/completed cases, average cycle time, throughput, and bottleneck identification.
 
 **Backend Architecture:**
@@ -57,10 +57,18 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 - **Data Minimization**: Only essential data captured.
 - **Audit Trail**: All data access and modifications logged.
 
-**Desktop Application:**
-- EPI X-Ray is available as an installable desktop application built with Electron 28.
-- **Platform Support**: Windows (.exe, portable), macOS (DMG, ZIP for ARM64/x64), Linux (AppImage, .deb, RPM).
-- **Desktop Features**: Native menus, keyboard shortcuts, 1400x900 default window, context isolation, sandboxed security, external links in system browser, about dialog, and auto-update readiness.
+**Desktop Applications:**
+1. **Main Desktop App**: EPI X-Ray is available as an installable desktop application built with Electron 28.
+   - **Platform Support**: Windows (.exe, portable), macOS (DMG, ZIP for ARM64/x64), Linux (AppImage, .deb, RPM).
+   - **Desktop Features**: Native menus, keyboard shortcuts, 1400x900 default window, context isolation, sandboxed security, external links in system browser, about dialog, and auto-update readiness.
+
+2. **Desktop Capture Agent** (Task Mining): Standalone Electron application for activity monitoring.
+   - **Location**: `desktop-agent/` directory with full source code
+   - **Features**: Real-time keyboard/mouse tracking, application usage monitoring, optional screenshot capture, AES-256 encryption, privacy consent management
+   - **System Tray**: Runs in background with pause/resume controls and status indicators
+   - **API Integration**: Sends encrypted activity data to platform via `/api/task-mining/activities` endpoint with API key authentication
+   - **Privacy**: Blur sensitive data option, GDPR compliant, user consent required before tracking
+   - **Build Commands**: `npm run package:win|mac|linux` for platform-specific installers
 
 ## External Dependencies
 - **Database**: PostgreSQL (via Neon)

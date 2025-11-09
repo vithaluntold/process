@@ -201,6 +201,10 @@ export default function TaskMiningPage() {
           <TabsTrigger value="automations">Automation Opportunities</TabsTrigger>
           <TabsTrigger value="sessions">Recording Sessions</TabsTrigger>
           <TabsTrigger value="applications">Application Usage</TabsTrigger>
+          <TabsTrigger value="agent">
+            Desktop Agent
+            <Badge variant="secondary" className="ml-2">NEW</Badge>
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="patterns" className="space-y-4">
@@ -421,6 +425,179 @@ export default function TaskMiningPage() {
               </CardContent>
             </Card>
           )}
+        </TabsContent>
+
+        <TabsContent value="agent" className="space-y-4">
+          <Card className="border-brand/20 bg-gradient-to-br from-brand/5 to-transparent">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Activity className="h-5 w-5 text-brand" />
+                EPI X-Ray Desktop Agent
+              </CardTitle>
+              <CardDescription>
+                Install our desktop application to automatically capture keystrokes, mouse events, and application usage for comprehensive task mining
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-3 text-lg">Features</h4>
+                  <div className="grid md:grid-cols-2 gap-3">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-brand mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-medium">Keyboard Activity Tracking</p>
+                        <p className="text-sm text-muted-foreground">Captures typing patterns and shortcuts</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-brand mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-medium">Application Monitoring</p>
+                        <p className="text-sm text-muted-foreground">Tracks active apps and window switches</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-brand mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-medium">Screenshot Capture</p>
+                        <p className="text-sm text-muted-foreground">Optional periodic screenshots (configurable)</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="h-5 w-5 text-brand mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="font-medium">AES-256 Encryption</p>
+                        <p className="text-sm text-muted-foreground">All data encrypted before transmission</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-muted/50 rounded-lg p-4 space-y-3">
+                  <h4 className="font-semibold flex items-center gap-2">
+                    <AlertCircle className="h-4 w-4 text-brand" />
+                    Privacy & Security
+                  </h4>
+                  <ul className="text-sm space-y-2 text-muted-foreground">
+                    <li>• Full control to pause/resume tracking anytime</li>
+                    <li>• User consent required before tracking begins</li>
+                    <li>• Sensitive information can be automatically blurred</li>
+                    <li>• Data stored locally until successfully transmitted</li>
+                    <li>• GDPR compliant with complete audit trail</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-3">Setup Instructions</h4>
+                  <ol className="space-y-3 text-sm">
+                    <li className="flex gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">1</span>
+                      <div>
+                        <p className="font-medium">Download the Desktop Agent</p>
+                        <p className="text-muted-foreground">Available for Windows, macOS, and Linux</p>
+                        <div className="mt-2 flex gap-2">
+                          <Button variant="outline" size="sm" disabled>
+                            Download for Windows
+                          </Button>
+                          <Button variant="outline" size="sm" disabled>
+                            Download for macOS
+                          </Button>
+                          <Button variant="outline" size="sm" disabled>
+                            Download for Linux
+                          </Button>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-2">
+                          Note: Desktop agent is currently in development. Check desktop-agent/ folder for source code and build instructions.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">2</span>
+                      <div>
+                        <p className="font-medium">Configure the Agent</p>
+                        <p className="text-muted-foreground">Enter your platform URL and API key</p>
+                        <div className="mt-2 bg-muted rounded-md p-3 font-mono text-xs space-y-1">
+                          <div><span className="text-muted-foreground">Platform URL:</span> {typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5000'}</div>
+                          <div><span className="text-muted-foreground">API Key:</span> Use your email address for now</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">3</span>
+                      <div>
+                        <p className="font-medium">Grant Privacy Consent</p>
+                        <p className="text-muted-foreground">Review and accept the privacy policy to enable tracking</p>
+                      </div>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-brand/10 text-brand flex items-center justify-center font-semibold">4</span>
+                      <div>
+                        <p className="font-medium">Start Tracking</p>
+                        <p className="text-muted-foreground">Agent runs in system tray with real-time activity capture</p>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+
+                <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900 rounded-lg p-4">
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Activity className="h-4 w-4" />
+                    How It Works
+                  </h4>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    The desktop agent captures your computer activities and sends encrypted data to this platform for analysis:
+                  </p>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-brand"></div>
+                      <span>Desktop Agent → Captures activities (keyboard, mouse, apps)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-brand"></div>
+                      <span>Encryption → AES-256 encryption applied</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-brand"></div>
+                      <span>Transmission → Secure HTTPS to platform API</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-brand"></div>
+                      <span>Analysis → AI detects patterns & automation opportunities</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-brand"></div>
+                      <span>Insights → View results in Task Mining dashboard</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Build Instructions (Developers)</CardTitle>
+              <CardDescription>For developers who want to build the desktop agent from source</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="bg-muted rounded-md p-4 font-mono text-sm space-y-2">
+                <div className="text-muted-foreground"># Navigate to desktop agent folder</div>
+                <div>cd desktop-agent</div>
+                <div className="text-muted-foreground mt-3"># Install dependencies</div>
+                <div>npm install</div>
+                <div className="text-muted-foreground mt-3"># Build and run locally</div>
+                <div>npm run build && npm start</div>
+                <div className="text-muted-foreground mt-3"># Package for distribution</div>
+                <div>npm run package:win   # Windows</div>
+                <div>npm run package:mac   # macOS</div>
+                <div>npm run package:linux # Linux</div>
+              </div>
+              <p className="text-sm text-muted-foreground mt-4">
+                The packaged installers will be available in the <code className="bg-muted px-1 py-0.5 rounded">desktop-agent/release/</code> folder.
+              </p>
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
     </div>
