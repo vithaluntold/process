@@ -19,6 +19,12 @@ import {
   LinkIcon,
   LogOut,
   User,
+  Activity,
+  Monitor,
+  FileText,
+  DollarSign,
+  Bot,
+  Target,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -219,6 +225,48 @@ export default function DashboardClient() {
               >
                 <Lightbulb className="h-4 w-4" />
                 Predictive Analytics
+              </Link>
+              <Link
+                href="/monitoring"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
+              >
+                <Monitor className="h-4 w-4" />
+                Real-Time Monitoring
+              </Link>
+              <Link
+                href="/task-mining"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
+              >
+                <Activity className="h-4 w-4" />
+                Task Mining
+              </Link>
+              <Link
+                href="/cost-analysis"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
+              >
+                <DollarSign className="h-4 w-4" />
+                Cost Analysis & ROI
+              </Link>
+              <Link
+                href="/custom-kpis"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
+              >
+                <Target className="h-4 w-4" />
+                Custom KPI Builder
+              </Link>
+              <Link
+                href="/reports"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
+              >
+                <FileText className="h-4 w-4" />
+                Reports & Exports
+              </Link>
+              <Link
+                href="/ai-assistant"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-brand/10 hover:text-brand"
+              >
+                <Bot className="h-4 w-4" />
+                AI Assistant
               </Link>
               <Link
                 href="/document-upload"
