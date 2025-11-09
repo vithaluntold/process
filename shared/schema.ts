@@ -539,6 +539,47 @@ export const kpiAlerts = pgTable("kpi_alerts", {
   acknowledgedAt: timestamp("acknowledged_at"),
 });
 
+export const agentApiKeys = pgTable("agent_api_keys", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  keyPrefix: varchar("key_prefix", { length: 12 }).notNull(),
+  hashedKey: text("hashed_key").notNull(),
+  label: text("label"),
+  status: text("status").notNull().default("active"),
+  lastUsedAt: timestamp("last_used_at"),
+  expiresAt: timestamp("expires_at"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  userIdx: index("agent_api_keys_user_idx").on(table.userId),
+  prefixIdx: index("agent_api_keys_prefix_idx").on(table.keyPrefix),
+  statusIdx: index("agent_api_keys_status_idx").on(table.status),
+}));
+
+export const agentEncryptionKeys = pgTable("agent_encryption_keys", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull().unique(),
+  encryptedAESKey: text("encrypted_aes_key").notNull(),
+  algorithm: text("algorithm").notNull().default("aes-256-gcm"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const agentApiKeysRelations = relations(agentApiKeys, ({ one }) => ({
+  user: one(users, {
+    fields: [agentApiKeys.userId],
+    references: [users.id],
+  }),
+}));
+
+export const agentEncryptionKeysRelations = relations(agentEncryptionKeys, ({ one }) => ({
+  user: one(users, {
+    fields: [agentEncryptionKeys.userId],
+    references: [users.id],
+  }),
+}));
+
 export const usersRelations = relations(users, ({ many }) => ({
   processes: many(processes),
   documents: many(documents),
@@ -553,4 +594,5 @@ export const usersRelations = relations(users, ({ many }) => ({
   processComments: many(processComments),
   customKpis: many(customKpis),
   kpiAlerts: many(kpiAlerts),
+  agentApiKeys: many(agentApiKeys),
 }));
