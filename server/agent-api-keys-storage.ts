@@ -201,14 +201,14 @@ export class AgentApiKeysStorage {
         throw new Error('MASTER_ENCRYPTION_KEY environment variable not set');
       }
       const masterKey = Buffer.from(masterKeyB64, 'base64');
-      return CryptoUtils.decryptAESKey(existing.encryptedAesKey, masterKey);
+      return CryptoUtils.decryptAESKey(existing.encryptedAESKey, masterKey);
     }
 
     const { key, encryptedKey } = CryptoUtils.generateAESKey();
 
     await db.insert(agentEncryptionKeys).values({
       userId,
-      encryptedAesKey: encryptedKey,
+      encryptedAESKey: encryptedKey,
       algorithm: 'aes-256-gcm',
     });
 
@@ -230,6 +230,6 @@ export class AgentApiKeysStorage {
       throw new Error('MASTER_ENCRYPTION_KEY environment variable not set');
     }
     const masterKey = Buffer.from(masterKeyB64, 'base64');
-    return CryptoUtils.decryptAESKey(record.encryptedAesKey, masterKey);
+    return CryptoUtils.decryptAESKey(record.encryptedAESKey, masterKey);
   }
 }

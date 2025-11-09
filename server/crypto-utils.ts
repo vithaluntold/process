@@ -184,15 +184,10 @@ export class CryptoUtils {
     const masterKeyB64 = process.env.MASTER_ENCRYPTION_KEY;
     
     if (!masterKeyB64) {
-      const generatedKey = randomBytes(this.AES_KEY_LENGTH);
-      const keyString = generatedKey.toString('base64');
-      console.warn(
-        '\n⚠️  WARNING: No MASTER_ENCRYPTION_KEY environment variable found.\n' +
-        `Generated temporary key: ${keyString}\n` +
-        'Set this in your environment for production use:\n' +
-        `export MASTER_ENCRYPTION_KEY="${keyString}"\n`
+      throw new Error(
+        'MASTER_ENCRYPTION_KEY environment variable is required. ' +
+        'Generate one with: node -e "console.log(require(\'crypto\').randomBytes(32).toString(\'base64\'))"'
       );
-      return generatedKey;
     }
     
     return Buffer.from(masterKeyB64, 'base64');

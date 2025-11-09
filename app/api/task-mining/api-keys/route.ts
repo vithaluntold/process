@@ -15,6 +15,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!process.env.MASTER_ENCRYPTION_KEY) {
+      return NextResponse.json(
+        { 
+          error: "Server configuration error: MASTER_ENCRYPTION_KEY not set. " +
+                 "Please contact your administrator to configure encryption keys." 
+        },
+        { status: 500 }
+      );
+    }
+
     const body = await req.json();
     const { label, expiresInDays } = body;
 
@@ -35,6 +45,14 @@ export async function POST(req: NextRequest) {
     });
   } catch (error) {
     console.error("Error creating API key:", error);
+    if (error instanceof Error && error.message.includes('MASTER_ENCRYPTION_KEY')) {
+      return NextResponse.json(
+        { 
+          error: "Server configuration error: Encryption key system not properly configured" 
+        },
+        { status: 500 }
+      );
+    }
     return NextResponse.json(
       { error: "Failed to create API key" },
       { status: 500 }

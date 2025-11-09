@@ -118,10 +118,24 @@ async function handleDesktopAgentActivities(body: any, userId: number) {
     return NextResponse.json({ error: "Activities array required" }, { status: 400 });
   }
 
-  const { AgentApiKeysStorage } = await import("@/server/agent-api-keys-storage");
-  const { CryptoUtils } = await import("@/server/crypto-utils");
-  const storage = new AgentApiKeysStorage();
-  const encryptionKey = await storage.getEncryptionKey(userId);
+  let encryptionKey: string | null = null;
+  let CryptoUtils: any = null;
+
+  try {
+    const { AgentApiKeysStorage } = await import("@/server/agent-api-keys-storage");
+    const { CryptoUtils: CU } = await import("@/server/crypto-utils");
+    CryptoUtils = CU;
+    const storage = new AgentApiKeysStorage();
+    encryptionKey = await storage.getEncryptionKey(userId);
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('MASTER_ENCRYPTION_KEY')) {
+      console.warn('MASTER_ENCRYPTION_KEY not set - encryption/decryption disabled');
+      encryptionKey = null;
+    } else {
+      console.error('Error getting encryption key:', error);
+      encryptionKey = null;
+    }
+  }
 
   const [existingSession] = await db.select().from(taskSessions).where(
     and(
