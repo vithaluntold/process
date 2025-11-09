@@ -9,6 +9,7 @@ import { Upload, Database, CheckCircle, AlertCircle, TrendingUp, DollarSign, Clo
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import Papa from "papaparse";
+import { BerkadiaExecutiveDashboard } from "@/components/berkadia-executive-dashboard";
 
 export default function BerkadiaDemo() {
   const [selectedProcess, setSelectedProcess] = useState<number | null>(null);
@@ -242,35 +243,49 @@ export default function BerkadiaDemo() {
       </Card>
 
       {Object.values(importStatus).some(Boolean) && (
-        <Card className="border-green-500">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <CheckCircle className="h-5 w-5 text-green-500" />
-              Import Successful
-            </CardTitle>
-            <CardDescription>
-              Your demo data has been imported. Now analyze the process!
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="grid gap-3 md:grid-cols-2">
-              <Link href={`/processes/${selectedProcess}`}>
-                <Button variant="outline" className="w-full">
-                  View Process Details
-                </Button>
-              </Link>
-              <Link href={`/analytics?processId=${selectedProcess}`}>
-                <Button className="w-full">
-                  <TrendingUp className="mr-2 h-4 w-4" />
-                  View Analytics & AI Insights
-                </Button>
-              </Link>
-            </div>
-            <p className="text-sm text-muted-foreground text-center">
-              Discover bottlenecks, automation opportunities, and cost savings with AI-powered insights
-            </p>
-          </CardContent>
-        </Card>
+        <>
+          <Card className="border-green-500">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CheckCircle className="h-5 w-5 text-green-500" />
+                Import Successful
+              </CardTitle>
+              <CardDescription>
+                Your demo data has been imported. Now analyze the process!
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="grid gap-3 md:grid-cols-2">
+                <Link href={`/processes/${selectedProcess}`}>
+                  <Button variant="outline" className="w-full">
+                    View Process Details
+                  </Button>
+                </Link>
+                <Link href={`/analytics?processId=${selectedProcess}`}>
+                  <Button className="w-full">
+                    <TrendingUp className="mr-2 h-4 w-4" />
+                    View Analytics & AI Insights
+                  </Button>
+                </Link>
+              </div>
+              <p className="text-sm text-muted-foreground text-center">
+                Discover bottlenecks, automation opportunities, and cost savings with AI-powered insights
+              </p>
+            </CardContent>
+          </Card>
+
+          <BerkadiaExecutiveDashboard
+            stats={{
+              avgCycleTime: stats.avgCycleTime || 18.5,
+              targetCycleTime: 15,
+              slaCompliance: 73,
+              automationPotential: stats.automation || 42,
+              projectedSavings: stats.savings || 2400000,
+              totalLoans: 5,
+              bottleneckCount: 3,
+            }}
+          />
+        </>
       )}
     </div>
   );
