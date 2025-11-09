@@ -18,6 +18,10 @@ import {
   User,
   Menu,
   Activity,
+  Monitor,
+  FileText,
+  DollarSign,
+  Bot,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -46,8 +50,12 @@ const navigationItems = [
   { href: "/conformance-checking", label: "Conformance Checking", icon: Filter },
   { href: "/performance-analytics", label: "Performance Analytics", icon: PieChart },
   { href: "/automation-opportunities", label: "Automation Opportunities", icon: Zap },
+  { href: "/monitoring", label: "Real-Time Monitoring", icon: Monitor },
   { href: "/predictive-analytics", label: "Predictive Analytics", icon: Lightbulb },
   { href: "/task-mining", label: "Task Mining", icon: Activity },
+  { href: "/cost-analysis", label: "Cost Analysis & ROI", icon: DollarSign },
+  { href: "/reports", label: "Reports & Exports", icon: FileText },
+  { href: "/ai-assistant", label: "AI Assistant", icon: Bot },
   { href: "/document-upload", label: "Document Upload", icon: FileUp },
   { href: "/api-integrations", label: "API Integrations", icon: LinkIcon },
   { href: "/digital-twin", label: "Digital Twin", icon: Layers },

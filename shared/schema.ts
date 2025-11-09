@@ -413,6 +413,132 @@ export const taskAutomationsRelations = relations(taskAutomations, ({ one }) => 
   }),
 }));
 
+// Real-Time Monitoring Tables
+export const processInstances = pgTable("process_instances", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  caseId: text("case_id").notNull(),
+  status: text("status").notNull().default("running"),
+  currentActivity: text("current_activity"),
+  startTime: timestamp("start_time").notNull(),
+  endTime: timestamp("end_time"),
+  duration: integer("duration"),
+  slaStatus: text("sla_status").default("on_track"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const processAlerts = pgTable("process_alerts", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  type: text("type").notNull(),
+  severity: text("severity").notNull(),
+  message: text("message").notNull(),
+  status: text("status").notNull().default("active"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  resolvedAt: timestamp("resolved_at"),
+});
+
+export const processHealthScores = pgTable("process_health_scores", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  healthScore: real("health_score").notNull(),
+  performanceScore: real("performance_score").notNull(),
+  complianceScore: real("compliance_score").notNull(),
+  efficiencyScore: real("efficiency_score").notNull(),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Advanced Reporting Tables
+export const generatedReports = pgTable("generated_reports", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  processId: integer("process_id").references(() => processes.id),
+  title: text("title").notNull(),
+  type: text("type").notNull(),
+  format: text("format").notNull(),
+  filePath: text("file_path"),
+  fileSize: integer("file_size"),
+  status: text("status").notNull().default("generating"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Cost Analysis Tables
+export const costMetrics = pgTable("cost_metrics", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  activityName: text("activity_name").notNull(),
+  resourceCost: real("resource_cost").notNull(),
+  timeCost: real("time_cost").notNull(),
+  totalCost: real("total_cost").notNull(),
+  currency: text("currency").notNull().default("USD"),
+  frequency: integer("frequency").notNull(),
+  costPerExecution: real("cost_per_execution").notNull(),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const roiCalculations = pgTable("roi_calculations", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  currentCost: real("current_cost").notNull(),
+  optimizedCost: real("optimized_cost").notNull(),
+  savings: real("savings").notNull(),
+  savingsPercentage: real("savings_percentage").notNull(),
+  timeToRoi: integer("time_to_roi"),
+  implementationCost: real("implementation_cost"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Collaboration Tables
+export const processComments = pgTable("process_comments", {
+  id: serial("id").primaryKey(),
+  processId: integer("process_id").references(() => processes.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  content: text("content").notNull(),
+  mentionedUsers: jsonb("mentioned_users"),
+  attachments: jsonb("attachments"),
+  status: text("status").notNull().default("active"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Custom KPI Tables
+export const customKpis = pgTable("custom_kpis", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  processId: integer("process_id").references(() => processes.id),
+  name: text("name").notNull(),
+  description: text("description"),
+  metric: text("metric").notNull(),
+  calculation: text("calculation").notNull(),
+  threshold: real("threshold"),
+  currentValue: real("current_value"),
+  unit: text("unit"),
+  status: text("status").notNull().default("active"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const kpiAlerts = pgTable("kpi_alerts", {
+  id: serial("id").primaryKey(),
+  kpiId: integer("kpi_id").references(() => customKpis.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  message: text("message").notNull(),
+  severity: text("severity").notNull(),
+  status: text("status").notNull().default("active"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  acknowledgedAt: timestamp("acknowledged_at"),
+});
+
 export const usersRelations = relations(users, ({ many }) => ({
   processes: many(processes),
   documents: many(documents),
@@ -421,4 +547,10 @@ export const usersRelations = relations(users, ({ many }) => ({
   taskSessions: many(taskSessions),
   taskPatterns: many(taskPatterns),
   taskAutomations: many(taskAutomations),
+  processAlerts: many(processAlerts),
+  generatedReports: many(generatedReports),
+  roiCalculations: many(roiCalculations),
+  processComments: many(processComments),
+  customKpis: many(customKpis),
+  kpiAlerts: many(kpiAlerts),
 }));
