@@ -10,6 +10,9 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import Papa from "papaparse";
 import { BerkadiaExecutiveDashboard } from "@/components/berkadia-executive-dashboard";
+import { EmailWorkflowParser } from "@/components/email-workflow-parser";
+import { UnifiedProcessMap } from "@/components/unified-process-map";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function BerkadiaDemo() {
   const [selectedProcess, setSelectedProcess] = useState<number | null>(null);
@@ -177,14 +180,21 @@ export default function BerkadiaDemo() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Step 2: Import Demo Data from Multiple Systems</CardTitle>
-          <CardDescription>
-            Load realistic mortgage workflow data from Salesforce, Excel, and Mainframe
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+      <Tabs defaultValue="import" className="space-y-4">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="import">CSV Import</TabsTrigger>
+          <TabsTrigger value="email">Email Parser</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="import">
+          <Card>
+            <CardHeader>
+              <CardTitle>Step 2: Import Demo Data from Multiple Systems</CardTitle>
+              <CardDescription>
+                Load realistic mortgage workflow data from Salesforce, Excel, and Mainframe
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
           <div className="grid gap-4 md:grid-cols-3">
             <div className="flex items-center space-x-3 p-4 border rounded-lg">
               <Database className="h-8 w-8 text-blue-500" />
@@ -285,8 +295,16 @@ export default function BerkadiaDemo() {
               bottleneckCount: 3,
             }}
           />
+
+          {selectedProcess && <UnifiedProcessMap processId={selectedProcess} />}
         </>
       )}
+        </TabsContent>
+
+        <TabsContent value="email">
+          <EmailWorkflowParser />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
