@@ -24,7 +24,7 @@ const DEFAULT_CONFIG: AgentConfig = {
   captureApplications: true,
   captureScreenshots: false,
   screenshotInterval: 60000,
-  encryptData: true,
+  encryptData: false,
   encryptionKey: '',
   blurSensitiveData: true,
   privacyConsent: false,

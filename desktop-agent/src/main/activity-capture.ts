@@ -15,6 +15,7 @@ export interface Activity {
 export class ActivityCapture extends EventEmitter {
   private keyboardListener: GlobalKeyboardListener | null = null;
   private intervalId: NodeJS.Timeout | null = null;
+  private screenshotIntervalId: NodeJS.Timeout | null = null;
   private sessionId: string;
   private stats = {
     keystrokes: 0,
@@ -49,6 +50,11 @@ export class ActivityCapture extends EventEmitter {
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
+    }
+
+    if (this.screenshotIntervalId) {
+      clearInterval(this.screenshotIntervalId);
+      this.screenshotIntervalId = null;
     }
   }
 
@@ -148,7 +154,7 @@ export class ActivityCapture extends EventEmitter {
 
     const screenshotInterval = cfg.screenshotInterval || 60000;
 
-    setInterval(async () => {
+    this.screenshotIntervalId = setInterval(async () => {
       try {
         const img = await screenshot({ format: 'png' });
         this.stats.screenshots++;

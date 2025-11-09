@@ -366,9 +366,12 @@
         <h3 style="margin-bottom: 15px; font-size: 16px;">Privacy Settings</h3>
         
         <div class="checkbox-group">
-          <input type="checkbox" id="encrypt-data" checked>
-          <label for="encrypt-data">Encrypt Data (AES-256)</label>
+          <input type="checkbox" id="encrypt-data">
+          <label for="encrypt-data">Encrypt Data (AES-256 - Advanced)</label>
         </div>
+        <p style="font-size: 11px; color: rgba(255,255,255,0.6); margin-left: 26px; margin-top: -8px;">
+          Note: Keep disabled unless you've configured server-side decryption
+        </p>
 
         <div class="checkbox-group">
           <input type="checkbox" id="blur-sensitive" checked>

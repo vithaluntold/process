@@ -51,11 +51,14 @@ npm run package:linux
 
 ## Privacy & Security
 
-- All data encrypted with AES-256 before transmission
+- Optional AES-256 encryption (disabled by default for compatibility)
 - Sensitive information can be automatically blurred
 - User consent required before tracking begins
 - Full control to pause/resume tracking anytime
 - Data stored locally until successfully transmitted
+- Screenshots properly stopped when pausing tracking
+
+**Security Notice:** The current API key authentication uses email addresses for demo purposes. In production environments, implement proper API key generation with secure secrets storage and validation.
 
 ## System Requirements
 

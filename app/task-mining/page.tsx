@@ -519,7 +519,10 @@ export default function TaskMiningPage() {
                         <p className="text-muted-foreground">Enter your platform URL and API key</p>
                         <div className="mt-2 bg-muted rounded-md p-3 font-mono text-xs space-y-1">
                           <div><span className="text-muted-foreground">Platform URL:</span> {typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5000'}</div>
-                          <div><span className="text-muted-foreground">API Key:</span> Use your email address for now</div>
+                          <div><span className="text-muted-foreground">API Key:</span> Use your email address (demo only)</div>
+                        </div>
+                        <div className="mt-2 bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-900 rounded-md p-2 text-xs">
+                          <strong>⚠️ Security Note:</strong> The current API key system uses email for demo purposes only. In production, implement proper API key generation with secure secrets storage and validation.
                         </div>
                       </div>
                     </li>
