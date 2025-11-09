@@ -3,7 +3,10 @@ import { getServerSession } from "next-auth";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || "dummy-key",
+  baseURL: process.env.OPENAI_API_KEY 
+    ? "https://api.openai.com/v1"
+    : "https://integrations.replit.com/v1/openai",
 });
 
 export async function POST(request: NextRequest) {
