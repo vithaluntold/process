@@ -80,7 +80,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand"></div>
-          <p className="text-sm text-muted-foreground">Loading...</p>
+          <p className="text-sm text-muted-foreground">Authenticating...</p>
         </div>
       </div>
     )
@@ -88,9 +88,17 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
 
   if (!isAuthenticated) {
     if (typeof window !== 'undefined') {
-      window.location.href = '/'
+      setTimeout(() => {
+        window.location.href = '/'
+      }, 100)
     }
-    return null
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-sm text-muted-foreground">Redirecting...</p>
+        </div>
+      </div>
+    )
   }
 
   const handleLogout = async () => {

@@ -2,15 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 
 async function fetchUser() {
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
-    
     const response = await fetch("/api/auth/user", {
       credentials: "include",
-      signal: controller.signal,
     });
-    
-    clearTimeout(timeoutId);
     
     if (response.status === 401) {
       return null;
@@ -24,11 +18,7 @@ async function fetchUser() {
     const data = await response.json();
     return data.user;
   } catch (error) {
-    if (error instanceof Error && error.name === 'AbortError') {
-      console.error("Auth check timed out");
-    } else {
-      console.error("Auth fetch error:", error);
-    }
+    console.error("Auth fetch error:", error);
     return null;
   }
 }
@@ -37,8 +27,7 @@ export function useAuth() {
   const { data: user, isLoading, isFetching, isSuccess, error, status } = useQuery({
     queryKey: ["/api/auth/user"],
     queryFn: fetchUser,
-    retry: 1,
-    retryDelay: 1000,
+    retry: false,
     staleTime: 5 * 60 * 1000,
     gcTime: 10 * 60 * 1000,
     refetchOnMount: false,
@@ -46,8 +35,18 @@ export function useAuth() {
     networkMode: 'always',
   });
 
-  const isInitialLoading = isLoading && !isFetching && status === 'pending';
-  const isAuthenticated = !!user && isSuccess;
+  const isInitialLoading = status === 'pending';
+  const isAuthenticated = !!user && status === 'success';
+  
+  // Determine auth status based on query status
+  let authStatus: 'authenticated' | 'loading' | 'unauthenticated';
+  if (status === 'pending') {
+    authStatus = 'loading';
+  } else if (status === 'success') {
+    authStatus = user ? 'authenticated' : 'unauthenticated';
+  } else {
+    authStatus = 'unauthenticated';
+  }
 
   return {
     user: user ?? null,
@@ -56,6 +55,6 @@ export function useAuth() {
     isInitialLoading,
     isSuccess,
     error,
-    authStatus: isAuthenticated ? 'authenticated' : (isLoading || isFetching) ? 'loading' : 'unauthenticated',
+    authStatus,
   };
 }
