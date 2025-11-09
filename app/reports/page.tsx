@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { AppLayout } from "@/components/app-layout";
+import AppLayout from "@/components/app-layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -271,7 +271,32 @@ export default function ReportsPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Button variant="outline" size="sm">
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={async () => {
+                              try {
+                                const res = await fetch(`/api/reports/download/${report.id}`);
+                                if (res.ok) {
+                                  const blob = await res.blob();
+                                  const url = window.URL.createObjectURL(blob);
+                                  const a = document.createElement("a");
+                                  a.href = url;
+                                  a.download = `${report.title}.${report.format === 'excel' ? 'xlsx' : report.format === 'powerpoint' ? 'pptx' : 'pdf'}`;
+                                  document.body.appendChild(a);
+                                  a.click();
+                                  window.URL.revokeObjectURL(url);
+                                  document.body.removeChild(a);
+                                  toast.success("Report downloaded!");
+                                } else {
+                                  toast.error("Failed to download report");
+                                }
+                              } catch (error) {
+                                console.error("Download error:", error);
+                                toast.error("Failed to download report");
+                              }
+                            }}
+                          >
                             <Download className="h-4 w-4 mr-2" />
                             Download
                           </Button>

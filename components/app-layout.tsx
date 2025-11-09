@@ -22,6 +22,7 @@ import {
   FileText,
   DollarSign,
   Bot,
+  Target,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -54,6 +55,7 @@ const navigationItems = [
   { href: "/predictive-analytics", label: "Predictive Analytics", icon: Lightbulb },
   { href: "/task-mining", label: "Task Mining", icon: Activity },
   { href: "/cost-analysis", label: "Cost Analysis & ROI", icon: DollarSign },
+  { href: "/custom-kpis", label: "Custom KPI Builder", icon: Target },
   { href: "/reports", label: "Reports & Exports", icon: FileText },
   { href: "/ai-assistant", label: "AI Assistant", icon: Bot },
   { href: "/document-upload", label: "Document Upload", icon: FileUp },
