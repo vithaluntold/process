@@ -616,6 +616,703 @@ achieve an additional 25% cycle time reduction.
 
 ---
 
+## 📊 Real-Time Process Monitoring
+
+Monitor your processes as they execute with live instance tracking and intelligent alerts.
+
+### Step 1: Navigate to Monitoring Dashboard
+
+1. Click **"Monitoring"** in the left sidebar
+2. You'll see the real-time monitoring dashboard
+
+### Step 2: View Active Process Instances
+
+**Live Metrics Display:**
+- **Total Active Instances**: Currently running process cases
+- **Completed Today**: Cases finished in last 24 hours
+- **Average Health Score**: Overall process health (0-100%)
+- **Active Alerts**: Number of current issues
+
+**Instance List:**
+Each active instance shows:
+- **Case ID**: Unique identifier
+- **Process Name**: Which process it belongs to
+- **Current Activity**: What step it's on right now
+- **Status**: Running, Waiting, Completed, Failed
+- **Duration**: How long it's been running
+- **Health Score**: Individual case health (0-100%)
+
+### Step 3: Understanding Health Scores
+
+**Health Score Calculation:**
+- **90-100%** 🟢: Excellent - on track, no issues
+- **70-89%** 🟡: Good - minor delays, within acceptable range
+- **50-69%** 🟠: Warning - significant delays, attention needed
+- **<50%** 🔴: Critical - major issues, immediate action required
+
+**Factors Affecting Health:**
+- Cycle time compared to average
+- Time stuck in current activity
+- Number of deviations from expected path
+- Resource availability
+
+### Step 4: Managing Alerts
+
+**Alert Types:**
+- **SLA Breach**: Process exceeds time threshold
+- **Stuck Instance**: No activity for extended period
+- **Resource Bottleneck**: Activity waiting for resources
+- **Conformance Violation**: Deviating from expected process
+
+**Alert Management:**
+1. View alert list sorted by severity (Critical → Low)
+2. Click on an alert to see details:
+   - Instance ID affected
+   - Root cause analysis
+   - Recommended action
+3. Mark as **Acknowledged** when reviewing
+4. Mark as **Resolved** after fixing
+
+### Step 5: Automatic Instance Sync
+
+**Background Synchronization:**
+- Every 60 seconds, system automatically syncs all instances
+- Updates instance statuses
+- Recalculates health scores
+- Generates new alerts if needed
+- No manual refresh required!
+
+**Manual Sync:**
+- Click **"Sync Now"** button for immediate update
+- Useful when you know new instances started
+- Shows loading indicator during sync
+
+### Example Monitoring Scenario
+
+```
+Alert: SLA Breach - Critical
+Case ID: ORD-4567
+Process: Order Fulfillment
+Current Activity: Credit Check
+Duration: 4.2 hours (SLA: 2 hours)
+Health Score: 32% (Critical)
+
+Root Cause: Waiting for manual approval from credit team
+Recommendation: Escalate to supervisor or use automated credit scoring for this amount
+
+Action Taken:
+1. Acknowledged alert
+2. Escalated to Credit Manager
+3. Approved within 15 minutes
+4. Marked as Resolved
+```
+
+---
+
+## 📝 Advanced Reporting & Exports
+
+Generate comprehensive reports in PDF, Excel, and PowerPoint formats.
+
+### Step 1: Navigate to Reports
+
+1. Click **"Reports"** in the left sidebar
+2. You'll see the reports dashboard with:
+   - Create new report button
+   - Report history table
+   - Quick filters
+
+### Step 2: Create a New Report
+
+1. Click **"Generate New Report"** button
+2. Fill in report details:
+   - **Report Name**: Descriptive name (e.g., "Q1 Process Performance")
+   - **Process**: Select from dropdown
+   - **Report Type**: Choose format (PDF, Excel, or PowerPoint)
+   - **Date Range**: Optional filter by time period
+
+3. Click **"Generate Report"**
+4. Wait 5-10 seconds for generation
+5. Download automatically starts
+
+### Step 3: Report Types & Contents
+
+#### PDF Report (Executive Summary)
+**Perfect For:** Management presentations, compliance documentation
+
+**Includes:**
+- Executive summary with key metrics
+- Process overview and statistics
+- Performance analytics charts (cycle time, throughput)
+- Top bottlenecks identified
+- Anomaly summary with severity breakdown
+- Automation opportunities ranked by ROI
+- Conformance score and deviation count
+- AI-generated insights and recommendations
+
+**Use Cases:**
+- Board meetings
+- Compliance audits
+- Executive dashboards
+- Client reporting
+
+#### Excel Report (Detailed Analysis)
+**Perfect For:** Deep dives, data analysis, pivot tables
+
+**Includes Multiple Worksheets:**
+1. **Summary**: KPIs and overview metrics
+2. **Event Logs**: Full raw data export
+3. **Activity Statistics**: Duration, frequency, resource data
+4. **Bottlenecks**: Detailed bottleneck analysis
+5. **Anomalies**: Complete anomaly list with severity
+6. **Automation**: ROI calculations for each opportunity
+7. **Conformance**: Deviation details and fitness scores
+
+**Use Cases:**
+- Data analysis
+- Custom visualizations
+- Integration with BI tools
+- Archival purposes
+
+#### PowerPoint Report (Presentation)
+**Perfect For:** Stakeholder meetings, training sessions
+
+**Includes Slides:**
+1. **Title Slide**: Process name and date range
+2. **Executive Summary**: Key findings and metrics
+3. **Process Overview**: Model visualization
+4. **Performance Metrics**: Cycle time, throughput charts
+5. **Bottleneck Analysis**: Top 5 bottlenecks with impact
+6. **Automation Opportunities**: Top 3 by ROI
+7. **Recommendations**: AI-generated action items
+8. **Next Steps**: Implementation roadmap
+
+**Use Cases:**
+- Stakeholder presentations
+- Training materials
+- Process improvement workshops
+- Management reviews
+
+### Step 4: View Report History
+
+**Report History Table:**
+- **Report Name**: What you named it
+- **Type**: PDF/Excel/PowerPoint icon
+- **Process**: Which process analyzed
+- **Generated**: Date and time
+- **Status**: Completed, Failed, Processing
+- **Actions**: Download or Delete
+
+**Filtering:**
+- Filter by report type
+- Filter by process
+- Search by name
+- Sort by date
+
+### Step 5: Download and Share
+
+1. Find your report in history table
+2. Click **"Download"** icon
+3. File downloads to your browser's download folder
+4. Share with stakeholders via email or cloud storage
+
+**Automatic Filenames:**
+- PDF: `Order_Fulfillment_Report_2025-11-09.pdf`
+- Excel: `Invoice_Process_Analysis_2025-11-09.xlsx`
+- PowerPoint: `HR_Onboarding_Presentation_2025-11-09.pptx`
+
+### Example Reporting Workflow
+
+```
+Scenario: Monthly executive review
+
+Step 1: Generate PowerPoint Report
+- Process: Order Fulfillment
+- Name: "November Order Processing Review"
+- Type: PowerPoint
+- Date Range: Nov 1-30, 2025
+
+Step 2: Generate Excel Report
+- Same process and date range
+- For CFO deep dive analysis
+
+Step 3: Present to Executives
+- Use PowerPoint slides in meeting
+- Answer questions using Excel data
+- Share both files afterward
+
+Result: 
+- Executives see 33% cycle time improvement
+- Identify $120K automation opportunity
+- Approve implementation budget
+```
+
+---
+
+## 💰 Cost Analysis & ROI Calculator
+
+Understand the financial impact of your processes and calculate automation ROI.
+
+### Step 1: Navigate to Cost Analysis
+
+1. Click **"Cost Analysis"** in the left sidebar
+2. You'll see the cost dashboard
+
+### Step 2: Automatic Cost Calculation
+
+**EPI X-Ray automatically calculates:**
+- **Activity Costs**: Based on duration × average hourly rate
+- **Resource Costs**: Labor costs by person/system
+- **Total Process Cost**: Sum of all activities in a process
+- **Cost per Case**: Average cost to complete one instance
+- **Annual Costs**: Projected yearly expenditure
+
+**Standard Assumptions:**
+- Average hourly rate: $50/hour (customizable)
+- Working hours: 2,080 hours/year
+- Overhead multiplier: 1.3× (benefits, infrastructure)
+
+### Step 3: View Cost Breakdown
+
+**Process-Level Metrics:**
+- **Total Cases Analyzed**: Number of instances
+- **Average Cost per Case**: Typical case cost
+- **Total Cost**: Sum across all cases
+- **Most Expensive Activities**: Top 5 by total cost
+
+**Activity-Level Details:**
+For each activity:
+- **Average Duration**: Time spent
+- **Execution Count**: How many times performed
+- **Cost per Execution**: Single execution cost
+- **Total Cost**: Frequency × cost per execution
+- **% of Total**: Contribution to overall process cost
+
+### Step 4: Calculate Automation ROI
+
+1. Click on an automation opportunity
+2. System shows:
+   - **Current Annual Cost**: What you spend now
+   - **Post-Automation Cost**: What you'd spend after automation
+   - **Annual Savings**: Difference
+   - **Implementation Cost**: One-time investment
+   - **ROI %**: Return on investment percentage
+   - **Payback Period**: Months to break even
+
+**ROI Formula:**
+```
+ROI % = ((Annual Savings - Implementation Cost) / Implementation Cost) × 100
+Payback Period = Implementation Cost / Monthly Savings
+```
+
+### Step 5: Interpret ROI Results
+
+**ROI Scoring:**
+- **>200%** 🟢: Excellent - high priority
+- **100-200%** 🟡: Good - strong candidate
+- **50-100%** 🟠: Fair - consider if strategic
+- **<50%** 🔴: Poor - deprioritize
+
+**Example ROI Calculation:**
+
+```
+Activity: "Invoice Data Entry"
+
+Current State:
+- Frequency: 450 times/month (5,400/year)
+- Avg. Duration: 8 minutes (0.133 hours)
+- Hourly Rate: $50
+- Annual Cost: 5,400 × 0.133 × $50 = $35,910
+
+Automation Proposal:
+- Tool: OCR + RPA Bot
+- Implementation Cost: $15,000
+- Post-Automation Duration: 0.8 minutes (0.013 hours)
+- New Annual Cost: 5,400 × 0.013 × $50 = $3,510
+- Annual Savings: $35,910 - $3,510 = $32,400
+
+ROI Analysis:
+- ROI %: ((32,400 - 15,000) / 15,000) × 100 = 116%
+- Payback Period: 15,000 / 2,700 = 5.6 months
+- 3-Year NPV: $82,200
+
+Decision: APPROVE - High ROI, fast payback
+```
+
+### Step 6: Export Cost Analysis
+
+1. Click **"Export Cost Analysis"** button
+2. Choose format (Excel or PDF)
+3. Share with finance team for budgeting
+4. Use for capital expenditure approvals
+
+---
+
+## 🤖 AI Process Assistant
+
+Chat with your AI assistant to get instant insights about your processes.
+
+### Step 1: Open AI Assistant
+
+1. Click **"AI Assistant"** in the left sidebar
+2. You'll see the chat interface with:
+   - Conversation history
+   - Input box at bottom
+   - Example questions to get started
+
+### Step 2: Ask Questions
+
+**What You Can Ask:**
+
+**Performance Questions:**
+- "What are the top 3 bottlenecks in my order process?"
+- "Why is the average cycle time so high?"
+- "Which activities take the longest?"
+
+**Automation Questions:**
+- "What should I automate first?"
+- "Calculate ROI for automating invoice data entry"
+- "How much can I save by automating credit checks?"
+
+**Troubleshooting Questions:**
+- "Why did case ORD-12345 take so long?"
+- "What's causing the bottleneck in approval?"
+- "How can I reduce cycle time by 30%?"
+
+**Comparison Questions:**
+- "Compare Q1 vs Q2 performance"
+- "How does my process compare to industry benchmarks?"
+- "What changed since last month?"
+
+### Step 3: Review AI Responses
+
+**AI Responses Include:**
+- **Direct Answer**: Clear, actionable response
+- **Supporting Data**: Metrics and statistics
+- **Recommendations**: Specific action items
+- **Priority Levels**: What to tackle first
+- **ROI Estimates**: Financial impact
+
+**Example Conversation:**
+
+```
+You: What are my biggest bottlenecks?
+
+AI: Based on your Order Fulfillment process analysis, here are the top 3 bottlenecks:
+
+1. **Credit Check** (CRITICAL)
+   - Average Duration: 2.4 hours
+   - 95th Percentile: 8.1 hours
+   - Impact: Delays 34% of orders by 6+ hours
+   - Root Cause: Manual review queue, 2 analysts for 450 cases/month
+   - Recommendation: Implement automated credit scoring for orders <$10K (80% of volume)
+   - Estimated Impact: 45% cycle time reduction, $67K annual savings
+
+2. **Manager Approval** (HIGH)
+   - Average Duration: 14.2 hours
+   - 95th Percentile: 31.5 hours
+   - Impact: Adds 1.2 days to average cycle time
+   - Root Cause: Single approver, vacation/busy periods create backlog
+   - Recommendation: Add backup approver and set auto-approval threshold
+   - Estimated Impact: 22% cycle time reduction, $28K annual savings
+
+3. **Inventory Check** (MEDIUM)
+   - Average Duration: 45 minutes
+   - Impact: Manual lookup in 3 different systems
+   - Recommendation: Integrate inventory systems with API
+   - Estimated Impact: 12% cycle time reduction, $15K annual savings
+
+Priority Action: Start with Credit Check automation - highest ROI and impact.
+```
+
+### Step 4: Follow Recommendations
+
+1. AI provides specific action items
+2. Copy recommendations to your task list
+3. Share with team for implementation
+4. Re-analyze process after changes to measure improvement
+
+### Step 5: Context-Aware Conversations
+
+**AI Remembers:**
+- Previous questions in the conversation
+- Your processes and their data
+- Recent analyses and reports
+- Anomalies and issues detected
+
+**Example Followup:**
+
+```
+You: How much would it cost to implement that credit check automation?
+
+AI: For the Credit Check automation I just recommended:
+
+Implementation Costs:
+- Credit Scoring API: $5,000 setup + $200/month
+- Integration Development: $12,000 (3 weeks)
+- Testing & Training: $3,000
+- Total One-Time: $20,000
+- Annual Recurring: $2,400
+
+Expected Savings:
+- Current Annual Cost: $87,360 (2 analysts × 40% time)
+- Post-Automation Cost: $20,160 (0.5 analyst + API fees)
+- Annual Savings: $67,200
+
+ROI Analysis:
+- ROI: 236% first year
+- Payback Period: 3.6 months
+- 3-Year NPV: $181,600
+
+Recommendation: Strong business case - proceed with implementation.
+```
+
+---
+
+## 👥 Collaboration Features
+
+Work together with your team on process analysis using comments and shared insights.
+
+### Step 1: Navigate to a Process
+
+1. Go to Dashboard
+2. Click on any process you want to collaborate on
+3. Scroll to the Comments section (bottom of process detail page)
+
+### Step 2: Add Comments
+
+1. Type your comment in the text box
+2. **Mention team members**: Use @name to notify someone
+3. **Share insights**: Describe what you found
+4. **Ask questions**: Get input from colleagues
+5. Click **"Post Comment"**
+
+**Good Comment Examples:**
+
+```
+"Found a major bottleneck in Credit Check - taking 3x longer than expected. @Sarah can you investigate why?"
+
+"Great news! After implementing the RPA bot for data entry, we've reduced cycle time by 41%. Updated metrics attached."
+
+"@John please review the conformance report - seeing 23% deviation rate in approval workflow. Might need retraining."
+```
+
+### Step 3: Reply to Comments
+
+1. Click **"Reply"** on any comment
+2. Type your response
+3. Click **"Post Reply"**
+4. Thread appears indented under original comment
+
+**Reply Example:**
+
+```
+Original Comment by Sarah:
+"Credit check delays caused by new compliance requirements added last month."
+
+Your Reply:
+"Thanks @Sarah! Can we automate the compliance checks? I'll generate an ROI analysis."
+```
+
+### Step 4: View Comment History
+
+**Comments Show:**
+- **Author**: Who posted it
+- **Timestamp**: When posted
+- **Edit History**: If modified (shows "Edited")
+- **Replies**: Threaded conversations
+
+**Sorting:**
+- Newest first (default)
+- Oldest first
+- Most replies first
+
+### Step 5: Edit or Delete Comments
+
+**Edit Comment:**
+1. Click **"Edit"** icon (⋯ menu)
+2. Update text
+3. Click **"Save"**
+4. Shows "Edited" indicator
+
+**Delete Comment:**
+1. Click **"Delete"** icon (⋯ menu)
+2. Confirm deletion
+3. Comment removed (replies also deleted)
+
+**Note:** You can only edit/delete your own comments.
+
+### Example Collaboration Workflow
+
+```
+Day 1 - Analysis Phase:
+Sarah: "Starting analysis of Q3 order fulfillment data. Will update with findings."
+
+Day 2 - Findings:
+Sarah: "Analysis complete. Key findings:
+- Cycle time increased 18% vs Q2
+- New bottleneck in shipping validation
+- 127 conformance violations
+Full report attached. @John please review bottleneck. @Mike check violations."
+
+Day 3 - Investigation:
+John: "Shipping validation bottleneck caused by new carrier API being slow. Investigating alternatives."
+Mike: "@Sarah most violations are minor - missing timestamps. Will add validation in form."
+
+Day 4 - Resolution:
+John: "Switched to faster carrier API. Testing shows 65% speed improvement. @Sarah please re-analyze."
+Sarah: "Re-analyzed with new data. Cycle time back to Q2 levels! Great work @John!"
+
+Result: Team collaboration identified and resolved issue in 4 days.
+```
+
+---
+
+## 📊 Custom KPI Builder
+
+Create and monitor your own custom KPIs with threshold-based alerts.
+
+### Step 1: Navigate to Custom KPIs
+
+1. Click **"Custom KPIs"** in the left sidebar
+2. You'll see the KPI dashboard with:
+   - Existing KPIs (if any)
+   - Create New KPI button
+   - Alert history
+
+### Step 2: Create a New KPI
+
+1. Click **"Create New KPI"** button
+2. Fill in KPI details:
+
+**Basic Information:**
+- **KPI Name**: Descriptive name (e.g., "Order Processing Speed")
+- **Description**: What it measures and why it matters
+- **Process**: Select which process to monitor
+- **Update Frequency**: How often to calculate (Hourly, Daily, Weekly)
+
+**Calculation Method:**
+- **Metric Type**: Choose what to measure
+  - Average Cycle Time
+  - Case Count
+  - Throughput (cases/hour)
+  - Bottleneck Duration
+  - Cost per Case
+  - Conformance Rate
+  - Automation Rate
+  - Custom Formula
+
+**Threshold Settings:**
+- **Target Value**: Your goal (e.g., 24 hours)
+- **Warning Threshold**: When to show warning (e.g., >30 hours)
+- **Critical Threshold**: When to alert (e.g., >48 hours)
+
+### Step 3: Set Up Alerts
+
+**Alert Configuration:**
+- **Enable Alerts**: Toggle on/off
+- **Alert Channels**: 
+  - In-app notifications
+  - Email (future)
+  - Slack (future)
+  - Webhook (future)
+- **Alert Frequency**: 
+  - Immediate
+  - Hourly digest
+  - Daily summary
+
+**Alert Conditions:**
+- Exceeds critical threshold
+- Below target for X days
+- Trending worse by X%
+- Sudden spike or drop
+
+### Step 4: Monitor KPI Dashboard
+
+**KPI Cards Show:**
+- **Current Value**: Latest measurement
+- **Status Indicator**:
+  - 🟢 Green: Meeting target
+  - 🟡 Yellow: Warning threshold
+  - 🔴 Red: Critical threshold
+- **Trend**: Up/down arrow with %
+- **Last Updated**: Timestamp
+- **Quick Actions**: Edit, Delete, View History
+
+**Dashboard Features:**
+- Sort by status (Critical first)
+- Filter by process
+- Search KPIs by name
+- Export KPI data
+
+### Step 5: Review Alerts
+
+**Alert List Shows:**
+- **KPI Name**: Which KPI triggered
+- **Severity**: Critical, Warning, Info
+- **Message**: What happened
+- **Triggered At**: When it occurred
+- **Current Value**: Metric value
+- **Threshold**: What was exceeded
+- **Actions**: Acknowledge, Snooze, View Details
+
+**Alert Management:**
+1. Click on alert to see details
+2. View trend chart
+3. See root cause analysis (AI-generated)
+4. Mark as **Acknowledged** when reviewing
+5. Mark as **Resolved** after fixing
+6. Snooze for X hours if need time
+
+### Example Custom KPI Setup
+
+```
+KPI Name: "High-Value Order Cycle Time"
+
+Description: "Monitor cycle time for orders >$50K to ensure VIP service level"
+
+Configuration:
+- Process: Order Fulfillment
+- Metric: Average Cycle Time
+- Filter: Order Value > $50,000
+- Update Frequency: Hourly
+- Target: 18 hours
+- Warning: >24 hours
+- Critical: >36 hours
+
+Alerts Enabled: Yes
+- Channel: In-app + Email
+- Frequency: Immediate
+
+Result:
+- Created on Nov 9, 2025
+- Current Value: 16.2 hours 🟢 (Meeting target)
+- Alerts Triggered: 0
+
+Day 3 Update:
+- Current Value: 38.4 hours 🔴 (Critical!)
+- Alert Generated: "High-Value Order Cycle Time exceeded critical threshold"
+- Root Cause: Credit check delays for large amounts
+- Action Taken: Expedited credit team review
+- Resolution: Back to 17.1 hours within 4 hours
+```
+
+### Step 6: KPI Best Practices
+
+**Do:**
+- ✅ Align KPIs with business objectives
+- ✅ Set realistic thresholds based on historical data
+- ✅ Review KPIs weekly to ensure relevance
+- ✅ Share KPI dashboards with stakeholders
+- ✅ Document why KPIs matter in description
+
+**Don't:**
+- ❌ Create too many KPIs (focus on critical few)
+- ❌ Set unrealistic targets
+- ❌ Ignore alerts repeatedly
+- ❌ Forget to update thresholds as process improves
+
+---
+
 ## 🔐 Managing Your Privacy
 
 EPI X-Ray is fully GDPR compliant with comprehensive privacy controls.
@@ -748,6 +1445,47 @@ EPI X-Ray is fully GDPR compliant with comprehensive privacy controls.
 - Run Process Discovery first
 - Ensure discovery completed successfully
 - Refresh page and try again
+
+---
+
+## ⚡ Platform Performance
+
+EPI X-Ray is designed for speed and responsiveness. Recent performance optimizations ensure blazing-fast analysis.
+
+### What You'll Experience
+
+**Fast Dashboard Loading:**
+- Dashboard stats load in <200ms (was 8+ seconds)
+- 95% improvement in page load times
+- Automatic caching for frequently accessed data
+
+**Optimized Queries:**
+- Efficient database aggregations (3 optimized queries vs. 20+ sequential)
+- Smart caching reduces server load
+- Real-time data without lag
+
+**Smart Caching:**
+- 30-second cache for process lists and analytics
+- 60-second cache for user authentication
+- Private cache headers ensure data security
+
+**When to Expect Fast Performance:**
+- Dashboard metrics: Instant (<300ms)
+- Process list: <100ms after first load
+- Analytics: 1-2 seconds for complex calculations
+- Reports: 5-10 seconds for generation
+
+**If Pages Load Slowly:**
+1. First load after restart takes longer (compiling)
+2. Very large datasets (>100K events) may take extra time
+3. Complex AI analysis runs on-demand (15-30 seconds)
+4. Hard refresh your browser if cached data seems stale
+
+**Performance Tips:**
+- Use date filters to reduce data size
+- Archive old processes you no longer analyze
+- Run heavy analyses (AI, simulations) during off-peak hours
+- Clear browser cache if experiencing issues
 
 ---
 
