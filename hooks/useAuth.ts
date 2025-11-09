@@ -34,7 +34,7 @@ async function fetchUser() {
 }
 
 export function useAuth() {
-  const { data: user, isLoading, error } = useQuery({
+  const { data: user, isLoading, isFetching, isSuccess, error, status } = useQuery({
     queryKey: ["/api/auth/user"],
     queryFn: fetchUser,
     retry: 1,
@@ -46,10 +46,16 @@ export function useAuth() {
     networkMode: 'always',
   });
 
+  const isInitialLoading = isLoading && !isFetching && status === 'pending';
+  const isAuthenticated = !!user && isSuccess;
+
   return {
     user: user ?? null,
-    isAuthenticated: !!user,
-    isLoading,
+    isAuthenticated,
+    isLoading: isLoading || isFetching,
+    isInitialLoading,
+    isSuccess,
     error,
+    authStatus: isAuthenticated ? 'authenticated' : (isLoading || isFetching) ? 'loading' : 'unauthenticated',
   };
 }

@@ -70,10 +70,28 @@ interface AppLayoutProps {
 }
 
 export default function AppLayout({ children, showActions = false }: AppLayoutProps) {
-  const { user } = useAuth()
+  const { user, isAuthenticated, isLoading } = useAuth()
   const { toast } = useToast()
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand"></div>
+          <p className="text-sm text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!isAuthenticated) {
+    if (typeof window !== 'undefined') {
+      window.location.href = '/'
+    }
+    return null
+  }
 
   const handleLogout = async () => {
     try {
