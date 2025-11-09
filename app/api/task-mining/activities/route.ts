@@ -95,9 +95,18 @@ export async function POST(request: NextRequest) {
 
 async function getUserFromApiKey(apiKey: string) {
   try {
-    const [user] = await db.select().from(users).where(eq(users.email, apiKey)).limit(1);
+    const { AgentApiKeysStorage } = await import("@/server/agent-api-keys-storage");
+    const storage = new AgentApiKeysStorage();
+    const result = await storage.validateApiKey(apiKey);
+    
+    if (!result.valid || !result.userId) {
+      return null;
+    }
+
+    const [user] = await db.select().from(users).where(eq(users.id, result.userId)).limit(1);
     return user || null;
   } catch (error) {
+    console.error("Error validating API key:", error);
     return null;
   }
 }
@@ -108,6 +117,11 @@ async function handleDesktopAgentActivities(body: any, userId: number) {
   if (!Array.isArray(activities) || activities.length === 0) {
     return NextResponse.json({ error: "Activities array required" }, { status: 400 });
   }
+
+  const { AgentApiKeysStorage } = await import("@/server/agent-api-keys-storage");
+  const { CryptoUtils } = await import("@/server/crypto-utils");
+  const storage = new AgentApiKeysStorage();
+  const encryptionKey = await storage.getEncryptionKey(userId);
 
   const [existingSession] = await db.select().from(taskSessions).where(
     and(
@@ -132,7 +146,17 @@ async function handleDesktopAgentActivities(body: any, userId: number) {
   const activityRecords = [];
 
   for (const activity of activities) {
-    const data = activity.data?.encrypted ? activity.data : activity.data;
+    let data = activity.data;
+    
+    if (encryptionKey && data && typeof data === 'object') {
+      if ('encrypted' in data && 'iv' in data && 'authTag' in data) {
+        try {
+          data = CryptoUtils.decryptPayload(data, encryptionKey);
+        } catch (error) {
+          console.error("Failed to decrypt activity data:", error);
+        }
+      }
+    }
 
     if (activity.type === "keyboard" || activity.type === "mouse") {
       activityRecords.push({
