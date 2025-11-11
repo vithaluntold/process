@@ -1,0 +1,21 @@
+activity,fixed_cost_usd,variable_cost_per_case_usd,labor_cost_per_hour_usd,avg_duration_minutes,frequency_per_month,automation_potential,department
+Submit Purchase Request,0,5,35,20,450,0.75,Procurement
+Validate Budget,100,3,25,10,450,0.95,Finance
+Manager Approval,0,12,55,30,420,0.40,Management
+Vendor Selection,0,8,35,45,420,0.60,Procurement
+Create Purchase Order,50,4,30,15,420,0.90,Procurement
+Send PO to Vendor,25,2,20,5,420,0.98,Procurement
+Confirm Order,0,0,0,30,415,0.0,External
+Receive Goods,0,6,28,25,415,0.30,Warehouse
+Goods Inspection,0,10,40,35,415,0.50,Quality
+Quality Issue Handling,0,15,40,60,25,0.20,Quality
+Post Goods Receipt,50,3,30,15,415,0.95,Finance
+Receive Invoice,25,2,28,10,415,0.90,Finance
+Match 3-Way,0,8,32,40,415,0.70,Finance
+Approve Payment,0,15,65,25,410,0.35,Finance
+Process Payment,100,4,25,15,410,0.98,Finance
+Close Case,0,2,30,10,410,0.99,Procurement
+Budget Rejection Handling,0,8,35,35,15,0.30,Finance
+Vendor Delay Handling,0,12,40,90,20,0.25,Procurement
+Escalation Management,0,20,75,60,10,0.15,Management
+Return Goods Processing,0,18,32,120,8,0.40,Warehouse

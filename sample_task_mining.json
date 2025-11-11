@@ -1,0 +1,228 @@
+{
+  "sessions": [
+    {
+      "user_id": "john.smith@company.com",
+      "session_id": "SES_20240115_001",
+      "start_time": "2024-01-15T09:00:00Z",
+      "end_time": "2024-01-15T09:25:00Z",
+      "process_instance": "CASE001",
+      "activities": [
+        {
+          "timestamp": "2024-01-15T09:00:00Z",
+          "application": "SAP ERP",
+          "window_title": "Purchase Requisition Entry - ME51N",
+          "activity_type": "data_entry",
+          "duration_ms": 180000,
+          "keys_pressed": 324,
+          "mouse_clicks": 18,
+          "context": {
+            "process_step": "Submit Purchase Request",
+            "transaction_code": "ME51N",
+            "data_fields_filled": 12
+          }
+        },
+        {
+          "timestamp": "2024-01-15T09:03:00Z",
+          "application": "Microsoft Excel",
+          "window_title": "Budget_2024.xlsx",
+          "activity_type": "lookup",
+          "duration_ms": 120000,
+          "keys_pressed": 45,
+          "mouse_clicks": 8,
+          "context": {
+            "process_step": "Budget Verification",
+            "lookup_type": "budget_check"
+          }
+        },
+        {
+          "timestamp": "2024-01-15T09:05:00Z",
+          "application": "SAP ERP",
+          "window_title": "Purchase Requisition Entry - ME51N",
+          "activity_type": "data_entry",
+          "duration_ms": 240000,
+          "keys_pressed": 412,
+          "mouse_clicks": 22,
+          "context": {
+            "process_step": "Complete PR Entry",
+            "transaction_code": "ME51N"
+          }
+        },
+        {
+          "timestamp": "2024-01-15T09:09:00Z",
+          "application": "Microsoft Outlook",
+          "window_title": "Email - PR Submitted for Approval",
+          "activity_type": "communication",
+          "duration_ms": 180000,
+          "keys_pressed": 156,
+          "mouse_clicks": 6,
+          "context": {
+            "process_step": "Notify Manager",
+            "email_sent": true
+          }
+        },
+        {
+          "timestamp": "2024-01-15T09:12:00Z",
+          "application": "Google Chrome",
+          "window_title": "Vendor Comparison - Google Search",
+          "activity_type": "research",
+          "duration_ms": 420000,
+          "keys_pressed": 289,
+          "mouse_clicks": 34,
+          "context": {
+            "process_step": "Vendor Research",
+            "websites_visited": 5
+          }
+        },
+        {
+          "timestamp": "2024-01-15T09:19:00Z",
+          "application": "Microsoft Excel",
+          "window_title": "Vendor_Comparison.xlsx",
+          "activity_type": "analysis",
+          "duration_ms": 360000,
+          "keys_pressed": 178,
+          "mouse_clicks": 42,
+          "context": {
+            "process_step": "Vendor Analysis",
+            "analysis_type": "cost_comparison"
+          }
+        }
+      ],
+      "summary": {
+        "total_duration_minutes": 25,
+        "applications_used": ["SAP ERP", "Microsoft Excel", "Microsoft Outlook", "Google Chrome"],
+        "total_keys_pressed": 1404,
+        "total_mouse_clicks": 130,
+        "productive_time_pct": 0.82,
+        "automation_opportunities": [
+          {
+            "activity": "Budget Verification",
+            "recommendation": "Automate lookup via API integration",
+            "estimated_time_savings_minutes": 2,
+            "automation_score": 0.85
+          },
+          {
+            "activity": "Email Notification",
+            "recommendation": "Trigger automatic email on PR submission",
+            "estimated_time_savings_minutes": 3,
+            "automation_score": 0.95
+          }
+        ]
+      }
+    },
+    {
+      "user_id": "sarah.johnson@company.com",
+      "session_id": "SES_20240115_002",
+      "start_time": "2024-01-15T11:00:00Z",
+      "end_time": "2024-01-15T11:30:00Z",
+      "process_instance": "CASE001",
+      "activities": [
+        {
+          "timestamp": "2024-01-15T11:00:00Z",
+          "application": "Microsoft Outlook",
+          "window_title": "Email - PR Approval Required",
+          "activity_type": "reading",
+          "duration_ms": 120000,
+          "keys_pressed": 0,
+          "mouse_clicks": 5,
+          "context": {
+            "process_step": "Review Email",
+            "email_read": true
+          }
+        },
+        {
+          "timestamp": "2024-01-15T11:02:00Z",
+          "application": "SAP ERP",
+          "window_title": "Purchase Requisition Display - ME53N",
+          "activity_type": "review",
+          "duration_ms": 480000,
+          "keys_pressed": 89,
+          "mouse_clicks": 16,
+          "context": {
+            "process_step": "Review Purchase Request",
+            "transaction_code": "ME53N"
+          }
+        },
+        {
+          "timestamp": "2024-01-15T11:10:00Z",
+          "application": "Power BI",
+          "window_title": "Budget Dashboard",
+          "activity_type": "analysis",
+          "duration_ms": 300000,
+          "keys_pressed": 45,
+          "mouse_clicks": 12,
+          "context": {
+            "process_step": "Check Budget Status",
+            "dashboard_viewed": "budget_overview"
+          }
+        },
+        {
+          "timestamp": "2024-01-15T11:15:00Z",
+          "application": "SAP ERP",
+          "window_title": "Purchase Requisition Approval - ME54N",
+          "activity_type": "decision",
+          "duration_ms": 180000,
+          "keys_pressed": 34,
+          "mouse_clicks": 8,
+          "context": {
+            "process_step": "Approve Purchase Request",
+            "transaction_code": "ME54N",
+            "decision": "approved"
+          }
+        },
+        {
+          "timestamp": "2024-01-15T11:18:00Z",
+          "application": "Microsoft Outlook",
+          "window_title": "Email - PR Approved",
+          "activity_type": "communication",
+          "duration_ms": 240000,
+          "keys_pressed": 124,
+          "mouse_clicks": 4,
+          "context": {
+            "process_step": "Notify Requester",
+            "email_sent": true
+          }
+        }
+      ],
+      "summary": {
+        "total_duration_minutes": 30,
+        "applications_used": ["Microsoft Outlook", "SAP ERP", "Power BI"],
+        "total_keys_pressed": 292,
+        "total_mouse_clicks": 45,
+        "productive_time_pct": 0.88,
+        "automation_opportunities": [
+          {
+            "activity": "Email Notification",
+            "recommendation": "Auto-send approval confirmation",
+            "estimated_time_savings_minutes": 4,
+            "automation_score": 0.92
+          },
+          {
+            "activity": "Budget Check",
+            "recommendation": "Embed budget data in approval screen",
+            "estimated_time_savings_minutes": 5,
+            "automation_score": 0.78
+          }
+        ]
+      }
+    }
+  ],
+  "aggregated_insights": {
+    "total_sessions": 2,
+    "total_time_minutes": 55,
+    "top_applications": [
+      {"name": "SAP ERP", "usage_pct": 0.45},
+      {"name": "Microsoft Outlook", "usage_pct": 0.25},
+      {"name": "Microsoft Excel", "usage_pct": 0.15},
+      {"name": "Google Chrome", "usage_pct": 0.10},
+      {"name": "Power BI", "usage_pct": 0.05}
+    ],
+    "productivity_score": 0.85,
+    "total_automation_potential_minutes": 14,
+    "automation_roi": {
+      "current_monthly_time_hours": 380,
+      "potential_savings_hours": 95,
+      "cost_savings_per_month_usd": 4750,
+      "payback_period_months": 2.1
+    }
+  }
+}

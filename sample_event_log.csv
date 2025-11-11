@@ -1,0 +1,87 @@
+case_id,activity,timestamp,resource,cost,department,priority
+CASE001,Submit Purchase Request,2024-01-15 09:00:00,John Smith,50,Procurement,High
+CASE001,Validate Budget,2024-01-15 09:30:00,Finance System,25,Finance,High
+CASE001,Manager Approval,2024-01-15 11:00:00,Sarah Johnson,75,Management,High
+CASE001,Vendor Selection,2024-01-15 14:00:00,John Smith,60,Procurement,High
+CASE001,Create Purchase Order,2024-01-15 15:30:00,Procurement System,30,Procurement,High
+CASE001,Send PO to Vendor,2024-01-15 16:00:00,Email System,10,Procurement,High
+CASE001,Confirm Order,2024-01-16 10:00:00,Vendor Portal,0,External,High
+CASE001,Receive Goods,2024-01-20 14:00:00,Warehouse Staff,40,Warehouse,High
+CASE001,Goods Inspection,2024-01-20 15:00:00,Quality Control,80,Quality,High
+CASE001,Post Goods Receipt,2024-01-20 16:00:00,ERP System,20,Finance,High
+CASE001,Receive Invoice,2024-01-22 09:00:00,AP System,15,Finance,High
+CASE001,Match 3-Way,2024-01-22 10:00:00,AP Clerk,60,Finance,High
+CASE001,Approve Payment,2024-01-22 14:00:00,CFO,100,Finance,High
+CASE001,Process Payment,2024-01-23 11:00:00,Payment System,25,Finance,High
+CASE001,Close Case,2024-01-23 11:30:00,ERP System,10,Procurement,High
+CASE002,Submit Purchase Request,2024-01-15 09:15:00,Jane Doe,50,IT,Medium
+CASE002,Validate Budget,2024-01-15 09:45:00,Finance System,25,Finance,Medium
+CASE002,Manager Approval,2024-01-15 12:00:00,Mike Davis,75,Management,Medium
+CASE002,Vendor Selection,2024-01-15 15:00:00,Jane Doe,60,IT,Medium
+CASE002,Create Purchase Order,2024-01-15 16:30:00,Procurement System,30,Procurement,Medium
+CASE002,Send PO to Vendor,2024-01-15 17:00:00,Email System,10,Procurement,Medium
+CASE002,Confirm Order,2024-01-16 11:00:00,Vendor Portal,0,External,Medium
+CASE002,Receive Goods,2024-01-21 10:00:00,Warehouse Staff,40,Warehouse,Medium
+CASE002,Goods Inspection,2024-01-21 11:00:00,Quality Control,80,Quality,Medium
+CASE002,Post Goods Receipt,2024-01-21 12:00:00,ERP System,20,Finance,Medium
+CASE002,Receive Invoice,2024-01-23 09:00:00,AP System,15,Finance,Medium
+CASE002,Match 3-Way,2024-01-23 10:00:00,AP Clerk,60,Finance,Medium
+CASE002,Approve Payment,2024-01-23 15:00:00,CFO,100,Finance,Medium
+CASE002,Process Payment,2024-01-24 11:00:00,Payment System,25,Finance,Medium
+CASE002,Close Case,2024-01-24 11:30:00,ERP System,10,IT,Medium
+CASE003,Submit Purchase Request,2024-01-15 10:00:00,Bob Wilson,50,Marketing,Low
+CASE003,Validate Budget,2024-01-15 10:30:00,Finance System,25,Finance,Low
+CASE003,Budget Rejected,2024-01-15 11:00:00,Finance System,25,Finance,Low
+CASE003,Revise Request,2024-01-15 14:00:00,Bob Wilson,40,Marketing,Low
+CASE003,Validate Budget,2024-01-15 14:30:00,Finance System,25,Finance,Low
+CASE003,Manager Approval,2024-01-16 09:00:00,Sarah Johnson,75,Management,Low
+CASE003,Vendor Selection,2024-01-16 11:00:00,Bob Wilson,60,Marketing,Low
+CASE003,Create Purchase Order,2024-01-16 14:00:00,Procurement System,30,Procurement,Low
+CASE003,Send PO to Vendor,2024-01-16 15:00:00,Email System,10,Procurement,Low
+CASE003,Confirm Order,2024-01-17 10:00:00,Vendor Portal,0,External,Low
+CASE003,Receive Goods,2024-01-22 14:00:00,Warehouse Staff,40,Warehouse,Low
+CASE003,Goods Inspection,2024-01-22 15:00:00,Quality Control,80,Quality,Low
+CASE003,Post Goods Receipt,2024-01-22 16:00:00,ERP System,20,Finance,Low
+CASE003,Receive Invoice,2024-01-24 09:00:00,AP System,15,Finance,Low
+CASE003,Match 3-Way,2024-01-24 10:00:00,AP Clerk,60,Finance,Low
+CASE003,Approve Payment,2024-01-24 14:00:00,CFO,100,Finance,Low
+CASE003,Process Payment,2024-01-25 11:00:00,Payment System,25,Finance,Low
+CASE003,Close Case,2024-01-25 11:30:00,ERP System,10,Marketing,Low
+CASE004,Submit Purchase Request,2024-01-16 08:00:00,Alice Brown,50,Operations,High
+CASE004,Validate Budget,2024-01-16 08:30:00,Finance System,25,Finance,High
+CASE004,Manager Approval,2024-01-16 10:00:00,Mike Davis,75,Management,High
+CASE004,Vendor Selection,2024-01-16 13:00:00,Alice Brown,60,Operations,High
+CASE004,Create Purchase Order,2024-01-16 15:00:00,Procurement System,30,Procurement,High
+CASE004,Send PO to Vendor,2024-01-16 15:30:00,Email System,10,Procurement,High
+CASE004,Vendor Delay Notification,2024-01-18 10:00:00,Email System,10,Procurement,High
+CASE004,Escalate to Manager,2024-01-18 11:00:00,Alice Brown,50,Operations,High
+CASE004,Manager Contact Vendor,2024-01-18 14:00:00,Mike Davis,80,Management,High
+CASE004,Confirm Revised Delivery,2024-01-19 09:00:00,Vendor Portal,0,External,High
+CASE004,Receive Goods,2024-01-25 14:00:00,Warehouse Staff,40,Warehouse,High
+CASE004,Goods Inspection,2024-01-25 15:00:00,Quality Control,80,Quality,High
+CASE004,Post Goods Receipt,2024-01-25 16:00:00,ERP System,20,Finance,High
+CASE004,Receive Invoice,2024-01-27 09:00:00,AP System,15,Finance,High
+CASE004,Match 3-Way,2024-01-27 10:00:00,AP Clerk,60,Finance,High
+CASE004,Approve Payment,2024-01-27 14:00:00,CFO,100,Finance,High
+CASE004,Process Payment,2024-01-28 11:00:00,Payment System,25,Finance,High
+CASE004,Close Case,2024-01-28 11:30:00,ERP System,10,Operations,High
+CASE005,Submit Purchase Request,2024-01-16 09:00:00,Charlie Green,50,HR,Medium
+CASE005,Validate Budget,2024-01-16 09:30:00,Finance System,25,Finance,Medium
+CASE005,Manager Approval,2024-01-16 11:30:00,Sarah Johnson,75,Management,Medium
+CASE005,Vendor Selection,2024-01-16 14:30:00,Charlie Green,60,HR,Medium
+CASE005,Create Purchase Order,2024-01-16 16:00:00,Procurement System,30,Procurement,Medium
+CASE005,Send PO to Vendor,2024-01-16 16:30:00,Email System,10,Procurement,Medium
+CASE005,Confirm Order,2024-01-17 11:00:00,Vendor Portal,0,External,Medium
+CASE005,Receive Goods,2024-01-23 10:00:00,Warehouse Staff,40,Warehouse,Medium
+CASE005,Goods Inspection,2024-01-23 11:00:00,Quality Control,80,Quality,Medium
+CASE005,Quality Issue Identified,2024-01-23 11:30:00,Quality Control,100,Quality,Medium
+CASE005,Contact Vendor,2024-01-23 12:00:00,Charlie Green,50,HR,Medium
+CASE005,Return Goods,2024-01-23 15:00:00,Warehouse Staff,60,Warehouse,Medium
+CASE005,Receive Replacement,2024-01-26 10:00:00,Warehouse Staff,40,Warehouse,Medium
+CASE005,Goods Inspection,2024-01-26 11:00:00,Quality Control,80,Quality,Medium
+CASE005,Post Goods Receipt,2024-01-26 12:00:00,ERP System,20,Finance,Medium
+CASE005,Receive Invoice,2024-01-28 09:00:00,AP System,15,Finance,Medium
+CASE005,Match 3-Way,2024-01-28 10:00:00,AP Clerk,60,Finance,Medium
+CASE005,Approve Payment,2024-01-28 14:00:00,CFO,100,Finance,Medium
+CASE005,Process Payment,2024-01-29 11:00:00,Payment System,25,Finance,Medium
+CASE005,Close Case,2024-01-29 11:30:00,ERP System,10,HR,Medium
