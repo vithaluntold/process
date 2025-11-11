@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/server-auth";
+import { db } from "@/lib/db";
+import { llmProviders } from "@/shared/schema";
+import { eq } from "drizzle-orm";
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,30 +20,31 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Fetch provider from database
+    const [providerRecord] = await db
+      .select()
+      .from(llmProviders)
+      .where(eq(llmProviders.providerId, provider))
+      .limit(1);
+
+    if (!providerRecord) {
+      return NextResponse.json(
+        { error: "Provider not found", valid: false },
+        { status: 404 }
+      );
+    }
+
     // Validate API key format and attempt a test request
     let isValid = false;
     let errorMessage = "";
 
     try {
-      switch (provider) {
-        case "openai":
-          isValid = await validateOpenAI(apiKey);
-          break;
-        case "mistral":
-          isValid = await validateMistral(apiKey);
-          break;
-        case "deepseek":
-          isValid = await validateDeepSeek(apiKey);
-          break;
-        case "groq":
-          isValid = await validateGroq(apiKey);
-          break;
-        case "together":
-          isValid = await validateTogether(apiKey);
-          break;
-        default:
-          errorMessage = "Unsupported provider";
-          break;
+      // Use compatibility type to determine validation method
+      if (providerRecord.compatibilityType === "openai_compatible") {
+        isValid = await validateOpenAICompatible(apiKey, providerRecord.baseUrl, providerRecord.validationEndpoint);
+      } else {
+        // For custom types, try generic validation
+        isValid = await validateGeneric(apiKey, providerRecord.baseUrl, providerRecord.authType);
       }
     } catch (error: any) {
       errorMessage = error.message || "Validation failed";
@@ -70,67 +74,37 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function validateOpenAI(apiKey: string): Promise<boolean> {
+async function validateOpenAICompatible(apiKey: string, baseUrl: string, validationEndpoint?: string | null): Promise<boolean> {
   try {
-    const response = await fetch("https://api.openai.com/v1/models", {
+    // Try the custom validation endpoint first, or fall back to /models
+    const endpoint = validationEndpoint || `${baseUrl}/models`;
+    
+    const response = await fetch(endpoint, {
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
     });
     return response.ok;
   } catch (error) {
-    throw new Error("Failed to validate OpenAI API key");
+    throw new Error("Failed to validate API key with provider");
   }
 }
 
-async function validateMistral(apiKey: string): Promise<boolean> {
+async function validateGeneric(apiKey: string, baseUrl: string, authType: string): Promise<boolean> {
   try {
-    const response = await fetch("https://api.mistral.ai/v1/models", {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    });
+    // Try a generic health check
+    const headers: Record<string, string> = {};
+    
+    if (authType === "bearer") {
+      headers.Authorization = `Bearer ${apiKey}`;
+    } else if (authType === "api_key_header") {
+      headers["X-API-Key"] = apiKey;
+    }
+    
+    const response = await fetch(`${baseUrl}/models`, { headers });
     return response.ok;
   } catch (error) {
-    throw new Error("Failed to validate Mistral API key");
+    throw new Error("Failed to validate API key");
   }
 }
 
-async function validateDeepSeek(apiKey: string): Promise<boolean> {
-  try {
-    const response = await fetch("https://api.deepseek.com/v1/models", {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    });
-    return response.ok;
-  } catch (error) {
-    throw new Error("Failed to validate DeepSeek API key");
-  }
-}
-
-async function validateGroq(apiKey: string): Promise<boolean> {
-  try {
-    const response = await fetch("https://api.groq.com/openai/v1/models", {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    });
-    return response.ok;
-  } catch (error) {
-    throw new Error("Failed to validate Groq API key");
-  }
-}
-
-async function validateTogether(apiKey: string): Promise<boolean> {
-  try {
-    const response = await fetch("https://api.together.xyz/v1/models", {
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-    });
-    return response.ok;
-  } catch (error) {
-    throw new Error("Failed to validate Together AI API key");
-  }
-}

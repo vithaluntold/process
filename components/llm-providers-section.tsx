@@ -52,6 +52,11 @@ export default function LLMProvidersSection() {
   const [validating, setValidating] = useState(false);
   const [validationStatus, setValidationStatus] = useState<"idle" | "success" | "error">("idle");
   const [validationMessage, setValidationMessage] = useState("");
+  const [addCustomProviderDialogOpen, setAddCustomProviderDialogOpen] = useState(false);
+  const [customProviderName, setCustomProviderName] = useState("");
+  const [customProviderBaseUrl, setCustomProviderBaseUrl] = useState("");
+  const [customProviderModels, setCustomProviderModels] = useState("");
+  const [savingCustomProvider, setSavingCustomProvider] = useState(false);
 
   useEffect(() => {
     loadProviders();
@@ -195,6 +200,66 @@ export default function LLMProvidersSection() {
     }
   }
 
+  async function handleSaveCustomProvider() {
+    if (!customProviderName || !customProviderBaseUrl) {
+      toast({
+        title: "Error",
+        description: "Provider name and base URL are required",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setSavingCustomProvider(true);
+    try {
+      const modelsArray = customProviderModels
+        .split(",")
+        .map((m) => m.trim())
+        .filter((m) => m.length > 0);
+
+      const response = await fetch("/api/llm-providers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: customProviderName,
+          baseUrl: customProviderBaseUrl,
+          models: modelsArray.length > 0 ? modelsArray : ["default-model"],
+          compatibilityType: "openai_compatible",
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Custom provider added successfully",
+        });
+        setAddCustomProviderDialogOpen(false);
+        setCustomProviderName("");
+        setCustomProviderBaseUrl("");
+        setCustomProviderModels("");
+        await loadProviders();
+      } else {
+        const data = await response.json();
+        toast({
+          title: "Error",
+          description: data.error || "Failed to add custom provider",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Error saving custom provider:", error);
+      toast({
+        title: "Error",
+        description: "Failed to add custom provider",
+        variant: "destructive",
+      });
+    } finally {
+      setSavingCustomProvider(false);
+    }
+  }
+
   async function handleDeleteProvider(providerId: string) {
     if (!confirm("Are you sure you want to delete this provider configuration?")) {
       return;
@@ -302,12 +367,100 @@ export default function LLMProvidersSection() {
           </Button>
           <Button 
             size="sm" 
+            variant="outline"
+            className="flex items-center gap-1"
+            onClick={() => setAddCustomProviderDialogOpen(true)}
+          >
+            <Plus className="h-4 w-4" />
+            Add Custom Provider
+          </Button>
+          <Button 
+            size="sm" 
             className="flex items-center gap-1"
             onClick={() => setDialogOpen(true)}
           >
             <Plus className="h-4 w-4" />
-            Add Provider
+            Configure API Key
           </Button>
+          {addCustomProviderDialogOpen && (
+            <Dialog open={addCustomProviderDialogOpen} onOpenChange={setAddCustomProviderDialogOpen}>
+              <DialogTrigger asChild>
+                <div style={{ display: 'none' }} />
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Add Custom LLM Provider</DialogTitle>
+                  <DialogDescription>
+                    Add a new OpenAI-compatible LLM provider (Claude, Gemini, Cohere, etc.)
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="customProviderName">Provider Name *</Label>
+                    <Input
+                      id="customProviderName"
+                      placeholder="e.g., Anthropic Claude, Google Gemini"
+                      value={customProviderName}
+                      onChange={(e) => setCustomProviderName(e.target.value)}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="customProviderBaseUrl">Base URL *</Label>
+                    <Input
+                      id="customProviderBaseUrl"
+                      placeholder="e.g., https://api.anthropic.com/v1"
+                      value={customProviderBaseUrl}
+                      onChange={(e) => setCustomProviderBaseUrl(e.target.value)}
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      The API base URL (without /models or /chat/completions)
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="customProviderModels">Models (Optional)</Label>
+                    <Input
+                      id="customProviderModels"
+                      placeholder="e.g., claude-3-5-sonnet, claude-3-opus"
+                      value={customProviderModels}
+                      onChange={(e) => setCustomProviderModels(e.target.value)}
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Comma-separated list of model IDs
+                    </p>
+                  </div>
+                  <Alert>
+                    <Brain className="h-4 w-4" />
+                    <AlertDescription className="text-sm">
+                      This provider will be available to all users in your organization. Configure your API key after adding the provider.
+                    </AlertDescription>
+                  </Alert>
+                </div>
+                <DialogFooter>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setAddCustomProviderDialogOpen(false);
+                      setCustomProviderName("");
+                      setCustomProviderBaseUrl("");
+                      setCustomProviderModels("");
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button onClick={handleSaveCustomProvider} disabled={savingCustomProvider}>
+                    {savingCustomProvider ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Adding...
+                      </>
+                    ) : (
+                      "Add Provider"
+                    )}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          )}
           {dialogOpen && (
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>

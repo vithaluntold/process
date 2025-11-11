@@ -1,19 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/server-auth";
 import { db } from "@/lib/db";
-import { llmProviderKeys } from "@/shared/schema";
+import { llmProviders, llmProviderModels, llmProviderKeys } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import { encryptApiKey, maskApiKey } from "@/lib/llm-encryption";
-
-// Only providers with standard OpenAI-compatible Bearer authentication
-const SUPPORTED_PROVIDERS = [
-  { id: "replit", name: "Replit AI (Free)", models: ["gpt-4o", "gpt-4o-mini"], builtin: true, compatible: true },
-  { id: "openai", name: "OpenAI", models: ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-3.5-turbo"], compatible: true },
-  { id: "mistral", name: "Mistral AI", models: ["mistral-large-latest", "mistral-medium-latest", "mistral-small-latest"], compatible: true },
-  { id: "deepseek", name: "DeepSeek", models: ["deepseek-chat", "deepseek-coder"], compatible: true },
-  { id: "groq", name: "Groq", models: ["llama-3.3-70b-versatile", "llama-3.1-70b-versatile", "mixtral-8x7b-32768"], compatible: true },
-  { id: "together-ai", name: "Together AI", models: ["meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "mistralai/Mixtral-8x7B-Instruct-v0.1"], compatible: true },
-];
 
 export async function GET(request: NextRequest) {
   try {
@@ -22,6 +12,23 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    // Fetch all active providers from database
+    const dbProviders = await db
+      .select()
+      .from(llmProviders)
+      .where(eq(llmProviders.isActive, true));
+
+    // Fetch models for each provider
+    const providerIds = dbProviders.map(p => p.id);
+    const models = await db
+      .select()
+      .from(llmProviderModels)
+      .where(and(
+        eq(llmProviderModels.isActive, true),
+        // Only get models for active providers
+      ));
+
+    // Fetch user's configured keys
     const userKeys = await db
       .select()
       .from(llmProviderKeys)
@@ -30,14 +37,27 @@ export async function GET(request: NextRequest) {
         eq(llmProviderKeys.status, "active")
       ));
 
-    const providersWithStatus = SUPPORTED_PROVIDERS.map((provider) => {
-      const userKey = userKeys.find((k) => k.provider === provider.id);
+    // Combine providers with their models and configuration status
+    const providersWithStatus = dbProviders.map((provider) => {
+      const providerModels = models
+        .filter(m => m.providerId === provider.id)
+        .map(m => m.modelId);
+      
+      const userKey = userKeys.find((k) => k.provider === provider.providerId);
+      
       return {
-        ...provider,
-        configured: provider.builtin || !!userKey,
+        id: provider.providerId,
+        name: provider.name,
+        description: provider.description,
+        models: providerModels,
+        builtin: provider.isBuiltin,
+        configured: provider.isBuiltin || !!userKey,
         configuredAt: userKey?.createdAt,
         label: userKey?.label,
         lastUsedAt: userKey?.lastUsedAt,
+        authType: provider.authType,
+        baseUrl: provider.baseUrl,
+        compatibilityType: provider.compatibilityType,
       };
     });
 
@@ -60,68 +80,142 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { provider, apiKey, label } = await request.json();
+    const { provider, apiKey, label, name, baseUrl, authType, models, compatibilityType } = await request.json();
 
-    if (!provider || !apiKey) {
-      return NextResponse.json(
-        { error: "Provider and API key are required" },
-        { status: 400 }
-      );
-    }
+    // If apiKey is provided, this is a key configuration request
+    if (apiKey) {
+      if (!provider) {
+        return NextResponse.json(
+          { error: "Provider is required" },
+          { status: 400 }
+        );
+      }
 
-    const validProviderIds = SUPPORTED_PROVIDERS.filter(p => !p.builtin).map(p => p.id);
-    if (!validProviderIds.includes(provider)) {
-      return NextResponse.json(
-        { error: "Invalid provider" },
-        { status: 400 }
-      );
-    }
+      // Verify provider exists and is not builtin
+      const providerRecord = await db
+        .select()
+        .from(llmProviders)
+        .where(eq(llmProviders.providerId, provider))
+        .limit(1);
 
-    const existingKey = await db
-      .select()
-      .from(llmProviderKeys)
-      .where(and(
-        eq(llmProviderKeys.userId, user.id),
-        eq(llmProviderKeys.provider, provider)
-      ))
-      .limit(1);
+      if (providerRecord.length === 0) {
+        return NextResponse.json(
+          { error: "Provider not found" },
+          { status: 404 }
+        );
+      }
 
-    const encryptedKey = encryptApiKey(apiKey);
+      if (providerRecord[0].isBuiltin) {
+        return NextResponse.json(
+          { error: "Cannot configure API key for built-in providers" },
+          { status: 400 }
+        );
+      }
 
-    if (existingKey.length > 0) {
-      await db
-        .update(llmProviderKeys)
-        .set({
+      const existingKey = await db
+        .select()
+        .from(llmProviderKeys)
+        .where(and(
+          eq(llmProviderKeys.userId, user.id),
+          eq(llmProviderKeys.provider, provider)
+        ))
+        .limit(1);
+
+      const encryptedKey = encryptApiKey(apiKey);
+
+      if (existingKey.length > 0) {
+        await db
+          .update(llmProviderKeys)
+          .set({
+            encryptedApiKey: encryptedKey,
+            label: label || null,
+            updatedAt: new Date(),
+          })
+          .where(eq(llmProviderKeys.id, existingKey[0].id));
+
+        return NextResponse.json({
+          success: true,
+          provider,
+          message: "API key updated successfully",
+        });
+      } else {
+        await db.insert(llmProviderKeys).values({
+          userId: user.id,
+          provider,
           encryptedApiKey: encryptedKey,
           label: label || null,
-          updatedAt: new Date(),
+          status: "active",
+        });
+
+        return NextResponse.json({
+          success: true,
+          provider,
+          message: "API key added successfully",
+        });
+      }
+    }
+
+    // If no apiKey but name and baseUrl, this is a new provider creation request
+    if (name && baseUrl) {
+      // Generate provider ID from name
+      const providerId = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+      // Check if provider already exists
+      const existing = await db
+        .select()
+        .from(llmProviders)
+        .where(eq(llmProviders.providerId, providerId))
+        .limit(1);
+
+      if (existing.length > 0) {
+        return NextResponse.json(
+          { error: "Provider with this name already exists" },
+          { status: 400 }
+        );
+      }
+
+      // Create new provider
+      const [newProvider] = await db
+        .insert(llmProviders)
+        .values({
+          name,
+          providerId,
+          baseUrl,
+          authType: authType || 'bearer',
+          compatibilityType: compatibilityType || 'openai_compatible',
+          isBuiltin: false,
+          isActive: true,
+          createdBy: user.id,
         })
-        .where(eq(llmProviderKeys.id, existingKey[0].id));
+        .returning();
+
+      // Add models if provided
+      if (models && Array.isArray(models) && models.length > 0) {
+        await db.insert(llmProviderModels).values(
+          models.map((model: any) => ({
+            providerId: newProvider.id,
+            modelId: model.id || model.modelId || model,
+            displayName: model.name || model.displayName || model.id || model.modelId || model,
+            contextWindow: model.contextWindow || null,
+          }))
+        );
+      }
 
       return NextResponse.json({
         success: true,
-        provider,
-        message: "API key updated successfully",
-      });
-    } else {
-      await db.insert(llmProviderKeys).values({
-        userId: user.id,
-        provider,
-        encryptedApiKey: encryptedKey,
-        label: label || null,
-        status: "active",
-      });
-
-      return NextResponse.json({
-        success: true,
-        provider,
-        message: "API key added successfully",
+        provider: newProvider,
+        message: "Provider created successfully",
       });
     }
-  } catch (error) {
-    console.error("Error saving LLM provider key:", error);
+
     return NextResponse.json(
-      { error: "Failed to save API key" },
+      { error: "Invalid request" },
+      { status: 400 }
+    );
+  } catch (error) {
+    console.error("Error saving LLM provider:", error);
+    return NextResponse.json(
+      { error: "Failed to save provider" },
       { status: 500 }
     );
   }
