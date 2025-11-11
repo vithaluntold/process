@@ -8,7 +8,9 @@ export type LLMProvider =
   | "replit"
   | "openai"
   | "mistral"
-  | "deepseek";
+  | "deepseek"
+  | "groq"
+  | "together-ai";
 
 export { LLM_PROVIDERS };
 
@@ -23,6 +25,8 @@ interface LLMProviderConfig {
   openaiCompatible: boolean;
 }
 
+// NOTE: Only providers with standard OpenAI-compatible Bearer authentication are included.
+// Azure OpenAI, Anthropic, Google AI require custom authentication implementations.
 const LLM_PROVIDERS: Record<LLMProvider, Omit<LLMProviderConfig, 'apiKey' | 'available'>> = {
   replit: {
     baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL || "https://integrations.replit.com/v1/openai",
@@ -44,7 +48,7 @@ const LLM_PROVIDERS: Record<LLMProvider, Omit<LLMProviderConfig, 'apiKey' | 'ava
     baseURL: "https://api.mistral.ai/v1",
     header: "Authorization",
     prefix: "Bearer",
-    name: "Mistral AI (OpenAI-compatible)",
+    name: "Mistral AI",
     models: ["mistral-large-latest", "mistral-medium-latest", "mistral-small-latest"],
     openaiCompatible: true,
   },
@@ -52,8 +56,24 @@ const LLM_PROVIDERS: Record<LLMProvider, Omit<LLMProviderConfig, 'apiKey' | 'ava
     baseURL: "https://api.deepseek.com/v1",
     header: "Authorization",
     prefix: "Bearer",
-    name: "DeepSeek (OpenAI-compatible)",
+    name: "DeepSeek",
     models: ["deepseek-chat", "deepseek-coder"],
+    openaiCompatible: true,
+  },
+  groq: {
+    baseURL: "https://api.groq.com/openai/v1",
+    header: "Authorization",
+    prefix: "Bearer",
+    name: "Groq",
+    models: ["llama-3.3-70b-versatile", "llama-3.1-70b-versatile", "mixtral-8x7b-32768"],
+    openaiCompatible: true,
+  },
+  "together-ai": {
+    baseURL: "https://api.together.xyz/v1",
+    header: "Authorization",
+    prefix: "Bearer",
+    name: "Together AI",
+    models: ["meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "mistralai/Mixtral-8x7B-Instruct-v0.1"],
     openaiCompatible: true,
   },
 };
@@ -128,6 +148,12 @@ export async function getProviderConfig(userId: number, provider: LLMProvider): 
 
 export async function createOpenAIClient(userId: number, provider: LLMProvider = "replit"): Promise<OpenAI> {
   const config = await getProviderConfig(userId, provider);
+
+  if (!config.openaiCompatible) {
+    throw new Error(
+      `Provider ${provider} is not OpenAI-compatible. Please use a compatible provider.`
+    );
+  }
 
   return new OpenAI({
     apiKey: config.apiKey || "dummy-key",

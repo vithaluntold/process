@@ -5,11 +5,14 @@ import { llmProviderKeys } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import { encryptApiKey, maskApiKey } from "@/lib/llm-encryption";
 
+// Only providers with standard OpenAI-compatible Bearer authentication
 const SUPPORTED_PROVIDERS = [
   { id: "replit", name: "Replit AI (Free)", models: ["gpt-4o", "gpt-4o-mini"], builtin: true, compatible: true },
   { id: "openai", name: "OpenAI", models: ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-3.5-turbo"], compatible: true },
-  { id: "mistral", name: "Mistral AI", models: ["mistral-large-latest", "mistral-medium-latest"], compatible: true },
+  { id: "mistral", name: "Mistral AI", models: ["mistral-large-latest", "mistral-medium-latest", "mistral-small-latest"], compatible: true },
   { id: "deepseek", name: "DeepSeek", models: ["deepseek-chat", "deepseek-coder"], compatible: true },
+  { id: "groq", name: "Groq", models: ["llama-3.3-70b-versatile", "llama-3.1-70b-versatile", "mixtral-8x7b-32768"], compatible: true },
+  { id: "together-ai", name: "Together AI", models: ["meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "mistralai/Mixtral-8x7B-Instruct-v0.1"], compatible: true },
 ];
 
 export async function GET(request: NextRequest) {
