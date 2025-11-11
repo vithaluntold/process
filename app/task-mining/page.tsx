@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import AppLayout from "@/components/app-layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -122,103 +123,132 @@ export default function TaskMiningPage() {
 
   if (loading) {
     return (
-      <div className="container mx-auto p-8">
+      <AppLayout>
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
             <p className="text-muted-foreground">Loading task mining data...</p>
           </div>
         </div>
-      </div>
+      </AppLayout>
     );
   }
 
   return (
-    <div className="container mx-auto p-6 lg:p-8 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold mb-2">Task Mining</h1>
-        <p className="text-muted-foreground">
-          Capture, analyze, and automate repetitive desktop tasks
-        </p>
+    <AppLayout>
+      <div className="flex flex-col gap-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">Task Mining</h1>
+          <p className="text-muted-foreground">
+            Capture, analyze, and automate repetitive desktop tasks
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm">
+            Export Report
+          </Button>
+          <Button variant="outline" size="sm">
+            Settings
+          </Button>
+        </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-4">
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Activity className="h-4 w-4 text-primary" />
-              Active Sessions
-            </CardTitle>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card className="border-brand/20 hover-lift">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Active Sessions</CardTitle>
+            <Activity className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{stats?.activeSessions || 0}</div>
+            <div className="text-2xl font-bold">{stats?.activeSessions || 0}</div>
             <p className="text-xs text-muted-foreground mt-1">Currently recording</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Clock className="h-4 w-4 text-primary" />
-              Total Activities
-            </CardTitle>
+        <Card className="border-brand/20 hover-lift">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Activities</CardTitle>
+            <Clock className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{stats?.totalActivities.toLocaleString() || 0}</div>
+            <div className="text-2xl font-bold">
+              {stats?.totalActivities ? stats.totalActivities.toLocaleString() : "0"}
+            </div>
             <p className="text-xs text-muted-foreground mt-1">Actions captured</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-primary" />
-              Patterns Found
-            </CardTitle>
+        <Card className="border-brand/20 hover-lift">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Patterns Found</CardTitle>
+            <TrendingUp className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{stats?.totalPatterns || 0}</div>
+            <div className="text-2xl font-bold">{stats?.totalPatterns || 0}</div>
             <p className="text-xs text-muted-foreground mt-1">Repetitive tasks</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Zap className="h-4 w-4 text-primary" />
-              Time Savings
-            </CardTitle>
+        <Card className="border-brand/20 hover-lift">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Time Savings</CardTitle>
+            <Zap className="h-4 w-4 text-brand" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{stats?.estimatedSavings.toFixed(0) || 0}h</div>
+            <div className="text-2xl font-bold">
+              {stats?.estimatedSavings ? stats.estimatedSavings.toFixed(0) : 0}h
+            </div>
             <p className="text-xs text-muted-foreground mt-1">Potential monthly</p>
           </CardContent>
         </Card>
       </div>
 
       <Tabs defaultValue="patterns" className="space-y-6">
-        <TabsList>
-          <TabsTrigger value="patterns">Task Patterns</TabsTrigger>
-          <TabsTrigger value="automations">Automation Opportunities</TabsTrigger>
-          <TabsTrigger value="sessions">Recording Sessions</TabsTrigger>
-          <TabsTrigger value="applications">Application Usage</TabsTrigger>
-          <TabsTrigger value="agent">
-            Desktop Agent
-            <Badge variant="secondary" className="ml-2">NEW</Badge>
-          </TabsTrigger>
-        </TabsList>
+        <div className="flex items-center">
+          <TabsList className="bg-brand/10">
+            <TabsTrigger value="patterns" className="data-[state=active]:bg-brand data-[state=active]:text-white">
+              Task Patterns
+            </TabsTrigger>
+            <TabsTrigger value="automations" className="data-[state=active]:bg-brand data-[state=active]:text-white">
+              Automation Opportunities
+            </TabsTrigger>
+            <TabsTrigger value="sessions" className="data-[state=active]:bg-brand data-[state=active]:text-white">
+              Recording Sessions
+            </TabsTrigger>
+            <TabsTrigger value="applications" className="data-[state=active]:bg-brand data-[state=active]:text-white">
+              Application Usage
+            </TabsTrigger>
+            <TabsTrigger value="agent" className="data-[state=active]:bg-brand data-[state=active]:text-white">
+              <span className="flex items-center gap-2">
+                Desktop Agent
+                <Badge variant="secondary" className="ml-1">NEW</Badge>
+              </span>
+            </TabsTrigger>
+          </TabsList>
+          <div className="ml-auto flex items-center gap-2">
+            <Button variant="outline" size="sm">
+              Filter
+            </Button>
+            <Button variant="outline" size="sm">
+              Refresh
+            </Button>
+          </div>
+        </div>
 
-        <TabsContent value="patterns" className="space-y-4">
+        <TabsContent value="patterns" className="space-y-4 border-none p-0">
           {patterns.length === 0 ? (
-            <Card>
+            <Card className="border-brand/20 bg-gradient-to-br from-brand/5 to-transparent">
               <CardContent className="pt-6">
                 <div className="text-center py-12">
-                  <TrendingUp className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="font-semibold text-lg mb-2">No Patterns Detected Yet</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Start recording your tasks to identify repetitive patterns
+                  <div className="rounded-full bg-brand/10 p-6 w-fit mx-auto mb-4">
+                    <TrendingUp className="h-12 w-12 text-brand" />
+                  </div>
+                  <h3 className="font-semibold text-xl mb-2">No Patterns Detected Yet</h3>
+                  <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                    Start recording your tasks to identify repetitive patterns and discover automation opportunities
                   </p>
-                  <Button>Start Recording</Button>
+                  <Button className="bg-brand hover:bg-brand/90 text-white">Start Recording</Button>
                 </div>
               </CardContent>
             </Card>
@@ -276,15 +306,17 @@ export default function TaskMiningPage() {
           )}
         </TabsContent>
 
-        <TabsContent value="automations" className="space-y-4">
+        <TabsContent value="automations" className="space-y-4 border-none p-0">
           {automations.length === 0 ? (
-            <Card>
+            <Card className="border-brand/20 bg-gradient-to-br from-brand/5 to-transparent">
               <CardContent className="pt-6">
                 <div className="text-center py-12">
-                  <Zap className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="font-semibold text-lg mb-2">No Automation Recommendations</h3>
-                  <p className="text-muted-foreground">
-                    Identify task patterns first to receive automation suggestions
+                  <div className="rounded-full bg-brand/10 p-6 w-fit mx-auto mb-4">
+                    <Zap className="h-12 w-12 text-brand" />
+                  </div>
+                  <h3 className="font-semibold text-xl mb-2">No Automation Recommendations</h3>
+                  <p className="text-muted-foreground max-w-md mx-auto">
+                    Identify task patterns first to receive AI-powered automation suggestions
                   </p>
                 </div>
               </CardContent>
@@ -333,17 +365,19 @@ export default function TaskMiningPage() {
           )}
         </TabsContent>
 
-        <TabsContent value="sessions" className="space-y-4">
+        <TabsContent value="sessions" className="space-y-4 border-none p-0">
           {sessions.length === 0 ? (
-            <Card>
+            <Card className="border-brand/20 bg-gradient-to-br from-brand/5 to-transparent">
               <CardContent className="pt-6">
                 <div className="text-center py-12">
-                  <Activity className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="font-semibold text-lg mb-2">No Recording Sessions</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Start capturing your desktop activities to analyze workflows
+                  <div className="rounded-full bg-brand/10 p-6 w-fit mx-auto mb-4">
+                    <Activity className="h-12 w-12 text-brand" />
+                  </div>
+                  <h3 className="font-semibold text-xl mb-2">No Recording Sessions</h3>
+                  <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                    Start capturing your desktop activities to analyze workflows and identify improvement opportunities
                   </p>
-                  <Button>New Recording Session</Button>
+                  <Button className="bg-brand hover:bg-brand/90 text-white">New Recording Session</Button>
                 </div>
               </CardContent>
             </Card>
@@ -382,15 +416,17 @@ export default function TaskMiningPage() {
           )}
         </TabsContent>
 
-        <TabsContent value="applications" className="space-y-4">
+        <TabsContent value="applications" className="space-y-4 border-none p-0">
           {topApps.length === 0 ? (
-            <Card>
+            <Card className="border-brand/20 bg-gradient-to-br from-brand/5 to-transparent">
               <CardContent className="pt-6">
                 <div className="text-center py-12">
-                  <BarChart3 className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="font-semibold text-lg mb-2">No Application Data</h3>
-                  <p className="text-muted-foreground">
-                    Application usage will appear after recording sessions
+                  <div className="rounded-full bg-brand/10 p-6 w-fit mx-auto mb-4">
+                    <BarChart3 className="h-12 w-12 text-brand" />
+                  </div>
+                  <h3 className="font-semibold text-xl mb-2">No Application Data</h3>
+                  <p className="text-muted-foreground max-w-md mx-auto">
+                    Application usage statistics will appear after recording sessions
                   </p>
                 </div>
               </CardContent>
@@ -428,7 +464,7 @@ export default function TaskMiningPage() {
           )}
         </TabsContent>
 
-        <TabsContent value="agent" className="space-y-4">
+        <TabsContent value="agent" className="space-y-4 border-none p-0">
           <Card className="border-brand/20 bg-gradient-to-br from-brand/5 to-transparent">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -611,6 +647,7 @@ export default function TaskMiningPage() {
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
+      </div>
+    </AppLayout>
   );
 }
