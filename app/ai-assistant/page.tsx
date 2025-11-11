@@ -25,7 +25,7 @@ export default function AIAssistantPage() {
   ]);
   const [input, setInput] = useState("");
   const [processes, setProcesses] = useState<any[]>([]);
-  const [selectedProcessId, setSelectedProcessId] = useState("");
+  const [selectedProcessId, setSelectedProcessId] = useState("all");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -68,7 +68,7 @@ export default function AIAssistantPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           query: input,
-          processId: selectedProcessId ? parseInt(selectedProcessId) : null,
+          processId: selectedProcessId && selectedProcessId !== "all" ? parseInt(selectedProcessId) : null,
         }),
       });
 
@@ -121,7 +121,7 @@ export default function AIAssistantPage() {
               <SelectValue placeholder="Select a process (optional)" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All processes</SelectItem>
+              <SelectItem value="all">All processes</SelectItem>
               {processes.map((process) => (
                 <SelectItem key={process.id} value={process.id.toString()}>
                   {process.name}
