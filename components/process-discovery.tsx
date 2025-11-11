@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
@@ -16,6 +17,7 @@ const ProcessFlowchart = dynamic(() => import("@/components/process-flowchart"),
 })
 
 export default function ProcessDiscovery() {
+  const searchParams = useSearchParams()
   const [processes, setProcesses] = useState<any[]>([])
   const [selectedProcess, setSelectedProcess] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
@@ -32,7 +34,17 @@ export default function ProcessDiscovery() {
       const data = await response.json()
       const processArray = data.processes || []
       setProcesses(processArray)
-      if (processArray.length > 0) {
+      
+      const processIdParam = searchParams.get('processId')
+      
+      if (processIdParam) {
+        const matchingProcess = processArray.find((p: any) => p.id.toString() === processIdParam)
+        if (matchingProcess) {
+          setSelectedProcess(processIdParam)
+        } else if (processArray.length > 0) {
+          setSelectedProcess(processArray[0].id.toString())
+        }
+      } else if (processArray.length > 0) {
         setSelectedProcess(processArray[0].id.toString())
       }
     } catch (error) {

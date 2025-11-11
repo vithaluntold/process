@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useCallback, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -26,11 +27,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "sonner"
 
 export default function DocumentUploadPage() {
+  const router = useRouter()
   const [dragActive, setDragActive] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [uploadedDocuments, setUploadedDocuments] = useState<any[]>([])
   const [processRepository, setProcessRepository] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [analyzingId, setAnalyzingId] = useState<number | null>(null)
 
   useEffect(() => {
     fetchData()
@@ -191,6 +194,34 @@ export default function DocumentUploadPage() {
     } catch (error) {
       console.error("Delete error:", error);
       toast.error("Failed to delete document");
+    }
+  };
+
+  const handleViewProcess = (processId: number) => {
+    router.push(`/process-discovery?processId=${processId}`);
+  };
+
+  const handleAnalyzeProcess = async (processId: number) => {
+    setAnalyzingId(processId);
+    
+    try {
+      const response = await fetch(`/api/processes/${processId}/analyze`, {
+        method: "POST",
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        toast.success("Process analyzed successfully! Refreshing repository...");
+        await fetchData();
+      } else {
+        const error = await response.json();
+        toast.error(error.error || "Failed to analyze process");
+      }
+    } catch (error) {
+      console.error("Analysis error:", error);
+      toast.error("Failed to analyze process");
+    } finally {
+      setAnalyzingId(null);
     }
   };
 
@@ -470,12 +501,30 @@ export default function DocumentUploadPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <Badge className="bg-emerald-500">{process.status}</Badge>
-                        <Button variant="outline" size="sm">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => handleViewProcess(process.id)}
+                          title="View process in Process Discovery"
+                        >
                           <Eye className="mr-2 h-4 w-4" />
                           View Process
                         </Button>
-                        <Button size="sm" className="bg-brand hover:bg-brand/90 text-white">
-                          Analyze
+                        <Button 
+                          size="sm" 
+                          className="bg-brand hover:bg-brand/90 text-white"
+                          onClick={() => handleAnalyzeProcess(process.id)}
+                          disabled={analyzingId === process.id}
+                          title="Analyze process and generate insights"
+                        >
+                          {analyzingId === process.id ? (
+                            <>
+                              <Clock className="mr-2 h-4 w-4 animate-spin" />
+                              Analyzing...
+                            </>
+                          ) : (
+                            "Analyze"
+                          )}
                         </Button>
                       </div>
                     </div>
