@@ -121,7 +121,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+      <header className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
         <div className="flex items-center gap-2">
           <X className="h-6 w-6 text-brand" />
           <span className="text-lg font-semibold">EPI X-Ray</span>
