@@ -214,11 +214,13 @@ export class ScenarioAnalysisService {
     activityStats: Map<string, any>,
     scenario: ScenarioParams
   ): Promise<ScenarioResult> {
+    const effectiveDurationMultiplier = scenario.durationMultiplier / scenario.resourceMultiplier;
+    
     const simulator = new DiscreteEventSimulator(
       processModel,
       activityStats,
       {
-        durationMultipliers: { '*': scenario.durationMultiplier },
+        durationMultipliers: { '*': effectiveDurationMultiplier },
         numberOfCases: scenario.numberOfCases,
       }
     );
@@ -259,14 +261,22 @@ export class ScenarioAnalysisService {
 
     const comparisons: ComparisonMetrics[] = [];
 
+    const cycleTimePercent = expected.avgCycleTime !== 0
+      ? ((best.avgCycleTime - expected.avgCycleTime) / expected.avgCycleTime) * 100
+      : 0;
+
     comparisons.push({
       metric: "Cycle Time (hours)",
       best: best.avgCycleTime,
       expected: expected.avgCycleTime,
       worst: worst.avgCycleTime,
       deltaVsExpected: best.avgCycleTime - expected.avgCycleTime,
-      percentChange: ((best.avgCycleTime - expected.avgCycleTime) / expected.avgCycleTime) * 100,
+      percentChange: cycleTimePercent,
     });
+
+    const throughputPercent = expected.throughput !== 0
+      ? ((best.throughput - expected.throughput) / expected.throughput) * 100
+      : 0;
 
     comparisons.push({
       metric: "Throughput (cases/hour)",
@@ -274,8 +284,12 @@ export class ScenarioAnalysisService {
       expected: expected.throughput,
       worst: worst.throughput,
       deltaVsExpected: best.throughput - expected.throughput,
-      percentChange: ((best.throughput - expected.throughput) / expected.throughput) * 100,
+      percentChange: throughputPercent,
     });
+
+    const utilizationPercent = expected.utilizationRate !== 0
+      ? ((best.utilizationRate - expected.utilizationRate) / expected.utilizationRate) * 100
+      : 0;
 
     comparisons.push({
       metric: "Resource Utilization (%)",
@@ -283,7 +297,7 @@ export class ScenarioAnalysisService {
       expected: expected.utilizationRate,
       worst: worst.utilizationRate,
       deltaVsExpected: best.utilizationRate - expected.utilizationRate,
-      percentChange: ((best.utilizationRate - expected.utilizationRate) / expected.utilizationRate) * 100,
+      percentChange: utilizationPercent,
     });
 
     return comparisons;
