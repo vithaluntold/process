@@ -10,6 +10,8 @@ export type LLMProvider =
   | "mistral"
   | "deepseek";
 
+export { LLM_PROVIDERS };
+
 interface LLMProviderConfig {
   apiKey: string;
   baseURL: string;

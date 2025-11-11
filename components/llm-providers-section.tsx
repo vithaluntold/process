@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Brain, Check, Plus, Trash2, Loader2, Eye, EyeOff } from "lucide-react";
+import { Brain, Check, Plus, Trash2, Loader2, Eye, EyeOff, Activity, CheckCircle2, XCircle, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Dialog,
   DialogContent,
@@ -28,6 +29,13 @@ interface LLMProvider {
   label?: string;
 }
 
+interface HealthCheckResult {
+  provider: string;
+  status: "success" | "error";
+  message: string;
+  responseTime?: number;
+}
+
 export default function LLMProvidersSection() {
   const { toast } = useToast();
   const [providers, setProviders] = useState<LLMProvider[]>([]);
@@ -38,6 +46,8 @@ export default function LLMProvidersSection() {
   const [label, setLabel] = useState("");
   const [showApiKey, setShowApiKey] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [healthCheckResults, setHealthCheckResults] = useState<HealthCheckResult[]>([]);
+  const [runningHealthCheck, setRunningHealthCheck] = useState(false);
 
   useEffect(() => {
     loadProviders();
@@ -149,6 +159,43 @@ export default function LLMProvidersSection() {
     }
   }
 
+  async function runHealthCheck() {
+    setRunningHealthCheck(true);
+    setHealthCheckResults([]);
+
+    try {
+      const response = await fetch("/api/llm-providers/health-check");
+      if (response.ok) {
+        const data = await response.json();
+        setHealthCheckResults(data.results);
+        
+        const failedCount = data.results.filter((r: HealthCheckResult) => r.status === "error").length;
+        const successCount = data.results.filter((r: HealthCheckResult) => r.status === "success").length;
+        
+        toast({
+          title: "Health Check Complete",
+          description: `${successCount} provider(s) healthy, ${failedCount} error(s)`,
+          variant: failedCount > 0 ? "destructive" : "default",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to run health check",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Error running health check:", error);
+      toast({
+        title: "Error",
+        description: "Failed to run health check",
+        variant: "destructive",
+      });
+    } finally {
+      setRunningHealthCheck(false);
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex justify-center p-8">
@@ -169,13 +216,28 @@ export default function LLMProvidersSection() {
             Configure AI providers for process insights, anomaly detection, and recommendations
           </p>
         </div>
-        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogTrigger asChild>
-            <Button size="sm" className="flex items-center gap-1">
-              <Plus className="h-4 w-4" />
-              Add Provider
-            </Button>
-          </DialogTrigger>
+        <div className="flex items-center gap-2">
+          <Button 
+            size="sm" 
+            variant="outline"
+            className="flex items-center gap-1"
+            onClick={runHealthCheck}
+            disabled={runningHealthCheck || providers.filter(p => p.configured).length === 0}
+          >
+            {runningHealthCheck ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Activity className="h-4 w-4" />
+            )}
+            Health Check
+          </Button>
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button size="sm" className="flex items-center gap-1">
+                <Plus className="h-4 w-4" />
+                Add Provider
+              </Button>
+            </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Configure LLM Provider</DialogTitle>
@@ -350,6 +412,50 @@ export default function LLMProvidersSection() {
           </Card>
         ))}
       </div>
+
+      {healthCheckResults.length > 0 && (
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <Activity className="h-5 w-5 text-brand" />
+            Health Check Results
+          </h3>
+          <div className="grid gap-3 md:grid-cols-2">
+            {healthCheckResults.map((result) => {
+              const provider = providers.find(p => p.id === result.provider);
+              return (
+                <Alert
+                  key={result.provider}
+                  className={result.status === "success" ? "border-green-500/50 bg-green-500/5" : "border-destructive/50 bg-destructive/5"}
+                >
+                  <div className="flex items-start gap-3">
+                    {result.status === "success" ? (
+                      <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5" />
+                    ) : (
+                      <XCircle className="h-5 w-5 text-destructive mt-0.5" />
+                    )}
+                    <div className="flex-1 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <p className="font-semibold">
+                          {provider?.name || result.provider}
+                        </p>
+                        {result.responseTime && (
+                          <Badge variant="outline" className="flex items-center gap-1">
+                            <Clock className="h-3 w-3" />
+                            {result.responseTime}ms
+                          </Badge>
+                        )}
+                      </div>
+                      <AlertDescription className="text-sm">
+                        {result.message}
+                      </AlertDescription>
+                    </div>
+                  </div>
+                </Alert>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
