@@ -238,7 +238,7 @@ export default function LLMProvidersSection() {
                 Add Provider
               </Button>
             </DialogTrigger>
-          <DialogContent>
+            <DialogContent>
             <DialogHeader>
               <DialogTitle>Configure LLM Provider</DialogTitle>
               <DialogDescription>
@@ -329,6 +329,7 @@ export default function LLMProvidersSection() {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
