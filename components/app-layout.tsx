@@ -127,9 +127,68 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
           <span className="text-lg font-semibold">EPI X-Ray</span>
         </div>
         
+        {/* Desktop Horizontal Navigation */}
+        <nav className="hidden md:flex items-center gap-1 ml-8">
+          <Link
+            href="/"
+            className={cn(
+              "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+              pathname === "/"
+                ? "text-brand bg-brand/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            )}
+          >
+            Dashboard
+          </Link>
+          <Link
+            href="/process-discovery"
+            className={cn(
+              "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+              pathname === "/process-discovery"
+                ? "text-brand bg-brand/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            )}
+          >
+            Process Repository
+          </Link>
+          <Link
+            href="/performance-analytics"
+            className={cn(
+              "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+              pathname === "/performance-analytics"
+                ? "text-brand bg-brand/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            )}
+          >
+            Analytics
+          </Link>
+          <Link
+            href="/automation-opportunities"
+            className={cn(
+              "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+              pathname === "/automation-opportunities"
+                ? "text-brand bg-brand/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            )}
+          >
+            Automation
+          </Link>
+          <Link
+            href="/api-integrations"
+            className={cn(
+              "px-3 py-2 text-sm font-medium rounded-md transition-colors",
+              pathname === "/api-integrations"
+                ? "text-brand bg-brand/10"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            )}
+          >
+            Integration
+          </Link>
+        </nav>
+        
         {/* Mobile Menu */}
         <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-          <SheetTrigger asChild className="md:hidden">
+          <SheetTrigger asChild className="md:hidden ml-auto">
             <Button variant="ghost" size="icon">
               <Menu className="h-5 w-5" />
             </Button>
@@ -163,7 +222,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
           </SheetContent>
         </Sheet>
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto md:ml-4 flex items-center gap-2">
           <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
