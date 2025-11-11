@@ -4,6 +4,7 @@ import { jwtVerify } from "jose";
 import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
+import { appCache } from "@/lib/cache";
 
 const JWT_SECRET = new TextEncoder().encode(
   process.env.SESSION_SECRET || "dev-secret-change-in-production"
@@ -28,6 +29,17 @@ export async function GET(request: NextRequest) {
     const { payload } = await jwtVerify(token.value, JWT_SECRET);
     const userId = payload.userId as number;
 
+    const cacheKey = `user:${userId}`;
+    const cached = appCache.get(cacheKey);
+    if (cached) {
+      return NextResponse.json({ user: cached }, {
+        headers: {
+          'Cache-Control': 'private, max-age=60',
+          'X-Cache': 'HIT',
+        },
+      });
+    }
+
     const [user] = await db
       .select({
         id: schema.users.id,
@@ -45,9 +57,12 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 401 });
     }
 
+    appCache.set(cacheKey, user, 60);
+
     return NextResponse.json({ user }, {
       headers: {
         'Cache-Control': 'private, max-age=60',
+        'X-Cache': 'MISS',
       },
     });
   } catch (error) {

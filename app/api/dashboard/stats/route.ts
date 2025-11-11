@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { processes, performanceMetrics, automationOpportunities } from "@/shared/schema";
 import { eq, sql, count, avg } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/server-auth";
+import { appCache } from "@/lib/cache";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 30;
@@ -12,6 +13,17 @@ export async function GET(request: NextRequest) {
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const cacheKey = `dashboard-stats:${user.id}`;
+    const cached = appCache.get(cacheKey);
+    if (cached) {
+      return NextResponse.json(cached, {
+        headers: {
+          'Cache-Control': 'private, max-age=30',
+          'X-Cache': 'HIT',
+        },
+      });
     }
 
     const result = await db.execute(sql`
@@ -52,9 +64,13 @@ export async function GET(request: NextRequest) {
       automationPotential: row?.avg_automation ? Math.round(Number(row.avg_automation) * 10) / 10 : 0,
     };
 
-    return NextResponse.json({ stats }, {
+    const responseData = { stats };
+    appCache.set(cacheKey, responseData, 30);
+
+    return NextResponse.json(responseData, {
       headers: {
         'Cache-Control': 'private, max-age=30',
+        'X-Cache': 'MISS',
       },
     });
   } catch (error) {

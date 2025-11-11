@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import * as storage from "@/server/storage";
 import { getCurrentUser } from "@/lib/server-auth";
 import { processSchema, sanitizeInput } from "@/lib/validation";
+import { appCache } from "@/lib/cache";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 30;
@@ -25,20 +26,36 @@ export async function GET(request: NextRequest) {
       ? parsedOffset 
       : 0;
 
+    const cacheKey = `processes:${user.id}:${limit}:${offset}`;
+    const cached = appCache.get(cacheKey);
+    if (cached) {
+      return NextResponse.json(cached, {
+        headers: {
+          'Cache-Control': 'private, max-age=30',
+          'X-Cache': 'HIT',
+        },
+      });
+    }
+
     const [processes, total] = await Promise.all([
       storage.getProcessesByUser(user.id, { limit, offset }),
       storage.getProcessCount(user.id),
     ]);
     
-    return NextResponse.json({ 
+    const responseData = { 
       processes,
       total,
       limit,
       offset,
       hasMore: offset + limit < total
-    }, {
+    };
+
+    appCache.set(cacheKey, responseData, 30);
+    
+    return NextResponse.json(responseData, {
       headers: {
         'Cache-Control': 'private, max-age=30',
+        'X-Cache': 'MISS',
       },
     });
   } catch (error) {
