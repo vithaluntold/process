@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { Brain, Check, Plus, Trash2, Loader2, Eye, EyeOff, Activity, CheckCircle2, XCircle, Clock } from "lucide-react";
+import { Brain, Check, Plus, Trash2, Loader2, Eye, EyeOff, Activity, CheckCircle2, XCircle, Clock, Search } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Dialog,
   DialogContent,
@@ -48,6 +48,10 @@ export default function LLMProvidersSection() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [healthCheckResults, setHealthCheckResults] = useState<HealthCheckResult[]>([]);
   const [runningHealthCheck, setRunningHealthCheck] = useState(false);
+  const [providerSearchQuery, setProviderSearchQuery] = useState("");
+  const [validating, setValidating] = useState(false);
+  const [validationStatus, setValidationStatus] = useState<"idle" | "success" | "error">("idle");
+  const [validationMessage, setValidationMessage] = useState("");
 
   useEffect(() => {
     loadProviders();
@@ -72,11 +76,74 @@ export default function LLMProvidersSection() {
     }
   }
 
+  async function validateApiKey() {
+    if (!selectedProvider || !apiKey) {
+      return;
+    }
+
+    setValidating(true);
+    setValidationStatus("idle");
+    setValidationMessage("");
+
+    try {
+      const response = await fetch("/api/llm-providers/validate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          provider: selectedProvider,
+          apiKey,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.valid) {
+        setValidationStatus("success");
+        setValidationMessage(data.message || "API key verified successfully");
+        toast({
+          title: "Success",
+          description: data.message || "API key verified successfully",
+        });
+      } else {
+        setValidationStatus("error");
+        setValidationMessage(data.message || "Invalid API key. Please check and try again.");
+        toast({
+          title: "Invalid API Key",
+          description: data.message || "Invalid API key. Please check and try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Error validating API key:", error);
+      setValidationStatus("error");
+      setValidationMessage("Failed to validate API key. Please try again.");
+      toast({
+        title: "Validation Error",
+        description: "Failed to validate API key. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setValidating(false);
+    }
+  }
+
   async function handleSaveProvider() {
     if (!selectedProvider || !apiKey) {
       toast({
         title: "Error",
         description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Only proceed if validation was successful
+    if (validationStatus !== "success") {
+      toast({
+        title: "Error",
+        description: "Please validate the API key before saving",
         variant: "destructive",
       });
       return;
@@ -105,6 +172,8 @@ export default function LLMProvidersSection() {
         setApiKey("");
         setLabel("");
         setSelectedProvider(null);
+        setValidationStatus("idle");
+        setValidationMessage("");
         await loadProviders();
       } else {
         const data = await response.json();
@@ -254,21 +323,46 @@ export default function LLMProvidersSection() {
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="provider">Provider</Label>
+                <div className="relative">
+                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search providers..."
+                    value={providerSearchQuery}
+                    onChange={(e) => setProviderSearchQuery(e.target.value)}
+                    className="pl-9 mb-2"
+                  />
+                </div>
                 <select
                   id="provider"
                   className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm"
                   value={selectedProvider || ""}
-                  onChange={(e) => setSelectedProvider(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedProvider(e.target.value);
+                    setValidationStatus("idle");
+                    setValidationMessage("");
+                  }}
                 >
                   <option value="">Select a provider...</option>
                   {providers
                     .filter((p) => !p.builtin)
+                    .filter((p) => 
+                      p.name.toLowerCase().includes(providerSearchQuery.toLowerCase()) ||
+                      p.id.toLowerCase().includes(providerSearchQuery.toLowerCase())
+                    )
                     .map((provider) => (
                       <option key={provider.id} value={provider.id}>
                         {provider.name}
                       </option>
                     ))}
                 </select>
+                {providerSearchQuery && providers.filter((p) => !p.builtin && 
+                  (p.name.toLowerCase().includes(providerSearchQuery.toLowerCase()) ||
+                   p.id.toLowerCase().includes(providerSearchQuery.toLowerCase()))
+                ).length === 0 && (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    No providers found matching "{providerSearchQuery}"
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
@@ -289,7 +383,11 @@ export default function LLMProvidersSection() {
                     type={showApiKey ? "text" : "password"}
                     placeholder="Enter API key..."
                     value={apiKey}
-                    onChange={(e) => setApiKey(e.target.value)}
+                    onChange={(e) => {
+                      setApiKey(e.target.value);
+                      setValidationStatus("idle");
+                      setValidationMessage("");
+                    }}
                   />
                   <Button
                     type="button"
@@ -305,6 +403,52 @@ export default function LLMProvidersSection() {
                     )}
                   </Button>
                 </div>
+                <div className="flex items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={validateApiKey}
+                    disabled={!selectedProvider || !apiKey || validating}
+                    className="mt-1"
+                  >
+                    {validating ? (
+                      <>
+                        <Loader2 className="mr-2 h-3 w-3 animate-spin" />
+                        Validating...
+                      </>
+                    ) : (
+                      <>
+                        <CheckCircle2 className="mr-2 h-3 w-3" />
+                        Validate API Key
+                      </>
+                    )}
+                  </Button>
+                  {validationStatus === "success" && (
+                    <Badge variant="default" className="bg-green-500">
+                      <Check className="h-3 w-3 mr-1" />
+                      Verified
+                    </Badge>
+                  )}
+                  {validationStatus === "error" && (
+                    <Badge variant="destructive">
+                      <XCircle className="h-3 w-3 mr-1" />
+                      Invalid
+                    </Badge>
+                  )}
+                </div>
+                {validationMessage && (
+                  <Alert className={validationStatus === "success" ? "border-green-500 bg-green-500/10" : "border-destructive bg-destructive/10"}>
+                    {validationStatus === "success" ? (
+                      <CheckCircle2 className="h-4 w-4 text-green-500" />
+                    ) : (
+                      <XCircle className="h-4 w-4 text-destructive" />
+                    )}
+                    <AlertDescription className="text-sm">
+                      {validationMessage}
+                    </AlertDescription>
+                  </Alert>
+                )}
                 <p className="text-xs text-muted-foreground">
                   API keys are encrypted and stored securely
                 </p>
@@ -322,7 +466,10 @@ export default function LLMProvidersSection() {
               >
                 Cancel
               </Button>
-              <Button onClick={handleSaveProvider} disabled={saving}>
+              <Button 
+                onClick={handleSaveProvider} 
+                disabled={saving || validationStatus !== "success"}
+              >
                 {saving ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
