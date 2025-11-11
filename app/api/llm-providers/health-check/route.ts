@@ -9,6 +9,15 @@ interface HealthCheckResult {
   responseTime?: number;
 }
 
+interface CachedHealthCheck {
+  results: HealthCheckResult[];
+  timestamp: number;
+  userId: number;
+}
+
+const healthCheckCache = new Map<number, CachedHealthCheck>();
+const CACHE_TTL_MS = 60 * 1000;
+
 export async function POST(request: NextRequest) {
   try {
     const user = await getCurrentUser();
@@ -44,6 +53,21 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const cached = healthCheckCache.get(user.id);
+    const now = Date.now();
+
+    if (cached && (now - cached.timestamp) < CACHE_TTL_MS) {
+      return NextResponse.json({ 
+        results: cached.results,
+        cached: true,
+        cacheAge: Math.round((now - cached.timestamp) / 1000)
+      }, {
+        headers: {
+          'Cache-Control': 'private, max-age=60',
+        },
+      });
+    }
+
     const availableProviders = await getAvailableProviders(user.id);
     const configuredProviders = availableProviders.filter(p => p.available);
 
@@ -54,7 +78,24 @@ export async function GET(request: NextRequest) {
       results.push(result);
     }
 
-    return NextResponse.json({ results });
+    healthCheckCache.set(user.id, {
+      results,
+      timestamp: now,
+      userId: user.id,
+    });
+
+    setTimeout(() => {
+      const entry = healthCheckCache.get(user.id);
+      if (entry && entry.timestamp === now) {
+        healthCheckCache.delete(user.id);
+      }
+    }, CACHE_TTL_MS + 5000);
+
+    return NextResponse.json({ results, cached: false }, {
+      headers: {
+        'Cache-Control': 'private, max-age=60',
+      },
+    });
   } catch (error) {
     console.error("Error in health check:", error);
     return NextResponse.json(

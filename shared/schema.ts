@@ -36,7 +36,10 @@ export const processes = pgTable("processes", {
   status: text("status").notNull().default("active"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  userIdIdx: index("processes_user_id_idx").on(table.userId),
+  userIdCreatedAtIdx: index("processes_user_id_created_at_idx").on(table.userId, table.createdAt),
+}));
 
 export const eventLogs = pgTable("event_logs", {
   id: serial("id").primaryKey(),
@@ -47,7 +50,9 @@ export const eventLogs = pgTable("event_logs", {
   resource: text("resource"),
   metadata: jsonb("metadata"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  processIdTimestampIdx: index("event_logs_process_id_timestamp_idx").on(table.processId, table.timestamp),
+}));
 
 export const processModels = pgTable("process_models", {
   id: serial("id").primaryKey(),
@@ -79,7 +84,9 @@ export const performanceMetrics = pgTable("performance_metrics", {
   reworkRate: real("rework_rate"),
   conformanceRate: real("conformance_rate"),
   timestamp: timestamp("timestamp").defaultNow().notNull(),
-});
+}, (table) => ({
+  processIdIdx: index("performance_metrics_process_id_idx").on(table.processId),
+}));
 
 export const deviations = pgTable("deviations", {
   id: serial("id").primaryKey(),
@@ -101,7 +108,9 @@ export const automationOpportunities = pgTable("automation_opportunities", {
   savingsEstimate: real("savings_estimate"),
   recommendedSolution: text("recommended_solution"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  processIdIdx: index("automation_opportunities_process_id_idx").on(table.processId),
+}));
 
 export const documents = pgTable("documents", {
   id: serial("id").primaryKey(),

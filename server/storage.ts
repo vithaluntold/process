@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
-import { eq, desc, and } from "drizzle-orm";
+import { eq, desc, and, sql } from "drizzle-orm";
 
 export interface ProcessInput {
   userId?: number;
@@ -48,16 +48,30 @@ export async function createProcess(data: ProcessInput) {
   return process;
 }
 
-export async function getProcesses(userId?: number) {
+export async function getProcesses(userId?: number, options?: { limit?: number; offset?: number }) {
+  const { limit = 50, offset = 0 } = options || {};
+  
   if (userId) {
     return await db.query.processes.findMany({
       where: eq(schema.processes.userId, userId),
       orderBy: [desc(schema.processes.createdAt)],
+      limit,
+      offset,
     });
   }
   return await db.query.processes.findMany({
     orderBy: [desc(schema.processes.createdAt)],
+    limit,
+    offset,
   });
+}
+
+export async function getProcessCount(userId?: number): Promise<number> {
+  const where = userId ? eq(schema.processes.userId, userId) : undefined;
+  const result = await db.select({ count: sql<number>`count(*)::int` })
+    .from(schema.processes)
+    .where(where);
+  return result[0]?.count || 0;
 }
 
 export async function getProcessById(id: number, userId?: number) {
@@ -78,8 +92,8 @@ export async function getProcessById(id: number, userId?: number) {
   });
 }
 
-export async function getProcessesByUser(userId: number) {
-  return await getProcesses(userId);
+export async function getProcessesByUser(userId: number, options?: { limit?: number; offset?: number }) {
+  return await getProcesses(userId, options);
 }
 
 export async function updateProcess(id: number, data: Partial<ProcessInput>, userId?: number) {

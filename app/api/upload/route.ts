@@ -109,9 +109,19 @@ export async function POST(request: NextRequest) {
             metadata: event,
           }));
 
-          console.log(`Inserting ${eventLogs.length} event logs for process ${process.id}`);
-          const insertedLogs = await storage.insertEventLogs(eventLogs);
-          console.log(`Successfully inserted ${insertedLogs.length} event logs`);
+          console.log(`Inserting ${eventLogs.length} event logs for process ${process.id} in batches`);
+          
+          const BATCH_SIZE = 500;
+          let totalInserted = 0;
+          
+          for (let i = 0; i < eventLogs.length; i += BATCH_SIZE) {
+            const batch = eventLogs.slice(i, i + BATCH_SIZE);
+            const inserted = await storage.insertEventLogs(batch);
+            totalInserted += inserted.length;
+            console.log(`Batch ${Math.floor(i / BATCH_SIZE) + 1}: Inserted ${inserted.length} events`);
+          }
+          
+          console.log(`Successfully inserted ${totalInserted} event logs in total`);
 
           const updatedDoc = await storage.updateDocument(document.id, {
             status: "processed",

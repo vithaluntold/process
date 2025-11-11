@@ -13,9 +13,30 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const processes = await storage.getProcessesByUser(user.id);
+    const { searchParams } = new URL(request.url);
     
-    return NextResponse.json({ processes }, {
+    const parsedLimit = parseInt(searchParams.get('limit') || '50', 10);
+    const parsedOffset = parseInt(searchParams.get('offset') || '0', 10);
+    
+    const limit = Number.isFinite(parsedLimit) && parsedLimit > 0 
+      ? Math.min(parsedLimit, 100) 
+      : 50;
+    const offset = Number.isFinite(parsedOffset) && parsedOffset >= 0 
+      ? parsedOffset 
+      : 0;
+
+    const [processes, total] = await Promise.all([
+      storage.getProcessesByUser(user.id, { limit, offset }),
+      storage.getProcessCount(user.id),
+    ]);
+    
+    return NextResponse.json({ 
+      processes,
+      total,
+      limit,
+      offset,
+      hasMore: offset + limit < total
+    }, {
       headers: {
         'Cache-Control': 'private, max-age=30',
       },
