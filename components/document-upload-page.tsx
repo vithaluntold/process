@@ -145,6 +145,55 @@ export default function DocumentUploadPage() {
     }
   }
 
+  const handleDownloadDocument = async (doc: any) => {
+    try {
+      const response = await fetch(`/api/documents/${doc.id}/download`);
+      
+      if (!response.ok) {
+        toast.error("Failed to download document");
+        return;
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = doc.name;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      toast.success("Document downloaded successfully");
+    } catch (error) {
+      console.error("Download error:", error);
+      toast.error("Failed to download document");
+    }
+  };
+
+  const handleDeleteDocument = async (docId: number) => {
+    if (!confirm("Are you sure you want to delete this document? This action cannot be undone.")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/documents?id=${docId}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        toast.success("Document deleted successfully");
+        await fetchData();
+      } else {
+        const data = await response.json();
+        toast.error(data.error || "Failed to delete document");
+      }
+    } catch (error) {
+      console.error("Delete error:", error);
+      toast.error("Failed to delete document");
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -351,10 +400,20 @@ export default function DocumentUploadPage() {
                           </TableCell>
                           <TableCell>
                             <div className="flex items-center gap-2">
-                              <Button variant="ghost" size="icon">
+                              <Button 
+                                variant="ghost" 
+                                size="icon"
+                                onClick={() => handleDownloadDocument(doc)}
+                                title="Download document"
+                              >
                                 <Download className="h-4 w-4" />
                               </Button>
-                              <Button variant="ghost" size="icon">
+                              <Button 
+                                variant="ghost" 
+                                size="icon"
+                                onClick={() => handleDeleteDocument(doc.id)}
+                                title="Delete document"
+                              >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
                             </div>

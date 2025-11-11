@@ -247,3 +247,25 @@ export async function updateDocument(id: number, data: Partial<{
     .returning();
   return document;
 }
+
+export async function getDocumentById(id: number, userId?: number) {
+  const where = userId
+    ? and(eq(schema.documents.id, id), eq(schema.documents.userId, userId))
+    : eq(schema.documents.id, id);
+    
+  return await db.query.documents.findFirst({
+    where,
+  });
+}
+
+export async function deleteDocument(id: number, userId?: number) {
+  const where = userId
+    ? and(eq(schema.documents.id, id), eq(schema.documents.userId, userId))
+    : eq(schema.documents.id, id);
+    
+  const result = await db.delete(schema.documents)
+    .where(where)
+    .returning();
+  
+  return result.length > 0 ? result[0] : null;
+}
