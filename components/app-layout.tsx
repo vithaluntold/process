@@ -23,6 +23,7 @@ import {
   DollarSign,
   Bot,
   Target,
+  Settings,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -62,6 +63,7 @@ const navigationItems = [
   { href: "/api-integrations", label: "API Integrations", icon: LinkIcon },
   { href: "/digital-twin", label: "Digital Twin", icon: Layers },
   { href: "/scenario-analysis", label: "What-If Scenarios", icon: GitCompare },
+  { href: "/settings", label: "Settings", icon: Settings },
 ]
 
 interface AppLayoutProps {

@@ -79,7 +79,7 @@ User Question: ${query}
 
 Provide a helpful, concise answer with actionable insights and specific recommendations. If relevant, reference industry benchmarks, common pain points, and ROI estimates from the domain knowledge above.`;
 
-    const response = await generateAIResponse(prompt);
+    const response = await generateAIResponse(prompt, user.id);
 
     return NextResponse.json({
       query,

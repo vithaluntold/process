@@ -1,7 +1,8 @@
 import OpenAI from "openai";
 import pRetry from "p-retry";
+import { getUserLLMProvider, createOpenAIClient } from "./llm-config";
 
-const openai = new OpenAI({
+const defaultOpenai = new OpenAI({
   baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
   apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
 });
@@ -16,8 +17,18 @@ function isRateLimitError(error: any): boolean {
   );
 }
 
-export async function generateAIResponse(prompt: string): Promise<string> {
+export async function generateAIResponse(
+  prompt: string,
+  userId?: number
+): Promise<string> {
   try {
+    let openai = defaultOpenai;
+
+    if (userId) {
+      const provider = await getUserLLMProvider(userId);
+      openai = createOpenAIClient(provider);
+    }
+
     const response = await pRetry(
       async () => {
         try {

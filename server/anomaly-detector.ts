@@ -28,7 +28,10 @@ export class AnomalyDetector {
 
   constructor() {
     this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: process.env.OPENAI_API_KEY || "dummy-key",
+      baseURL: process.env.OPENAI_API_KEY 
+        ? "https://api.openai.com/v1"
+        : "https://integrations.replit.com/v1/openai",
     });
   }
 
