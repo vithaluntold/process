@@ -231,12 +231,18 @@ export default function LLMProvidersSection() {
             )}
             Health Check
           </Button>
+          <Button 
+            size="sm" 
+            className="flex items-center gap-1"
+            onClick={() => setDialogOpen(true)}
+          >
+            <Plus className="h-4 w-4" />
+            Add Provider
+          </Button>
+          {dialogOpen && (
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-              <Button size="sm" className="flex items-center gap-1">
-                <Plus className="h-4 w-4" />
-                Add Provider
-              </Button>
+              <div style={{ display: 'none' }} />
             </DialogTrigger>
             <DialogContent>
             <DialogHeader>
@@ -329,6 +335,7 @@ export default function LLMProvidersSection() {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+          )}
         </div>
       </div>
 
