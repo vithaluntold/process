@@ -78,9 +78,10 @@ export default function WhatIfScenariosPage() {
       const response = await fetch("/api/processes");
       if (!response.ok) throw new Error("Failed to load processes");
       const data = await response.json();
-      setProcesses(data);
+      setProcesses(data.processes || []);
     } catch (error) {
       toast.error("Failed to load processes");
+      setProcesses([]);
     }
   }
 
@@ -178,11 +179,17 @@ export default function WhatIfScenariosPage() {
                     <SelectValue placeholder="Select a process" />
                   </SelectTrigger>
                   <SelectContent>
-                    {processes.map((process) => (
-                      <SelectItem key={process.id} value={process.id.toString()}>
-                        {process.name}
+                    {Array.isArray(processes) && processes.length > 0 ? (
+                      processes.map((process) => (
+                        <SelectItem key={process.id} value={process.id.toString()}>
+                          {process.name}
+                        </SelectItem>
+                      ))
+                    ) : (
+                      <SelectItem value="no-processes" disabled>
+                        No processes available
                       </SelectItem>
-                    ))}
+                    )}
                   </SelectContent>
                 </Select>
               </div>
