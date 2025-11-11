@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/server-auth";
 import { db } from "@/lib/db";
 import { llmProviders, llmProviderModels, llmProviderKeys } from "@/shared/schema";
-import { eq, and } from "drizzle-orm";
+import { eq, and, inArray } from "drizzle-orm";
 import { encryptApiKey, maskApiKey } from "@/lib/llm-encryption";
 
 export async function GET(request: NextRequest) {
@@ -18,15 +18,17 @@ export async function GET(request: NextRequest) {
       .from(llmProviders)
       .where(eq(llmProviders.isActive, true));
 
-    // Fetch models for each provider
+    // Fetch models for active providers
     const providerIds = dbProviders.map(p => p.id);
-    const models = await db
-      .select()
-      .from(llmProviderModels)
-      .where(and(
-        eq(llmProviderModels.isActive, true),
-        // Only get models for active providers
-      ));
+    const models = providerIds.length > 0
+      ? await db
+          .select()
+          .from(llmProviderModels)
+          .where(and(
+            eq(llmProviderModels.isActive, true),
+            inArray(llmProviderModels.providerId, providerIds)
+          ))
+      : [];
 
     // Fetch user's configured keys
     const userKeys = await db
@@ -51,7 +53,7 @@ export async function GET(request: NextRequest) {
         description: provider.description,
         models: providerModels,
         builtin: provider.isBuiltin,
-        configured: provider.isBuiltin || !!userKey,
+        configured: !!userKey,
         configuredAt: userKey?.createdAt,
         label: userKey?.label,
         lastUsedAt: userKey?.lastUsedAt,
@@ -91,7 +93,7 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // Verify provider exists and is not builtin
+      // Verify provider exists
       const providerRecord = await db
         .select()
         .from(llmProviders)
@@ -102,13 +104,6 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
           { error: "Provider not found" },
           { status: 404 }
-        );
-      }
-
-      if (providerRecord[0].isBuiltin) {
-        return NextResponse.json(
-          { error: "Cannot configure API key for built-in providers" },
-          { status: 400 }
         );
       }
 
