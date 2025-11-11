@@ -48,6 +48,7 @@ import { Footer } from "@/components/footer"
 
 const navigationItems = [
   { href: "/", label: "Dashboard", icon: BarChart3 },
+  { href: "/process-analysis", label: "Process Analysis", icon: BarChart3 },
   { href: "/process-discovery", label: "Process Discovery", icon: Layers },
   { href: "/conformance-checking", label: "Conformance Checking", icon: Filter },
   { href: "/performance-analytics", label: "Performance Analytics", icon: PieChart },
