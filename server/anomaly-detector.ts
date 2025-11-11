@@ -3,6 +3,7 @@ import { eventLogs, aiInsights } from "@/shared/schema";
 import { eq, sql, and } from "drizzle-orm";
 import OpenAI from "openai";
 import pRetry from "p-retry";
+import { getUserLLMProvider, createOpenAIClient, getDefaultModelForProvider } from "@/lib/llm-config";
 
 interface AnomalyDetection {
   type: 'duration_outlier' | 'sequence_violation' | 'resource_anomaly' | 'temporal_anomaly' | 'frequency_anomaly';
@@ -24,15 +25,10 @@ interface AnomalyReport {
 }
 
 export class AnomalyDetector {
-  private openai: OpenAI;
+  private userId: number;
 
-  constructor() {
-    this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY || "dummy-key",
-      baseURL: process.env.OPENAI_API_KEY 
-        ? "https://api.openai.com/v1"
-        : "https://integrations.replit.com/v1/openai",
-    });
+  constructor(userId: number) {
+    this.userId = userId;
   }
 
   async detectAnomalies(processId: number): Promise<AnomalyReport> {
@@ -404,11 +400,15 @@ export class AnomalyDetector {
 
     try {
       const summary = this.createAnomalySummary(anomalies, events);
+      
+      const provider = await getUserLLMProvider(this.userId);
+      const openai = await createOpenAIClient(this.userId, provider);
+      const model = getDefaultModelForProvider(provider);
 
       const completion = await pRetry(
         async () => {
-          const response = await this.openai.chat.completions.create({
-            model: "gpt-4o",
+          const response = await openai.chat.completions.create({
+            model,
             messages: [
               {
                 role: "system",

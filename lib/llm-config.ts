@@ -1,14 +1,12 @@
 import OpenAI from "openai";
 import { db } from "@/lib/db";
-import { userLlmSettings } from "@/shared/schema";
-import { eq } from "drizzle-orm";
+import { userLlmSettings, llmProviderKeys } from "@/shared/schema";
+import { eq, and } from "drizzle-orm";
+import { decryptApiKey } from "./llm-encryption";
 
 export type LLMProvider = 
   | "replit"
   | "openai"
-  | "anthropic"
-  | "google"
-  | "gemini"
   | "mistral"
   | "deepseek";
 
@@ -20,15 +18,17 @@ interface LLMProviderConfig {
   available: boolean;
   name: string;
   models: string[];
+  openaiCompatible: boolean;
 }
 
 const LLM_PROVIDERS: Record<LLMProvider, Omit<LLMProviderConfig, 'apiKey' | 'available'>> = {
   replit: {
-    baseURL: "https://integrations.replit.com/v1/openai",
+    baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL || "https://integrations.replit.com/v1/openai",
     header: "Authorization",
     prefix: "Bearer",
     name: "Replit AI (Free)",
     models: ["gpt-4o", "gpt-4o-mini"],
+    openaiCompatible: true,
   },
   openai: {
     baseURL: "https://api.openai.com/v1",
@@ -36,93 +36,96 @@ const LLM_PROVIDERS: Record<LLMProvider, Omit<LLMProviderConfig, 'apiKey' | 'ava
     prefix: "Bearer",
     name: "OpenAI",
     models: ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "gpt-3.5-turbo"],
-  },
-  anthropic: {
-    baseURL: "https://api.anthropic.com/v1",
-    header: "x-api-key",
-    prefix: "",
-    name: "Anthropic Claude",
-    models: ["claude-3-5-sonnet-20241022", "claude-3-opus-20240229", "claude-3-haiku-20240307"],
-  },
-  google: {
-    baseURL: "https://generativelanguage.googleapis.com/v1",
-    header: "x-goog-api-key",
-    prefix: "",
-    name: "Google Gemini",
-    models: ["gemini-2.0-flash-exp", "gemini-1.5-pro", "gemini-1.5-flash"],
-  },
-  gemini: {
-    baseURL: "https://generativelanguage.googleapis.com/v1",
-    header: "x-goog-api-key",
-    prefix: "",
-    name: "Google Gemini Pro",
-    models: ["gemini-pro", "gemini-1.5-pro"],
+    openaiCompatible: true,
   },
   mistral: {
     baseURL: "https://api.mistral.ai/v1",
     header: "Authorization",
     prefix: "Bearer",
-    name: "Mistral AI",
+    name: "Mistral AI (OpenAI-compatible)",
     models: ["mistral-large-latest", "mistral-medium-latest", "mistral-small-latest"],
+    openaiCompatible: true,
   },
   deepseek: {
     baseURL: "https://api.deepseek.com/v1",
     header: "Authorization",
     prefix: "Bearer",
-    name: "DeepSeek",
+    name: "DeepSeek (OpenAI-compatible)",
     models: ["deepseek-chat", "deepseek-coder"],
+    openaiCompatible: true,
   },
 };
 
-function getEnvironmentKey(provider: LLMProvider): string | undefined {
-  const envKeyMap: Record<LLMProvider, string> = {
-    replit: "REPLIT_AI_KEY",
-    openai: "OPENAI_API_KEY",
-    anthropic: "ANTHROPIC_API_KEY",
-    google: "GOOGLE_AI_API_KEY",
-    gemini: "GEMINI_API_KEY",
-    mistral: "MISTRAL_API_KEY",
-    deepseek: "DEEPSEEK_API_KEY",
-  };
+async function getUserApiKey(userId: number, provider: LLMProvider): Promise<string | null> {
+  if (provider === "replit") {
+    const replitKey = process.env.AI_INTEGRATIONS_OPENAI_API_KEY;
+    if (!replitKey) {
+      throw new Error("Replit AI integration is not configured. Please set up the OpenAI integration in Replit.");
+    }
+    return replitKey;
+  }
 
-  return process.env[envKeyMap[provider]];
+  const key = await db
+    .select()
+    .from(llmProviderKeys)
+    .where(and(
+      eq(llmProviderKeys.userId, userId),
+      eq(llmProviderKeys.provider, provider),
+      eq(llmProviderKeys.status, "active")
+    ))
+    .limit(1);
+
+  if (key.length === 0) {
+    return null;
+  }
+
+  try {
+    return decryptApiKey(key[0].encryptedApiKey);
+  } catch (error) {
+    console.error(`Error decrypting API key for ${provider}:`, error);
+    return null;
+  }
 }
 
-export function getAvailableProviders(): Array<{ id: LLMProvider; name: string; available: boolean }> {
+export async function getAvailableProviders(userId: number): Promise<Array<{ id: LLMProvider; name: string; available: boolean }>> {
+  const userKeys = await db
+    .select()
+    .from(llmProviderKeys)
+    .where(and(
+      eq(llmProviderKeys.userId, userId),
+      eq(llmProviderKeys.status, "active")
+    ));
+
   return (Object.keys(LLM_PROVIDERS) as LLMProvider[]).map((provider) => ({
     id: provider,
     name: LLM_PROVIDERS[provider].name,
-    available: provider === "replit" || !!getEnvironmentKey(provider),
+    available: provider === "replit" || userKeys.some(k => k.provider === provider),
   }));
 }
 
-export function getProviderConfig(provider: LLMProvider): LLMProviderConfig {
+export async function getProviderConfig(userId: number, provider: LLMProvider): Promise<LLMProviderConfig> {
   const config = LLM_PROVIDERS[provider];
   if (!config) {
     throw new Error(`Unknown LLM provider: ${provider}`);
   }
 
-  const apiKey = provider === "replit" 
-    ? "dummy-key"
-    : getEnvironmentKey(provider) || "";
-
-  const available = provider === "replit" || !!apiKey;
-
-  if (!available) {
+  const apiKey = await getUserApiKey(userId, provider);
+  
+  if (!apiKey) {
     throw new Error(
-      `API key for ${provider} is not configured. Please add the ${getEnvironmentKey(provider)} environment variable.`
+      `API key for ${provider} is not configured. Please add it in the API Integrations page.`
     );
   }
 
   return {
     ...config,
     apiKey,
-    available,
+    available: true,
   };
 }
 
-export function createOpenAIClient(provider: LLMProvider = "replit"): OpenAI {
-  const config = getProviderConfig(provider);
+export async function createOpenAIClient(userId: number, provider: LLMProvider = "replit"): Promise<OpenAI> {
+  const config = await getProviderConfig(userId, provider);
 
   return new OpenAI({
     apiKey: config.apiKey || "dummy-key",
@@ -165,4 +168,8 @@ export async function setUserLLMProvider(userId: number, provider: LLMProvider):
       })
       .where(eq(userLlmSettings.userId, userId));
   }
+}
+
+export function getDefaultModelForProvider(provider: LLMProvider): string {
+  return LLM_PROVIDERS[provider].models[0];
 }

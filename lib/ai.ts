@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import pRetry from "p-retry";
-import { getUserLLMProvider, createOpenAIClient } from "./llm-config";
+import { getUserLLMProvider, createOpenAIClient, getDefaultModelForProvider } from "./llm-config";
 
 const defaultOpenai = new OpenAI({
   baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
@@ -23,17 +23,19 @@ export async function generateAIResponse(
 ): Promise<string> {
   try {
     let openai = defaultOpenai;
+    let model = "gpt-4o";
 
     if (userId) {
       const provider = await getUserLLMProvider(userId);
-      openai = createOpenAIClient(provider);
+      openai = await createOpenAIClient(userId, provider);
+      model = getDefaultModelForProvider(provider);
     }
 
     const response = await pRetry(
       async () => {
         try {
           return await openai.chat.completions.create({
-            model: "gpt-4o",
+            model,
             messages: [
               {
                 role: "system",

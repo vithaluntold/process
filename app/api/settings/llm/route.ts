@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     }
 
     const currentProvider = await getUserLLMProvider(user.id);
-    const availableProviders = getAvailableProviders();
+    const availableProviders = await getAvailableProviders(user.id);
 
     return NextResponse.json({
       currentProvider,
@@ -49,9 +49,6 @@ export async function POST(request: NextRequest) {
     const validProviders: LLMProvider[] = [
       "replit",
       "openai",
-      "anthropic",
-      "google",
-      "gemini",
       "mistral",
       "deepseek",
     ];

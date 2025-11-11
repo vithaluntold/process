@@ -574,6 +574,20 @@ export const userLlmSettings = pgTable("user_llm_settings", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+export const llmProviderKeys = pgTable("llm_provider_keys", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  provider: text("provider").notNull(),
+  encryptedApiKey: text("encrypted_api_key").notNull(),
+  label: text("label"),
+  status: text("status").notNull().default("active"),
+  lastUsedAt: timestamp("last_used_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  userProviderIdx: index("llm_provider_keys_user_provider_idx").on(table.userId, table.provider),
+}));
+
 export const agentApiKeysRelations = relations(agentApiKeys, ({ one }) => ({
   user: one(users, {
     fields: [agentApiKeys.userId],
@@ -595,6 +609,13 @@ export const userLlmSettingsRelations = relations(userLlmSettings, ({ one }) => 
   }),
 }));
 
+export const llmProviderKeysRelations = relations(llmProviderKeys, ({ one }) => ({
+  user: one(users, {
+    fields: [llmProviderKeys.userId],
+    references: [users.id],
+  }),
+}));
+
 export const usersRelations = relations(users, ({ many, one }) => ({
   processes: many(processes),
   documents: many(documents),
@@ -610,6 +631,7 @@ export const usersRelations = relations(users, ({ many, one }) => ({
   customKpis: many(customKpis),
   kpiAlerts: many(kpiAlerts),
   agentApiKeys: many(agentApiKeys),
+  llmProviderKeys: many(llmProviderKeys),
   llmSettings: one(userLlmSettings, {
     fields: [users.id],
     references: [userLlmSettings.userId],

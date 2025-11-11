@@ -22,6 +22,7 @@ import {
 } from "lucide-react"
 import { Switch } from "@/components/ui/switch"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import LLMProvidersSection from "@/components/llm-providers-section"
 
 const integrations = [
   {
@@ -124,7 +125,7 @@ export default function ApiIntegrationPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">API Integrations</h1>
@@ -132,15 +133,28 @@ export default function ApiIntegrationPage() {
             Connect external systems and data sources for comprehensive process mining.
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="flex items-center gap-1 bg-transparent">
-            <RefreshCw className="h-4 w-4" />
-            Sync All
-          </Button>
-          <Button size="sm" className="bg-brand hover:bg-brand-dark text-white flex items-center gap-1">
-            <Plus className="h-4 w-4" />
-            Add Integration
-          </Button>
+      </div>
+
+      <LLMProvidersSection />
+
+      <div className="border-t pt-6">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-xl font-bold">Data Source Integrations</h2>
+            <p className="text-sm text-muted-foreground">
+              Connect to enterprise systems for process data
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" className="flex items-center gap-1 bg-transparent">
+              <RefreshCw className="h-4 w-4" />
+              Sync All
+            </Button>
+            <Button size="sm" className="bg-brand hover:bg-brand-dark text-white flex items-center gap-1">
+              <Plus className="h-4 w-4" />
+              Add Integration
+            </Button>
+          </div>
         </div>
       </div>
 
