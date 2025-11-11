@@ -583,6 +583,40 @@ export const userLlmSettings = pgTable("user_llm_settings", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+export const llmProviders = pgTable("llm_providers", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  providerId: text("provider_id").notNull().unique(),
+  description: text("description"),
+  category: text("category").notNull().default("llm"),
+  authType: text("auth_type").notNull().default("bearer"),
+  baseUrl: text("base_url").notNull(),
+  defaultHeaders: jsonb("default_headers"),
+  compatibilityType: text("compatibility_type").notNull().default("openai_compatible"),
+  isBuiltin: boolean("is_builtin").notNull().default(false),
+  isActive: boolean("is_active").notNull().default(true),
+  validationEndpoint: text("validation_endpoint"),
+  createdBy: integer("created_by").references(() => users.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  providerIdIdx: index("llm_providers_provider_id_idx").on(table.providerId),
+  categoryIdx: index("llm_providers_category_idx").on(table.category),
+}));
+
+export const llmProviderModels = pgTable("llm_provider_models", {
+  id: serial("id").primaryKey(),
+  providerId: integer("provider_id").references(() => llmProviders.id).notNull(),
+  modelId: text("model_id").notNull(),
+  displayName: text("display_name").notNull(),
+  contextWindow: integer("context_window"),
+  capabilities: jsonb("capabilities"),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  providerModelIdx: index("llm_provider_models_provider_model_idx").on(table.providerId, table.modelId),
+}));
+
 export const llmProviderKeys = pgTable("llm_provider_keys", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id).notNull(),
@@ -615,6 +649,21 @@ export const userLlmSettingsRelations = relations(userLlmSettings, ({ one }) => 
   user: one(users, {
     fields: [userLlmSettings.userId],
     references: [users.id],
+  }),
+}));
+
+export const llmProvidersRelations = relations(llmProviders, ({ many, one }) => ({
+  models: many(llmProviderModels),
+  createdByUser: one(users, {
+    fields: [llmProviders.createdBy],
+    references: [users.id],
+  }),
+}));
+
+export const llmProviderModelsRelations = relations(llmProviderModels, ({ one }) => ({
+  provider: one(llmProviders, {
+    fields: [llmProviderModels.providerId],
+    references: [llmProviders.id],
   }),
 }));
 
