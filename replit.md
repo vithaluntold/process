@@ -73,6 +73,18 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
    - **Privacy**: Blur sensitive data option, GDPR compliant, user consent required before tracking
    - **Build Commands**: `npm run package:win|mac|linux` for platform-specific installers
 
+**Docker Deployment:**
+EPI X-Ray supports containerized deployment with enterprise-grade security for portable cross-platform deployment to any server or cloud provider.
+- **Multi-Stage Build**: Production Dockerfile with optimized build process (base image ~150MB vs ~1.2GB unoptimized)
+- **Security Hardening**: Non-root user (nextjs:1001), read-only filesystem, capability dropping, no-new-privileges flag, resource limits
+- **Docker Compose**: Orchestrates Next.js app + PostgreSQL with health checks, automatic restarts, volume persistence
+- **Platform Support**: Deploy to AWS EC2, DigitalOcean, Azure Container Instances, Google Cloud Run, Kubernetes, or any Docker-compatible platform
+- **Health Monitoring**: Built-in health check endpoint (`/api/health`) for container orchestration and load balancers
+- **Environment Security**: Template-based environment variable management (.env.example) with secure secrets generation
+- **Production Features**: Automated backups, zero-downtime updates, SSL/TLS reverse proxy support, logging configuration, Prometheus metrics integration
+- **Documentation**: Comprehensive deployment guide (DOCKER_DEPLOYMENT.md) with security checklist, troubleshooting, and platform-specific instructions
+- **Quick Start**: `docker-compose up -d` for instant deployment with all dependencies
+
 ## External Dependencies
 - **Database**: PostgreSQL (via Neon)
 - **ORM**: Drizzle ORM
