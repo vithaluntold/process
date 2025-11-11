@@ -38,7 +38,7 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 - **Encryption Security**: All sensitive API keys encrypted at rest using AES-256-GCM.
 - **Email-to-Workflow Parser**: AI-powered extraction of process steps from unstructured email communications.
 - **Unified Process Visualization**: Cross-system process map with color-coded nodes by source system.
-- **Digital Twin Simulation & What-If Scenarios**: Production-ready discrete-event simulator for process digital twins.
+- **Digital Twin Simulation & What-If Scenarios**: Production-ready comprehensive digital twin platform with three integrated modules: (1) **Process Modeling** - Interactive ReactFlow visualization with color-coded nodes (green=start, red=end, cyan=activities), animated edges for high-frequency transitions, and real-time process statistics; (2) **What-If Analysis** - Scenario configuration interface with slider controls for case count (10-500) and duration multipliers (0.5x-2.0x), real-time simulation execution via discrete-event simulator, and complete scenario history with metrics; (3) **Impact Simulation** - Baseline vs. optimized scenario comparison engine calculating cycle time improvements, throughput increases, bottleneck resolution tracking, and visual impact cards. Features comprehensive race condition prevention for cross-process data isolation, null-safe rendering, and production-grade state management.
 
 **Backend Architecture:**
 - **Database**: PostgreSQL, managed via Neon, utilizing Drizzle ORM.
