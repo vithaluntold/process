@@ -8,12 +8,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { Layers, BarChart3, Zap, Lightbulb, Shield, Activity } from "lucide-react";
+import { Layers, BarChart3, Zap, Lightbulb, Shield, Activity, Eye, EyeOff } from "lucide-react";
 import { Footer } from "@/components/footer";
 
 export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [csrfToken, setCsrfToken] = useState<string>("");
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showSignupPassword, setShowSignupPassword] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
 
@@ -240,15 +242,29 @@ export default function LandingPage() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="login-password" className="text-white">Password</Label>
-                        <Input
-                          id="login-password"
-                          name="password"
-                          type="password"
-                          required
-                          disabled={isLoading}
-                          autoComplete="current-password"
-                          className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
-                        />
+                        <div className="relative">
+                          <Input
+                            id="login-password"
+                            name="password"
+                            type={showLoginPassword ? "text" : "password"}
+                            required
+                            disabled={isLoading}
+                            autoComplete="current-password"
+                            className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 pr-10"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowLoginPassword(!showLoginPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                            tabIndex={-1}
+                          >
+                            {showLoginPassword ? (
+                              <EyeOff className="h-4 w-4" />
+                            ) : (
+                              <Eye className="h-4 w-4" />
+                            )}
+                          </button>
+                        </div>
                       </div>
                     </CardContent>
                     <CardFooter className="pt-6">
@@ -306,17 +322,31 @@ export default function LandingPage() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="signup-password" className="text-white">Password</Label>
-                        <Input
-                          id="signup-password"
-                          name="password"
-                          type="password"
-                          placeholder="Enter your password"
-                          required
-                          disabled={isLoading}
-                          minLength={12}
-                          autoComplete="new-password"
-                          className="bg-white/10 border-white/20 text-white placeholder:text-slate-400"
-                        />
+                        <div className="relative">
+                          <Input
+                            id="signup-password"
+                            name="password"
+                            type={showSignupPassword ? "text" : "password"}
+                            placeholder="Enter your password"
+                            required
+                            disabled={isLoading}
+                            minLength={12}
+                            autoComplete="new-password"
+                            className="bg-white/10 border-white/20 text-white placeholder:text-slate-400 pr-10"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowSignupPassword(!showSignupPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                            tabIndex={-1}
+                          >
+                            {showSignupPassword ? (
+                              <EyeOff className="h-4 w-4" />
+                            ) : (
+                              <Eye className="h-4 w-4" />
+                            )}
+                          </button>
+                        </div>
                         <p className="text-xs text-slate-300 flex items-center gap-1">
                           <span className="text-slate-400">ℹ️</span>
                           Minimum 12 characters required
