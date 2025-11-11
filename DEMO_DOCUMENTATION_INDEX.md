@@ -105,6 +105,23 @@
 
 ---
 
+### 7️⃣ **PRICING_COMPETITIVE_ANALYSIS.md** ⭐ NEW
+**Purpose**: Comprehensive pricing & competitive comparison  
+**Length**: ~10 pages  
+**Audience**: Sales, executives, finance teams  
+
+**Contains**:
+- ✅ EPI X-Ray pricing tiers ($99-$499/month)
+- ✅ Feature comparison vs. Celonis & UiPath
+- ✅ 3-year TCO analysis (85-97% savings)
+- ✅ ROI justification & value props
+- ✅ Pricing objection handling
+- ✅ When to choose each solution
+
+**When to use**: Budget discussions, competitive RFPs, executive approvals
+
+---
+
 ## 🎯 Demo Preparation Workflow
 
 ### Week Before Demo
@@ -146,6 +163,7 @@
 ├── 📄 NEW_FEATURES_SUMMARY.md (20 pages)
 ├── 📄 BERKADIA_DEMO_READINESS.md (50 pages)
 ├── 📄 DESKTOP_AGENT_SETUP.md (15 pages)
+├── 📄 PRICING_COMPETITIVE_ANALYSIS.md (10 pages) ⭐ NEW
 ├── 📄 replit.md (platform architecture)
 │
 ├── 📁 public/demo-data/berkadia/

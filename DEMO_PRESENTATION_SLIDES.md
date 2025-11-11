@@ -369,14 +369,47 @@ step from 4.2 → 0.8 days."
 
 ### B5: Competitive Comparison
 
-| Feature | EPI X-Ray | Competitor A | Competitor B |
-|---------|-----------|--------------|--------------|
+| Feature | EPI X-Ray | Competitor A (Celonis) | Competitor B (UiPath PM) |
+|---------|-----------|------------------------|--------------------------|
+| **Pricing** | **$99-$499/mo** | **$50K+/year** | **$15K-$30K/year** |
+| Target market | SMB/Mid-market | Enterprise only | Mid-market/Enterprise |
 | Cross-system integration | ✅ | ⚠️ Limited | ✅ |
-| AI assistant | ✅ GPT-4 | ❌ | ⚠️ Basic |
+| AI assistant | ✅ GPT-4o | ❌ | ⚠️ Basic |
 | Desktop task mining | ✅ | ❌ | ✅ |
 | ROI calculator | ✅ Auto | ⚠️ Manual | ✅ |
+| Digital twin simulation | ✅ | ✅ | ⚠️ Limited |
+| Email workflow parser | ✅ AI-powered | ❌ | ❌ |
 | Time to value | 2-4 weeks | 8-12 weeks | 4-6 weeks |
-| Pricing | Competitive | High | Medium |
+| Setup fees | None | $25K-$100K | $5K-$15K |
+| Annual cost (50 users) | **$6K-$30K** | **$200K+** | **$50K-$75K** |
+| **Value proposition** | **95% lower cost** | Enterprise scale | Established platform |
+
+### Pricing Breakdown
+
+**EPI X-Ray Pricing Tiers**:
+- 💼 **Starter**: $99/month (up to 5 processes, 2 users)
+- 🚀 **Professional**: $299/month (up to 20 processes, 10 users)
+- 🏢 **Enterprise**: $499/month (unlimited processes, 50 users)
+- 🎯 **Custom**: Contact sales (50+ users, dedicated support)
+
+**Why EPI X-Ray Wins on Price**:
+- ✅ **No setup fees** vs. $25K-$100K with competitors
+- ✅ **Monthly billing** vs. annual contracts
+- ✅ **95% lower cost** than enterprise solutions
+- ✅ **All features included** - no nickel-and-diming
+- ✅ **Scale as you grow** - start small, expand later
+
+**Total Cost of Ownership (3 Years)**:
+
+| Provider | EPI X-Ray | Competitor A | Competitor B |
+|----------|-----------|--------------|--------------|
+| Setup/Implementation | $0 | $50K | $10K |
+| Year 1 License | $6K | $200K | $30K |
+| Year 2 License | $6K | $220K | $33K |
+| Year 3 License | $6K | $240K | $36K |
+| Training & Support | Included | $30K | $15K |
+| **Total 3-Year Cost** | **$18K** | **$740K** | **$124K** |
+| **Savings vs. Competitors** | — | **$722K (97%)** | **$106K (85%)** |
 
 ---
 

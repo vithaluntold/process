@@ -423,6 +423,18 @@ A: *"Typical timeline:
 - Week 7-8: Production rollout and optimization
 Most clients see first insights within 2 weeks."*
 
+### **Q: "How does your pricing compare to competitors?"**
+A: *"EPI X-Ray is designed for SMB/mid-market at $99-$499/month with no setup fees. Over 3 years, you'd invest $18K total. Compare that to enterprise solutions like Celonis ($740K over 3 years) or UiPath Process Mining ($124K over 3 years). We're 85-97% less expensive with all features included - no nickel-and-diming."*
+
+### **Q: "What are your pricing tiers?"**
+A: *"Four flexible tiers:
+- **Starter**: $99/month (5 processes, 2 users) - ideal for pilot
+- **Professional**: $299/month (20 processes, 10 users) - growing teams
+- **Enterprise**: $499/month (unlimited processes, 50 users) - full deployment
+- **Custom**: Contact us (50+ users, dedicated support, SLA guarantees)
+
+All tiers include AI assistant, digital twin, ROI calculator, desktop task mining, and unlimited integrations."*
+
 ### **Q: "What about desktop agent adoption?"**
 A: *"Completely voluntary and transparent. Employees see exactly what's being tracked. Many clients start with volunteer groups (process champions) to demonstrate value before broader rollout. Privacy controls ensure compliance."*
 

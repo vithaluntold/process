@@ -84,7 +84,7 @@ After logging in, you'll land on the **Dashboard** page showing an overview of y
 
 ### Step 2: Create a New Process
 
-1. Click the **"+ New Process"** button (top right)
+1. Click the **"+ New Analysis"** button (top right)
 2. In the modal that appears, enter:
    - **Process Name**: Descriptive name (e.g., "Order Fulfillment Q1 2025")
    - **Description** (optional): Additional details about the process
