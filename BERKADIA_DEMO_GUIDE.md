@@ -424,16 +424,16 @@ A: *"Typical timeline:
 Most clients see first insights within 2 weeks."*
 
 ### **Q: "How does your pricing compare to competitors?"**
-A: *"EPI X-Ray is designed for SMB/mid-market at $99-$499/month with no setup fees. Over 3 years, you'd invest $18K total. Compare that to enterprise solutions like Celonis ($740K over 3 years) or UiPath Process Mining ($124K over 3 years). We're 85-97% less expensive with all features included - no nickel-and-diming."*
+A: *"EPI X-Ray is transparent at $178-$958/month with no setup fees and all infrastructure included. Over 3 years, you'd invest $39K total. Compare that to enterprise solutions like Celonis ($740K over 3 years) or UiPath Process Mining ($130K over 3 years). We're 70-95% less expensive. Plus, we include hosting, AI, security, and support - competitors charge separately for those."*
 
 ### **Q: "What are your pricing tiers?"**
-A: *"Four flexible tiers:
-- **Starter**: $99/month (5 processes, 2 users) - ideal for pilot
-- **Professional**: $299/month (20 processes, 10 users) - growing teams
-- **Enterprise**: $499/month (unlimited processes, 50 users) - full deployment
-- **Custom**: Contact us (50+ users, dedicated support, SLA guarantees)
+A: *"Four flexible tiers (plus applicable taxes):
+- **Starter**: $178/month (5 processes, 2 users, 1K AI queries/month) - ideal for pilot
+- **Professional**: $478/month (20 processes, 10 users, 5K AI queries/month) - growing teams
+- **Enterprise**: $958/month (unlimited processes, 50 users, 20K AI queries/month) - full deployment
+- **Custom**: Contact us (50+ users, custom AI limits, dedicated support, SLA guarantees)
 
-All tiers include AI assistant, digital twin, ROI calculator, desktop task mining, and unlimited integrations."*
+All tiers include infrastructure, hosting, security, support, and core features. AI usage above limits billed at $0.05/query. Payment gateway fees (2-3%) and GST/taxes apply."*
 
 ### **Q: "What about desktop agent adoption?"**
 A: *"Completely voluntary and transparent. Employees see exactly what's being tracked. Many clients start with volunteer groups (process champions) to demonstrate value before broader rollout. Privacy controls ensure compliance."*

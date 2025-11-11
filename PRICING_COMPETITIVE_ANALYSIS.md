@@ -7,14 +7,25 @@
 
 ## 💰 EPI X-Ray Pricing Tiers
 
-### Monthly Subscription Plans
+### Monthly Subscription Plans (Plus Applicable Taxes)
 
-| Tier | Price/Month | Processes | Users | Best For |
-|------|-------------|-----------|-------|----------|
-| 💼 **Starter** | **$99** | Up to 5 | 2 users | Pilot programs, single department |
-| 🚀 **Professional** | **$299** | Up to 20 | 10 users | Growing teams, multi-department |
-| 🏢 **Enterprise** | **$499** | Unlimited | 50 users | Full company deployment |
-| 🎯 **Custom** | Contact Sales | Unlimited | 50+ users | Enterprise with custom needs |
+| Tier | Base Price | AI Credits/Mo | Processes | Users | Total Monthly* |
+|------|-----------|---------------|-----------|-------|----------------|
+| 💼 **Starter** | $149 | 1,000 queries | Up to 5 | 2 users | $178/mo + taxes |
+| 🚀 **Professional** | $399 | 5,000 queries | Up to 20 | 10 users | $478/mo + taxes |
+| 🏢 **Enterprise** | $799 | 20,000 queries | Unlimited | 50 users | $958/mo + taxes |
+| 🎯 **Custom** | Contact Sales | Custom | Unlimited | 50+ users | Custom pricing |
+
+_*Total includes infrastructure, payment gateway fees, and platform costs. Plus GST/taxes as applicable._
+
+### Usage-Based AI Add-ons (Pay-As-You-Go)
+
+| Feature | Included | Overage Pricing |
+|---------|----------|-----------------|
+| AI Assistant Queries | Per tier limits | $0.05 per query over limit |
+| Email Workflow Parsing | 100/month | $0.20 per email parsed |
+| Anomaly Detection Scans | 500/month | $0.10 per scan |
+| Digital Twin Simulations | 50/month | $2.00 per simulation |
 
 ### What's Included (All Tiers)
 
@@ -24,10 +35,10 @@
 - Performance analytics & bottleneck detection
 - Real-time process monitoring
 
-✅ **AI-Powered Features**:
-- GPT-4o AI Assistant (unlimited queries)
-- Email-to-workflow parser
-- Anomaly detection (5 algorithms)
+✅ **AI-Powered Features** (usage limits apply):
+- GPT-4o AI Assistant (per tier limits)
+- Email-to-workflow parser (100/month base)
+- Anomaly detection (500 scans/month base)
 - Predictive analytics
 
 ✅ **Advanced Capabilities**:
@@ -52,8 +63,35 @@
 ✅ **Support & Training**:
 - Email support (24-48 hour response)
 - Knowledge base access
-- Video tutorials
-- Monthly webinars
+- Video tutorials (self-service)
+- Monthly webinars (group sessions)
+
+### Infrastructure & Service Costs (Included in Price)
+
+✅ **Hosting & Database**:
+- Neon PostgreSQL database (scalable)
+- Cloud infrastructure (Replit Deployments)
+- 99.5% uptime SLA
+- Automated backups & disaster recovery
+
+✅ **Payment Processing**:
+- Multiple gateway support (Stripe, Razorpay, PayU, Cashfree)
+- Gateway fees: 2.9% + $0.30 per transaction (passed to customer)
+- Multi-currency support (140+ currencies)
+- Automatic GST/tax calculation for India
+
+✅ **Security & Compliance**:
+- SSL/TLS certificates
+- AES-256 encryption
+- GDPR compliance tools
+- SOC 2 Type II roadmap
+- Security monitoring & updates
+
+✅ **Customer Success**:
+- Onboarding assistance (self-service + email)
+- Help center with 50+ articles
+- Video tutorial library (20+ hours)
+- Community forum access
 
 ### Enterprise+ Features (Custom Tier Only)
 
@@ -66,6 +104,76 @@
 - SSO/SAML integration
 - Advanced security features
 - 99.9% uptime SLA
+
+---
+
+## 💵 Operational Cost Breakdown (Per Customer/Month)
+
+### Infrastructure Costs (Included in Subscription)
+
+| Service | Provider | Cost per Customer | Notes |
+|---------|----------|-------------------|-------|
+| **Database Hosting** | Neon PostgreSQL | $15-$50 | Based on storage + compute usage |
+| **Cloud Deployment** | Replit Deployments | $20-$40 | Autoscale pricing, varies by traffic |
+| **AI API Costs** | OpenAI GPT-4o | $30-$200 | Based on tier limits (1K-20K queries) |
+| **Email Parsing AI** | OpenAI GPT-4o | $10-$40 | 100 emails/month included |
+| **CDN & Storage** | Replit Object Storage | $5-$15 | File uploads, reports, exports |
+| **Security Services** | SSL, monitoring | $5-$10 | Certificates, threat monitoring |
+| **Backup & DR** | Automated backups | $5-$10 | Daily backups, 30-day retention |
+| **TOTAL INFRASTRUCTURE** | | **$90-$365/mo** | Varies by tier usage |
+
+### Transaction Costs (Passed to Customer)
+
+| Service | Provider Options | Fee Structure | Applied To |
+|---------|-----------------|---------------|------------|
+| **Payment Gateway** | Stripe | 2.9% + $0.30 per transaction | Customer invoice |
+| | Razorpay (India) | 2% + GST | Customer invoice |
+| | PayU | 2.5% + taxes | Customer invoice |
+| | Cashfree | 1.99% + GST | Customer invoice |
+| **GST/Taxes** | India | 18% GST | Customer invoice |
+| | US | State sales tax | Customer invoice |
+| | EU | VAT (20%) | Customer invoice |
+
+### Customer Success Costs (Amortized)
+
+| Service | Monthly Cost | Coverage |
+|---------|--------------|----------|
+| Support team (email) | $2-$5/customer | Shared across customers |
+| Video tutorial production | $1-$2/customer | One-time, amortized |
+| Documentation maintenance | $1/customer | Ongoing updates |
+| Community management | $1/customer | Forum moderation |
+| **TOTAL CUSTOMER SUCCESS** | **$5-$9/mo** | Per active customer |
+
+### Gross Margin Analysis
+
+**Starter Tier ($178/month total)**:
+- Revenue: $178
+- Infrastructure costs: ~$90
+- Customer success: ~$5
+- **Gross margin**: $83 (46.6%)
+- **Operating margin target**: 25-30% after marketing, sales, R&D
+
+**Professional Tier ($478/month total)**:
+- Revenue: $478
+- Infrastructure costs: ~$180
+- Customer success: ~$7
+- **Gross margin**: $291 (60.9%)
+- **Operating margin target**: 35-40%
+
+**Enterprise Tier ($958/month total)**:
+- Revenue: $958
+- Infrastructure costs: ~$365
+- Customer success: ~$9
+- **Gross margin**: $584 (61.0%)
+- **Operating margin target**: 40-45%
+
+### Why This Pricing Model Works
+
+✅ **AI Cost Control**: Usage limits prevent runaway API costs  
+✅ **Transparent Overage**: Customers pay only for what they use above limits  
+✅ **Gateway Fees**: Passed directly to customer (standard practice)  
+✅ **Scalable Infrastructure**: Costs grow proportionally with usage  
+✅ **Healthy Margins**: 46-61% gross margin supports growth  
 
 ---
 
@@ -133,20 +241,41 @@
 | Cost Component | EPI X-Ray (Enterprise) | Celonis | UiPath PM |
 |----------------|------------------------|---------|-----------|
 | **Setup & Implementation** | $0 | $50,000 | $10,000 |
-| **Year 1 License** | $5,988 | $200,000 | $30,000 |
-| **Year 2 License** | $5,988 | $220,000 | $33,000 |
-| **Year 3 License** | $5,988 | $240,000 | $36,000 |
+| **Year 1 Subscription** | $11,496 | $200,000 | $30,000 |
+| **Year 2 Subscription** | $11,496 | $220,000 | $33,000 |
+| **Year 3 Subscription** | $11,496 | $240,000 | $36,000 |
+| **AI Overage (avg)** | $3,600 | Included | $5,000 |
 | **Training** | Included | $15,000 | $8,000 |
 | **Support** | Included | $15,000 | $7,000 |
-| **TOTAL (3 Years)** | **$17,964** | **$740,000** | **$124,000** |
-| **Your Savings** | — | **$722,036 (97%)** | **$106,036 (85%)** |
+| **Payment Gateway Fees** | ~$1,000 | ~$2,000 | ~$1,500 |
+| **TOTAL (3 Years)** | **$39,088** | **$742,000** | **$130,500** |
+| **Your Savings** | — | **$702,912 (95%)** | **$91,412 (70%)** |
+
+_Note: EPI X-Ray pricing includes GST/taxes. Gateway fees calculated at 2.5% average._
+
+### India-Specific Pricing (Including GST)
+
+| Tier | Base Price (USD) | GST (18%) | Total (INR equivalent)* |
+|------|------------------|-----------|-------------------------|
+| Starter | $178/month | $32 | ₹17,500/month |
+| Professional | $478/month | $86 | ₹47,200/month |
+| Enterprise | $958/month | $172 | ₹94,400/month |
+
+_*Based on ₹83 exchange rate. Actual billing in INR via Razorpay/Cashfree._
+
+**Payment Gateway Options for India**:
+- 💳 **Razorpay**: 2% + GST (most popular)
+- 💳 **Cashfree**: 1.99% + GST (competitive)
+- 💳 **PayU**: 2.5% + taxes
+- 💳 **Stripe**: 2.9% + ₹2.50 (international cards)
 
 ### ROI Example: Berkadia Use Case
 
-**Investment**: $5,988/year (Enterprise plan)  
+**Investment**: $11,496/year (Enterprise plan) + ~$1,200 AI overage = **$12,696/year**  
 **Value Delivered**: $2.4M annual savings identified  
-**ROI**: 40,000% in first year  
-**Payback Period**: < 1 day (based on process improvements implemented)
+**ROI**: 18,800% in first year  
+**Payback Period**: < 2 days (based on process improvements implemented)  
+**Net Savings Year 1**: $2,387,304
 
 ---
 
