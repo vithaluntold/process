@@ -196,7 +196,7 @@ export default function CustomKPIsPage() {
                       <SelectValue placeholder="Select a process" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All processes</SelectItem>
+                      <SelectItem value="all">All processes</SelectItem>
                       {processes.map((process) => (
                         <SelectItem key={process.id} value={process.id.toString()}>
                           {process.name}
