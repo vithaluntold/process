@@ -224,9 +224,9 @@ export default function DigitalTwinComprehensive() {
         },
         type: 'default',
         style: {
-          background: isStart ? '#22c55e' : isEnd ? '#ef4444' : '#06b6d4',
+          background: isStart ? 'var(--success)' : isEnd ? 'var(--destructive)' : 'var(--brand)',
           color: 'white',
-          border: '2px solid #0891b2',
+          border: '2px solid var(--brand)',
           borderRadius: '8px',
           padding: '10px',
           fontSize: '12px',
@@ -438,15 +438,15 @@ export default function DigitalTwinComprehensive() {
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 p-4 bg-muted rounded-lg">
                     <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded bg-green-500"></div>
+                      <div className="w-4 h-4 rounded bg-success"></div>
                       <span className="text-sm">Start Activities</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded bg-red-500"></div>
+                      <div className="w-4 h-4 rounded bg-destructive"></div>
                       <span className="text-sm">End Activities</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded bg-cyan-500"></div>
+                      <div className="w-4 h-4 rounded bg-brand"></div>
                       <span className="text-sm">Process Activities</span>
                     </div>
                   </div>
@@ -592,7 +592,7 @@ export default function DigitalTwinComprehensive() {
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium">{scenarios[0].name}</span>
-                        <Badge variant="outline" className="bg-green-500/10">
+                        <Badge variant="outline" className="bg-success/10">
                           <CheckCircle2 className="h-3 w-3 mr-1" />
                           Completed
                         </Badge>
@@ -637,7 +637,7 @@ export default function DigitalTwinComprehensive() {
                       <div className="border rounded-lg p-3">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-xs text-muted-foreground">Bottlenecks</span>
-                          <AlertCircle className="h-3 w-3 text-orange-500" />
+                          <AlertCircle className="h-3 w-3 text-warning" />
                         </div>
                         <p className="text-sm font-semibold truncate">
                           {scenarios[0].results.bottlenecks[0] || "None"}
@@ -695,7 +695,7 @@ export default function DigitalTwinComprehensive() {
                         <div className="flex items-center gap-2">
                           <span className="font-medium">{scenario.name}</span>
                           {scenario.status === "completed" && (
-                            <Badge variant="outline" className="bg-green-500/10">
+                            <Badge variant="outline" className="bg-success/10">
                               <CheckCircle2 className="h-3 w-3 mr-1" />
                               Completed
                             </Badge>
@@ -795,7 +795,7 @@ export default function DigitalTwinComprehensive() {
                   <h3 className="text-lg font-semibold">Impact Analysis</h3>
                   
                   <div className="grid md:grid-cols-2 gap-4">
-                    <Card className="border-brand/20 bg-gradient-to-br from-blue-500/5 to-cyan-500/5">
+                    <Card className="border-brand/20 bg-brand/5">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Cycle Time Improvement</CardTitle>
                       </CardHeader>
@@ -805,7 +805,7 @@ export default function DigitalTwinComprehensive() {
                             {Math.abs(comparisonResults.cycleTimeImprovement).toFixed(1)}%
                           </span>
                           {comparisonResults.cycleTimeImprovement > 0 ? (
-                            <Badge className="bg-green-500">Faster</Badge>
+                            <Badge className="bg-success">Faster</Badge>
                           ) : (
                             <Badge variant="destructive">Slower</Badge>
                           )}
@@ -818,17 +818,17 @@ export default function DigitalTwinComprehensive() {
                       </CardContent>
                     </Card>
 
-                    <Card className="border-brand/20 bg-gradient-to-br from-green-500/5 to-emerald-500/5">
+                    <Card className="border-brand/20 bg-brand/5">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium">Throughput Improvement</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="flex items-baseline gap-2">
-                          <span className="text-3xl font-bold text-emerald-600">
+                          <span className="text-3xl font-bold text-brand">
                             {Math.abs(comparisonResults.throughputImprovement).toFixed(1)}%
                           </span>
                           {comparisonResults.throughputImprovement > 0 ? (
-                            <Badge className="bg-green-500">Higher</Badge>
+                            <Badge className="bg-success">Higher</Badge>
                           ) : (
                             <Badge variant="destructive">Lower</Badge>
                           )}
@@ -844,10 +844,10 @@ export default function DigitalTwinComprehensive() {
                   </div>
 
                   {comparisonResults.bottlenecksResolved.length > 0 && (
-                    <Card className="border-green-500/20 bg-green-500/5">
+                    <Card className="border-success/20 bg-success/5">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium flex items-center gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-green-500" />
+                          <CheckCircle2 className="h-4 w-4 text-success" />
                           Bottlenecks Resolved
                         </CardTitle>
                       </CardHeader>
@@ -855,7 +855,7 @@ export default function DigitalTwinComprehensive() {
                         <ul className="space-y-1">
                           {comparisonResults.bottlenecksResolved.map((bottleneck: string) => (
                             <li key={bottleneck} className="text-sm flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                              <div className="w-1.5 h-1.5 rounded-full bg-success"></div>
                               {bottleneck}
                             </li>
                           ))}
