@@ -5,6 +5,12 @@
 2. [Feature Deep Dive](#feature-deep-dive)
 3. [Competitive Positioning](#competitive-positioning)
 4. [Pricing Strategy](#pricing-strategy)
+   - 4.1 SaaS Subscription Pricing
+   - 4.2 On-Premise Licensing
+   - 4.3 Custom Development & Implementation
+   - 4.4 Pricing Rationale
+   - 4.5 Pricing Comparison (Annual Cost)
+   - 4.6 Enterprise-Scale Pricing (2,000-3,500 Users)
 5. [Future Roadmap](#future-roadmap)
 6. [Client Integration Guide](#client-integration-guide)
 
@@ -755,7 +761,7 @@ Create virtual replicas of processes to simulate changes before implementation.
   - Dedicated support engineer
   - Quarterly business reviews
 
-**Enterprise (500+ users):**
+**Enterprise (500-1,999 users):**
 - **Custom Pricing** (typically $200K-$500K)
 - **Includes:**
   - Unlimited users
@@ -763,6 +769,13 @@ Create virtual replicas of processes to simulate changes before implementation.
   - Custom development
   - SLA guarantees
   - 24/7 support
+
+**Enterprise-Scale (2,000-3,500+ users):**
+- **See Section 4.6 below** for detailed pricing tiers
+- **SaaS:** $360K-$567K/year (per-user cost decreases with volume)
+- **On-Prem:** $420K-$672K Year 1, then $70K-$112K/year maintenance
+- **Includes:** Full enterprise features + implementation services ($150K value)
+- **Reference:** See "EPI_X-Ray_Enterprise_Scale_Pricing.md" for complete details
 
 ### 4.3 Custom Development & Implementation
 
@@ -845,6 +858,133 @@ Create virtual replicas of processes to simulate changes before implementation.
 | **100 users, 25 processes** | | | | |
 | - SaaS | $23,988/yr | $120,000/yr | $60,000/yr | 75-80% |
 | - On-Prem | $54,000 (incl. maint.) | $180,000 (incl. maint.) | $120,000 (incl. maint.) | 55-70% |
+
+### 4.6 Enterprise-Scale Pricing (2,000-3,500 Users)
+
+For organizations with 2,000+ users, EPI X-Ray offers volume-based pricing with significant per-user cost reductions and included professional services.
+
+#### SaaS Subscription (Annual Contract with Volume Discounts)
+
+| User Count | Annual Cost | Per-User/Year | vs. Celonis | vs. UiPath |
+|------------|-------------|---------------|-------------|------------|
+| **2,000** | $359,880 | $180 | **80% ↓** | **70% ↓** |
+| **2,500** | $435,000 | $174 | **81% ↓** | **71% ↓** |
+| **3,000** | $504,000 | $168 | **81% ↓** | **72% ↓** |
+| **3,500** | $567,000 | $162 | **82% ↓** | **73% ↓** |
+
+**Volume Discounts:** 25-33% off standard per-user pricing at enterprise scale.
+
+#### On-Premise Perpetual License
+
+| User Count | License (One-Time) | Annual Maintenance (20%) | Year 1 Total | Year 2+ Annual |
+|------------|-------------------|--------------------------|--------------|----------------|
+| **2,000** | $350,000 | $70,000 | $420,000 | $70,000 |
+| **2,500** | $425,000 | $85,000 | $510,000 | $85,000 |
+| **3,000** | $495,000 | $99,000 | $594,000 | $99,000 |
+| **3,500** | $560,000 | $112,000 | $672,000 | $112,000 |
+
+**Per-User Cost:** $160-$175/user (license) + $32-$35/user/year (maintenance)
+
+#### 5-Year Total Cost of Ownership
+
+**2,000 Users:**
+- **SaaS (5-year):** $1,799,400
+- **On-Prem (5-year):** $700,000
+- **On-Prem Savings:** $1,099,400 (61%) - breaks even in 14 months
+
+**3,000 Users:**
+- **SaaS (5-year):** $2,520,000
+- **On-Prem (5-year):** $990,000
+- **On-Prem Savings:** $1,530,000 (61%) - breaks even in 14 months
+
+#### What's Included at Enterprise Scale
+
+**All Features Unlimited:**
+✅ Unlimited processes, process instances, data storage  
+✅ Complete platform: Discovery, conformance, analytics, automation, predictive, real-time monitoring, task mining, digital twin, AI assistant, cost analysis, custom KPIs, reports & exports  
+✅ Unlimited task mining agents for all users  
+✅ Multi-LLM AI with 6+ providers  
+
+**Enterprise Infrastructure:**
+✅ 99.95% SLA (SaaS) / 99.99% SLA (On-Prem HA)  
+✅ Multi-region deployment with disaster recovery  
+✅ Auto-scaling to 10K concurrent users  
+✅ <50ms API response times with advanced caching  
+
+**Security & Compliance:**
+✅ SOC 2 Type II, GDPR, HIPAA, ISO 27001  
+✅ SSO/SAML, RBAC, AD/LDAP integration  
+✅ AES-256 encryption, audit logging  
+
+**Premium Support:**
+✅ 24/7 support with <1hr response SLA  
+✅ Dedicated account manager + technical account manager  
+✅ Quarterly business reviews  
+✅ Dedicated Slack channel with engineering team  
+
+**Professional Services ($150K Value - Included!):**
+✅ 12-16 week implementation with on-site support  
+✅ Integration of 20+ systems  
+✅ 3-5 years historical data migration  
+✅ Training for all users  
+✅ 10 custom reports + 5 executive dashboards  
+✅ 40 hours/year optimization consulting  
+
+#### ROI at Enterprise Scale
+
+**Typical Results for 2,000-User Organizations:**
+
+**Manufacturing:**
+- Annual Benefit: $1.41M (cycle time -39%, 12 FTEs saved)
+- Investment: $360K/year
+- **ROI: 292% | Payback: 3.1 months**
+
+**Healthcare:**
+- Annual Benefit: $20M (patient capacity +7K, readmissions -6pts)
+- Investment: $420K Year 1
+- **ROI: 4,662% | Payback: 7.6 days**
+
+**Financial Services:**
+- Annual Benefit: $7.9M (processing time -53%, volume +$362M)
+- Investment: $360K/year
+- **ROI: 2,095% | Payback: 16.7 days**
+
+**Logistics:**
+- Annual Benefit: $32.8M (maverick spend -57%, payment errors -88%)
+- Investment: $420K Year 1
+- **ROI: 7,702% | Payback: 4.7 days**
+
+#### Competitive Savings (2,000-3,500 Users)
+
+At enterprise scale, EPI X-Ray saves **$440K-$2.58M per year** vs. competitors:
+
+- **vs. Celonis:** 80-82% cheaper
+- **vs. UiPath:** 70-73% cheaper
+- **vs. SAP Signavio:** 74-77% cheaper
+- **vs. Microsoft:** 55-59% cheaper
+
+#### Payment Options
+
+**SaaS:**
+- Annual contract: 15% discount (price locked 3 years)
+- 3-year contract: 25% discount
+- Monthly: No commitment (full price)
+
+**On-Premise:**
+- Full payment: 5% discount
+- Financed: 30% down, 70% over 12 months (0% interest)
+- Subscription-to-own: 3 annual payments converts to perpetual
+
+#### Next Steps for Enterprise Buyers
+
+1. **Executive Briefing** (60 min) - Product demo + ROI analysis
+2. **Proof of Concept** (2-4 weeks) - $25K, credited to purchase
+3. **Custom Proposal** - Tailored pricing and implementation plan
+4. **Deployment** - Begin Week 1 post-signature
+
+**For complete enterprise-scale details, see:** `EPI_X-Ray_Enterprise_Scale_Pricing.md`
+
+**Contact:** enterprise@epixray.com | 1-800-EPI-XRAY
 
 ---
 
