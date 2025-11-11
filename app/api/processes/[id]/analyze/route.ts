@@ -69,10 +69,35 @@ export async function POST(
       conformanceRate: 100 - performanceMetrics.reworkRate,
     }]);
 
+    function getRecommendation(potential: number): string {
+      if (potential >= 80) return "RPA automation recommended - High ROI expected";
+      if (potential >= 70) return "Process automation via workflow engine";
+      return "Semi-automation with human oversight";
+    }
+
+    const formattedOpportunities = automationOps.map(opp => ({
+      taskName: opp.taskName,
+      potential: opp.automationPotential,
+      savings: (opp.savingsEstimate / 50).toFixed(1),
+      recommendation: getRecommendation(opp.automationPotential),
+      frequency: opp.frequency,
+      duration: opp.duration,
+      automationPotential: opp.automationPotential,
+      savingsEstimate: opp.savingsEstimate
+    }));
+
+    const totalSavings = automationOps.reduce((sum, opp) => sum + (opp.savingsEstimate / 50), 0);
+    const highPriorityCount = automationOps.filter(opp => opp.automationPotential > 70).length;
+
     return NextResponse.json({
       processModel,
       performanceMetrics,
-      automationOpportunities: automationOps,
+      automationOpportunities: {
+        opportunities: formattedOpportunities,
+        totalSavings: Math.round(totalSavings),
+        highPriorityCount,
+        raw: automationOps
+      },
     });
   } catch (error) {
     console.error("Error analyzing process:", error);
