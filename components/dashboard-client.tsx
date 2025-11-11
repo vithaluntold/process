@@ -66,6 +66,7 @@ export default function DashboardClient() {
     automationPotential: 0,
   })
   const [loading, setLoading] = useState(true)
+  const [dateRange, setDateRange] = useState("30d")
 
   useEffect(() => {
     fetchDashboardStats()
@@ -94,6 +95,53 @@ export default function DashboardClient() {
 
   const handleDataChange = () => {
     window.location.reload()
+  }
+
+  const handleDateRangeChange = (range: string) => {
+    setDateRange(range)
+    toast({
+      title: "Date Range Updated",
+      description: `Showing data for ${range === "7d" ? "last 7 days" : range === "30d" ? "last 30 days" : range === "90d" ? "last 90 days" : "all time"}`,
+    })
+    fetchDashboardStats()
+  }
+
+  const handleExport = async () => {
+    try {
+      const response = await fetch("/api/dashboard/export", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          dateRange,
+          format: "pdf",
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Export failed")
+      }
+
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = `dashboard-report-${new Date().toISOString().split("T")[0]}.pdf`
+      document.body.appendChild(a)
+      a.click()
+      window.URL.revokeObjectURL(url)
+      document.body.removeChild(a)
+
+      toast({
+        title: "Export Successful",
+        description: "Dashboard report has been downloaded",
+      })
+    } catch (error) {
+      toast({
+        title: "Export Failed",
+        description: "Failed to export dashboard report",
+        variant: "destructive",
+      })
+    }
   }
 
   return (
@@ -320,10 +368,30 @@ export default function DashboardClient() {
                 <p className="text-muted-foreground">Analyze, optimize, and automate your business processes.</p>
               </div>
               <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm">
-                  Last 30 Days
-                </Button>
-                <Button variant="outline" size="sm">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      {dateRange === "7d" ? "Last 7 Days" : dateRange === "30d" ? "Last 30 Days" : dateRange === "90d" ? "Last 90 Days" : "All Time"}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Date Range</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={() => handleDateRangeChange("7d")}>
+                      Last 7 Days
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleDateRangeChange("30d")}>
+                      Last 30 Days
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleDateRangeChange("90d")}>
+                      Last 90 Days
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => handleDateRangeChange("all")}>
+                      All Time
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <Button variant="outline" size="sm" onClick={handleExport}>
                   Export
                 </Button>
               </div>
