@@ -58,10 +58,11 @@ export default function CustomKPIsPage() {
       const res = await fetch("/api/processes");
       if (res.ok) {
         const data = await res.json();
-        setProcesses(data);
+        setProcesses(data.processes || []);
       }
     } catch (error) {
       console.error("Failed to load processes:", error);
+      setProcesses([]);
     }
   }
 
