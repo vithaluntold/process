@@ -30,7 +30,7 @@ interface Process {
 export default function ReportsPage() {
   const [reports, setReports] = useState<Report[]>([]);
   const [processes, setProcesses] = useState<Process[]>([]);
-  const [selectedProcessId, setSelectedProcessId] = useState("");
+  const [selectedProcessId, setSelectedProcessId] = useState("all");
   const [reportTitle, setReportTitle] = useState("");
   const [reportType, setReportType] = useState("summary");
   const [reportFormat, setReportFormat] = useState("pdf");
@@ -77,7 +77,7 @@ export default function ReportsPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          processId: selectedProcessId ? parseInt(selectedProcessId) : null,
+          processId: selectedProcessId !== "all" ? parseInt(selectedProcessId) : null,
           title: reportTitle,
           type: reportType,
           format: reportFormat,
@@ -191,7 +191,7 @@ export default function ReportsPage() {
                       <SelectValue placeholder="All processes" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All processes</SelectItem>
+                      <SelectItem value="all">All processes</SelectItem>
                       {processes.map((process) => (
                         <SelectItem key={process.id} value={process.id.toString()}>
                           {process.name}
