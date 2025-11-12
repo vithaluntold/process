@@ -49,6 +49,7 @@ import AutomationOpportunities from "@/components/automation-opportunities"
 import PredictiveAnalytics from "@/components/predictive-analytics"
 import UploadModal from "@/components/upload-modal"
 import { motion } from "framer-motion"
+import { MetricCardSkeleton } from "@/components/loading-states"
 
 interface DashboardStats {
   processCount: number
