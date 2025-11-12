@@ -63,7 +63,12 @@ const actionItems = [
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const router = useRouter()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -99,6 +104,10 @@ export function CommandPalette() {
           })
         break
     }
+  }
+
+  if (!mounted) {
+    return null
   }
 
   return (
