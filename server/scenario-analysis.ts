@@ -225,7 +225,7 @@ export class ScenarioAnalysisService {
       }
     );
 
-    const results = await simulator.run();
+    const results = await simulator.simulate(scenario.numberOfCases);
 
     const bottlenecks = results.bottlenecks || [];
     const utilizationRate = results.activityStats.length > 0
