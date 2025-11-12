@@ -5,6 +5,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Providers } from "./providers"
 import { Toaster } from "@/components/ui/sonner"
+import { CommandPalette } from "@/components/command-palette"
+import { PageProgress } from "@/components/page-progress"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,8 +26,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+            <PageProgress />
             {children}
             <Toaster />
+            <CommandPalette />
           </ThemeProvider>
         </Providers>
       </body>
