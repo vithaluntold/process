@@ -39,6 +39,12 @@ export function CollaborationPanel({ processId, currentUserId }: CollaborationPa
 
   useEffect(() => {
     fetchComments()
+    
+    const interval = setInterval(() => {
+      fetchComments()
+    }, 30000)
+    
+    return () => clearInterval(interval)
   }, [processId])
 
   const fetchComments = async () => {
