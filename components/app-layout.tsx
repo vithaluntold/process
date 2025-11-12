@@ -253,7 +253,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
         </div>
       </header>
 
-      <div className="grid md:grid-cols-[240px_1fr]">
+      <div className="grid md:grid-cols-[240px_1fr] flex-1">
         {/* Desktop Sidebar */}
         <aside className="hidden md:flex flex-col border-r p-4 space-y-4">
           <div className="font-medium text-sm">Process Intelligence</div>

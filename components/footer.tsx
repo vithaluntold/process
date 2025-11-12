@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="sticky bottom-0 left-0 right-0 z-40 border-t bg-white dark:bg-gray-950">
+    <footer className="border-t bg-white dark:bg-gray-950 mt-auto">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-center gap-2 text-sm">
           <span className="text-muted-foreground">Powered by</span>
