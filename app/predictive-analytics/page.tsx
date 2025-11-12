@@ -558,32 +558,34 @@ export default function PredictiveAnalyticsPage() {
                         <Area
                           type="monotone"
                           dataKey="upper"
-                          stroke="none"
-                          fill="hsl(var(--brand))"
-                          fillOpacity={0.1}
+                          stroke="#22d3ee"
+                          strokeWidth={1}
+                          fill="#22d3ee"
+                          fillOpacity={0.15}
                           name="Upper Bound"
                         />
                         <Area
                           type="monotone"
                           dataKey="lower"
-                          stroke="none"
-                          fill="hsl(var(--brand))"
-                          fillOpacity={0.1}
+                          stroke="#22d3ee"
+                          strokeWidth={1}
+                          fill="#22d3ee"
+                          fillOpacity={0.15}
                           name="Lower Bound"
                         />
                         <Line
                           type="monotone"
                           dataKey="cycletime"
-                          stroke="hsl(var(--brand))"
-                          strokeWidth={2}
+                          stroke="#0891b2"
+                          strokeWidth={3}
                           dot={false}
                           name="Historical"
                         />
                         <Line
                           type="monotone"
                           dataKey="forecast"
-                          stroke="hsl(var(--brand))"
-                          strokeWidth={2}
+                          stroke="#06b6d4"
+                          strokeWidth={2.5}
                           strokeDasharray="5 5"
                           dot={false}
                           name="Forecast"
