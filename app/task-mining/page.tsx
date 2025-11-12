@@ -64,6 +64,7 @@ export default function TaskMiningPage() {
   const [stats, setStats] = useState<TaskMiningStats | null>(null);
   const [topApps, setTopApps] = useState<TopApplication[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -107,6 +108,74 @@ export default function TaskMiningPage() {
     }
   }
 
+  async function handleRefresh() {
+    setRefreshing(true);
+    try {
+      await fetchData();
+      toast.success("Data refreshed successfully");
+    } finally {
+      setRefreshing(false);
+    }
+  }
+
+  function handleExportReport() {
+    const reportData = {
+      stats,
+      sessions,
+      patterns,
+      automations,
+      topApplications: topApps,
+      exportedAt: new Date().toISOString(),
+    };
+    
+    const blob = new Blob([JSON.stringify(reportData, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `task-mining-report-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    toast.success("Report exported successfully");
+  }
+
+  function handleSettings() {
+    toast.info("Task Mining settings coming soon");
+  }
+
+  function handleFilter() {
+    toast.info("Advanced filtering coming soon");
+  }
+
+  function handleStartRecording() {
+    toast.info("Please download and install the Desktop Agent to start recording tasks");
+  }
+
+  function handleViewDetails(automationId: number) {
+    toast.info(`Viewing details for automation #${automationId}`);
+  }
+
+  async function handleApproveAutomation(automationId: number) {
+    try {
+      const response = await fetch(`/api/task-mining/automations/${automationId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "approved" }),
+      });
+
+      if (response.ok) {
+        toast.success("Automation approved successfully");
+        await fetchData();
+      } else {
+        toast.error("Failed to approve automation");
+      }
+    } catch (error) {
+      console.error("Error approving automation:", error);
+      toast.error("Failed to approve automation");
+    }
+  }
+
   function formatDuration(seconds: number | null): string {
     if (!seconds) return "N/A";
     const mins = Math.floor(seconds / 60);
@@ -145,10 +214,10 @@ export default function TaskMiningPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" onClick={handleExportReport}>
             Export Report
           </Button>
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" onClick={handleSettings}>
             Settings
           </Button>
         </div>
@@ -227,11 +296,16 @@ export default function TaskMiningPage() {
             </TabsTrigger>
           </TabsList>
           <div className="ml-auto flex items-center gap-2">
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={handleFilter}>
               Filter
             </Button>
-            <Button variant="outline" size="sm">
-              Refresh
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleRefresh}
+              disabled={refreshing}
+            >
+              {refreshing ? "Refreshing..." : "Refresh"}
             </Button>
           </div>
         </div>
@@ -248,7 +322,12 @@ export default function TaskMiningPage() {
                   <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                     Start recording your tasks to identify repetitive patterns and discover automation opportunities
                   </p>
-                  <Button className="bg-brand hover:bg-brand/90 text-white">Start Recording</Button>
+                  <Button 
+                    className="bg-brand hover:bg-brand/90 text-white"
+                    onClick={handleStartRecording}
+                  >
+                    Start Recording
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -350,11 +429,21 @@ export default function TaskMiningPage() {
                         </p>
                       </div>
                       <div className="flex gap-2">
-                        <Button variant="outline" size="sm">
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => handleViewDetails(automation.id)}
+                        >
                           View Details
                         </Button>
                         {automation.status === "recommended" && (
-                          <Button size="sm">Approve</Button>
+                          <Button 
+                            size="sm"
+                            onClick={() => handleApproveAutomation(automation.id)}
+                            className="bg-brand hover:bg-brand/90 text-white"
+                          >
+                            Approve
+                          </Button>
                         )}
                       </div>
                     </div>
@@ -377,7 +466,12 @@ export default function TaskMiningPage() {
                   <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                     Start capturing your desktop activities to analyze workflows and identify improvement opportunities
                   </p>
-                  <Button className="bg-brand hover:bg-brand/90 text-white">New Recording Session</Button>
+                  <Button 
+                    className="bg-brand hover:bg-brand/90 text-white"
+                    onClick={handleStartRecording}
+                  >
+                    New Recording Session
+                  </Button>
                 </div>
               </CardContent>
             </Card>
