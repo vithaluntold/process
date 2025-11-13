@@ -1,0 +1,3780 @@
+
+
+
+
+
+processmining
+
+
+
+
+Publishing
+
+
+Files
+
+
+
+Commands
+Search
+Packager files
+Config files
+
+
+
+/
+
+
+
+
+pnpm dev
+
+Ask Agent…
+25m
+ • 
+25 minutes ago
+
+EPI-Q Portal - Complete User Guide
+Table of Contents
+Getting Started
+Dashboard Overview
+Process Discovery
+Conformance Checking
+Performance Analytics
+Automation Opportunities with AutoMachine
+Predictive Analytics
+Task Mining
+Digital Twin Simulation
+Real-Time Monitoring
+Advanced Reporting
+Cost Analysis & ROI Calculator
+AI Process Assistant
+Collaboration Features
+Custom KPI Builder
+Settings & Configuration
+Getting Started
+Accessing the Portal
+Navigate to the EPI-Q Portal
+
+Open your web browser
+Go to your EPI-Q Portal URL
+You'll see the landing page with the EPI-Q logo
+Sign Up (First Time Users)
+
+Click the "Sign Up" tab on the right panel
+Enter your email address
+Create a strong password (minimum 8 characters, including uppercase, lowercase, number, and special character)
+Click "Create Account"
+You'll be automatically logged in
+Login (Returning Users)
+
+Click the "Login" tab (default)
+Enter your registered email address
+Enter your password
+Click "Log In"
+You'll be redirected to the dashboard
+First-Time Setup
+After logging in for the first time:
+
+Upload Your First Event Log
+
+Navigate to any analysis page (e.g., Process Discovery)
+Click "Upload Event Logs" button
+Select a CSV file containing your process data
+Required columns: Case ID, Activity, Timestamp
+Optional columns: Resource, Cost, Additional attributes
+Click "Upload"
+Wait for the processing to complete
+Verify Data Upload
+
+Check the process selector dropdown
+Your uploaded process should appear in the list
+Select it to view the analysis
+Dashboard Overview
+The dashboard is your command center, providing a high-level overview of all your processes.
+
+Key Metrics Cards
+1. Total Processes
+
+Shows the total number of processes being monitored
+Click the card to navigate to the full process list
+2. Active Processes
+
+Displays currently running process instances
+Real-time updates every 30 seconds
+Green indicator means healthy status
+3. Average Cycle Time
+
+Shows the average time to complete a process instance
+Measured in days, hours, or minutes depending on scale
+Lower is generally better
+4. Automation Rate
+
+Percentage of tasks that can be automated
+Based on AI analysis of repetitive patterns
+Higher percentages indicate greater automation potential
+Recent Process Activity
+Understanding the Activity Table:
+
+Process Name: Identifier for each process
+Status: Health indicator (Healthy, Warning, Critical)
+Last Updated: Timestamp of most recent data
+Actions: Quick access to view details
+How to Use:
+
+Scan the status column for issues
+Click on any process name to view detailed analytics
+Use the search box to filter processes
+Sort by clicking column headers
+Process Performance Chart
+Interpreting the Chart:
+
+X-axis: Time period (last 7 days by default)
+Y-axis: Number of completed cases
+Bars: Daily completion count
+Hover over bars to see exact numbers
+Using the Chart:
+
+Identify trends in process completion rates
+Spot unusual spikes or drops
+Compare performance across different time periods
+Click on specific dates to drill down
+Quick Actions Panel
+Available Actions:
+
+Upload Event Logs: Add new process data
+Create Custom KPI: Define your own metrics
+View Reports: Access generated reports
+Settings: Configure platform preferences
+Process Discovery
+Process Discovery automatically generates visual process maps from your event logs.
+
+Uploading Event Logs
+Step-by-Step:
+
+Click "Upload Event Logs"
+
+Located at the top-right of the page
+Or drag and drop files directly
+Prepare Your CSV File
+
+Required format:
+CaseID,Activity,Timestamp,Resource
+C001,Order Received,2024-01-01 09:00:00,John
+C001,Payment Processed,2024-01-01 09:15:00,System
+C001,Order Shipped,2024-01-01 10:00:00,Mary
+
+Ensure timestamps are in a standard format
+Case IDs should be consistent within each process instance
+Select File and Upload
+
+Click "Choose File" or drag file to upload zone
+File size limit: 50MB
+Supported format: CSV only
+Click "Upload" button
+Wait for Processing
+
+Processing time depends on file size (typically 5-30 seconds)
+Progress bar shows current status
+Don't close the browser during upload
+Viewing the Process Map
+Understanding the Visualization:
+
+Nodes (Activities):
+
+Green circles: Start events (first activity in each case)
+Red circles: End events (last activity in each case)
+Cyan circles: Intermediate activities
+Size indicates frequency (larger = more common)
+Edges (Transitions):
+
+Arrow direction: Shows flow from one activity to another
+Thickness: Indicates frequency of transition
+Animated lines: Show the most common paths
+Labels: Display transition frequency
+How to Navigate:
+
+Zoom: Use mouse wheel or pinch gesture
+Pan: Click and drag the canvas
+Select Node: Click any activity to see details
+Reset View: Click "Fit View" button
+Process Statistics Panel
+Metrics Explained:
+
+Total Cases
+
+Number of unique process instances
+Each Case ID counts as one case
+Unique Activities
+
+Count of distinct activity types
+Shows process complexity
+Average Path Length
+
+Mean number of activities per case
+Indicates typical process duration
+Most Common Activity
+
+Activity that appears most frequently
+May indicate bottlenecks
+Analyzing the Results
+Best Practices:
+
+Identify Main Path
+
+Look for the thickest edges
+These represent your standard process flow
+Focus optimization efforts here first
+Spot Deviations
+
+Thin edges show rare paths
+May indicate exceptions or errors
+Investigate unusual patterns
+Find Loops
+
+Circular paths in the diagram
+Often indicate rework or approvals
+Consider if these are necessary
+Check Start/End Events
+
+Multiple start events may indicate different entry points
+Multiple end events may show various outcomes
+Ensure they align with expectations
+Filtering Options
+Apply Filters:
+
+Date Range Filter
+
+Click the filter icon
+Select start date and end date
+Click "Apply" to refresh the map
+Useful for comparing time periods
+Confidence Threshold
+
+Slider from 0% to 100%
+Higher values show only most common paths
+Lower values include rare transitions
+Default: 50%
+Activity Filter
+
+Select specific activities to focus on
+Hide irrelevant activities
+Simplify complex processes
+Exporting Process Maps
+Export Options:
+
+Export as PNG Image
+
+Click "Share" dropdown
+Select "Export to PDF"
+High-resolution image suitable for presentations
+Includes all visible nodes and edges
+Export to PowerPoint
+
+Click "Share" → "Export to PowerPoint"
+Creates a slide with the process map
+Includes process statistics
+Editable in PowerPoint
+Copy Link
+
+Click "Share" → "Copy Link"
+Share with team members
+Recipients can view the same analysis
+Requires login to access
+Conformance Checking
+Conformance Checking validates whether your actual processes follow the expected model.
+
+Setting Up Conformance Checking
+Step 1: Upload Process Model
+
+Navigate to Process Analysis page
+Select the "Conformance Checking" tab
+Click "Upload BPMN Model" (optional)
+If no model exists, the system uses the discovered process
+BPMN format recommended
+XML format supported
+Step 2: Select Process
+
+Use the process selector dropdown
+Choose the process you want to validate
+System automatically loads the most recent data
+Understanding Token-Based Replay
+What It Means:
+
+The system simulates "tokens" flowing through your process
+Tokens represent process instances (cases)
+Mismatches indicate conformance violations
+Conformance Metrics:
+
+Fitness Score (0-100%)
+
+Percentage of cases that fit the model
+100% = Perfect conformance
+90-99% = Good
+80-89% = Acceptable
+Below 80% = Review needed
+Precision Score (0-100%)
+
+How well the model predicts actual behavior
+High precision = Model is specific and accurate
+Low precision = Model allows too many variations
+Generalization Score
+
+Model's ability to handle unseen cases
+Balances overfitting vs. underfitting
+Identifying Violations
+Violation Types:
+
+Missing Tokens
+
+Activities executed that shouldn't happen
+Highlighted in red on the process map
+Click to see which cases involved
+Remaining Tokens
+
+Expected activities that didn't execute
+Highlighted in orange
+May indicate incomplete processes
+Wrong Timing
+
+Activities executed in wrong order
+Shows temporal violations
+Review business rules
+How to Investigate:
+
+Click on Violation Markers
+
+Opens detail panel
+Shows affected case IDs
+Displays violation frequency
+Review Case Details
+
+Click "View Cases" button
+See full execution trace
+Compare to expected model
+Analyze Root Causes
+
+Look for patterns in violations
+Check if certain resources cause more issues
+Identify time periods with higher violations
+Fixing Conformance Issues
+Recommended Actions:
+
+Update Process Model
+
+If violations are intentional exceptions
+Incorporate them into the standard model
+Click "Update Model"
+Fix Process Execution
+
+Train staff on correct procedures
+Update process documentation
+Implement process controls
+Set Up Alerts
+
+Configure notifications for violations
+Navigate to Settings → Alerts
+Set threshold (e.g., alert if fitness < 85%)
+Exporting Conformance Reports
+Click "Share" dropdown
+Select "Export to Excel"
+Report includes:
+Summary metrics
+List of all violations
+Case-by-case analysis
+Recommendations
+Performance Analytics
+Analyze process performance metrics, identify bottlenecks, and track KPIs.
+
+Key Performance Metrics
+1. Cycle Time Analysis
+
+What It Shows:
+
+Time from process start to completion
+Measured per case
+Displayed as average, median, min, max
+How to Use:
+
+View the cycle time chart
+Identify outliers (unusually long cases)
+Click on data points to drill down
+Compare against target SLAs
+Interpreting the Chart:
+
+Bars: Individual case durations
+Line: Average trend over time
+Red zone: Cases exceeding SLA
+Green zone: Cases within target
+2. Throughput Analysis
+
+What It Shows:
+
+Number of cases completed per time period
+Measures process efficiency
+Tracks productivity trends
+How to Use:
+
+Check daily/weekly/monthly throughput
+Identify peak and low periods
+Plan resource allocation accordingly
+Set throughput targets
+3. Bottleneck Identification
+
+What It Shows:
+
+Activities causing the most delays
+Wait times between activities
+Resource utilization issues
+How to Identify Bottlenecks:
+
+Look at the Bottleneck Table
+
+Activities listed by average wait time
+Higher wait time = bigger bottleneck
+Shows percentage of total delay
+Check Resource Utilization
+
+Over 90% = Resource constrained
+Under 50% = Underutilized
+Aim for 70-85% for balance
+Analyze Activity Duration
+
+Compare actual vs. expected duration
+Large variance indicates inconsistency
+Focus on high-impact activities
+Taking Action:
+
+Add Resources
+
+If utilization is very high
+Calculate ROI before hiring
+Consider temporary staff for peaks
+Optimize Activity
+
+If duration is consistently high
+Look for automation opportunities
+Review and streamline procedures
+Rebalance Workload
+
+Shift work from bottlenecks
+Cross-train staff
+Implement queue management
+Resource Performance
+Understanding Resource Metrics:
+
+Utilization Rate
+
+Percentage of time resource is working
+Formula: (Active Time / Total Time) × 100
+Displayed per resource
+Average Handling Time
+
+Mean time to complete activities
+Varies by activity type
+Compare resources for consistency
+Cases Handled
+
+Total number of cases per resource
+Indicates workload distribution
+Check for imbalances
+How to Use Resource Data:
+
+Navigate to Resource Tab
+
+Click "Resources" in the analytics panel
+View table of all resources
+Sort by Metrics
+
+Click column headers to sort
+Identify top and bottom performers
+Don't jump to conclusions—investigate context
+Drill Down by Resource
+
+Click on a resource name
+View their specific activity history
+See which activities they handle
+Balance Workload
+
+Identify overloaded resources
+Redistribute work if possible
+Consider training for efficiency
+Setting Performance Targets
+Creating SLA Targets:
+
+Navigate to Settings
+
+Click gear icon
+Select "Performance Targets"
+Define Metrics
+
+Select metric type (Cycle Time, Throughput, etc.)
+Set target value
+Choose warning threshold
+Apply to Processes
+
+Select which processes this applies to
+Can set different targets per process
+Save configuration
+Monitor Compliance
+
+Dashboard shows target vs. actual
+Visual indicators (green/yellow/red)
+Automatic alerts when targets missed
+Time-Based Analysis
+Comparing Time Periods:
+
+Use Date Range Selector
+
+Click calendar icon
+Choose "This Week" vs. "Last Week"
+Or select custom date ranges
+View Comparison Charts
+
+Side-by-side metrics
+Percentage change indicators
+Trend arrows (up/down)
+Analyze Seasonality
+
+Look for recurring patterns
+Plan for busy seasons
+Adjust resources proactively
+Exporting Analytics
+Export Options:
+
+PDF Report
+
+Comprehensive report with all charts
+Includes executive summary
+Professional formatting
+Excel Spreadsheet
+
+Raw data for further analysis
+All metrics in separate sheets
+Pivot-ready format
+PowerPoint Presentation
+
+Pre-formatted slides
+Key charts and insights
+Ready for stakeholder meetings
+Steps to Export:
+
+Click "Share" button
+Select export format
+Choose which sections to include
+Click "Generate"
+Download automatically starts
+Automation Opportunities with AutoMachine
+Identify tasks with high automation potential and leverage automatic error resolution.
+
+Understanding Automation Scoring
+Automation Potential Score (0-100%):
+
+90-100%: Excellent automation candidate
+70-89%: Good automation potential
+50-69%: Moderate potential, needs evaluation
+Below 50%: Low priority for automation
+Factors Considered:
+
+Repetitiveness of task
+Rule-based nature
+Data availability
+Current manual effort
+Complexity level
+Viewing Automation Opportunities
+Step-by-Step:
+
+Navigate to Automation Opportunities
+
+Click "Automation Opportunities" in the sidebar
+Or use the dashboard quick link
+Upload Process Data
+
+If not already done, upload event logs
+System analyzes patterns automatically
+Processing takes 1-2 minutes
+Review Opportunity List
+
+Sorted by automation score (highest first)
+Each card shows:
+Task name
+Automation score
+Potential time savings
+Estimated effort to automate
+Prioritize Opportunities
+
+Focus on high score + high impact
+Consider implementation difficulty
+Balance quick wins vs. long-term gains
+Automatic Error Resolution Feature
+What It Does:
+
+Monitors your system for errors in real-time
+Automatically captures error logs
+Analyzes errors using AI
+Suggests or implements automatic fixes
+How It Works - 4-Step Process:
+
+Step 1: Error Detection
+
+System continuously monitors for errors
+Captures JavaScript errors, network failures, and exceptions
+No manual intervention needed
+Step 2: Log Analysis
+
+AI analyzes error logs automatically
+Examines error messages, stack traces, and context
+Identifies error patterns and root causes
+Step 3: Issue Diagnosis
+
+Determines the type of error:
+Network errors
+Null reference errors
+Timeout errors
+JSON parsing errors
+Unknown errors
+Assesses severity and impact
+Step 4: Auto Resolution
+
+Applies automatic fixes when possible:
+Network errors: Retry with exponential backoff
+Null references: Add null checks and defaults
+Timeouts: Increase thresholds and add retry logic
+Parsing errors: Add error handling and fallbacks
+Logs errors requiring manual review
+Using the Error Resolution Dashboard
+Dashboard Components:
+
+1. Monitoring Status
+
+Active: System is monitoring for errors
+Paused: Monitoring temporarily disabled
+Toggle with "Pause/Resume" button
+2. Key Metrics Cards:
+
+Total Errors
+
+Count of all captured errors in current session
+Includes both auto-resolved and pending
+Auto-Resolved
+
+Number of errors fixed automatically
+Shows effectiveness of automation
+Green indicator for success
+Needs Review
+
+Errors requiring manual intervention
+Click to see details
+Prioritize by severity
+3. Automatic Resolution Toggle
+
+Enabled (default): System auto-fixes common errors
+Disabled: Only logs errors for manual review
+Click button to toggle
+4. Error Log Table
+
+Each error entry shows:
+
+Status Badge:
+Detected (initial state)
+Analyzing (processing with spinner)
+Resolved (green - successfully fixed)
+Failed (red - needs manual review)
+Timestamp: When error occurred
+Error Type: Classification (NetworkError, TypeError, etc.)
+Error Message: Description of the issue
+Resolution: What fix was applied or suggested
+Retry Button: For failed errors, manually trigger resolution
+How to Use the Error Log:
+
+Monitor Real-Time Errors
+
+Errors appear automatically when detected
+Watch status change from Detected → Analyzing → Resolved/Failed
+Toast notifications keep you informed
+Review Auto-Resolved Errors
+
+Check green "Resolved" badges
+Verify fixes were appropriate
+Learn what errors are being handled
+Handle Failed Errors
+
+Click "Retry" button for failed errors
+System attempts resolution again
+If still failing, review manually
+Understand Error Patterns
+
+Look for recurring error types
+Identify systemic issues
+Proactively fix root causes
+Manual Error Resolution
+For Errors Requiring Review:
+
+Click on Error Entry
+
+Expands full details
+Shows complete stack trace
+Displays resolution suggestion
+Review Suggested Fix
+
+Read the AI-generated recommendation
+Assess if fix is appropriate
+Consider side effects
+Click "Retry" Button
+
+Attempts auto-resolution again
+May succeed if conditions changed
+Monitor status for outcome
+Implement Manual Fix
+
+If auto-resolution isn't suitable
+Use error details to debug
+Update code accordingly
+Best Practices
+Maximizing Automation Success:
+
+Keep Monitoring Active
+
+Don't pause monitoring unless necessary
+Errors are caught immediately
+Faster resolution = less impact
+Enable Auto-Resolution
+
+Let system handle common errors
+Reduces manual workload
+Improves system reliability
+Review Logs Regularly
+
+Check for patterns
+Identify recurring issues
+Proactive prevention is better
+Test After Auto-Fixes
+
+Verify fixes work correctly
+Check for unintended consequences
+Validate user experience
+Update Error Handling
+
+Learn from resolved errors
+Improve application code
+Reduce future error occurrence
+Understanding Error Types
+Network Errors
+
+Failed API calls
+Timeout issues
+Connection problems
+Auto-Fix: Retry with exponential backoff
+Null Reference Errors
+
+Undefined variables
+Missing data properties
+Null pointer exceptions
+Auto-Fix: Add null checks and defaults
+Timeout Errors
+
+Long-running requests
+Slow database queries
+Resource constraints
+Auto-Fix: Increase timeout, add retries
+JSON Parsing Errors
+
+Malformed data
+Invalid JSON format
+Encoding issues
+Auto-Fix: Add error handling, use fallback data
+Unknown Errors
+
+Uncategorized issues
+Complex problems
+Action: Manual review required
+Predictive Analytics
+Use AI-powered forecasting to predict future process behavior and identify potential issues.
+
+Accessing Predictive Analytics
+Navigate to "Predictive Analytics" from sidebar
+Select a process from the dropdown
+System loads three analysis modules:
+Anomaly Detection
+Forecasting
+Scenario Analysis
+Anomaly Detection
+What It Does:
+
+Identifies unusual patterns in process execution
+Flags deviations from normal behavior
+Classifies severity (High, Medium, Low)
+How to Use:
+
+Step 1: View Detected Anomalies
+
+Table shows all detected anomalies
+Sorted by severity (High → Low)
+Each row includes:
+Timestamp of anomaly
+Affected metric
+Anomaly type
+Severity level
+AI-generated insight
+Step 2: Understand Anomaly Types
+
+Statistical Outliers
+
+Values far from mean
+Z-score method
+Example: Case taking 10x longer than usual
+Pattern Breaks
+
+Deviation from historical patterns
+Sequence anomalies
+Example: Steps executed in wrong order
+Volume Spikes
+
+Sudden increase in case volume
+May indicate demand surge or data issues
+Example: 300% more cases than usual
+Performance Drops
+
+Significant slowdown
+Resource issues or bottlenecks
+Example: Cycle time doubled
+Resource Anomalies
+
+Unusual resource behavior
+Utilization spikes
+Example: Resource handling 5x normal load
+Step 3: Investigate Anomalies
+
+Click on anomaly row to expand
+Read AI-generated insight
+Review affected cases
+Determine if action needed
+Step 4: Take Action
+
+High Severity: Immediate investigation required
+Medium Severity: Monitor closely
+Low Severity: Note for future reference
+Forecasting
+What It Predicts:
+
+Future cycle time trends
+Expected throughput
+Resource utilization
+Capacity planning needs
+Understanding Forecast Algorithms:
+
+The system uses three algorithms based on data availability:
+
+Holt-Winters Exponential Smoothing (≥12 data points)
+
+Most accurate for time-series data
+Captures seasonality and trends
+Recommended for established processes
+Linear Regression (6-11 data points)
+
+Simple trend analysis
+Good for medium-term predictions
+Less sensitive to seasonality
+Moving Average (<6 data points)
+
+Basic averaging method
+Limited accuracy
+Used when data is sparse
+How to Use Forecasting:
+
+Step 1: View Forecast Charts
+
+Three charts are provided:
+
+Cycle Time Forecast
+
+Predicts future average cycle time
+30, 60, and 90-day projections
+Confidence intervals shown (light blue shading)
+Throughput Forecast
+
+Predicts number of cases per period
+Helps with capacity planning
+Shows expected range
+Resource Utilization Forecast
+
+Predicts resource demand
+Identifies future bottlenecks
+Plan hiring/allocation
+Step 2: Interpret Confidence Intervals
+
+Darker line: Expected value (most likely)
+Shaded area: Confidence interval (80% probability)
+Wider interval: Higher uncertainty
+Narrower interval: More confident prediction
+Step 3: Use Predictions for Planning
+
+Capacity Planning
+
+If throughput forecast drops, investigate why
+If increasing, ensure sufficient resources
+Plan hiring 2-3 months ahead
+Performance Improvement
+
+If cycle time forecast increases, take action now
+Identify trends before they become problems
+Set proactive improvement initiatives
+Resource Allocation
+
+Use utilization forecasts to plan shifts
+Adjust staffing for predicted peaks
+Optimize resource distribution
+Data Quality Indicator:
+
+Check the data quality badge
+Good: Sufficient data for accurate forecast
+Limited: Sparse data, use predictions cautiously
+Insufficient: Not enough data, focus on collection
+Scenario Analysis (What-If Analysis)
+What It Does:
+
+Simulates different scenarios
+Compares impact of changes
+Helps make data-driven decisions
+Three Scenarios Provided:
+
+1. Optimistic Scenario
+
+30% more resources
+30% faster activity execution
+Best-case outcome
+Use for: Maximum capacity planning
+2. Expected Scenario
+
+Current baseline conditions
+No changes applied
+Realistic projection
+Use for: Standard planning
+3. Pessimistic Scenario
+
+30% fewer resources
+50% slower execution
+Worst-case outcome
+Use for: Risk planning and contingency
+How to Use Scenario Analysis:
+
+Step 1: Review Scenario Metrics
+
+For each scenario, view:
+
+Average Cycle Time: Expected duration
+Throughput: Cases completed per period
+Resource Utilization: Demand on resources
+SLA Breach Probability: Risk of missing targets
+Bottleneck Activities: Where delays occur
+Step 2: Compare Scenarios
+
+Use the comparison table:
+
+Side-by-side metrics
+Percentage differences
+Impact indicators (arrows up/down)
+Risk assessment
+Step 3: Analyze Risk Assessment
+
+Low Risk: SLA breach probability < 20%
+Medium Risk: 20-40% breach probability
+High Risk: >40% breach probability
+Step 4: Make Decisions
+
+If Pessimistic Scenario Shows High Risk:
+
+Create contingency plans
+Build resource buffer
+Implement risk mitigation
+If Expected Scenario Meets Targets:
+
+Maintain current operations
+Monitor for deviations
+Focus on continuous improvement
+If Optimistic Scenario Needed for Targets:
+
+Invest in improvements now
+Add resources
+Optimize processes
+Step 5: Run Custom Scenarios
+
+Click "Configure Scenario"
+Adjust parameters:
+Number of cases (10-500)
+Duration multiplier (0.5x - 2.0x)
+Resource availability
+Click "Run Simulation"
+Wait for results (15-30 seconds)
+Review impact metrics
+Step 6: Save Scenario
+
+Click "Save Scenario"
+Give it a descriptive name
+Access from scenario history
+Compare against future actuals
+Best Practices for Predictive Analytics
+1. Regular Review
+
+Check predictions weekly
+Compare forecasts to actuals
+Adjust strategies based on trends
+2. Act on High-Severity Anomalies
+
+Don't ignore warnings
+Investigate root causes
+Implement fixes promptly
+3. Use Multiple Scenarios
+
+Don't rely on one scenario
+Plan for range of outcomes
+Prepare contingencies
+4. Validate Predictions
+
+Track forecast accuracy
+Update models with new data
+Refine parameters over time
+5. Combine with Other Analyses
+
+Use with performance analytics
+Cross-reference with conformance
+Holistic decision-making
+Task Mining
+Analyze desktop activity patterns to discover process improvements and automation opportunities.
+
+Understanding Task Mining
+What It Is:
+
+Captures desktop activity in real-time
+Analyzes user behavior patterns
+Identifies repetitive tasks
+Discovers automation opportunities
+Important: Privacy & Consent
+
+All monitoring requires user consent
+Users can opt-in or opt-out anytime
+Data is encrypted and secure
+Anonymization available
+Setting Up Task Mining
+Step 1: Install Desktop Capture Agent
+
+Navigate to Task Mining page
+Click "Download Desktop Agent"
+Select your operating system:
+Windows (64-bit)
+macOS (Intel/Apple Silicon)
+Linux (Ubuntu/Debian)
+Run the installer
+Follow installation wizard
+Step 2: Configure Agent
+
+Open Desktop Capture Agent
+Enter your EPI-Q credentials
+Or use API key from Settings
+Configure privacy settings:
+Screen capture frequency
+Applications to exclude
+Data anonymization level
+Step 3: Grant Consent
+
+Review data collection policy
+Understand what's captured:
+Application names
+Window titles
+Timestamps
+Mouse/keyboard activity metrics
+Not captured: Passwords, keystrokes (unless enabled)
+Click "I Consent"
+Start monitoring
+Step 4: Verify Connection
+
+Check Task Mining dashboard
+Should show "Agent Connected"
+Green indicator with last sync time
+If not connected, check firewall settings
+Viewing Task Mining Data
+Activity Timeline:
+
+Daily Activity View
+
+Horizontal timeline showing all activities
+Color-coded by application
+Hover to see details
+Click to drill down
+Application Usage Chart
+
+Pie chart of time spent per application
+Percentage breakdown
+Click slices for details
+Task Frequency Analysis
+
+List of repetitive tasks
+Execution count
+Average duration
+Automation potential score
+AI-Powered Pattern Detection
+What Patterns Are Detected:
+
+Copy-Paste Patterns
+
+Data transfer between apps
+Suggests automation via API integration
+Shows frequency and data types
+Repetitive Clicks
+
+Same sequence of clicks
+Navigation patterns
+Candidates for macros
+Data Entry Patterns
+
+Form filling sequences
+Repetitive input
+Auto-fill opportunities
+Application Switching
+
+Frequent context switching
+Integration opportunities
+Workflow optimization
+How to Use Pattern Insights:
+
+Review Pattern Cards
+
+Each pattern shown as a card
+Includes description
+Automation potential score
+Suggested solution
+Click for Details
+
+Expands full pattern analysis
+Shows example instances
+AI-generated recommendation
+Implementation guidance
+Prioritize Patterns
+
+Sort by frequency (high impact)
+Consider implementation effort
+Quick wins first
+Automation Opportunity Engine
+How Opportunities Are Scored:
+
+Formula considers:
+
+Frequency: How often task is performed
+Duration: Time taken per execution
+Consistency: Pattern regularity
+Complexity: How rule-based the task is
+ROI: Potential time savings vs. effort
+Score Ranges:
+
+90-100%: Automate immediately
+70-89%: Strong candidate
+50-69%: Evaluate cost-benefit
+Below 50%: Manual process likely better
+Using Automation Recommendations:
+
+Review Top Opportunities
+
+Listed by score
+Each shows:
+Task description
+Current time spent
+Potential savings
+Recommended tool/approach
+Understand Recommendations
+
+RPA: For UI-based automation
+API Integration: For data transfer
+Macro/Script: For simple sequences
+Process Redesign: For complex tasks
+Implement Automation
+
+Click "View Details"
+Follow step-by-step guide
+Or export for dev team
+Track implementation status
+Managing Privacy & Consent
+Checking Consent Status:
+
+Navigate to Settings → Privacy
+View consent status per user
+See what data is being collected
+Review retention period
+Revoking Consent:
+
+User can revoke anytime
+Settings → Privacy → "Revoke Consent"
+Data collection stops immediately
+Historical data can be deleted
+Data Deletion:
+
+Settings → Privacy → "Delete My Data"
+Select date range
+Confirm deletion
+Permanent removal within 24 hours
+API Key Management
+Generating API Keys:
+
+Settings → API Keys
+Click "Generate New Key"
+Enter description (e.g., "John's Desktop")
+Set expiration date (optional)
+Copy key immediately (shown only once)
+Use in Desktop Agent
+Managing Keys:
+
+View: See all active keys
+Revoke: Immediately disable a key
+Rename: Update description
+Audit: See usage logs
+Security Best Practices:
+
+Use unique key per device
+Set expiration dates
+Revoke unused keys
+Rotate keys periodically
+Never share keys
+Digital Twin Simulation
+Create a virtual replica of your process and run what-if scenarios.
+
+What Is Digital Twin?
+Definition:
+
+Virtual model of your real process
+Based on historical execution data
+Simulates process behavior
+Tests changes without risk
+Benefits:
+
+Risk-free testing
+Impact prediction
+Optimization planning
+Scenario comparison
+Creating a Digital Twin
+Automatic Creation:
+
+Navigate to Digital Twin page
+Select process from dropdown
+Click "Create Digital Twin"
+System automatically:
+Analyzes historical data
+Builds process model
+Calculates statistics
+Calibrates simulation
+Manual Refinement:
+
+Review generated model
+Adjust parameters if needed:
+Activity durations
+Resource allocations
+Transition probabilities
+Click "Update Model"
+Validation runs automatically
+Process Modeling Tab
+Understanding the Model Visualization:
+
+Visual Elements:
+
+Nodes (Activities)
+
+Green: Start event
+Red: End event
+Cyan: Activities
+Size = frequency
+Label = activity name
+Edges (Transitions)
+
+Arrows show flow direction
+Thickness = frequency
+Animated for common paths
+Label = transition count
+Statistics Panel
+
+Total cases in model
+Number of activities
+Average path length
+Most common path
+How to Use:
+
+Verify Model Accuracy
+
+Does it match your understanding?
+Are all activities present?
+Check transition logic
+Identify Key Paths
+
+Look for thick edges
+These are your main flows
+Focus optimization here
+Spot Issues
+
+Unexpected loops
+Missing connections
+Rare paths
+What-If Analysis Tab
+Running Scenarios:
+
+Step 1: Configure Scenario
+
+Click "New Scenario" button
+
+Set parameters:
+
+Case Count Slider (10-500)
+
+Number of instances to simulate
+Higher = more accurate, slower
+Recommended: 100-200
+Duration Multiplier (0.5x - 2.0x)
+
+0.5x = 50% faster (optimization)
+1.0x = Current speed (baseline)
+2.0x = 100% slower (degradation)
+Resource Changes (optional)
+
+Add or remove resources
+Change availability
+Adjust skill levels
+Step 2: Run Simulation
+
+Click "Run Simulation"
+Watch progress bar (15-60 seconds)
+Discrete-event simulation executes
+Results appear automatically
+Step 3: Analyze Results
+
+Scenario Metrics:
+
+Average Cycle Time: Mean duration
+Total Cases Completed: Throughput
+Resource Utilization: Workload %
+Bottleneck Activities: Delays
+Cost: Estimated expense
+Compare to Baseline:
+
+Percentage changes shown
+Green = improvement
+Red = degradation
+Yellow = neutral
+Step 4: Save Scenario
+
+Click "Save Scenario"
+Enter descriptive name
+Add notes (optional)
+Accessible from history
+Impact Simulation Tab
+Comparing Scenarios:
+
+Baseline vs. Optimized:
+
+The system compares:
+
+Baseline: Current state simulation
+Optimized: Best-case scenario (30% improvement)
+Metrics Compared:
+
+Cycle Time Improvement
+
+Percentage reduction
+Absolute time saved
+Impact on SLA compliance
+Throughput Increase
+
+Additional cases per period
+Revenue impact
+Capacity gained
+Bottleneck Resolution
+
+Before: List of bottlenecks
+After: Resolved items
+Remaining issues
+Cost Savings
+
+Labor cost reduction
+Efficiency gains
+ROI calculation
+Visual Impact Cards:
+
+Each card shows:
+
+Metric name
+Before value
+After value
+Percentage change
+Visual indicator (arrow up/down)
+How to Use Impact Analysis:
+
+Identify Biggest Impacts
+
+Sort by percentage improvement
+Focus on high-value changes
+Consider implementation difficulty
+Build Business Case
+
+Use metrics for justification
+Show ROI to stakeholders
+Plan implementation roadmap
+Prioritize Changes
+
+Quick wins first
+High impact next
+Long-term investments last
+Scenario History
+Managing Saved Scenarios:
+
+View All Scenarios
+
+Listed chronologically
+Shows creation date
+Brief description
+Key metrics
+Compare Scenarios
+
+Select multiple scenarios
+Click "Compare"
+Side-by-side view
+Identify best option
+Re-run Scenarios
+
+Click scenario name
+Loads configuration
+Can modify and re-run
+Compare to original
+Delete Scenarios
+
+Click trash icon
+Confirm deletion
+Permanent removal
+Best Practices
+1. Baseline First
+
+Always create baseline scenario
+Validates model accuracy
+Reference for all comparisons
+2. Incremental Changes
+
+Test one change at a time
+Understand individual impact
+Combine successful changes
+3. Realistic Parameters
+
+Don't assume 90% improvements
+Use achievable multipliers
+Base on industry benchmarks
+4. Multiple Scenarios
+
+Test various approaches
+Compare different strategies
+Identify trade-offs
+5. Validate Results
+
+Do the numbers make sense?
+Check against actual data
+Adjust model if needed
+Real-Time Monitoring
+Monitor live process execution and get instant alerts for issues.
+
+Dashboard Overview
+Real-Time Metrics:
+
+Active Process Instances
+
+Currently running cases
+Updates every 30 seconds
+Click to see details
+Health Score
+
+Overall process health (0-100)
+Color-coded: Green (good), Yellow (warning), Red (critical)
+Based on multiple factors:
+SLA compliance
+Error rate
+Resource utilization
+Throughput
+Current Throughput
+
+Cases completed in last hour
+Trend indicator
+Comparison to average
+Alert Count
+
+Number of active alerts
+Severity breakdown
+Click to view all
+Live Process Instance Tracking
+Instance List:
+
+Each row shows:
+
+Case ID: Unique identifier
+Current Activity: What's happening now
+Duration: Time elapsed
+Status: Health indicator
+Progress: Visual progress bar
+How to Use:
+
+Monitor Critical Cases
+
+Filter by high priority
+Track SLA at-risk cases
+Proactive intervention
+Drill Down
+
+Click case ID
+See full execution trace
+View all activities
+Check timing
+Take Action
+
+Escalate if needed
+Reassign resources
+Expedite processing
+Alert Management
+Alert Types:
+
+SLA Breach Alert
+
+Case exceeding target time
+Shows time over SLA
+Suggested action: Expedite
+Bottleneck Alert
+
+Queue length exceeds threshold
+Activity identified
+Suggested action: Add resources
+Error Alert
+
+Process execution error
+Error type and message
+Suggested action: Investigate
+Resource Alert
+
+Utilization >90% or <20%
+Resource identified
+Suggested action: Rebalance
+Alert Dashboard:
+
+View All Alerts
+
+Sorted by severity (High → Low)
+Filter by type
+Search by keyword
+Alert Details
+
+Click alert to expand
+Full description
+Affected cases
+Recommended actions
+Acknowledge Alerts
+
+Mark as "Acknowledged"
+Add notes
+Assign to team member
+Track resolution
+Resolve Alerts
+
+Mark as "Resolved"
+Document actions taken
+Prevents recurrence
+Configuring Alerts
+Setting Up Alert Rules:
+
+Navigate to Settings → Alerts
+
+Click "New Alert Rule"
+
+Configure parameters:
+
+Trigger Condition:
+
+Select metric (Cycle Time, Throughput, etc.)
+Set operator (>, <, =, etc.)
+Define threshold value
+Example: "Cycle Time > 24 hours"
+Severity Level:
+
+High, Medium, or Low
+Determines notification priority
+Affects escalation rules
+Notification Channels:
+
+Email
+In-app notification
+Webhook (for integrations)
+SMS (if configured)
+Recipients:
+
+Select users to notify
+Can set different recipients per severity
+Support for distribution lists
+Save Alert Rule
+
+Test with sample data
+
+Managing Alert Rules:
+
+Enable/Disable: Toggle rules on/off
+Edit: Modify thresholds
+Delete: Remove obsolete rules
+Duplicate: Copy and modify
+Performance Trends
+Real-Time Charts:
+
+Cycle Time Trend
+
+Last 24 hours
+Updates every minute
+Shows moving average
+Spot sudden changes
+Throughput Chart
+
+Cases per hour
+Compare to target
+Identify peaks/valleys
+Resource Utilization Heatmap
+
+Visual grid by resource
+Color intensity = utilization %
+Quickly spot issues
+Using Trends for Proactive Management:
+
+Spot Trends Early
+
+Rising cycle time → Investigate
+Dropping throughput → Add capacity
+Utilization spike → Rebalance
+Compare to Baselines
+
+Deviation from normal
+Set tolerance bands
+Alert on anomalies
+Plan Interventions
+
+Use trends to predict issues
+Act before critical
+Prevent SLA breaches
+Best Practices
+1. Set Meaningful Thresholds
+
+Based on historical data
+Allow for normal variance
+Avoid alert fatigue
+2. Prioritize Alerts
+
+Not everything is high severity
+Focus on business impact
+Escalate appropriately
+3. Act on Alerts
+
+Don't just acknowledge
+Investigate root causes
+Implement fixes
+4. Review Regularly
+
+Check monitoring dashboard daily
+Analyze alert patterns
+Refine rules continuously
+5. Automate Responses
+
+For common issues
+Reduce manual intervention
+Faster resolution
+Advanced Reporting
+Generate comprehensive reports for stakeholders and analysis.
+
+Report Types
+1. Executive Summary Report
+
+High-level overview
+Key metrics and KPIs
+Trend analysis
+Recommendations
+Format: PDF, PowerPoint
+Audience: Executives, management
+2. Detailed Process Report
+
+Complete process analysis
+All metrics and charts
+Conformance results
+Performance breakdown
+Format: PDF, Excel
+Audience: Process analysts, managers
+3. Compliance Report
+
+Conformance checking results
+Violation details
+Audit trail
+Remediation actions
+Format: PDF
+Audience: Compliance, auditors
+4. Resource Utilization Report
+
+Resource performance metrics
+Workload distribution
+Efficiency analysis
+Capacity planning
+Format: Excel, PDF
+Audience: Resource managers, HR
+5. Custom Report
+
+User-defined sections
+Selected metrics
+Flexible format
+Audience: Various stakeholders
+Generating Reports
+Step-by-Step:
+
+Step 1: Select Report Type
+
+Navigate to Reports page
+Click "Generate New Report"
+Choose report type from dropdown
+Click "Next"
+Step 2: Configure Parameters
+
+Date Range
+
+Select start and end dates
+Or use presets (Last Week, Last Month, etc.)
+Ensure sufficient data
+Processes
+
+Select which processes to include
+Can choose multiple
+Or "All Processes"
+Metrics
+
+Check boxes for included metrics
+Default selections provided
+Customize as needed
+Format
+
+PDF: Best for sharing, printing
+Excel: Best for further analysis
+PowerPoint: Best for presentations
+Step 3: Customize Layout (optional)
+
+Cover Page
+
+Add company logo
+Custom title
+Date and author
+Sections
+
+Reorder sections
+Show/hide specific charts
+Add custom text
+Branding
+
+Color scheme
+Header/footer
+Watermark
+Step 4: Generate
+
+Click "Generate Report"
+Processing time: 30-120 seconds
+Progress bar shows status
+Download link appears when ready
+Step 5: Download & Share
+
+Click "Download" button
+File saved to your device
+Options to:
+Email directly from platform
+Share via link (requires login)
+Schedule recurring generation
+Scheduled Reports
+Automating Report Generation:
+
+Step 1: Create Schedule
+
+Reports → "Scheduled Reports"
+Click "New Schedule"
+Select report type
+Configure parameters (same as manual)
+Step 2: Set Frequency
+
+Options:
+
+Daily
+Weekly (choose day)
+Monthly (choose date)
+Quarterly
+Custom (cron expression)
+Step 3: Distribution
+
+Email Recipients
+
+Add email addresses
+Internal users auto-complete
+External emails supported
+Email Template
+
+Subject line
+Body message
+Attachment options
+Delivery Time
+
+Select time of day
+Consider recipient time zones
+Avoid weekends if desired
+Step 4: Activate
+
+Review configuration
+Click "Activate Schedule"
+First report generated at next scheduled time
+Monitor from schedule list
+Managing Schedules:
+
+Edit: Modify parameters
+Pause: Temporarily disable
+Delete: Permanently remove
+Test: Generate immediately
+Export Formats
+PDF Reports:
+
+Features:
+
+Professional formatting
+Charts embedded as vectors
+Table of contents
+Page numbers
+Headers/footers
+Best For:
+
+Executive presentations
+Formal documentation
+Archiving
+Printing
+Customization:
+
+Page size (A4, Letter)
+Orientation (Portrait, Landscape)
+Margins
+Font size
+Excel Reports:
+
+Features:
+
+Multiple sheets (one per section)
+Raw data tables
+Pivot-ready format
+Formulas included
+Charts as objects
+Best For:
+
+Further analysis
+Data manipulation
+Custom visualizations
+Integration with other systems
+Sheets Included:
+
+Summary (KPIs)
+Process Data
+Resource Data
+Performance Metrics
+Conformance Results
+PowerPoint Reports:
+
+Features:
+
+One slide per metric
+Charts pre-formatted
+Editable content
+Branded templates
+Speaker notes
+Best For:
+
+Stakeholder presentations
+Board meetings
+Client reviews
+Training sessions
+Customization:
+
+Template selection
+Color scheme
+Slide order
+Notes inclusion
+Report Templates
+Using Templates:
+
+Step 1: Access Templates
+
+Reports → "Templates"
+View available templates
+Preview before using
+Step 2: Select Template
+
+Click template name
+Review included sections
+Click "Use Template"
+Step 3: Customize
+
+Modify sections if needed
+Adjust parameters
+Save as new template (optional)
+Creating Custom Templates:
+
+Step 1: Start from Scratch or Copy
+
+Click "New Template"
+Or duplicate existing template
+Step 2: Define Sections
+
+Add section
+Select metric/chart
+Configure display options
+Set order
+Step 3: Set Defaults
+
+Default date range
+Default processes
+Default format
+Save template
+Step 4: Share Template (optional)
+
+Make available to team
+Set permissions
+Version control
+Best Practices
+1. Define Audience
+
+Tailor content to reader
+Executives need summary
+Analysts need details
+2. Regular Cadence
+
+Weekly for tactical reports
+Monthly for strategic
+Quarterly for board-level
+3. Actionable Insights
+
+Don't just show data
+Highlight key findings
+Include recommendations
+4. Consistent Format
+
+Use templates
+Maintain branding
+Easy comparison over time
+5. Validate Data
+
+Spot-check numbers
+Ensure date ranges correct
+Verify calculations
+6. Distribute Timely
+
+Send when stakeholders need it
+Consider decision cycles
+Don't delay unnecessarily
+Cost Analysis & ROI Calculator
+Analyze process costs and calculate return on investment for improvements.
+
+Understanding Cost Metrics
+Cost Components:
+
+Labor Costs
+
+Resource time × hourly rate
+Calculated per activity
+Aggregated per case
+System Costs
+
+IT infrastructure
+Software licenses
+Maintenance
+Overhead Costs
+
+Facilities
+Administration
+Support functions
+Delay Costs
+
+SLA penalties
+Lost opportunities
+Customer dissatisfaction
+Setting Up Cost Parameters
+Step 1: Define Resource Costs
+
+Navigate to Settings → Cost Configuration
+Click "Resource Rates"
+For each resource:
+Enter hourly rate
+Or annual salary (auto-calculates hourly)
+Set currency
+Save
+Step 2: Configure Activity Costs
+
+Settings → Cost Configuration → "Activity Costs"
+For each activity:
+System cost (if applicable)
+Fixed cost per execution
+Variable costs
+Save
+Step 3: Set Overhead Rate
+
+Enter overhead percentage
+Applied to labor costs
+Typical range: 20-40%
+Save configuration
+Viewing Cost Analysis
+Cost Analysis Dashboard:
+
+1. Total Process Cost
+
+Sum of all cost components
+Per case average
+Total for time period
+Trend over time
+2. Cost Breakdown Chart
+
+Pie chart by cost type
+Shows largest contributors
+Click to drill down
+3. Cost per Activity
+
+Table listing all activities
+Cost per execution
+Total cost (frequency × unit cost)
+Percentage of total
+4. Resource Cost Analysis
+
+Cost per resource
+Utilization vs. cost
+Efficiency metrics
+Optimization opportunities
+How to Use:
+
+Identify High-Cost Activities
+
+Sort by total cost
+Focus on top 20%
+These are optimization targets
+Analyze Cost Trends
+
+Is cost increasing?
+Seasonal patterns?
+Unexpected spikes?
+Compare to Value
+
+Cost per case vs. revenue
+Profit margin analysis
+Value-add activities
+ROI Calculator
+Calculating ROI for Improvements:
+
+Step 1: Access ROI Calculator
+
+Navigate to Cost Analysis page
+Click "ROI Calculator" tab
+Click "New ROI Analysis"
+Step 2: Define Baseline
+
+System auto-populates:
+
+Current process cost
+Current cycle time
+Current throughput
+Current error rate
+Step 3: Define Improvement Scenario
+
+Enter expected improvements:
+
+Cycle Time Reduction
+
+Percentage or absolute reduction
+Example: 20% faster
+Cost Reduction
+
+Labor savings
+System cost reduction
+Example: 15% lower cost
+Throughput Increase
+
+More cases processed
+Example: 25% higher volume
+Quality Improvement
+
+Error rate reduction
+Rework elimination
+Example: 50% fewer errors
+Step 4: Enter Investment Costs
+
+One-Time Costs
+
+Software purchase
+Implementation services
+Training
+Hardware
+Recurring Costs
+
+Annual licenses
+Maintenance
+Support
+Step 5: Calculate ROI
+
+Click "Calculate ROI"
+
+System computes:
+
+Annual Savings
+
+Labor cost savings
+Efficiency gains
+Quality improvements
+Total annual benefit
+Payback Period
+
+Time to recover investment
+Measured in months
+Shorter is better
+ROI Percentage
+
+(Total Benefits - Total Costs) / Total Costs × 100
+Calculated over 1, 3, and 5 years
+Higher is better
+Net Present Value (NPV)
+
+Present value of future benefits
+Considers time value of money
+Positive NPV = good investment
+Step 6: Review Results
+
+Results Dashboard:
+
+Summary Metrics Card
+
+ROI percentage
+Payback period
+NPV
+Break-even date
+Savings Breakdown Chart
+
+Visualize savings by category
+Compare to investment
+Year-over-year view
+Cash Flow Chart
+
+Cumulative cash flow over time
+Shows when payback occurs
+Includes ongoing costs
+Sensitivity Analysis (optional)
+
+Test different assumptions
+Best/worst case scenarios
+Risk assessment
+Step 7: Generate Business Case
+
+Click "Generate Business Case"
+Creates comprehensive document:
+Executive summary
+Financial analysis
+Risk assessment
+Implementation plan
+Approval sign-off
+Export as PDF
+Share with stakeholders
+Priority Scoring
+Automated Prioritization:
+
+For each improvement opportunity:
+
+Impact Score (0-100)
+
+Based on potential savings
+Higher = greater benefit
+Effort Score (0-100)
+
+Implementation difficulty
+Lower = easier to implement
+Priority Score (0-100)
+
+Formula: (Impact × 2 + (100 - Effort)) / 3
+Balances benefit vs. effort
+Higher = higher priority
+Using Priority Scores:
+
+Sort Opportunities
+
+By priority score (high to low)
+Focus on top items first
+Create Roadmap
+
+Quick wins (high priority, low effort)
+Strategic (high priority, high effort)
+Fill-in (medium priority)
+Defer (low priority)
+Track Progress
+
+Mark as "In Progress"
+Update status
+Measure actual ROI
+Best Practices
+1. Accurate Cost Data
+
+Use real hourly rates
+Include all cost components
+Update regularly
+2. Conservative Estimates
+
+Don't over-promise benefits
+Use realistic improvement percentages
+Include risk buffer
+3. Consider All Costs
+
+Implementation effort
+Training time
+Change management
+Ongoing maintenance
+4. Track Actual Results
+
+Compare to projections
+Adjust future estimates
+Learn from experience
+5. Regular Review
+
+Quarterly cost analysis
+Annual ROI review
+Update cost parameters
+AI Process Assistant
+Chat with an AI assistant to get insights about your processes.
+
+Accessing the AI Assistant
+Click the chat icon in the bottom-right corner
+Or navigate to AI Assistant page
+Chat interface opens
+Configuring AI Provider
+Multiple LLM Options:
+
+Replit AI (Default)
+
+Pre-configured
+No API key needed
+Fast responses
+Good for general queries
+OpenAI GPT-4
+
+High quality responses
+Requires API key
+Good for complex analysis
+Mistral AI
+
+Cost-effective
+European data residency
+Fast inference
+DeepSeek
+
+Specialized in coding
+Good for technical queries
+Groq
+
+Ultra-fast inference
+Limited context window
+Together AI
+
+Multiple model options
+Flexible pricing
+Configuring Provider:
+
+Step 1: Access Settings
+
+Settings → AI Configuration
+Or click gear icon in chat
+Step 2: Select Provider
+
+Choose from dropdown
+Each shows:
+Description
+Cost per million tokens
+Latency
+Context window
+Step 3: Enter API Key (if required)
+
+Click "Add API Key"
+Enter your API key
+Get from provider's website
+See platform documentation
+Key is encrypted and stored securely
+Click "Save"
+Step 4: Test Connection
+
+Click "Test"
+Sends test query
+Verifies API key works
+Shows response time
+Step 5: Set as Default (optional)
+
+Toggle "Use as default"
+Applied to all future chats
+Can override per conversation
+Using the AI Assistant
+Types of Questions You Can Ask:
+
+Process Overview
+
+"Summarize the Order to Cash process"
+"What are the main activities in process X?"
+"How many cases were processed last month?"
+Performance Analysis
+
+"Why is the cycle time increasing?"
+"Which activities are bottlenecks?"
+"How can I improve throughput?"
+Conformance Issues
+
+"What are the most common violations?"
+"Why is fitness score low?"
+"How can I fix conformance issues?"
+Automation Opportunities
+
+"Which tasks should I automate first?"
+"What's the ROI of automating activity X?"
+"Suggest automation tools for my process"
+Predictive Insights
+
+"Will we meet SLA targets next month?"
+"What's the forecasted cycle time?"
+"Predict resource needs for next quarter"
+Troubleshooting
+
+"Why did case ID 12345 fail?"
+"Explain the anomaly on January 15th"
+"How to resolve this error?"
+Best Practices for Questions:
+
+Be Specific
+
+Include process name
+Specify time periods
+Reference specific metrics
+Provide Context
+
+Mention what you've already tried
+Explain your goal
+Share constraints
+Ask Follow-Ups
+
+Drill deeper into responses
+Request clarification
+Ask for examples
+Example Conversation:
+
+User: What's slowing down my Order Processing?
+AI: Based on analysis of your Order Processing workflow, 
+the primary bottleneck is the "Credit Check" activity, 
+which has an average wait time of 4.2 hours. This 
+accounts for 62% of total cycle time delay.
+Recommendations:
+1. Automate credit checks for orders under $500
+2. Add one additional credit analyst
+3. Implement priority queuing for high-value orders
+Would you like me to calculate the ROI for these 
+improvements?
+User: Yes, calculate ROI for option 1
+AI: [Performs calculation and presents detailed ROI 
+analysis...]
+
+Conversation Features
+1. Context Awareness
+
+AI remembers conversation history
+References previous questions
+Builds on prior context
+Reset with "New Conversation"
+2. Data Access
+
+AI can query your actual process data
+Real-time analysis
+Accurate metrics
+No hallucinations
+3. Visualizations
+
+AI can generate charts
+Inline display in chat
+Clickable to expand
+Export options
+4. Actionable Suggestions
+
+Not just insights
+Specific recommendations
+Implementation guidance
+Links to relevant features
+5. Source Citations
+
+References data sources
+Links to related analyses
+Verifiable claims
+Transparent reasoning
+Managing Conversations
+Conversation History:
+
+View Past Chats
+
+All conversations saved
+Searchable by keyword
+Organized by date
+Click to resume
+Star Important Chats
+
+Mark as favorite
+Quick access
+Don't get archived
+Share Conversations
+
+Generate shareable link
+Recipients can view (read-only)
+Or export as PDF
+Delete Conversations
+
+Remove from history
+Permanent deletion
+Data privacy compliance
+Advanced Features
+1. Process Comparison
+
+User: Compare Process A vs Process B in terms of 
+efficiency
+AI: [Analyzes both processes and presents comparative 
+metrics, highlights key differences, and suggests best 
+practices to adopt]
+
+2. Root Cause Analysis
+
+User: Why is conformance fitness dropping?
+AI: [Investigates recent changes, identifies new 
+violation patterns, traces to root cause, suggests 
+remediation]
+
+3. Scenario Planning
+
+User: What happens if I add 2 more resources?
+AI: [Runs simulation, predicts impact on cycle time, 
+throughput, cost, presents trade-offs]
+
+4. Learning from Data
+
+User: What patterns do you see in failed cases?
+AI: [Applies ML pattern detection, identifies common 
+characteristics, suggests preventive measures]
+
+Privacy & Security
+Data Handling:
+
+Conversations encrypted in transit
+No data sent to AI provider without permission
+API keys stored encrypted
+User data never used for AI training
+GDPR compliant
+Access Control:
+
+Conversations private to user
+Sharing requires explicit action
+Admins can set usage policies
+Audit logs maintained
+Best Practices
+1. Start Broad, Then Drill Down
+
+Begin with overview questions
+Use AI's insights to guide deeper questions
+Build understanding progressively
+2. Verify Critical Insights
+
+AI is very accurate but check important findings
+Cross-reference with raw data
+Use AI as assistant, not replacement for judgment
+3. Leverage for Learning
+
+Ask "why" and "how"
+Request explanations
+Build process mining expertise
+4. Combine with Platform Features
+
+AI suggests, you execute
+Use AI to navigate to relevant pages
+Seamless workflow integration
+5. Provide Feedback
+
+Thumbs up/down on responses
+Report inaccuracies
+Suggest improvements
+Helps improve AI over time
+Collaboration Features
+Work together with your team on process analysis and improvements.
+
+Process Comments
+Adding Comments:
+
+Step 1: Navigate to Process
+
+Go to any process analysis page
+Scroll to specific section you want to comment on
+Click "Add Comment" button
+Or hover over chart/metric and click comment icon
+Step 2: Write Comment
+
+Type your comment in the text box
+Use formatting if needed:
+Bold: **text**
+Italic: *text*
+Links: Paste URL
+Add context if helpful
+Step 3: @Mention Team Members (optional)
+
+Type @ to trigger mention
+Start typing name
+Select from dropdown
+User receives notification
+Step 4: Post Comment
+
+Click "Post"
+Comment appears with timestamp
+Mentioned users notified
+Email sent (if enabled)
+Viewing Comments:
+
+Comment Indicators
+
+Blue dot on charts with comments
+Number shows comment count
+Click to expand
+Comment Thread
+
+All comments shown chronologically
+Replies indented
+Expand/collapse threads
+Filter Comments
+
+By author
+By date
+Unresolved only
+My mentions
+Threaded Replies
+Replying to Comments:
+
+Click "Reply" on existing comment
+Write your response
+Can @mention others in reply
+Post reply
+How Threads Work:
+
+Replies nested under parent comment
+Visual indentation shows hierarchy
+Notifications to original commenter
+Keep discussions organized
+Best Practices:
+
+Reply to relevant comment (don't create new top-level)
+Be specific in responses
+Use @mentions to bring in experts
+Mark resolved when issue fixed
+Real-Time Updates
+Live Collaboration:
+
+1. Presence Indicators
+
+See who else is viewing the page
+Avatar icons show active users
+Hover to see names
+2. Instant Comment Updates
+
+New comments appear immediately
+No page refresh needed
+Real-time notifications
+3. Edit History
+
+Track who changed what
+View previous versions
+Revert if needed
+4. Concurrent Editing
+
+Multiple users can comment simultaneously
+No conflicts
+All changes synced
+Notifications
+Notification Types:
+
+Mentions
+
+Someone @mentioned you
+High priority
+Includes comment context
+Replies
+
+Response to your comment
+Medium priority
+Links to thread
+Updates
+
+Changes to processes you follow
+Low priority
+Digest available
+Managing Notifications:
+
+Step 1: Notification Center
+
+Click bell icon in header
+Shows all notifications
+Unread count badge
+Mark as read/unread
+Step 2: Configure Preferences
+
+Settings → Notifications
+
+In-App Notifications
+
+Enable/disable
+Sound alerts
+Desktop notifications (browser permission required)
+Email Notifications
+
+Immediate
+Daily digest
+Weekly summary
+Disable
+Notification Filters
+
+Only mentions
+All activity
+Specific processes
+Custom rules
+Step 3: Manage Subscriptions
+
+Auto-Subscribe
+
+Processes you create
+Processes you comment on
+Can disable in settings
+Manual Subscribe
+
+Click "Follow" on any process
+Receive updates
+Unfollow anytime
+Resolving Comments
+Marking Comments as Resolved:
+
+When to Resolve:
+
+Issue has been addressed
+Question has been answered
+Action has been completed
+Discussion is concluded
+How to Resolve:
+
+Click "Resolve" button on comment
+Optionally add resolution note
+Comment marked as resolved
+Moves to "Resolved" section
+Viewing Resolved Comments:
+
+Toggle "Show Resolved"
+Appears with strikethrough
+Can unresolve if needed
+Full history preserved
+Team Collaboration Best Practices
+1. Use @Mentions Wisely
+
+Mention specific people who can help
+Don't overuse (notification fatigue)
+Provide context in mention
+2. Organize Discussions
+
+Use threaded replies
+Keep related comments together
+Resolve when done
+3. Be Descriptive
+
+Explain what you're seeing
+Include relevant metrics
+Link to related analyses
+4. Follow Up
+
+Respond to questions
+Update on action items
+Close the loop
+5. Regular Reviews
+
+Weekly team review of comments
+Address unresolved items
+Archive old discussions
+Sharing Analysis
+Sharing Process Views:
+
+Step 1: Generate Shareable Link
+
+Navigate to analysis page
+Click "Share" button
+Select "Copy Link"
+URL copied to clipboard
+Step 2: Configure Access (optional)
+
+Click "Share Settings"
+Choose access level:
+Anyone with link (requires login)
+Specific users (enter emails)
+Team only (organization members)
+Set expiration date (optional)
+Save settings
+Step 3: Share Link
+
+Paste in email, chat, etc.
+Recipients click link
+Must have account to view
+Same view you're seeing
+Deep Linking:
+
+Share specific:
+
+Process + analysis type
+Date range
+Filter settings
+Comment thread
+Recipients see exactly what you see.
+
+Embedding (Enterprise only):
+
+Generate embed code
+Paste in internal portal
+Live updates
+Interactive charts
+Custom KPI Builder
+Create your own key performance indicators tailored to your business needs.
+
+Understanding Custom KPIs
+What Are Custom KPIs:
+
+User-defined metrics
+Calculated from process data
+Tracked over time
+Alert-capable
+Examples:
+
+"% of orders delivered on time"
+"Average cost per acquisition"
+"Customer satisfaction score"
+"First-time resolution rate"
+Creating a Custom KPI
+Step-by-Step:
+
+Step 1: Access KPI Builder
+
+Navigate to Custom KPIs page
+Click "Create New KPI"
+KPI builder opens
+Step 2: Define KPI Basics
+
+KPI Name
+
+Descriptive and clear
+Example: "On-Time Delivery Rate"
+Description
+
+What it measures
+Why it's important
+How it's used
+Category
+
+Performance
+Quality
+Cost
+Customer
+Custom
+Step 3: Define Calculation
+
+Metric Type:
+
+Count
+
+Number of cases meeting criteria
+Example: "Cases completed in < 24 hours"
+Percentage
+
+Ratio of two counts × 100
+Example: "% of cases without errors"
+Average
+
+Mean of a numeric attribute
+Example: "Average customer rating"
+Sum
+
+Total of values
+Example: "Total revenue processed"
+Custom Formula
+
+Write your own expression
+Supports basic math operators
+Access to data fields
+Filter Criteria:
+
+Click "Add Filter"
+Select field (Activity, Resource, Attribute, etc.)
+Choose operator (=, !=, >, <, contains, etc.)
+Enter value
+Can add multiple filters (AND/OR logic)
+Example: On-Time Delivery Rate
+
+Metric Type: Percentage
+Numerator: Count of cases where "Delivery Time" <= "Due Date"
+Denominator: Count of all cases
+Filters: 
+  - Activity = "Order Delivered"
+  - Date >= Start of Month
+
+Step 4: Set Target & Thresholds
+
+Target Value
+
+Desired KPI value
+Example: 95% for on-time delivery
+Warning Threshold
+
+When to show yellow indicator
+Example: 90%
+Critical Threshold
+
+When to show red indicator
+Example: 85%
+Step 5: Configure Display
+
+Chart Type
+
+Line (trend over time)
+Bar (comparison)
+Gauge (current value vs. target)
+Number (simple display)
+Update Frequency
+
+Real-time
+Hourly
+Daily
+Weekly
+Decimal Places
+
+Precision level
+Example: 2 for percentages
+Step 6: Save KPI
+
+Click "Save"
+KPI appears in dashboard
+Calculation starts immediately
+Viewing Custom KPIs
+KPI Dashboard:
+
+Navigate to Custom KPIs page
+
+All your KPIs displayed as cards
+
+Each card shows:
+
+KPI name
+Current value
+Target value
+Status indicator (green/yellow/red)
+Trend arrow (up/down/flat)
+Mini chart
+Click card to drill down
+
+Full-size chart
+Historical data
+Contributing factors
+Related processes
+Alert Configuration
+Setting Up KPI Alerts:
+
+Step 1: Edit KPI
+
+Click KPI card
+Click "Configure Alerts"
+Step 2: Define Alert Trigger
+
+Condition
+
+KPI value < threshold
+KPI value > threshold
+Trend declining
+Target not met
+Duration
+
+Immediate
+After X consecutive periods
+Prevents false alarms
+Step 3: Set Recipients
+
+Who to notify:
+
+Select users
+Distribution lists
+Webhook URL
+Notification method:
+
+Email
+In-app
+SMS (if configured)
+Step 4: Configure Message
+
+Subject line
+
+Include KPI name
+Indicate severity
+Message template
+
+Use variables: {{kpi_name}}, {{value}}, {{threshold}}
+Add context
+Include action items
+Example Alert:
+
+Subject: [ALERT] On-Time Delivery Rate below target
+Message:
+The On-Time Delivery Rate has fallen to {{value}}%, 
+which is below the warning threshold of {{threshold}}%.
+Current Status: {{value}}%
+Target: {{target}}%
+Trend: {{trend}}
+Recommended Actions:
+1. Review recent delivery exceptions
+2. Check resource availability
+3. Analyze common delay causes
+View Details: {{link}}
+
+Step 5: Test Alert
+
+Click "Send Test Alert"
+Verify receipt
+Check formatting
+Activate alert
+Managing Alerts
+Alert Dashboard:
+
+View All Active Alerts
+
+Settings → Alerts
+Shows all KPI alerts
+Status (active/paused)
+Acknowledge Alerts
+
+Mark as "Acknowledged"
+Add notes on actions taken
+Stops repeat notifications
+Snooze Alerts
+
+Temporarily pause
+Set snooze duration
+Auto-reactivates
+Resolve Alerts
+
+Mark as "Resolved"
+Document resolution
+Alert clears
+Alert History:
+
+View Past Alerts
+
+All triggered alerts logged
+Filter by KPI, date, severity
+Shows resolution status
+Analyze Patterns
+
+Frequency of alerts
+Common triggers
+Response times
+Tune Thresholds
+
+If too many alerts, adjust thresholds
+If missing issues, tighten thresholds
+Balance sensitivity vs. noise
+Best Practices
+1. Start with Key Metrics
+
+Don't create too many KPIs
+Focus on business-critical metrics
+Quality over quantity
+2. Align with Goals
+
+KPIs should support strategic objectives
+Tie to business outcomes
+Make them actionable
+3. Set Realistic Targets
+
+Based on historical data
+Achievable but challenging
+Review and adjust quarterly
+4. Regular Review
+
+Weekly check of KPI dashboard
+Monthly deep-dive analysis
+Quarterly KPI portfolio review
+5. Act on Alerts
+
+Don't just acknowledge
+Investigate root causes
+Implement improvements
+6. Share with Team
+
+Make KPIs visible
+Include in meetings
+Celebrate wins
+7. Evolve Over Time
+
+Retire obsolete KPIs
+Add new ones as needed
+Refine calculations
+Settings & Configuration
+Customize the platform to suit your needs and preferences.
+
+User Profile
+Accessing Profile:
+
+Click profile icon (top-right)
+Select "Profile Settings"
+Profile Information:
+
+Personal Details
+
+Name
+Email (cannot change, used for login)
+Job title
+Department
+Save changes
+Profile Picture
+
+Click "Upload Photo"
+Select image (max 5MB)
+Crop if needed
+Save
+Password Change
+
+Enter current password
+Enter new password
+Confirm new password
+Must meet requirements (8+ chars, uppercase, lowercase, number, special)
+Click "Update Password"
+Preferences
+
+Language (English, Spanish, French, German, etc.)
+Date format (MM/DD/YYYY, DD/MM/YYYY, YYYY-MM-DD)
+Time zone
+Number format (1,000.00 vs 1.000,00)
+Appearance Settings
+Theme:
+
+Light Mode
+
+Bright background
+Dark text
+Better for bright environments
+Dark Mode
+
+Dark background
+Light text
+Reduces eye strain
+Auto (System)
+
+Follows OS setting
+Switches automatically
+To Change:
+
+Click theme toggle in header
+Or Settings → Appearance
+Select preferred theme
+Saves automatically
+Display Density:
+
+Comfortable (default)
+
+More spacing
+Larger touch targets
+Recommended for touchscreens
+Compact
+
+Less spacing
+More content visible
+Better for large displays
+Notification Settings
+Configure in Settings → Notifications
+
+Email Notifications:
+
+Frequency
+
+Immediate (as they happen)
+Daily digest (one email per day)
+Weekly summary (one email per week)
+Disabled (no emails)
+Types
+
+@Mentions: When someone mentions you
+Comments: Replies to your comments
+Alerts: KPI and process alerts
+Reports: Scheduled report delivery
+System: Platform updates
+Toggle each on/off individually
+In-App Notifications:
+
+Enable/Disable
+
+Toggle master switch
+Notification Sound
+
+Enable/disable
+Choose sound
+Volume control
+Desktop Notifications
+
+Requires browser permission
+Shows even when tab not active
+Click to navigate to item
+Alert Settings:
+
+Covered in Alert Configuration section
+
+Privacy & Data
+Data Export:
+
+Settings → Privacy → "Export My Data"
+Select data to include:
+Profile information
+Process data (created by you)
+Comments
+Reports
+Activity logs
+Click "Request Export"
+Processing time: 15-60 minutes
+Email sent with download link
+Link expires after 7 days
+Data in JSON format (machine-readable)
+Data Deletion:
+
+Settings → Privacy → "Delete My Data"
+Options:
+Delete specific data types
+Delete all data (full deletion)
+Warning: Irreversible action
+Requires password confirmation
+Processing within 24 hours
+Email confirmation when complete
+Account Deletion:
+
+Settings → Account → "Delete Account"
+Warning: Permanent action
+All your data deleted
+Cannot be recovered
+Processes you created transferred to admin
+Enter password
+Type "DELETE" to confirm
+Account deleted within 48 hours
+API Access
+Generating API Keys:
+
+Settings → API Keys
+Click "Generate New Key"
+Enter:
+Description (e.g., "Desktop Agent", "Python Script")
+Expiration date (optional but recommended)
+Permissions (read-only or read-write)
+Click "Generate"
+Important: Copy key immediately
+Shown only once
+Store securely
+Never share publicly
+Managing API Keys:
+
+View Keys:
+
+List of all active keys
+Description
+Created date
+Last used date
+Expiration
+Revoke Key:
+
+Click "Revoke" button
+Immediate effect
+All requests with this key fail
+Cannot be undone
+Best Practices:
+
+Use one key per application
+Set expiration dates
+Rotate keys every 90 days
+Revoke unused keys
+Never commit keys to version control
+Integration Settings
+Available Integrations:
+
+Email Integration
+
+Connect IMAP account
+Auto-import process emails
+Parse workflow steps
+Slack Integration
+
+Receive alerts in Slack
+Share reports
+Comment from Slack
+Microsoft Teams
+
+Similar to Slack
+Notifications and sharing
+Webhook
+
+Custom HTTP endpoints
+Real-time event streaming
+For custom integrations
+Setting Up Integration:
+
+Example: Slack
+
+Settings → Integrations → "Slack"
+Click "Connect to Slack"
+Authorize on Slack's website
+Select channel for notifications
+Configure event types:
+Alerts
+Report completions
+Comment mentions
+Save settings
+Test by sending sample notification
+Organization Settings (Admin Only)
+If you're an admin, additional settings available:
+
+User Management:
+
+Settings → Users
+View all users in organization
+Actions:
+Invite new users (enter email)
+Deactivate users
+Assign roles (Admin, Analyst, Viewer)
+Reset passwords
+View activity logs
+Role Permissions:
+
+Admin: Full access, can manage users
+Analyst: Create and edit processes, reports
+Viewer: Read-only access
+Billing:
+
+Settings → Billing
+View current plan
+Usage statistics
+Upgrade/downgrade plan
+Payment method
+Invoices
+Audit Logs:
+
+Settings → Audit
+View all user actions:
+Logins
+Data exports
+Configuration changes
+Process modifications
+Filter by user, date, action type
+Export logs for compliance
+System Preferences
+Default Settings:
+
+Date Ranges:
+
+Set default for all analyses
+Last 7 days, 30 days, 90 days, or custom
+Applies when loading pages
+Auto-Refresh:
+
+Real-time dashboards auto-update
+Set interval (30 sec, 1 min, 5 min)
+Or disable auto-refresh
+Export Defaults:
+
+Preferred format (PDF, Excel, PowerPoint)
+Include charts or data only
+Default file naming convention
+Calculation Settings:
+
+Business Hours:
+
+Define working hours
+Used for cycle time calculations
+Exclude weekends (optional)
+Set time zone
+Currency:
+
+Default currency for cost analysis
+Symbol and formatting
+Exchange rates (if multi-currency)
+Troubleshooting
+Common Issues:
+
+1. Can't log in
+
+Check caps lock
+Reset password (Forgot Password link)
+Clear browser cache
+Try incognito/private mode
+Contact admin if account disabled
+2. Page not loading
+
+Check internet connection
+Refresh page (Ctrl+R / Cmd+R)
+Clear cache and cookies
+Try different browser
+Check system status page
+3. Upload failing
+
+Check file format (CSV only)
+Ensure file size < 50MB
+Verify CSV structure
+Remove special characters
+Try smaller file first
+4. Missing data
+
+Verify date range filter
+Check process selection
+Ensure data was uploaded
+Refresh page
+Contact support if persists
+5. Slow performance
+
+Large dataset may take time
+Use filters to reduce scope
+Clear browser cache
+Close other browser tabs
+Check network speed
+Getting Help:
+
+Help Center
+
+Click "?" icon
+Search knowledge base
+Step-by-step guides
+Video tutorials
+Contact Support
+
+Settings → Support
+Submit ticket
+Include:
+Description of issue
+Steps to reproduce
+Screenshots
+Browser and OS
+Response within 24 hours
+Community Forum
+
+Ask questions
+Share best practices
+Learn from other users
+Feature requests
+Appendix
+Keyboard Shortcuts
+Navigation:
+
+Ctrl/Cmd + K: Quick search
+Ctrl/Cmd + /: Open keyboard shortcuts
+Ctrl/Cmd + B: Toggle sidebar
+Esc: Close dialogs/modals
+Analysis:
+
+Ctrl/Cmd + F: Open filters
+Ctrl/Cmd + E: Export current view
+Ctrl/Cmd + S: Share current view
+R: Refresh data
+Comments:
+
+C: Add comment
+Ctrl/Cmd + Enter: Post comment
+@: Mention user
+Glossary
+Activity: A step or task in a process
+
+Case ID: Unique identifier for a process instance
+
+Conformance: How well actual process matches expected model
+
+Cycle Time: Total time from process start to end
+
+Event Log: Data file containing process execution records
+
+Fitness: Measure of conformance (0-100%)
+
+KPI: Key Performance Indicator
+
+Process Instance: Single execution of a process
+
+Resource: Person or system executing activities
+
+Throughput: Number of cases completed per time period
+
+Token-Based Replay: Method for conformance checking
+
+Transition: Flow from one activity to another
+
+CSV File Format Requirements
+Required Columns:
+
+CaseID: Unique identifier per process instance
+Activity: Name of the activity/task
+Timestamp: When activity occurred (ISO 8601 format recommended)
+Optional Columns:
+
+Resource: Who/what performed the activity
+Cost: Expense for this activity execution
+[CustomAttribute]: Any additional data fields
+Example:
+
+CaseID,Activity,Timestamp,Resource,Cost
+C001,Order Received,2024-01-01T09:00:00,System,0
+C001,Payment Processed,2024-01-01T09:15:00,John,25
+C001,Order Shipped,2024-01-01T10:00:00,Mary,15
+C002,Order Received,2024-01-01T09:30:00,System,0
+C002,Payment Processed,2024-01-01T10:00:00,John,25
+
+Best Practices:
+
+Use consistent date/time format
+Avoid special characters in activity names
+Keep CaseID consistent within each process
+Include Resource for utilization analysis
+Add Cost for financial analysis
+Video Tutorials
+Access at: Help → Video Tutorials
+
+Available Tutorials:
+
+Getting Started (5 min)
+Uploading Event Logs (3 min)
+Process Discovery Walkthrough (10 min)
+Understanding Conformance (8 min)
+Performance Analytics Deep Dive (15 min)
+Creating Custom KPIs (7 min)
+Using AI Assistant (6 min)
+Generating Reports (5 min)
+Digital Twin Simulation (12 min)
+Task Mining Setup (10 min)
+Support & Feedback
+Need Help?
+
+Email: support@epi-xray.com
+Live Chat: Click chat icon (business hours)
+Help Center: help.epi-xray.com
+Community Forum: community.epi-xray.com
+Share Feedback:
+
+Settings → Send Feedback
+Feature requests welcome
+Bug reports appreciated
+User experience surveys
+Stay Updated:
+
+Follow release notes
+Subscribe to newsletter
+Join user group calls (monthly)
+Attend webinars
+Document Version: 1.0
+Last Updated: January 2025
+EPI-Q Portal - Revolutionizing Process Mining & Automation
+
+EPI-Q - Process Mining Platform
+Overview
+EPI-Q: See Through Your Processes, Transform Your Business
+
+EPI-Q is a next-generation process intelligence platform that empowers organizations to see the invisible—the hidden patterns, inefficiencies, and opportunities buried deep within their business operations. Built for the modern enterprise, EPI-Q transforms raw operational data into actionable insights with surgical precision.
+
+The Vision: In a world where businesses generate terabytes of process data daily, most organizations remain blind to what's actually happening in their operations. EPI-Q changes that. We believe every business deserves X-ray vision into their processes—the ability to see bottlenecks before they cause delays, predict failures before they happen, and simulate improvements before implementing them.
+
+What We Strive Towards:
+
+Radical Transparency: Make every process visible, measurable, and understandable
+Predictive Intelligence: Shift from reactive problem-solving to proactive optimization
+Democratic Access: Bring enterprise-grade process mining to mid-market businesses and SMBs
+Speed to Insight: Deliver answers in seconds, not weeks—because decisions can't wait
+Continuous Evolution: Transform static process maps into living digital twins that adapt and learn
+The Platform: EPI-Q combines cutting-edge AI, advanced algorithms, and intuitive design to deliver a comprehensive process intelligence suite. From discovering hidden workflows in email threads to simulating the ROI of process changes, from detecting anomalies in real-time to forecasting future performance—every feature is built with one goal: help businesses operate at their absolute best.
+
+Core Capabilities:
+
+Process Discovery: Automatically extract and visualize process flows with thin, electric-animated diagrams
+Predictive Analytics: Forecast trends, detect anomalies, and run what-if scenarios
+Digital Twin Simulation: Create living models of your processes and test changes risk-free
+Real-Time Monitoring: Track process health with intelligent alerts and automated scoring
+AI-Powered Insights: Natural language queries meet enterprise-grade analytics
+Task Mining: Desktop activity analysis for automation opportunity discovery
+Advanced Reporting: Export insights to stakeholders in PDF, Excel, and PowerPoint
+Collaboration: Team-based process improvement with comments, mentions, and threads
+EPI-Q doesn't just show you what happened—it shows you what's happening, what will happen, and what could happen if you make the right changes. It's process mining evolved for the AI era, designed to make every organization faster, smarter, and more efficient.
+
+User Preferences
+Prefers comprehensive documentation with detailed feature descriptions and step-by-step user guides
+Consistent dashboard structure and navigation across all module pages
+System Architecture
+The EPI-Q platform is built with Next.js 15.5.4, React 19.1.0, and TypeScript, utilizing pnpm as the package manager. The frontend runs on port 5000.
+
+UI/UX Design:
+
+Styling: Tailwind CSS v4 with shadcn/ui components and custom brand color utilities.
+Brand Colors: Primary color oklch(0.72 0.14 195) (cyan) with automatic dark mode adjustment, along with semantic tokens.
+Animations: framer-motion for interactive elements.
+Components: shadcn/ui base components augmented with custom enhancements.
+Dark Mode: Full dark/light mode support with theme persistence.
+Responsiveness: Optimized for mobile with responsive navigation.
+Process Visualization: Interactive process flowcharts powered by ReactFlow, featuring auto-layout, color-coded nodes, edge thickness, and animated edges.
+Branding: FinACEverse branded footer component.
+Technical Implementations & Feature Specifications:
+
+Core Features: Process Discovery (Alpha Miner, Inductive Miner), Conformance Checking (token-based replay), Performance Analytics (cycle time, throughput, bottleneck identification), Automation Opportunities, Predictive Analytics, Digital Twin Simulation, Scenario Analysis, Task Mining, Real-Time Process Monitoring, Advanced Reporting & Exports, Cost Analysis & ROI Calculator, AI Process Assistant, Collaboration Features, Custom KPI Builder, and Performance Optimizations.
+Unified Process Analysis Dashboard: Comprehensive multi-tab interface consolidating all five analysis types (Process Discovery, Conformance Checking, Performance Analytics, Automation Opportunities, Predictive Analytics) into a single page with horizontal tab navigation. Features include: process selector dropdown, Filter dialog (date range and confidence threshold), Share dropdown (email, copy link, export to PDF/Excel/PowerPoint), deep linking support via query parameters, and real-time loading states for each analysis type. All API endpoints properly connected with filter parameters passed in request body.
+Real-Time Monitoring: Live process instance tracking with automated health scoring, intelligent alerts, and real-time status updates.
+Advanced Reporting: Comprehensive report generation system with PDF, Excel, and PowerPoint export formats.
+Cost Analysis & ROI Calculator: Automatic cost metric generation and ROI calculation engine with NPV projections and priority scoring.
+AI Process Assistant: Natural language chatbot interface powered by configurable LLM providers for process mining insights.
+Multi-LLM Configuration System: Production-ready UI-based configuration for multiple AI providers (Replit AI, OpenAI, Mistral AI, DeepSeek, Groq, Together AI) with encrypted API key storage and user-scoped selection.
+Collaboration Features: Team collaboration through process comments with @mentions, threaded replies, and real-time updates.
+Custom KPI Builder: Create custom KPIs with threshold-based alerts and alert management.
+Performance Optimizations: Enterprise-grade performance with optimized dashboard load times, smart caching, and efficient SQL aggregations.
+Process Discovery Algorithm: Implements the Alpha Miner algorithm.
+Predictive Analytics Suite: Comprehensive forecasting and scenario analysis system with three integrated modules: (1) Anomaly Detection - Five algorithms for detecting anomalies with severity classification and AI-generated insights; (2) Forecasting - Hybrid time-series prediction using Holt-Winters exponential smoothing (≥12 data points), linear regression (medium data), and moving average (sparse data) with EWMA denoising, confidence intervals, and 30/60/90-day predictions for cycle time, throughput, and resource utilization; (3) Scenario Analysis - What-if simulation engine leveraging discrete-event simulator to compare optimistic (30% more resources, 30% faster), expected (baseline), and pessimistic (30% fewer resources, 50% slower) scenarios with risk assessment, SLA breach probability calculation, and comprehensive comparison metrics. Features data quality indicators, zero-division guards, and graceful degradation for insufficient data.
+Token-Based Replay Conformance Checking: Industry-standard Petri net conformance validation.
+Task Mining: Comprehensive desktop activity analysis system with AI-powered pattern detection, automation opportunity engine, and privacy consent tracking. Includes a standalone Desktop Capture Agent built with Electron for real-time monitoring.
+API Key Management: UI for generating, viewing, and revoking desktop agent API keys with cryptographically secure generation.
+Encryption Security: All sensitive API keys encrypted at rest using AES-256-GCM.
+Email-to-Workflow Parser: AI-powered extraction of process steps from unstructured email communications.
+Unified Process Visualization: Cross-system process map with color-coded nodes by source system.
+Digital Twin Simulation & What-If Scenarios: Production-ready comprehensive digital twin platform with three integrated modules: (1) Process Modeling - Interactive ReactFlow visualization with color-coded nodes (green=start, red=end, cyan=activities), animated edges for high-frequency transitions, and real-time process statistics; (2) What-If Analysis - Scenario configuration interface with slider controls for case count (10-500) and duration multipliers (0.5x-2.0x), real-time simulation execution via discrete-event simulator, and complete scenario history with metrics; (3) Impact Simulation - Baseline vs. optimized scenario comparison engine calculating cycle time improvements, throughput increases, bottleneck resolution tracking, and visual impact cards. Features comprehensive race condition prevention for cross-process data isolation, null-safe rendering, and production-grade state management.
+Backend Architecture:
+
+Database: PostgreSQL, managed via Neon, utilizing Drizzle ORM.
+API Endpoints: Comprehensive RESTful API for various platform functionalities.
+Security: UUID-based filename sanitization, file type/size validation, and database constraints.
+Authentication & Security System:
+
+Type: Custom JWT-based authentication.
+Password Security: bcryptjs with 12 salt rounds, strong password requirements.
+Session Management: JWT tokens with 7-day expiry, stored in httpOnly cookies.
+Input Validation: Zod schemas.
+Security Features: Rate limiting, CSRF protection, input sanitization, and audit logging.
+GDPR Compliance Features:
+
+Data Export: Complete user data export in JSON format.
+Right to Deletion: Cascading deletion of all user data.
+Consent Management: Track and manage user consents.
+Desktop Applications:
+
+Main Desktop App: EPI-Q is available as an installable desktop application built with Electron 28, supporting Windows, macOS, and Linux.
+Desktop Capture Agent (Task Mining): Standalone Electron application for activity monitoring, located in desktop-agent/ with features like real-time tracking, encryption, privacy controls, and API integration.
+Docker Deployment: EPI-Q supports containerized deployment with a multi-stage Docker build, security hardening, Docker Compose orchestration, and comprehensive deployment documentation.
+
+External Dependencies
+Database: PostgreSQL (via Neon)
+ORM: Drizzle ORM
+AI Integration: OpenAI GPT-4.1 (using Replit AI Integrations)
+UI Libraries: ReactFlow
+Desktop Framework: Electron 28 with Electron Builder
+
+Configure session storage to not automatically create tables
+
+Agent 3
+
+In progress tasks
+0 / 10
+
+Add new tables for tickets, subscriptions
+Apply and check data storage changes
+Make services for tickets, subscriptions
+Build features to manage tickets
+Build features for subscriptions, billing
+Connect Stripe and handle payments
+Create admin screen for tickets
+Create subscription screen, pricing page
+Create user and role management screen
+Check ticket, subscription, payment process
+
+Show previous events
+
+20 messages & 70 actions
+Now let me update all these configuration files:
+Checkpoint made
+6 hours ago
+Saved progress at the end of the loop
+
+Rollback here
+
+Changes
+
+Preview
+14 minutes of work
+Now tell me if the landing page can have a downloads page where the desktop version thats actually installable on desktops can be created.
+
+Also do we have the installation files in place?
+
+6 hours ago
+
+2 messages & 7 actions
+Let me check the current landing page structure and see if we have the desktop installation files ready:
+Checkpoint made
+6 hours ago
+Saved progress at the end of the loop
+
+Rollback here
+
+Changes
+
+Preview
+1 minute of work
+Create a professional downloads page now with:
+
+Beautiful UI with platform cards
+"Coming Soon" badges or links to GitHub Releases
+Installation instructions
+System requirements
+
+5 hours ago
+
+8 messages & 25 actions
+I'll create a professional downloads section for the landing page with beautiful platform cards, installation instructions, and system requirements!
+Checkpoint made
+5 hours ago
+Saved progress at the end of the loop
+
+Rollback here
+
+Changes
+
+Preview
+5 minutes of work
+What enhancements can be made?
+
+19 minutes ago
+
+1 message & 1 action
+Great question! Here are some valuable enhancements we could add to make the downloads page even more powerful: ## **🎯 Top Recommended Enhancements:** ### **1. Auto-Detect User's Operating System** - Automatically highlight the correct platform card based on user's OS - Pre-select the right tab in installation instructions - Show a "Recommended for you" badge ### **2. Desktop App Screenshots/Mockups** - Add visual previews of the desktop app in action - Platform-specific screenshots (Windows/macOS/Linux UI differences) - Feature showcase carousel ### **3. Changelog & Release Notes** - Dedicated section showing what's new in each version - Version history with dates and improvements - "What's Coming" roadmap section ### **4. Email Notification System** - "Notify me when available" form for Coming Soon releases - Collect emails for launch announcements - Integration with your marketing/CRM system ### **5. Security & Verification** - Add SHA-256 checksums for each installer - Digital signature verification instructions - GPG signature files for Linux packages ### **6. FAQ & Troubleshooting** - Common installation issues and fixes - Compatibility checker (test if system meets requirements) - Uninstallation instructions - Support contact information ### **7. Feature Comparison Table** - Web version vs Desktop version capabilities - Highlight desktop-exclusive features (offline mode, better performance) - Help users decide which version to use ### **8. Download Analytics** - Show download count/popularity - "Most popular" badge on most downloaded platform - Real-time download statistics ### **9. Alternative Download Options** - Direct download mirrors - Package manager instructions (Homebrew for Mac, Chocolatey for Windows, APT/YUM for Linux) - Portable versions (no installation required) ### **10. Beta/Early Access Program** - Signup form for beta testers - Early access to new features - Community feedback integration --- ## **🚀 Quick Wins (Easy to Implement):** 1. **OS Auto-Detection** - JavaScript to detect navigator.platform 2. **Download Counter** - Simple database counter 3. **FAQ Accordion** - Expand the existing UI with FAQ section 4. **Checksums** - Generate and display verification hashes --- **Which enhancements would you like me to implement?** I'd recommend starting with: - **OS Auto-Detection** (improves UX immediately) - **Screenshots/Mockups** (helps users visualize the product) - **FAQ Section** (reduces support burden) Let me know which ones sound most valuable to you! 🎨
+Checkpoint made
+19 minutes ago
+Saved progress at the end of the loop
+
+Rollback here
+
+Changes
+
+Preview
+30 seconds of work
+Create a ticket handling system. User management, subscription management and payment gateway integration and auto swipe setup
+
+10 minutes ago
+
+Show less
+
+Decided on system architecture design (4 seconds)
+Excellent! Let me create a comprehensive ticket handling system with user management, subscription tiers, and Stripe payment integration. This is a substantial feature, so I'll break it down systematically.
+
+
+Show 4 more
+
+Pondered Stripe integration blueprint
+Perfect! I found the Stripe integration. Let me build a comprehensive ticket handling system with subscription management and payment integration. I'll start by checking for Stripe API keys and setting up the database schema.
+
+
+Decided on architecture planning approach
+Good point! Let me consult the Architect first to design a robust architecture for this comprehensive system before implementing.
+
+
+Designed ticketing, subscription, and Stripe payment system
+
+Planned schema extension
+Excellent architecture plan! Let me implement this comprehensive system step by step. I'll start with the database schema extensions.
+
+
+Show 3 more
+
+Decided on new table additions
+Now let me extend the schema with all the new tables for tickets, subscriptions, and payments:
+
+
+Edited shared/schema.ts
+
+Planned schema push execution
+Perfect! The schema has been extended with all the new tables. Now let me push these changes to the database:
+
+
+Executed pnpm db:push --force
+
+Decided on providing comprehensive summary (4 seconds)
+The database push timed out. Let me provide you with a comprehensive summary of what I've built so far and the plan to complete this system:
+
+✅ What I've Completed:
+1. Comprehensive Database Schema Design
+I've extended the Drizzle schema with 13 new tables organized into 3 major systems:
+
+🎫 Ticket Management System:
+
+ticket_categories - Categories with SLA targets (billing, technical, etc.)
+tickets - Main ticket table with status, priority, assignments
+ticket_messages - Threaded conversations on tickets
+ticket_attachments - File uploads for tickets
+ticket_watchers - Users following tickets for notifications
+ticket_activity_log - Complete audit trail
+💳 Subscription & Billing System:
+
+subscription_plans - Pricing tiers (Free, Pro, Enterprise) with feature limits
+user_subscriptions - User subscription status & Stripe integration
+subscription_usage - Track usage metrics against limits
+payments - Payment transaction records
+invoices - Invoice history with Stripe data
+payment_events - Stripe webhook event log
+👥 User Management:
+
+user_profiles - Extended user information
+role_assignments - Flexible RBAC system (admin, agent, customer)
+2. Database Relationships Configured
+All foreign keys properly linked
+Optimized indexes on frequently-queried fields
+Relations set up for Drizzle ORM queries
+📋 Next Steps to Complete:
+Phase 1: Database Migration (In Progress)
+Push schema changes to PostgreSQL ✅ Schema designed
+Seed default subscription plans ⏳ Pending
+Create default ticket categories ⏳ Pending
+Phase 2: Stripe Integration
+Ask for Stripe API keys (STRIPE_SECRET_KEY, VITE_STRIPE_PUBLIC_KEY)
+Install Stripe SDK and configure
+Build webhook handler for payment events
+Test subscription flow
+Phase 3: Backend API Development
+Build Ticket API endpoints
+Build Subscription API endpoints
+Build User Management API endpoints
+Build Payment API endpoints
+Phase 4: Frontend UI Development
+Admin ticket dashboard
+Customer ticket submission form
+Subscription management & pricing page
+User profile and billing settings
+Admin user management panel
+🎯 Key Features This Will Enable:
+For Customers:
+
+Submit support tickets through web interface
+Track ticket status in real-time
+Choose subscription plans and manage billing
+View invoices and payment history
+For Admins/Agents:
+
+Manage ticket queue with filters and assignments
+Respond to tickets with internal notes
+Manage user roles and permissions
+Monitor subscription metrics
+Handle billing issues
+For Business:
+
+Automated recurring billing via Stripe
+Usage tracking and limit enforcement
+Revenue analytics and reporting
+SLA tracking and response time metrics
+❓ Questions for You:
+Subscription Plans: What pricing tiers would you like? (I can suggest: Free/$0, Pro/$29/month, Enterprise/$99/month)
+
+Ticket Categories: What categories do you need? (Suggested: Billing, Technical Support, Feature Request, Bug Report)
+
+Feature Limits: What limits per tier? (e.g., Free: 10 tickets/month, Pro: Unlimited tickets, Enterprise: Priority support)
+
+Priority for Implementation: What should I build first?
+
+Option A: Complete ticket system first (without payments)
+Option B: Complete subscription & payments first
+Option C: Build both in parallel (recommended)
+Would you like me to continue with the full implementation? I can either proceed with all components or focus on a specific area first based on your priorities.

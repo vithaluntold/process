@@ -1,16 +1,43 @@
 import { pgTable, text, serial, timestamp, integer, real, boolean, jsonb, primaryKey, varchar, index } from "drizzle-orm/pg-core";
 import { relations, sql } from "drizzle-orm";
 
+// ===================================
+// MULTI-TENANT ORGANIZATIONS
+// ===================================
+
+export const organizations = pgTable("organizations", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  slug: text("slug").notNull().unique(),
+  domain: text("domain"),
+  logo: text("logo"),
+  industry: text("industry"),
+  size: text("size"), // small, medium, large, enterprise
+  status: text("status").notNull().default("active"), // active, suspended, trial, canceled
+  billingEmail: text("billing_email"),
+  settings: jsonb("settings"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  slugIdx: index("organizations_slug_idx").on(table.slug),
+}));
+
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
+  organizationId: integer("organization_id").references(() => organizations.id),
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
   firstName: text("first_name"),
   lastName: text("last_name"),
-  role: text("role").notNull().default("user"),
+  role: text("role").notNull().default("employee"), // super_admin, admin, employee
+  status: text("status").notNull().default("active"), // active, inactive, suspended
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  orgIdIdx: index("users_organization_id_idx").on(table.organizationId),
+  roleIdx: index("users_role_idx").on(table.role),
+}));
 
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
@@ -692,6 +719,7 @@ export const ticketCategories = pgTable("ticket_categories", {
 
 export const tickets = pgTable("tickets", {
   id: serial("id").primaryKey(),
+  organizationId: integer("organization_id").references(() => organizations.id).notNull(),
   requesterId: integer("requester_id").references(() => users.id).notNull(),
   assigneeId: integer("assignee_id").references(() => users.id),
   categoryId: integer("category_id").references(() => ticketCategories.id),
@@ -709,6 +737,7 @@ export const tickets = pgTable("tickets", {
   resolvedAt: timestamp("resolved_at"),
   firstResponseAt: timestamp("first_response_at"),
 }, (table) => ({
+  orgIdIdx: index("tickets_organization_id_idx").on(table.organizationId),
   statusIdx: index("tickets_status_idx").on(table.status),
   priorityIdx: index("tickets_priority_idx").on(table.priority),
   categoryIdx: index("tickets_category_id_idx").on(table.categoryId),
@@ -720,6 +749,7 @@ export const tickets = pgTable("tickets", {
 export const ticketMessages = pgTable("ticket_messages", {
   id: serial("id").primaryKey(),
   ticketId: integer("ticket_id").references(() => tickets.id).notNull(),
+  organizationId: integer("organization_id").references(() => organizations.id).notNull(),
   authorId: integer("author_id").references(() => users.id).notNull(),
   body: text("body").notNull(),
   visibility: text("visibility").notNull().default("public"), // public, internal
@@ -729,12 +759,14 @@ export const ticketMessages = pgTable("ticket_messages", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (table) => ({
   ticketIdIdx: index("ticket_messages_ticket_id_idx").on(table.ticketId),
+  orgIdIdx: index("ticket_messages_organization_id_idx").on(table.organizationId),
   createdAtIdx: index("ticket_messages_created_at_idx").on(table.createdAt),
 }));
 
 export const ticketAttachments = pgTable("ticket_attachments", {
   id: serial("id").primaryKey(),
   ticketId: integer("ticket_id").references(() => tickets.id).notNull(),
+  organizationId: integer("organization_id").references(() => organizations.id).notNull(),
   messageId: integer("message_id").references(() => ticketMessages.id),
   uploaderId: integer("uploader_id").references(() => users.id).notNull(),
   storagePath: text("storage_path").notNull(),
@@ -744,25 +776,30 @@ export const ticketAttachments = pgTable("ticket_attachments", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, (table) => ({
   ticketIdIdx: index("ticket_attachments_ticket_id_idx").on(table.ticketId),
+  orgIdIdx: index("ticket_attachments_organization_id_idx").on(table.organizationId),
 }));
 
 export const ticketWatchers = pgTable("ticket_watchers", {
   ticketId: integer("ticket_id").references(() => tickets.id).notNull(),
+  organizationId: integer("organization_id").references(() => organizations.id).notNull(),
   userId: integer("user_id").references(() => users.id).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, (table) => ({
   pk: primaryKey({ columns: [table.ticketId, table.userId] }),
+  orgIdIdx: index("ticket_watchers_organization_id_idx").on(table.organizationId),
 }));
 
 export const ticketActivityLog = pgTable("ticket_activity_log", {
   id: serial("id").primaryKey(),
   ticketId: integer("ticket_id").references(() => tickets.id).notNull(),
+  organizationId: integer("organization_id").references(() => organizations.id).notNull(),
   actorId: integer("actor_id").references(() => users.id),
   actionType: text("action_type").notNull(), // created, status_changed, assigned, commented, etc.
   payload: jsonb("payload"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, (table) => ({
   ticketIdIdx: index("ticket_activity_log_ticket_id_idx").on(table.ticketId),
+  orgIdIdx: index("ticket_activity_log_organization_id_idx").on(table.organizationId),
   createdAtIdx: index("ticket_activity_log_created_at_idx").on(table.createdAt),
 }));
 
@@ -787,9 +824,9 @@ export const subscriptionPlans = pgTable("subscription_plans", {
   tierIdx: index("subscription_plans_tier_idx").on(table.tier),
 }));
 
-export const userSubscriptions = pgTable("user_subscriptions", {
+export const organizationSubscriptions = pgTable("organization_subscriptions", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id).notNull(),
+  organizationId: integer("organization_id").references(() => organizations.id).notNull(),
   stripeCustomerId: text("stripe_customer_id").unique(),
   stripeSubscriptionId: text("stripe_subscription_id").unique(),
   planId: integer("plan_id").references(() => subscriptionPlans.id).notNull(),
@@ -798,16 +835,18 @@ export const userSubscriptions = pgTable("user_subscriptions", {
   currentPeriodEnd: timestamp("current_period_end"),
   cancelAtPeriodEnd: boolean("cancel_at_period_end").notNull().default(false),
   trialEnd: timestamp("trial_end"),
+  seats: integer("seats").notNull().default(1), // Number of user seats
+  seatsUsed: integer("seats_used").notNull().default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (table) => ({
-  userIdIdx: index("user_subscriptions_user_id_idx").on(table.userId),
-  statusIdx: index("user_subscriptions_status_idx").on(table.status),
+  orgIdIdx: index("organization_subscriptions_org_id_idx").on(table.organizationId),
+  statusIdx: index("organization_subscriptions_status_idx").on(table.status),
 }));
 
 export const subscriptionUsage = pgTable("subscription_usage", {
   id: serial("id").primaryKey(),
-  subscriptionId: integer("subscription_id").references(() => userSubscriptions.id).notNull(),
+  subscriptionId: integer("subscription_id").references(() => organizationSubscriptions.id).notNull(),
   metricKey: text("metric_key").notNull(), // tickets_created, storage_used, etc.
   currentValue: integer("current_value").notNull().default(0),
   limitValue: integer("limit_value"),
@@ -819,7 +858,7 @@ export const subscriptionUsage = pgTable("subscription_usage", {
 
 export const payments = pgTable("payments", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id).notNull(),
+  organizationId: integer("organization_id").references(() => organizations.id).notNull(),
   stripePaymentIntentId: text("stripe_payment_intent_id").unique(),
   amount: integer("amount").notNull(), // in cents
   currency: text("currency").notNull().default("usd"),
@@ -831,16 +870,16 @@ export const payments = pgTable("payments", {
   metadata: jsonb("metadata"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, (table) => ({
-  userIdIdx: index("payments_user_id_idx").on(table.userId),
+  orgIdIdx: index("payments_organization_id_idx").on(table.organizationId),
   createdAtIdx: index("payments_created_at_idx").on(table.createdAt),
   statusIdx: index("payments_status_idx").on(table.status),
 }));
 
 export const invoices = pgTable("invoices", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").references(() => users.id).notNull(),
+  organizationId: integer("organization_id").references(() => organizations.id).notNull(),
   stripeInvoiceId: text("stripe_invoice_id").unique(),
-  subscriptionId: integer("subscription_id").references(() => userSubscriptions.id),
+  subscriptionId: integer("subscription_id").references(() => organizationSubscriptions.id),
   amountDue: integer("amount_due").notNull(), // in cents
   amountPaid: integer("amount_paid").notNull().default(0), // in cents
   currency: text("currency").notNull().default("usd"),
@@ -855,7 +894,7 @@ export const invoices = pgTable("invoices", {
   metadata: jsonb("metadata"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, (table) => ({
-  userIdIdx: index("invoices_user_id_idx").on(table.userId),
+  orgIdIdx: index("invoices_organization_id_idx").on(table.organizationId),
   createdAtIdx: index("invoices_created_at_idx").on(table.createdAt),
   statusIdx: index("invoices_status_idx").on(table.status),
 }));
@@ -933,13 +972,24 @@ export const ticketMessagesRelations = relations(ticketMessages, ({ one }) => ({
   }),
 }));
 
-export const userSubscriptionsRelations = relations(userSubscriptions, ({ one, many }) => ({
-  user: one(users, {
-    fields: [userSubscriptions.userId],
-    references: [users.id],
+export const organizationsRelations = relations(organizations, ({ many, one }) => ({
+  users: many(users),
+  tickets: many(tickets),
+  subscription: one(organizationSubscriptions, {
+    fields: [organizations.id],
+    references: [organizationSubscriptions.organizationId],
+  }),
+  payments: many(payments),
+  invoices: many(invoices),
+}));
+
+export const organizationSubscriptionsRelations = relations(organizationSubscriptions, ({ one, many }) => ({
+  organization: one(organizations, {
+    fields: [organizationSubscriptions.organizationId],
+    references: [organizations.id],
   }),
   plan: one(subscriptionPlans, {
-    fields: [userSubscriptions.planId],
+    fields: [organizationSubscriptions.planId],
     references: [subscriptionPlans.id],
   }),
   usage: many(subscriptionUsage),
@@ -947,6 +997,10 @@ export const userSubscriptionsRelations = relations(userSubscriptions, ({ one, m
 }));
 
 export const usersRelations = relations(users, ({ many, one }) => ({
+  organization: one(organizations, {
+    fields: [users.organizationId],
+    references: [organizations.id],
+  }),
   processes: many(processes),
   documents: many(documents),
   integrations: many(integrations),
@@ -967,14 +1021,9 @@ export const usersRelations = relations(users, ({ many, one }) => ({
     references: [userLlmSettings.userId],
   }),
   tickets: many(tickets),
-  subscription: one(userSubscriptions, {
-    fields: [users.id],
-    references: [userSubscriptions.userId],
-  }),
   profile: one(userProfiles, {
     fields: [users.id],
     references: [userProfiles.userId],
   }),
   roleAssignments: many(roleAssignments),
-  payments: many(payments),
 }));
