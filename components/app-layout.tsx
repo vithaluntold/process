@@ -126,7 +126,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
       {/* Header */}
       <header className="sticky top-0 z-50 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
         <div className="flex items-center gap-2">
-          <X className="h-6 w-6 text-brand" />
+          <img src="/logo.png" alt="EPI-Q Logo" className="h-8 w-8 object-contain" />
           <span className="text-lg font-semibold">EPI X-Ray</span>
         </div>
         

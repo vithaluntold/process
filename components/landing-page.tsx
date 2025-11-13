@@ -203,10 +203,13 @@ export default function LandingPage() {
                 className="flex items-center gap-4"
               >
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-2xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl shadow-2xl">
-                    <Layers className="h-10 w-10 text-white" />
-                  </div>
+                  <div className="absolute inset-0 bg-cyan-400/30 rounded-2xl blur-2xl group-hover:blur-3xl transition-all"></div>
+                  <img 
+                    src="/logo.png" 
+                    alt="EPI-Q Logo" 
+                    className="relative h-20 w-20 object-contain animate-pulse"
+                    style={{ animationDuration: "3s" }}
+                  />
                 </div>
                 <div>
                   <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-cyan-100 to-blue-100 bg-clip-text text-transparent">
