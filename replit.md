@@ -1,7 +1,35 @@
 # EPI X-Ray - Process Mining Platform
 
 ## Overview
-EPI X-Ray is an advanced process mining and automation platform designed to analyze, optimize, and automate business processes. It provides deep insights into process performance, identifies areas for improvement, and simulates the impact of potential changes. Key capabilities include process discovery, conformance checking, performance analytics, automation opportunity identification, predictive analytics, digital twin simulation, and scenario analysis. The platform aims to revolutionize how businesses understand and improve their operational workflows.
+
+**EPI X-Ray: See Through Your Processes, Transform Your Business**
+
+EPI X-Ray is a next-generation process intelligence platform that empowers organizations to see the invisible—the hidden patterns, inefficiencies, and opportunities buried deep within their business operations. Built for the modern enterprise, EPI X-Ray transforms raw operational data into actionable insights with surgical precision.
+
+**The Vision:**
+In a world where businesses generate terabytes of process data daily, most organizations remain blind to what's actually happening in their operations. EPI X-Ray changes that. We believe every business deserves X-ray vision into their processes—the ability to see bottlenecks before they cause delays, predict failures before they happen, and simulate improvements before implementing them.
+
+**What We Strive Towards:**
+- **Radical Transparency**: Make every process visible, measurable, and understandable
+- **Predictive Intelligence**: Shift from reactive problem-solving to proactive optimization
+- **Democratic Access**: Bring enterprise-grade process mining to mid-market businesses and SMBs
+- **Speed to Insight**: Deliver answers in seconds, not weeks—because decisions can't wait
+- **Continuous Evolution**: Transform static process maps into living digital twins that adapt and learn
+
+**The Platform:**
+EPI X-Ray combines cutting-edge AI, advanced algorithms, and intuitive design to deliver a comprehensive process intelligence suite. From discovering hidden workflows in email threads to simulating the ROI of process changes, from detecting anomalies in real-time to forecasting future performance—every feature is built with one goal: help businesses operate at their absolute best.
+
+**Core Capabilities:**
+- **Process Discovery**: Automatically extract and visualize process flows with thin, electric-animated diagrams
+- **Predictive Analytics**: Forecast trends, detect anomalies, and run what-if scenarios
+- **Digital Twin Simulation**: Create living models of your processes and test changes risk-free
+- **Real-Time Monitoring**: Track process health with intelligent alerts and automated scoring
+- **AI-Powered Insights**: Natural language queries meet enterprise-grade analytics
+- **Task Mining**: Desktop activity analysis for automation opportunity discovery
+- **Advanced Reporting**: Export insights to stakeholders in PDF, Excel, and PowerPoint
+- **Collaboration**: Team-based process improvement with comments, mentions, and threads
+
+EPI X-Ray doesn't just show you what happened—it shows you what's happening, what will happen, and what could happen if you make the right changes. It's process mining evolved for the AI era, designed to make every organization faster, smarter, and more efficient.
 
 ## User Preferences
 - Prefers comprehensive documentation with detailed feature descriptions and step-by-step user guides
