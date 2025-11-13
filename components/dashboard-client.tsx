@@ -73,13 +73,26 @@ export default function DashboardClient() {
   const [dateRange, setDateRange] = useState("30d")
 
   useEffect(() => {
-    fetchDashboardStats()
-  }, [])
+    if (user) {
+      fetchDashboardStats()
+    } else {
+      setLoading(false)
+    }
+  }, [user])
 
   const fetchDashboardStats = async () => {
     try {
       const response = await fetch("/api/dashboard/stats")
       if (!response.ok) {
+        if (response.status === 401) {
+          setStats({
+            processCount: 0,
+            avgCycleTime: 0,
+            conformanceRate: 0,
+            automationPotential: 0,
+          })
+          return
+        }
         throw new Error("Failed to fetch dashboard stats")
       }
       const data = await response.json()
