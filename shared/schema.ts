@@ -674,6 +674,278 @@ export const llmProviderKeysRelations = relations(llmProviderKeys, ({ one }) => 
   }),
 }));
 
+// ===================================
+// TICKET MANAGEMENT SYSTEM
+// ===================================
+
+export const ticketCategories = pgTable("ticket_categories", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull().unique(),
+  name: text("name").notNull(),
+  description: text("description"),
+  slaTargetHours: integer("sla_target_hours"),
+  color: text("color"),
+  icon: text("icon"),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const tickets = pgTable("tickets", {
+  id: serial("id").primaryKey(),
+  requesterId: integer("requester_id").references(() => users.id).notNull(),
+  assigneeId: integer("assignee_id").references(() => users.id),
+  categoryId: integer("category_id").references(() => ticketCategories.id),
+  status: text("status").notNull().default("open"), // open, in_progress, resolved, closed
+  priority: text("priority").notNull().default("medium"), // low, medium, high, urgent
+  subject: text("subject").notNull(),
+  description: text("description").notNull(),
+  source: text("source").notNull().default("web"), // web, email, api
+  tags: jsonb("tags"),
+  metadata: jsonb("metadata"),
+  externalRef: text("external_ref"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  closedAt: timestamp("closed_at"),
+  resolvedAt: timestamp("resolved_at"),
+  firstResponseAt: timestamp("first_response_at"),
+}, (table) => ({
+  statusIdx: index("tickets_status_idx").on(table.status),
+  priorityIdx: index("tickets_priority_idx").on(table.priority),
+  categoryIdx: index("tickets_category_id_idx").on(table.categoryId),
+  assigneeIdx: index("tickets_assignee_id_idx").on(table.assigneeId),
+  requesterIdx: index("tickets_requester_id_idx").on(table.requesterId),
+  createdAtIdx: index("tickets_created_at_idx").on(table.createdAt),
+}));
+
+export const ticketMessages = pgTable("ticket_messages", {
+  id: serial("id").primaryKey(),
+  ticketId: integer("ticket_id").references(() => tickets.id).notNull(),
+  authorId: integer("author_id").references(() => users.id).notNull(),
+  body: text("body").notNull(),
+  visibility: text("visibility").notNull().default("public"), // public, internal
+  attachments: jsonb("attachments"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  ticketIdIdx: index("ticket_messages_ticket_id_idx").on(table.ticketId),
+  createdAtIdx: index("ticket_messages_created_at_idx").on(table.createdAt),
+}));
+
+export const ticketAttachments = pgTable("ticket_attachments", {
+  id: serial("id").primaryKey(),
+  ticketId: integer("ticket_id").references(() => tickets.id).notNull(),
+  messageId: integer("message_id").references(() => ticketMessages.id),
+  uploaderId: integer("uploader_id").references(() => users.id).notNull(),
+  storagePath: text("storage_path").notNull(),
+  filename: text("filename").notNull(),
+  mimeType: text("mime_type").notNull(),
+  sizeBytes: integer("size_bytes").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  ticketIdIdx: index("ticket_attachments_ticket_id_idx").on(table.ticketId),
+}));
+
+export const ticketWatchers = pgTable("ticket_watchers", {
+  ticketId: integer("ticket_id").references(() => tickets.id).notNull(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  pk: primaryKey({ columns: [table.ticketId, table.userId] }),
+}));
+
+export const ticketActivityLog = pgTable("ticket_activity_log", {
+  id: serial("id").primaryKey(),
+  ticketId: integer("ticket_id").references(() => tickets.id).notNull(),
+  actorId: integer("actor_id").references(() => users.id),
+  actionType: text("action_type").notNull(), // created, status_changed, assigned, commented, etc.
+  payload: jsonb("payload"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  ticketIdIdx: index("ticket_activity_log_ticket_id_idx").on(table.ticketId),
+  createdAtIdx: index("ticket_activity_log_created_at_idx").on(table.createdAt),
+}));
+
+// ===================================
+// SUBSCRIPTION & BILLING SYSTEM
+// ===================================
+
+export const subscriptionPlans = pgTable("subscription_plans", {
+  id: serial("id").primaryKey(),
+  stripePriceId: text("stripe_price_id").unique(),
+  name: text("name").notNull(),
+  tier: text("tier").notNull(), // free, pro, enterprise
+  monthlyPrice: integer("monthly_price").notNull(), // in cents
+  yearlyPrice: integer("yearly_price"), // in cents, if available
+  featureLimits: jsonb("feature_limits").notNull(), // { tickets: 100, storage: 10GB, etc. }
+  features: jsonb("features").notNull(), // array of feature descriptions
+  isActive: boolean("is_active").notNull().default(true),
+  displayOrder: integer("display_order").notNull().default(0),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  tierIdx: index("subscription_plans_tier_idx").on(table.tier),
+}));
+
+export const userSubscriptions = pgTable("user_subscriptions", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  stripeCustomerId: text("stripe_customer_id").unique(),
+  stripeSubscriptionId: text("stripe_subscription_id").unique(),
+  planId: integer("plan_id").references(() => subscriptionPlans.id).notNull(),
+  status: text("status").notNull().default("active"), // active, past_due, canceled, incomplete, trialing
+  currentPeriodStart: timestamp("current_period_start"),
+  currentPeriodEnd: timestamp("current_period_end"),
+  cancelAtPeriodEnd: boolean("cancel_at_period_end").notNull().default(false),
+  trialEnd: timestamp("trial_end"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  userIdIdx: index("user_subscriptions_user_id_idx").on(table.userId),
+  statusIdx: index("user_subscriptions_status_idx").on(table.status),
+}));
+
+export const subscriptionUsage = pgTable("subscription_usage", {
+  id: serial("id").primaryKey(),
+  subscriptionId: integer("subscription_id").references(() => userSubscriptions.id).notNull(),
+  metricKey: text("metric_key").notNull(), // tickets_created, storage_used, etc.
+  currentValue: integer("current_value").notNull().default(0),
+  limitValue: integer("limit_value"),
+  resetAt: timestamp("reset_at"), // when the counter resets
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  subscriptionMetricIdx: index("subscription_usage_subscription_metric_idx").on(table.subscriptionId, table.metricKey),
+}));
+
+export const payments = pgTable("payments", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  stripePaymentIntentId: text("stripe_payment_intent_id").unique(),
+  amount: integer("amount").notNull(), // in cents
+  currency: text("currency").notNull().default("usd"),
+  status: text("status").notNull(), // succeeded, pending, failed
+  paymentMethod: text("payment_method"),
+  receiptUrl: text("receipt_url"),
+  invoiceId: integer("invoice_id"),
+  description: text("description"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  userIdIdx: index("payments_user_id_idx").on(table.userId),
+  createdAtIdx: index("payments_created_at_idx").on(table.createdAt),
+  statusIdx: index("payments_status_idx").on(table.status),
+}));
+
+export const invoices = pgTable("invoices", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  stripeInvoiceId: text("stripe_invoice_id").unique(),
+  subscriptionId: integer("subscription_id").references(() => userSubscriptions.id),
+  amountDue: integer("amount_due").notNull(), // in cents
+  amountPaid: integer("amount_paid").notNull().default(0), // in cents
+  currency: text("currency").notNull().default("usd"),
+  status: text("status").notNull(), // draft, open, paid, void, uncollectible
+  pdfUrl: text("pdf_url"),
+  hostedInvoiceUrl: text("hosted_invoice_url"),
+  billingReason: text("billing_reason"),
+  periodStart: timestamp("period_start"),
+  periodEnd: timestamp("period_end"),
+  dueDate: timestamp("due_date"),
+  paidAt: timestamp("paid_at"),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  userIdIdx: index("invoices_user_id_idx").on(table.userId),
+  createdAtIdx: index("invoices_created_at_idx").on(table.createdAt),
+  statusIdx: index("invoices_status_idx").on(table.status),
+}));
+
+export const paymentEvents = pgTable("payment_events", {
+  id: serial("id").primaryKey(),
+  stripeEventId: text("stripe_event_id").notNull().unique(),
+  eventType: text("event_type").notNull(),
+  payload: jsonb("payload").notNull(),
+  processedAt: timestamp("processed_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  eventIdIdx: index("payment_events_stripe_event_id_idx").on(table.stripeEventId),
+  createdAtIdx: index("payment_events_created_at_idx").on(table.createdAt),
+}));
+
+// ===================================
+// USER PROFILES & ROLES
+// ===================================
+
+export const userProfiles = pgTable("user_profiles", {
+  userId: integer("user_id").primaryKey().references(() => users.id),
+  phone: text("phone"),
+  title: text("title"),
+  timezone: text("timezone").default("UTC"),
+  avatarUrl: text("avatar_url"),
+  notificationPreferences: jsonb("notification_preferences"),
+  bio: text("bio"),
+  company: text("company"),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const roleAssignments = pgTable("role_assignments", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  role: text("role").notNull(), // admin, agent, customer
+  scopeType: text("scope_type"), // global, category, team
+  scopeId: text("scope_id"),
+  grantedBy: integer("granted_by").references(() => users.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  userRoleIdx: index("role_assignments_user_role_idx").on(table.userId, table.role),
+}));
+
+// ===================================
+// RELATIONS
+// ===================================
+
+export const ticketsRelations = relations(tickets, ({ one, many }) => ({
+  requester: one(users, {
+    fields: [tickets.requesterId],
+    references: [users.id],
+  }),
+  assignee: one(users, {
+    fields: [tickets.assigneeId],
+    references: [users.id],
+  }),
+  category: one(ticketCategories, {
+    fields: [tickets.categoryId],
+    references: [ticketCategories.id],
+  }),
+  messages: many(ticketMessages),
+  attachments: many(ticketAttachments),
+  activityLogs: many(ticketActivityLog),
+}));
+
+export const ticketMessagesRelations = relations(ticketMessages, ({ one }) => ({
+  ticket: one(tickets, {
+    fields: [ticketMessages.ticketId],
+    references: [tickets.id],
+  }),
+  author: one(users, {
+    fields: [ticketMessages.authorId],
+    references: [users.id],
+  }),
+}));
+
+export const userSubscriptionsRelations = relations(userSubscriptions, ({ one, many }) => ({
+  user: one(users, {
+    fields: [userSubscriptions.userId],
+    references: [users.id],
+  }),
+  plan: one(subscriptionPlans, {
+    fields: [userSubscriptions.planId],
+    references: [subscriptionPlans.id],
+  }),
+  usage: many(subscriptionUsage),
+  invoices: many(invoices),
+}));
+
 export const usersRelations = relations(users, ({ many, one }) => ({
   processes: many(processes),
   documents: many(documents),
@@ -694,4 +966,15 @@ export const usersRelations = relations(users, ({ many, one }) => ({
     fields: [users.id],
     references: [userLlmSettings.userId],
   }),
+  tickets: many(tickets),
+  subscription: one(userSubscriptions, {
+    fields: [users.id],
+    references: [userSubscriptions.userId],
+  }),
+  profile: one(userProfiles, {
+    fields: [users.id],
+    references: [userProfiles.userId],
+  }),
+  roleAssignments: many(roleAssignments),
+  payments: many(payments),
 }));
