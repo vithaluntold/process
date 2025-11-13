@@ -8,10 +8,11 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { Layers, BarChart3, Zap, Lightbulb, Shield, Activity, Eye, EyeOff, Sparkles, TrendingUp, Bot } from "lucide-react";
+import { Layers, BarChart3, Zap, Lightbulb, Shield, Activity, Eye, EyeOff, Sparkles, TrendingUp, Bot, Download } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -305,6 +306,28 @@ export default function LandingPage() {
                 <TrendingUp className="h-4 w-4 text-cyan-400" />
                 <span className="text-sm text-slate-300">Fortune 500 Trusted</span>
               </div>
+            </motion.div>
+
+            {/* Desktop App Download CTA */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+              className="pt-6"
+            >
+              <Link href="/downloads">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="gap-2 border-cyan-500/50 hover:border-cyan-500 hover:bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 transition-all group"
+                >
+                  <Download className="h-5 w-5 group-hover:animate-bounce" />
+                  Download Desktop App
+                  <span className="ml-1 text-xs bg-cyan-500/20 px-2 py-0.5 rounded-full">
+                    Windows • macOS • Linux
+                  </span>
+                </Button>
+              </Link>
             </motion.div>
           </motion.div>
 
