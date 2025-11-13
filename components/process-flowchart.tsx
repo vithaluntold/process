@@ -54,17 +54,18 @@ export default function ProcessFlowchart({
         nodeMap.set(activity, { x, y });
 
         let nodeType = "default";
-        let gradient = "linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)";
-        let boxShadow = "0 8px 24px rgba(6, 182, 212, 0.25), 0 0 0 1px rgba(6, 182, 212, 0.1)";
+        let bgColor = "#ffffff";
+        let borderColor = "#06b6d4";
+        let textColor = "#0e7490";
 
         if (startActivities.includes(activity)) {
           nodeType = "input";
-          gradient = "linear-gradient(135deg, #10b981 0%, #059669 100%)";
-          boxShadow = "0 8px 24px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(16, 185, 129, 0.2)";
+          borderColor = "#10b981";
+          textColor = "#047857";
         } else if (endActivities.includes(activity)) {
           nodeType = "output";
-          gradient = "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)";
-          boxShadow = "0 8px 24px rgba(239, 68, 68, 0.3), 0 0 0 1px rgba(239, 68, 68, 0.2)";
+          borderColor = "#ef4444";
+          textColor = "#dc2626";
         }
 
         newNodes.push({
@@ -73,16 +74,14 @@ export default function ProcessFlowchart({
           position: { x, y },
           data: { label: activity },
           style: {
-            background: gradient,
-            color: "white",
-            border: "none",
-            borderRadius: "12px",
-            padding: "16px 28px",
-            fontSize: "14px",
+            background: bgColor,
+            color: textColor,
+            border: `2px solid ${borderColor}`,
+            borderRadius: "8px",
+            padding: "10px 18px",
+            fontSize: "13px",
             fontWeight: "600",
-            boxShadow: boxShadow,
-            backdropFilter: "blur(10px)",
-            transition: "all 0.3s ease",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
           },
         });
       });
@@ -90,7 +89,6 @@ export default function ProcessFlowchart({
 
     const newEdges: Edge[] = transitions.map((transition) => {
       const maxFrequency = Math.max(...transitions.map((t) => t.frequency));
-      const width = Math.max(2, Math.min(6, (transition.frequency / maxFrequency) * 6));
       const isHighFrequency = transition.frequency > maxFrequency * 0.5;
 
       return {
@@ -101,29 +99,28 @@ export default function ProcessFlowchart({
         animated: isHighFrequency,
         label: `${transition.frequency}`,
         style: {
-          stroke: isHighFrequency ? "#06b6d4" : "#64748b",
-          strokeWidth: width,
-          strokeLinecap: "round",
+          stroke: isHighFrequency ? "#06b6d4" : "#94a3b8",
+          strokeWidth: isHighFrequency ? 2 : 1.5,
+          filter: isHighFrequency ? "drop-shadow(0 0 4px rgba(6, 182, 212, 0.6))" : "none",
         },
         markerEnd: {
           type: MarkerType.ArrowClosed,
-          color: isHighFrequency ? "#06b6d4" : "#64748b",
-          width: 24,
-          height: 24,
+          color: isHighFrequency ? "#06b6d4" : "#94a3b8",
+          width: 16,
+          height: 16,
         },
         labelStyle: {
-          fill: "#ffffff",
-          fontSize: "11px",
-          fontWeight: "700",
-          textShadow: "0 1px 2px rgba(0,0,0,0.2)",
+          fill: isHighFrequency ? "#0e7490" : "#64748b",
+          fontSize: "10px",
+          fontWeight: "600",
         },
         labelBgStyle: {
-          fill: isHighFrequency ? "#06b6d4" : "#64748b",
-          fillOpacity: 1,
-          rx: 6,
-          ry: 6,
+          fill: "#ffffff",
+          fillOpacity: 0.95,
+          rx: 4,
+          ry: 4,
         },
-        labelBgPadding: [6, 10] as [number, number],
+        labelBgPadding: [4, 8] as [number, number],
       };
     });
 
@@ -189,17 +186,10 @@ export default function ProcessFlowchart({
   );
 
   return (
-    <Card className="border-0 shadow-xl bg-gradient-to-br from-muted/30 to-muted/10">
+    <Card>
       <CardHeader>
-        <CardTitle className="text-2xl flex items-center gap-2">
-          <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg shadow-lg shadow-cyan-500/20">
-            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-          </div>
-          Process Flow Diagram
-        </CardTitle>
-        <CardDescription className="text-base">
+        <CardTitle>Process Flow Diagram</CardTitle>
+        <CardDescription>
           Discovered process model with {activities.length} activities and {transitions.length} transitions
         </CardDescription>
       </CardHeader>
@@ -207,9 +197,8 @@ export default function ProcessFlowchart({
         <div style={{ 
           height: "600px", 
           width: "100%", 
-          borderRadius: "12px",
-          background: "linear-gradient(to bottom right, rgba(6, 182, 212, 0.03), rgba(59, 130, 246, 0.03))",
-          border: "1px solid rgba(6, 182, 212, 0.1)",
+          borderRadius: "8px",
+          border: "1px solid hsl(var(--border))",
           overflow: "hidden"
         }}>
           <ReactFlow
@@ -221,31 +210,30 @@ export default function ProcessFlowchart({
             fitView
             attributionPosition="bottom-left"
           >
-            <Background gap={16} size={1} color="rgba(6, 182, 212, 0.1)" />
-            <Controls className="bg-background/80 backdrop-blur-sm border border-border shadow-lg rounded-lg" />
+            <Background gap={12} size={0.5} />
+            <Controls />
             <MiniMap
               nodeColor={(node) => {
                 if (node.type === "input") return "#10b981";
                 if (node.type === "output") return "#ef4444";
                 return "#06b6d4";
               }}
-              nodeBorderRadius={12}
-              className="bg-background/80 backdrop-blur-sm border border-border shadow-lg rounded-lg"
+              nodeBorderRadius={8}
             />
           </ReactFlow>
         </div>
-        <div className="mt-6 flex gap-6 text-sm">
+        <div className="mt-4 flex gap-6 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 rounded-md bg-gradient-to-br from-emerald-500 to-green-600 shadow-md shadow-emerald-500/30" />
-            <span className="font-medium">Start Activity</span>
+            <div className="h-3 w-3 rounded border-2 border-emerald-500" />
+            <span>Start Activity</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 rounded-md bg-gradient-to-br from-cyan-500 to-blue-600 shadow-md shadow-cyan-500/30" />
-            <span className="font-medium">Intermediate Activity</span>
+            <div className="h-3 w-3 rounded border-2 border-cyan-500" />
+            <span>Intermediate Activity</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-4 w-4 rounded-md bg-gradient-to-br from-red-500 to-red-600 shadow-md shadow-red-500/30" />
-            <span className="font-medium">End Activity</span>
+            <div className="h-3 w-3 rounded border-2 border-red-500" />
+            <span>End Activity</span>
           </div>
         </div>
       </CardContent>
