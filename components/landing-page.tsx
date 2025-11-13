@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { Layers, BarChart3, Zap, Lightbulb, Shield, Activity, Eye, EyeOff, Sparkles, TrendingUp, Bot } from "lucide-react";
 import { Footer } from "@/components/footer";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { motion } from "framer-motion";
 
 export default function LandingPage() {
@@ -172,7 +173,12 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-[#0a1929] via-[#1e3a5f] to-[#0a1929] flex flex-col overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-background via-muted/20 to-background dark:from-[#0a1929] dark:via-[#1e3a5f] dark:to-[#0a1929] flex flex-col overflow-hidden">
+      {/* Theme Toggle - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       {/* Animated background gradient mesh */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
@@ -186,7 +192,7 @@ export default function LandingPage() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-white space-y-8"
+            className="text-foreground space-y-8"
           >
             {/* Logo and Title */}
             <div className="space-y-6">
@@ -217,10 +223,10 @@ export default function LandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-4xl lg:text-5xl font-bold leading-tight"
+                className="text-4xl lg:text-5xl font-bold leading-tight text-foreground"
               >
                 Transform Your Business
-                <span className="block bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
                   with AI-Powered Insights
                 </span>
               </motion.h2>
@@ -229,7 +235,7 @@ export default function LandingPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-xl text-slate-300 leading-relaxed"
+                className="text-xl text-muted-foreground leading-relaxed"
               >
                 Unlock the power of process mining, automation, and predictive analytics. 
                 Make data-driven decisions with enterprise-grade security.
