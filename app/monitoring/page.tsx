@@ -6,7 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Activity, AlertTriangle, CheckCircle2, Clock, TrendingUp } from "lucide-react";
+import { Activity, AlertTriangle, CheckCircle2, Clock, TrendingUp, Monitor } from "lucide-react";
+import { PageHeader } from "@/components/page-header";
 
 interface ProcessInstance {
   id: number;
@@ -85,13 +86,13 @@ export default function MonitoringPage() {
 
   return (
     <AppLayout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold">Real-Time Process Monitoring</h1>
-          <p className="text-muted-foreground mt-2">
-            Monitor live process instances, alerts, and health metrics in real-time
-          </p>
-        </div>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader
+          icon={Monitor}
+          title="Real-Time Process Monitoring"
+          description="Monitor live process instances, alerts, and health metrics in real-time"
+          gradient="from-blue-500 to-indigo-600"
+        />
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>

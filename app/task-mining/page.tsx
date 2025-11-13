@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Activity, Clock, TrendingUp, Zap, CheckCircle2, AlertCircle, BarChart3 } from "lucide-react";
 import { toast } from "sonner";
 import { ApiKeyManager } from "@/components/api-key-manager";
+import { PageHeader } from "@/components/page-header";
 
 interface TaskSession {
   id: number;
@@ -205,14 +206,15 @@ export default function TaskMiningPage() {
 
   return (
     <AppLayout>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 p-4 md:p-6">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Task Mining</h1>
-          <p className="text-muted-foreground">
-            Capture, analyze, and automate repetitive desktop tasks
-          </p>
-        </div>
+        <PageHeader
+          icon={Activity}
+          title="Task Mining"
+          description="Capture, analyze, and automate repetitive desktop tasks"
+          gradient="from-violet-500 to-purple-600"
+          badge={<span className="text-xs bg-gradient-to-r from-violet-500 to-purple-500 text-white px-2 py-1 rounded-full font-medium">NEW</span>}
+        />
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={handleExportReport}>
             Export Report

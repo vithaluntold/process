@@ -7,9 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { TrendingUp, AlertTriangle, Target, Loader2, LineChart as LineChartIcon, Play, BarChart3 } from "lucide-react"
+import { TrendingUp, AlertTriangle, Target, Loader2, LineChart as LineChartIcon, Play, BarChart3, Lightbulb } from "lucide-react"
 import { Line, LineChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis, Bar, BarChart, Area, AreaChart } from "recharts"
 import AppLayout from "@/components/app-layout"
+import { PageHeader } from "@/components/page-header"
 import { toast } from "sonner"
 
 interface AnomalyDetection {
@@ -262,11 +263,13 @@ export default function PredictiveAnalyticsPage() {
   if (processes.length === 0) {
     return (
       <AppLayout>
-        <div className="flex flex-col gap-4 p-4 md:p-6">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Predictive Analytics</h1>
-            <p className="text-muted-foreground">AI-powered forecasting and anomaly detection</p>
-          </div>
+        <div className="flex flex-col gap-6 p-4 md:p-6">
+          <PageHeader
+            icon={Lightbulb}
+            title="Predictive Analytics"
+            description="AI-powered forecasting and anomaly detection"
+            gradient="from-yellow-500 to-amber-600"
+          />
           <Card className="border-brand/20">
             <CardContent className="flex flex-col items-center justify-center h-64">
               <p className="text-muted-foreground mb-4">No processes available. Upload event logs to start predictive analytics.</p>
@@ -279,12 +282,14 @@ export default function PredictiveAnalyticsPage() {
 
   return (
     <AppLayout>
-      <div className="flex flex-col gap-4 p-4 md:p-6">
+      <div className="flex flex-col gap-6 p-4 md:p-6">
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">Predictive Analytics</h1>
-            <p className="text-muted-foreground">AI-powered forecasting, anomaly detection, and scenario analysis</p>
-          </div>
+          <PageHeader
+            icon={Lightbulb}
+            title="Predictive Analytics"
+            description="AI-powered forecasting, anomaly detection, and scenario analysis"
+            gradient="from-yellow-500 to-amber-600"
+          />
           <div className="flex items-center gap-2">
             <Select value={selectedProcess} onValueChange={setSelectedProcess}>
               <SelectTrigger className="w-[280px]">

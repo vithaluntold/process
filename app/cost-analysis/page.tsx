@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { DollarSign, TrendingUp, Calculator, Sparkles } from "lucide-react";
 import { toast } from "sonner";
+import { PageHeader } from "@/components/page-header";
 
 interface CostMetric {
   id: number;
@@ -115,13 +116,13 @@ export default function CostAnalysisPage() {
 
   return (
     <AppLayout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold">Cost Analysis & ROI Calculator</h1>
-          <p className="text-muted-foreground mt-2">
-            Analyze process costs and calculate return on investment
-          </p>
-        </div>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader
+          icon={DollarSign}
+          title="Cost Analysis & ROI Calculator"
+          description="Analyze process costs and calculate return on investment"
+          gradient="from-green-500 to-emerald-600"
+        />
 
         <div className="space-y-4">
           <Label>Select Process</Label>

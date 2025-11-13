@@ -1,14 +1,18 @@
 import ProcessDiscovery from "@/components/process-discovery"
 import AppLayout from "@/components/app-layout"
+import { PageHeader } from "@/components/page-header"
+import { Layers } from "lucide-react"
 
 export default function ProcessDiscoveryPage() {
   return (
     <AppLayout>
-      <div className="flex flex-col gap-4 p-4 md:p-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Process Discovery</h1>
-          <p className="text-muted-foreground">Automatically discover process models from event logs</p>
-        </div>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader
+          icon={Layers}
+          title="Process Discovery"
+          description="Automatically discover process models from event logs"
+          gradient="from-cyan-500 to-blue-600"
+        />
         <ProcessDiscovery />
       </div>
     </AppLayout>
