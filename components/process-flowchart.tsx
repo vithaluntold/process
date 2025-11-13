@@ -54,14 +54,17 @@ export default function ProcessFlowchart({
         nodeMap.set(activity, { x, y });
 
         let nodeType = "default";
-        let nodeColor = "#3b82f6";
+        let gradient = "linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)";
+        let boxShadow = "0 8px 24px rgba(6, 182, 212, 0.25), 0 0 0 1px rgba(6, 182, 212, 0.1)";
 
         if (startActivities.includes(activity)) {
           nodeType = "input";
-          nodeColor = "#10b981";
+          gradient = "linear-gradient(135deg, #10b981 0%, #059669 100%)";
+          boxShadow = "0 8px 24px rgba(16, 185, 129, 0.3), 0 0 0 1px rgba(16, 185, 129, 0.2)";
         } else if (endActivities.includes(activity)) {
           nodeType = "output";
-          nodeColor = "#ef4444";
+          gradient = "linear-gradient(135deg, #ef4444 0%, #dc2626 100%)";
+          boxShadow = "0 8px 24px rgba(239, 68, 68, 0.3), 0 0 0 1px rgba(239, 68, 68, 0.2)";
         }
 
         newNodes.push({
@@ -70,13 +73,16 @@ export default function ProcessFlowchart({
           position: { x, y },
           data: { label: activity },
           style: {
-            background: nodeColor,
+            background: gradient,
             color: "white",
-            border: "2px solid #1e293b",
-            borderRadius: "8px",
-            padding: "12px 20px",
+            border: "none",
+            borderRadius: "12px",
+            padding: "16px 28px",
             fontSize: "14px",
-            fontWeight: "500",
+            fontWeight: "600",
+            boxShadow: boxShadow,
+            backdropFilter: "blur(10px)",
+            transition: "all 0.3s ease",
           },
         });
       });
@@ -84,32 +90,40 @@ export default function ProcessFlowchart({
 
     const newEdges: Edge[] = transitions.map((transition) => {
       const maxFrequency = Math.max(...transitions.map((t) => t.frequency));
-      const width = Math.max(1, Math.min(5, (transition.frequency / maxFrequency) * 5));
+      const width = Math.max(2, Math.min(6, (transition.frequency / maxFrequency) * 6));
+      const isHighFrequency = transition.frequency > maxFrequency * 0.5;
 
       return {
         id: `${transition.from}-${transition.to}`,
         source: transition.from,
         target: transition.to,
         type: "smoothstep",
-        animated: transition.frequency > maxFrequency * 0.5,
+        animated: isHighFrequency,
         label: `${transition.frequency}`,
         style: {
-          stroke: "#64748b",
+          stroke: isHighFrequency ? "#06b6d4" : "#64748b",
           strokeWidth: width,
+          strokeLinecap: "round",
         },
         markerEnd: {
           type: MarkerType.ArrowClosed,
-          color: "#64748b",
+          color: isHighFrequency ? "#06b6d4" : "#64748b",
+          width: 24,
+          height: 24,
         },
         labelStyle: {
-          fill: "#1e293b",
-          fontSize: "12px",
-          fontWeight: "600",
+          fill: "#ffffff",
+          fontSize: "11px",
+          fontWeight: "700",
+          textShadow: "0 1px 2px rgba(0,0,0,0.2)",
         },
         labelBgStyle: {
-          fill: "#f1f5f9",
-          fillOpacity: 0.9,
+          fill: isHighFrequency ? "#06b6d4" : "#64748b",
+          fillOpacity: 1,
+          rx: 6,
+          ry: 6,
         },
+        labelBgPadding: [6, 10] as [number, number],
       };
     });
 
@@ -175,15 +189,29 @@ export default function ProcessFlowchart({
   );
 
   return (
-    <Card>
+    <Card className="border-0 shadow-xl bg-gradient-to-br from-muted/30 to-muted/10">
       <CardHeader>
-        <CardTitle>Process Flow Diagram</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-2xl flex items-center gap-2">
+          <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg shadow-lg shadow-cyan-500/20">
+            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          Process Flow Diagram
+        </CardTitle>
+        <CardDescription className="text-base">
           Discovered process model with {activities.length} activities and {transitions.length} transitions
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div style={{ height: "600px", width: "100%", border: "1px solid #e2e8f0", borderRadius: "8px" }}>
+        <div style={{ 
+          height: "600px", 
+          width: "100%", 
+          borderRadius: "12px",
+          background: "linear-gradient(to bottom right, rgba(6, 182, 212, 0.03), rgba(59, 130, 246, 0.03))",
+          border: "1px solid rgba(6, 182, 212, 0.1)",
+          overflow: "hidden"
+        }}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -193,30 +221,31 @@ export default function ProcessFlowchart({
             fitView
             attributionPosition="bottom-left"
           >
-            <Background />
-            <Controls />
+            <Background gap={16} size={1} color="rgba(6, 182, 212, 0.1)" />
+            <Controls className="bg-background/80 backdrop-blur-sm border border-border shadow-lg rounded-lg" />
             <MiniMap
               nodeColor={(node) => {
                 if (node.type === "input") return "#10b981";
                 if (node.type === "output") return "#ef4444";
-                return "#3b82f6";
+                return "#06b6d4";
               }}
-              nodeBorderRadius={8}
+              nodeBorderRadius={12}
+              className="bg-background/80 backdrop-blur-sm border border-border shadow-lg rounded-lg"
             />
           </ReactFlow>
         </div>
-        <div className="mt-4 flex gap-4 text-sm">
+        <div className="mt-6 flex gap-6 text-sm">
           <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded bg-[#10b981]" />
-            <span>Start Activity</span>
+            <div className="h-4 w-4 rounded-md bg-gradient-to-br from-emerald-500 to-green-600 shadow-md shadow-emerald-500/30" />
+            <span className="font-medium">Start Activity</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded bg-[#3b82f6]" />
-            <span>Intermediate Activity</span>
+            <div className="h-4 w-4 rounded-md bg-gradient-to-br from-cyan-500 to-blue-600 shadow-md shadow-cyan-500/30" />
+            <span className="font-medium">Intermediate Activity</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded bg-[#ef4444]" />
-            <span>End Activity</span>
+            <div className="h-4 w-4 rounded-md bg-gradient-to-br from-red-500 to-red-600 shadow-md shadow-red-500/30" />
+            <span className="font-medium">End Activity</span>
           </div>
         </div>
       </CardContent>
