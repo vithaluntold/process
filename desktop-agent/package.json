@@ -1,7 +1,7 @@
 {
-  "name": "epi-xray-agent",
+  "name": "epi-q-agent",
   "version": "1.0.0",
-  "description": "EPI X-Ray Desktop Activity Capture Agent",
+  "description": "EPI-Q Desktop Activity Capture Agent",
   "main": "dist/main/index.js",
   "scripts": {
     "build": "tsc && npm run build:renderer",
@@ -13,8 +13,8 @@
     "package:linux": "npm run build && electron-builder --linux"
   },
   "build": {
-    "appId": "com.finaceverse.epi-xray-agent",
-    "productName": "EPI X-Ray Agent",
+    "appId": "com.finaceverse.epi-q-agent",
+    "productName": "EPI-Q Agent",
     "directories": {
       "output": "release"
     },

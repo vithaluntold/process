@@ -107,8 +107,8 @@ class DesktopAgent {
     this.tray?.setContextMenu(contextMenu);
     this.tray?.setToolTip(
       this.isTracking
-        ? 'EPI X-Ray Agent - Tracking Active'
-        : 'EPI X-Ray Agent - Paused'
+        ? 'EPI-Q Agent - Tracking Active'
+        : 'EPI-Q Agent - Paused'
     );
   }
 

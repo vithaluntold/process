@@ -1,8 +1,8 @@
-# Test Data for EPI X-Ray Platform
+# Test Data for EPI-Q Platform
 
 ## 📊 Quick Overview
 
-This directory contains **4 comprehensive test datasets** designed to showcase all features of the EPI X-Ray process mining platform. Each dataset represents a realistic business process with intentional patterns, anomalies, and optimization opportunities.
+This directory contains **4 comprehensive test datasets** designed to showcase all features of the EPI-Q process mining platform. Each dataset represents a realistic business process with intentional patterns, anomalies, and optimization opportunities.
 
 ---
 
@@ -22,7 +22,7 @@ This directory contains **4 comprehensive test datasets** designed to showcase a
 ## 🚀 Quick Start (5 Minutes)
 
 ### Step 1: Log In
-Open EPI X-Ray and log in (or create an account)
+Open EPI-Q and log in (or create an account)
 
 ### Step 2: Create Process
 1. Click **"+ New Process"**

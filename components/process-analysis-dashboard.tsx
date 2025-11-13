@@ -309,12 +309,12 @@ export default function ProcessAnalysisDashboard() {
   async function handleShare(method: string) {
     if (method === "email") {
       // Generate mailto link with report details
-      const subject = encodeURIComponent(`EPI X-Ray Process Analysis - ${activeTab}`);
+      const subject = encodeURIComponent(`EPI-Q Process Analysis - ${activeTab}`);
       const body = encodeURIComponent(
         `I'd like to share this process analysis report with you.\n\n` +
         `Process: ${processes.find(p => p.id.toString() === selectedProcessId)?.name}\n` +
         `Analysis Type: ${activeTab}\n\n` +
-        `View the full report in EPI X-Ray.`
+        `View the full report in EPI-Q.`
       );
       window.location.href = `mailto:?subject=${subject}&body=${body}`;
       toast.success("Email client opened");

@@ -1,4 +1,4 @@
-# EPI X-Ray Security & GDPR Compliance Documentation
+# EPI-Q Security & GDPR Compliance Documentation
 
 ## Security Standards Compliance
 

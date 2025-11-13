@@ -1,5 +1,5 @@
 # =============================================================================
-# EPI X-Ray - Docker Compose Configuration
+# EPI-Q - Docker Compose Configuration
 # Orchestrates Next.js application + PostgreSQL database
 # =============================================================================
 
@@ -11,12 +11,12 @@ services:
   # ---------------------------------------------------------------------------
   database:
     image: postgres:16-alpine
-    container_name: epix-database
+    container_name: epi-q-database
     restart: unless-stopped
     
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-epixray}
-      POSTGRES_USER: ${POSTGRES_USER:-epixray}
+      POSTGRES_DB: ${POSTGRES_DB:-epi-q}
+      POSTGRES_USER: ${POSTGRES_USER:-epi-q}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
     
@@ -30,10 +30,10 @@ services:
       - "${POSTGRES_PORT:-5432}:5432"
     
     networks:
-      - epixray-network
+      - epi-q-network
     
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-epixray} -d ${POSTGRES_DB:-epixray}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-epi-q} -d ${POSTGRES_DB:-epi-q}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -49,7 +49,7 @@ services:
       - /var/run/postgresql
 
   # ---------------------------------------------------------------------------
-  # EPI X-Ray Application Service
+  # EPI-Q Application Service
   # ---------------------------------------------------------------------------
   app:
     build:
@@ -58,7 +58,7 @@ services:
       args:
         NODE_ENV: production
     
-    container_name: epix-app
+    container_name: epi-q-app
     restart: unless-stopped
     
     depends_on:
@@ -67,7 +67,7 @@ services:
     
     environment:
       # Database Connection
-      DATABASE_URL: postgresql://${POSTGRES_USER:-epixray}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB:-epixray}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-epi-q}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB:-epi-q}
       
       # Authentication & Security
       AUTH_SECRET: ${AUTH_SECRET}
@@ -96,7 +96,7 @@ services:
       - uploads_data:/app/uploads
     
     networks:
-      - epixray-network
+      - epi-q-network
     
     healthcheck:
       test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:5000/api/health || exit 1"]
@@ -131,16 +131,16 @@ services:
 volumes:
   postgres_data:
     driver: local
-    name: epixray-postgres-data
+    name: epi-q-postgres-data
   
   uploads_data:
     driver: local
-    name: epixray-uploads-data
+    name: epi-q-uploads-data
 
 # =============================================================================
 # Network Configuration
 # =============================================================================
 networks:
-  epixray-network:
+  epi-q-network:
     driver: bridge
-    name: epixray-network
+    name: epi-q-network

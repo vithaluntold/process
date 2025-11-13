@@ -1,4 +1,4 @@
-# EPI X-Ray Desktop App
+# EPI-Q Desktop App
 
 ## Quick Start
 
@@ -39,17 +39,17 @@ pnpm desktop:build
 ## What You Get
 
 ### Windows
-- **EPI X-Ray-Setup-1.0.0.exe** - Full installer with uninstaller
-- **EPI X-Ray-1.0.0.exe** - Portable version (no installation required)
+- **EPI-Q-Setup-1.0.0.exe** - Full installer with uninstaller
+- **EPI-Q-1.0.0.exe** - Portable version (no installation required)
 
 ### macOS
-- **EPI X-Ray-1.0.0-arm64.dmg** - Drag-and-drop installer
-- **EPI X-Ray-1.0.0-arm64-mac.zip** - Zipped app bundle
+- **EPI-Q-1.0.0-arm64.dmg** - Drag-and-drop installer
+- **EPI-Q-1.0.0-arm64-mac.zip** - Zipped app bundle
 
 ### Linux
-- **EPI X-Ray-1.0.0-x64.AppImage** - Universal Linux app (no installation)
-- **epi-xray_1.0.0_amd64.deb** - Debian/Ubuntu package
-- **epi-xray-1.0.0.x86_64.rpm** - Fedora/RHEL package
+- **EPI-Q-1.0.0-x64.AppImage** - Universal Linux app (no installation)
+- **epi-q_1.0.0_amd64.deb** - Debian/Ubuntu package
+- **epi-q-1.0.0.x86_64.rpm** - Fedora/RHEL package
 
 ## Features
 

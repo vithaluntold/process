@@ -85,7 +85,7 @@ export async function generatePDFReport(data: ReportData): Promise<Buffer> {
 
 export async function generateExcelReport(data: ReportData): Promise<Buffer> {
   const workbook = new ExcelJS.Workbook();
-  workbook.creator = "EPI X-Ray";
+  workbook.creator = "EPI-Q";
   workbook.created = new Date();
   
   const worksheet = workbook.addWorksheet("Report");

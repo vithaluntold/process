@@ -1,6 +1,6 @@
-# EPI X-Ray - Docker Deployment Guide
+# EPI-Q - Docker Deployment Guide
 
-Complete guide for deploying EPI X-Ray using Docker with enterprise-grade security and portability across any platform.
+Complete guide for deploying EPI-Q using Docker with enterprise-grade security and portability across any platform.
 
 ## 🚀 Quick Start
 
@@ -15,7 +15,7 @@ Complete guide for deploying EPI X-Ray using Docker with enterprise-grade securi
 ```bash
 # Clone the repository
 git clone <your-repo-url>
-cd epix-ray
+cd epi-q
 
 # Create environment file from template
 cp .env.example .env
@@ -95,7 +95,7 @@ Your application will be available at: **http://localhost:5000**
 # Example: nginx reverse proxy configuration
 server {
     listen 443 ssl http2;
-    server_name epixray.yourdomain.com;
+    server_name epi-q.yourdomain.com;
     
     ssl_certificate /path/to/cert.pem;
     ssl_certificate_key /path/to/key.pem;
@@ -130,17 +130,17 @@ docker-compose logs -f database
 
 # Execute commands in running container
 docker-compose exec app sh
-docker-compose exec database psql -U epixray
+docker-compose exec database psql -U epi-q
 ```
 
 ### Database Management
 
 ```bash
 # Backup database
-docker-compose exec database pg_dump -U epixray epixray > backup.sql
+docker-compose exec database pg_dump -U epi-q epi-q > backup.sql
 
 # Restore database
-docker-compose exec -T database psql -U epixray epixray < backup.sql
+docker-compose exec -T database psql -U epi-q epi-q < backup.sql
 
 # Run database migrations (push schema)
 docker-compose exec app pnpm run db:push
@@ -156,10 +156,10 @@ docker-compose exec app pnpm run db:push --force
 docker-compose ps
 
 # View resource usage
-docker stats epix-app epix-database
+docker stats epi-q-app epi-q-database
 
 # Inspect container details
-docker inspect epix-app
+docker inspect epi-q-app
 
 # Check container logs (last 100 lines)
 docker-compose logs --tail=100 app
@@ -179,7 +179,7 @@ sudo sh get-docker.sh
 
 # Clone and deploy
 git clone <your-repo>
-cd epix-ray
+cd epi-q
 cp .env.example .env
 nano .env  # Configure secrets
 docker-compose up -d
@@ -192,14 +192,14 @@ docker-compose up -d
 az login
 
 # Create resource group
-az group create --name epixray-rg --location eastus
+az group create --name epi-q-rg --location eastus
 
 # Deploy container
 az container create \
-  --resource-group epixray-rg \
-  --name epixray-app \
-  --image <your-registry>/epixray:latest \
-  --dns-name-label epixray \
+  --resource-group epi-q-rg \
+  --name epi-q-app \
+  --image <your-registry>/epi-q:latest \
+  --dns-name-label epi-q \
   --ports 5000 \
   --environment-variables \
     DATABASE_URL="..." \
@@ -211,11 +211,11 @@ az container create \
 
 ```bash
 # Build and push to Google Container Registry
-gcloud builds submit --tag gcr.io/PROJECT-ID/epixray
+gcloud builds submit --tag gcr.io/PROJECT-ID/epi-q
 
 # Deploy to Cloud Run
-gcloud run deploy epixray \
-  --image gcr.io/PROJECT-ID/epixray \
+gcloud run deploy epi-q \
+  --image gcr.io/PROJECT-ID/epi-q \
   --platform managed \
   --region us-central1 \
   --allow-unauthenticated \
@@ -226,20 +226,20 @@ gcloud run deploy epixray \
 
 ```bash
 # Create namespace
-kubectl create namespace epixray
+kubectl create namespace epi-q
 
 # Create secrets
-kubectl create secret generic epixray-secrets \
+kubectl create secret generic epi-q-secrets \
   --from-literal=DATABASE_URL="..." \
   --from-literal=AUTH_SECRET="..." \
   --from-literal=MASTER_ENCRYPTION_KEY="..." \
-  -n epixray
+  -n epi-q
 
 # Apply deployment
-kubectl apply -f k8s/deployment.yaml -n epixray
+kubectl apply -f k8s/deployment.yaml -n epi-q
 
 # Expose service
-kubectl apply -f k8s/service.yaml -n epixray
+kubectl apply -f k8s/service.yaml -n epi-q
 ```
 
 ## 🔄 Production Best Practices
@@ -269,7 +269,7 @@ services:
 
 ```bash
 # Cron job for daily database backups
-0 2 * * * docker-compose exec -T database pg_dump -U epixray epixray | gzip > /backups/epixray-$(date +\%Y\%m\%d).sql.gz
+0 2 * * * docker-compose exec -T database pg_dump -U epi-q epi-q | gzip > /backups/epi-q-$(date +\%Y\%m\%d).sql.gz
 ```
 
 ### 4. Update Strategy
@@ -319,7 +319,7 @@ docker-compose exec app sh -c 'nc -zv database 5432'
 docker-compose logs database
 
 # Verify credentials
-docker-compose exec database psql -U epixray -c '\l'
+docker-compose exec database psql -U epi-q -c '\l'
 ```
 
 ### Performance issues
@@ -366,7 +366,7 @@ docker-compose up -d --build
 
 - **Health Check**: `http://localhost:5000/api/health`
 - **Application**: `http://localhost:5000`
-- **Database**: `postgresql://localhost:5432/epixray`
+- **Database**: `postgresql://localhost:5432/epi-q`
 
 ## 🆘 Support
 
@@ -382,4 +382,4 @@ See LICENSE file in the repository.
 
 ---
 
-**EPI X-Ray** - Enterprise Process Intelligence & Automation Platform
+**EPI-Q** - Enterprise Process Intelligence & Automation Platform

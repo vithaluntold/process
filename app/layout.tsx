@@ -10,7 +10,7 @@ import { PageProgress } from "@/components/page-progress"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "EPI X-Ray",
+  title: "EPI-Q",
   description: "Advanced process mining and automation platform",
     generator: 'v0.app'
 }

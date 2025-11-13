@@ -1,4 +1,4 @@
-# EPI X-Ray Portal - Complete User Guide
+# EPI-Q Portal - Complete User Guide
 
 ## Table of Contents
 1. [Getting Started](#getting-started)
@@ -24,10 +24,10 @@
 
 ### Accessing the Portal
 
-1. **Navigate to the EPI X-Ray Portal**
+1. **Navigate to the EPI-Q Portal**
    - Open your web browser
-   - Go to your EPI X-Ray Portal URL
-   - You'll see the landing page with the EPI X-Ray logo
+   - Go to your EPI-Q Portal URL
+   - You'll see the landing page with the EPI-Q logo
 
 2. **Sign Up (First Time Users)**
    - Click the **"Sign Up"** tab on the right panel
@@ -1108,7 +1108,7 @@ Analyze desktop activity patterns to discover process improvements and automatio
 **Step 2: Configure Agent**
 
 1. Open Desktop Capture Agent
-2. Enter your EPI X-Ray credentials
+2. Enter your EPI-Q credentials
 3. Or use API key from Settings
 4. Configure privacy settings:
    - Screen capture frequency
@@ -3663,4 +3663,4 @@ Access at: **Help → Video Tutorials**
 
 **Document Version:** 1.0  
 **Last Updated:** January 2025  
-**EPI X-Ray Portal** - Revolutionizing Process Mining & Automation
+**EPI-Q Portal** - Revolutionizing Process Mining & Automation

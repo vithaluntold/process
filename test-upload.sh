@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "Testing EPI X-Ray Backend - End-to-End Flow"
-echo "==========================================="
+echo "Testing EPI-Q Backend - End-to-End Flow"
+echo "========================================"
 echo ""
 
 API_URL="http://localhost:5000/api"

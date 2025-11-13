@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
 
     // Title
     doc.setFontSize(20);
-    doc.text("EPI X-Ray Dashboard Report", 14, 20);
+    doc.text("EPI-Q Dashboard Report", 14, 20);
 
     // Date range
     doc.setFontSize(10);
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
       doc.setPage(i);
       doc.setFontSize(8);
       doc.text(`Page ${i} of ${pageCount}`, 14, doc.internal.pageSize.height - 10);
-      doc.text("EPI X-Ray Process Mining Platform", doc.internal.pageSize.width - 70, doc.internal.pageSize.height - 10);
+      doc.text("EPI-Q Process Mining Platform", doc.internal.pageSize.width - 70, doc.internal.pageSize.height - 10);
     }
 
     // Convert to buffer

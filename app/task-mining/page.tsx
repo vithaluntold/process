@@ -565,7 +565,7 @@ export default function TaskMiningPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Activity className="h-5 w-5 text-brand" />
-                EPI X-Ray Desktop Agent
+                EPI-Q Desktop Agent
               </CardTitle>
               <CardDescription>
                 Install our desktop application to automatically capture keystrokes, mouse events, and application usage for comprehensive task mining

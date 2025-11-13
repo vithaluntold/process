@@ -212,7 +212,7 @@ export default function LandingPage() {
                 </div>
                 <div>
                   <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-cyan-700 to-blue-700 dark:from-white dark:via-cyan-100 dark:to-blue-100 bg-clip-text text-transparent">
-                    EPI X-Ray
+                    EPI-Q
                   </h1>
                   <div className="flex items-center gap-2 mt-1">
                     <Sparkles className="h-4 w-4 text-cyan-600 dark:text-cyan-400 animate-pulse" />

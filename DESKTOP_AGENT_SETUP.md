@@ -1,7 +1,7 @@
 # Desktop Agent Production Setup Guide
 
 ## Overview
-The EPI X-Ray Desktop Capture Agent requires proper server configuration for encryption and API key management. This guide covers production deployment setup.
+The EPI-Q Desktop Capture Agent requires proper server configuration for encryption and API key management. This guide covers production deployment setup.
 
 ## Required Environment Variables
 
@@ -63,7 +63,7 @@ Users must generate API keys through the platform UI:
 ## Desktop Agent Configuration
 
 Users need to configure their desktop agent with:
-- **Platform URL**: Your EPI X-Ray deployment URL
+- **Platform URL**: Your EPI-Q deployment URL
 - **API Key**: Generated from the platform (starts with `epix_`)
 - **Encryption Key** (optional): Per-user AES key for encrypting captured data
 

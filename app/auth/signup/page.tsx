@@ -54,7 +54,7 @@ export default function SignUpPage() {
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
           <CardDescription>
-            Enter your information to get started with EPI X-Ray
+            Enter your information to get started with EPI-Q
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>

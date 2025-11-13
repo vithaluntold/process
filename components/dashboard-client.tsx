@@ -222,7 +222,7 @@ export default function DashboardClient() {
               </div>
             </div>
             <div>
-              <span className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">EPI X-Ray</span>
+              <span className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">EPI-Q</span>
               <div className="flex items-center gap-1">
                 <Sparkles className="h-3 w-3 text-cyan-500" />
                 <span className="text-xs text-muted-foreground">Enterprise</span>

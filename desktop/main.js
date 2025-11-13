@@ -99,18 +99,18 @@ function createMenu() {
         {
           label: 'Documentation',
           click: () => {
-            shell.openExternal('https://github.com/finaceverse/epi-xray');
+            shell.openExternal('https://github.com/finaceverse/epi-q');
           }
         },
         { type: 'separator' },
         {
-          label: 'About EPI X-Ray',
+          label: 'About EPI-Q',
           click: () => {
             const { dialog } = require('electron');
             dialog.showMessageBox({
               type: 'info',
-              title: 'About EPI X-Ray',
-              message: 'EPI X-Ray',
+              title: 'About EPI-Q',
+              message: 'EPI-Q',
               detail: 'Enterprise Process Intelligence Platform\nVersion 1.0.0\n\nPowered by FinACEverse\n© 2025 All rights reserved'
             });
           }

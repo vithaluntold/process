@@ -1,7 +1,7 @@
-# EPI X-Ray Desktop Application
+# EPI-Q Desktop Application
 
 ## Overview
-EPI X-Ray is available as an installable desktop application for Windows, macOS, and Linux using Electron. The desktop version provides a native application experience with enhanced performance and offline capabilities.
+EPI-Q is available as an installable desktop application for Windows, macOS, and Linux using Electron. The desktop version provides a native application experience with enhanced performance and offline capabilities.
 
 ## Features
 - **Native Desktop Experience**: Full-screen app with native menus and shortcuts
@@ -49,21 +49,21 @@ npm install
 cd desktop
 npm run build:win
 ```
-Output: `desktop/dist/EPI X-Ray-Setup-1.0.0.exe` (installer) and portable version
+Output: `desktop/dist/EPI-Q-Setup-1.0.0.exe` (installer) and portable version
 
 **Build for macOS:**
 ```bash
 cd desktop
 npm run build:mac
 ```
-Output: `desktop/dist/EPI X-Ray-1.0.0-arm64.dmg` and `.zip` file
+Output: `desktop/dist/EPI-Q-1.0.0-arm64.dmg` and `.zip` file
 
 **Build for Linux:**
 ```bash
 cd desktop
 npm run build:linux
 ```
-Output: `desktop/dist/EPI X-Ray-1.0.0-x64.AppImage`, `.deb`, and `.rpm` packages
+Output: `desktop/dist/EPI-Q-1.0.0-x64.AppImage`, `.deb`, and `.rpm` packages
 
 **Build for All Platforms:**
 ```bash
@@ -86,33 +86,33 @@ npm start
 ## Installation
 
 ### Windows
-1. Download `EPI X-Ray-Setup-1.0.0.exe`
+1. Download `EPI-Q-Setup-1.0.0.exe`
 2. Double-click the installer
 3. Follow the installation wizard
 4. Launch from Start Menu or Desktop shortcut
 
 ### macOS
-1. Download `EPI X-Ray-1.0.0-arm64.dmg`
+1. Download `EPI-Q-1.0.0-arm64.dmg`
 2. Open the DMG file
-3. Drag EPI X-Ray to Applications folder
+3. Drag EPI-Q to Applications folder
 4. Launch from Applications or Spotlight
 
 ### Linux
 
 **AppImage (Universal):**
 ```bash
-chmod +x EPI-X-Ray-1.0.0-x64.AppImage
-./EPI-X-Ray-1.0.0-x64.AppImage
+chmod +x EPI-Q-1.0.0-x64.AppImage
+./EPI-Q-1.0.0-x64.AppImage
 ```
 
 **Debian/Ubuntu (.deb):**
 ```bash
-sudo dpkg -i epi-xray-1.0.0-amd64.deb
+sudo dpkg -i epi-q-1.0.0-amd64.deb
 ```
 
 **Fedora/RHEL (.rpm):**
 ```bash
-sudo rpm -i epi-xray-1.0.0-x86_64.rpm
+sudo rpm -i epi-q-1.0.0-x86_64.rpm
 ```
 
 ## Architecture

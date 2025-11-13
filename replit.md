@@ -1,13 +1,13 @@
-# EPI X-Ray - Process Mining Platform
+# EPI-Q - Process Mining Platform
 
 ## Overview
 
-**EPI X-Ray: See Through Your Processes, Transform Your Business**
+**EPI-Q: See Through Your Processes, Transform Your Business**
 
-EPI X-Ray is a next-generation process intelligence platform that empowers organizations to see the invisible—the hidden patterns, inefficiencies, and opportunities buried deep within their business operations. Built for the modern enterprise, EPI X-Ray transforms raw operational data into actionable insights with surgical precision.
+EPI-Q is a next-generation process intelligence platform that empowers organizations to see the invisible—the hidden patterns, inefficiencies, and opportunities buried deep within their business operations. Built for the modern enterprise, EPI-Q transforms raw operational data into actionable insights with surgical precision.
 
 **The Vision:**
-In a world where businesses generate terabytes of process data daily, most organizations remain blind to what's actually happening in their operations. EPI X-Ray changes that. We believe every business deserves X-ray vision into their processes—the ability to see bottlenecks before they cause delays, predict failures before they happen, and simulate improvements before implementing them.
+In a world where businesses generate terabytes of process data daily, most organizations remain blind to what's actually happening in their operations. EPI-Q changes that. We believe every business deserves X-ray vision into their processes—the ability to see bottlenecks before they cause delays, predict failures before they happen, and simulate improvements before implementing them.
 
 **What We Strive Towards:**
 - **Radical Transparency**: Make every process visible, measurable, and understandable
@@ -17,7 +17,7 @@ In a world where businesses generate terabytes of process data daily, most organ
 - **Continuous Evolution**: Transform static process maps into living digital twins that adapt and learn
 
 **The Platform:**
-EPI X-Ray combines cutting-edge AI, advanced algorithms, and intuitive design to deliver a comprehensive process intelligence suite. From discovering hidden workflows in email threads to simulating the ROI of process changes, from detecting anomalies in real-time to forecasting future performance—every feature is built with one goal: help businesses operate at their absolute best.
+EPI-Q combines cutting-edge AI, advanced algorithms, and intuitive design to deliver a comprehensive process intelligence suite. From discovering hidden workflows in email threads to simulating the ROI of process changes, from detecting anomalies in real-time to forecasting future performance—every feature is built with one goal: help businesses operate at their absolute best.
 
 **Core Capabilities:**
 - **Process Discovery**: Automatically extract and visualize process flows with thin, electric-animated diagrams
@@ -29,14 +29,14 @@ EPI X-Ray combines cutting-edge AI, advanced algorithms, and intuitive design to
 - **Advanced Reporting**: Export insights to stakeholders in PDF, Excel, and PowerPoint
 - **Collaboration**: Team-based process improvement with comments, mentions, and threads
 
-EPI X-Ray doesn't just show you what happened—it shows you what's happening, what will happen, and what could happen if you make the right changes. It's process mining evolved for the AI era, designed to make every organization faster, smarter, and more efficient.
+EPI-Q doesn't just show you what happened—it shows you what's happening, what will happen, and what could happen if you make the right changes. It's process mining evolved for the AI era, designed to make every organization faster, smarter, and more efficient.
 
 ## User Preferences
 - Prefers comprehensive documentation with detailed feature descriptions and step-by-step user guides
 - Consistent dashboard structure and navigation across all module pages
 
 ## System Architecture
-The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScript, utilizing pnpm as the package manager. The frontend runs on port 5000.
+The EPI-Q platform is built with Next.js 15.5.4, React 19.1.0, and TypeScript, utilizing pnpm as the package manager. The frontend runs on port 5000.
 
 **UI/UX Design:**
 - **Styling**: Tailwind CSS v4 with shadcn/ui components and custom brand color utilities.
@@ -87,11 +87,11 @@ The EPI X-Ray platform is built with Next.js 15.5.4, React 19.1.0, and TypeScrip
 - **Consent Management**: Track and manage user consents.
 
 **Desktop Applications:**
-1. **Main Desktop App**: EPI X-Ray is available as an installable desktop application built with Electron 28, supporting Windows, macOS, and Linux.
+1. **Main Desktop App**: EPI-Q is available as an installable desktop application built with Electron 28, supporting Windows, macOS, and Linux.
 2. **Desktop Capture Agent** (Task Mining): Standalone Electron application for activity monitoring, located in `desktop-agent/` with features like real-time tracking, encryption, privacy controls, and API integration.
 
 **Docker Deployment:**
-EPI X-Ray supports containerized deployment with a multi-stage Docker build, security hardening, Docker Compose orchestration, and comprehensive deployment documentation.
+EPI-Q supports containerized deployment with a multi-stage Docker build, security hardening, Docker Compose orchestration, and comprehensive deployment documentation.
 
 ## External Dependencies
 - **Database**: PostgreSQL (via Neon)

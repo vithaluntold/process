@@ -1,6 +1,6 @@
-# EPI X-Ray Desktop Agent
+# EPI-Q Desktop Agent
 
-Desktop activity capture agent for the EPI X-Ray Process Mining platform.
+Desktop activity capture agent for the EPI-Q Process Mining platform.
 
 ## Features
 
@@ -38,13 +38,13 @@ npm run package:linux
 ## Usage
 
 1. **Install** the agent on your computer
-2. **Configure** your EPI X-Ray platform URL and API key
+2. **Configure** your EPI-Q platform URL and API key
 3. **Grant consent** for activity tracking
 4. **Start tracking** - Agent runs in system tray
 
 ## Configuration
 
-- **Platform URL**: URL of your EPI X-Ray platform (default: http://localhost:5000)
+- **Platform URL**: URL of your EPI-Q platform (default: http://localhost:5000)
 - **API Key**: Your authentication key from the platform
 - **Capture Settings**: Toggle keyboard, apps, screenshots
 - **Privacy Settings**: Encryption, data blurring, consent

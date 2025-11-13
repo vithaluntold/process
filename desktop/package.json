@@ -1,7 +1,7 @@
 {
-  "name": "epi-xray-desktop",
+  "name": "epi-q-desktop",
   "version": "1.0.0",
-  "description": "EPI X-Ray - Enterprise Process Intelligence Platform (Desktop)",
+  "description": "EPI-Q - Enterprise Process Intelligence Platform (Desktop)",
   "main": "main.js",
   "author": "FinACEverse",
   "license": "MIT",
@@ -13,8 +13,8 @@
     "build:linux": "electron-builder --linux"
   },
   "build": {
-    "appId": "com.finaceverse.epi-xray",
-    "productName": "EPI X-Ray",
+    "appId": "com.finaceverse.epi-q",
+    "productName": "EPI-Q",
     "directories": {
       "output": "dist",
       "buildResources": "assets"
@@ -44,7 +44,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "EPI X-Ray"
+      "shortcutName": "EPI-Q"
     },
     "mac": {
       "target": ["dmg", "zip"],

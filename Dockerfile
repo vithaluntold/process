@@ -1,5 +1,5 @@
 # =============================================================================
-# EPI X-Ray - Production Docker Image
+# EPI-Q - Production Docker Image
 # Multi-stage build with security hardening for portable deployment
 # =============================================================================
 
