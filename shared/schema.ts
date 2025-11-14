@@ -707,26 +707,31 @@ export const llmProviderKeysRelations = relations(llmProviderKeys, ({ one }) => 
 
 export const ticketCategories = pgTable("ticket_categories", {
   id: serial("id").primaryKey(),
-  slug: text("slug").notNull().unique(),
   name: text("name").notNull(),
   description: text("description"),
-  slaTargetHours: integer("sla_target_hours"),
+  slaHours: integer("sla_hours").notNull().default(24),
+  priority: text("priority").notNull().default("medium"),
   color: text("color"),
   icon: text("icon"),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  isActiveIdx: index("ticket_categories_is_active_idx").on(table.isActive),
+}));
 
 export const tickets = pgTable("tickets", {
   id: serial("id").primaryKey(),
   organizationId: integer("organization_id").references(() => organizations.id).notNull(),
+  ticketNumber: text("ticket_number").notNull().unique(),
   requesterId: integer("requester_id").references(() => users.id).notNull(),
   assigneeId: integer("assignee_id").references(() => users.id),
   categoryId: integer("category_id").references(() => ticketCategories.id),
-  status: text("status").notNull().default("open"), // open, in_progress, resolved, closed
-  priority: text("priority").notNull().default("medium"), // low, medium, high, urgent
+  status: text("status").notNull().default("open"), // open, in_progress, resolved, closed, waiting
+  priority: text("priority").notNull().default("medium"), // low, medium, high, critical
   subject: text("subject").notNull(),
   description: text("description").notNull(),
+  resolution: text("resolution"),
+  dueDate: timestamp("due_date"),
   source: text("source").notNull().default("web"), // web, email, api
   tags: jsonb("tags"),
   metadata: jsonb("metadata"),
@@ -738,6 +743,7 @@ export const tickets = pgTable("tickets", {
   firstResponseAt: timestamp("first_response_at"),
 }, (table) => ({
   orgIdIdx: index("tickets_organization_id_idx").on(table.organizationId),
+  ticketNumberIdx: index("tickets_ticket_number_idx").on(table.ticketNumber),
   statusIdx: index("tickets_status_idx").on(table.status),
   priorityIdx: index("tickets_priority_idx").on(table.priority),
   categoryIdx: index("tickets_category_id_idx").on(table.categoryId),
@@ -826,21 +832,23 @@ export const subscriptionPlans = pgTable("subscription_plans", {
 
 export const organizationSubscriptions = pgTable("organization_subscriptions", {
   id: serial("id").primaryKey(),
-  organizationId: integer("organization_id").references(() => organizations.id).notNull(),
-  stripeCustomerId: text("stripe_customer_id").unique(),
-  stripeSubscriptionId: text("stripe_subscription_id").unique(),
+  organizationId: integer("organization_id").references(() => organizations.id).notNull().unique(),
   planId: integer("plan_id").references(() => subscriptionPlans.id).notNull(),
   status: text("status").notNull().default("active"), // active, past_due, canceled, incomplete, trialing
-  currentPeriodStart: timestamp("current_period_start"),
-  currentPeriodEnd: timestamp("current_period_end"),
-  cancelAtPeriodEnd: boolean("cancel_at_period_end").notNull().default(false),
-  trialEnd: timestamp("trial_end"),
-  seats: integer("seats").notNull().default(1), // Number of user seats
+  billingCycle: text("billing_cycle").notNull().default("monthly"), // monthly, yearly
+  seats: integer("seats").notNull().default(1),
   seatsUsed: integer("seats_used").notNull().default(0),
+  currentPeriodStart: timestamp("current_period_start").notNull(),
+  currentPeriodEnd: timestamp("current_period_end").notNull(),
+  cancelAtPeriodEnd: boolean("cancel_at_period_end").notNull().default(false),
+  trialEndsAt: timestamp("trial_ends_at"),
+  paymentGateway: text("payment_gateway"),
+  gatewaySubscriptionId: text("gateway_subscription_id"),
+  metadata: jsonb("metadata"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (table) => ({
-  orgIdIdx: index("organization_subscriptions_org_id_idx").on(table.organizationId),
+  organizationIdIdx: index("organization_subscriptions_organization_id_idx").on(table.organizationId),
   statusIdx: index("organization_subscriptions_status_idx").on(table.status),
 }));
 
@@ -930,11 +938,12 @@ export const userProfiles = pgTable("user_profiles", {
 export const roleAssignments = pgTable("role_assignments", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id).notNull(),
-  role: text("role").notNull(), // admin, agent, customer
-  scopeType: text("scope_type"), // global, category, team
-  scopeId: text("scope_id"),
+  role: text("role").notNull(), // admin, agent, customer, super_admin, employee
+  resourceType: text("resource_type"), // organization, global, category, team
+  resourceId: integer("resource_id"),
   grantedBy: integer("granted_by").references(() => users.id),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
+  grantedAt: timestamp("granted_at").defaultNow().notNull(),
+  expiresAt: timestamp("expires_at"),
 }, (table) => ({
   userRoleIdx: index("role_assignments_user_role_idx").on(table.userId, table.role),
 }));
