@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Upload, FileUp, CheckCircle2, AlertCircle } from "lucide-react"
 import { toast } from "sonner"
+import { apiClient } from "@/lib/api-client"
 
 interface UploadModalProps {
   open: boolean
@@ -59,11 +60,7 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
       formData.append("file", file)
       formData.append("processName", processName.trim())
 
-      const response = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      })
-
+      const response = await apiClient.upload("/api/upload", formData)
       const data = await response.json()
 
       if (!response.ok) {

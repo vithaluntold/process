@@ -35,6 +35,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Mail, Plus, Loader2, Copy, Check, XCircle } from "lucide-react";
 import { toast } from "sonner";
 import { formatDistanceToNow } from "date-fns";
+import { apiClient } from "@/lib/api-client";
 
 interface Invitation {
   id: number;
@@ -112,11 +113,7 @@ export default function InvitationsPage() {
         lastName: formData.lastName || undefined,
       };
 
-      const response = await fetch("/api/invitations", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const response = await apiClient.post("/api/invitations", payload);
 
       if (!response.ok) {
         const error = await response.json();
@@ -142,9 +139,7 @@ export default function InvitationsPage() {
     }
 
     try {
-      const response = await fetch(`/api/invitations/${invitationId}`, {
-        method: "DELETE",
-      });
+      const response = await apiClient.delete(`/api/invitations/${invitationId}`);
 
       if (!response.ok) throw new Error("Failed to revoke invitation");
 

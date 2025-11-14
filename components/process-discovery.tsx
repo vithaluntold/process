@@ -10,6 +10,7 @@ import { SkeletonCard } from "@/components/ui/skeleton-card"
 import { toast } from "sonner"
 import dynamic from "next/dynamic"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { apiClient } from "@/lib/api-client"
 
 const ProcessFlowchart = dynamic(() => import("@/components/process-flowchart"), {
   ssr: false,
@@ -62,9 +63,7 @@ export default function ProcessDiscovery() {
     setDiscoveryResult(null)
 
     try {
-      const response = await fetch(`/api/processes/${selectedProcess}/discover`, {
-        method: "POST",
-      })
+      const response = await apiClient.post(`/api/processes/${selectedProcess}/discover`)
 
       if (!response.ok) {
         const errorData = await response.json()

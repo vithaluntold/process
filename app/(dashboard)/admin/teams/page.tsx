@@ -40,6 +40,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Users, Plus, MoreVertical, Loader2, Edit, Trash2, UserPlus } from "lucide-react";
 import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
 
 interface Team {
   id: number;
@@ -118,11 +119,9 @@ export default function TeamsPage() {
       const url = editingTeam ? `/api/teams/${editingTeam.id}` : "/api/teams";
       const method = editingTeam ? "PUT" : "POST";
 
-      const response = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      const response = method === "PUT" 
+        ? await apiClient.put(url, payload)
+        : await apiClient.post(url, payload);
 
       if (!response.ok) {
         const error = await response.json();
@@ -147,9 +146,7 @@ export default function TeamsPage() {
     }
 
     try {
-      const response = await fetch(`/api/teams/${teamId}`, {
-        method: "DELETE",
-      });
+      const response = await apiClient.delete(`/api/teams/${teamId}`);
 
       if (!response.ok) throw new Error("Failed to delete team");
 

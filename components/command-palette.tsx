@@ -32,6 +32,7 @@ import {
   User,
   Search,
 } from "lucide-react"
+import { apiClient } from "@/lib/api-client"
 
 const navigationItems = [
   { icon: BarChart3, label: "Dashboard", href: "/", keywords: ["home", "overview"] },
@@ -98,10 +99,9 @@ export function CommandPalette() {
         router.push("/reports")
         break
       case "logout":
-        fetch("/api/auth/logout", { method: "POST" })
-          .then(() => {
-            window.location.href = "/"
-          })
+        apiClient.logout().then(() => {
+          window.location.href = "/"
+        })
         break
     }
   }

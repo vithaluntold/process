@@ -33,6 +33,7 @@ import {
 } from '@/components/ui/select';
 import { Building2, Users, Search, Plus, Eye } from 'lucide-react';
 import { toast } from 'sonner';
+import { apiClient } from '@/lib/api-client';
 
 interface Organization {
   id: number;
@@ -87,11 +88,7 @@ export default function AdminOrganizationsPage() {
 
   const handleCreateOrganization = async () => {
     try {
-      const response = await fetch('/api/organizations', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newOrgData)
-      });
+      const response = await apiClient.post('/api/organizations', newOrgData);
 
       if (!response.ok) {
         const error = await response.json();
