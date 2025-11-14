@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import AppLayout from '@/components/app-layout';
+import { PageHeader } from '@/components/page-header';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Check, X, Zap, Building2, Rocket } from 'lucide-react';
+import { Check, X, Zap, Building2, Rocket, DollarSign } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface Plan {
@@ -94,22 +96,26 @@ export default function PricingPage() {
   ];
 
   return (
-    <div className="p-8 space-y-8">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold">Choose Your Plan</h1>
-        <p className="text-xl text-muted-foreground">
-          Select the perfect plan for your organization
-        </p>
-        <Tabs value={billingCycle} onValueChange={(v) => setBillingCycle(v as 'monthly' | 'yearly')} className="w-fit mx-auto">
-          <TabsList>
-            <TabsTrigger value="monthly">Monthly</TabsTrigger>
-            <TabsTrigger value="yearly">
-              Yearly
-              <Badge className="ml-2 bg-green-500">Save 20%</Badge>
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-      </div>
+    <AppLayout>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader
+          icon={DollarSign}
+          title="Pricing Plans"
+          description="Select the perfect plan for your organization"
+          gradient="from-cyan-500 to-blue-600"
+        />
+
+        <div className="flex justify-center">
+          <Tabs value={billingCycle} onValueChange={(v) => setBillingCycle(v as 'monthly' | 'yearly')} className="w-fit">
+            <TabsList>
+              <TabsTrigger value="monthly">Monthly</TabsTrigger>
+              <TabsTrigger value="yearly">
+                Yearly
+                <Badge className="ml-2 bg-green-500">Save 20%</Badge>
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
 
       {loading ? (
         <div className="text-center py-8 text-muted-foreground">Loading plans...</div>
@@ -225,6 +231,7 @@ export default function PricingPage() {
           </div>
         </>
       )}
-    </div>
+      </div>
+    </AppLayout>
   );
 }

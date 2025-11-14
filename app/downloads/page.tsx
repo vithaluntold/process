@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import AppLayout from "@/components/app-layout";
+import { PageHeader } from "@/components/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,21 +11,15 @@ import {
   Monitor, 
   Apple, 
   Download, 
-  CheckCircle2, 
-  ArrowLeft,
+  CheckCircle2,
   Github,
   HardDrive,
   Cpu,
-  MemoryStick,
   FileText,
   Zap,
   Shield,
   Sparkles
 } from "lucide-react";
-import { Footer } from "@/components/footer";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { motion } from "framer-motion";
-import Link from "next/link";
 
 export default function DownloadsPage() {
   const [selectedPlatform, setSelectedPlatform] = useState<string>("windows");
@@ -132,87 +128,22 @@ export default function DownloadsPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-background via-muted/20 to-background dark:from-[#0a1929] dark:via-[#1e3a5f] dark:to-[#0a1929] flex flex-col overflow-hidden">
-      {/* Theme Toggle */}
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-
-      {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-blue-500/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
-      </div>
-
-      <div className="relative container mx-auto px-4 py-8 lg:py-12 flex-1">
-        {/* Back to Home Link */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="mb-8"
-        >
-          <Link href="/">
-            <Button variant="ghost" className="gap-2 text-muted-foreground hover:text-foreground">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Home
-            </Button>
-          </Link>
-        </motion.div>
-
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 space-y-4"
-        >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-cyan-500/20 dark:bg-cyan-400/30 rounded-2xl blur-2xl group-hover:blur-3xl transition-all"></div>
-              <img 
-                src="/logo.png" 
-                alt="EPI-Q Logo" 
-                className="relative h-16 w-16 object-contain drop-shadow-lg"
-              />
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 via-cyan-700 to-blue-700 dark:from-white dark:via-cyan-100 dark:to-blue-100 bg-clip-text text-transparent">
-              Download EPI-Q
-            </h1>
-          </div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Get the desktop application for Windows, macOS, and Linux. Experience enterprise process intelligence with native performance.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
-            <Badge variant="outline" className="gap-2 px-4 py-1.5 bg-white/5 border-cyan-500/30">
-              <Zap className="h-3.5 w-3.5 text-cyan-500" />
-              <span>Version 1.0.0</span>
-            </Badge>
-            <Badge variant="outline" className="gap-2 px-4 py-1.5 bg-white/5 border-cyan-500/30">
-              <Shield className="h-3.5 w-3.5 text-cyan-500" />
-              <span>Secure & GDPR Compliant</span>
-            </Badge>
-            <Badge variant="outline" className="gap-2 px-4 py-1.5 bg-white/5 border-cyan-500/30">
-              <Sparkles className="h-3.5 w-3.5 text-cyan-500" />
-              <span>Cross-Platform</span>
-            </Badge>
-          </div>
-        </motion.div>
+    <AppLayout>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader 
+          icon={Download} 
+          title="Desktop Downloads" 
+          description="Download EPI-Q desktop applications" 
+          gradient="from-cyan-500 to-blue-600" 
+        />
 
         {/* Platform Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto"
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {platforms.map((platform, index) => (
-            <motion.div
+          {platforms.map((platform) => (
+            <div
               key={platform.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -10 }}
               onClick={() => setSelectedPlatform(platform.id)}
               className="cursor-pointer"
             >
@@ -270,17 +201,12 @@ export default function DownloadsPage() {
                   </Button>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Detailed Information Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
+        <div>
           <Card className="border-white/10 bg-slate-900/50 backdrop-blur-xl">
             <CardHeader>
               <CardTitle className="text-2xl flex items-center gap-3">
@@ -410,15 +336,10 @@ export default function DownloadsPage() {
               </Tabs>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
 
         {/* GitHub Releases CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="text-center mt-12 mb-8"
-        >
+        <div className="text-center">
           <Card className="max-w-2xl mx-auto border-white/10 bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-xl">
             <CardContent className="pt-8 pb-8">
               <Github className="h-12 w-12 mx-auto mb-4 text-cyan-500" />
@@ -436,10 +357,8 @@ export default function DownloadsPage() {
               </Button>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </div>
-
-      <Footer />
-    </div>
+    </AppLayout>
   );
 }

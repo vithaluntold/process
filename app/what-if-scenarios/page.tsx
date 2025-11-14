@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import AppLayout from "@/components/app-layout";
+import { PageHeader } from "@/components/page-header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Play, Plus, TrendingUp, Clock, Zap } from "lucide-react";
+import { Play, Plus, TrendingUp, Clock, Zap, GitCompare } from "lucide-react";
 import { toast } from "sonner";
 
 interface Process {
@@ -153,13 +155,14 @@ export default function WhatIfScenariosPage() {
   }
 
   return (
-    <div className="p-4 md:p-6 lg:p-8 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold mb-2">What-If Scenarios</h1>
-        <p className="text-muted-foreground">
-          Create digital twin simulations to test process improvements and predict outcomes
-        </p>
-      </div>
+    <AppLayout>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader 
+          icon={GitCompare} 
+          title="What-If Scenarios" 
+          description="Simulate process changes and analyze impacts" 
+          gradient="from-cyan-500 to-blue-600" 
+        />
 
       <Tabs defaultValue="create" className="w-full">
         <TabsList>
@@ -354,6 +357,7 @@ export default function WhatIfScenariosPage() {
           )}
         </TabsContent>
       </Tabs>
-    </div>
+      </div>
+    </AppLayout>
   );
 }

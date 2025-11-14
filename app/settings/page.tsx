@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import AppLayout from "@/components/app-layout";
+import { PageHeader } from "@/components/page-header";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import {
@@ -88,25 +90,21 @@ export default function SettingsPage() {
 
   const hasUnsavedChanges = selectedProvider !== settings?.currentProvider;
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-[50vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
   return (
-    <div className="p-4 md:p-6 lg:p-8 space-y-6">
-      <div>
-        <div className="flex items-center gap-2 mb-2">
-          <Settings className="h-6 w-6" />
-          <h1 className="text-3xl font-bold">Settings</h1>
-        </div>
-        <p className="text-muted-foreground">
-          Configure your EPI-Q platform preferences
-        </p>
-      </div>
+    <AppLayout>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader 
+          icon={Settings} 
+          title="Settings" 
+          description="Configure your AI and platform settings" 
+          gradient="from-cyan-500 to-blue-600" 
+        />
+
+        {loading ? (
+          <div className="flex items-center justify-center h-[50vh]">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </div>
+        ) : (
 
       <Card className="p-6">
         <div className="space-y-6">
@@ -227,6 +225,8 @@ export default function SettingsPage() {
           </Alert>
         </div>
       </Card>
-    </div>
+        )}
+      </div>
+    </AppLayout>
   );
 }

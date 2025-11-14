@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import AppLayout from '@/components/app-layout';
+import { PageHeader } from '@/components/page-header';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -122,11 +124,14 @@ export default function SubscriptionPage() {
     : 0;
 
   return (
-    <div className="p-8 space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Subscription & Billing</h1>
-        <p className="text-muted-foreground">Manage your subscription and billing</p>
-      </div>
+    <AppLayout>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader 
+          icon={CreditCard} 
+          title="Subscription & Billing" 
+          description="Manage your subscription and billing" 
+          gradient="from-cyan-500 to-blue-600" 
+        />
 
       {loading ? (
         <div className="text-center py-8 text-muted-foreground">Loading subscription...</div>
@@ -328,6 +333,7 @@ export default function SubscriptionPage() {
           )}
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </AppLayout>
   );
 }

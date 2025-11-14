@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import AppLayout from '@/components/app-layout';
+import { PageHeader } from '@/components/page-header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -129,12 +131,16 @@ export default function AdminOrganizationsPage() {
   };
 
   return (
-    <div className="p-8 space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold">Organizations</h1>
-          <p className="text-muted-foreground">Platform-wide organization management</p>
-        </div>
+    <AppLayout>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader
+          icon={Building2}
+          title="Organizations"
+          description="Platform-wide organization management (Super Admin only)"
+          gradient="from-cyan-500 to-blue-600"
+        />
+
+        <div className="flex justify-end items-center">
         <Dialog open={newOrgDialogOpen} onOpenChange={setNewOrgDialogOpen}>
           <DialogTrigger asChild>
             <Button>
@@ -350,6 +356,7 @@ export default function AdminOrganizationsPage() {
           )}
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </AppLayout>
   );
 }

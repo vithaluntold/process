@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import AppLayout from '@/components/app-layout';
+import { PageHeader } from '@/components/page-header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -177,13 +179,16 @@ export default function TicketsPage() {
   };
 
   return (
-    <div className="p-8 space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold">Support Tickets</h1>
-          <p className="text-muted-foreground">Manage customer support tickets</p>
-        </div>
-        <Dialog open={newTicketDialogOpen} onOpenChange={setNewTicketDialogOpen}>
+    <AppLayout>
+      <div className="flex flex-col gap-6 p-4 md:p-6">
+        <PageHeader 
+          icon={Ticket} 
+          title="Support Tickets" 
+          description="Manage customer support tickets" 
+          gradient="from-cyan-500 to-blue-600" 
+        />
+        <div className="flex justify-between items-center">
+          <Dialog open={newTicketDialogOpen} onOpenChange={setNewTicketDialogOpen}>
           <DialogTrigger asChild>
             <Button>
               <Plus className="mr-2 h-4 w-4" />
@@ -407,6 +412,7 @@ export default function TicketsPage() {
           )}
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </AppLayout>
   );
 }
