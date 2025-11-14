@@ -30,6 +30,11 @@ import {
   DollarSign as PricingIcon,
   Users,
   Mail,
+  ChevronDown,
+  Search,
+  Rocket,
+  Database,
+  Shield,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -47,37 +52,97 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
 import { useToast } from "@/hooks/use-toast"
 import { useAuth } from "@/hooks/useAuth"
 import { cn } from "@/lib/utils"
 import { Footer } from "@/components/footer"
 import { apiClient } from "@/lib/api-client"
 
-const navigationItems = [
-  { href: "/", label: "Dashboard", icon: BarChart3 },
-  { href: "/process-analysis", label: "Process Analysis", icon: BarChart3 },
-  { href: "/process-discovery", label: "Process Discovery", icon: Layers },
-  { href: "/conformance-checking", label: "Conformance Checking", icon: Filter },
-  { href: "/performance-analytics", label: "Performance Analytics", icon: PieChart },
-  { href: "/automation-opportunities", label: "Automation Opportunities", icon: Zap },
-  { href: "/monitoring", label: "Real-Time Monitoring", icon: Monitor },
-  { href: "/predictive-analytics", label: "Predictive Analytics", icon: Lightbulb },
-  { href: "/task-mining", label: "Task Mining", icon: Activity },
-  { href: "/cost-analysis", label: "Cost Analysis & ROI", icon: DollarSign },
-  { href: "/custom-kpis", label: "Custom KPI Builder", icon: Target },
-  { href: "/reports", label: "Reports & Exports", icon: FileText },
-  { href: "/ai-assistant", label: "AI Assistant", icon: Bot },
-  { href: "/document-upload", label: "Document Upload", icon: FileUp },
-  { href: "/api-integrations", label: "API Integrations", icon: LinkIcon },
-  { href: "/digital-twin", label: "Digital Twin", icon: Layers },
-  { href: "/scenario-analysis", label: "What-If Scenarios", icon: GitCompare },
-  { href: "/admin/organizations", label: "Organizations", icon: Building2, adminOnly: true },
-  { href: "/admin/teams", label: "Teams", icon: Users, adminOrSuperAdmin: true },
-  { href: "/admin/invitations", label: "Invitations", icon: Mail, adminOrSuperAdmin: true },
-  { href: "/admin/tickets", label: "Support Tickets", icon: Ticket },
-  { href: "/subscription", label: "Subscription", icon: CreditCard },
-  { href: "/pricing", label: "Pricing", icon: PricingIcon },
-  { href: "/settings", label: "Settings", icon: Settings },
+interface NavItem {
+  href: string
+  label: string
+  icon: any
+  adminOnly?: boolean
+  adminOrSuperAdmin?: boolean
+}
+
+interface NavCategory {
+  label: string
+  icon: any
+  items: NavItem[]
+}
+
+const navigationCategories: NavCategory[] = [
+  {
+    label: "Analytics & Discovery",
+    icon: Search,
+    items: [
+      { href: "/process-analysis", label: "Process Analysis", icon: BarChart3 },
+      { href: "/process-discovery", label: "Process Discovery", icon: Layers },
+      { href: "/conformance-checking", label: "Conformance Checking", icon: Filter },
+      { href: "/performance-analytics", label: "Performance Analytics", icon: PieChart },
+    ],
+  },
+  {
+    label: "Optimization",
+    icon: Rocket,
+    items: [
+      { href: "/automation-opportunities", label: "Automation Opportunities", icon: Zap },
+      { href: "/cost-analysis", label: "Cost Analysis & ROI", icon: DollarSign },
+      { href: "/custom-kpis", label: "Custom KPI Builder", icon: Target },
+    ],
+  },
+  {
+    label: "Advanced Features",
+    icon: Lightbulb,
+    items: [
+      { href: "/predictive-analytics", label: "Predictive Analytics", icon: Lightbulb },
+      { href: "/task-mining", label: "Task Mining", icon: Activity },
+      { href: "/digital-twin", label: "Digital Twin", icon: Layers },
+      { href: "/scenario-analysis", label: "What-If Scenarios", icon: GitCompare },
+    ],
+  },
+  {
+    label: "Intelligence",
+    icon: Bot,
+    items: [
+      { href: "/monitoring", label: "Real-Time Monitoring", icon: Monitor },
+      { href: "/ai-assistant", label: "AI Assistant", icon: Bot },
+    ],
+  },
+  {
+    label: "Data Management",
+    icon: Database,
+    items: [
+      { href: "/document-upload", label: "Document Upload", icon: FileUp },
+      { href: "/reports", label: "Reports & Exports", icon: FileText },
+      { href: "/api-integrations", label: "API Integrations", icon: LinkIcon },
+    ],
+  },
+  {
+    label: "Administration",
+    icon: Shield,
+    items: [
+      { href: "/admin/organizations", label: "Organizations", icon: Building2, adminOnly: true },
+      { href: "/admin/teams", label: "Teams", icon: Users, adminOrSuperAdmin: true },
+      { href: "/admin/invitations", label: "Invitations", icon: Mail, adminOrSuperAdmin: true },
+      { href: "/admin/tickets", label: "Support Tickets", icon: Ticket },
+    ],
+  },
+  {
+    label: "Account",
+    icon: User,
+    items: [
+      { href: "/subscription", label: "Subscription", icon: CreditCard },
+      { href: "/pricing", label: "Pricing", icon: PricingIcon },
+      { href: "/settings", label: "Settings", icon: Settings },
+    ],
+  },
 ]
 
 interface AppLayoutProps {
@@ -90,16 +155,32 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
   const { toast } = useToast()
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [openCategories, setOpenCategories] = useState<string[]>([])
 
-  const filteredNavItems = navigationItems.filter((item) => {
-    if ('adminOnly' in item && item.adminOnly) {
-      return user?.role === 'super_admin'
-    }
-    if ('adminOrSuperAdmin' in item && item.adminOrSuperAdmin) {
-      return user?.role === 'admin' || user?.role === 'super_admin'
-    }
-    return true
-  })
+  const toggleCategory = (label: string) => {
+    setOpenCategories(prev =>
+      prev.includes(label) ? prev.filter(l => l !== label) : [...prev, label]
+    )
+  }
+
+  const filterNavItems = (items: NavItem[]) => {
+    return items.filter((item) => {
+      if (item.adminOnly) {
+        return user?.role === 'super_admin'
+      }
+      if (item.adminOrSuperAdmin) {
+        return user?.role === 'admin' || user?.role === 'super_admin'
+      }
+      return true
+    })
+  }
+
+  const filteredCategories = navigationCategories
+    .map(category => ({
+      ...category,
+      items: filterNavItems(category.items)
+    }))
+    .filter(category => category.items.length > 0)
 
   if (isLoading) {
     return (
@@ -219,28 +300,67 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-72">
-            <div className="flex flex-col gap-4 py-4">
-              <div className="font-medium text-sm">Process Intelligence</div>
-              <nav className="grid gap-2">
-                {filteredNavItems.map((item) => {
-                  const Icon = item.icon
-                  const isActive = pathname === item.href
+          <SheetContent side="left" className="w-72 overflow-y-auto">
+            <div className="flex flex-col gap-2 py-4">
+              <Link
+                href="/"
+                onClick={() => setMobileMenuOpen(false)}
+                className={cn(
+                  "flex items-center gap-2 rounded-lg px-3 py-2 mb-2 text-sm font-medium cursor-pointer select-none transition-smooth",
+                  pathname === "/"
+                    ? "bg-brand/10 text-brand"
+                    : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
+                )}
+              >
+                <BarChart3 className="h-4 w-4" />
+                Dashboard
+              </Link>
+              <nav className="space-y-1">
+                {filteredCategories.map((category) => {
+                  const CategoryIcon = category.icon
+                  const isOpen = openCategories.includes(category.label)
+                  const hasActiveItem = category.items.some(item => item.href === pathname)
+                  
                   return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={cn(
-                        "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer select-none transition-smooth",
-                        isActive
-                          ? "bg-brand/10 text-brand"
-                          : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
-                      )}
+                    <Collapsible
+                      key={category.label}
+                      open={isOpen || hasActiveItem}
+                      onOpenChange={() => toggleCategory(category.label)}
+                      className="space-y-1"
                     >
-                      <Icon className="h-4 w-4" />
-                      {item.label}
-                    </Link>
+                      <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-smooth">
+                        <div className="flex items-center gap-2">
+                          <CategoryIcon className="h-4 w-4" />
+                          <span>{category.label}</span>
+                        </div>
+                        <ChevronDown className={cn(
+                          "h-4 w-4 transition-transform",
+                          (isOpen || hasActiveItem) && "transform rotate-180"
+                        )} />
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="space-y-1 pl-6">
+                        {category.items.map((item) => {
+                          const Icon = item.icon
+                          const isActive = pathname === item.href
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className={cn(
+                                "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer select-none transition-smooth",
+                                isActive
+                                  ? "bg-brand/10 text-brand"
+                                  : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
+                              )}
+                            >
+                              <Icon className="h-4 w-4" />
+                              {item.label}
+                            </Link>
+                          )
+                        })}
+                      </CollapsibleContent>
+                    </Collapsible>
                   )
                 })}
               </nav>
@@ -278,26 +398,64 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
 
       <div className="grid md:grid-cols-[240px_1fr] flex-1">
         {/* Desktop Sidebar */}
-        <aside className="hidden md:flex flex-col border-r p-4 space-y-4">
-          <div className="font-medium text-sm">Process Intelligence</div>
-          <nav className="grid gap-2">
-            {filteredNavItems.map((item) => {
-              const Icon = item.icon
-              const isActive = pathname === item.href
+        <aside className="hidden md:flex flex-col border-r p-4 space-y-2 overflow-y-auto">
+          <Link
+            href="/"
+            className={cn(
+              "flex items-center gap-2 rounded-lg px-3 py-2 mb-2 text-sm font-medium cursor-pointer select-none transition-smooth",
+              pathname === "/"
+                ? "bg-brand/10 text-brand"
+                : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
+            )}
+          >
+            <BarChart3 className="h-4 w-4" />
+            Dashboard
+          </Link>
+          <nav className="space-y-1">
+            {filteredCategories.map((category) => {
+              const CategoryIcon = category.icon
+              const isOpen = openCategories.includes(category.label)
+              const hasActiveItem = category.items.some(item => item.href === pathname)
+              
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer select-none transition-smooth",
-                    isActive
-                      ? "bg-brand/10 text-brand"
-                      : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
-                  )}
+                <Collapsible
+                  key={category.label}
+                  open={isOpen || hasActiveItem}
+                  onOpenChange={() => toggleCategory(category.label)}
+                  className="space-y-1"
                 >
-                  <Icon className="h-4 w-4" />
-                  {item.label}
-                </Link>
+                  <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-smooth">
+                    <div className="flex items-center gap-2">
+                      <CategoryIcon className="h-4 w-4" />
+                      <span>{category.label}</span>
+                    </div>
+                    <ChevronDown className={cn(
+                      "h-4 w-4 transition-transform",
+                      (isOpen || hasActiveItem) && "transform rotate-180"
+                    )} />
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="space-y-1 pl-6">
+                    {category.items.map((item) => {
+                      const Icon = item.icon
+                      const isActive = pathname === item.href
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={cn(
+                            "flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium cursor-pointer select-none transition-smooth",
+                            isActive
+                              ? "bg-brand/10 text-brand"
+                              : "text-muted-foreground hover:bg-brand/10 hover:text-brand"
+                          )}
+                        >
+                          <Icon className="h-4 w-4" />
+                          {item.label}
+                        </Link>
+                      )
+                    })}
+                  </CollapsibleContent>
+                </Collapsible>
               )
             })}
           </nav>
