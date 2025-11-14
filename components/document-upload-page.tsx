@@ -25,6 +25,7 @@ import { SkeletonCard, SkeletonTable } from "@/components/ui/skeleton-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { toast } from "sonner"
+import { apiClient } from "@/lib/api-client"
 
 export default function DocumentUploadPage() {
   const router = useRouter()
@@ -102,10 +103,7 @@ export default function DocumentUploadPage() {
       formData.append("file", file)
       formData.append("processName", file.name.replace(/\.[^/.]+$/, ""))
 
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      })
+      const res = await apiClient.upload("/api/upload", formData)
 
       if (res.ok) {
         toast.success("File uploaded successfully!")
@@ -180,9 +178,7 @@ export default function DocumentUploadPage() {
     }
 
     try {
-      const response = await fetch(`/api/documents?id=${docId}`, {
-        method: "DELETE",
-      });
+      const response = await apiClient.delete(`/api/documents?id=${docId}`);
 
       if (response.ok) {
         toast.success("Document deleted successfully");
@@ -205,9 +201,7 @@ export default function DocumentUploadPage() {
     setAnalyzingId(processId);
     
     try {
-      const response = await fetch(`/api/processes/${processId}/analyze`, {
-        method: "POST",
-      });
+      const response = await apiClient.post(`/api/processes/${processId}/analyze`, {});
 
       if (response.ok) {
         const data = await response.json();

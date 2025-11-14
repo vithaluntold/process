@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AlertCircle, CheckCircle2, XCircle, Loader2, AlertTriangle, Search, Play, Activity } from "lucide-react"
 import { toast } from "sonner"
 import AppLayout from "@/components/app-layout"
+import { apiClient } from "@/lib/api-client"
 
 interface AnomalyDetection {
   type: string
@@ -97,9 +98,7 @@ export default function ConformanceCheckingPage() {
 
     setAnalyzing(true)
     try {
-      const response = await fetch(`/api/processes/${selectedProcess}/detect-anomalies`, {
-        method: 'POST',
-      })
+      const response = await apiClient.post(`/api/processes/${selectedProcess}/detect-anomalies`, {})
 
       if (!response.ok) {
         throw new Error("Failed to detect anomalies")
@@ -129,11 +128,7 @@ export default function ConformanceCheckingPage() {
 
     setChecking(true)
     try {
-      const response = await fetch(`/api/processes/${selectedProcess}/check-conformance`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({}),
-      })
+      const response = await apiClient.post(`/api/processes/${selectedProcess}/check-conformance`, {})
 
       if (!response.ok) {
         const data = await response.json()

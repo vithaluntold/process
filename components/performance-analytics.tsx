@@ -16,6 +16,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { apiClient } from "@/lib/api-client"
 
 export default function PerformanceAnalytics() {
   const [processes, setProcesses] = useState<any[]>([])
@@ -52,11 +53,7 @@ export default function PerformanceAnalytics() {
     setMetrics(null)
 
     try {
-      const response = await fetch("/api/analytics/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ processId: selectedProcess }),
-      })
+      const response = await apiClient.post("/api/analytics/analyze", { processId: selectedProcess })
 
       if (!response.ok) {
         const errorData = await response.json()

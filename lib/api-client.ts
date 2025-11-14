@@ -172,12 +172,14 @@ class ApiClient {
 
   /**
    * Convenience method: DELETE request with CSRF
+   * Note: Some DELETE endpoints accept a body (non-standard but supported)
    */
   async delete<T = any>(
     url: string,
+    body?: any,
     options: Omit<ApiRequestOptions, "method" | "body"> = {}
   ): Promise<Response> {
-    return this.request<T>(url, { ...options, method: "DELETE" });
+    return this.request<T>(url, { ...options, method: "DELETE", body });
   }
 
   /**

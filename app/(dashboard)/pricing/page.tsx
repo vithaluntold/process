@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Check, X, Zap, Building2, Rocket, DollarSign } from 'lucide-react';
 import { toast } from 'sonner';
+import { apiClient } from '@/lib/api-client';
 
 interface Plan {
   id: number;
@@ -46,11 +47,7 @@ export default function PricingPage() {
 
   const handleSelectPlan = async (planId: number) => {
     try {
-      const response = await fetch('/api/subscriptions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ planId, billingCycle })
-      });
+      const response = await apiClient.post('/api/subscriptions', { planId, billingCycle });
 
       if (!response.ok) {
         const error = await response.json();

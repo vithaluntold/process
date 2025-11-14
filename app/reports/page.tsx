@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FileText, Download, Trash2, FileSpreadsheet, FileJson } from "lucide-react";
 import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
 
 interface Report {
   id: number;
@@ -73,15 +74,11 @@ export default function ReportsPage() {
 
     setGenerating(true);
     try {
-      const res = await fetch("/api/reports/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          processId: selectedProcessId !== "all" ? parseInt(selectedProcessId) : null,
-          title: reportTitle,
-          type: reportType,
-          format: reportFormat,
-        }),
+      const res = await apiClient.post("/api/reports/generate", {
+        processId: selectedProcessId !== "all" ? parseInt(selectedProcessId) : null,
+        title: reportTitle,
+        type: reportType,
+        format: reportFormat,
       });
 
       if (res.ok) {
@@ -101,11 +98,7 @@ export default function ReportsPage() {
 
   async function deleteReport(reportId: number) {
     try {
-      const res = await fetch("/api/reports", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reportId }),
-      });
+      const res = await apiClient.delete("/api/reports", { reportId });
 
       if (res.ok) {
         toast.success("Report deleted");

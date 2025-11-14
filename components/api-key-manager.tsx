@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Key, Copy, Trash2, CheckCircle, AlertCircle, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
 import {
   Dialog,
   DialogContent,
@@ -83,13 +84,9 @@ export function ApiKeyManager() {
 
     setGenerating(true);
     try {
-      const response = await fetch("/api/task-mining/api-keys", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          label: newKeyLabel,
-          expiresInDays: parseInt(expiryDays) || 365,
-        }),
+      const response = await apiClient.post("/api/task-mining/api-keys", {
+        label: newKeyLabel,
+        expiresInDays: parseInt(expiryDays) || 365,
       });
 
       if (response.ok) {
@@ -114,9 +111,7 @@ export function ApiKeyManager() {
 
   async function revokeApiKey(keyId: number) {
     try {
-      const response = await fetch(`/api/task-mining/api-keys?keyId=${keyId}`, {
-        method: "DELETE",
-      });
+      const response = await apiClient.delete(`/api/task-mining/api-keys?keyId=${keyId}`);
 
       if (response.ok) {
         toast.success("API key revoked successfully");

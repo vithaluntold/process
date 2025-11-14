@@ -12,6 +12,7 @@ import { Line, LineChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, X
 import AppLayout from "@/components/app-layout"
 import { PageHeader } from "@/components/page-header"
 import { toast } from "sonner"
+import { apiClient } from "@/lib/api-client"
 
 interface AnomalyDetection {
   type: string
@@ -138,9 +139,7 @@ export default function PredictiveAnalyticsPage() {
 
     setDetecting(true)
     try {
-      const response = await fetch(`/api/processes/${selectedProcess}/detect-anomalies`, {
-        method: "POST",
-      })
+      const response = await apiClient.post(`/api/processes/${selectedProcess}/detect-anomalies`, {})
 
       if (!response.ok) {
         throw new Error("Failed to detect anomalies")
@@ -172,9 +171,7 @@ export default function PredictiveAnalyticsPage() {
 
     setForecasting(true)
     try {
-      const response = await fetch(`/api/processes/${selectedProcess}/forecast`, {
-        method: "POST",
-      })
+      const response = await apiClient.post(`/api/processes/${selectedProcess}/forecast`, {})
 
       if (!response.ok) {
         throw new Error("Failed to generate forecast")
@@ -200,9 +197,7 @@ export default function PredictiveAnalyticsPage() {
 
     setAnalyzing(true)
     try {
-      const response = await fetch(`/api/processes/${selectedProcess}/scenario-analysis`, {
-        method: "POST",
-      })
+      const response = await apiClient.post(`/api/processes/${selectedProcess}/scenario-analysis`, {})
 
       if (!response.ok) {
         throw new Error("Failed to analyze scenarios")

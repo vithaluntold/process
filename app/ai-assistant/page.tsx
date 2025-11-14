@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Bot, Send, Sparkles, User } from "lucide-react";
 import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
 
 interface Message {
   role: "user" | "assistant";
@@ -64,13 +65,9 @@ export default function AIAssistantPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/ai-assistant", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: input,
-          processId: selectedProcessId && selectedProcessId !== "all" ? parseInt(selectedProcessId) : null,
-        }),
+      const res = await apiClient.post("/api/ai-assistant", {
+        query: input,
+        processId: selectedProcessId && selectedProcessId !== "all" ? parseInt(selectedProcessId) : null,
       });
 
       if (res.ok) {

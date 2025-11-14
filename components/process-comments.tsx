@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { MessageSquare, Trash2, Send } from "lucide-react";
 import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
 
 interface Comment {
   id: number;
@@ -48,14 +49,10 @@ export function ProcessComments({ processId }: ProcessCommentsProps) {
 
     setLoading(true);
     try {
-      const res = await fetch("/api/comments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          processId,
-          content: newComment,
-          type: "general",
-        }),
+      const res = await apiClient.post("/api/comments", {
+        processId,
+        content: newComment,
+        type: "general",
       });
 
       if (res.ok) {
@@ -75,11 +72,7 @@ export function ProcessComments({ processId }: ProcessCommentsProps) {
 
   async function deleteComment(commentId: number) {
     try {
-      const res = await fetch("/api/comments", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ commentId }),
-      });
+      const res = await apiClient.delete("/api/comments", { commentId });
 
       if (res.ok) {
         toast.success("Comment deleted");

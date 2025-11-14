@@ -51,6 +51,7 @@ import { useToast } from "@/hooks/use-toast"
 import { useAuth } from "@/hooks/useAuth"
 import { cn } from "@/lib/utils"
 import { Footer } from "@/components/footer"
+import { apiClient } from "@/lib/api-client"
 
 const navigationItems = [
   { href: "/", label: "Dashboard", icon: BarChart3 },
@@ -128,7 +129,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
 
   const handleLogout = async () => {
     try {
-      await fetch("/api/auth/logout", { method: "POST" })
+      await apiClient.logout()
       toast({
         title: "Logged out",
         description: "You have been logged out successfully.",

@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Target, TrendingUp, AlertTriangle, Trash2, Plus } from "lucide-react";
 import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
 
 interface CustomKPI {
   id: number;
@@ -73,16 +74,12 @@ export default function CustomKPIsPage() {
     }
 
     try {
-      const res = await fetch("/api/custom-kpis", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          description: formData.description || null,
-          formula: formData.formula,
-          processId: formData.processId ? parseInt(formData.processId) : null,
-          threshold: formData.threshold ? parseFloat(formData.threshold) : null,
-        }),
+      const res = await apiClient.post("/api/custom-kpis", {
+        name: formData.name,
+        description: formData.description || null,
+        formula: formData.formula,
+        processId: formData.processId ? parseInt(formData.processId) : null,
+        threshold: formData.threshold ? parseFloat(formData.threshold) : null,
       });
 
       if (res.ok) {
@@ -107,11 +104,7 @@ export default function CustomKPIsPage() {
 
   async function deleteKPI(kpiId: number) {
     try {
-      const res = await fetch("/api/custom-kpis", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ kpiId }),
-      });
+      const res = await apiClient.delete("/api/custom-kpis", { kpiId });
 
       if (res.ok) {
         toast.success("KPI deleted");

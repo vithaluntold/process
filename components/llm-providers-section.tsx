@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Brain, Check, Plus, Trash2, Loader2, Eye, EyeOff, Activity, CheckCircle2, XCircle, Clock, Search } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { apiClient } from "@/lib/api-client";
 import {
   Dialog,
   DialogContent,
@@ -91,15 +92,9 @@ export default function LLMProvidersSection() {
     setValidationMessage("");
 
     try {
-      const response = await fetch("/api/llm-providers/validate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          provider: selectedProvider,
-          apiKey,
-        }),
+      const response = await apiClient.post("/api/llm-providers/validate", {
+        provider: selectedProvider,
+        apiKey,
       });
 
       const data = await response.json();
@@ -156,16 +151,10 @@ export default function LLMProvidersSection() {
 
     setSaving(true);
     try {
-      const response = await fetch("/api/llm-providers", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          provider: selectedProvider,
-          apiKey,
-          label,
-        }),
+      const response = await apiClient.post("/api/llm-providers", {
+        provider: selectedProvider,
+        apiKey,
+        label,
       });
 
       if (response.ok) {
@@ -217,17 +206,11 @@ export default function LLMProvidersSection() {
         .map((m) => m.trim())
         .filter((m) => m.length > 0);
 
-      const response = await fetch("/api/llm-providers", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: customProviderName,
-          baseUrl: customProviderBaseUrl,
-          models: modelsArray.length > 0 ? modelsArray : ["default-model"],
-          compatibilityType: "openai_compatible",
-        }),
+      const response = await apiClient.post("/api/llm-providers", {
+        name: customProviderName,
+        baseUrl: customProviderBaseUrl,
+        models: modelsArray.length > 0 ? modelsArray : ["default-model"],
+        compatibilityType: "openai_compatible",
       });
 
       if (response.ok) {
@@ -266,9 +249,7 @@ export default function LLMProvidersSection() {
     }
 
     try {
-      const response = await fetch(`/api/llm-providers?provider=${providerId}`, {
-        method: "DELETE",
-      });
+      const response = await apiClient.delete(`/api/llm-providers?provider=${providerId}`);
 
       if (response.ok) {
         toast({

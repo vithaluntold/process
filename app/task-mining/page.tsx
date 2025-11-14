@@ -10,6 +10,7 @@ import { Activity, Clock, TrendingUp, Zap, CheckCircle2, AlertCircle, BarChart3 
 import { toast } from "sonner";
 import { ApiKeyManager } from "@/components/api-key-manager";
 import { PageHeader } from "@/components/page-header";
+import { apiClient } from "@/lib/api-client";
 
 interface TaskSession {
   id: number;
@@ -159,11 +160,7 @@ export default function TaskMiningPage() {
 
   async function handleApproveAutomation(automationId: number) {
     try {
-      const response = await fetch(`/api/task-mining/automations/${automationId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: "approved" }),
-      });
+      const response = await apiClient.patch(`/api/task-mining/automations/${automationId}`, { status: "approved" });
 
       if (response.ok) {
         toast.success("Automation approved successfully");

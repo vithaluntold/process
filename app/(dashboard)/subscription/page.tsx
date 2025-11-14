@@ -17,6 +17,7 @@ import {
 import { Progress } from '@/components/ui/progress';
 import { Check, CreditCard, Download, Users, Zap } from 'lucide-react';
 import { toast } from 'sonner';
+import { apiClient } from '@/lib/api-client';
 
 interface Plan {
   id: number;
@@ -101,11 +102,7 @@ export default function SubscriptionPage() {
 
   const handleUpgrade = async (planId: number) => {
     try {
-      const response = await fetch('/api/subscriptions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ planId, billingCycle: 'monthly' })
-      });
+      const response = await apiClient.post('/api/subscriptions', { planId, billingCycle: 'monthly' });
 
       if (!response.ok) {
         const error = await response.json();

@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { DollarSign, TrendingUp, Calculator, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/page-header";
+import { apiClient } from "@/lib/api-client";
 
 interface CostMetric {
   id: number;
@@ -85,15 +86,11 @@ export default function CostAnalysisPage() {
     }
 
     try {
-      const res = await fetch("/api/cost-analysis", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          processId: parseInt(selectedProcessId),
-          currentCost: parseFloat(currentCost),
-          optimizedCost: parseFloat(optimizedCost),
-          implementationCost: implementationCost ? parseFloat(implementationCost) : null,
-        }),
+      const res = await apiClient.post("/api/cost-analysis", {
+        processId: parseInt(selectedProcessId),
+        currentCost: parseFloat(currentCost),
+        optimizedCost: parseFloat(optimizedCost),
+        implementationCost: implementationCost ? parseFloat(implementationCost) : null,
       });
 
       if (res.ok) {

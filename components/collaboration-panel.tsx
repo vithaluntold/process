@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast"
 import { MessageSquare, Send, Trash2, User, Clock } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { formatDistanceToNow } from "date-fns"
+import { apiClient } from "@/lib/api-client"
 
 interface Comment {
   id: number
@@ -70,14 +71,10 @@ export function CollaborationPanel({ processId, currentUserId }: CollaborationPa
 
     setSubmitting(true)
     try {
-      const response = await fetch("/api/comments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          processId,
-          content: newComment,
-          type: "comment",
-        }),
+      const response = await apiClient.post("/api/comments", {
+        processId,
+        content: newComment,
+        type: "comment",
       })
 
       if (!response.ok) throw new Error("Failed to post comment")
@@ -104,11 +101,7 @@ export function CollaborationPanel({ processId, currentUserId }: CollaborationPa
 
   const handleDelete = async (commentId: number) => {
     try {
-      const response = await fetch("/api/comments", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ commentId }),
-      })
+      const response = await apiClient.delete("/api/comments", { commentId })
 
       if (!response.ok) throw new Error("Failed to delete comment")
 

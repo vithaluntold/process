@@ -17,6 +17,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Play, Plus, TrendingUp, Clock, Zap, GitCompare } from "lucide-react";
 import { toast } from "sonner";
+import { apiClient } from "@/lib/api-client";
 
 interface Process {
   id: number;
@@ -111,19 +112,15 @@ export default function WhatIfScenariosPage() {
 
     try {
       setRunning(true);
-      const response = await fetch("/api/simulations", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          processId: parseInt(selectedProcessId),
-          name: scenarioName,
-          description: scenarioDescription || null,
-          parameters: {
-            numberOfCases: parseInt(numberOfCases),
-            arrivalRate: parseInt(arrivalRate),
-            durationMultipliers: { "*": parseFloat(durationMultiplier) },
-          },
-        }),
+      const response = await apiClient.post("/api/simulations", {
+        processId: parseInt(selectedProcessId),
+        name: scenarioName,
+        description: scenarioDescription || null,
+        parameters: {
+          numberOfCases: parseInt(numberOfCases),
+          arrivalRate: parseInt(arrivalRate),
+          durationMultipliers: { "*": parseFloat(durationMultiplier) },
+        },
       });
 
       if (!response.ok) throw new Error("Failed to run simulation");
