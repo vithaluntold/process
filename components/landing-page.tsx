@@ -174,62 +174,59 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-background via-muted/20 to-background dark:from-[#0a1929] dark:via-[#1e3a5f] dark:to-[#0a1929] flex flex-col overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex flex-col overflow-hidden">
       {/* Theme Toggle - Fixed Position */}
-      <div className="fixed top-4 right-4 z-50">
+      <div className="fixed top-6 right-6 z-50">
         <ThemeToggle />
       </div>
 
-      {/* Animated background gradient mesh */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-blue-500/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+      {/* Animated background pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-40">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/20 dark:bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/20 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative container mx-auto px-4 py-12 lg:py-16 flex-1 flex items-center">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto w-full">
+      <div className="relative container mx-auto px-6 py-12 lg:py-20 flex-1 flex items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center max-w-7xl mx-auto w-full">
           {/* Left side - Hero Content */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-foreground space-y-8"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-foreground space-y-10"
           >
             {/* Logo and Title */}
             <div className="space-y-6">
               <motion.div 
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
                 className="flex items-center gap-4"
               >
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-cyan-500/20 dark:bg-cyan-400/30 rounded-2xl blur-2xl group-hover:blur-3xl transition-all"></div>
-                  <img 
-                    src="/logo.png" 
-                    alt="EPI-Q Logo" 
-                    className="relative h-20 w-20 object-contain drop-shadow-lg"
-                  />
-                </div>
+                <img 
+                  src="/logo.png" 
+                  alt="EPI-Q Logo" 
+                  className="h-16 w-16 object-contain"
+                />
                 <div>
-                  <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-cyan-700 to-blue-700 dark:from-white dark:via-cyan-100 dark:to-blue-100 bg-clip-text text-transparent">
+                  <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white">
                     EPI-Q
                   </h1>
-                  <div className="flex items-center gap-2 mt-1">
-                    <Sparkles className="h-4 w-4 text-cyan-600 dark:text-cyan-400 animate-pulse" />
-                    <span className="text-sm text-cyan-700 dark:text-cyan-300 font-medium">Enterprise Process Intelligence</span>
-                  </div>
+                  <p className="text-sm text-cyan-600 dark:text-cyan-400 font-medium mt-1">
+                    Enterprise Process Intelligence
+                  </p>
                 </div>
               </motion.div>
               
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-4xl lg:text-5xl font-bold leading-tight text-foreground"
+                transition={{ delay: 0.1, duration: 0.6 }}
+                className="text-5xl lg:text-6xl font-bold leading-tight"
               >
-                Transform Your Business
-                <span className="block bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
+                <span className="text-slate-900 dark:text-white">Transform Your Business</span>
+                <br />
+                <span className="bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">
                   with AI-Powered Insights
                 </span>
               </motion.h2>
@@ -237,8 +234,8 @@ export default function LandingPage() {
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-xl text-muted-foreground leading-relaxed"
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="text-lg lg:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl"
               >
                 Unlock the power of process mining, automation, and predictive analytics. 
                 Make data-driven decisions with enterprise-grade security.
@@ -247,37 +244,37 @@ export default function LandingPage() {
 
             {/* Features Grid */}
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4"
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="grid grid-cols-2 sm:grid-cols-3 gap-3"
             >
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.title}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 + index * 0.1, duration: 0.4 }}
-                  whileHover={{ scale: 1.05, y: -5 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + index * 0.05, duration: 0.5 }}
+                  whileHover={{ y: -4 }}
                   className="group relative"
                 >
-                  <div className="relative p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer">
-                    <div className="flex items-start gap-3">
-                      <div className={`p-2 bg-gradient-to-br ${feature.gradient} rounded-lg shadow-lg group-hover:shadow-xl transition-shadow`}>
+                  <div className="relative p-4 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 hover:border-cyan-300 dark:hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 cursor-pointer">
+                    <div className="flex flex-col gap-2">
+                      <div className={`w-10 h-10 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center shadow-md`}>
                         <feature.icon className="h-5 w-5 text-white" />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-semibold text-sm group-hover:text-cyan-300 transition-colors">
+                      <div>
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <h3 className="font-semibold text-sm text-slate-900 dark:text-white">
                             {feature.title}
                           </h3>
                           {feature.badge && (
-                            <span className="text-xs bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-2 py-0.5 rounded-full font-medium animate-pulse">
+                            <span className="text-[10px] bg-cyan-500 text-white px-1.5 py-0.5 rounded-full font-medium">
                               {feature.badge}
                             </span>
                           )}
                         </div>
-                        <p className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors line-clamp-2">
+                        <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
                           {feature.description}
                         </p>
                       </div>
@@ -291,20 +288,20 @@ export default function LandingPage() {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex flex-wrap items-center gap-4 pt-4"
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="flex flex-wrap items-center gap-3"
             >
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-                <Shield className="h-4 w-4 text-cyan-400" />
-                <span className="text-sm text-slate-300">Military-Grade Security</span>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
+                <Shield className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
+                <span className="text-xs font-medium text-slate-700 dark:text-slate-300">Military-Grade Security</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-                <Sparkles className="h-4 w-4 text-cyan-400" />
-                <span className="text-sm text-slate-300">GDPR Compliant</span>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
+                <Sparkles className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
+                <span className="text-xs font-medium text-slate-700 dark:text-slate-300">GDPR Compliant</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-                <TrendingUp className="h-4 w-4 text-cyan-400" />
-                <span className="text-sm text-slate-300">Fortune 500 Trusted</span>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50">
+                <TrendingUp className="h-4 w-4 text-cyan-600 dark:text-cyan-400" />
+                <span className="text-xs font-medium text-slate-700 dark:text-slate-300">Fortune 500 Trusted</span>
               </div>
             </motion.div>
 
@@ -312,20 +309,17 @@ export default function LandingPage() {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-              className="pt-6"
+              transition={{ delay: 0.6, duration: 0.6 }}
             >
               <Link href="/downloads">
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="gap-2 border-cyan-500/50 hover:border-cyan-500 hover:bg-cyan-500/10 text-cyan-400 hover:text-cyan-300 transition-all group"
+                  className="gap-2 border-slate-300 dark:border-slate-700 hover:border-cyan-500 dark:hover:border-cyan-500 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 transition-all group"
                 >
-                  <Download className="h-5 w-5 group-hover:animate-bounce" />
-                  Download Desktop App
-                  <span className="ml-1 text-xs bg-cyan-500/20 px-2 py-0.5 rounded-full">
-                    Windows • macOS • Linux
-                  </span>
+                  <Download className="h-4 w-4 group-hover:-translate-y-0.5 transition-transform" />
+                  <span className="font-medium">Download Desktop App</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">Windows • macOS • Linux</span>
                 </Button>
               </Link>
             </motion.div>
@@ -333,36 +327,33 @@ export default function LandingPage() {
 
           {/* Right side - Auth Card */}
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             className="lg:pl-8"
           >
-            <div className="relative group">
-              {/* Glow effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-              
-              <Card className="relative shadow-2xl border-white/20 bg-slate-900/80 backdrop-blur-xl rounded-3xl overflow-hidden">
+            <div className="relative">
+              <Card className="relative shadow-2xl border border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl overflow-hidden">
                 <Tabs defaultValue="login" className="w-full">
-                  <CardHeader className="space-y-6 pb-6">
-                    <div className="text-center space-y-3">
-                      <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
+                  <CardHeader className="space-y-6 pb-6 pt-8">
+                    <div className="text-center space-y-2">
+                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                         Welcome Back
                       </h2>
-                      <p className="text-sm text-slate-400">
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
                         Sign in to access your process intelligence dashboard
                       </p>
                     </div>
-                    <TabsList className="grid w-full grid-cols-2 bg-slate-800/50 border border-slate-700/50 p-1 rounded-xl">
+                    <TabsList className="grid w-full grid-cols-2 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-xl">
                       <TabsTrigger 
                         value="login" 
-                        className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg text-slate-400 rounded-lg transition-all duration-200"
+                        className="data-[state=active]:bg-white dark:data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white data-[state=active]:shadow-sm text-slate-600 dark:text-slate-400 rounded-lg transition-all duration-200 font-medium"
                       >
                         Login
                       </TabsTrigger>
                       <TabsTrigger 
                         value="signup" 
-                        className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg text-slate-400 rounded-lg transition-all duration-200"
+                        className="data-[state=active]:bg-white dark:data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white data-[state=active]:shadow-sm text-slate-600 dark:text-slate-400 rounded-lg transition-all duration-200 font-medium"
                       >
                         Sign Up
                       </TabsTrigger>
@@ -371,9 +362,9 @@ export default function LandingPage() {
 
                   <TabsContent value="login">
                     <form onSubmit={handleLogin}>
-                      <CardContent className="space-y-5 pt-6">
+                      <CardContent className="space-y-4 pt-6 px-8">
                         <div className="space-y-2">
-                          <Label htmlFor="login-email" className="text-slate-200 font-medium">Email Address</Label>
+                          <Label htmlFor="login-email" className="text-slate-700 dark:text-slate-300 font-medium">Email Address</Label>
                           <Input
                             id="login-email"
                             name="email"
@@ -382,11 +373,11 @@ export default function LandingPage() {
                             required
                             disabled={isLoading}
                             autoComplete="email"
-                            className="bg-slate-800/50 border-slate-700/50 text-white placeholder:text-slate-500 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 rounded-xl transition-all"
+                            className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20"
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="login-password" className="text-slate-200 font-medium">Password</Label>
+                          <Label htmlFor="login-password" className="text-slate-700 dark:text-slate-300 font-medium">Password</Label>
                           <div className="relative">
                             <Input
                               id="login-password"
@@ -396,32 +387,32 @@ export default function LandingPage() {
                               disabled={isLoading}
                               autoComplete="current-password"
                               placeholder="Enter your password"
-                              className="bg-slate-800/50 border-slate-700/50 text-white placeholder:text-slate-500 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 rounded-xl pr-12 transition-all"
+                              className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20 pr-11"
                             />
                             <button
                               type="button"
                               onClick={() => setShowLoginPassword(!showLoginPassword)}
-                              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
                               tabIndex={-1}
                             >
                               {showLoginPassword ? (
-                                <EyeOff className="h-5 w-5" />
+                                <EyeOff className="h-4 w-4" />
                               ) : (
-                                <Eye className="h-5 w-5" />
+                                <Eye className="h-4 w-4" />
                               )}
                             </button>
                           </div>
                         </div>
                       </CardContent>
-                      <CardFooter className="pt-6 pb-8">
+                      <CardFooter className="pt-6 pb-8 px-8">
                         <Button 
                           type="submit" 
-                          className="w-full h-12 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/40 transition-all duration-300 rounded-xl text-base" 
+                          className="w-full h-11 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 rounded-lg" 
                           disabled={isLoading}
                         >
                           {isLoading ? (
                             <span className="flex items-center gap-2">
-                              <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                              <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                               Logging in...
                             </span>
                           ) : (
@@ -434,11 +425,11 @@ export default function LandingPage() {
 
                   <TabsContent value="signup">
                     <form onSubmit={handleSignup}>
-                      <CardContent className="space-y-5 pt-6">
-                        <div className="grid grid-cols-2 gap-4">
+                      <CardContent className="space-y-4 pt-6 px-8">
+                        <div className="grid grid-cols-2 gap-3">
                           <div className="space-y-2">
-                            <Label htmlFor="signup-firstName" className="text-slate-200 font-medium">
-                              First Name <span className="text-slate-500 text-xs font-normal">(Optional)</span>
+                            <Label htmlFor="signup-firstName" className="text-slate-700 dark:text-slate-300 font-medium text-sm">
+                              First Name <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">(Optional)</span>
                             </Label>
                             <Input
                               id="signup-firstName"
@@ -446,12 +437,12 @@ export default function LandingPage() {
                               type="text"
                               placeholder="John"
                               disabled={isLoading}
-                              className="bg-slate-800/50 border-slate-700/50 text-white placeholder:text-slate-500 focus:border-cyan-500 focus:ring-cyan-500/20 h-11 rounded-xl transition-all"
+                              className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20"
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="signup-lastName" className="text-slate-200 font-medium">
-                              Last Name <span className="text-slate-500 text-xs font-normal">(Optional)</span>
+                            <Label htmlFor="signup-lastName" className="text-slate-700 dark:text-slate-300 font-medium text-sm">
+                              Last Name <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">(Optional)</span>
                             </Label>
                             <Input
                               id="signup-lastName"
@@ -459,12 +450,12 @@ export default function LandingPage() {
                               type="text"
                               placeholder="Doe"
                               disabled={isLoading}
-                              className="bg-slate-800/50 border-slate-700/50 text-white placeholder:text-slate-500 focus:border-cyan-500 focus:ring-cyan-500/20 h-11 rounded-xl transition-all"
+                              className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20"
                             />
                           </div>
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="signup-email" className="text-slate-200 font-medium">Email Address</Label>
+                          <Label htmlFor="signup-email" className="text-slate-700 dark:text-slate-300 font-medium">Email Address</Label>
                           <Input
                             id="signup-email"
                             name="email"
@@ -473,11 +464,11 @@ export default function LandingPage() {
                             required
                             disabled={isLoading}
                             autoComplete="email"
-                            className="bg-slate-800/50 border-slate-700/50 text-white placeholder:text-slate-500 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 rounded-xl transition-all"
+                            className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20"
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="signup-password" className="text-slate-200 font-medium">Password</Label>
+                          <Label htmlFor="signup-password" className="text-slate-700 dark:text-slate-300 font-medium">Password</Label>
                           <div className="relative">
                             <Input
                               id="signup-password"
@@ -488,38 +479,38 @@ export default function LandingPage() {
                               disabled={isLoading}
                               minLength={12}
                               autoComplete="new-password"
-                              className="bg-slate-800/50 border-slate-700/50 text-white placeholder:text-slate-500 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 rounded-xl pr-12 transition-all"
+                              className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20 pr-11"
                             />
                             <button
                               type="button"
                               onClick={() => setShowSignupPassword(!showSignupPassword)}
-                              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors"
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
                               tabIndex={-1}
                             >
                               {showSignupPassword ? (
-                                <EyeOff className="h-5 w-5" />
+                                <EyeOff className="h-4 w-4" />
                               ) : (
-                                <Eye className="h-5 w-5" />
+                                <Eye className="h-4 w-4" />
                               )}
                             </button>
                           </div>
-                          <div className="flex items-start gap-2 mt-2 p-3 bg-slate-800/30 rounded-lg border border-slate-700/30">
-                            <Shield className="h-4 w-4 text-cyan-400 mt-0.5 flex-shrink-0" />
-                            <p className="text-xs text-slate-400 leading-relaxed">
+                          <div className="flex items-start gap-2 mt-2 p-2.5 bg-slate-50 dark:bg-slate-800/30 rounded-lg border border-slate-200 dark:border-slate-700/30">
+                            <Shield className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400 mt-0.5 flex-shrink-0" />
+                            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                               Password must be at least 12 characters with uppercase, lowercase, number, and special character
                             </p>
                           </div>
                         </div>
                       </CardContent>
-                      <CardFooter className="pt-6 pb-8">
+                      <CardFooter className="pt-6 pb-8 px-8">
                         <Button 
                           type="submit" 
-                          className="w-full h-12 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold shadow-lg shadow-cyan-500/30 hover:shadow-xl hover:shadow-cyan-500/40 transition-all duration-300 rounded-xl text-base" 
+                          className="w-full h-11 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 rounded-lg" 
                           disabled={isLoading}
                         >
                           {isLoading ? (
                             <span className="flex items-center gap-2">
-                              <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                              <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                               Creating account...
                             </span>
                           ) : (
