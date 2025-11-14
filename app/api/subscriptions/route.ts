@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUser } from '@/lib/auth';
 import { subscriptionService } from '@/server/services/SubscriptionService';
 import { z } from 'zod';
+import { requireCSRF } from '@/lib/csrf';
 
 const createSubscriptionSchema = z.object({
   planId: z.number(),
@@ -11,6 +12,9 @@ const createSubscriptionSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    const csrfError = requireCSRF(request);
+    if (csrfError) return csrfError;
+
     const user = await getUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -95,6 +99,9 @@ const updateSubscriptionSchema = z.object({
 
 export async function PATCH(request: NextRequest) {
   try {
+    const csrfError = requireCSRF(request);
+    if (csrfError) return csrfError;
+
     const user = await getUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

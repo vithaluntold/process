@@ -93,3 +93,43 @@ export const SIGNUP_RATE_LIMIT: RateLimitConfig = {
   maxAttempts: 3,
   windowMs: 60 * 60 * 1000,
 };
+
+export const API_GENERAL_LIMIT: RateLimitConfig = {
+  maxAttempts: 100,
+  windowMs: 15 * 60 * 1000,
+};
+
+export const API_WRITE_LIMIT: RateLimitConfig = {
+  maxAttempts: 50,
+  windowMs: 15 * 60 * 1000,
+};
+
+export const API_ANALYSIS_LIMIT: RateLimitConfig = {
+  maxAttempts: 20,
+  windowMs: 15 * 60 * 1000,
+};
+
+export const AI_ASSISTANT_LIMIT: RateLimitConfig = {
+  maxAttempts: 20,
+  windowMs: 60 * 60 * 1000,
+};
+
+export const LLM_PROVIDER_LIMIT: RateLimitConfig = {
+  maxAttempts: 10,
+  windowMs: 15 * 60 * 1000,
+};
+
+export const INVITATION_ACCEPT_LIMIT: RateLimitConfig = {
+  maxAttempts: 5,
+  windowMs: 60 * 60 * 1000,
+};
+
+export const UPLOAD_LIMIT: RateLimitConfig = {
+  maxAttempts: 10,
+  windowMs: 15 * 60 * 1000,
+};
+
+export const REPORT_GENERATION_LIMIT: RateLimitConfig = {
+  maxAttempts: 10,
+  windowMs: 15 * 60 * 1000,
+};

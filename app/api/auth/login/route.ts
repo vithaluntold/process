@@ -8,10 +8,7 @@ import { SignJWT } from "jose";
 import { loginSchema } from "@/lib/validation";
 import { checkRateLimit, getClientIdentifier, AUTH_RATE_LIMIT } from "@/lib/rate-limiter";
 import { addCSRFCookie } from "@/lib/csrf";
-
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.SESSION_SECRET || "dev-secret-change-in-production"
-);
+import { JWT_SECRET, JWT_ALGORITHM, JWT_EXPIRATION } from "@/lib/jwt-config";
 
 export async function POST(request: NextRequest) {
   try {
@@ -68,8 +65,8 @@ export async function POST(request: NextRequest) {
     }
 
     const token = await new SignJWT({ userId: user.id })
-      .setProtectedHeader({ alg: "HS256" })
-      .setExpirationTime("7d")
+      .setProtectedHeader({ alg: JWT_ALGORITHM })
+      .setExpirationTime(JWT_EXPIRATION.session)
       .sign(JWT_SECRET);
 
     await db.insert(schema.auditLogs).values({
@@ -106,6 +103,7 @@ export async function POST(request: NextRequest) {
     response.cookies.set("session", token, {
       httpOnly: true,
       sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
       maxAge: 60 * 60 * 24 * 7,
       path: "/",
     });

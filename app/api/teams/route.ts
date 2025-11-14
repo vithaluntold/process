@@ -4,6 +4,7 @@ import { teams, users, teamMembers } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import { z } from "zod";
 import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
+import { requireCSRF } from "@/lib/csrf";
 
 const createTeamSchema = z.object({
   name: z.string().min(1, "Team name is required"),
@@ -13,6 +14,9 @@ const createTeamSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    const csrfError = requireCSRF(req);
+    if (csrfError) return csrfError;
+
     const currentUser = await getUserFromRequest(req);
     
     const authError = requireAdmin(currentUser);

@@ -3,12 +3,16 @@ import { db } from "@/server/storage";
 import { teams, users, teamMembers } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
+import { requireCSRF } from "@/lib/csrf";
 
 export async function DELETE(
   req: NextRequest,
   { params }: { params: { id: string; userId: string } }
 ) {
   try {
+    const csrfError = requireCSRF(req);
+    if (csrfError) return csrfError;
+
     const currentUser = await getUserFromRequest(req);
     
     const authError = requireAdmin(currentUser);

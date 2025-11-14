@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUser } from '@/lib/auth';
 import { organizationService } from '@/server/services/OrganizationService';
 import { z } from 'zod';
+import { requireCSRF } from '@/lib/csrf';
 
 const updateOrganizationSchema = z.object({
   name: z.string().min(2).max(100).optional(),
@@ -57,6 +58,9 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
+    const csrfError = requireCSRF(request);
+    if (csrfError) return csrfError;
+
     const user = await getUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

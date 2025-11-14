@@ -5,6 +5,7 @@ import { eq, and } from "drizzle-orm";
 import crypto from "crypto";
 import { z } from "zod";
 import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
+import { requireCSRF } from "@/lib/csrf";
 
 const inviteSchema = z.object({
   email: z.string().email("Valid email is required"),
@@ -16,6 +17,9 @@ const inviteSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    const csrfError = requireCSRF(req);
+    if (csrfError) return csrfError;
+
     const currentUser = await getUserFromRequest(req);
     
     const authError = requireAdmin(currentUser);

@@ -4,6 +4,8 @@ import { invitations, users, teamMembers } from "@/shared/schema";
 import { eq, and, sql } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
+import { requireCSRF } from "@/lib/csrf";
+import { checkRateLimit, getClientIdentifier, INVITATION_ACCEPT_LIMIT } from "@/lib/rate-limiter";
 
 const acceptInviteSchema = z.object({
   token: z.string().min(1, "Token is required"),
@@ -19,8 +21,22 @@ class InvitationError extends Error {
   }
 }
 
+
 export async function POST(req: NextRequest) {
   try {
+    const csrfError = requireCSRF(req);
+    if (csrfError) return csrfError;
+
+    const clientId = getClientIdentifier(req);
+    const rateLimit = checkRateLimit(`invitation-accept:${clientId}`, INVITATION_ACCEPT_LIMIT);
+    
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { error: "Too many attempts. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const validatedData = acceptInviteSchema.parse(body);
 

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUser } from '@/lib/auth';
 import { ticketService } from '@/server/services/TicketService';
 import { z } from 'zod';
+import { requireCSRF } from '@/lib/csrf';
 
 const createTicketSchema = z.object({
   subject: z.string().min(3).max(200),
@@ -14,6 +15,9 @@ const createTicketSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
+    const csrfError = requireCSRF(request);
+    if (csrfError) return csrfError;
+
     const user = await getUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
