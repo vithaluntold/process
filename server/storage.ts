@@ -2,6 +2,8 @@ import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
 import { eq, desc, and, sql } from "drizzle-orm";
 
+export { db };
+
 export interface ProcessInput {
   userId?: number;
   name: string;
