@@ -206,7 +206,7 @@ export class SubscriptionService {
       .select()
       .from(subscriptionPlans)
       .where(eq(subscriptionPlans.isActive, true))
-      .orderBy(subscriptionPlans.priceMonthly);
+      .orderBy(subscriptionPlans.monthlyPrice);
   }
 
   async createPlan(data: {
