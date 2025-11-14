@@ -9,7 +9,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const categories = await ticketService.listCategories();
+    // SECURITY: Pass organizationId to get org-specific + global categories
+    const categories = await ticketService.listCategories(user.organizationId || undefined);
 
     return NextResponse.json(categories);
   } catch (error) {

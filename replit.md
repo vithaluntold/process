@@ -1,8 +1,10 @@
-# EPI-Q - Process Mining Platform
+# EPI-Q - Enterprise Process Mining SaaS Platform
 
 ## Overview
 
 **EPI-Q: See Through Your Processes, Transform Your Business**
+
+**Enterprise-Grade Multi-Tenant SaaS Architecture**
 
 EPI-Q is a next-generation process intelligence platform that empowers organizations to see the invisible—the hidden patterns, inefficiencies, and opportunities buried deep within their business operations. Built for the modern enterprise, EPI-Q transforms raw operational data into actionable insights with surgical precision.
 
@@ -36,7 +38,58 @@ EPI-Q doesn't just show you what happened—it shows you what's happening, what 
 - Consistent dashboard structure and navigation across all module pages
 
 ## System Architecture
-The EPI-Q platform is built with Next.js 15.5.4, React 19.1.0, and TypeScript, utilizing pnpm as the package manager. The frontend runs on port 5000.
+EPI-Q is a production-ready enterprise SaaS platform built with Next.js 15.5.4, React 19.1.0, and TypeScript, utilizing pnpm as the package manager. The frontend runs on port 5000.
+
+### Multi-Tenant SaaS Architecture (Production-Ready)
+
+**Role Hierarchy:**
+- **Super Admin**: Platform-level management (manages entire SaaS platform)
+- **Admin**: Organization-level management (manages their company/tenant)
+- **Employee**: Standard user within an organization
+
+**Data Isolation:**
+All data is strictly isolated by `organizationId` with database-level enforcement to prevent cross-tenant data leakage.
+
+**Security Features:**
+- JWT-based authentication with 7-day expiry
+- Role-based access control (RBAC)
+- Organization-level data isolation
+- Foreign key validation to prevent cross-tenant attacks
+- Zod schema validation for all API inputs
+- SQL injection protection via Drizzle ORM
+- Encrypted API keys (AES-256-GCM)
+
+**Multi-Tenant Tables (14 new tables):**
+1. `organizations` - Tenant/client companies
+2. `user_profiles` - Extended user information
+3. `role_assignments` - Flexible RBAC system
+4. `ticket_categories` - Support ticket types with SLA targets
+5. `tickets` - Support tickets (organization-scoped)
+6. `ticket_messages` - Conversation threads (organization-scoped)
+7. `ticket_attachments` - File uploads (organization-scoped)
+8. `ticket_watchers` - Notification followers (organization-scoped)
+9. `ticket_activity_log` - Complete audit trail (organization-scoped)
+10. `subscription_plans` - Pricing tiers (Free/Pro/Enterprise)
+11. `organization_subscriptions` - Org-level subscriptions with seat management
+12. `subscription_usage` - Usage tracking against limits
+13. `payments` - Payment transactions (organization-scoped)
+14. `invoices` - Billing invoices (organization-scoped)
+15. `payment_events` - Payment gateway webhook log
+
+**Service Layer (Enterprise-Grade):**
+- **OrganizationService**: Multi-tenant organization management, user provisioning, access control
+- **TicketService**: Complete ticket lifecycle management with activity tracking
+- **SubscriptionService**: Billing, subscription management, usage tracking, invoicing
+
+**API Architecture (Next.js App Router):**
+- RESTful API design following industry best practices
+- Authentication middleware integration
+- Comprehensive error handling and logging
+- Input validation with Zod schemas
+- Proper HTTP status codes
+
+**Payment Gateway Support:**
+Ready for integration with Razorpay, PayU, or Payoneer (abstraction layer prepared)
 
 **UI/UX Design:**
 - **Styling**: Tailwind CSS v4 with shadcn/ui components and custom brand color utilities.

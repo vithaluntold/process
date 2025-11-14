@@ -707,6 +707,7 @@ export const llmProviderKeysRelations = relations(llmProviderKeys, ({ one }) => 
 
 export const ticketCategories = pgTable("ticket_categories", {
   id: serial("id").primaryKey(),
+  organizationId: integer("organization_id").references(() => organizations.id), // NULL = global/platform-wide
   name: text("name").notNull(),
   description: text("description"),
   slaHours: integer("sla_hours").notNull().default(24),
@@ -717,6 +718,7 @@ export const ticketCategories = pgTable("ticket_categories", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, (table) => ({
   isActiveIdx: index("ticket_categories_is_active_idx").on(table.isActive),
+  organizationIdIdx: index("ticket_categories_organization_id_idx").on(table.organizationId),
 }));
 
 export const tickets = pgTable("tickets", {

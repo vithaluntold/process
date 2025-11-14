@@ -7,7 +7,7 @@ import {
   payments,
   organizations,
 } from '@/shared/schema';
-import { eq, and, desc, sql, gte, lte } from 'drizzle-orm';
+import { eq, and, desc, sql, gte, lte, inArray } from 'drizzle-orm';
 
 export class SubscriptionService {
   async createSubscription(data: {
@@ -18,6 +18,21 @@ export class SubscriptionService {
     paymentGateway?: string;
     gatewaySubscriptionId?: string;
   }) {
+    // SECURITY: Check for existing active subscription
+    const [existing] = await db
+      .select()
+      .from(organizationSubscriptions)
+      .where(
+        and(
+          eq(organizationSubscriptions.organizationId, data.organizationId),
+          inArray(organizationSubscriptions.status, ['active', 'trialing', 'past_due'])
+        )
+      );
+
+    if (existing) {
+      throw new Error('Organization already has an active subscription. Please update or cancel the existing subscription first.');
+    }
+
     const [plan] = await db
       .select()
       .from(subscriptionPlans)

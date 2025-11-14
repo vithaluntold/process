@@ -21,6 +21,55 @@ export class TicketService {
     assigneeId?: number;
     tags?: string[];
   }) {
+    // SECURITY: Validate assignee belongs to same organization
+    if (data.assigneeId) {
+      const [assignee] = await db
+        .select()
+        .from(users)
+        .where(
+          and(
+            eq(users.id, data.assigneeId),
+            eq(users.organizationId, data.organizationId)
+          )
+        );
+      
+      if (!assignee) {
+        throw new Error('Assignee not found in organization');
+      }
+    }
+
+    // SECURITY: Validate requester belongs to same organization
+    const [requester] = await db
+      .select()
+      .from(users)
+      .where(
+        and(
+          eq(users.id, data.requesterId),
+          eq(users.organizationId, data.organizationId)
+        )
+      );
+    
+    if (!requester) {
+      throw new Error('Requester not found in organization');
+    }
+
+    // SECURITY: Validate category belongs to organization or is global
+    if (data.categoryId) {
+      const [category] = await db
+        .select()
+        .from(ticketCategories)
+        .where(
+          and(
+            eq(ticketCategories.id, data.categoryId),
+            sql`(${ticketCategories.organizationId} = ${data.organizationId} OR ${ticketCategories.organizationId} IS NULL)`
+          )
+        );
+      
+      if (!category) {
+        throw new Error('Category not found or not accessible');
+      }
+    }
+
     const ticketNumber = await this.generateTicketNumber(data.organizationId);
 
     const [ticket] = await db.insert(tickets).values({
@@ -63,7 +112,14 @@ export class TicketService {
       })
       .from(tickets)
       .leftJoin(users, eq(tickets.requesterId, users.id))
-      .leftJoin(ticketCategories, eq(tickets.categoryId, ticketCategories.id))
+      .leftJoin(
+        ticketCategories,
+        and(
+          eq(tickets.categoryId, ticketCategories.id),
+          // SECURITY: Only join categories that belong to org or are global
+          sql`(${ticketCategories.organizationId} = ${organizationId} OR ${ticketCategories.organizationId} IS NULL)`
+        )
+      )
       .where(
         and(
           eq(tickets.id, ticketId),
@@ -98,6 +154,23 @@ export class TicketService {
     limit?: number;
     offset?: number;
   }) {
+    // SECURITY: Validate categoryId belongs to organization or is global
+    if (filters?.categoryId) {
+      const [category] = await db
+        .select()
+        .from(ticketCategories)
+        .where(
+          and(
+            eq(ticketCategories.id, filters.categoryId),
+            sql`(${ticketCategories.organizationId} = ${organizationId} OR ${ticketCategories.organizationId} IS NULL)`
+          )
+        );
+      
+      if (!category) {
+        throw new Error('Category not found or not accessible');
+      }
+    }
+
     const conditions = [eq(tickets.organizationId, organizationId)];
 
     if (filters?.status) {
@@ -137,7 +210,14 @@ export class TicketService {
       })
       .from(tickets)
       .leftJoin(users, eq(tickets.requesterId, users.id))
-      .leftJoin(ticketCategories, eq(tickets.categoryId, ticketCategories.id))
+      .leftJoin(
+        ticketCategories,
+        and(
+          eq(tickets.categoryId, ticketCategories.id),
+          // SECURITY: Only join categories that belong to org or are global
+          sql`(${ticketCategories.organizationId} = ${organizationId} OR ${ticketCategories.organizationId} IS NULL)`
+        )
+      )
       .where(and(...conditions))
       .limit(filters?.limit || 50)
       .offset(filters?.offset || 0)
@@ -173,6 +253,40 @@ export class TicketService {
 
     if (!existing) {
       throw new Error('Ticket not found');
+    }
+
+    // SECURITY: Validate new assignee belongs to same organization
+    if (updates.assigneeId) {
+      const [assignee] = await db
+        .select()
+        .from(users)
+        .where(
+          and(
+            eq(users.id, updates.assigneeId),
+            eq(users.organizationId, organizationId)
+          )
+        );
+      
+      if (!assignee) {
+        throw new Error('Assignee not found in organization');
+      }
+    }
+
+    // SECURITY: Validate category belongs to organization or is global
+    if (updates.categoryId) {
+      const [category] = await db
+        .select()
+        .from(ticketCategories)
+        .where(
+          and(
+            eq(ticketCategories.id, updates.categoryId),
+            sql`(${ticketCategories.organizationId} = ${organizationId} OR ${ticketCategories.organizationId} IS NULL)`
+          )
+        );
+      
+      if (!category) {
+        throw new Error('Category not found or not accessible');
+      }
     }
 
     const updateData: any = {
@@ -424,11 +538,31 @@ export class TicketService {
     return stats;
   }
 
-  async listCategories() {
+  async listCategories(organizationId?: number) {
+    if (organizationId) {
+      // Return organization-specific + global categories
+      return await db
+        .select()
+        .from(ticketCategories)
+        .where(
+          and(
+            eq(ticketCategories.isActive, true),
+            sql`(${ticketCategories.organizationId} = ${organizationId} OR ${ticketCategories.organizationId} IS NULL)`
+          )
+        )
+        .orderBy(ticketCategories.name);
+    }
+    
+    // Return only global categories
     return await db
       .select()
       .from(ticketCategories)
-      .where(eq(ticketCategories.isActive, true))
+      .where(
+        and(
+          eq(ticketCategories.isActive, true),
+          sql`${ticketCategories.organizationId} IS NULL`
+        )
+      )
       .orderBy(ticketCategories.name);
   }
 }

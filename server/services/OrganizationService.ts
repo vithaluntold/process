@@ -128,33 +128,106 @@ export class OrganizationService {
       .from(users)
       .where(eq(users.email, data.email));
 
-    if (existingUser) {
-      if (existingUser.organizationId) {
-        throw new Error('User already belongs to another organization');
-      }
-
-      const [updated] = await db
-        .update(users)
-        .set({
-          organizationId: data.organizationId,
-          role: data.role,
-        })
-        .where(eq(users.id, existingUser.id))
-        .returning();
-
-      return updated;
+    if (existingUser && existingUser.organizationId) {
+      throw new Error('User already belongs to another organization');
     }
 
-    const tempPassword = this.generateTemporaryPassword();
-    
-    const [newUser] = await db.insert(users).values({
-      email: data.email,
-      password: tempPassword,
-      organizationId: data.organizationId,
-      role: data.role,
-    }).returning();
+    // SECURITY: Atomic seat allocation with race condition protection
+    // Use WHERE clause to check availability during UPDATE
+    await db.transaction(async (tx) => {
+      const [subscription] = await tx
+        .select()
+        .from(organizationSubscriptions)
+        .where(eq(organizationSubscriptions.organizationId, data.organizationId))
+        .for('update'); // Lock the row for atomic update
 
-    return newUser;
+      // SECURITY: Require active subscription for user invitations
+      if (!subscription) {
+        throw new Error('Organization must have an active subscription to add users. Please create a subscription first.');
+      }
+
+      // SECURITY: Verify subscription is active, not cancelled or suspended
+      const allowedStatuses = ['active', 'trialing', 'past_due'];
+      if (!allowedStatuses.includes(subscription.status)) {
+        throw new Error(`Cannot add users: subscription is ${subscription.status}. Please reactivate your subscription.`);
+      }
+
+      if (existingUser) {
+        // Add existing user to organization
+        const [updated] = await tx
+          .update(users)
+          .set({
+            organizationId: data.organizationId,
+            role: data.role,
+          })
+          .where(eq(users.id, existingUser.id))
+          .returning();
+
+        // Atomically increment seat if subscription exists and has capacity
+        if (subscription) {
+          const result = await tx
+            .update(organizationSubscriptions)
+            .set({
+              seatsUsed: sql`${organizationSubscriptions.seatsUsed} + 1`,
+              updatedAt: new Date(),
+            })
+            .where(
+              and(
+                eq(organizationSubscriptions.id, subscription.id),
+                sql`${organizationSubscriptions.seatsUsed} < ${organizationSubscriptions.seats}`
+              )
+            )
+            .returning();
+
+          if (result.length === 0) {
+            throw new Error('No available seats in subscription. Please upgrade your plan to add more users.');
+          }
+        }
+
+        return updated;
+      } else {
+        // Create new user
+        const tempPassword = this.generateTemporaryPassword();
+        
+        const [newUser] = await tx.insert(users).values({
+          email: data.email,
+          password: tempPassword,
+          organizationId: data.organizationId,
+          role: data.role,
+        }).returning();
+
+        // Atomically increment seat if subscription exists and has capacity
+        if (subscription) {
+          const result = await tx
+            .update(organizationSubscriptions)
+            .set({
+              seatsUsed: sql`${organizationSubscriptions.seatsUsed} + 1`,
+              updatedAt: new Date(),
+            })
+            .where(
+              and(
+                eq(organizationSubscriptions.id, subscription.id),
+                sql`${organizationSubscriptions.seatsUsed} < ${organizationSubscriptions.seats}`
+              )
+            )
+            .returning();
+
+          if (result.length === 0) {
+            throw new Error('No available seats in subscription. Please upgrade your plan to add more users.');
+          }
+        }
+
+        return newUser;
+      }
+    });
+
+    // Fetch and return the user
+    const [finalUser] = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, data.email));
+
+    return finalUser!;
   }
 
   async removeUserFromOrganization(userId: number, organizationId: number) {
