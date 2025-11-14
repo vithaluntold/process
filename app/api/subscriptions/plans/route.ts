@@ -5,10 +5,25 @@ export async function GET(request: NextRequest) {
   try {
     const dbPlans = await subscriptionService.listPlans();
     
+    // Define the correct tier order
+    const tierOrder: Record<string, number> = {
+      'free': 1,
+      'elite': 2,
+      'pro': 3,
+      'enterprise': 4
+    };
+    
+    // Sort plans by tier order (Free → Elite → Pro → Enterprise)
+    const sortedPlans = dbPlans.sort((a, b) => {
+      const orderA = tierOrder[a.tier] || 999;
+      const orderB = tierOrder[b.tier] || 999;
+      return orderA - orderB;
+    });
+    
     // Transform database plans into frontend format for both monthly and yearly
     const plans = [];
     
-    for (const plan of dbPlans) {
+    for (const plan of sortedPlans) {
       // Monthly plan
       plans.push({
         id: plan.id,
