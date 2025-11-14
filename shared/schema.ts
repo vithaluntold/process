@@ -25,7 +25,7 @@ export const organizations = pgTable("organizations", {
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
-  organizationId: integer("organization_id").references(() => organizations.id),
+  organizationId: integer("organization_id"), // Removed .references() temporarily for migration
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
   firstName: text("first_name"),
