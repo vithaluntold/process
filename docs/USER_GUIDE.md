@@ -16,7 +16,8 @@
 13. [AI Process Assistant](#ai-process-assistant)
 14. [Collaboration Features](#collaboration-features)
 15. [Custom KPI Builder](#custom-kpi-builder)
-16. [Settings & Configuration](#settings--configuration)
+16. [Multi-Tenant Administration](#multi-tenant-administration)
+17. [Settings & Configuration](#settings--configuration)
 
 ---
 
@@ -3176,6 +3177,811 @@ View Details: {{link}}
 - Retire obsolete KPIs
 - Add new ones as needed
 - Refine calculations
+
+---
+
+## Multi-Tenant Administration
+
+EPI-Q is a multi-tenant SaaS platform with enterprise-grade administration capabilities. This section covers organization management, support ticketing, subscription management, and pricing information.
+
+### Understanding Roles & Permissions
+
+**Role Legend:**
+- 🔴 **Super Admin**: Platform-wide access across all organizations (SaaS provider administrators)
+- 🟡 **Admin**: Organization-level management (company administrators)
+- 🟢 **Employee**: Standard user access within their organization
+
+**Data Isolation:**
+All data is strictly isolated by organization. Users can only access data belonging to their organization, ensuring complete tenant separation and data security.
+
+---
+
+### Organizations Dashboard (Super Admin Only)
+
+**Purpose:**
+The Organizations Dashboard provides platform-wide management of all tenant organizations. This is the central hub for Super Admins to monitor, create, and manage client organizations.
+
+**Access:** 🔴 Super Admin only
+
+**Accessing the Dashboard:**
+1. Log in with Super Admin credentials
+2. Navigate to **Organizations** in the sidebar (visible only to Super Admins)
+3. View the comprehensive organizations management interface
+
+#### Key Features
+
+**1. Platform Statistics**
+
+**Metrics Cards Display:**
+- **Total Organizations**: Number of active tenant organizations
+- **Active Subscriptions**: Organizations with paid plans
+- **Total Users**: Platform-wide user count
+- **Monthly Recurring Revenue (MRR)**: Total subscription revenue
+
+**How to Use:**
+- Monitor platform growth at a glance
+- Track subscription conversion rates
+- Identify revenue trends
+- Click cards to drill down into details
+
+**2. Organization Management Table**
+
+**Table Columns:**
+- **Organization Name**: Company/tenant name
+- **Status**: Active, Suspended, Trial
+- **Subscription Plan**: Free, Pro, Enterprise
+- **Users**: Number of users in the organization
+- **Created Date**: When organization was created
+- **Actions**: Edit, View Details, Suspend/Activate
+
+**Available Actions:**
+
+**Search & Filter:**
+1. Use the search bar to find organizations by name
+2. Filter by subscription plan using dropdown
+3. Filter by status (Active, Suspended, Trial)
+4. Sort by any column header
+
+**Create New Organization:**
+1. Click **"Create Organization"** button
+2. Fill in organization details:
+   - Organization Name (required)
+   - Contact Email (required)
+   - Phone Number (optional)
+   - Industry/Domain (optional)
+   - Initial subscription plan
+3. Click **"Create"**
+4. System automatically provisions organization resources
+5. Admin user invitation is sent
+
+**Edit Organization:**
+1. Click **"Edit"** icon on any organization row
+2. Update organization information
+3. Change subscription plan if needed
+4. Click **"Save Changes"**
+5. Changes apply immediately
+
+**View Organization Details:**
+1. Click organization name or **"View"** button
+2. See complete organization profile:
+   - User list and roles
+   - Subscription details and history
+   - Usage statistics
+   - Support tickets
+   - Billing history
+3. Perform quick actions from detail view
+
+**Suspend/Activate Organization:**
+1. Click **"Suspend"** for active organizations
+2. Confirm suspension (users will lose access)
+3. Organization data is preserved but inaccessible
+4. Click **"Activate"** to restore access
+5. Use for non-payment or policy violations
+
+**Delete Organization:**
+
+> ⚠️ **CRITICAL WARNING - IRREVERSIBLE ACTION**
+> 
+> This action will **PERMANENTLY DELETE** all organization data with **NO RECOVERY** possible. This includes:
+> - All user accounts and profiles
+> - All process data and event logs
+> - All support tickets and conversations
+> - All analytics and reports
+> - All subscription and billing history
+> - All custom configurations
+> 
+> **This cannot be undone. Data is permanently destroyed.**
+> 
+> **Use only for**:
+> - Demonstration or test accounts
+> - Explicit client deletion requests (with written confirmation)
+> - Compliance with data deletion regulations (GDPR Right to Erasure)
+> 
+> **Before deleting**:
+> - Export all data for backup
+> - Notify organization admin
+> - Document reason for deletion
+> - Get written approval from authorized personnel
+
+**Steps to Delete:**
+1. Click **"Delete"** icon on organization row
+2. Read and understand the warning message
+3. Type the exact organization name to confirm: `<Organization Name>`
+4. Click **"Permanently Delete Organization"**
+5. All organization data is immediately and permanently removed
+6. Deletion is logged in audit trail
+
+#### Best Practices & Tips
+
+**Organization Management:**
+- Regularly review organization status and subscription alignment
+- Monitor organizations nearing their user seat limits
+- Proactively reach out to trial organizations before expiry
+- Document suspension reasons in notes
+
+**Security & Compliance:**
+- Audit organization access patterns regularly
+- Review user distributions across organizations
+- Ensure proper data isolation boundaries
+- Maintain organization contact information current
+
+**Revenue Optimization:**
+- Track conversion from trial to paid plans
+- Identify organizations ready for plan upgrades
+- Monitor MRR trends monthly
+- Address churned subscriptions quickly
+
+---
+
+### Support Tickets
+
+**Purpose:**
+The Support Ticket system enables structured customer support and issue tracking with full conversation threading, file attachments, and SLA management.
+
+**Access:** 🟢 All Roles (organization-scoped)
+
+**How It Works:**
+- Users can create support tickets for issues or questions
+- Tickets are visible only within the user's organization
+- Admins and Super Admins have enhanced management capabilities
+- Complete audit trail of all ticket activities
+
+**Accessing Support Tickets:**
+1. Navigate to **Support Tickets** in the sidebar
+2. View all tickets for your organization
+3. Filter, search, and manage tickets
+
+#### Creating a Support Ticket
+
+**Step-by-Step:**
+
+1. **Click "Create Ticket"**
+   - Located at top-right of tickets page
+   - Opens ticket creation dialog
+
+2. **Fill in Ticket Details**
+   - **Subject** (required): Brief description of the issue
+   - **Category**: Select from predefined categories
+     - Technical Issue
+     - Feature Request
+     - Billing Question
+     - General Inquiry
+     - Bug Report
+     - Performance Issue
+   - **Priority**: Select urgency level
+     - 🔴 Critical: System down, blocking issue
+     - 🟡 High: Major functionality impaired
+     - 🔵 Medium: Non-critical issue
+     - ⚪ Low: Question or minor issue
+   - **Description**: Detailed explanation of the issue
+     - What happened?
+     - What were you trying to do?
+     - What did you expect to happen?
+     - Steps to reproduce (for bugs)
+
+3. **Attach Files (Optional)**
+   - Click "Attach Files"
+   - Supported formats: images, PDFs, logs, CSV
+   - Max file size: 10MB per file
+   - Up to 5 files per ticket
+
+4. **Submit Ticket**
+   - Click **"Create Ticket"**
+   - Ticket number is automatically generated
+   - Email notification sent to support team
+   - You'll be redirected to ticket view
+
+#### Managing Support Tickets
+
+**Ticket List View:**
+
+**Filter Options:**
+1. **By Status**:
+   - Open: Active tickets awaiting response
+   - In Progress: Being actively worked on
+   - Waiting: Awaiting customer response
+   - Resolved: Issue fixed, awaiting confirmation
+   - Closed: Ticket completed
+
+2. **By Priority**:
+   - Filter by Critical, High, Medium, Low
+   - Quickly identify urgent issues
+
+3. **By Category**:
+   - Filter by ticket type
+   - Find similar issues
+
+**Search:**
+- Search by ticket number (#TICKET-001)
+- Search by subject or description keywords
+- Real-time search results
+
+**Ticket Cards Display:**
+- **Ticket Number**: Unique identifier
+- **Subject**: Issue summary
+- **Status Badge**: Color-coded current status
+- **Priority Badge**: Urgency indicator
+- **Category**: Issue type
+- **Created Date**: When ticket was opened
+- **Last Updated**: Most recent activity
+- **Message Count**: Number of conversation messages
+
+#### Ticket Conversation & Resolution
+
+**Viewing Ticket Details:**
+1. Click on any ticket card
+2. Opens full ticket view with:
+   - Complete ticket information
+   - Full conversation thread
+   - All attachments
+   - Activity history
+   - Status and priority controls
+
+**Adding Messages:**
+1. Scroll to **"Add Message"** section
+2. Type your message or question
+3. Attach files if needed
+4. Click **"Send Message"**
+5. Support team receives notification
+6. Conversation thread updates in real-time
+
+**Updating Ticket Status (Admin/Super Admin):**
+1. Click **"Update Status"** dropdown
+2. Select new status:
+   - Open → In Progress (when starting work)
+   - In Progress → Waiting (need customer input)
+   - Waiting → In Progress (customer responded)
+   - In Progress → Resolved (issue fixed)
+   - Resolved → Closed (customer confirmed)
+3. Add internal note if needed
+4. Click **"Update"**
+5. Status change is logged in activity history
+
+**Changing Priority (Admin/Super Admin):**
+1. Click **"Change Priority"**
+2. Select new priority level
+3. Provide reason for change
+4. Click **"Save"**
+5. Escalation notifications sent if priority increased
+
+**Closing Tickets:**
+1. **Customer Closes**:
+   - Click **"Close Ticket"** button
+   - Confirm resolution satisfaction
+   - Ticket marked as Closed
+
+2. **Admin Closes**:
+   - Update status to Resolved first
+   - Wait for customer confirmation (24-48 hours)
+   - If no objection, mark as Closed
+   - Or customer can explicitly close
+
+#### SLA Management & Alerts
+
+**SLA Targets by Priority:**
+- **Critical**: 1 hour first response, 4 hours resolution
+- **High**: 4 hours first response, 24 hours resolution
+- **Medium**: 8 hours first response, 48 hours resolution
+- **Low**: 24 hours first response, 5 days resolution
+
+**SLA Indicators:**
+- ✅ Green: Within SLA
+- ⚠️ Yellow: Approaching SLA deadline (80% of time elapsed)
+- 🚨 Red: SLA breached
+
+**Automated Alerts:**
+- Email sent when SLA approaches (80%)
+- Urgent notification if SLA is breached
+- Escalation to managers for critical SLA violations
+
+#### Best Practices & Tips
+
+**Creating Effective Tickets:**
+- Use clear, descriptive subjects
+- Provide detailed reproduction steps
+- Include screenshots or screen recordings
+- Attach relevant error logs
+- Select accurate priority (don't inflate)
+
+**Communication:**
+- Respond promptly to support team questions
+- Provide requested information completely
+- Be specific about what's not working
+- Update ticket if issue changes
+
+**Ticket Management:**
+- Close resolved tickets promptly
+- Search for similar tickets before creating new ones
+- Follow up if no response within SLA
+- Provide feedback on resolution quality
+
+---
+
+### Subscription Management
+
+**Purpose:**
+Manage your organization's subscription plan, view usage, track billing history, and upgrade/downgrade plans.
+
+**Access:** 🟡 Admin & 🔴 Super Admin (organization owners)
+
+**Accessing Subscriptions:**
+1. Navigate to **Subscription** in the sidebar
+2. View your organization's subscription dashboard
+
+#### Subscription Dashboard
+
+**Current Plan Overview:**
+
+**Plan Information Card:**
+- **Plan Name**: Free, Pro, or Enterprise
+- **Status**: Active, Trial, Cancelled, Expired
+- **Billing Cycle**: Monthly or Annual
+- **Next Billing Date**: When next charge occurs
+- **Amount**: Current subscription cost
+
+**Plan Features:**
+- ✅ Process Discovery & Conformance
+- ✅ Performance Analytics
+- ✅ Real-Time Monitoring
+- ✅ Basic Reporting
+- ✅ (Pro/Enterprise) Advanced Predictive Analytics
+- ✅ (Pro/Enterprise) Digital Twin Simulation
+- ✅ (Pro/Enterprise) AI Process Assistant
+- ✅ (Pro/Enterprise) Custom Integrations
+- ✅ (Enterprise) Dedicated Support
+- ✅ (Enterprise) SLA Guarantees
+
+**Usage Tracking:**
+
+**User Seats:**
+- **Current Usage**: X / Y users
+- **Included Seats**: Number in your plan
+- **Additional Seats**: If over limit
+- **Cost per Additional Seat**: Pricing displayed
+- **Visual Progress Bar**: Shows usage percentage
+
+**Storage Usage:**
+- **Current**: GB used for event logs and documents
+- **Limit**: Maximum storage in plan
+- **Overage Cost**: If applicable
+- **Progress Bar**: Visual indicator
+
+**API Calls:**
+- **Current Month**: Number of API requests
+- **Limit**: Monthly quota
+- **Overage Policy**: Displayed if applicable
+
+**Process Count:**
+- **Active Processes**: Number of processes being monitored
+- **Limit**: Maximum per plan
+- **Upgrade Prompt**: If nearing limit
+
+#### Changing Your Subscription
+
+**Upgrading Your Plan:**
+
+1. **Click "Upgrade Plan"**
+2. **Compare Plans** (opens pricing comparison)
+3. **Select New Plan**:
+   - Choose Pro or Enterprise
+   - Select billing cycle (Monthly/Annual)
+   - Annual saves 20%
+4. **Review Changes**:
+   - New features unlocked
+   - Price difference
+   - Prorated charges (if mid-cycle)
+5. **Payment Information**:
+   - Update payment method if needed
+   - Review billing address
+6. **Confirm Upgrade**:
+   - Click **"Upgrade Now"**
+   - Payment processed immediately
+   - New features activate instantly
+7. **Confirmation**:
+   - Receipt emailed
+   - Invoice generated
+   - Subscription updated
+
+**Downgrading Your Plan:**
+
+⚠️ **Important**: Downgrading may result in feature loss and data retention limits.
+
+1. **Click "Change Plan"**
+2. **Select Lower-Tier Plan**
+3. **Review Impact**:
+   - Features that will be disabled
+   - Data retention changes
+   - User seat adjustments needed
+4. **Confirm Understanding**:
+   - Check acknowledgment boxes
+   - Understand data implications
+5. **Schedule Downgrade**:
+   - Takes effect at end of current billing period
+   - Keep current features until then
+   - No prorated refund
+6. **Confirmation Email Sent**
+
+**Cancelling Subscription:**
+
+> ⚠️ **IMPORTANT: SUBSCRIPTION CANCELLATION NOTICE**
+> 
+> Cancelling your subscription will result in **IMMEDIATE FEATURE RESTRICTIONS** at the end of your current billing period.
+> 
+> **What You Will Lose**:
+> - ❌ Advanced predictive analytics
+> - ❌ Digital twin simulation
+> - ❌ AI Process Assistant
+> - ❌ Unlimited processes (reduced to 5 max)
+> - ❌ Unlimited users (reduced to 3 max)
+> - ❌ Priority support (downgraded to community support)
+> - ❌ Historical data beyond 30 days
+> - ❌ Advanced export formats (PDF, PowerPoint)
+> 
+> **What Happens**:
+> - ✅ Access continues until **current period ends**
+> - ✅ Data retained for **90 days** after cancellation
+> - ✅ Billing stops at period end
+> - ✅ Automatic downgrade to **Free Plan**
+> - ⚠️ **No refunds issued** (non-refundable policy)
+> 
+> **Before Cancelling**:
+> - Export important reports and analytics
+> - Download all invoices for records
+> - Remove excess users if over Free plan limit (3 max)
+> - Archive processes if over Free plan limit (5 max)
+> - Consider downgrading to a lower plan instead
+
+**Steps to Cancel:**
+1. **Click "Cancel Subscription"** button
+2. **Provide Feedback** (optional but appreciated):
+   - Why are you canceling?
+   - What could we improve?
+3. **Review Cancellation Impact Summary**:
+   - Features that will be disabled
+   - Data retention timeline
+   - Billing stop date
+4. **Confirm Cancellation**:
+   - Type your organization name to confirm: `<Organization Name>`
+   - Click **"Cancel Subscription"**
+5. **Confirmation Sent**:
+   - Email confirmation with cancellation date
+   - Scheduled downgrade to Free Plan
+   - Invoice for final billing period (if applicable)
+
+**After Cancellation**:
+- Access maintained until: **[Current period end date]**
+- Downgrade occurs on: **[Period end date + 1 day]**
+- Data deletion scheduled: **[Period end + 90 days]** (unless you reactivate)
+
+#### Billing History
+
+**Viewing Invoices:**
+1. Scroll to **"Billing History"** section
+2. View table of all past invoices
+
+**Invoice Details:**
+- **Invoice Number**: Unique identifier
+- **Date**: Invoice issue date
+- **Description**: What was billed
+- **Amount**: Total charged
+- **Status**: Paid, Pending, Failed, Refunded
+- **Actions**: Download PDF, View Details
+
+**Downloading Invoices:**
+1. Click **"Download PDF"** for any invoice
+2. Professional invoice document generated
+3. Includes:
+   - Company information
+   - Invoice details
+   - Line items
+   - Payment method
+   - Tax information (if applicable)
+4. Save for accounting records
+
+**Payment Methods:**
+1. Click **"Manage Payment Methods"**
+2. View current payment method
+3. **Add New Method**:
+   - Credit/Debit Card
+   - ACH/Bank Transfer (Enterprise)
+4. **Update Default Payment**
+5. **Remove Old Methods**
+
+#### Subscription Alerts & Notifications
+
+**Payment Alerts:**
+- 📧 7 days before renewal
+- 📧 Payment successful
+- 🚨 Payment failed (with retry information)
+- 📧 Subscription expiring soon (for trials)
+
+**Usage Alerts:**
+- ⚠️ 80% of user seats used
+- ⚠️ 90% of storage used
+- ⚠️ 80% of API quota used
+- 📧 Weekly usage summary (Admins only)
+
+**Plan Changes:**
+- ✅ Upgrade confirmed
+- ⏰ Downgrade scheduled
+- ❌ Cancellation confirmed
+
+#### Best Practices & Tips
+
+**Subscription Management:**
+- Review usage monthly to optimize plan selection
+- Set usage alerts to avoid overages
+- Plan upgrades strategically before hitting limits
+- Take advantage of annual billing discounts
+- Keep payment information current
+
+**Cost Optimization:**
+- Remove inactive users to free seats
+- Archive old processes to save storage
+- Use API efficiently to stay within quotas
+- Consider annual billing for 20% savings
+- Right-size plan to actual usage
+
+**Billing:**
+- Download invoices monthly for records
+- Update billing information before renewals
+- Monitor for failed payments
+- Review charges for accuracy
+- Contact support for billing questions
+
+---
+
+### Pricing Plans
+
+**Purpose:**
+View detailed information about available subscription plans, features, and pricing to make informed upgrade decisions.
+
+**Access:** 🟢 All Roles (public information)
+
+**Accessing Pricing:**
+1. Navigate to **Pricing** in the sidebar
+2. Or click **"View Pricing"** from subscription page
+3. Public page (no login required)
+
+#### Available Plans
+
+**Free Plan - $0/month**
+
+**Ideal For:**
+- Individual users
+- Small teams (up to 3 users)
+- Proof of concept
+- Learning process mining
+
+**Features Included:**
+- ✅ Up to 3 users
+- ✅ 5 processes maximum
+- ✅ Basic process discovery
+- ✅ Conformance checking
+- ✅ Performance analytics
+- ✅ 1GB storage
+- ✅ Community support
+- ✅ 1,000 API calls/month
+- ❌ Advanced predictive analytics
+- ❌ Digital twin simulation
+- ❌ AI assistant
+- ❌ Custom integrations
+- ❌ Priority support
+
+**Limitations:**
+- Historical data: 30 days
+- Export formats: CSV only
+- No custom KPIs
+- No real-time monitoring
+
+---
+
+**Pro Plan - $99/user/month** (or $79/user/month annually)
+
+**Ideal For:**
+- Growing teams (up to 50 users)
+- Departments
+- Mid-market companies
+- Advanced analytics needs
+
+**Everything in Free, Plus:**
+- ✅ Up to 50 users
+- ✅ Unlimited processes
+- ✅ Advanced predictive analytics
+- ✅ Anomaly detection (5 algorithms)
+- ✅ Forecasting (30/60/90-day)
+- ✅ Digital twin simulation
+- ✅ What-if scenario analysis
+- ✅ AI Process Assistant
+- ✅ Multi-LLM support (OpenAI, Mistral, etc.)
+- ✅ Task mining
+- ✅ Custom KPIs
+- ✅ Real-time monitoring
+- ✅ Advanced reporting (PDF, Excel, PowerPoint)
+- ✅ Custom integrations
+- ✅ 50GB storage
+- ✅ Email & chat support
+- ✅ 100,000 API calls/month
+- ✅ Historical data: 1 year
+- ✅ Collaboration features
+- ✅ GDPR compliance tools
+
+**Support:**
+- Response time: Within 4 hours
+- Email and chat support
+- Knowledge base access
+- Monthly business reviews
+
+**Savings:**
+- Annual billing saves $240/user/year (20% discount)
+
+---
+
+**Enterprise Plan - Custom Pricing**
+
+**Ideal For:**
+- Large organizations (50+ users)
+- Multiple departments
+- Fortune 500 companies
+- Mission-critical deployments
+- Compliance requirements
+
+**Everything in Pro, Plus:**
+- ✅ Unlimited users
+- ✅ Dedicated support team
+- ✅ 99.9% SLA uptime guarantee
+- ✅ Custom integrations & API access
+- ✅ On-premise deployment option
+- ✅ Advanced security features
+- ✅ SSO (SAML, OAuth)
+- ✅ Custom data retention policies
+- ✅ White-label options
+- ✅ Dedicated account manager
+- ✅ Quarterly business reviews
+- ✅ Custom training sessions
+- ✅ Priority feature requests
+- ✅ Unlimited storage
+- ✅ Unlimited API calls
+- ✅ Custom SLAs
+- ✅ Multi-region deployment
+- ✅ Advanced audit logging
+- ✅ Custom compliance (HIPAA, SOC 2, etc.)
+
+**Support:**
+- 24/7 phone, email, and chat
+- Dedicated Slack/Teams channel
+- Response time: Within 1 hour
+- Named technical account manager
+- On-site support available
+
+**Pricing:**
+- Contact sales for custom quote
+- Volume discounts available
+- Flexible payment terms
+
+---
+
+#### Billing Cycles
+
+**Monthly Billing:**
+- Billed on the same day each month
+- Cancel anytime
+- No long-term commitment
+- Full flexibility
+
+**Annual Billing:**
+- **Save 20%** compared to monthly
+- Billed once per year
+- Best value for committed teams
+- Can upgrade mid-year with prorated charges
+
+**Payment Methods Accepted:**
+- Credit cards (Visa, Mastercard, Amex)
+- Debit cards
+- ACH/Bank transfer (Enterprise only)
+- Wire transfer (Enterprise only)
+- Purchase orders (Enterprise only)
+
+#### Feature Comparison Table
+
+**Use the Interactive Comparison:**
+1. On the pricing page, view the feature comparison table
+2. See all features side-by-side
+3. Check marks (✅) indicate included features
+4. Cross marks (❌) indicate not included
+5. Click **"See Full Comparison"** for detailed breakdown
+
+**Key Feature Categories:**
+- **Users & Processes**: Seat limits and process counts
+- **Core Analytics**: Discovery, conformance, performance
+- **Advanced Analytics**: Predictive, forecasting, anomaly detection
+- **AI & Automation**: AI assistant, automation opportunities
+- **Data & Storage**: Storage limits, data retention
+- **Integrations**: API access, custom integrations
+- **Support**: Response times, support channels
+- **Security & Compliance**: SSO, audit logs, certifications
+
+#### Making a Decision
+
+**Choosing the Right Plan:**
+
+1. **Assess Your Needs**:
+   - How many users?
+   - How many processes?
+   - Required features?
+   - Support expectations?
+
+2. **Start with Free**:
+   - Try platform risk-free
+   - Validate use case
+   - Learn the system
+   - Upgrade when ready
+
+3. **Upgrade to Pro When**:
+   - Need advanced analytics
+   - Team grows beyond 3 users
+   - Require AI assistance
+   - Need better support
+
+4. **Contact for Enterprise When**:
+   - 50+ users
+   - Mission-critical processes
+   - Compliance requirements
+   - Custom integration needs
+   - Need SLA guarantees
+
+**Upgrade Process:**
+1. Click **"Upgrade to Pro"** or **"Contact Sales"** (for Enterprise)
+2. Select billing cycle (Monthly/Annual)
+3. Enter payment information
+4. Confirm and activate
+5. Features unlock immediately
+
+**Questions About Pricing?**
+- Click **"Chat with Sales"** for live assistance
+- Email: sales@epi-q.com
+- Phone: 1-800-EPIQ (Enterprise)
+- Schedule demo for personalized walkthrough
+
+#### Best Practices & Tips
+
+**Plan Selection:**
+- Start small and upgrade as you grow
+- Consider annual billing for significant savings
+- Evaluate actual usage vs. plan limits
+- Factor in future growth (6-12 months)
+
+**Cost Management:**
+- Monitor user seat usage
+- Remove inactive users
+- Archive completed processes
+- Optimize API usage
+
+**Timing Upgrades:**
+- Upgrade before hitting limits
+- Plan for seasonal demand spikes
+- Consider fiscal year budgeting cycles
+- Take advantage of promotional periods
 
 ---
 
