@@ -3,6 +3,7 @@ import { db } from "@/server/storage";
 import { teams, users, teamMembers } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import { z } from "zod";
+import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
 
 const updateTeamSchema = z.object({
   name: z.string().min(1).optional(),
@@ -11,21 +12,6 @@ const updateTeamSchema = z.object({
   status: z.enum(["active", "inactive"]).optional(),
 });
 
-async function getUserFromRequest(req: NextRequest) {
-  const sessionCookie = req.cookies.get("session");
-  if (!sessionCookie) return null;
-
-  const sessionToken = sessionCookie.value;
-  
-  try {
-    const decoded = JSON.parse(Buffer.from(sessionToken.split('.')[1], 'base64').toString());
-    const user = await db.select().from(users).where(eq(users.id, decoded.userId)).limit(1);
-    return user[0] || null;
-  } catch {
-    return null;
-  }
-}
-
 export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -33,10 +19,18 @@ export async function PUT(
   try {
     const currentUser = await getUserFromRequest(req);
     
-    if (!currentUser || (currentUser.role !== "admin" && currentUser.role !== "super_admin")) {
+    const authError = requireAdmin(currentUser);
+    if (authError) {
       return NextResponse.json(
-        { error: "Unauthorized. Admin access required." },
-        { status: 403 }
+        { error: authError.error },
+        { status: authError.status }
+      );
+    }
+
+    if (!currentUser || !currentUser.organizationId) {
+      return NextResponse.json(
+        { error: "Invalid user session" },
+        { status: 401 }
       );
     }
 
@@ -57,7 +51,7 @@ export async function PUT(
       .where(
         and(
           eq(teams.id, teamId),
-          eq(teams.organizationId, currentUser.organizationId!)
+          eq(teams.organizationId, currentUser.organizationId)
         )
       )
       .limit(1);
@@ -77,7 +71,7 @@ export async function PUT(
           .where(
             and(
               eq(users.id, validatedData.managerId),
-              eq(users.organizationId, currentUser.organizationId!)
+              eq(users.organizationId, currentUser.organizationId)
             )
           )
           .limit(1);
@@ -171,10 +165,18 @@ export async function DELETE(
   try {
     const currentUser = await getUserFromRequest(req);
     
-    if (!currentUser || (currentUser.role !== "admin" && currentUser.role !== "super_admin")) {
+    const authError = requireAdmin(currentUser);
+    if (authError) {
       return NextResponse.json(
-        { error: "Unauthorized. Admin access required." },
-        { status: 403 }
+        { error: authError.error },
+        { status: authError.status }
+      );
+    }
+
+    if (!currentUser || !currentUser.organizationId) {
+      return NextResponse.json(
+        { error: "Invalid user session" },
+        { status: 401 }
       );
     }
 
@@ -192,7 +194,7 @@ export async function DELETE(
       .where(
         and(
           eq(teams.id, teamId),
-          eq(teams.organizationId, currentUser.organizationId!)
+          eq(teams.organizationId, currentUser.organizationId)
         )
       )
       .limit(1);

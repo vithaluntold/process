@@ -4,8 +4,21 @@ import { users } from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { jwtVerify } from "jose";
 
+const isProduction = process.env.NODE_ENV === "production";
+
+if (isProduction && !process.env.SESSION_SECRET) {
+  throw new Error("SESSION_SECRET environment variable is required for production security");
+}
+
+if (!isProduction && !process.env.SESSION_SECRET) {
+  console.warn(
+    "⚠️  WARNING: Using insecure development JWT secret. " +
+    "Set SESSION_SECRET environment variable before deploying to production!"
+  );
+}
+
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.SESSION_SECRET || "dev-secret-change-in-production"
+  process.env.SESSION_SECRET || "dev-secret-DO-NOT-USE-IN-PRODUCTION"
 );
 
 export async function getUserFromRequest(req: NextRequest) {

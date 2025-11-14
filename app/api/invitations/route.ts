@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/server/storage";
-import { invitations, users } from "@/shared/schema";
+import { invitations, users, teams } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import crypto from "crypto";
 import { z } from "zod";
+import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
 
 const inviteSchema = z.object({
   email: z.string().email("Valid email is required"),
@@ -13,44 +14,62 @@ const inviteSchema = z.object({
   lastName: z.string().optional(),
 });
 
-async function getUserFromRequest(req: NextRequest) {
-  const sessionCookie = req.cookies.get("session");
-  if (!sessionCookie) return null;
-
-  const sessionToken = sessionCookie.value;
-  
-  try {
-    const decoded = JSON.parse(Buffer.from(sessionToken.split('.')[1], 'base64').toString());
-    const user = await db.select().from(users).where(eq(users.id, decoded.userId)).limit(1);
-    return user[0] || null;
-  } catch {
-    return null;
-  }
-}
-
 export async function POST(req: NextRequest) {
   try {
     const currentUser = await getUserFromRequest(req);
     
-    if (!currentUser || (currentUser.role !== "admin" && currentUser.role !== "super_admin")) {
+    const authError = requireAdmin(currentUser);
+    if (authError) {
       return NextResponse.json(
-        { error: "Unauthorized. Admin access required." },
-        { status: 403 }
+        { error: authError.error },
+        { status: authError.status }
+      );
+    }
+
+    if (!currentUser || !currentUser.organizationId) {
+      return NextResponse.json(
+        { error: "Invalid user session" },
+        { status: 401 }
       );
     }
 
     const body = await req.json();
     const validatedData = inviteSchema.parse(body);
 
+    if (validatedData.teamId) {
+      const [team] = await db
+        .select()
+        .from(teams)
+        .where(
+          and(
+            eq(teams.id, validatedData.teamId),
+            eq(teams.organizationId, currentUser.organizationId)
+          )
+        )
+        .limit(1);
+
+      if (!team) {
+        return NextResponse.json(
+          { error: "Team not found in your organization" },
+          { status: 400 }
+        );
+      }
+    }
+
     const existingUser = await db
       .select()
       .from(users)
-      .where(eq(users.email, validatedData.email))
+      .where(
+        and(
+          eq(users.email, validatedData.email.toLowerCase()),
+          eq(users.organizationId, currentUser.organizationId)
+        )
+      )
       .limit(1);
 
     if (existingUser.length > 0) {
       return NextResponse.json(
-        { error: "User with this email already exists" },
+        { error: "User with this email already exists in your organization" },
         { status: 400 }
       );
     }
@@ -60,7 +79,8 @@ export async function POST(req: NextRequest) {
       .from(invitations)
       .where(
         and(
-          eq(invitations.email, validatedData.email),
+          eq(invitations.email, validatedData.email.toLowerCase()),
+          eq(invitations.organizationId, currentUser.organizationId),
           eq(invitations.status, "pending")
         )
       )
@@ -86,8 +106,8 @@ export async function POST(req: NextRequest) {
     const [invitation] = await db
       .insert(invitations)
       .values({
-        organizationId: currentUser.organizationId!,
-        email: validatedData.email,
+        organizationId: currentUser.organizationId,
+        email: validatedData.email.toLowerCase(),
         token,
         role: validatedData.role,
         teamId: validatedData.teamId,
@@ -126,10 +146,18 @@ export async function GET(req: NextRequest) {
   try {
     const currentUser = await getUserFromRequest(req);
     
-    if (!currentUser || (currentUser.role !== "admin" && currentUser.role !== "super_admin")) {
+    const authError = requireAdmin(currentUser);
+    if (authError) {
       return NextResponse.json(
-        { error: "Unauthorized. Admin access required." },
-        { status: 403 }
+        { error: authError.error },
+        { status: authError.status }
+      );
+    }
+
+    if (!currentUser || !currentUser.organizationId) {
+      return NextResponse.json(
+        { error: "Invalid user session" },
+        { status: 401 }
       );
     }
 
@@ -146,7 +174,7 @@ export async function GET(req: NextRequest) {
         createdAt: invitations.createdAt,
       })
       .from(invitations)
-      .where(eq(invitations.organizationId, currentUser.organizationId!))
+      .where(eq(invitations.organizationId, currentUser.organizationId))
       .orderBy(invitations.createdAt);
 
     return NextResponse.json({ invitations: orgInvitations });

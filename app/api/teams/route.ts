@@ -3,6 +3,7 @@ import { db } from "@/server/storage";
 import { teams, users, teamMembers } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import { z } from "zod";
+import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
 
 const createTeamSchema = z.object({
   name: z.string().min(1, "Team name is required"),
@@ -10,29 +11,22 @@ const createTeamSchema = z.object({
   managerId: z.number().optional(),
 });
 
-async function getUserFromRequest(req: NextRequest) {
-  const sessionCookie = req.cookies.get("session");
-  if (!sessionCookie) return null;
-
-  const sessionToken = sessionCookie.value;
-  
-  try {
-    const decoded = JSON.parse(Buffer.from(sessionToken.split('.')[1], 'base64').toString());
-    const user = await db.select().from(users).where(eq(users.id, decoded.userId)).limit(1);
-    return user[0] || null;
-  } catch {
-    return null;
-  }
-}
-
 export async function POST(req: NextRequest) {
   try {
     const currentUser = await getUserFromRequest(req);
     
-    if (!currentUser || (currentUser.role !== "admin" && currentUser.role !== "super_admin")) {
+    const authError = requireAdmin(currentUser);
+    if (authError) {
       return NextResponse.json(
-        { error: "Unauthorized. Admin access required." },
-        { status: 403 }
+        { error: authError.error },
+        { status: authError.status }
+      );
+    }
+
+    if (!currentUser || !currentUser.organizationId) {
+      return NextResponse.json(
+        { error: "Invalid user session" },
+        { status: 401 }
       );
     }
 
@@ -46,7 +40,7 @@ export async function POST(req: NextRequest) {
         .where(
           and(
             eq(users.id, validatedData.managerId),
-            eq(users.organizationId, currentUser.organizationId!)
+            eq(users.organizationId, currentUser.organizationId)
           )
         )
         .limit(1);
@@ -62,7 +56,7 @@ export async function POST(req: NextRequest) {
     const [team] = await db
       .insert(teams)
       .values({
-        organizationId: currentUser.organizationId!,
+        organizationId: currentUser.organizationId,
         name: validatedData.name,
         description: validatedData.description,
         managerId: validatedData.managerId,
@@ -110,6 +104,13 @@ export async function GET(req: NextRequest) {
       );
     }
 
+    if (!currentUser.organizationId) {
+      return NextResponse.json(
+        { error: "Invalid user session" },
+        { status: 401 }
+      );
+    }
+
     const orgTeams = await db
       .select({
         id: teams.id,
@@ -126,7 +127,7 @@ export async function GET(req: NextRequest) {
       })
       .from(teams)
       .leftJoin(users, eq(teams.managerId, users.id))
-      .where(eq(teams.organizationId, currentUser.organizationId!))
+      .where(eq(teams.organizationId, currentUser.organizationId))
       .orderBy(teams.name);
 
     return NextResponse.json({ teams: orgTeams });
