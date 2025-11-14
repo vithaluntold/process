@@ -89,6 +89,9 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const guardError = withApiGuards(req, 'alert-update', API_WRITE_LIMIT, user.id);
+  if (guardError) return guardError;
+
   try {
     const { alertId, status } = await req.json();
 

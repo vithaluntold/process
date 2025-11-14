@@ -5,7 +5,8 @@ import { eq, and } from "drizzle-orm";
 import crypto from "crypto";
 import { z } from "zod";
 import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
-import { requireCSRF } from "@/lib/csrf";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 const inviteSchema = z.object({
   email: z.string().email("Valid email is required"),
@@ -17,9 +18,6 @@ const inviteSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
-    const csrfError = requireCSRF(req);
-    if (csrfError) return csrfError;
-
     const currentUser = await getUserFromRequest(req);
     
     const authError = requireAdmin(currentUser);
@@ -36,6 +34,9 @@ export async function POST(req: NextRequest) {
         { status: 401 }
       );
     }
+
+    const guardError = withApiGuards(req, 'invitation-create', API_WRITE_LIMIT, currentUser.id);
+    if (guardError) return guardError;
 
     const body = await req.json();
     const validatedData = inviteSchema.parse(body);

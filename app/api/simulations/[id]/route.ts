@@ -3,6 +3,8 @@ import { db } from "@/lib/db";
 import { simulationScenarios } from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function GET(
   request: NextRequest,
@@ -46,6 +48,9 @@ export async function DELETE(
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'simulation-delete', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const { id } = await params;
     await db

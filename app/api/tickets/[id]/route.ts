@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUser } from '@/lib/auth';
 import { ticketService } from '@/server/services/TicketService';
 import { z } from 'zod';
-import { requireCSRF } from '@/lib/csrf';
+import { withApiGuards } from '@/lib/api-guards';
+import { API_WRITE_LIMIT } from '@/lib/rate-limiter';
 
 const updateTicketSchema = z.object({
   subject: z.string().min(3).max(200).optional(),
@@ -54,9 +55,6 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
-    const csrfError = requireCSRF(request);
-    if (csrfError) return csrfError;
-
     const user = await getUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -65,6 +63,9 @@ export async function PATCH(
     if (!user.organizationId) {
       return NextResponse.json({ error: 'User must belong to an organization' }, { status: 403 });
     }
+
+    const guardError = withApiGuards(request, 'ticket-update', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const ticketId = parseInt(params.id);
     if (isNaN(ticketId)) {
@@ -105,9 +106,6 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const csrfError = requireCSRF(request);
-    if (csrfError) return csrfError;
-
     const user = await getUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -120,6 +118,9 @@ export async function DELETE(
     if (user.role !== 'admin' && user.role !== 'super_admin') {
       return NextResponse.json({ error: 'Only admins can delete tickets' }, { status: 403 });
     }
+
+    const guardError = withApiGuards(request, 'ticket-delete', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const ticketId = parseInt(params.id);
     if (isNaN(ticketId)) {

@@ -7,6 +7,8 @@ import { Readable } from "stream";
 import { randomUUID } from "crypto";
 import { getCurrentUser } from "@/lib/server-auth";
 import { sanitizeInput } from "@/lib/validation";
+import { withApiGuards } from "@/lib/api-guards";
+import { UPLOAD_LIMIT } from "@/lib/rate-limiter";
 
 const UPLOAD_DIR = join(process.cwd(), "uploads");
 const MAX_FILE_SIZE = 50 * 1024 * 1024;
@@ -24,6 +26,9 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'file-upload', UPLOAD_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const formData = await request.formData();
     const file = formData.get("file") as File;

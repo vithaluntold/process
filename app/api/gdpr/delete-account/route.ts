@@ -4,19 +4,18 @@ import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { compare } from "bcryptjs";
-import { requireCSRF } from "@/lib/csrf";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(request: NextRequest) {
   try {
-    const csrfError = requireCSRF(request);
-    if (csrfError) {
-      return csrfError;
-    }
-
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'gdpr-delete-account', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const body = await request.json();
     const { password, confirmation } = body;

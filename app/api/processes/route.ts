@@ -3,7 +3,8 @@ import * as storage from "@/server/storage";
 import { getCurrentUser } from "@/lib/server-auth";
 import { processSchema, sanitizeInput } from "@/lib/validation";
 import { appCache } from "@/lib/cache";
-import { requireCSRF } from "@/lib/csrf";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 30;
@@ -70,13 +71,13 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const csrfError = requireCSRF(request);
-    if (csrfError) return csrfError;
-
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'process-create', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const body = await request.json();
     

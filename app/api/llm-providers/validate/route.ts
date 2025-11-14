@@ -3,6 +3,8 @@ import { getCurrentUser } from "@/lib/server-auth";
 import { db } from "@/lib/db";
 import { llmProviders } from "@/shared/schema";
 import { eq } from "drizzle-orm";
+import { withApiGuards } from "@/lib/api-guards";
+import { LLM_PROVIDER_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,6 +12,9 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'llm-validate', LLM_PROVIDER_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const { provider, apiKey } = await request.json();
 

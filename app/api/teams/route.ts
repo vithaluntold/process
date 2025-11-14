@@ -4,7 +4,8 @@ import { teams, users, teamMembers } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import { z } from "zod";
 import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
-import { requireCSRF } from "@/lib/csrf";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 const createTeamSchema = z.object({
   name: z.string().min(1, "Team name is required"),
@@ -14,9 +15,6 @@ const createTeamSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
-    const csrfError = requireCSRF(req);
-    if (csrfError) return csrfError;
-
     const currentUser = await getUserFromRequest(req);
     
     const authError = requireAdmin(currentUser);
@@ -33,6 +31,9 @@ export async function POST(req: NextRequest) {
         { status: 401 }
       );
     }
+
+    const guardError = withApiGuards(req, 'team-create', API_WRITE_LIMIT, currentUser.id);
+    if (guardError) return guardError;
 
     const body = await req.json();
     const validatedData = createTeamSchema.parse(body);

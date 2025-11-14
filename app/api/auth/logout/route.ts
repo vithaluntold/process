@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import { jwtVerify } from "jose";
 import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 const JWT_SECRET = new TextEncoder().encode(
   process.env.SESSION_SECRET || "dev-secret-change-in-production"
@@ -13,10 +15,15 @@ export async function POST(request: NextRequest) {
     const cookieStore = await cookies();
     const token = cookieStore.get("session");
 
+    let userId: number | undefined;
+
     if (token) {
       try {
         const { payload } = await jwtVerify(token.value, JWT_SECRET);
-        const userId = payload.userId as number;
+        userId = payload.userId as number;
+
+        const guardError = withApiGuards(request, 'auth-logout', API_WRITE_LIMIT, userId);
+        if (guardError) return guardError;
 
         await db.insert(schema.auditLogs).values({
           userId,

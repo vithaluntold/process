@@ -4,7 +4,8 @@ import { teams, users, teamMembers } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import { z } from "zod";
 import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
-import { requireCSRF } from "@/lib/csrf";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 const addMemberSchema = z.object({
   userId: z.number(),
@@ -16,9 +17,6 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const csrfError = requireCSRF(req);
-    if (csrfError) return csrfError;
-
     const currentUser = await getUserFromRequest(req);
     
     const authError = requireAdmin(currentUser);
@@ -35,6 +33,9 @@ export async function POST(
         { status: 401 }
       );
     }
+
+    const guardError = withApiGuards(req, 'team-member-add', API_WRITE_LIMIT, currentUser.id);
+    if (guardError) return guardError;
 
     const teamId = parseInt(params.id);
     if (isNaN(teamId)) {

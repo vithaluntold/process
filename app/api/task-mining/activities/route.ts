@@ -5,6 +5,8 @@ import { z } from "zod";
 import { db } from "@/lib/db";
 import { users, taskSessions } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
+import { requireCSRF } from "@/lib/csrf";
+import { checkRateLimit, API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 const activitySchema = z.object({
   activityType: z.string(),
@@ -57,6 +59,28 @@ export async function POST(request: NextRequest) {
   
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (!apiKey) {
+    const csrfError = requireCSRF(request);
+    if (csrfError) return csrfError;
+  }
+
+  const rateLimitResult = checkRateLimit(`task-mining-activities:${user.id}`, API_WRITE_LIMIT);
+  if (!rateLimitResult.allowed) {
+    const retryAfter = Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000);
+    return NextResponse.json(
+      { error: "Too many requests. Please try again later." },
+      { 
+        status: 429,
+        headers: {
+          "Retry-After": retryAfter.toString(),
+          "X-RateLimit-Limit": API_WRITE_LIMIT.maxAttempts.toString(),
+          "X-RateLimit-Remaining": "0",
+          "X-RateLimit-Reset": new Date(rateLimitResult.resetTime).toISOString(),
+        }
+      }
+    );
   }
 
   try {

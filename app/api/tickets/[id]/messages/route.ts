@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUser } from '@/lib/auth';
 import { ticketService } from '@/server/services/TicketService';
 import { z } from 'zod';
+import { withApiGuards } from '@/lib/api-guards';
+import { API_WRITE_LIMIT } from '@/lib/rate-limiter';
 
 const addMessageSchema = z.object({
   body: z.string().min(1),
@@ -17,6 +19,9 @@ export async function POST(
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'ticket-message-create', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     if (!user.organizationId) {
       return NextResponse.json({ error: 'User must belong to an organization' }, { status: 403 });

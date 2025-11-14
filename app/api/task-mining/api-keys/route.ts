@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AgentApiKeysStorage } from "@/server/agent-api-keys-storage";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 const storage = new AgentApiKeysStorage();
 
@@ -14,6 +16,9 @@ export async function POST(req: NextRequest) {
         { status: 401 }
       );
     }
+
+    const guardError = withApiGuards(req, 'api-key-create', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     if (!process.env.MASTER_ENCRYPTION_KEY) {
       return NextResponse.json(

@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUser } from '@/lib/auth';
 import { ticketService } from '@/server/services/TicketService';
 import { z } from 'zod';
-import { requireCSRF } from '@/lib/csrf';
+import { withApiGuards } from '@/lib/api-guards';
+import { API_WRITE_LIMIT } from '@/lib/rate-limiter';
 
 const createTicketSchema = z.object({
   subject: z.string().min(3).max(200),
@@ -15,9 +16,6 @@ const createTicketSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
-    const csrfError = requireCSRF(request);
-    if (csrfError) return csrfError;
-
     const user = await getUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -26,6 +24,9 @@ export async function POST(request: NextRequest) {
     if (!user.organizationId) {
       return NextResponse.json({ error: 'User must belong to an organization' }, { status: 403 });
     }
+
+    const guardError = withApiGuards(request, 'ticket-create', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const body = await request.json();
     const data = createTicketSchema.parse(body);

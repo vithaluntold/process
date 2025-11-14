@@ -3,6 +3,8 @@ import { db } from "@/lib/db";
 import { customKpis, kpiAlerts, processes } from "@/shared/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function GET(req: NextRequest) {
   const user = await getCurrentUser();
@@ -56,6 +58,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const guardError = withApiGuards(req, 'custom-kpi-create', API_WRITE_LIMIT, user.id);
+  if (guardError) return guardError;
+
   try {
     const { processId, name, description, formula, threshold } = await req.json();
 
@@ -105,6 +110,9 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const guardError = withApiGuards(req, 'custom-kpi-update', API_WRITE_LIMIT, user.id);
+  if (guardError) return guardError;
+
   try {
     const { kpiId, currentValue } = await req.json();
 
@@ -147,6 +155,9 @@ export async function DELETE(req: NextRequest) {
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const guardError = withApiGuards(req, 'custom-kpi-delete', API_WRITE_LIMIT, user.id);
+  if (guardError) return guardError;
 
   try {
     const { kpiId } = await req.json();

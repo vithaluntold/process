@@ -1,8 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as storage from "@/server/storage";
+import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(request: NextRequest) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const guardError = withApiGuards(request, 'event-log-create', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
+
     const body = await request.json();
     const { processId, events } = body;
 
@@ -39,6 +50,11 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { searchParams } = new URL(request.url);
     const processId = searchParams.get("processId");
 

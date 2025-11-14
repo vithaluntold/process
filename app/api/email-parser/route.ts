@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import OpenAI from "openai";
+import { withApiGuards } from "@/lib/api-guards";
+import { AI_ASSISTANT_LIMIT } from "@/lib/rate-limiter";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "dummy-key",
@@ -15,6 +17,9 @@ export async function POST(request: NextRequest) {
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'email-parse', AI_ASSISTANT_LIMIT, session.user.email);
+    if (guardError) return guardError;
 
     const { emailThread } = await request.json();
 

@@ -2,12 +2,23 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
+import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const user = await getCurrentUser();
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const guardError = withApiGuards(request, 'event-log-delete', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
+
     const { id } = await params;
     const eventId = parseInt(id);
     

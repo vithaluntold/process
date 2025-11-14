@@ -5,12 +5,17 @@ import { processes, eventLogs } from "@/shared/schema";
 import { eq, and, gte, sql } from "drizzle-orm";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { withApiGuards } from "@/lib/api-guards";
+import { REPORT_GENERATION_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(request: NextRequest) {
   const user = await getCurrentUser();
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const guardError = withApiGuards(request, 'dashboard-export', REPORT_GENERATION_LIMIT, user.id);
+  if (guardError) return guardError;
 
   try {
     const { dateRange, format } = await request.json();

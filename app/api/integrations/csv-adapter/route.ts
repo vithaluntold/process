@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/server-auth";
 import { insertEventLogs } from "@/server/storage";
 import { z } from "zod";
+import { withApiGuards } from "@/lib/api-guards";
+import { UPLOAD_LIMIT } from "@/lib/rate-limiter";
 
 const csvAdapterSchema = z.object({
   data: z.array(z.record(z.string(), z.any())),
@@ -22,6 +24,9 @@ export async function POST(req: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(req, 'csv-import', UPLOAD_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const body = await req.json();
     const { data, processId, sourceSystem, mapping } = csvAdapterSchema.parse(body);

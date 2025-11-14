@@ -3,16 +3,14 @@ import { db } from "@/server/storage";
 import { teams, users, teamMembers } from "@/shared/schema";
 import { eq, and } from "drizzle-orm";
 import { getUserFromRequest, requireAdmin } from "@/server/auth-utils";
-import { requireCSRF } from "@/lib/csrf";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function DELETE(
   req: NextRequest,
   { params }: { params: { id: string; userId: string } }
 ) {
   try {
-    const csrfError = requireCSRF(req);
-    if (csrfError) return csrfError;
-
     const currentUser = await getUserFromRequest(req);
     
     const authError = requireAdmin(currentUser);
@@ -29,6 +27,9 @@ export async function DELETE(
         { status: 401 }
       );
     }
+
+    const guardError = withApiGuards(req, 'team-member-remove', API_WRITE_LIMIT, currentUser.id);
+    if (guardError) return guardError;
 
     const teamId = parseInt(params.id);
     const userId = parseInt(params.userId);

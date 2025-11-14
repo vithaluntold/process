@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/server-auth";
 import { generateAIResponse } from "@/lib/ai";
+import { withApiGuards } from "@/lib/api-guards";
+import { AI_ASSISTANT_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(req: NextRequest) {
   try {
@@ -8,6 +10,9 @@ export async function POST(req: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(req, 'document-parse', AI_ASSISTANT_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const formData = await req.formData();
     const file = formData.get("file") as File;

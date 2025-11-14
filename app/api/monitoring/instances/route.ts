@@ -3,6 +3,8 @@ import { db } from "@/lib/db";
 import { processInstances, eventLogs, processes } from "@/shared/schema";
 import { eq, and, desc, isNull } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function GET(req: NextRequest) {
   const user = await getCurrentUser();
@@ -47,6 +49,9 @@ export async function POST(req: NextRequest) {
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const guardError = withApiGuards(req, 'instance-create', API_WRITE_LIMIT, user.id);
+  if (guardError) return guardError;
 
   try {
     const { processId } = await req.json();

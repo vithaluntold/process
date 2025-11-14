@@ -5,12 +5,17 @@ import { eq, and, desc } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/server-auth";
 import { generateAIResponse } from "@/lib/ai";
 import { getEnhancedSystemPrompt, getBerkadiaContext } from "@/server/ai-knowledge-base";
+import { withApiGuards } from "@/lib/api-guards";
+import { AI_ASSISTANT_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(req: NextRequest) {
   const user = await getCurrentUser();
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const guardError = withApiGuards(req, 'ai-assistant', AI_ASSISTANT_LIMIT, user.id);
+  if (guardError) return guardError;
 
   try {
     const { query, processId, domain } = await req.json();

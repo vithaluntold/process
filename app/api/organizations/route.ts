@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getUser } from '@/lib/auth';
 import { organizationService } from '@/server/services/OrganizationService';
 import { z } from 'zod';
-import { requireCSRF } from '@/lib/csrf';
+import { withApiGuards } from '@/lib/api-guards';
+import { API_WRITE_LIMIT } from '@/lib/rate-limiter';
 
 const createOrganizationSchema = z.object({
   name: z.string().min(2).max(100),
@@ -14,13 +15,13 @@ const createOrganizationSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
-    const csrfError = requireCSRF(request);
-    if (csrfError) return csrfError;
-
     const user = await getUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'organization-create', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const body = await request.json();
     const data = createOrganizationSchema.parse(body);

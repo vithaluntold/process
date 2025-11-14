@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/server-auth";
 import { createOpenAIClient, getAvailableProviders, LLMProvider, getDefaultModelForProvider } from "@/lib/llm-config";
+import { withApiGuards } from "@/lib/api-guards";
+import { LLM_PROVIDER_LIMIT } from "@/lib/rate-limiter";
 
 interface HealthCheckResult {
   provider: string;
@@ -24,6 +26,9 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'llm-health-check', LLM_PROVIDER_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const { provider } = await request.json();
 

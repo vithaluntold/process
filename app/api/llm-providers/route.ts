@@ -4,6 +4,8 @@ import { db } from "@/lib/db";
 import { llmProviders, llmProviderModels, llmProviderKeys } from "@/shared/schema";
 import { eq, and, inArray } from "drizzle-orm";
 import { encryptApiKey, maskApiKey } from "@/lib/llm-encryption";
+import { withApiGuards } from "@/lib/api-guards";
+import { LLM_PROVIDER_LIMIT } from "@/lib/rate-limiter";
 
 export async function GET(request: NextRequest) {
   try {
@@ -81,6 +83,9 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'llm-provider-config', LLM_PROVIDER_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const { provider, apiKey, label, name, baseUrl, authType, models, compatibilityType } = await request.json();
 
@@ -222,6 +227,9 @@ export async function DELETE(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'llm-provider-delete', LLM_PROVIDER_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const { searchParams } = new URL(request.url);
     const provider = searchParams.get("provider");

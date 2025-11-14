@@ -8,7 +8,7 @@ EPI-Q is a next-generation enterprise-grade multi-tenant SaaS process intelligen
 - Consistent dashboard structure and navigation across all module pages
 
 ## System Architecture
-EPI-Q is a production-ready enterprise SaaS platform built with Next.js, React, and TypeScript. It utilizes a multi-tenant architecture with strict data isolation by `organizationId` and a robust role hierarchy (Super Admin, Admin, Employee). Security features include JWT-based authentication, team-based RBAC, Zod schema validation, SQL injection protection via Drizzle ORM, and AES-256-GCM encrypted API keys.
+EPI-Q is a production-ready enterprise SaaS platform built with Next.js, React, and TypeScript. It utilizes a multi-tenant architecture with strict data isolation by `organizationId` and a robust role hierarchy (Super Admin, Admin, Employee). Security features include JWT-based authentication, team-based RBAC, Zod schema validation, SQL injection protection via Drizzle ORM, AES-256-GCM encrypted API keys, comprehensive CSRF protection, and distributed rate limiting across all API endpoints.
 
 **Team Hierarchy & RBAC:**
 The platform implements comprehensive team-based access control with:
@@ -59,7 +59,7 @@ Key production-ready pages include Organizations Dashboard (Super Admin only), S
 - **AI-Powered Features**: AI Process Assistant using configurable LLM providers (Replit AI, OpenAI, Mistral AI, DeepSeek, Groq, Together AI) with encrypted API key storage.
 - **Task Mining**: Desktop activity analysis with AI-powered pattern detection and a standalone Electron-based Desktop Capture Agent.
 - **Payment Gateway Support**: Production-ready infrastructure with a factory pattern supporting Razorpay, PayU, and Payoneer, including subscription management and webhook verification.
-- **Backend**: PostgreSQL database managed via Neon, Drizzle ORM, comprehensive RESTful API, and robust authentication/security (custom JWT, bcryptjs, Zod validation, rate limiting, CSRF protection).
+- **Backend**: PostgreSQL database managed via Neon, Drizzle ORM, comprehensive RESTful API, and robust authentication/security (centralized JWT with production enforcement, bcryptjs password hashing, Zod schema validation, user ID-based rate limiting across all endpoints, comprehensive CSRF protection with 100% coverage of state-changing operations, secure cookie configuration with httpOnly/secure/sameSite flags).
 - **GDPR Compliance**: Features for data export, right to deletion, and consent management.
 - **Desktop Applications**: An installable Electron-based main desktop application for Windows, macOS, and Linux, and a separate Desktop Capture Agent for task mining.
 - **Deployment**: Supports containerized deployment using Docker with multi-stage builds and Docker Compose.

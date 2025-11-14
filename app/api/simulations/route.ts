@@ -4,6 +4,8 @@ import { simulationScenarios } from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { createAndRunScenario } from "@/server/simulation-engine";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_ANALYSIS_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,6 +13,9 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'simulation-create', API_ANALYSIS_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const body = await request.json();
     const { processId, name, description, parameters } = body;

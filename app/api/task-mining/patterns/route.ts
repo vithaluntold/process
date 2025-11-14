@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/server-auth";
 import { getTaskPatterns, createTaskPattern, updateTaskPattern } from "@/server/task-mining-storage";
 import { z } from "zod";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 const createPatternSchema = z.object({
   patternName: z.string(),
@@ -36,6 +38,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const guardError = withApiGuards(request, 'pattern-create', API_WRITE_LIMIT, user.id);
+  if (guardError) return guardError;
+
   try {
     const body = await request.json();
     const data = createPatternSchema.parse(body);
@@ -60,6 +65,9 @@ export async function PATCH(request: NextRequest) {
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const guardError = withApiGuards(request, 'pattern-update', API_WRITE_LIMIT, user.id);
+  if (guardError) return guardError;
 
   try {
     const body = await request.json();
