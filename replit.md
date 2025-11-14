@@ -52,6 +52,11 @@ Key production-ready pages include Organizations Dashboard (Super Admin only), S
 
 **Technical Implementations & Feature Specifications:**
 - **Team Management**: Complete team hierarchy system with team creation, manager assignment, member management, and team-based process ownership. Includes invite-only employee registration with secure token-based invitations (7-day expiration).
+- **Pricing & Subscription**: 4-tier enterprise SaaS pricing model aligned with industry leaders (Celonis, UiPath):
+  - FREE: $0/mo - 5 seats, 3 processes, 1K events/month, Community Support
+  - ELITE: $299/mo ($2,990/yr) - 50 seats, 25 processes, 50K events/month, Email Support, API Access
+  - PRO: $999/mo ($9,990/yr) - Up to 1,000 seats, Unlimited Processes, 500K events/month, Priority Support (Most Popular)
+  - ENTERPRISE: Contact Sales - Unlimited seats (1000+), Unlimited Events, Dedicated Support, SLA, Custom AI Models, SSO/SAML, On-Premise Option
 - **Core Features**: Process Discovery (Alpha Miner, Inductive Miner), Conformance Checking (token-based replay), Performance Analytics, Automation Opportunities, Predictive Analytics, Digital Twin Simulation, Task Mining, Real-Time Process Monitoring, and Advanced Reporting.
 - **Unified Process Analysis Dashboard**: A multi-tab interface consolidating all analysis types (Discovery, Conformance, Performance, Automation, Predictive) with filtering, sharing options, and deep linking.
 - **Predictive Analytics Suite**: Integrates Anomaly Detection (five algorithms), Forecasting (hybrid time-series prediction with Holt-Winters, linear regression, moving average, EWMA denoising), and Scenario Analysis (discrete-event simulator for optimistic, expected, pessimistic scenarios).
