@@ -843,6 +843,7 @@ export const organizationSubscriptions = pgTable("organization_subscriptions", {
   currentPeriodStart: timestamp("current_period_start").notNull(),
   currentPeriodEnd: timestamp("current_period_end").notNull(),
   cancelAtPeriodEnd: boolean("cancel_at_period_end").notNull().default(false),
+  cancelledAt: timestamp("cancelled_at"),
   trialEndsAt: timestamp("trial_ends_at"),
   paymentGateway: text("payment_gateway"),
   gatewaySubscriptionId: text("gateway_subscription_id"),
@@ -869,14 +870,14 @@ export const subscriptionUsage = pgTable("subscription_usage", {
 export const payments = pgTable("payments", {
   id: serial("id").primaryKey(),
   organizationId: integer("organization_id").references(() => organizations.id).notNull(),
-  stripePaymentIntentId: text("stripe_payment_intent_id").unique(),
-  amount: integer("amount").notNull(), // in cents
+  amount: integer("amount").notNull(),
   currency: text("currency").notNull().default("usd"),
-  status: text("status").notNull(), // succeeded, pending, failed
+  status: text("status").notNull(), // succeeded, pending, failed, completed
+  paymentGateway: text("payment_gateway"),
+  gatewayTransactionId: text("gateway_transaction_id"),
   paymentMethod: text("payment_method"),
-  receiptUrl: text("receipt_url"),
-  invoiceId: integer("invoice_id"),
   description: text("description"),
+  paidAt: timestamp("paid_at"),
   metadata: jsonb("metadata"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, (table) => ({
@@ -888,21 +889,21 @@ export const payments = pgTable("payments", {
 export const invoices = pgTable("invoices", {
   id: serial("id").primaryKey(),
   organizationId: integer("organization_id").references(() => organizations.id).notNull(),
-  stripeInvoiceId: text("stripe_invoice_id").unique(),
   subscriptionId: integer("subscription_id").references(() => organizationSubscriptions.id),
-  amountDue: integer("amount_due").notNull(), // in cents
-  amountPaid: integer("amount_paid").notNull().default(0), // in cents
+  invoiceNumber: text("invoice_number"),
+  amountSubtotal: integer("amount_subtotal").notNull(),
+  amountTax: integer("amount_tax").notNull().default(0),
+  amountTotal: integer("amount_total").notNull(),
   currency: text("currency").notNull().default("usd"),
   status: text("status").notNull(), // draft, open, paid, void, uncollectible
-  pdfUrl: text("pdf_url"),
-  hostedInvoiceUrl: text("hosted_invoice_url"),
-  billingReason: text("billing_reason"),
-  periodStart: timestamp("period_start"),
-  periodEnd: timestamp("period_end"),
+  paymentGateway: text("payment_gateway"),
+  gatewayInvoiceId: text("gateway_invoice_id"),
   dueDate: timestamp("due_date"),
   paidAt: timestamp("paid_at"),
+  lineItems: jsonb("line_items"),
   metadata: jsonb("metadata"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (table) => ({
   orgIdIdx: index("invoices_organization_id_idx").on(table.organizationId),
   createdAtIdx: index("invoices_created_at_idx").on(table.createdAt),
@@ -911,13 +912,16 @@ export const invoices = pgTable("invoices", {
 
 export const paymentEvents = pgTable("payment_events", {
   id: serial("id").primaryKey(),
-  stripeEventId: text("stripe_event_id").notNull().unique(),
+  paymentGateway: text("payment_gateway"),
   eventType: text("event_type").notNull(),
+  eventId: text("event_id").notNull(),
   payload: jsonb("payload").notNull(),
+  processed: boolean("processed").notNull().default(false),
   processedAt: timestamp("processed_at"),
+  error: text("error"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 }, (table) => ({
-  eventIdIdx: index("payment_events_stripe_event_id_idx").on(table.stripeEventId),
+  eventIdIdx: index("payment_events_event_id_idx").on(table.eventId),
   createdAtIdx: index("payment_events_created_at_idx").on(table.createdAt),
 }));
 
