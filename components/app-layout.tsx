@@ -86,6 +86,13 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  const filteredNavItems = navigationItems.filter((item) => {
+    if ('adminOnly' in item && item.adminOnly) {
+      return user?.role === 'super_admin'
+    }
+    return true
+  })
+
   if (isLoading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
@@ -208,7 +215,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
             <div className="flex flex-col gap-4 py-4">
               <div className="font-medium text-sm">Process Intelligence</div>
               <nav className="grid gap-2">
-                {navigationItems.map((item) => {
+                {filteredNavItems.map((item) => {
                   const Icon = item.icon
                   const isActive = pathname === item.href
                   return (
@@ -266,7 +273,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
         <aside className="hidden md:flex flex-col border-r p-4 space-y-4">
           <div className="font-medium text-sm">Process Intelligence</div>
           <nav className="grid gap-2">
-            {navigationItems.map((item) => {
+            {filteredNavItems.map((item) => {
               const Icon = item.icon
               const isActive = pathname === item.href
               return (
