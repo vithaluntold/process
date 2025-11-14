@@ -42,6 +42,67 @@ export const users = pgTable("users", {
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
+// ===================================
+// TEAM HIERARCHY & INVITATIONS
+// ===================================
+
+export const teams = pgTable("teams", {
+  id: serial("id").primaryKey(),
+  organizationId: integer("organization_id").notNull().references(() => organizations.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  description: text("description"),
+  managerId: integer("manager_id").references(() => users.id, { onDelete: "set null" }),
+  status: text("status").notNull().default("active"), // active, inactive
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  orgIdIdx: index("teams_organization_id_idx").on(table.organizationId),
+  managerIdIdx: index("teams_manager_id_idx").on(table.managerId),
+}));
+
+export type Team = typeof teams.$inferSelect;
+export type InsertTeam = typeof teams.$inferInsert;
+
+export const teamMembers = pgTable("team_members", {
+  id: serial("id").primaryKey(),
+  teamId: integer("team_id").notNull().references(() => teams.id, { onDelete: "cascade" }),
+  userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  role: text("role").notNull().default("member"), // manager, member
+  permissions: jsonb("permissions"), // Additional team-specific permissions
+  joinedAt: timestamp("joined_at").defaultNow().notNull(),
+}, (table) => ({
+  teamIdIdx: index("team_members_team_id_idx").on(table.teamId),
+  userIdIdx: index("team_members_user_id_idx").on(table.userId),
+  teamUserIdx: index("team_members_team_user_idx").on(table.teamId, table.userId),
+}));
+
+export type TeamMember = typeof teamMembers.$inferSelect;
+export type InsertTeamMember = typeof teamMembers.$inferInsert;
+
+export const invitations = pgTable("invitations", {
+  id: serial("id").primaryKey(),
+  organizationId: integer("organization_id").notNull().references(() => organizations.id, { onDelete: "cascade" }),
+  email: text("email").notNull(),
+  token: text("token").notNull().unique(),
+  role: text("role").notNull().default("employee"), // admin, employee
+  teamId: integer("team_id").references(() => teams.id, { onDelete: "set null" }),
+  invitedBy: integer("invited_by").notNull().references(() => users.id, { onDelete: "cascade" }),
+  status: text("status").notNull().default("pending"), // pending, accepted, expired, revoked
+  expiresAt: timestamp("expires_at").notNull(),
+  acceptedAt: timestamp("accepted_at"),
+  metadata: jsonb("metadata"), // Can store firstName, lastName, etc.
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  tokenIdx: index("invitations_token_idx").on(table.token),
+  emailIdx: index("invitations_email_idx").on(table.email),
+  orgIdIdx: index("invitations_organization_id_idx").on(table.organizationId),
+  statusIdx: index("invitations_status_idx").on(table.status),
+}));
+
+export type Invitation = typeof invitations.$inferSelect;
+export type InsertInvitation = typeof invitations.$inferInsert;
+
 export const auditLogs = pgTable("audit_logs", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id),
@@ -57,6 +118,8 @@ export const auditLogs = pgTable("audit_logs", {
 export const processes = pgTable("processes", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").references(() => users.id),
+  teamId: integer("team_id").references(() => teams.id, { onDelete: "set null" }),
+  organizationId: integer("organization_id").references(() => organizations.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   description: text("description"),
   source: text("source").notNull(),
@@ -65,6 +128,8 @@ export const processes = pgTable("processes", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (table) => ({
   userIdIdx: index("processes_user_id_idx").on(table.userId),
+  teamIdIdx: index("processes_team_id_idx").on(table.teamId),
+  orgIdIdx: index("processes_organization_id_idx").on(table.organizationId),
   userIdCreatedAtIdx: index("processes_user_id_created_at_idx").on(table.userId, table.createdAt),
 }));
 

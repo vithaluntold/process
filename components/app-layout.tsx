@@ -28,6 +28,8 @@ import {
   Ticket,
   CreditCard,
   DollarSign as PricingIcon,
+  Users,
+  Mail,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -69,6 +71,8 @@ const navigationItems = [
   { href: "/digital-twin", label: "Digital Twin", icon: Layers },
   { href: "/scenario-analysis", label: "What-If Scenarios", icon: GitCompare },
   { href: "/admin/organizations", label: "Organizations", icon: Building2, adminOnly: true },
+  { href: "/admin/teams", label: "Teams", icon: Users, adminOrSuperAdmin: true },
+  { href: "/admin/invitations", label: "Invitations", icon: Mail, adminOrSuperAdmin: true },
   { href: "/admin/tickets", label: "Support Tickets", icon: Ticket },
   { href: "/subscription", label: "Subscription", icon: CreditCard },
   { href: "/pricing", label: "Pricing", icon: PricingIcon },
@@ -89,6 +93,9 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
   const filteredNavItems = navigationItems.filter((item) => {
     if ('adminOnly' in item && item.adminOnly) {
       return user?.role === 'super_admin'
+    }
+    if ('adminOrSuperAdmin' in item && item.adminOrSuperAdmin) {
+      return user?.role === 'admin' || user?.role === 'super_admin'
     }
     return true
   })
