@@ -59,10 +59,11 @@ export default function ReportsPage() {
       const res = await fetch("/api/processes");
       if (res.ok) {
         const data = await res.json();
-        setProcesses(data);
+        setProcesses(Array.isArray(data) ? data : []);
       }
     } catch (error) {
       console.error("Failed to load processes:", error);
+      setProcesses([]);
     }
   }
 

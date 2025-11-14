@@ -14,6 +14,7 @@ export interface AuthenticatedUser {
   firstName: string | null;
   lastName: string | null;
   role: string;
+  organizationId: number | null;
   createdAt: Date;
 }
 
@@ -36,6 +37,7 @@ export async function getCurrentUser(): Promise<AuthenticatedUser | null> {
         firstName: users.firstName,
         lastName: users.lastName,
         role: users.role,
+        organizationId: users.organizationId,
         createdAt: users.createdAt,
       })
       .from(users)

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/server-auth';
 import { ticketService } from '@/server/services/TicketService';
 import { z } from 'zod';
 import { withApiGuards } from '@/lib/api-guards';
@@ -15,7 +15,7 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const user = await getUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -63,7 +63,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const user = await getUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

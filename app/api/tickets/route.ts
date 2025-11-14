@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/server-auth';
 import { ticketService } from '@/server/services/TicketService';
 import { z } from 'zod';
 import { withApiGuards } from '@/lib/api-guards';
@@ -16,7 +16,7 @@ const createTicketSchema = z.object({
 
 export async function POST(request: NextRequest) {
   try {
-    const user = await getUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    const user = await getUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
