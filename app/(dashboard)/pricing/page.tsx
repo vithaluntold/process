@@ -142,7 +142,7 @@ export default function PricingPage() {
                     <CardDescription>{plan.description || `Perfect for ${plan.tier} teams`}</CardDescription>
                     <div className="pt-4">
                       <span className="text-4xl font-bold">
-                        ${billingCycle === 'yearly' ? Math.floor(plan.price * 0.8) : plan.price}
+                        ${plan.price}
                       </span>
                       <span className="text-muted-foreground">/{billingCycle === 'monthly' ? 'mo' : 'yr'}</span>
                     </div>
