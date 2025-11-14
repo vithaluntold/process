@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getUser } from '@/lib/auth';
+import { getCurrentUser } from '@/lib/server-auth';
 import { organizationService } from '@/server/services/OrganizationService';
 
 export async function GET(request: NextRequest) {
   try {
-    const user = await getUser();
+    const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
