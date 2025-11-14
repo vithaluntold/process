@@ -24,6 +24,10 @@ import {
   Bot,
   Target,
   Settings,
+  Building2,
+  Ticket,
+  CreditCard,
+  DollarSign as PricingIcon,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -64,6 +68,10 @@ const navigationItems = [
   { href: "/api-integrations", label: "API Integrations", icon: LinkIcon },
   { href: "/digital-twin", label: "Digital Twin", icon: Layers },
   { href: "/scenario-analysis", label: "What-If Scenarios", icon: GitCompare },
+  { href: "/admin/organizations", label: "Organizations", icon: Building2, adminOnly: true },
+  { href: "/admin/tickets", label: "Support Tickets", icon: Ticket },
+  { href: "/subscription", label: "Subscription", icon: CreditCard },
+  { href: "/pricing", label: "Pricing", icon: PricingIcon },
   { href: "/settings", label: "Settings", icon: Settings },
 ]
 
