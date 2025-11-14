@@ -62,22 +62,23 @@ function DialogOverlay({
 }: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
   const { open } = React.useContext(DialogContext)
   
+  if (!open) return null
+  
   return (
     <DialogPrimitive.Overlay
-      forceMount
       asChild
       data-slot="dialog-overlay"
       {...props}
     >
       <motion.div
-        initial={false}
-        animate={open ? { opacity: 1 } : { opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
         className={cn(
           'fixed inset-0 z-50 bg-black/50',
           className,
         )}
-        style={{ pointerEvents: open ? 'auto' : 'none' }}
       />
     </DialogPrimitive.Overlay>
   )
@@ -94,26 +95,22 @@ function DialogContent({
   const { open } = React.useContext(DialogContext)
   
   return (
-    <DialogPortal data-slot="dialog-portal" forceMount>
+    <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
       <DialogPrimitive.Content
-        forceMount
         asChild
         data-slot="dialog-content"
         {...props}
       >
         <motion.div
-          initial={false}
-          animate={open ? 
-            { opacity: 1, scale: 1, y: 0 } : 
-            { opacity: 0, scale: 0.95, y: -20 }
-          }
+          initial={{ opacity: 0, scale: 0.95, y: -20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: -20 }}
           transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className={cn(
             'bg-background fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg sm:max-w-lg',
             className,
           )}
-          style={{ pointerEvents: open ? 'auto' : 'none' }}
         >
           {children}
           {showCloseButton && (
