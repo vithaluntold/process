@@ -3,6 +3,8 @@ import { db } from "@/lib/db";
 import { generatedReports } from "@/shared/schema";
 import { eq, desc } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT, REPORT_GENERATION_LIMIT } from "@/lib/rate-limiter";
 
 export async function GET(req: NextRequest) {
   const user = await getCurrentUser();
@@ -34,7 +36,10 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  try {
+  const guardError = withApiGuards(req, 'report-delete', API_WRITE_LIMIT, user.id);
+  if (guardError) return guardError;
+
+  try{
     const { reportId } = await req.json();
 
     const report = await db.query.generatedReports.findFirst({

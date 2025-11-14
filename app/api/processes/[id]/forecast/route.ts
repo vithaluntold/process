@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ForecastingService } from "@/server/forecasting";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_ANALYSIS_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(
   request: NextRequest,
@@ -11,6 +13,9 @@ export async function POST(
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'forecasting', API_ANALYSIS_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const { id } = await params;
     const processId = parseInt(id, 10);

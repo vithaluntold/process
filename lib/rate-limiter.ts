@@ -54,33 +54,52 @@ export function checkRateLimit(
   };
 }
 
-export function getClientIdentifier(request: Request): string {
+export function getClientIdentifier(request: Request, userId?: number | string): string {
+  // CRITICAL FIX: Prefer authenticated user ID for stable rate limiting
+  if (userId) {
+    return `user-${userId}`;
+  }
+
   const trustedProxies = (process.env.TRUSTED_PROXIES || "")
     .split(",")
     .map(p => p.trim())
     .filter(p => p.length > 0);
 
   const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded && trustedProxies.length > 0) {
+  if (forwarded) {
     const ips = forwarded.split(",").map(ip => ip.trim());
     
-    for (let i = ips.length - 1; i >= 0; i--) {
-      if (!trustedProxies.includes(ips[i])) {
-        return ips[i];
+    if (trustedProxies.length > 0) {
+      for (let i = ips.length - 1; i >= 0; i--) {
+        if (!trustedProxies.includes(ips[i])) {
+          return `ip-${ips[i]}`;
+        }
       }
+    } else {
+      return `ip-${ips[0]}`;
     }
   }
 
   const xRealIp = request.headers.get("x-real-ip");
-  if (xRealIp && trustedProxies.length > 0) {
-    return xRealIp;
+  if (xRealIp) {
+    return `ip-${xRealIp}`;
   }
 
   const cfConnectingIp = request.headers.get("cf-connecting-ip");
-  if (cfConnectingIp && trustedProxies.length > 0) {
-    return cfConnectingIp;
+  if (cfConnectingIp) {
+    return `ip-${cfConnectingIp}`;
   }
 
+  // Last resort: try session cookie before random fallback
+  const cookieHeader = request.headers.get("cookie");
+  if (cookieHeader) {
+    const sessionMatch = cookieHeader.match(/sessionId=([^;]+)/);
+    if (sessionMatch) {
+      return `session-${sessionMatch[1]}`;
+    }
+  }
+
+  // Only for truly anonymous requests (should be rare in production)
   return `anon-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
 

@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as storage from "@/server/storage";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 import { unlink } from "fs/promises";
 import path from "path";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const user = await getCurrentUser();
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const documents = await storage.getDocuments();
     return NextResponse.json(documents);
@@ -22,6 +29,9 @@ export async function DELETE(req: NextRequest) {
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const guardError = withApiGuards(req, 'document-delete', API_WRITE_LIMIT, user.id);
+  if (guardError) return guardError;
 
   try {
     const url = new URL(req.url);

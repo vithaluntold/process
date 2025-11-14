@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as storage from "@/server/storage";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function GET(
   request: NextRequest,
@@ -50,6 +52,9 @@ export async function PATCH(
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'process-update', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const { id } = await params;
     const processId = parseInt(id);
@@ -104,6 +109,9 @@ export async function DELETE(
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'process-delete', API_WRITE_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const { id } = await params;
     const processId = parseInt(id);

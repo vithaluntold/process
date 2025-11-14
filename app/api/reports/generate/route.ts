@@ -3,12 +3,17 @@ import { db } from "@/lib/db";
 import { generatedReports, processes, eventLogs, performanceMetrics } from "@/shared/schema";
 import { eq, and, desc } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/server-auth";
+import { withApiGuards } from "@/lib/api-guards";
+import { REPORT_GENERATION_LIMIT } from "@/lib/rate-limiter";
 
 export async function POST(req: NextRequest) {
   const user = await getCurrentUser();
   if (!user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const guardError = withApiGuards(req, 'report-generate', REPORT_GENERATION_LIMIT, user.id);
+  if (guardError) return guardError;
 
   try {
     const { processId, title, type, format } = await req.json();

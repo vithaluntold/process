@@ -6,6 +6,8 @@ import {
   getAvailableProviders,
   type LLMProvider,
 } from "@/lib/llm-config";
+import { withApiGuards } from "@/lib/api-guards";
+import { LLM_PROVIDER_LIMIT } from "@/lib/rate-limiter";
 
 export async function GET(request: NextRequest) {
   try {
@@ -36,6 +38,9 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const guardError = withApiGuards(request, 'llm-settings', LLM_PROVIDER_LIMIT, user.id);
+    if (guardError) return guardError;
 
     const { provider } = await request.json();
 
