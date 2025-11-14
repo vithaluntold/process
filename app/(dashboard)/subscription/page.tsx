@@ -67,7 +67,7 @@ export default function SubscriptionPage() {
 
   const loadSubscription = async () => {
     try {
-      const response = await fetch('/api/subscriptions');
+      const response = await fetch('/api/subscriptions', { credentials: 'include' });
       if (!response.ok) throw new Error('Failed to load subscription');
       const data = await response.json();
       setSubscription(data.subscription || null);
@@ -80,7 +80,7 @@ export default function SubscriptionPage() {
 
   const loadPlans = async () => {
     try {
-      const response = await fetch('/api/subscriptions/plans');
+      const response = await fetch('/api/subscriptions/plans', { credentials: 'include' });
       if (!response.ok) throw new Error('Failed to load plans');
       const data = await response.json();
       setPlans(data.plans || []);
@@ -91,7 +91,7 @@ export default function SubscriptionPage() {
 
   const loadInvoices = async () => {
     try {
-      const response = await fetch('/api/billing/invoices');
+      const response = await fetch('/api/billing/invoices', { credentials: 'include' });
       if (!response.ok) throw new Error('Failed to load invoices');
       const data = await response.json();
       setInvoices(data.invoices || []);

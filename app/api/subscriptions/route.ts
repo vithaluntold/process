@@ -78,11 +78,7 @@ export async function GET(request: NextRequest) {
 
     const subscription = await subscriptionService.getSubscription(user.organizationId);
 
-    if (!subscription) {
-      return NextResponse.json({ error: 'No active subscription found' }, { status: 404 });
-    }
-
-    return NextResponse.json(subscription);
+    return NextResponse.json({ subscription: subscription || null });
   } catch (error) {
     console.error('Get subscription error:', error);
     return NextResponse.json(

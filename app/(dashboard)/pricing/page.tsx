@@ -34,7 +34,7 @@ export default function PricingPage() {
 
   const loadPlans = async () => {
     try {
-      const response = await fetch('/api/subscriptions/plans');
+      const response = await fetch('/api/subscriptions/plans', { credentials: 'include' });
       if (!response.ok) throw new Error('Failed to load plans');
       const data = await response.json();
       setPlans(data.plans || []);
