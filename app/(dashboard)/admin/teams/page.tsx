@@ -247,7 +247,7 @@ export default function TeamsPage() {
                       <SelectValue placeholder="Select a team manager" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">No manager</SelectItem>
+                      <SelectItem value="none">No manager</SelectItem>
                       {users.map((user) => (
                         <SelectItem key={user.id} value={user.id.toString()}>
                           {user.firstName} {user.lastName} ({user.email})

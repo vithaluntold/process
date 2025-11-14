@@ -307,7 +307,7 @@ export default function InvitationsPage() {
                         <SelectValue placeholder="Select a team" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">No team</SelectItem>
+                        <SelectItem value="none">No team</SelectItem>
                         {teams.map((team) => (
                           <SelectItem key={team.id} value={team.id.toString()}>
                             {team.name}
