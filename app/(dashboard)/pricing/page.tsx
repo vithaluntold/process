@@ -67,29 +67,34 @@ export default function PricingPage() {
 
   const tierIcons: Record<string, any> = {
     free: Zap,
-    pro: Building2,
-    enterprise: Rocket
+    elite: Building2,
+    pro: Rocket,
+    enterprise: Building2
   };
 
   const tierColors: Record<string, string> = {
     free: 'text-blue-500',
+    elite: 'text-green-500',
     pro: 'text-purple-500',
     enterprise: 'text-orange-500'
   };
 
   const allFeatures = [
-    { name: 'Ticket Management', free: true, pro: true, enterprise: true },
-    { name: 'Email Support', free: true, pro: true, enterprise: true },
-    { name: 'Basic Analytics', free: true, pro: true, enterprise: true },
-    { name: 'Custom Categories', free: false, pro: true, enterprise: true },
-    { name: 'SLA Management', free: false, pro: true, enterprise: true },
-    { name: 'Advanced Reporting', free: false, pro: true, enterprise: true },
-    { name: 'API Access', free: false, pro: true, enterprise: true },
-    { name: 'Priority Support', free: false, pro: false, enterprise: true },
-    { name: 'Dedicated Account Manager', free: false, pro: false, enterprise: true },
-    { name: 'Custom Integrations', free: false, pro: false, enterprise: true },
-    { name: 'SSO/SAML', free: false, pro: false, enterprise: true },
-    { name: 'Audit Logs', free: false, pro: false, enterprise: true }
+    { name: 'Process Discovery', free: true, elite: true, pro: true, enterprise: true },
+    { name: 'Basic Analytics', free: true, elite: true, pro: true, enterprise: true },
+    { name: 'Community Support', free: true, elite: false, pro: false, enterprise: false },
+    { name: 'Advanced Analytics', free: false, elite: true, pro: true, enterprise: true },
+    { name: 'API Access', free: false, elite: true, pro: true, enterprise: true },
+    { name: 'Email Support', free: false, elite: true, pro: true, enterprise: true },
+    { name: 'Custom Reports', free: false, elite: true, pro: true, enterprise: true },
+    { name: 'Unlimited Processes', free: false, elite: false, pro: true, enterprise: true },
+    { name: 'Priority Support', free: false, elite: false, pro: true, enterprise: true },
+    { name: 'Custom Integrations', free: false, elite: false, pro: true, enterprise: true },
+    { name: 'Dedicated Support', free: false, elite: false, pro: false, enterprise: true },
+    { name: 'SLA Guarantee', free: false, elite: false, pro: false, enterprise: true },
+    { name: 'Custom AI Models', free: false, elite: false, pro: false, enterprise: true },
+    { name: 'On-Premise Option', free: false, elite: false, pro: false, enterprise: true },
+    { name: 'SSO/SAML', free: false, elite: false, pro: false, enterprise: true }
   ];
 
   return (
@@ -118,7 +123,7 @@ export default function PricingPage() {
         <div className="text-center py-8 text-muted-foreground">Loading plans...</div>
       ) : (
         <>
-          <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
             {filteredPlans.map((plan) => {
               const Icon = tierIcons[plan.tier] || Zap;
               const iconColor = tierColors[plan.tier] || 'text-blue-500';
@@ -141,10 +146,19 @@ export default function PricingPage() {
                     <CardTitle className="text-2xl">{plan.name}</CardTitle>
                     <CardDescription>{plan.description || `Perfect for ${plan.tier} teams`}</CardDescription>
                     <div className="pt-4">
-                      <span className="text-4xl font-bold">
-                        ${plan.price}
-                      </span>
-                      <span className="text-muted-foreground">/{billingCycle === 'monthly' ? 'mo' : 'yr'}</span>
+                      {plan.tier === 'enterprise' ? (
+                        <div>
+                          <span className="text-3xl font-bold">Contact Sales</span>
+                          <p className="text-sm text-muted-foreground mt-2">Custom pricing for 1000+ users</p>
+                        </div>
+                      ) : (
+                        <>
+                          <span className="text-4xl font-bold">
+                            ${plan.price}
+                          </span>
+                          <span className="text-muted-foreground">/{billingCycle === 'monthly' ? 'mo' : 'yr'}</span>
+                        </>
+                      )}
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -169,9 +183,15 @@ export default function PricingPage() {
                     <Button 
                       className="w-full" 
                       variant={isPopular ? 'default' : 'outline'}
-                      onClick={() => handleSelectPlan(plan.id)}
+                      onClick={() => {
+                        if (plan.tier === 'enterprise') {
+                          window.location.href = 'mailto:sales@epi-q.com?subject=Enterprise Plan Inquiry';
+                        } else {
+                          handleSelectPlan(plan.id);
+                        }
+                      }}
                     >
-                      {plan.tier === 'free' ? 'Get Started Free' : 'Start Trial'}
+                      {plan.tier === 'free' ? 'Get Started Free' : plan.tier === 'enterprise' ? 'Contact Sales' : 'Start Trial'}
                     </Button>
                   </CardFooter>
                 </Card>
@@ -189,6 +209,7 @@ export default function PricingPage() {
                       <tr className="border-b">
                         <th className="text-left p-4 font-semibold">Features</th>
                         <th className="text-center p-4 font-semibold">Free</th>
+                        <th className="text-center p-4 font-semibold">Elite</th>
                         <th className="text-center p-4 font-semibold">Pro</th>
                         <th className="text-center p-4 font-semibold">Enterprise</th>
                       </tr>
@@ -199,6 +220,13 @@ export default function PricingPage() {
                           <td className="p-4">{feature.name}</td>
                           <td className="text-center p-4">
                             {feature.free ? (
+                              <Check className="h-5 w-5 text-green-500 mx-auto" />
+                            ) : (
+                              <X className="h-5 w-5 text-muted-foreground mx-auto" />
+                            )}
+                          </td>
+                          <td className="text-center p-4">
+                            {feature.elite ? (
                               <Check className="h-5 w-5 text-green-500 mx-auto" />
                             ) : (
                               <X className="h-5 w-5 text-muted-foreground mx-auto" />
