@@ -11,7 +11,25 @@ EPI-Q is a next-generation enterprise-grade multi-tenant SaaS process intelligen
 EPI-Q is a production-ready enterprise SaaS platform built with Next.js, React, and TypeScript. It utilizes a multi-tenant architecture with strict data isolation by `organizationId` and a robust role hierarchy (Super Admin, Admin, Employee). Security features include JWT-based authentication, RBAC, Zod schema validation, SQL injection protection via Drizzle ORM, and AES-256-GCM encrypted API keys.
 
 **UI/UX Design:**
-The frontend uses Tailwind CSS with shadcn/ui components, `framer-motion` for animations, and a custom brand color palette. It features full dark/light mode support, responsiveness, and interactive process visualizations powered by ReactFlow with auto-layout and color-coded elements. Role-based navigation is dynamic, filtering routes for Super Admins.
+The frontend uses Tailwind CSS with shadcn/ui components, `framer-motion` for animations, and a custom brand color palette. It features full dark/light mode support, responsiveness, and interactive process visualizations powered by ReactFlow with auto-layout and color-coded elements. 
+
+**Navigation Architecture:**
+All authenticated dashboard pages use a standardized `AppLayout` component wrapper for consistent navigation. The `AppLayout` component provides:
+- Unified header with branding, theme toggle, and user dropdown
+- Responsive sidebar with role-based menu filtering (Super Admins see Organizations link)
+- Mobile-friendly sheet navigation
+- Consistent page structure with `PageHeader` component for titles and descriptions
+
+Pages using AppLayout:
+- Dashboard (app/page.tsx)
+- Organizations (app/(dashboard)/admin/organizations/page.tsx) - Super Admin only
+- Support Tickets (app/(dashboard)/admin/tickets/page.tsx)
+- Subscription & Billing (app/(dashboard)/subscription/page.tsx)
+- Pricing Plans (app/(dashboard)/pricing/page.tsx)
+- Settings (app/settings/page.tsx)
+- What-If Scenarios (app/what-if-scenarios/page.tsx)
+- Downloads (app/downloads/page.tsx)
+- All feature pages (Process Discovery, Task Mining, Monitoring, etc.)
 
 **Multi-Tenant UI Pages:**
 Key production-ready pages include Organizations Dashboard (Super Admin only), Support Tickets, Subscription Management, and a public Pricing Page.
