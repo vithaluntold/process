@@ -82,13 +82,18 @@ export default function TeamsPage() {
 
   const fetchTeams = async () => {
     try {
-      const response = await fetch("/api/teams");
-      if (!response.ok) throw new Error("Failed to fetch teams");
+      const response = await fetch("/api/teams", {
+        credentials: "include",
+      });
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({ error: "Failed to fetch teams" }));
+        throw new Error(error.error || `HTTP ${response.status}`);
+      }
       const data = await response.json();
       setTeams(data.teams);
     } catch (error) {
       console.error("Error fetching teams:", error);
-      toast.error("Failed to load teams");
+      toast.error(error instanceof Error ? error.message : "Failed to load teams");
     } finally {
       setLoading(false);
     }
@@ -96,12 +101,18 @@ export default function TeamsPage() {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch("/api/users");
-      if (!response.ok) throw new Error("Failed to fetch users");
+      const response = await fetch("/api/users", {
+        credentials: "include",
+      });
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({ error: "Failed to fetch users" }));
+        throw new Error(error.error || `HTTP ${response.status}`);
+      }
       const data = await response.json();
       setUsers(data.users || []);
     } catch (error) {
       console.error("Error fetching users:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to fetch users");
     }
   };
 
