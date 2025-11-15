@@ -1,0 +1,23 @@
+## Error Type
+Runtime ChunkLoadError
+
+## Error Message
+Loading chunk app/automation-opportunities/page failed.
+(missing: https://a646e19f-b606-4aa1-a310-cd3912509bff-00-znecmajo5r02.pike.replit.dev/_next/static/chunks/app/automation-opportunities/page.js)
+
+
+    at __webpack_require__.f.j (file:///home/runner/workspace/.next/static/chunks/webpack.js?v=1763199867764:866:29)
+    at <unknown> (file:///home/runner/workspace/.next/static/chunks/webpack.js?v=1763199867764:145:40)
+    at Array.reduce (<anonymous>:null:null)
+    at __webpack_require__.e (file:///home/runner/workspace/.next/static/chunks/webpack.js?v=1763199867764:144:67)
+    at fn.e (file:///home/runner/workspace/.next/static/chunks/webpack.js?v=1763199867764:381:50)
+    at loadChunk (webpack-internal:///(app-pages-browser)/./node_modules/.pnpm/next@15.5.4_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:115:34)
+    at preloadModule (webpack-internal:///(app-pages-browser)/./node_modules/.pnpm/next@15.5.4_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:82:31)
+    at resolveModule (webpack-internal:///(app-pages-browser)/./node_modules/.pnpm/next@15.5.4_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:2080:20)
+    at processFullStringRow (webpack-internal:///(app-pages-browser)/./node_modules/.pnpm/next@15.5.4_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:2771:11)
+    at processFullBinaryRow (webpack-internal:///(app-pages-browser)/./node_modules/.pnpm/next@15.5.4_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:2766:7)
+    at processBinaryChunk (webpack-internal:///(app-pages-browser)/./node_modules/.pnpm/next@15.5.4_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:2969:15)
+    at progress (webpack-internal:///(app-pages-browser)/./node_modules/.pnpm/next@15.5.4_react-dom@19.1.0_react@19.1.0__react@19.1.0/node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:3233:13)
+    at AutomationOpportunitiesPage (about://React/Server/webpack-internal:///(rsc)/./app/automation-opportunities/page.tsx?29:19:87)
+
+Next.js version: 15.5.4 (Webpack)

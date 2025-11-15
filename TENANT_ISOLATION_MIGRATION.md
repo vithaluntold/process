@@ -42,6 +42,7 @@ export const GET = createTenantSafeHandler(async (request, context) => {
 #### ✅ MIGRATED (Secure)
 - [x] `/api/processes` (GET, POST) - v2 Factory Pattern
 - [x] `/api/processes/[id]` (GET, PATCH, DELETE) - v2 Factory Pattern
+- [x] `/api/processes/[id]/analyze` (POST) - v2 Factory Pattern ✅ **Fixed automation opportunities error**
 - [x] `/api/v1/processes` (GET, POST) - Reference implementation
 
 #### 🔴 HIGH PRIORITY (Data Access - Must Migrate Immediately)
@@ -81,11 +82,14 @@ These endpoints are either public or handle authentication:
 
 ### 📊 Progress Stats
 - **Total Endpoints**: 78
-- **Migrated**: 3 (4%)
-- **High Priority Remaining**: 10
-- **Medium Priority Remaining**: 10
+- **Migrated**: 4 (5%)
+- **High Priority Remaining**: 9
+- **Medium Priority Remaining**: 9
 - **Low Priority**: 5
-- **No Migration Needed**: ~50 (auth, webhooks, etc.)
+- **No Migration Needed**: ~51 (auth, webhooks, etc.)
+
+### 🐛 Bugs Fixed During Migration
+- ✅ **Automation Opportunities Error** - Fixed by migrating `/api/processes/[id]/analyze` to tenant-safe pattern
 
 ## Required Tenant-Safe Storage Functions
 
