@@ -171,8 +171,8 @@ export default function DashboardClient() {
       icon: Layers,
       change: "+12%",
       changePositive: true,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50",
+      color: "text-blue-600 dark:text-blue-400",
+      bgColor: "bg-blue-50 dark:bg-blue-950/50",
     },
     {
       title: "Avg. Cycle Time",
@@ -180,8 +180,8 @@ export default function DashboardClient() {
       icon: BarChart3,
       change: "-8%",
       changePositive: true,
-      color: "text-violet-600",
-      bgColor: "bg-violet-50",
+      color: "text-violet-600 dark:text-violet-400",
+      bgColor: "bg-violet-50 dark:bg-violet-950/50",
     },
     {
       title: "Conformance Rate",
@@ -189,8 +189,8 @@ export default function DashboardClient() {
       icon: Filter,
       change: "+5%",
       changePositive: true,
-      color: "text-emerald-600",
-      bgColor: "bg-emerald-50",
+      color: "text-emerald-600 dark:text-emerald-400",
+      bgColor: "bg-emerald-50 dark:bg-emerald-950/50",
     },
     {
       title: "Automation Potential",
@@ -198,8 +198,8 @@ export default function DashboardClient() {
       icon: Zap,
       change: "+18%",
       changePositive: true,
-      color: "text-orange-600",
-      bgColor: "bg-orange-50",
+      color: "text-orange-600 dark:text-orange-400",
+      bgColor: "bg-orange-50 dark:bg-orange-950/50",
     },
   ]
 
@@ -213,13 +213,13 @@ export default function DashboardClient() {
         />
       )}
       
-      <div className="flex flex-col gap-6 p-6 bg-slate-50/50 min-h-screen" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+      <div className="flex flex-col gap-6 p-6 bg-slate-50/50 dark:bg-slate-950 min-h-screen" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-sm text-slate-600">
+          <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
             <LayoutGrid className="h-4 w-4" />
             <span>Dashboard</span>
             <ChevronRight className="h-3 w-3" />
-            <span className="text-slate-900 font-medium">Overview</span>
+            <span className="text-slate-900 dark:text-slate-100 font-medium">Overview</span>
           </div>
           
           <div className="flex items-center gap-2">
@@ -227,14 +227,14 @@ export default function DashboardClient() {
               variant="outline" 
               size="sm"
               onClick={handleRefresh}
-              className="bg-white border-slate-200 hover:bg-slate-50"
+              className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700"
             >
               <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
               Refresh
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="bg-white border-slate-200 hover:bg-slate-50">
+                <Button variant="outline" size="sm" className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700">
                   <Calendar className="h-4 w-4 mr-2" />
                   {dateRange === "7d" ? "Last 7 Days" : dateRange === "30d" ? "Last 30 Days" : dateRange === "90d" ? "Last 90 Days" : "All Time"}
                 </Button>
@@ -260,14 +260,14 @@ export default function DashboardClient() {
               variant="outline" 
               size="sm" 
               onClick={handleExport}
-              className="bg-white border-slate-200 hover:bg-slate-50"
+              className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700"
             >
               <Download className="h-4 w-4 mr-2" />
               Export
             </Button>
             <Button 
               onClick={() => setUploadModalOpen(true)}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white"
             >
               <FileUp className="mr-2 h-4 w-4" />
               Upload Data
@@ -276,26 +276,26 @@ export default function DashboardClient() {
         </div>
 
         <div>
-          <h1 className="text-3xl font-semibold text-slate-900 mb-2">
+          <h1 className="text-3xl font-semibold text-slate-900 dark:text-slate-100 mb-2">
             Process Intelligence
           </h1>
-          <p className="text-slate-600">
+          <p className="text-slate-600 dark:text-slate-400">
             Monitor and optimize your business processes in real-time
           </p>
         </div>
 
         <Tabs defaultValue="overview" className="w-full">
-          <TabsList className="bg-white border border-slate-200 p-1">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700">
+          <TabsList className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-1">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-blue-50 dark:data-[state=active]:bg-blue-950 data-[state=active]:text-blue-700 dark:data-[state=active]:text-blue-400">
               Overview
             </TabsTrigger>
-            <TabsTrigger value="processes" className="data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700">
+            <TabsTrigger value="processes" className="data-[state=active]:bg-blue-50 dark:data-[state=active]:bg-blue-950 data-[state=active]:text-blue-700 dark:data-[state=active]:text-blue-400">
               Processes
             </TabsTrigger>
-            <TabsTrigger value="analytics" className="data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700">
+            <TabsTrigger value="analytics" className="data-[state=active]:bg-blue-50 dark:data-[state=active]:bg-blue-950 data-[state=active]:text-blue-700 dark:data-[state=active]:text-blue-400">
               Analytics
             </TabsTrigger>
-            <TabsTrigger value="ai-insights" className="data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700">
+            <TabsTrigger value="ai-insights" className="data-[state=active]:bg-blue-50 dark:data-[state=active]:bg-blue-950 data-[state=active]:text-blue-700 dark:data-[state=active]:text-blue-400">
               AI Insights
             </TabsTrigger>
           </TabsList>
@@ -303,10 +303,10 @@ export default function DashboardClient() {
           <TabsContent value="overview" className="mt-6 space-y-6">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {metricCards.map((metric) => (
-                <Card key={metric.title} className="bg-white border border-slate-200 hover:shadow-md transition-shadow">
+                <Card key={metric.title} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-md dark:hover:shadow-slate-950/50 transition-shadow">
                   <CardHeader className="pb-3">
                     <div className="flex items-center justify-between">
-                      <CardTitle className="text-sm font-medium text-slate-600">
+                      <CardTitle className="text-sm font-medium text-slate-600 dark:text-slate-400">
                         {metric.title}
                       </CardTitle>
                       <div className={`p-2 rounded-lg ${metric.bgColor}`}>
@@ -315,9 +315,9 @@ export default function DashboardClient() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-semibold text-slate-900 mb-1">
+                    <div className="text-2xl font-semibold text-slate-900 dark:text-slate-100 mb-1">
                       {loading ? (
-                        <div className="h-8 w-20 bg-slate-200 animate-pulse rounded"></div>
+                        <div className="h-8 w-20 bg-slate-200 dark:bg-slate-700 animate-pulse rounded"></div>
                       ) : (
                         metric.value
                       )}
@@ -331,7 +331,7 @@ export default function DashboardClient() {
                         )}
                         {metric.change}
                       </span>
-                      <span className="text-slate-500 ml-2">vs last period</span>
+                      <span className="text-slate-500 dark:text-slate-400 ml-2">vs last period</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -339,29 +339,29 @@ export default function DashboardClient() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <Card className="bg-white border border-slate-200 hover:shadow-md transition-shadow">
+              <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-md dark:hover:shadow-slate-950/50 transition-shadow">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-blue-100 rounded-lg">
-                      <Layers className="h-5 w-5 text-blue-600" />
+                    <div className="p-2 bg-blue-100 dark:bg-blue-950/50 rounded-lg">
+                      <Layers className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg font-semibold text-slate-900">
+                      <CardTitle className="text-lg font-semibold text-slate-900 dark:text-slate-100">
                         Digital Twin Simulation
                       </CardTitle>
-                      <CardDescription className="text-slate-600">
+                      <CardDescription className="text-slate-600 dark:text-slate-400">
                         Create virtual replicas of your processes
                       </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Build interactive digital twins to visualize process flows, identify bottlenecks,
                     and test improvements before implementation.
                   </p>
                   <Link href="/digital-twin">
-                    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                    <Button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white">
                       <Sparkles className="mr-2 h-4 w-4" />
                       Explore Digital Twin
                     </Button>
@@ -369,29 +369,29 @@ export default function DashboardClient() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border border-slate-200 hover:shadow-md transition-shadow">
+              <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-md dark:hover:shadow-slate-950/50 transition-shadow">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-violet-100 rounded-lg">
-                      <Target className="h-5 w-5 text-violet-600" />
+                    <div className="p-2 bg-violet-100 dark:bg-violet-950/50 rounded-lg">
+                      <Target className="h-5 w-5 text-violet-600 dark:text-violet-400" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg font-semibold text-slate-900">
+                      <CardTitle className="text-lg font-semibold text-slate-900 dark:text-slate-100">
                         What-If Scenario Analysis
                       </CardTitle>
-                      <CardDescription className="text-slate-600">
+                      <CardDescription className="text-slate-600 dark:text-slate-400">
                         Test scenarios and predict impact
                       </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-sm text-slate-600 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Create and compare multiple scenarios to evaluate improvements, automation
                     opportunities, and their impact on KPIs.
                   </p>
                   <Link href="/scenario-analysis">
-                    <Button className="bg-violet-600 hover:bg-violet-700 text-white">
+                    <Button className="bg-violet-600 hover:bg-violet-700 dark:bg-violet-600 dark:hover:bg-violet-700 text-white">
                       <Activity className="mr-2 h-4 w-4" />
                       Analyze Scenarios
                     </Button>
@@ -403,10 +403,10 @@ export default function DashboardClient() {
 
           <TabsContent value="processes" className="mt-6 space-y-6">
             <div className="grid gap-6 lg:grid-cols-2">
-              <Card className="bg-white border border-slate-200">
+              <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                 <CardHeader>
-                  <CardTitle className="text-lg font-semibold text-slate-900">Process Discovery</CardTitle>
-                  <CardDescription className="text-slate-600">
+                  <CardTitle className="text-lg font-semibold text-slate-900 dark:text-slate-100">Process Discovery</CardTitle>
+                  <CardDescription className="text-slate-600 dark:text-slate-400">
                     Automatically discover and visualize your processes
                   </CardDescription>
                 </CardHeader>
@@ -414,10 +414,10 @@ export default function DashboardClient() {
                   <ProcessDiscovery />
                 </CardContent>
               </Card>
-              <Card className="bg-white border border-slate-200">
+              <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                 <CardHeader>
-                  <CardTitle className="text-lg font-semibold text-slate-900">Conformance Checking</CardTitle>
-                  <CardDescription className="text-slate-600">
+                  <CardTitle className="text-lg font-semibold text-slate-900 dark:text-slate-100">Conformance Checking</CardTitle>
+                  <CardDescription className="text-slate-600 dark:text-slate-400">
                     Verify process compliance with standards
                   </CardDescription>
                 </CardHeader>
@@ -429,10 +429,10 @@ export default function DashboardClient() {
           </TabsContent>
 
           <TabsContent value="analytics" className="mt-6">
-            <Card className="bg-white border border-slate-200">
+            <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-slate-900">Performance Analytics</CardTitle>
-                <CardDescription className="text-slate-600">
+                <CardTitle className="text-lg font-semibold text-slate-900 dark:text-slate-100">Performance Analytics</CardTitle>
+                <CardDescription className="text-slate-600 dark:text-slate-400">
                   Deep dive into process performance metrics
                 </CardDescription>
               </CardHeader>
@@ -444,10 +444,10 @@ export default function DashboardClient() {
 
           <TabsContent value="ai-insights" className="mt-6 space-y-6">
             <div className="grid gap-6 lg:grid-cols-2">
-              <Card className="bg-white border border-slate-200">
+              <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                 <CardHeader>
-                  <CardTitle className="text-lg font-semibold text-slate-900">Automation Opportunities</CardTitle>
-                  <CardDescription className="text-slate-600">
+                  <CardTitle className="text-lg font-semibold text-slate-900 dark:text-slate-100">Automation Opportunities</CardTitle>
+                  <CardDescription className="text-slate-600 dark:text-slate-400">
                     Discover tasks that can be automated
                   </CardDescription>
                 </CardHeader>
@@ -455,10 +455,10 @@ export default function DashboardClient() {
                   <AutomationOpportunities />
                 </CardContent>
               </Card>
-              <Card className="bg-white border border-slate-200">
+              <Card className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
                 <CardHeader>
-                  <CardTitle className="text-lg font-semibold text-slate-900">Predictive Analytics</CardTitle>
-                  <CardDescription className="text-slate-600">
+                  <CardTitle className="text-lg font-semibold text-slate-900 dark:text-slate-100">Predictive Analytics</CardTitle>
+                  <CardDescription className="text-slate-600 dark:text-slate-400">
                     AI-powered predictions and forecasts
                   </CardDescription>
                 </CardHeader>
