@@ -18,7 +18,7 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { z } from 'zod';
 import { requireTenantContext } from '@/lib/tenant-context';
-import { rateLimiter, REPORT_GENERATION_LIMIT } from '@/lib/rate-limiter';
+import { checkRateLimit, REPORT_GENERATION_LIMIT } from '@/lib/rate-limiter';
 
 const exportSchema = z.object({
   dateRange: z.string().optional().default('all'),
@@ -30,11 +30,11 @@ export const POST = createTenantSafeHandler(async (request, context) => {
     const { organizationId, userId } = requireTenantContext();
 
     // Rate limiting for PDF generation to prevent DoS
-    const isAllowed = rateLimiter.checkLimit(
+    const rateLimit = checkRateLimit(
       `dashboard-export:${userId}`,
       REPORT_GENERATION_LIMIT
     );
-    if (!isAllowed) {
+    if (!rateLimit.allowed) {
       return NextResponse.json(
         { error: 'Too many export requests. Please try again later.' },
         { status: 429 }
