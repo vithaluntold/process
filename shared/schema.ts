@@ -80,6 +80,64 @@ export const teamMembers = pgTable("team_members", {
 export type TeamMember = typeof teamMembers.$inferSelect;
 export type InsertTeamMember = typeof teamMembers.$inferInsert;
 
+// ===================================
+// SSO/SAML CONFIGURATION
+// ===================================
+
+export const samlConfigurations = pgTable("saml_configurations", {
+  id: serial("id").primaryKey(),
+  organizationId: integer("organization_id").notNull().references(() => organizations.id, { onDelete: "cascade" }),
+  enabled: boolean("enabled").notNull().default(false),
+  
+  // Identity Provider (IdP) Configuration
+  idpEntityId: text("idp_entity_id").notNull(), // IdP issuer/entity ID
+  idpSsoUrl: text("idp_sso_url").notNull(), // IdP Single Sign-On URL (HTTP-Redirect or HTTP-POST)
+  idpSloUrl: text("idp_slo_url"), // IdP Single Logout URL (optional)
+  idpCertificate: text("idp_certificate").notNull(), // X.509 certificate from IdP (PEM format)
+  
+  // Service Provider (SP) Configuration
+  spEntityId: text("sp_entity_id").notNull(), // Our SP entity ID (usually app URL)
+  spAssertionConsumerServiceUrl: text("sp_acs_url").notNull(), // Where IdP sends SAML response
+  spSingleLogoutUrl: text("sp_slo_url"), // Our SLO endpoint (optional)
+  
+  // SAML Settings
+  wantAssertionsSigned: boolean("want_assertions_signed").notNull().default(true),
+  wantAuthnResponseSigned: boolean("want_authn_response_signed").notNull().default(false),
+  signatureAlgorithm: text("signature_algorithm").notNull().default("sha256"), // sha1, sha256, sha512
+  digestAlgorithm: text("digest_algorithm").notNull().default("sha256"),
+  
+  // Attribute Mapping (map SAML attributes to user fields)
+  attributeMapping: jsonb("attribute_mapping").notNull().default(sql`'{
+    "email": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+    "firstName": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
+    "lastName": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"
+  }'::jsonb`),
+  
+  // Auto-Provisioning Settings
+  autoProvisionUsers: boolean("auto_provision_users").notNull().default(false), // Create users on first SSO login
+  defaultRole: text("default_role").notNull().default("employee"), // Default role for auto-provisioned users
+  defaultTeamId: integer("default_team_id").references(() => teams.id, { onDelete: "set null" }), // Optional default team
+  
+  // Advanced Settings
+  forceAuthn: boolean("force_authn").notNull().default(false), // Force IdP to re-authenticate
+  allowUnencryptedAssertion: boolean("allow_unencrypted_assertion").notNull().default(false),
+  clockTolerance: integer("clock_tolerance").notNull().default(300), // Clock skew tolerance in seconds (5 min default)
+  
+  // Metadata
+  metadata: jsonb("metadata"), // Additional custom configuration
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  createdBy: integer("created_by").references(() => users.id, { onDelete: "set null" }),
+  lastTestedAt: timestamp("last_tested_at"), // Last successful SAML test
+}, (table) => ({
+  orgIdIdx: index("saml_configurations_organization_id_idx").on(table.organizationId),
+  enabledIdx: index("saml_configurations_enabled_idx").on(table.enabled),
+  uniqueOrgId: unique("saml_configurations_organization_id_unique").on(table.organizationId), // One SAML config per org
+}));
+
+export type SamlConfiguration = typeof samlConfigurations.$inferSelect;
+export type InsertSamlConfiguration = typeof samlConfigurations.$inferInsert;
+
 export const invitations = pgTable("invitations", {
   id: serial("id").primaryKey(),
   organizationId: integer("organization_id").notNull().references(() => organizations.id, { onDelete: "cascade" }),

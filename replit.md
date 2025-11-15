@@ -73,6 +73,13 @@ Key production-ready pages include Organizations Dashboard (Super Admin only), S
 - **AI-Powered Features**: AI Process Assistant using configurable LLM providers (Replit AI, OpenAI, Mistral AI, DeepSeek, Groq, Together AI) with encrypted API key storage.
 - **Task Mining**: Desktop activity analysis with AI-powered pattern detection and a standalone Electron-based Desktop Capture Agent.
 - **Payment Gateway Support**: Production-ready infrastructure with a factory pattern supporting Razorpay, PayU, and Payoneer, including subscription management and webhook verification.
+- **SSO/SAML Authentication** (✅ IMPLEMENTED): Enterprise-grade Single Sign-On using SAML 2.0 protocol. Features multi-tenant SAML configuration (one config per organization), auto-provisioning with attribute mapping, SP metadata generation, comprehensive validation (signature, replay attack prevention, clock skew tolerance), audit logging, and support for all major IdPs (Okta, Azure AD, Google Workspace, OneLogin). Implementation includes:
+  - SAML configuration schema (`shared/schema.ts` - samlConfigurations table)
+  - SAML service layer (`lib/saml-service.ts`) with validation, user provisioning, metadata generation
+  - SAML API endpoints: login initiation (`/api/auth/saml/[orgSlug]`), ACS callback (`/api/auth/saml/[orgSlug]/callback`), SP metadata (`/api/auth/saml/[orgSlug]/metadata`)
+  - Admin configuration API (`/api/admin/saml-config`) with tenant-safe handlers
+  - Comprehensive setup documentation (`docs/SSO_SAML_SETUP_GUIDE.md`) with IdP-specific guides
+  - Security: @node-saml/passport-saml library, cryptographic signature validation, InResponseTo validation, configurable clock tolerance
 - **Backend**: PostgreSQL database managed via Neon, Drizzle ORM, comprehensive RESTful API, and robust authentication/security (centralized JWT with production enforcement, bcryptjs password hashing, Zod schema validation, user ID-based rate limiting across all endpoints, comprehensive CSRF protection with 100% coverage of state-changing operations, secure cookie configuration with httpOnly/secure/sameSite flags).
 - **GDPR Compliance**: Features for data export, right to deletion, and consent management.
 - **Desktop Applications**: An installable Electron-based main desktop application for Windows, macOS, and Linux, and a separate Desktop Capture Agent for task mining.
