@@ -31,6 +31,7 @@ import ReactFlow, {
   MarkerType,
 } from "reactflow";
 import "reactflow/dist/style.css";
+import { z } from "zod";
 
 interface Process {
   id: number;
@@ -73,6 +74,44 @@ interface Scenario {
   createdAt: string;
   completedAt: string | null;
 }
+
+// Zod schemas for API response validation
+const simulationResultsSchema = z.object({
+  totalCases: z.number(),
+  completedCases: z.number(),
+  avgCycleTime: z.number(),
+  throughput: z.number(),
+  activityStats: z.array(z.any()),
+  bottlenecks: z.array(z.string()),
+  caseTimes: z.array(z.number()),
+}).nullable();
+
+const scenarioSchema = z.object({
+  id: z.number(),
+  processId: z.number(),
+  name: z.string(),
+  description: z.string().nullable(),
+  parameters: z.any(),
+  results: simulationResultsSchema,
+  status: z.string(),
+  createdAt: z.string(),
+  completedAt: z.string().nullable(),
+});
+
+const scenariosResponseSchema = z.object({
+  simulations: z.array(scenarioSchema),
+  pagination: z.object({
+    limit: z.number(),
+    offset: z.number(),
+    total: z.number(),
+  }).optional(),
+});
+
+const createSimulationResponseSchema = z.object({
+  success: z.boolean(),
+  simulation: scenarioSchema,
+  message: z.string(),
+});
 
 export default function DigitalTwinComprehensive() {
   const [activeTab, setActiveTab] = useState("modeling");
@@ -262,8 +301,19 @@ export default function DigitalTwinComprehensive() {
     
     try {
       const response = await fetch(`/api/simulations?processId=${processIdAtStart}`);
-      if (!response.ok) throw new Error("Failed to load scenarios");
-      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(`Failed to load scenarios: ${response.status}`);
+      }
+      
+      const rawData = await response.json();
+      const validatedData = scenariosResponseSchema.safeParse(rawData);
+      
+      if (!validatedData.success) {
+        console.error("Invalid scenarios response schema:", validatedData.error);
+        toast.error("Invalid data format received from server");
+        setScenarios([]);
+        return;
+      }
       
       // Check if process changed while we were fetching
       if (processIdAtStart !== selectedProcessId) {
@@ -271,11 +321,14 @@ export default function DigitalTwinComprehensive() {
         return;
       }
       
-      setScenarios(data);
+      // Extract the simulations array from the response
+      setScenarios(validatedData.data.simulations as Scenario[]);
     } catch (error) {
       // Only show error if we're still on the same process
       if (processIdAtStart === selectedProcessId) {
-        toast.error("Failed to load scenarios");
+        console.error("Failed to load scenarios:", error);
+        toast.error("Failed to load scenarios. Please try again.");
+        setScenarios([]);
       }
     }
   }
@@ -306,9 +359,21 @@ export default function DigitalTwinComprehensive() {
         }),
       });
 
-      if (!response.ok) throw new Error("Failed to run simulation");
+      if (!response.ok) {
+        throw new Error(`Failed to run simulation: ${response.status}`);
+      }
       
-      const newScenario = await response.json();
+      const rawData = await response.json();
+      const validatedData = createSimulationResponseSchema.safeParse(rawData);
+      
+      if (!validatedData.success) {
+        console.error("Invalid simulation response schema:", validatedData.error);
+        toast.error("Invalid data format received from server");
+        return;
+      }
+      
+      // Extract the simulation object from the response
+      const newScenario = validatedData.data.simulation as Scenario;
       
       // Check if process changed while simulation was running
       if (processIdAtStart !== selectedProcessId) {
@@ -332,7 +397,8 @@ export default function DigitalTwinComprehensive() {
     } catch (error) {
       // Only show error if we're still on the same process
       if (processIdAtStart === selectedProcessId) {
-        toast.error("Failed to run simulation");
+        console.error("Failed to run simulation:", error);
+        toast.error(error instanceof Error ? error.message : "Failed to run simulation. Please try again.");
       }
     } finally {
       // Only clear running state if we're still on the same process
