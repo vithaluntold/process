@@ -14,19 +14,14 @@ import {
   ArrowDownRight,
   TrendingUp,
   TrendingDown,
-  X,
-  GitCompare,
-  LinkIcon,
-  LogOut,
-  User,
   Activity,
-  Monitor,
-  FileText,
-  DollarSign,
-  Bot,
   Target,
   Sparkles,
-  Settings,
+  LayoutGrid,
+  ChevronRight,
+  RefreshCw,
+  Download,
+  Calendar,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -48,8 +43,6 @@ import PerformanceAnalytics from "@/components/performance-analytics"
 import AutomationOpportunities from "@/components/automation-opportunities"
 import PredictiveAnalytics from "@/components/predictive-analytics"
 import UploadModal from "@/components/upload-modal"
-import { motion } from "framer-motion"
-import { MetricCardSkeleton } from "@/components/loading-states"
 
 interface DashboardStats {
   processCount: number
@@ -62,7 +55,6 @@ export default function DashboardClient() {
   const { user } = useAuth()
   const { toast } = useToast()
   const [uploadModalOpen, setUploadModalOpen] = useState(false)
-  const [analysisModalOpen, setAnalysisModalOpen] = useState(false)
   const [stats, setStats] = useState<DashboardStats>({
     processCount: 0,
     avgCycleTime: 0,
@@ -71,6 +63,7 @@ export default function DashboardClient() {
   })
   const [loading, setLoading] = useState(true)
   const [dateRange, setDateRange] = useState("30d")
+  const [refreshing, setRefreshing] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -112,6 +105,16 @@ export default function DashboardClient() {
 
   const handleDataChange = () => {
     window.location.reload()
+  }
+
+  const handleRefresh = async () => {
+    setRefreshing(true)
+    await fetchDashboardStats()
+    setTimeout(() => setRefreshing(false), 500)
+    toast({
+      title: "Dashboard Refreshed",
+      description: "Data has been updated successfully",
+    })
   }
 
   const handleDateRangeChange = (range: string) => {
@@ -166,174 +169,199 @@ export default function DashboardClient() {
       title: "Active Processes",
       value: stats.processCount,
       icon: Layers,
-      trend: "+12%",
-      trendUp: true,
-      gradient: "from-cyan-500 to-blue-600",
-      bgGradient: "from-cyan-500/10 to-blue-600/10",
+      change: "+12%",
+      changePositive: true,
+      color: "text-blue-600",
+      bgColor: "bg-blue-50",
     },
     {
       title: "Avg. Cycle Time",
       value: `${stats.avgCycleTime} days`,
       icon: BarChart3,
-      trend: "-8%",
-      trendUp: true,
-      gradient: "from-violet-500 to-purple-600",
-      bgGradient: "from-violet-500/10 to-purple-600/10",
+      change: "-8%",
+      changePositive: true,
+      color: "text-violet-600",
+      bgColor: "bg-violet-50",
     },
     {
       title: "Conformance Rate",
       value: `${stats.conformanceRate}%`,
       icon: Filter,
-      trend: "+5%",
-      trendUp: true,
-      gradient: "from-emerald-500 to-green-600",
-      bgGradient: "from-emerald-500/10 to-green-600/10",
+      change: "+5%",
+      changePositive: true,
+      color: "text-emerald-600",
+      bgColor: "bg-emerald-50",
     },
     {
       title: "Automation Potential",
       value: `$${stats.automationPotential}M`,
       icon: Zap,
-      trend: "+18%",
-      trendUp: true,
-      gradient: "from-orange-500 to-red-600",
-      bgGradient: "from-orange-500/10 to-red-600/10",
+      change: "+18%",
+      changePositive: true,
+      color: "text-orange-600",
+      bgColor: "bg-orange-50",
     },
   ]
 
   return (
     <>
-      {(uploadModalOpen || analysisModalOpen) && (
+      {uploadModalOpen && (
         <UploadModal
           open={true}
-          onOpenChange={(open) => {
-            setUploadModalOpen(open)
-            setAnalysisModalOpen(open)
-          }}
+          onOpenChange={setUploadModalOpen}
           onUploadComplete={handleDataChange}
         />
       )}
-      <div className="flex flex-col gap-6 p-4 md:p-6">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center justify-between"
+      
+      <div className="flex flex-col gap-6 p-6 bg-slate-50/50 min-h-screen" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm text-slate-600">
+            <LayoutGrid className="h-4 w-4" />
+            <span>Dashboard</span>
+            <ChevronRight className="h-3 w-3" />
+            <span className="text-slate-900 font-medium">Overview</span>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={handleRefresh}
+              className="bg-white border-slate-200 hover:bg-slate-50"
             >
-              <div>
-                <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text">
-                  Process Intelligence Dashboard
-                </h1>
-                <p className="text-muted-foreground mt-1">Analyze, optimize, and automate your business processes.</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Button 
-                  onClick={() => setUploadModalOpen(true)}
-                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white shadow-lg"
-                >
-                  <FileUp className="mr-2 h-4 w-4" />
-                  Upload Data
+              <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="bg-white border-slate-200 hover:bg-slate-50">
+                  <Calendar className="h-4 w-4 mr-2" />
+                  {dateRange === "7d" ? "Last 7 Days" : dateRange === "30d" ? "Last 30 Days" : dateRange === "90d" ? "Last 90 Days" : "All Time"}
                 </Button>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="hover:bg-brand/10 hover:text-brand hover:border-brand/50">
-                      {dateRange === "7d" ? "Last 7 Days" : dateRange === "30d" ? "Last 30 Days" : dateRange === "90d" ? "Last 90 Days" : "All Time"}
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Date Range</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => handleDateRangeChange("7d")}>
-                      Last 7 Days
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleDateRangeChange("30d")}>
-                      Last 30 Days
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleDateRangeChange("90d")}>
-                      Last 90 Days
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => handleDateRangeChange("all")}>
-                      All Time
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={handleExport}
-                  className="hover:bg-brand/10 hover:text-brand hover:border-brand/50"
-                >
-                  Export
-                </Button>
-              </div>
-            </motion.div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>Date Range</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => handleDateRangeChange("7d")}>
+                  Last 7 Days
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleDateRangeChange("30d")}>
+                  Last 30 Days
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleDateRangeChange("90d")}>
+                  Last 90 Days
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleDateRangeChange("all")}>
+                  All Time
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleExport}
+              className="bg-white border-slate-200 hover:bg-slate-50"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Export
+            </Button>
+            <Button 
+              onClick={() => setUploadModalOpen(true)}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              <FileUp className="mr-2 h-4 w-4" />
+              Upload Data
+            </Button>
+          </div>
+        </div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {metricCards.map((metric, index) => (
-                <motion.div
-                  key={metric.title}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <Card className={`relative overflow-hidden border-0 bg-gradient-to-br ${metric.bgGradient} backdrop-blur-sm hover:shadow-xl hover:scale-105 transition-all duration-300 group`}>
-                    <div className={`absolute inset-0 bg-gradient-to-br ${metric.gradient} opacity-0 group-hover:opacity-10 transition-opacity`}></div>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">{metric.title}</CardTitle>
-                      <div className={`p-2.5 bg-gradient-to-br ${metric.gradient} rounded-xl shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all`}>
-                        <metric.icon className="h-4 w-4 text-white" />
+        <div>
+          <h1 className="text-3xl font-semibold text-slate-900 mb-2">
+            Process Intelligence
+          </h1>
+          <p className="text-slate-600">
+            Monitor and optimize your business processes in real-time
+          </p>
+        </div>
+
+        <Tabs defaultValue="overview" className="w-full">
+          <TabsList className="bg-white border border-slate-200 p-1">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700">
+              Overview
+            </TabsTrigger>
+            <TabsTrigger value="processes" className="data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700">
+              Processes
+            </TabsTrigger>
+            <TabsTrigger value="analytics" className="data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700">
+              Analytics
+            </TabsTrigger>
+            <TabsTrigger value="ai-insights" className="data-[state=active]:bg-blue-50 data-[state=active]:text-blue-700">
+              AI Insights
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="overview" className="mt-6 space-y-6">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {metricCards.map((metric) => (
+                <Card key={metric.title} className="bg-white border border-slate-200 hover:shadow-md transition-shadow">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-sm font-medium text-slate-600">
+                        {metric.title}
+                      </CardTitle>
+                      <div className={`p-2 rounded-lg ${metric.bgColor}`}>
+                        <metric.icon className={`h-4 w-4 ${metric.color}`} />
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
-                        {loading ? (
-                          <div className="h-9 w-24 bg-muted animate-pulse rounded"></div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-semibold text-slate-900 mb-1">
+                      {loading ? (
+                        <div className="h-8 w-20 bg-slate-200 animate-pulse rounded"></div>
+                      ) : (
+                        metric.value
+                      )}
+                    </div>
+                    <div className="flex items-center text-sm">
+                      <span className={`flex items-center font-medium ${metric.changePositive ? 'text-emerald-600' : 'text-red-600'}`}>
+                        {metric.changePositive ? (
+                          <TrendingUp className="h-3 w-3 mr-1" />
                         ) : (
-                          metric.value
+                          <TrendingDown className="h-3 w-3 mr-1" />
                         )}
-                      </div>
-                      <div className="flex items-center gap-2 text-xs mt-2">
-                        <span className={`flex items-center font-semibold ${metric.trendUp ? 'text-emerald-600' : 'text-red-600'}`}>
-                          {metric.trendUp ? (
-                            <TrendingUp className="h-3 w-3 mr-1" />
-                          ) : (
-                            <TrendingDown className="h-3 w-3 mr-1" />
-                          )}
-                          {metric.trend}
-                        </span>
-                        <span className="text-muted-foreground">vs last month</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                        {metric.change}
+                      </span>
+                      <span className="text-slate-500 ml-2">vs last period</span>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="grid gap-6 md:grid-cols-2"
-            >
-              <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-cyan-500/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm hover:shadow-xl transition-all duration-300 group">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 opacity-0 group-hover:opacity-5 transition-opacity"></div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Card className="bg-white border border-slate-200 hover:shadow-md transition-shadow">
                 <CardHeader>
-                  <div className="flex items-center gap-2">
-                    <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg">
-                      <Layers className="h-5 w-5 text-white" />
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <Layers className="h-5 w-5 text-blue-600" />
                     </div>
                     <div>
-                      <CardTitle className="text-xl">Digital Twin Simulation</CardTitle>
-                      <CardDescription>Create a virtual replica of your processes</CardDescription>
+                      <CardTitle className="text-lg font-semibold text-slate-900">
+                        Digital Twin Simulation
+                      </CardTitle>
+                      <CardDescription className="text-slate-600">
+                        Create virtual replicas of your processes
+                      </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="flex flex-col items-start space-y-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Build an interactive digital twin of your business processes to visualize flows, identify bottlenecks,
+                <CardContent className="space-y-4">
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Build interactive digital twins to visualize process flows, identify bottlenecks,
                     and test improvements before implementation.
                   </p>
                   <Link href="/digital-twin">
-                    <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white shadow-lg shadow-cyan-500/20 hover:shadow-xl hover:shadow-cyan-500/30 transition-all">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
                       <Sparkles className="mr-2 h-4 w-4" />
                       Explore Digital Twin
                     </Button>
@@ -341,33 +369,106 @@ export default function DashboardClient() {
                 </CardContent>
               </Card>
 
-              <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-violet-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-sm hover:shadow-xl transition-all duration-300 group">
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500 to-purple-600 opacity-0 group-hover:opacity-5 transition-opacity"></div>
+              <Card className="bg-white border border-slate-200 hover:shadow-md transition-shadow">
                 <CardHeader>
-                  <div className="flex items-center gap-2">
-                    <div className="p-2 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg">
-                      <GitCompare className="h-5 w-5 text-white" />
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-violet-100 rounded-lg">
+                      <Target className="h-5 w-5 text-violet-600" />
                     </div>
                     <div>
-                      <CardTitle className="text-xl">What-If Scenario Analysis</CardTitle>
-                      <CardDescription>Test scenarios and predict their impact</CardDescription>
+                      <CardTitle className="text-lg font-semibold text-slate-900">
+                        What-If Scenario Analysis
+                      </CardTitle>
+                      <CardDescription className="text-slate-600">
+                        Test scenarios and predict impact
+                      </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="flex flex-col items-start space-y-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Create and compare multiple process scenarios to evaluate potential improvements, automation
-                    opportunities, and their impact on key performance metrics.
+                <CardContent className="space-y-4">
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    Create and compare multiple scenarios to evaluate improvements, automation
+                    opportunities, and their impact on KPIs.
                   </p>
                   <Link href="/scenario-analysis">
-                    <Button className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-lg shadow-violet-500/20 hover:shadow-xl hover:shadow-violet-500/30 transition-all">
-                      <Sparkles className="mr-2 h-4 w-4" />
+                    <Button className="bg-violet-600 hover:bg-violet-700 text-white">
+                      <Activity className="mr-2 h-4 w-4" />
                       Analyze Scenarios
                     </Button>
                   </Link>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="processes" className="mt-6 space-y-6">
+            <div className="grid gap-6 lg:grid-cols-2">
+              <Card className="bg-white border border-slate-200">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold text-slate-900">Process Discovery</CardTitle>
+                  <CardDescription className="text-slate-600">
+                    Automatically discover and visualize your processes
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ProcessDiscovery />
+                </CardContent>
+              </Card>
+              <Card className="bg-white border border-slate-200">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold text-slate-900">Conformance Checking</CardTitle>
+                  <CardDescription className="text-slate-600">
+                    Verify process compliance with standards
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ConformanceChecking />
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="analytics" className="mt-6">
+            <Card className="bg-white border border-slate-200">
+              <CardHeader>
+                <CardTitle className="text-lg font-semibold text-slate-900">Performance Analytics</CardTitle>
+                <CardDescription className="text-slate-600">
+                  Deep dive into process performance metrics
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <PerformanceAnalytics />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="ai-insights" className="mt-6 space-y-6">
+            <div className="grid gap-6 lg:grid-cols-2">
+              <Card className="bg-white border border-slate-200">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold text-slate-900">Automation Opportunities</CardTitle>
+                  <CardDescription className="text-slate-600">
+                    Discover tasks that can be automated
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <AutomationOpportunities />
+                </CardContent>
+              </Card>
+              <Card className="bg-white border border-slate-200">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold text-slate-900">Predictive Analytics</CardTitle>
+                  <CardDescription className="text-slate-600">
+                    AI-powered predictions and forecasts
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <PredictiveAnalytics />
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </>
   )
