@@ -28,12 +28,10 @@ import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
 interface DashboardStats {
-  totalProcesses: number
-  totalEventLogs: number
-  activeSimulations: number
-  taskMiningSessions: number
-  openTickets: number
-  aiInsightsGenerated: number
+  processCount: number
+  avgCycleTime: number
+  conformanceRate: number
+  automationPotential: number
 }
 
 interface RecentActivity {
@@ -69,8 +67,8 @@ export default function DashboardPage() {
           apiClient("/api/monitoring/alerts").catch(() => ({ data: [] })),
         ])
 
-        if (statsRes?.data) {
-          setStats(statsRes.data)
+        if (statsRes?.stats) {
+          setStats(statsRes.stats)
         }
         
         if (activityRes?.data) {
@@ -148,30 +146,36 @@ export default function DashboardPage() {
   const kpis = [
     {
       title: "Total Processes",
-      value: stats?.totalProcesses ?? 0,
+      value: stats?.processCount ?? 0,
       icon: Database,
       change: "+12%",
       color: "text-blue-600 dark:text-blue-400",
     },
     {
-      title: "Event Logs",
-      value: stats?.totalEventLogs ?? 0,
-      icon: FileText,
-      change: "+8%",
+      title: "Avg Cycle Time",
+      value: stats?.avgCycleTime ?? 0,
+      unit: "hrs",
+      icon: Clock,
+      change: "-8%",
+      changePositive: true,
       color: "text-purple-600 dark:text-purple-400",
     },
     {
-      title: "Active Simulations",
-      value: stats?.activeSimulations ?? 0,
-      icon: GitCompare,
+      title: "Conformance Rate",
+      value: stats?.conformanceRate ?? 0,
+      unit: "%",
+      icon: CheckCircle2,
       change: "+5%",
+      changePositive: true,
       color: "text-green-600 dark:text-green-400",
     },
     {
-      title: "AI Insights",
-      value: stats?.aiInsightsGenerated ?? 0,
-      icon: Lightbulb,
-      change: "+23%",
+      title: "Automation Potential",
+      value: stats?.automationPotential ?? 0,
+      unit: "%",
+      icon: Zap,
+      change: "+15%",
+      changePositive: true,
       color: "text-amber-600 dark:text-amber-400",
     },
   ]
@@ -197,10 +201,16 @@ export default function DashboardPage() {
               <kpi.icon className={cn("h-4 w-4", kpi.color)} />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{kpi.value.toLocaleString()}</div>
+              <div className="text-2xl font-bold">
+                {kpi.value.toLocaleString()}
+                {kpi.unit && <span className="text-sm text-muted-foreground ml-1">{kpi.unit}</span>}
+              </div>
               <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                 <TrendingUp className="h-3 w-3" />
-                <span className="text-green-600 dark:text-green-400">{kpi.change}</span> from last month
+                <span className={kpi.changePositive !== false ? "text-green-600 dark:text-green-400" : "text-muted-foreground"}>
+                  {kpi.change}
+                </span>{" "}
+                from last month
               </p>
             </CardContent>
           </Card>
