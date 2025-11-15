@@ -2,25 +2,24 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
-import { Layers, BarChart3, Zap, Lightbulb, Shield, Activity, Eye, EyeOff, Sparkles, TrendingUp, Bot, Download } from "lucide-react";
+import { Layers, BarChart3, Zap, Lightbulb, Shield, Activity, Sparkles, TrendingUp, Bot, Download } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const LandingPageAuth = dynamic(() => import("@/components/landing-page-client").then(mod => ({ default: mod.LandingPageAuth })), { 
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[500px] flex items-center justify-center">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-500"></div>
+    </div>
+  )
+});
 
 export default function LandingPage() {
-  const [isLoading, setIsLoading] = useState(false);
   const [csrfToken, setCsrfToken] = useState<string>("");
-  const [showLoginPassword, setShowLoginPassword] = useState(false);
-  const [showSignupPassword, setShowSignupPassword] = useState(false);
-  const { toast } = useToast();
-  const router = useRouter();
 
   useEffect(() => {
     fetch("/api/auth/csrf")
@@ -28,110 +27,6 @@ export default function LandingPage() {
       .then(data => setCsrfToken(data.token))
       .catch(err => console.error("Failed to fetch CSRF token:", err));
   }, []);
-
-  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setIsLoading(true);
-
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-
-    try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || "Login failed");
-      }
-
-      toast({
-        title: "Success",
-        description: "Logged in successfully!",
-      });
-
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 500);
-    } catch (error: any) {
-      console.error("Login error:", error);
-      toast({
-        title: "Error",
-        description: error.message || "Failed to login",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  async function handleSignup(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setIsLoading(true);
-
-    const formData = new FormData(e.currentTarget);
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const firstName = formData.get("firstName") as string;
-    const lastName = formData.get("lastName") as string;
-
-    try {
-      const signupRes = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "X-CSRF-Token": csrfToken
-        },
-        body: JSON.stringify({ 
-          email, 
-          password,
-          firstName,
-          lastName
-        }),
-      });
-
-      const signupData = await signupRes.json();
-
-      if (!signupRes.ok) {
-        throw new Error(signupData.error || "Signup failed");
-      }
-
-      toast({
-        title: "Success",
-        description: "Account created! Logging you in...",
-      });
-
-      const loginRes = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const loginData = await loginRes.json();
-
-      if (!loginRes.ok) {
-        throw new Error(loginData.error || "Auto-login failed. Please log in manually.");
-      }
-
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 500);
-    } catch (error: any) {
-      console.error("Signup error:", error);
-      toast({
-        title: "Error",
-        description: error.message || "Failed to create account",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  }
 
   const features = [
     { 
@@ -332,197 +227,7 @@ export default function LandingPage() {
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             className="lg:pl-8"
           >
-            <div className="relative">
-              <Card className="relative shadow-2xl border border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl overflow-hidden">
-                <Tabs defaultValue="login" className="w-full" suppressHydrationWarning>
-                  <CardHeader className="space-y-6 pb-6 pt-8">
-                    <div className="text-center space-y-2">
-                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                        Welcome Back
-                      </h2>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">
-                        Sign in to access your process intelligence dashboard
-                      </p>
-                    </div>
-                    <TabsList className="grid w-full grid-cols-2 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-xl">
-                      <TabsTrigger 
-                        value="login" 
-                        className="data-[state=active]:bg-white dark:data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white data-[state=active]:shadow-sm text-slate-600 dark:text-slate-400 rounded-lg transition-all duration-200 font-medium"
-                      >
-                        Login
-                      </TabsTrigger>
-                      <TabsTrigger 
-                        value="signup" 
-                        className="data-[state=active]:bg-white dark:data-[state=active]:bg-cyan-500 data-[state=active]:text-slate-900 dark:data-[state=active]:text-white data-[state=active]:shadow-sm text-slate-600 dark:text-slate-400 rounded-lg transition-all duration-200 font-medium"
-                      >
-                        Sign Up
-                      </TabsTrigger>
-                    </TabsList>
-                  </CardHeader>
-
-                  <TabsContent value="login">
-                    <form onSubmit={handleLogin}>
-                      <CardContent className="space-y-4 pt-6 px-8">
-                        <div className="space-y-2">
-                          <Label htmlFor="login-email" className="text-slate-700 dark:text-slate-300 font-medium">Email Address</Label>
-                          <Input
-                            id="login-email"
-                            name="email"
-                            type="email"
-                            placeholder="you@company.com"
-                            required
-                            disabled={isLoading}
-                            autoComplete="email"
-                            className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="login-password" className="text-slate-700 dark:text-slate-300 font-medium">Password</Label>
-                          <div className="relative">
-                            <Input
-                              id="login-password"
-                              name="password"
-                              type={showLoginPassword ? "text" : "password"}
-                              required
-                              disabled={isLoading}
-                              autoComplete="current-password"
-                              placeholder="Enter your password"
-                              className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20 pr-11"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => setShowLoginPassword(!showLoginPassword)}
-                              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
-                              tabIndex={-1}
-                            >
-                              {showLoginPassword ? (
-                                <EyeOff className="h-4 w-4" />
-                              ) : (
-                                <Eye className="h-4 w-4" />
-                              )}
-                            </button>
-                          </div>
-                        </div>
-                      </CardContent>
-                      <CardFooter className="pt-6 pb-8 px-8">
-                        <Button 
-                          type="submit" 
-                          className="w-full h-11 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 rounded-lg" 
-                          disabled={isLoading}
-                        >
-                          {isLoading ? (
-                            <span className="flex items-center gap-2">
-                              <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                              Logging in...
-                            </span>
-                          ) : (
-                            "Log In"
-                          )}
-                        </Button>
-                      </CardFooter>
-                    </form>
-                  </TabsContent>
-
-                  <TabsContent value="signup">
-                    <form onSubmit={handleSignup}>
-                      <CardContent className="space-y-4 pt-6 px-8">
-                        <div className="grid grid-cols-2 gap-3">
-                          <div className="space-y-2">
-                            <Label htmlFor="signup-firstName" className="text-slate-700 dark:text-slate-300 font-medium text-sm">
-                              First Name <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">(Optional)</span>
-                            </Label>
-                            <Input
-                              id="signup-firstName"
-                              name="firstName"
-                              type="text"
-                              placeholder="John"
-                              disabled={isLoading}
-                              className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="signup-lastName" className="text-slate-700 dark:text-slate-300 font-medium text-sm">
-                              Last Name <span className="text-slate-400 dark:text-slate-500 text-xs font-normal">(Optional)</span>
-                            </Label>
-                            <Input
-                              id="signup-lastName"
-                              name="lastName"
-                              type="text"
-                              placeholder="Doe"
-                              disabled={isLoading}
-                              className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20"
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="signup-email" className="text-slate-700 dark:text-slate-300 font-medium">Email Address</Label>
-                          <Input
-                            id="signup-email"
-                            name="email"
-                            type="email"
-                            placeholder="you@company.com"
-                            required
-                            disabled={isLoading}
-                            autoComplete="email"
-                            className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="signup-password" className="text-slate-700 dark:text-slate-300 font-medium">Password</Label>
-                          <div className="relative">
-                            <Input
-                              id="signup-password"
-                              name="password"
-                              type={showSignupPassword ? "text" : "password"}
-                              placeholder="Minimum 12 characters"
-                              required
-                              disabled={isLoading}
-                              minLength={12}
-                              autoComplete="new-password"
-                              className="h-11 rounded-lg border-slate-300 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 focus:ring-cyan-500/20 pr-11"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => setShowSignupPassword(!showSignupPassword)}
-                              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
-                              tabIndex={-1}
-                            >
-                              {showSignupPassword ? (
-                                <EyeOff className="h-4 w-4" />
-                              ) : (
-                                <Eye className="h-4 w-4" />
-                              )}
-                            </button>
-                          </div>
-                          <div className="flex items-start gap-2 mt-2 p-2.5 bg-slate-50 dark:bg-slate-800/30 rounded-lg border border-slate-200 dark:border-slate-700/30">
-                            <Shield className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400 mt-0.5 flex-shrink-0" />
-                            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                              Password must be at least 12 characters with uppercase, lowercase, number, and special character
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                      <CardFooter className="pt-6 pb-8 px-8">
-                        <Button 
-                          type="submit" 
-                          className="w-full h-11 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-200 rounded-lg" 
-                          disabled={isLoading}
-                        >
-                          {isLoading ? (
-                            <span className="flex items-center gap-2">
-                              <div className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                              Creating account...
-                            </span>
-                          ) : (
-                            "Create Account"
-                          )}
-                        </Button>
-                      </CardFooter>
-                    </form>
-                  </TabsContent>
-                </Tabs>
-              </Card>
-            </div>
+            <LandingPageAuth csrfToken={csrfToken} />
           </motion.div>
         </div>
       </div>

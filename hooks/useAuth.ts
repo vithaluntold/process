@@ -4,6 +4,7 @@ async function fetchUser() {
   try {
     const response = await fetch("/api/auth/user", {
       credentials: "include",
+      cache: "no-store",
     });
     
     if (response.status === 401) {
@@ -24,13 +25,14 @@ async function fetchUser() {
 }
 
 export function useAuth() {
-  const { data: user, isLoading, status } = useQuery({
+  const { data: user, isLoading } = useQuery({
     queryKey: ["/api/auth/user"],
     queryFn: fetchUser,
     retry: false,
     staleTime: 5 * 60 * 1000,
     refetchOnMount: true,
     refetchOnWindowFocus: false,
+    networkMode: "always",
   });
 
   return {
