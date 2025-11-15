@@ -1,15 +1,8 @@
 "use client";
 
-import { AuthGuard } from "@/components/auth-guard";
-import AppLayout from "@/components/app-layout";
-import DashboardClient from "@/components/dashboard-client";
+import LandingPage from "@/components/landing-page";
 
 export default function Home() {
-  return (
-    <AuthGuard>
-      <AppLayout>
-        <DashboardClient />
-      </AppLayout>
-    </AuthGuard>
-  );
+  // Temporarily showing landing page directly to verify hyphenation fix
+  return <LandingPage />;
 }

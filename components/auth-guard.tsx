@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/hooks/useAuth";
 import LandingPage from "@/components/landing-page";
+import { useEffect, useState } from "react";
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -9,9 +10,17 @@ interface AuthGuardProps {
 }
 
 export function AuthGuard({ children, fallback }: AuthGuardProps) {
-  const { isAuthenticated, authStatus } = useAuth();
+  const { user, isLoading } = useAuth();
+  const [showContent, setShowContent] = useState(false);
 
-  if (authStatus === 'loading') {
+  // After 1 second, always show content
+  useEffect(() => {
+    const timer = setTimeout(() => setShowContent(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Show loading for max 1 second
+  if (isLoading && !showContent) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-4">
@@ -22,9 +31,11 @@ export function AuthGuard({ children, fallback }: AuthGuardProps) {
     );
   }
 
-  if (!isAuthenticated) {
+  // If no user, show landing page
+  if (!user) {
     return fallback || <LandingPage />;
   }
 
+  // User is authenticated, show protected content
   return <>{children}</>;
 }

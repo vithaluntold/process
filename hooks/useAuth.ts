@@ -27,7 +27,8 @@ export function useAuth() {
   const { data: user, isLoading, isFetching, isSuccess, error, status } = useQuery({
     queryKey: ["/api/auth/user"],
     queryFn: fetchUser,
-    retry: false,
+    retry: 1,
+    retryDelay: 500,
     staleTime: 5 * 60 * 1000,
     gcTime: 10 * 60 * 1000,
     refetchOnMount: false,
@@ -42,7 +43,8 @@ export function useAuth() {
   let authStatus: 'authenticated' | 'loading' | 'unauthenticated';
   if (status === 'pending') {
     authStatus = 'loading';
-  } else if (status === 'success') {
+  } else if (status === 'success' || status === 'error') {
+    // Show landing page for both success with no user and error states
     authStatus = user ? 'authenticated' : 'unauthenticated';
   } else {
     authStatus = 'unauthenticated';

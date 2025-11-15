@@ -148,6 +148,10 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
   
   body {

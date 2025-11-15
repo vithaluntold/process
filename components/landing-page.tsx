@@ -258,23 +258,23 @@ export default function LandingPage() {
                   whileHover={{ y: -4 }}
                   className="group relative"
                 >
-                  <div className="relative p-4 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 hover:border-cyan-300 dark:hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 cursor-pointer">
+                  <div className="relative p-4 rounded-2xl bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/50 hover:border-cyan-300 dark:hover:border-cyan-500/50 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 cursor-pointer overflow-hidden">
                     <div className="flex flex-col gap-2">
-                      <div className={`w-10 h-10 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center shadow-md`}>
+                      <div className={`w-10 h-10 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center shadow-md flex-shrink-0`}>
                         <feature.icon className="h-5 w-5 text-white" />
                       </div>
-                      <div>
-                        <div className="flex items-center gap-1.5 mb-1">
-                          <h3 className="font-semibold text-sm text-slate-900 dark:text-white">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5 mb-1 flex-wrap">
+                          <h3 className="font-semibold text-sm text-slate-900 dark:text-white whitespace-normal">
                             {feature.title}
                           </h3>
                           {feature.badge && (
-                            <span className="text-[10px] bg-cyan-500 text-white px-1.5 py-0.5 rounded-full font-medium">
+                            <span className="text-[10px] bg-cyan-500 text-white px-1.5 py-0.5 rounded-full font-medium flex-shrink-0">
                               {feature.badge}
                             </span>
                           )}
                         </div>
-                        <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2">
+                        <p className="text-xs text-slate-600 dark:text-slate-400 overflow-hidden" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', wordBreak: 'normal', overflowWrap: 'normal', hyphens: 'none' }}>
                           {feature.description}
                         </p>
                       </div>
