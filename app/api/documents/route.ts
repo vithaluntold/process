@@ -1,73 +1,86 @@
-import { NextRequest, NextResponse } from "next/server";
-import * as storage from "@/server/storage";
-import { getCurrentUser } from "@/lib/server-auth";
-import { withApiGuards } from "@/lib/api-guards";
-import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
-import { unlink } from "fs/promises";
-import path from "path";
+/**
+ * Documents API - Tenant-Safe Implementation
+ * 
+ * GET /api/documents - List all documents for current tenant
+ * POST /api/documents - Create new document record
+ * 
+ * SECURITY: All queries automatically filtered by organizationId
+ * MIGRATION: Converted from insecure pattern (DELETE moved to [id]/route.ts)
+ */
 
-export async function GET(req: NextRequest) {
-  const user = await getCurrentUser();
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+import { NextResponse } from 'next/server';
+import { createTenantSafeHandler } from '@/lib/tenant-api-factory';
+import { 
+  getDocumentsByTenant, 
+  createDocumentForTenant 
+} from '@/server/tenant-storage';
+import { z } from 'zod';
 
+const createDocumentSchema = z.object({
+  name: z.string().min(1, 'Document name is required'),
+  size: z.string().min(1, 'Document size is required'),
+  path: z.string().min(1, 'Document path is required'),
+  status: z.string().optional().default('uploaded'),
+  extractedProcesses: z.number().int().optional(),
+  activities: z.number().int().optional(),
+});
+
+export const GET = createTenantSafeHandler(async (request, context) => {
   try {
-    const documents = await storage.getDocuments();
-    return NextResponse.json(documents);
+    const { searchParams } = new URL(request.url);
+    const limit = parseInt(searchParams.get('limit') || '50');
+    const offset = parseInt(searchParams.get('offset') || '0');
+
+    const documents = await getDocumentsByTenant({
+      limit,
+      offset,
+    });
+
+    return NextResponse.json({
+      documents,
+      pagination: {
+        limit,
+        offset,
+        total: documents.length,
+      },
+    });
   } catch (error) {
-    console.error("Error fetching documents:", error);
+    console.error('Get documents error:', error);
     return NextResponse.json(
-      { error: "Failed to fetch documents" },
+      { error: 'Failed to fetch documents' },
       { status: 500 }
     );
   }
-}
+});
 
-export async function DELETE(req: NextRequest) {
-  const user = await getCurrentUser();
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const guardError = withApiGuards(req, 'document-delete', API_WRITE_LIMIT, user.id);
-  if (guardError) return guardError;
-
+export const POST = createTenantSafeHandler(async (request, context) => {
   try {
-    const url = new URL(req.url);
-    const id = url.searchParams.get("id");
+    const body = await request.json();
+    const validatedData = createDocumentSchema.parse(body);
 
-    if (!id) {
+    const document = await createDocumentForTenant(validatedData);
+
+    return NextResponse.json(
+      { 
+        success: true, 
+        document,
+        message: 'Document created successfully' 
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Create document error:', error);
+
+    if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Document ID is required" },
+        { error: 'Validation error', details: error.errors },
         { status: 400 }
       );
     }
 
-    const document = await storage.getDocumentById(parseInt(id), user.id);
-
-    if (!document) {
-      return NextResponse.json(
-        { error: "Document not found" },
-        { status: 404 }
-      );
-    }
-
-    try {
-      const filePath = path.join(process.cwd(), document.path);
-      await unlink(filePath);
-    } catch (fileError) {
-      console.error("Error deleting file:", fileError);
-    }
-
-    await storage.deleteDocument(parseInt(id), user.id);
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("Error deleting document:", error);
     return NextResponse.json(
-      { error: "Failed to delete document" },
+      { error: 'Failed to create document' },
       { status: 500 }
     );
   }
-}
+});

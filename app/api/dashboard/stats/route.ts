@@ -1,22 +1,28 @@
-import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { processes, performanceMetrics, automationOpportunities } from "@/shared/schema";
-import { eq, sql, count, avg } from "drizzle-orm";
-import { getCurrentUser } from "@/lib/server-auth";
-import { appCache } from "@/lib/cache";
+/**
+ * Dashboard Stats API - Tenant-Safe Implementation
+ * 
+ * GET /api/dashboard/stats - Get dashboard statistics for current tenant
+ * 
+ * SECURITY: All queries automatically filtered by organizationId
+ * MIGRATION: Converted from insecure userId-only pattern
+ */
+
+import { NextResponse } from 'next/server';
+import { createTenantSafeHandler } from '@/lib/tenant-api-factory';
+import { getDashboardStatsByTenant } from '@/server/tenant-storage';
+import { appCache } from '@/lib/cache';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 30;
 
-export async function GET(request: NextRequest) {
+export const GET = createTenantSafeHandler(async (request, context) => {
   try {
-    const user = await getCurrentUser();
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const { organizationId, userId } = context;
 
-    const cacheKey = `dashboard-stats:${user.id}`;
+    // Cache key includes both userId and organizationId for proper isolation
+    const cacheKey = `dashboard-stats:${organizationId}:${userId}`;
     const cached = appCache.get(cacheKey);
+    
     if (cached) {
       return NextResponse.json(cached, {
         headers: {
@@ -26,43 +32,8 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    const result = await db.execute(sql`
-      WITH user_processes AS (
-        SELECT id FROM ${processes} WHERE user_id = ${user.id}
-      ),
-      process_stats AS (
-        SELECT COUNT(*) as process_count FROM user_processes
-      ),
-      metrics_stats AS (
-        SELECT 
-          AVG(cycle_time) as avg_cycle_time,
-          AVG(conformance_rate) as avg_conformance
-        FROM ${performanceMetrics} pm
-        WHERE pm.process_id IN (SELECT id FROM user_processes)
-      ),
-      automation_stats AS (
-        SELECT AVG(automation_potential) as avg_automation
-        FROM ${automationOpportunities} ao
-        WHERE ao.process_id IN (SELECT id FROM user_processes)
-      )
-      SELECT 
-        ps.process_count,
-        ms.avg_cycle_time,
-        ms.avg_conformance,
-        as_tbl.avg_automation
-      FROM process_stats ps
-      CROSS JOIN metrics_stats ms
-      CROSS JOIN automation_stats as_tbl
-    `);
-
-    const row = result.rows[0] as any;
-
-    const stats = {
-      processCount: Number(row?.process_count || 0),
-      avgCycleTime: row?.avg_cycle_time ? Math.round(Number(row.avg_cycle_time) * 10) / 10 : 0,
-      conformanceRate: row?.avg_conformance ? Math.round(Number(row.avg_conformance) * 10) / 10 : 0,
-      automationPotential: row?.avg_automation ? Math.round(Number(row.avg_automation) * 10) / 10 : 0,
-    };
+    // Use tenant-safe function that automatically filters by organizationId
+    const stats = await getDashboardStatsByTenant();
 
     const responseData = { stats };
     appCache.set(cacheKey, responseData, 30);
@@ -74,10 +45,10 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("Error fetching dashboard stats:", error);
+    console.error('Get dashboard stats error:', error);
     return NextResponse.json(
-      { error: "Failed to fetch dashboard stats" },
+      { error: 'Failed to fetch dashboard stats' },
       { status: 500 }
     );
   }
-}
+});

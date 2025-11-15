@@ -446,3 +446,346 @@ export async function getCurrentOrganization() {
   
   return org;
 }
+
+// ==================== EVENT LOGS ====================
+
+/**
+ * Get all event logs for the current tenant
+ * Joins with processes table to filter by organizationId
+ */
+export async function getEventLogsByTenant(options?: { 
+  limit?: number; 
+  offset?: number;
+  processId?: number;
+}) {
+  const { organizationId } = requireTenantContext();
+  const { limit = 100, offset = 0, processId } = options || {};
+  
+  const conditions = [eq(schema.processes.organizationId, organizationId)];
+  
+  if (processId) {
+    conditions.push(eq(schema.eventLogs.processId, processId));
+  }
+  
+  const eventLogs = await db
+    .select({
+      id: schema.eventLogs.id,
+      processId: schema.eventLogs.processId,
+      caseId: schema.eventLogs.caseId,
+      activity: schema.eventLogs.activity,
+      timestamp: schema.eventLogs.timestamp,
+      resource: schema.eventLogs.resource,
+      metadata: schema.eventLogs.metadata,
+      createdAt: schema.eventLogs.createdAt,
+    })
+    .from(schema.eventLogs)
+    .innerJoin(schema.processes, eq(schema.eventLogs.processId, schema.processes.id))
+    .where(and(...conditions))
+    .orderBy(desc(schema.eventLogs.timestamp))
+    .limit(limit)
+    .offset(offset);
+    
+  return eventLogs;
+}
+
+/**
+ * Get event log by ID with tenant validation
+ */
+export async function getEventLogByIdWithTenantCheck(eventLogId: number) {
+  const { organizationId } = requireTenantContext();
+  
+  const [eventLog] = await db
+    .select({
+      id: schema.eventLogs.id,
+      processId: schema.eventLogs.processId,
+      caseId: schema.eventLogs.caseId,
+      activity: schema.eventLogs.activity,
+      timestamp: schema.eventLogs.timestamp,
+      resource: schema.eventLogs.resource,
+      metadata: schema.eventLogs.metadata,
+      createdAt: schema.eventLogs.createdAt,
+    })
+    .from(schema.eventLogs)
+    .innerJoin(schema.processes, eq(schema.eventLogs.processId, schema.processes.id))
+    .where(
+      and(
+        eq(schema.eventLogs.id, eventLogId),
+        eq(schema.processes.organizationId, organizationId) // CRITICAL CHECK
+      )
+    )
+    .limit(1);
+  
+  if (!eventLog) {
+    throw new Error('Event log not found or access denied');
+  }
+  
+  return eventLog;
+}
+
+/**
+ * Create event log for a process with tenant validation
+ */
+export async function createEventLogForTenant(data: {
+  processId: number;
+  caseId: string;
+  activity: string;
+  timestamp: Date;
+  resource?: string;
+  metadata?: any;
+}) {
+  // Validate the process belongs to the tenant
+  await getProcessByIdWithTenantCheck(data.processId);
+  
+  const [eventLog] = await db.insert(schema.eventLogs).values(data).returning();
+  
+  return eventLog;
+}
+
+/**
+ * Update event log with tenant validation
+ */
+export async function updateEventLogWithTenantCheck(
+  eventLogId: number,
+  data: Partial<{
+    caseId: string;
+    activity: string;
+    timestamp: Date;
+    resource: string;
+    metadata: any;
+  }>
+) {
+  const { organizationId } = requireTenantContext();
+  
+  const [eventLog] = await db.update(schema.eventLogs)
+    .set(data)
+    .from(schema.processes)
+    .where(
+      and(
+        eq(schema.eventLogs.id, eventLogId),
+        eq(schema.eventLogs.processId, schema.processes.id),
+        eq(schema.processes.organizationId, organizationId) // CRITICAL CHECK
+      )
+    )
+    .returning();
+    
+  if (!eventLog) {
+    throw new Error('Event log not found or access denied');
+  }
+  
+  return eventLog;
+}
+
+/**
+ * Delete event log with tenant validation
+ */
+export async function deleteEventLogWithTenantCheck(eventLogId: number): Promise<boolean> {
+  const { organizationId } = requireTenantContext();
+  
+  const result = await db.delete(schema.eventLogs)
+    .where(
+      and(
+        eq(schema.eventLogs.id, eventLogId),
+        sql`${schema.eventLogs.processId} IN (
+          SELECT id FROM ${schema.processes} 
+          WHERE ${schema.processes.organizationId} = ${organizationId}
+        )`
+      )
+    )
+    .returning();
+    
+  return result.length > 0;
+}
+
+// ==================== DOCUMENTS ====================
+
+/**
+ * Create document for the current tenant
+ */
+export async function createDocumentForTenant(data: {
+  name: string;
+  size: string;
+  path: string;
+  status?: string;
+  extractedProcesses?: number;
+  activities?: number;
+}) {
+  const { userId } = requireTenantContext();
+  
+  const [document] = await db.insert(schema.documents).values({
+    ...data,
+    userId, // CRITICAL: Set from context
+  }).returning();
+  
+  return document;
+}
+
+/**
+ * Delete document with tenant validation
+ */
+export async function deleteDocumentWithTenantCheck(documentId: number): Promise<boolean> {
+  const { organizationId } = requireTenantContext();
+  
+  const result = await db.delete(schema.documents)
+    .where(
+      and(
+        eq(schema.documents.id, documentId),
+        sql`${schema.documents.userId} IN (
+          SELECT id FROM ${schema.users} 
+          WHERE ${schema.users.organizationId} = ${organizationId}
+        )`
+      )
+    )
+    .returning();
+    
+  return result.length > 0;
+}
+
+// ==================== SIMULATIONS ====================
+
+/**
+ * Get all simulation scenarios for the current tenant
+ */
+export async function getSimulationsByTenant(options?: { 
+  limit?: number; 
+  offset?: number;
+  processId?: number;
+}) {
+  const { organizationId } = requireTenantContext();
+  const { limit = 50, offset = 0, processId } = options || {};
+  
+  const conditions = [eq(schema.processes.organizationId, organizationId)];
+  
+  if (processId) {
+    conditions.push(eq(schema.simulationScenarios.processId, processId));
+  }
+  
+  const simulations = await db
+    .select({
+      id: schema.simulationScenarios.id,
+      processId: schema.simulationScenarios.processId,
+      name: schema.simulationScenarios.name,
+      description: schema.simulationScenarios.description,
+      parameters: schema.simulationScenarios.parameters,
+      results: schema.simulationScenarios.results,
+      status: schema.simulationScenarios.status,
+      createdAt: schema.simulationScenarios.createdAt,
+      completedAt: schema.simulationScenarios.completedAt,
+    })
+    .from(schema.simulationScenarios)
+    .innerJoin(schema.processes, eq(schema.simulationScenarios.processId, schema.processes.id))
+    .where(and(...conditions))
+    .orderBy(desc(schema.simulationScenarios.createdAt))
+    .limit(limit)
+    .offset(offset);
+    
+  return simulations;
+}
+
+/**
+ * Get simulation by ID with tenant validation
+ */
+export async function getSimulationByIdWithTenantCheck(simulationId: number) {
+  const { organizationId } = requireTenantContext();
+  
+  const [simulation] = await db
+    .select({
+      id: schema.simulationScenarios.id,
+      processId: schema.simulationScenarios.processId,
+      name: schema.simulationScenarios.name,
+      description: schema.simulationScenarios.description,
+      parameters: schema.simulationScenarios.parameters,
+      results: schema.simulationScenarios.results,
+      status: schema.simulationScenarios.status,
+      createdAt: schema.simulationScenarios.createdAt,
+      completedAt: schema.simulationScenarios.completedAt,
+    })
+    .from(schema.simulationScenarios)
+    .innerJoin(schema.processes, eq(schema.simulationScenarios.processId, schema.processes.id))
+    .where(
+      and(
+        eq(schema.simulationScenarios.id, simulationId),
+        eq(schema.processes.organizationId, organizationId) // CRITICAL CHECK
+      )
+    )
+    .limit(1);
+  
+  if (!simulation) {
+    throw new Error('Simulation not found or access denied');
+  }
+  
+  return simulation;
+}
+
+/**
+ * Create simulation for a process with tenant validation
+ */
+export async function createSimulationForTenant(data: {
+  processId: number;
+  name: string;
+  description?: string;
+  parameters: any;
+  status?: string;
+}) {
+  // Validate the process belongs to the tenant
+  await getProcessByIdWithTenantCheck(data.processId);
+  
+  const [simulation] = await db.insert(schema.simulationScenarios).values(data).returning();
+  
+  return simulation;
+}
+
+/**
+ * Update simulation with tenant validation
+ */
+export async function updateSimulationWithTenantCheck(
+  simulationId: number,
+  data: Partial<{
+    name: string;
+    description: string;
+    parameters: any;
+    results: any;
+    status: string;
+    completedAt: Date;
+  }>
+) {
+  const { organizationId } = requireTenantContext();
+  
+  const [simulation] = await db.update(schema.simulationScenarios)
+    .set(data)
+    .from(schema.processes)
+    .where(
+      and(
+        eq(schema.simulationScenarios.id, simulationId),
+        eq(schema.simulationScenarios.processId, schema.processes.id),
+        eq(schema.processes.organizationId, organizationId) // CRITICAL CHECK
+      )
+    )
+    .returning();
+    
+  if (!simulation) {
+    throw new Error('Simulation not found or access denied');
+  }
+  
+  return simulation;
+}
+
+/**
+ * Delete simulation with tenant validation
+ */
+export async function deleteSimulationWithTenantCheck(simulationId: number): Promise<boolean> {
+  const { organizationId } = requireTenantContext();
+  
+  const result = await db.delete(schema.simulationScenarios)
+    .where(
+      and(
+        eq(schema.simulationScenarios.id, simulationId),
+        sql`${schema.simulationScenarios.processId} IN (
+          SELECT id FROM ${schema.processes} 
+          WHERE ${schema.processes.organizationId} = ${organizationId}
+        )`
+      )
+    )
+    .returning();
+    
+  return result.length > 0;
+}

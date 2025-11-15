@@ -1,36 +1,79 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/server-auth";
-import { db } from "@/lib/db";
-import { processes, eventLogs } from "@/shared/schema";
-import { eq, and, gte, sql } from "drizzle-orm";
-import jsPDF from "jspdf";
-import "jspdf-autotable";
-import { withApiGuards } from "@/lib/api-guards";
-import { REPORT_GENERATION_LIMIT } from "@/lib/rate-limiter";
+/**
+ * Dashboard Export API - Tenant-Safe Implementation
+ * 
+ * POST /api/dashboard/export - Export dashboard report as PDF
+ * 
+ * SECURITY: All queries automatically filtered by organizationId
+ * MIGRATION: Converted from insecure userId-only pattern
+ * RATE LIMITING: Protected against DoS via PDF generation abuse
+ */
 
-export async function POST(request: NextRequest) {
-  const user = await getCurrentUser();
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+import { NextResponse } from 'next/server';
+import { createTenantSafeHandler } from '@/lib/tenant-api-factory';
+import { getProcessesByTenant, getDashboardStatsByTenant } from '@/server/tenant-storage';
+import { db } from '@/lib/db';
+import { eventLogs, processes, performanceMetrics, automationOpportunities } from '@/shared/schema';
+import { eq, sql, gte, and } from 'drizzle-orm';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { z } from 'zod';
+import { requireTenantContext } from '@/lib/tenant-context';
+import { rateLimiter, REPORT_GENERATION_LIMIT } from '@/lib/rate-limiter';
 
-  const guardError = withApiGuards(request, 'dashboard-export', REPORT_GENERATION_LIMIT, user.id);
-  if (guardError) return guardError;
+const exportSchema = z.object({
+  dateRange: z.string().optional().default('all'),
+  format: z.string().optional().default('pdf'),
+});
 
+export const POST = createTenantSafeHandler(async (request, context) => {
   try {
-    const { dateRange, format } = await request.json();
+    const { organizationId, userId } = requireTenantContext();
 
-    // Calculate date filter
-    let dateFilter = sql`true`;
-    if (dateRange && dateRange !== "all") {
-      const daysAgo = parseInt(dateRange.replace("d", ""));
-      const startDate = new Date();
-      startDate.setDate(startDate.getDate() - daysAgo);
-      dateFilter = gte(processes.createdAt, startDate);
+    // Rate limiting for PDF generation to prevent DoS
+    const isAllowed = rateLimiter.checkLimit(
+      `dashboard-export:${userId}`,
+      REPORT_GENERATION_LIMIT
+    );
+    if (!isAllowed) {
+      return NextResponse.json(
+        { error: 'Too many export requests. Please try again later.' },
+        { status: 429 }
+      );
     }
 
-    // Fetch dashboard statistics
-    const userProcesses = await db
+    const body = await request.json();
+    const { dateRange, format } = exportSchema.parse(body);
+
+    // Calculate timestamp filter for events/metrics (NOT process creation)
+    let startDate: Date | null = null;
+    if (dateRange && dateRange !== 'all') {
+      const daysAgo = parseInt(dateRange.replace('d', ''));
+      startDate = new Date();
+      startDate.setDate(startDate.getDate() - daysAgo);
+    }
+
+    // Get process count for processes with activity in the date range
+    // This counts DISTINCT processes that have events within the period
+    const processCountQuery = startDate
+      ? await db
+          .selectDistinct({ processId: eventLogs.processId })
+          .from(eventLogs)
+          .innerJoin(processes, eq(eventLogs.processId, processes.id))
+          .where(and(
+            eq(processes.organizationId, organizationId),
+            gte(eventLogs.timestamp, startDate)
+          ))
+      : await db
+          .select({ count: sql<number>`count(*)::int` })
+          .from(processes)
+          .where(eq(processes.organizationId, organizationId));
+
+    const processCount = startDate
+      ? processCountQuery.length
+      : (processCountQuery[0] as any)?.count || 0;
+
+    // Get process list for table (all processes for tenant, limited to 100 for PDF)
+    const tenantProcesses = await db
       .select({
         id: processes.id,
         name: processes.name,
@@ -38,27 +81,69 @@ export async function POST(request: NextRequest) {
         createdAt: processes.createdAt,
       })
       .from(processes)
-      .where(and(eq(processes.userId, user.id), dateFilter))
+      .where(eq(processes.organizationId, organizationId))
+      .orderBy(sql`${processes.createdAt} DESC`)
       .limit(100);
 
-    const processCount = userProcesses.length;
+    // Calculate average cycle time from event logs within date range
+    // Step 1: Get duration for each process (only events within date range)
+    // Step 2: Average those durations in JavaScript
+    const cycleTimeQuery = startDate
+      ? db
+          .select({
+            processId: eventLogs.processId,
+            duration: sql<number>`
+              EXTRACT(EPOCH FROM (
+                MAX(${eventLogs.timestamp}) - MIN(${eventLogs.timestamp})
+              )) / 86400
+            `,
+          })
+          .from(eventLogs)
+          .innerJoin(processes, eq(eventLogs.processId, processes.id))
+          .where(and(
+            eq(processes.organizationId, organizationId),
+            gte(eventLogs.timestamp, startDate)
+          ))
+          .groupBy(eventLogs.processId)
+      : db
+          .select({
+            processId: eventLogs.processId,
+            duration: sql<number>`
+              EXTRACT(EPOCH FROM (
+                MAX(${eventLogs.timestamp}) - MIN(${eventLogs.timestamp})
+              )) / 86400
+            `,
+          })
+          .from(eventLogs)
+          .innerJoin(processes, eq(eventLogs.processId, processes.id))
+          .where(eq(processes.organizationId, organizationId))
+          .groupBy(eventLogs.processId);
 
-    // Calculate average cycle time
-    const cycleTimeResult = await db
+    const cycleTimeResult = await cycleTimeQuery;
+
+    const avgCycleTime = cycleTimeResult.length > 0
+      ? Math.round(
+          cycleTimeResult.reduce((sum, r) => sum + (Number(r.duration) || 0), 0) /
+          cycleTimeResult.length
+        )
+      : 0;
+
+    // Calculate conformance rate from performance metrics
+    // Note: performanceMetrics table doesn't have a timestamp, so we use all metrics for tenant
+    const conformanceResult = await db
       .select({
-        avgDuration: sql<number>`AVG(EXTRACT(EPOCH FROM (MAX(${eventLogs.timestamp}) - MIN(${eventLogs.timestamp}))) / 86400)`,
+        avgConformance: sql<number>`AVG(${performanceMetrics.conformanceRate})`,
       })
-      .from(eventLogs)
-      .where(
-        sql`${eventLogs.processId} IN (SELECT ${processes.id} FROM ${processes} WHERE ${processes.userId} = ${user.id})`
-      );
+      .from(performanceMetrics)
+      .innerJoin(processes, eq(performanceMetrics.processId, processes.id))
+      .where(eq(processes.organizationId, organizationId));
 
-    const avgCycleTime = Math.round(cycleTimeResult[0]?.avgDuration || 0);
+    const conformanceRate = conformanceResult[0]?.avgConformance
+      ? Math.round(Number(conformanceResult[0].avgConformance))
+      : 85; // Default fallback
 
-    // Calculate conformance rate (simplified - you can enhance this)
-    const conformanceRate = 85 + Math.floor(Math.random() * 10);
-
-    // Calculate automation potential (simplified)
+    // Calculate automation potential (simplified monetary estimate based on process count)
+    // Original logic: processCount * 1.5 = millions in potential savings
     const automationPotential = (processCount * 1.5).toFixed(1);
 
     // Generate PDF report
@@ -88,11 +173,11 @@ export async function POST(request: NextRequest) {
     doc.text(`Automation Potential: $${automationPotential}M`, 14, 76);
 
     // Process list
-    if (userProcesses.length > 0) {
+    if (tenantProcesses.length > 0) {
       doc.setFontSize(14);
       doc.text("Active Processes", 14, 90);
 
-      const tableData = userProcesses.slice(0, 20).map((p: any) => [
+      const tableData = tenantProcesses.slice(0, 20).map((p: any) => [
         p.id.toString(),
         p.name,
         p.description || "N/A",
@@ -129,7 +214,15 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error("Dashboard export error:", error);
-    return NextResponse.json({ error: "Failed to export dashboard" }, { status: 500 });
+    console.error('Dashboard export error:', error);
+
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Validation error', details: error.errors },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json({ error: 'Failed to export dashboard' }, { status: 500 });
   }
-}
+});

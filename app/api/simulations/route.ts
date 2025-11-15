@@ -1,82 +1,101 @@
-import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { simulationScenarios } from "@/shared/schema";
-import { eq } from "drizzle-orm";
-import { createAndRunScenario } from "@/server/simulation-engine";
-import { getCurrentUser } from "@/lib/server-auth";
-import { withApiGuards } from "@/lib/api-guards";
-import { API_ANALYSIS_LIMIT } from "@/lib/rate-limiter";
+/**
+ * Simulations API - Tenant-Safe Implementation
+ * 
+ * GET /api/simulations - List all simulation scenarios for current tenant
+ * POST /api/simulations - Create new simulation
+ * 
+ * SECURITY: All queries automatically filtered by organizationId
+ * MIGRATION: Converted from insecure direct DB access pattern
+ */
 
-export async function POST(request: NextRequest) {
+import { NextResponse } from 'next/server';
+import { createTenantSafeHandler } from '@/lib/tenant-api-factory';
+import { 
+  getSimulationsByTenant, 
+  createSimulationForTenant 
+} from '@/server/tenant-storage';
+import { z } from 'zod';
+
+const createSimulationSchema = z.object({
+  processId: z.number().int().positive('Process ID must be positive'),
+  name: z.string().min(1, 'Simulation name is required'),
+  description: z.string().optional(),
+  parameters: z.any(),
+  status: z.string().optional(),
+});
+
+export const GET = createTenantSafeHandler(async (request, context) => {
   try {
-    const user = await getCurrentUser();
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const guardError = withApiGuards(request, 'simulation-create', API_ANALYSIS_LIMIT, user.id);
-    if (guardError) return guardError;
-
-    const body = await request.json();
-    const { processId, name, description, parameters } = body;
-
-    if (!processId || !name || !parameters) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
-
-    const scenarioId = await createAndRunScenario(
-      processId,
-      name,
-      description,
-      parameters
-    );
-
-    const [scenario] = await db
-      .select()
-      .from(simulationScenarios)
-      .where(eq(simulationScenarios.id, scenarioId));
-
-    return NextResponse.json(scenario);
-  } catch (error) {
-    console.error("Error creating simulation:", error);
-    return NextResponse.json(
-      { error: "Failed to create simulation" },
-      { status: 500 }
-    );
-  }
-}
-
-export async function GET(request: NextRequest) {
-  try {
-    const user = await getCurrentUser();
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const { searchParams } = new URL(request.url);
-    const processId = searchParams.get("processId");
+    const limit = parseInt(searchParams.get('limit') || '50');
+    const offset = parseInt(searchParams.get('offset') || '0');
+    const processId = searchParams.get('processId');
 
-    if (!processId) {
+    const simulations = await getSimulationsByTenant({
+      limit,
+      offset,
+      processId: processId ? parseInt(processId) : undefined,
+    });
+
+    return NextResponse.json({
+      simulations,
+      pagination: {
+        limit,
+        offset,
+        total: simulations.length,
+      },
+    });
+  } catch (error) {
+    console.error('Get simulations error:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch simulations' },
+      { status: 500 }
+    );
+  }
+});
+
+export const POST = createTenantSafeHandler(async (request, context) => {
+  try {
+    const body = await request.json();
+    const validatedData = createSimulationSchema.parse(body);
+
+    // Ensure parameters is always provided (required by createSimulationForTenant)
+    const simulation = await createSimulationForTenant({
+      processId: validatedData.processId,
+      name: validatedData.name,
+      description: validatedData.description,
+      parameters: validatedData.parameters || {}, // Provide empty object if undefined
+      status: validatedData.status,
+    });
+
+    return NextResponse.json(
+      { 
+        success: true, 
+        simulation,
+        message: 'Simulation created successfully' 
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Create simulation error:', error);
+
+    if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Missing processId parameter" },
+        { error: 'Validation error', details: error.errors },
         { status: 400 }
       );
     }
 
-    const scenarios = await db
-      .select()
-      .from(simulationScenarios)
-      .where(eq(simulationScenarios.processId, parseInt(processId)));
+    if (error instanceof Error && error.message.includes('access denied')) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: 403 }
+      );
+    }
 
-    return NextResponse.json(scenarios);
-  } catch (error) {
-    console.error("Error fetching simulations:", error);
     return NextResponse.json(
-      { error: "Failed to fetch simulations" },
+      { error: 'Failed to create simulation' },
       { status: 500 }
     );
   }
-}
+});
