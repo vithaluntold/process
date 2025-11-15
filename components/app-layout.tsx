@@ -300,7 +300,7 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-80 overflow-y-auto">
+          <SheetContent side="left" className="w-96 overflow-y-auto">
             <div className="flex flex-col gap-2 py-4">
               <Link
                 href="/"
@@ -329,12 +329,12 @@ export default function AppLayout({ children, showActions = false }: AppLayoutPr
                       className="space-y-1"
                     >
                       <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-smooth">
-                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                        <div className="flex items-center gap-3 flex-1">
                           <CategoryIcon className="h-4 w-4 flex-shrink-0" />
-                          <span className="whitespace-nowrap">{category.label}</span>
+                          <span className="whitespace-nowrap overflow-visible">{category.label}</span>
                         </div>
                         <ChevronDown className={cn(
-                          "h-4 w-4 transition-transform",
+                          "h-4 w-4 flex-shrink-0 ml-2 transition-transform",
                           (isOpen || hasActiveItem) && "transform rotate-180"
                         )} />
                       </CollapsibleTrigger>
