@@ -7,9 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Shield } from "lucide-react";
-import { useQueryClient } from "@tanstack/react-query";
 
 interface LandingPageAuthProps {
   csrfToken: string;
@@ -20,8 +18,6 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
   const [showLoginPassword, setShowLoginPassword] = useState(false);
   const [showSignupPassword, setShowSignupPassword] = useState(false);
   const { toast } = useToast();
-  const router = useRouter();
-  const queryClient = useQueryClient();
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -49,10 +45,9 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
         description: "Logged in successfully!",
       });
 
-      // Invalidate auth queries and redirect
-      await queryClient.invalidateQueries({ queryKey: ["user"] });
+      // Redirect to dashboard (full page reload will refresh auth state)
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/dashboard";
       }, 300);
     } catch (error: any) {
       console.error("Login error:", error);
@@ -71,16 +66,19 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
     setIsLoading(true);
 
     const formData = new FormData(e.currentTarget);
-    const name = formData.get("name") as string;
+    const firstName = formData.get("firstName") as string;
+    const lastName = formData.get("lastName") as string;
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const organizationName = formData.get("organizationName") as string;
 
     try {
-      const res = await fetch("/api/auth/register", {
+      const res = await fetch("/api/auth/signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, organizationName }),
+        headers: { 
+          "Content-Type": "application/json",
+          "X-CSRF-Token": initialCsrfToken
+        },
+        body: JSON.stringify({ firstName, lastName, email, password }),
       });
 
       const data = await res.json();
@@ -94,10 +92,9 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
         description: "Account created successfully! Logging you in...",
       });
 
-      // Invalidate auth queries and redirect
-      await queryClient.invalidateQueries({ queryKey: ["user"] });
+      // Redirect to dashboard (full page reload will refresh auth state)
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/dashboard";
       }, 300);
     } catch (error: any) {
       console.error("Signup error:", error);
@@ -186,9 +183,9 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
               <Button 
                 type="submit" 
                 className="w-full h-11 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold shadow-lg shadow-cyan-500/30 transition-all duration-200"
-                disabled={isLoading}
+                disabled={isLoading || !initialCsrfToken}
               >
-                {isLoading ? "Signing in..." : "Sign In"}
+                {isLoading ? "Signing in..." : !initialCsrfToken ? "Loading..." : "Sign In"}
               </Button>
             </CardFooter>
           </form>
@@ -197,29 +194,33 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
         <TabsContent value="signup">
           <form onSubmit={handleSignup}>
             <CardContent className="space-y-4 pt-6 px-8">
-              <div className="space-y-2">
-                <Label htmlFor="signup-name" className="text-slate-700 dark:text-slate-300 font-medium">Full Name</Label>
-                <Input
-                  id="signup-name"
-                  name="name"
-                  type="text"
-                  placeholder="John Doe"
-                  required
-                  disabled={isLoading}
-                  className="bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 h-11"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="signup-org" className="text-slate-700 dark:text-slate-300 font-medium">Organization Name</Label>
-                <Input
-                  id="signup-org"
-                  name="organizationName"
-                  type="text"
-                  placeholder="Acme Corp"
-                  required
-                  disabled={isLoading}
-                  className="bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 h-11"
-                />
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-2">
+                  <Label htmlFor="signup-firstName" className="text-slate-700 dark:text-slate-300 font-medium text-sm">First Name</Label>
+                  <Input
+                    id="signup-firstName"
+                    name="firstName"
+                    type="text"
+                    placeholder="John"
+                    required
+                    disabled={isLoading}
+                    autoComplete="given-name"
+                    className="bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 h-11"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="signup-lastName" className="text-slate-700 dark:text-slate-300 font-medium text-sm">Last Name</Label>
+                  <Input
+                    id="signup-lastName"
+                    name="lastName"
+                    type="text"
+                    placeholder="Doe"
+                    required
+                    disabled={isLoading}
+                    autoComplete="family-name"
+                    className="bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-700 focus:border-cyan-500 dark:focus:border-cyan-500 h-11"
+                  />
+                </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="signup-email" className="text-slate-700 dark:text-slate-300 font-medium">Email Address</Label>
@@ -267,9 +268,9 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
               <Button 
                 type="submit" 
                 className="w-full h-11 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold shadow-lg shadow-cyan-500/30 transition-all duration-200"
-                disabled={isLoading}
+                disabled={isLoading || !initialCsrfToken}
               >
-                {isLoading ? "Creating account..." : "Create Account"}
+                {isLoading ? "Creating account..." : !initialCsrfToken ? "Loading..." : "Create Account"}
               </Button>
             </CardFooter>
           </form>
