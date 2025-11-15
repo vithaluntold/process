@@ -1,0 +1,8 @@
+caseId,activity,timestamp,resource
+ORD-001,Receive Order,2025-01-15 09:00:00,System
+ORD-001,Check Inventory,2025-01-15 09:05:00,Sarah
+ORD-001,Process Payment,2025-01-15 09:10:00,System
+ORD-001,Ship Order,2025-01-15 14:30:00,John
+ORD-001,Delivery Complete,2025-01-16 10:00:00,System
+ORD-002,Receive Order,2025-01-15 09:15:00,System
+...
