@@ -481,21 +481,31 @@
 
 ---
 
-## ⚠️ ISSUES IDENTIFIED
+## ⚠️ ISSUES IDENTIFIED & RESOLVED
 
-### 1. Memory Pressure (Server Auto-Restart)
+### 1. ✅ FIXED: Cost Analysis Runtime Error
+**Issue:** `processes.map is not a function` error in `/cost-analysis` page  
+**Severity:** High (Page crash)  
+**Root Cause:** API response structure mismatch - `/api/processes` returns `{ processes: [...] }` but code expected raw array  
+**Fix Applied:**
+- Changed `setProcesses(data)` to `setProcesses(data.processes || [])`
+- Added `Array.isArray(processes)` safety check before `.map()`
+- Added error handling to fallback to empty array
+**Status:** ✅ RESOLVED - Page now loads successfully (200 OK)
+
+### 2. Memory Pressure (Server Auto-Restart)
 **Severity:** Medium  
 **Observed:** Server hits memory threshold and auto-restarts  
 **Impact:** Temporary connection interruptions  
 **Solution Needed:** Optimize module loading, reduce compilation size  
 
-### 2. Compilation Time
+### 3. Compilation Time
 **Severity:** Low  
 **Observed:** Some pages take 10-15s to compile on first load  
 **Impact:** Slower initial page loads  
 **Solution Needed:** Code splitting, lazy loading  
 
-### 3. One 401 Unauthorized (Expected Behavior)
+### 4. One 401 Unauthorized (Expected Behavior)
 **Severity:** None  
 **Observed:** `/api/processes 401` when not authenticated  
 **Impact:** None - this is correct security behavior  

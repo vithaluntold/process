@@ -11,6 +11,40 @@ import { DollarSign, TrendingUp, Calculator, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/page-header";
 import { apiClient } from "@/lib/api-client";
+import { z } from "zod";
+
+const processSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+});
+
+const processesResponseSchema = z.object({
+  processes: z.array(processSchema),
+});
+
+const costMetricSchema = z.object({
+  id: z.number(),
+  activityName: z.string(),
+  resourceCost: z.number(),
+  timeCost: z.number(),
+  totalCost: z.number(),
+  frequency: z.number(),
+  costPerExecution: z.number(),
+});
+
+const roiCalculationSchema = z.object({
+  id: z.number(),
+  currentCost: z.number(),
+  optimizedCost: z.number(),
+  savings: z.number(),
+  savingsPercentage: z.number(),
+  timeToRoi: z.number().nullable(),
+});
+
+const costAnalysisResponseSchema = z.object({
+  metrics: z.array(costMetricSchema).optional(),
+  roiCalculations: z.array(roiCalculationSchema).optional(),
+});
 
 interface CostMetric {
   id: number;
@@ -54,12 +88,25 @@ export default function CostAnalysisPage() {
   async function loadProcesses() {
     try {
       const res = await fetch("/api/processes");
-      if (res.ok) {
-        const data = await res.json();
-        setProcesses(data);
+      if (!res.ok) {
+        throw new Error(`Failed to load processes: ${res.status}`);
       }
+      
+      const rawData = await res.json();
+      const validatedData = processesResponseSchema.safeParse(rawData);
+      
+      if (!validatedData.success) {
+        console.error("Invalid processes response schema:", validatedData.error);
+        toast.error("Invalid data format received from server");
+        setProcesses([]);
+        return;
+      }
+      
+      setProcesses(validatedData.data.processes);
     } catch (error) {
       console.error("Failed to load processes:", error);
+      toast.error("Failed to load processes. Please try again.");
+      setProcesses([]);
     }
   }
 
@@ -67,13 +114,28 @@ export default function CostAnalysisPage() {
     setLoading(true);
     try {
       const res = await fetch(`/api/cost-analysis?processId=${selectedProcessId}`);
-      if (res.ok) {
-        const data = await res.json();
-        setCostMetrics(data.metrics || []);
-        setRoiCalculations(data.roiCalculations || []);
+      if (!res.ok) {
+        throw new Error(`Failed to load cost analysis: ${res.status}`);
       }
+      
+      const rawData = await res.json();
+      const validatedData = costAnalysisResponseSchema.safeParse(rawData);
+      
+      if (!validatedData.success) {
+        console.error("Invalid cost analysis response schema:", validatedData.error);
+        toast.error("Invalid data format received from server");
+        setCostMetrics([]);
+        setRoiCalculations([]);
+        return;
+      }
+      
+      setCostMetrics(Array.isArray(validatedData.data.metrics) ? validatedData.data.metrics : []);
+      setRoiCalculations(Array.isArray(validatedData.data.roiCalculations) ? validatedData.data.roiCalculations : []);
     } catch (error) {
       console.error("Failed to load cost analysis:", error);
+      toast.error("Failed to load cost analysis data. Please try again.");
+      setCostMetrics([]);
+      setRoiCalculations([]);
     } finally {
       setLoading(false);
     }
@@ -128,7 +190,7 @@ export default function CostAnalysisPage() {
               <SelectValue placeholder="Choose a process to analyze" />
             </SelectTrigger>
             <SelectContent>
-              {processes.map((process) => (
+              {Array.isArray(processes) && processes.map((process) => (
                 <SelectItem key={process.id} value={process.id.toString()}>
                   {process.name}
                 </SelectItem>
