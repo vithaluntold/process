@@ -49,6 +49,7 @@ export async function POST(request: NextRequest) {
       .where(eq(schema.users.email, email.toLowerCase()));
 
     if (!user || !user.password) {
+      console.log(`Login failed: User not found or no password for email: ${email}`);
       return NextResponse.json(
         { error: "Invalid email or password" },
         { status: 401 }
@@ -58,11 +59,14 @@ export async function POST(request: NextRequest) {
     const isValid = await compare(password, user.password);
 
     if (!isValid) {
+      console.log(`Login failed: Invalid password for email: ${email}`);
       return NextResponse.json(
         { error: "Invalid email or password" },
         { status: 401 }
       );
     }
+
+    console.log(`Login successful for user: ${email} (ID: ${user.id})`);
 
     const token = await new SignJWT({ userId: user.id })
       .setProtectedHeader({ alg: JWT_ALGORITHM })

@@ -61,6 +61,16 @@ export async function POST(request: NextRequest) {
 
     const hashedPassword = await hash(password, 12);
 
+    // Create a new organization for the user (multi-tenant SaaS approach)
+    const [organization] = await db
+      .insert(schema.organizations)
+      .values({
+        name: `${firstName || email.split('@')[0]}'s Organization`,
+        slug: `org-${Date.now()}-${Math.random().toString(36).substring(7)}`,
+        status: "active",
+      })
+      .returning();
+
     const [user] = await db
       .insert(schema.users)
       .values({
@@ -68,7 +78,8 @@ export async function POST(request: NextRequest) {
         password: hashedPassword,
         firstName: firstName ? sanitizeInput(firstName) : null,
         lastName: lastName ? sanitizeInput(lastName) : null,
-        role: "user",
+        role: "admin", // First user of organization is admin
+        organizationId: organization.id,
       })
       .returning();
 
