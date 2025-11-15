@@ -57,6 +57,15 @@ export async function POST(request: NextRequest) {
       .where(eq(schema.users.email, normalizedEmail));
 
     if (!user) {
+      await db.insert(schema.auditLogs).values({
+        action: "password.reset.failed",
+        resource: "user",
+        resourceId: normalizedEmail,
+        ipAddress: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown",
+        userAgent: request.headers.get("user-agent") || "unknown",
+        metadata: { reason: "user_not_found", email: normalizedEmail },
+      });
+
       return NextResponse.json(
         { 
           message: "If an account with that email exists, a password reset link has been sent.",
@@ -85,9 +94,11 @@ export async function POST(request: NextRequest) {
       metadata: { email: normalizedEmail },
     });
 
-    console.log(`Password reset requested for ${normalizedEmail}`);
-    console.log(`Reset token: ${token}`);
-    console.log(`Reset URL: ${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5000'}/auth/reset-password?token=${token}`);
+    if (process.env.NODE_ENV === "development") {
+      console.log(`[DEV ONLY] Password reset requested for ${normalizedEmail}`);
+      console.log(`[DEV ONLY] Reset token: ${token}`);
+      console.log(`[DEV ONLY] Reset URL: ${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5000'}/auth/reset-password?token=${token}`);
+    }
 
     return NextResponse.json(
       { 

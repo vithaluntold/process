@@ -63,6 +63,15 @@ export async function POST(request: NextRequest) {
       );
 
     if (!resetToken) {
+      await db.insert(schema.auditLogs).values({
+        action: "password.reset.failed",
+        resource: "password_reset_token",
+        resourceId: sanitizedToken.substring(0, 8),
+        ipAddress: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || "unknown",
+        userAgent: request.headers.get("user-agent") || "unknown",
+        metadata: { reason: "invalid_or_expired_token" },
+      });
+
       return NextResponse.json(
         { error: "Invalid or expired password reset token" },
         { status: 400 }
