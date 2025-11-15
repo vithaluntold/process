@@ -30,7 +30,22 @@ The platform implements comprehensive team-based access control with:
 - Process access based on team membership and ownership
 
 **UI/UX Design:**
-The frontend uses Tailwind CSS with shadcn/ui components, `framer-motion` for animations, and a custom brand color palette. It features full dark/light mode support, responsiveness, and interactive process visualizations powered by ReactFlow with auto-layout and color-coded elements. 
+The frontend uses Tailwind CSS with shadcn/ui components, `framer-motion` for animations, and a custom brand color palette. It features full dark/light mode support, responsiveness, and interactive process visualizations powered by ReactFlow with auto-layout and color-coded elements.
+
+**Dashboard Design (Celonis.cloud-Inspired):**
+The main dashboard (`components/dashboard-client.tsx`) features a clean, professional enterprise aesthetic inspired by Celonis.cloud:
+- **Typography**: Inter font family for optimal screen readability and professional appearance
+- **Color Scheme**: Professional blue accent colors (blue-600, violet-600, emerald-600, orange-600) with light backgrounds (blue-50, violet-50, etc.) replacing heavy gradients
+- **Layout**: Clean white cards with subtle slate-200 borders, minimal shadows, and generous spacing on slate-50/50 background
+- **Navigation**: Breadcrumb navigation (Dashboard > Overview) and tab-based organization (Overview, Processes, Analytics, AI Insights)
+- **Components**: Simplified metric cards with colored icon badges, clean typography, and data-focused design
+- **Action Bar**: Refresh, Date Range selector, Export, and Upload Data buttons with consistent styling
+- **Tab Content**: 
+  - Overview: Dashboard stats, Digital Twin, and What-If Scenario cards
+  - Processes: Process Discovery + Conformance Checking (side-by-side)
+  - Analytics: Performance Analytics
+  - AI Insights: Automation Opportunities + Predictive Analytics (side-by-side)
+- **Enterprise Aesthetic**: Reduced animations, clean borders, professional spacing, and data-centric presentation 
 
 **Navigation Architecture:**
 All authenticated dashboard pages use a standardized `AppLayout` component wrapper for consistent navigation. The `AppLayout` component provides:
