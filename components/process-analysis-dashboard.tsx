@@ -38,6 +38,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import dynamic from "next/dynamic";
+import { fetchWithCSRF } from "@/lib/csrf-client";
 
 const ProcessFlowchart = dynamic(() => import("@/components/process-flowchart"), {
   ssr: false,
@@ -160,7 +161,7 @@ export default function ProcessAnalysisDashboard() {
     setLoadingDiscovery(true);
     try {
       const filters = buildFilterParams();
-      const response = await fetch(`/api/processes/${selectedProcessId}/discover`, {
+      const response = await fetchWithCSRF(`/api/processes/${selectedProcessId}/discover`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(filters),
@@ -184,7 +185,7 @@ export default function ProcessAnalysisDashboard() {
     setLoadingConformance(true);
     try {
       const filters = buildFilterParams();
-      const response = await fetch(`/api/processes/${selectedProcessId}/check-conformance`, {
+      const response = await fetchWithCSRF(`/api/processes/${selectedProcessId}/check-conformance`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(filters),
@@ -207,7 +208,7 @@ export default function ProcessAnalysisDashboard() {
     setLoadingPerformance(true);
     try {
       const filters = buildFilterParams();
-      const response = await fetch(`/api/processes/${selectedProcessId}/analyze`, {
+      const response = await fetchWithCSRF(`/api/processes/${selectedProcessId}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(filters),
@@ -231,7 +232,7 @@ export default function ProcessAnalysisDashboard() {
     try {
       const filters = buildFilterParams();
       // Use the analyze endpoint which includes automation opportunities
-      const response = await fetch(`/api/processes/${selectedProcessId}/analyze`, {
+      const response = await fetchWithCSRF(`/api/processes/${selectedProcessId}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(filters),
@@ -254,7 +255,7 @@ export default function ProcessAnalysisDashboard() {
     setLoadingPredictive(true);
     try {
       const filters = buildFilterParams();
-      const response = await fetch(`/api/processes/${selectedProcessId}/detect-anomalies`, {
+      const response = await fetchWithCSRF(`/api/processes/${selectedProcessId}/detect-anomalies`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(filters),
@@ -277,7 +278,7 @@ export default function ProcessAnalysisDashboard() {
     if (!selectedProcessId) return;
 
     try {
-      const response = await fetch(`/api/processes/${selectedProcessId}/export`, {
+      const response = await fetchWithCSRF(`/api/processes/${selectedProcessId}/export`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
