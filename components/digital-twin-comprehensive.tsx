@@ -334,8 +334,25 @@ export default function DigitalTwinComprehensive() {
   }
 
   async function runSimulation() {
-    if (!selectedProcessId || !scenarioName) {
-      toast.error("Please select a process and enter a scenario name");
+    // Enhanced validation
+    if (!selectedProcessId) {
+      toast.error("Please select a process first");
+      return;
+    }
+
+    if (!scenarioName || scenarioName.trim() === "") {
+      toast.error("Please enter a scenario name");
+      return;
+    }
+
+    const casesValue = parseInt(numberOfCases);
+    if (isNaN(casesValue) || casesValue <= 0 || casesValue > 10000) {
+      toast.error("Number of cases must be between 1 and 10,000");
+      return;
+    }
+
+    if (isNaN(durationMultiplier) || durationMultiplier <= 0 || durationMultiplier > 10) {
+      toast.error("Duration multiplier must be between 0 and 10");
       return;
     }
 
@@ -349,10 +366,10 @@ export default function DigitalTwinComprehensive() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           processId: parseInt(processIdAtStart),
-          name: scenarioName,
+          name: scenarioName.trim(),
           description: `Duration multiplier: ${durationMultiplier}x`,
           parameters: {
-            numberOfCases: parseInt(numberOfCases),
+            numberOfCases: casesValue,
             arrivalRate: 300000,
             durationMultipliers: { "*": durationMultiplier },
           },
