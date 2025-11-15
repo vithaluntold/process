@@ -70,6 +70,16 @@ Pages using AppLayout:
 Public Pages (no AppLayout):
 - Login (app/auth/login/page.tsx)
 - Accept Invitation (app/auth/accept-invite/page.tsx) - Invite-only employee registration
+- Landing Page (app/page.tsx) - Hybrid SSR/CSR architecture with dynamic auth component
+
+**Landing Page Architecture** (✅ PRODUCTION-READY):
+Implemented hybrid SSR/CSR architecture to prevent React hydration mismatches:
+- **SSR Hero Content** (`components/landing-page.tsx`): Server-rendered header, branding, and hero section for optimal SEO and performance
+- **Client-Only Auth Component** (`components/landing-page-client.tsx`): Dynamically imported with `ssr: false` to prevent Radix UI Tabs hydration issues
+- **CSRF Protection**: Auth forms fetch CSRF token on mount; submit buttons disabled until token loads
+- **Authentication Flow**: Login/signup forms post to `/api/auth/login` and `/api/auth/signup` with CSRF headers, redirecting to `/dashboard` on success
+- **Form Validation**: All fields marked `required` with proper autocomplete attributes; signup uses firstName/lastName matching API schema
+- **Security**: Full CSRF protection on state-changing operations, bcryptjs password hashing, rate limiting, Zod validation
 
 **Multi-Tenant UI Pages:**
 Key production-ready pages include Organizations Dashboard (Super Admin only), Support Tickets, Subscription Management, and a public Pricing Page.
