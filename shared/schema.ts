@@ -43,6 +43,27 @@ export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
 // ===================================
+// PASSWORD RESET TOKENS
+// ===================================
+
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  token: text("token").notNull().unique(),
+  expiresAt: timestamp("expires_at").notNull(),
+  used: boolean("used").notNull().default(false),
+  usedAt: timestamp("used_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  tokenIdx: index("password_reset_tokens_token_idx").on(table.token),
+  userIdIdx: index("password_reset_tokens_user_id_idx").on(table.userId),
+  expiresAtIdx: index("password_reset_tokens_expires_at_idx").on(table.expiresAt),
+}));
+
+export type PasswordResetToken = typeof passwordResetTokens.$inferSelect;
+export type InsertPasswordResetToken = typeof passwordResetTokens.$inferInsert;
+
+// ===================================
 // TEAM HIERARCHY & INVITATIONS
 // ===================================
 

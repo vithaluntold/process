@@ -75,6 +75,15 @@ export const loginSchema = z.object({
   password: z.string().min(1, "Password is required"),
 });
 
+export const passwordResetRequestSchema = z.object({
+  email: emailSchema,
+});
+
+export const passwordResetConfirmSchema = z.object({
+  token: z.string().min(1, "Reset token is required"),
+  password: passwordSchema,
+});
+
 export const processSchema = z.object({
   name: processNameSchema,
   description: descriptionSchema,
