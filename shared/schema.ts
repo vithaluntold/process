@@ -99,6 +99,10 @@ export const samlConfigurations = pgTable("saml_configurations", {
   spEntityId: text("sp_entity_id").notNull(), // Our SP entity ID (usually app URL)
   spAssertionConsumerServiceUrl: text("sp_acs_url").notNull(), // Where IdP sends SAML response
   spSingleLogoutUrl: text("sp_slo_url"), // Our SLO endpoint (optional)
+  spPrivateKey: text("sp_private_key"), // SP private key for signing AuthnRequests (PEM format, optional)
+  spCertificate: text("sp_certificate"), // SP X.509 signing certificate for metadata (PEM format, optional)
+  spDecryptionPrivateKey: text("sp_decryption_private_key"), // Separate private key for decrypting assertions (PEM format, optional)
+  spEncryptionCertificate: text("sp_encryption_certificate"), // Separate public certificate for encryption (PEM format, optional)
   
   // SAML Settings
   wantAssertionsSigned: boolean("want_assertions_signed").notNull().default(true),

@@ -24,6 +24,10 @@ const samlConfigSchema = z.object({
   spEntityId: z.string().min(1, 'SP Entity ID is required'),
   spAssertionConsumerServiceUrl: z.string().url('SP ACS URL must be a valid URL'),
   spSingleLogoutUrl: z.string().url().optional().nullable(),
+  spPrivateKey: z.string().optional().nullable(),  // SP private key for signing AuthnRequests
+  spCertificate: z.string().optional().nullable(),  // SP signing certificate for metadata
+  spDecryptionPrivateKey: z.string().optional().nullable(),  // Separate decryption key for assertions
+  spEncryptionCertificate: z.string().optional().nullable(),  // Separate encryption certificate for metadata
   wantAssertionsSigned: z.boolean().optional(),
   wantAuthnResponseSigned: z.boolean().optional(),
   signatureAlgorithm: z.enum(['sha1', 'sha256', 'sha512']).optional(),

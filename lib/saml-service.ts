@@ -139,12 +139,12 @@ export function samlConfigToStrategyOptions(
 ) {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:5000';
 
-  return {
+  const options: any = {
     // Identity Provider Configuration
     entryPoint: config.idpSsoUrl,
     issuer: config.spEntityId,
-    cert: config.idpCertificate,
-    identifierFormat: config.idpEntityId,
+    cert: config.idpCertificate,  // IdP certificate for validating responses (DO NOT OVERWRITE!)
+    identifierFormat: 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress', // Valid NameID format
 
     // Service Provider Configuration
     callbackUrl: `${baseUrl}/api/auth/saml/${organizationSlug}/callback`,
@@ -163,10 +163,34 @@ export function samlConfigToStrategyOptions(
     acceptedClockSkewMs: (config.clockTolerance || 300) * 1000, // Convert seconds to ms
     validateInResponseTo: true, // Prevent replay attacks
     requestIdExpirationPeriodMs: 28800000, // 8 hours
+    allowUnencryptedAssertion: config.allowUnencryptedAssertion, // Honor encryption settings
 
     // Passport Configuration
     passReqToCallback: true,
   };
+
+  // Add SP signing credentials if provided (for signed AuthnRequests)
+  if (config.spPrivateKey) {
+    options.privateKey = config.spPrivateKey;  // For signing AuthnRequests
+  }
+
+  // Add SP decryption key if provided (for encrypted assertions)
+  // Use dedicated decryption key if available, otherwise fall back to signing key
+  if (config.spDecryptionPrivateKey) {
+    options.decryptionPvk = config.spDecryptionPrivateKey;
+  } else if (config.spPrivateKey) {
+    options.decryptionPvk = config.spPrivateKey;  // Fallback: reuse signing key
+  }
+
+  // Validate configuration consistency
+  if (!options.decryptionPvk && !config.allowUnencryptedAssertion) {
+    throw new Error('SAML configuration error: Encrypted assertions required but no decryption key provided');
+  }
+
+  // SP certificate will be exposed via metadata generation, not in options
+  // (options.cert must remain the IdP certificate for response validation)
+
+  return options;
 }
 
 /**
@@ -318,11 +342,66 @@ export function validateSamlConfig(config: Partial<schema.InsertSamlConfiguratio
     errors.push('SP ACS URL must be a valid URL');
   }
 
-  // Validate certificate format
+  // Validate certificate formats
   if (config.idpCertificate) {
     const cert = config.idpCertificate.trim();
     if (!cert.includes('BEGIN CERTIFICATE') || !cert.includes('END CERTIFICATE')) {
       errors.push('IdP Certificate must be in PEM format');
+    }
+  }
+
+  if (config.spCertificate) {
+    const cert = config.spCertificate.trim();
+    if (!cert.includes('BEGIN CERTIFICATE') || !cert.includes('END CERTIFICATE')) {
+      errors.push('SP Certificate must be in PEM format');
+    }
+  }
+
+  // Validate private key formats
+  if (config.spPrivateKey) {
+    const key = config.spPrivateKey.trim();
+    if (!key.includes('BEGIN') || !key.includes('PRIVATE KEY')) {
+      errors.push('SP Private Key must be in PEM format');
+    }
+  }
+
+  if (config.spDecryptionPrivateKey) {
+    const key = config.spDecryptionPrivateKey.trim();
+    if (!key.includes('BEGIN') || !key.includes('PRIVATE KEY')) {
+      errors.push('SP Decryption Private Key must be in PEM format');
+    }
+  }
+
+  // Validate signing configuration
+  if (config.spPrivateKey && !config.spCertificate) {
+    errors.push('SP Certificate is required when SP Private Key is provided (for AuthnRequest signing)');
+  }
+
+  if (config.spCertificate && !config.spPrivateKey) {
+    errors.push('SP Private Key is required when SP Certificate is provided (for AuthnRequest signing)');
+  }
+
+  // Validate encryption configuration
+  if (config.spDecryptionPrivateKey && !config.spEncryptionCertificate) {
+    errors.push('SP Encryption Certificate is required when SP Decryption Private Key is provided');
+  }
+
+  if (config.spEncryptionCertificate && !config.spDecryptionPrivateKey) {
+    errors.push('SP Decryption Private Key is required when SP Encryption Certificate is provided');
+  }
+
+  if (!config.allowUnencryptedAssertion) {
+    const hasDecryptionKey = config.spDecryptionPrivateKey || config.spPrivateKey;
+    if (!hasDecryptionKey) {
+      errors.push('Decryption key required: Either SP Private Key or SP Decryption Private Key must be provided when encrypted assertions are required (allowUnencryptedAssertion is false)');
+    }
+  }
+
+  // Validate encryption certificate format
+  if (config.spEncryptionCertificate) {
+    const cert = config.spEncryptionCertificate.trim();
+    if (!cert.includes('BEGIN CERTIFICATE') || !cert.includes('END CERTIFICATE')) {
+      errors.push('SP Encryption Certificate must be in PEM format');
     }
   }
 
@@ -366,12 +445,54 @@ export async function generateSpMetadata(organizationId: number): Promise<string
   const acsUrl = config.spAssertionConsumerServiceUrl;
   const sloUrl = config.spSingleLogoutUrl;
 
+  // Format SP certificate for XML (remove PEM headers but preserve base64 structure)
+  const formatCertForXml = (cert: string | null) => {
+    if (!cert) return '';
+    return cert
+      .replace(/-----BEGIN CERTIFICATE-----/g, '')
+      .replace(/-----END CERTIFICATE-----/g, '')
+      .trim();
+  };
+
+  const spSigningCertXml = config.spCertificate ? formatCertForXml(config.spCertificate) : '';
+  const spEncryptionCertXml = config.spEncryptionCertificate ? formatCertForXml(config.spEncryptionCertificate) : '';
+
+  // SAML metadata rules: AuthnRequestsSigned requires both private key AND certificate
+  const authnRequestsSigned = !!(config.spPrivateKey && config.spCertificate);
+
+  // Generate signing KeyDescriptor if signing certificate exists
+  const signingKeyDescriptor = spSigningCertXml
+    ? `    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>${spSigningCertXml}</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>`
+    : '';
+
+  // Generate encryption KeyDescriptor if encryption certificate exists
+  // Use dedicated encryption cert if available, otherwise fall back to signing cert
+  const encryptionCertForMetadata = spEncryptionCertXml || spSigningCertXml;
+  const encryptionKeyDescriptor = encryptionCertForMetadata
+    ? `    <md:KeyDescriptor use="encryption">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>${encryptionCertForMetadata}</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>`
+    : '';
+
+  const keyDescriptors = signingKeyDescriptor + '\n' + encryptionKeyDescriptor;
+
   // Generate SAML metadata XML
   const metadata = `<?xml version="1.0"?>
 <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
                      xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
                      entityID="${entityId}">
-  <md:SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="${config.wantAssertionsSigned}" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+  <md:SPSSODescriptor AuthnRequestsSigned="${authnRequestsSigned}" WantAssertionsSigned="${config.wantAssertionsSigned}" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+${keyDescriptors}
     <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
     <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
                                  Location="${acsUrl}"

@@ -64,7 +64,8 @@ export async function POST(
 
     // SECURITY: Retrieve and validate organization from cached request metadata
     // This is safer than cookies which may not survive cross-site POST from IdP
-    const inResponseTo = (profile as any).inResponseTo;
+    // Note: @node-saml/node-saml uses capital 'I' in InResponseTo
+    const inResponseTo = (profile as any).InResponseTo;
     
     if (!inResponseTo) {
       throw new Error('Missing InResponseTo in SAML response');
