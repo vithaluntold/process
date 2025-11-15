@@ -24,39 +24,18 @@ async function fetchUser() {
 }
 
 export function useAuth() {
-  const { data: user, isLoading, isFetching, isSuccess, error, status } = useQuery({
+  const { data: user, isLoading, status } = useQuery({
     queryKey: ["/api/auth/user"],
     queryFn: fetchUser,
-    retry: 1,
-    retryDelay: 500,
+    retry: false,
     staleTime: 5 * 60 * 1000,
-    gcTime: 10 * 60 * 1000,
-    refetchOnMount: false,
+    refetchOnMount: true,
     refetchOnWindowFocus: false,
-    networkMode: 'always',
   });
-
-  const isInitialLoading = status === 'pending';
-  const isAuthenticated = !!user && status === 'success';
-  
-  // Determine auth status based on query status
-  let authStatus: 'authenticated' | 'loading' | 'unauthenticated';
-  if (status === 'pending') {
-    authStatus = 'loading';
-  } else if (status === 'success' || status === 'error') {
-    // Show landing page for both success with no user and error states
-    authStatus = user ? 'authenticated' : 'unauthenticated';
-  } else {
-    authStatus = 'unauthenticated';
-  }
 
   return {
     user: user ?? null,
-    isAuthenticated,
-    isLoading: isLoading || isFetching,
-    isInitialLoading,
-    isSuccess,
-    error,
-    authStatus,
+    isAuthenticated: !!user,
+    isLoading,
   };
 }

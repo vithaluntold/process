@@ -334,7 +334,7 @@ export default function LandingPage() {
           >
             <div className="relative">
               <Card className="relative shadow-2xl border border-slate-200 dark:border-slate-700/50 bg-white dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl overflow-hidden">
-                <Tabs defaultValue="login" className="w-full">
+                <Tabs defaultValue="login" className="w-full" suppressHydrationWarning>
                   <CardHeader className="space-y-6 pb-6 pt-8">
                     <div className="text-center space-y-2">
                       <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
