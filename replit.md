@@ -38,6 +38,21 @@ All authenticated dashboard pages use a standardized `AppLayout` component for c
 - **Desktop Applications:** An installable Electron-based main desktop application and a separate Desktop Capture Agent for task mining.
 - **Deployment:** Supports containerized deployment using Docker with multi-stage builds and Docker Compose.
 
+## Test Credentials for Development
+For testing the authentication system, use these credentials on the landing page:
+
+**Test Account:**
+- **Email:** test@epiq.com
+- **Password:** Test@123
+- **Role:** admin
+- **Organization ID:** 2
+
+**Authentication Features:**
+- **Login:** Users can log in using email and password. JWT session tokens are stored in HTTP-only cookies.
+- **Signup:** New users automatically get a new organization created and are assigned as admin role. Each signup creates an isolated tenant environment.
+- **Password Reset:** Available at `/auth/forgot-password` with enterprise-grade token-based reset flow.
+- **SSO/SAML:** Enterprise Single Sign-On available for organizations with SAML 2.0 configuration.
+
 ## External Dependencies
 - **Database**: PostgreSQL (via Neon)
 - **ORM**: Drizzle ORM
