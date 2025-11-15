@@ -177,6 +177,14 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
                     )}
                   </Button>
                 </div>
+                <div className="flex justify-end">
+                  <a 
+                    href="/auth/forgot-password" 
+                    className="text-sm text-cyan-600 hover:text-cyan-700 dark:text-cyan-500 dark:hover:text-cyan-400 font-medium transition-colors"
+                  >
+                    Forgot Password?
+                  </a>
+                </div>
               </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-4 px-8 pb-8">
