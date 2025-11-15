@@ -1,117 +1,42 @@
 # EPI-Q - Enterprise Process Mining SaaS Platform
 
 ## Overview
-EPI-Q is a next-generation enterprise-grade multi-tenant SaaS process intelligence platform designed to transform raw operational data into actionable insights. Its core purpose is to provide organizations with transparency into their processes, enabling predictive intelligence, real-time monitoring, and continuous improvement. The platform aims to make process mining accessible, deliver rapid insights, and evolve processes into living digital twins. Key capabilities include process discovery, predictive analytics, digital twin simulation, real-time monitoring, AI-powered insights, task mining, and advanced reporting. EPI-Q strives to make businesses faster, smarter, and more efficient by leveraging AI and advanced algorithms.
+EPI-Q is a next-generation enterprise-grade multi-tenant SaaS process intelligence platform. Its core purpose is to transform raw operational data into actionable insights, providing organizations with transparency, predictive intelligence, real-time monitoring, and continuous improvement. The platform aims to make process mining accessible, deliver rapid insights, and evolve processes into living digital twins through capabilities like process discovery, predictive analytics, digital twin simulation, real-time monitoring, AI-powered insights, task mining, and advanced reporting. EPI-Q strives to enhance business efficiency and intelligence using AI and advanced algorithms.
 
 ## User Preferences
 - Prefers comprehensive documentation with detailed feature descriptions and step-by-step user guides
 - Consistent dashboard structure and navigation across all module pages
 
 ## System Architecture
-EPI-Q is a production-ready enterprise SaaS platform built with Next.js, React, and TypeScript. It utilizes a multi-tenant architecture with strict data isolation by `organizationId` and a robust role hierarchy (Super Admin, Admin, Employee). Security features include JWT-based authentication, team-based RBAC, Zod schema validation, SQL injection protection via Drizzle ORM, AES-256-GCM encrypted API keys, comprehensive CSRF protection, and distributed rate limiting across all API endpoints.
+EPI-Q is a production-ready enterprise SaaS platform built with Next.js, React, and TypeScript. It utilizes a multi-tenant architecture with strict data isolation by `organizationId` and a robust role hierarchy (Super Admin, Admin, Employee). Security features include JWT-based authentication, team-based RBAC, Zod schema validation, SQL injection protection via Drizzle ORM, AES-256-GCM encrypted API keys, comprehensive CSRF protection, and distributed rate limiting.
 
 **Tenant Isolation & Data Security:**
-The platform implements enterprise-grade tenant isolation to prevent cross-organization data leakage:
-- **Tenant Context System** (`lib/tenant-context.ts`): AsyncLocalStorage-based context that automatically tracks organizationId, userId, and role throughout request lifecycle
-- **Tenant-Safe Storage Layer** (`server/tenant-storage.ts`): All database queries automatically filter by organizationId from context, replacing legacy userId-only filtering
-- **API Wrapper Functions** (`lib/with-tenant-context.ts`): Higher-order functions (`withTenantContext`, `withAdminContext`, `withSuperAdminContext`) that automatically set up tenant context and enforce role-based access
-- **Automatic Context Enforcement**: All API endpoints wrapped with `withTenantContext` guarantee organizationId validation without manual checks
-- **Zero Trust Architecture**: Resources are validated against both userId AND organizationId, preventing access even if user IDs collide across organizations
-- **Versioned API** (`/api/v1/*`): New tenant-safe API endpoints provide backward-compatible migration path from legacy endpoints
+The platform implements enterprise-grade tenant isolation using an `AsyncLocalStorage`-based tenant context system that automatically tracks `organizationId`, `userId`, and `role`. All database queries are automatically filtered by `organizationId`, and API endpoints are wrapped with higher-order functions to enforce tenant context and role-based access, ensuring a zero-trust architecture. A versioned API (`/api/v1/*`) facilitates backward-compatible migration.
 
 **Team Hierarchy & RBAC:**
-The platform implements comprehensive team-based access control with:
-- Team management system with dedicated team managers who own processes
-- Invite-only employee registration via secure token-based invitations
-- Team-level process ownership and access control
-- Role-based permissions (Team Manager, Team Member)
-- Admin-defined team structure during employee onboarding
-- RBAC enforcement at API level using `server/rbac.ts` utilities
-- Process access based on team membership and ownership
+Comprehensive team-based access control includes a team management system with dedicated team managers, invite-only employee registration via secure tokens, team-level process ownership, and role-based permissions (Team Manager, Team Member). RBAC is enforced at the API level.
 
 **UI/UX Design:**
-The frontend uses Tailwind CSS with shadcn/ui components, `framer-motion` for animations, and a custom brand color palette. It features full dark/light mode support, responsiveness, and interactive process visualizations powered by ReactFlow with auto-layout and color-coded elements.
-
-**Dashboard Design (Celonis.cloud-Inspired):**
-The main dashboard (`components/dashboard-client.tsx`) features a clean, professional enterprise aesthetic inspired by Celonis.cloud:
-- **Typography**: Inter font family for optimal screen readability and professional appearance
-- **Color Scheme**: Professional blue accent colors (blue-600, violet-600, emerald-600, orange-600) with light backgrounds (blue-50, violet-50, etc.) replacing heavy gradients
-- **Layout**: Clean white cards with subtle slate-200 borders, minimal shadows, and generous spacing on slate-50/50 background
-- **Navigation**: Breadcrumb navigation (Dashboard > Overview) and tab-based organization (Overview, Processes, Analytics, AI Insights)
-- **Components**: Simplified metric cards with colored icon badges, clean typography, and data-focused design
-- **Action Bar**: Refresh, Date Range selector, Export, and Upload Data buttons with consistent styling
-- **Tab Content**: 
-  - Overview: Dashboard stats, Digital Twin, and What-If Scenario cards
-  - Processes: Process Discovery + Conformance Checking (side-by-side)
-  - Analytics: Performance Analytics
-  - AI Insights: Automation Opportunities + Predictive Analytics (side-by-side)
-- **Enterprise Aesthetic**: Reduced animations, clean borders, professional spacing, and data-centric presentation 
+The frontend uses Tailwind CSS with shadcn/ui components, `framer-motion` for animations, and a custom brand color palette, supporting dark/light modes and responsiveness. Interactive process visualizations are powered by ReactFlow. The dashboard design is inspired by Celonis.cloud, featuring a professional aesthetic with Inter font, blue accent colors, clean white cards, subtle borders, and a clear layout with breadcrumb navigation and tab-based organization.
 
 **Navigation Architecture:**
-All authenticated dashboard pages use a standardized `AppLayout` component wrapper for consistent navigation. The `AppLayout` component provides:
-- Unified header with branding, theme toggle, and user dropdown
-- Responsive sidebar with role-based menu filtering (Super Admins see Organizations link)
-- Mobile-friendly sheet navigation
-- Consistent page structure with `PageHeader` component for titles and descriptions
-
-Pages using AppLayout:
-- Dashboard (app/page.tsx)
-- Organizations (app/(dashboard)/admin/organizations/page.tsx) - Super Admin only
-- Teams (app/(dashboard)/admin/teams/page.tsx) - Admin/Super Admin only
-- Invitations (app/(dashboard)/admin/invitations/page.tsx) - Admin/Super Admin only
-- Support Tickets (app/(dashboard)/admin/tickets/page.tsx)
-- Subscription & Billing (app/(dashboard)/subscription/page.tsx)
-- Pricing Plans (app/(dashboard)/pricing/page.tsx)
-- Settings (app/settings/page.tsx)
-- What-If Scenarios (app/what-if-scenarios/page.tsx)
-- Downloads (app/downloads/page.tsx)
-- All feature pages (Process Discovery, Task Mining, Monitoring, etc.)
-
-Public Pages (no AppLayout):
-- Login (app/auth/login/page.tsx)
-- Accept Invitation (app/auth/accept-invite/page.tsx) - Invite-only employee registration
-- Landing Page (app/page.tsx) - Hybrid SSR/CSR architecture with dynamic auth component
-
-**Landing Page Architecture** (✅ PRODUCTION-READY):
-Implemented hybrid SSR/CSR architecture to prevent React hydration mismatches:
-- **SSR Hero Content** (`components/landing-page.tsx`): Server-rendered header, branding, and hero section for optimal SEO and performance
-- **Client-Only Auth Component** (`components/landing-page-client.tsx`): Dynamically imported with `ssr: false` to prevent Radix UI Tabs hydration issues
-- **CSRF Protection**: Auth forms fetch CSRF token on mount; submit buttons disabled until token loads
-- **Authentication Flow**: Login/signup forms post to `/api/auth/login` and `/api/auth/signup` with CSRF headers, redirecting to `/dashboard` on success
-- **Form Validation**: All fields marked `required` with proper autocomplete attributes; signup uses firstName/lastName matching API schema
-- **Security**: Full CSRF protection on state-changing operations, bcryptjs password hashing, rate limiting, Zod validation
-
-**Multi-Tenant UI Pages:**
-Key production-ready pages include Organizations Dashboard (Super Admin only), Support Tickets, Subscription Management, and a public Pricing Page.
+All authenticated dashboard pages use a standardized `AppLayout` component for consistent navigation, offering a unified header, responsive sidebar with role-based filtering, and mobile-friendly sheet navigation. Public pages like Login and the Landing Page have distinct architectures, with the Landing Page utilizing a hybrid SSR/CSR approach to prevent hydration mismatches and ensure SEO.
 
 **Technical Implementations & Feature Specifications:**
-- **Team Management**: Complete team hierarchy system with team creation, manager assignment, member management, and team-based process ownership. Includes invite-only employee registration with secure token-based invitations (7-day expiration).
-- **Pricing & Subscription**: 4-tier enterprise SaaS pricing model aligned with industry leaders (Celonis, UiPath):
-  - FREE: $0/mo - 5 seats, 3 processes, 1K events/month, Community Support
-  - ELITE: $299/mo ($2,990/yr) - 50 seats, 25 processes, 50K events/month, Email Support, API Access
-  - PRO: $999/mo ($9,990/yr) - Up to 1,000 seats, Unlimited Processes, 500K events/month, Priority Support (Most Popular)
-  - ENTERPRISE: Contact Sales - Unlimited seats (1000+), Unlimited Events, Dedicated Support, SLA, Custom AI Models, SSO/SAML, On-Premise Option
-- **Core Features**: Process Discovery (Alpha Miner, Inductive Miner), Conformance Checking (token-based replay), Performance Analytics, Automation Opportunities, Predictive Analytics, Digital Twin Simulation, Task Mining, Real-Time Process Monitoring, and Advanced Reporting.
-- **Unified Process Analysis Dashboard**: A multi-tab interface consolidating all analysis types (Discovery, Conformance, Performance, Automation, Predictive) with filtering, sharing options, and deep linking.
-- **Predictive Analytics Suite**: Integrates Anomaly Detection (five algorithms), Forecasting (hybrid time-series prediction with Holt-Winters, linear regression, moving average, EWMA denoising), and Scenario Analysis (discrete-event simulator for optimistic, expected, pessimistic scenarios).
-- **Digital Twin Simulation**: Includes Process Modeling (ReactFlow visualization), What-If Analysis (scenario configuration, real-time simulation), and Impact Simulation (baseline vs. optimized comparison).
-- **AI-Powered Features**: AI Process Assistant using configurable LLM providers (Replit AI, OpenAI, Mistral AI, DeepSeek, Groq, Together AI) with encrypted API key storage.
-- **Task Mining**: Desktop activity analysis with AI-powered pattern detection and a standalone Electron-based Desktop Capture Agent.
-- **Payment Gateway Support**: Production-ready infrastructure with a factory pattern supporting Razorpay, PayU, and Payoneer, including subscription management and webhook verification.
-- **SSO/SAML Authentication** (✅ PRODUCTION-READY): Enterprise-grade Single Sign-On using SAML 2.0 protocol for Fortune 500 deployment. Features multi-tenant SAML configuration (one config per organization), auto-provisioning with attribute mapping, SP metadata generation, comprehensive validation, audit logging, and support for all major IdPs (Okta, Azure AD, Google Workspace, OneLogin, Ping Identity). Full implementation:
-  - **4-Field Encryption Architecture**: Complete support for separate signing and encryption key pairs (spPrivateKey, spCertificate, spDecryptionPrivateKey, spEncryptionCertificate) with automatic fallback to single-key configurations
-  - **Security Features**: Replay attack prevention via InResponseTo validation, cross-tenant protection via cache-based organization validation, signature verification, encrypted assertion support, proper NameID formatting, clock skew tolerance
-  - **SAML Configuration Schema** (`shared/schema.ts`): Complete multi-tenant samlConfigurations table with all IdP/SP settings, signing/encryption credentials, and security options
-  - **Service Layer** (`lib/saml-service.ts`): Strategy configuration, validation, user provisioning, metadata generation, and shared cache (SamlRequestCache) for request tracking
-  - **API Endpoints**: Login initiation (`/api/auth/saml/[orgSlug]`), ACS callback with signature validation (`/api/auth/saml/[orgSlug]/callback`), SP metadata generation (`/api/auth/saml/[orgSlug]/metadata`)
-  - **Admin Configuration API** (`/api/admin/saml-config`): Tenant-safe CRUD with comprehensive validation (PEM format, key/cert pairing, encryption consistency)
-  - **Metadata Generation**: SAML 2.0 compliant SP metadata with separate signing/encryption KeyDescriptors, AuthnRequestsSigned attribute, and proper NameID format
-  - **Documentation** (`docs/SSO_SAML_SETUP_GUIDE.md`): IdP-specific setup guides for Okta, Azure AD, Google Workspace, OneLogin with configuration examples
-  - **Dependencies**: @node-saml/passport-saml, @node-saml/node-saml for enterprise SAML 2.0 compliance
-- **Backend**: PostgreSQL database managed via Neon, Drizzle ORM, comprehensive RESTful API, and robust authentication/security (centralized JWT with production enforcement, bcryptjs password hashing, Zod schema validation, user ID-based rate limiting across all endpoints, comprehensive CSRF protection with 100% coverage of state-changing operations, secure cookie configuration with httpOnly/secure/sameSite flags).
-- **GDPR Compliance**: Features for data export, right to deletion, and consent management.
-- **Desktop Applications**: An installable Electron-based main desktop application for Windows, macOS, and Linux, and a separate Desktop Capture Agent for task mining.
-- **Deployment**: Supports containerized deployment using Docker with multi-stage builds and Docker Compose.
+- **Password Reset System:** An enterprise-grade password reset system with database-stored, cryptographically secure, one-time use, time-limited tokens. Features include rate limiting, full CSRF protection, audit logging, bcryptjs password hashing, and Zod validation.
+- **Multi-Tenant UI Pages:** Key production-ready pages include Organizations Dashboard (Super Admin only), Support Tickets, Subscription Management, and a public Pricing Page.
+- **Team Management:** Full team hierarchy, member management, and invite-only employee registration with secure token-based invitations.
+- **Pricing & Subscription:** A 4-tier enterprise SaaS pricing model (FREE, ELITE, PRO, ENTERPRISE) with integrated payment gateway support (Razorpay, PayU, Payoneer).
+- **Core Features:** Includes Process Discovery (Alpha Miner, Inductive Miner), Conformance Checking, Performance Analytics, Automation Opportunities, Predictive Analytics, Digital Twin Simulation, Task Mining, Real-Time Process Monitoring, and Advanced Reporting, consolidated into a Unified Process Analysis Dashboard.
+- **Predictive Analytics Suite:** Integrates Anomaly Detection (five algorithms), Forecasting (hybrid time-series prediction), and Scenario Analysis (discrete-event simulation).
+- **Digital Twin Simulation:** Features Process Modeling (ReactFlow), What-If Analysis, and Impact Simulation.
+- **AI-Powered Features:** An AI Process Assistant leveraging configurable LLM providers (Replit AI, OpenAI, Mistral AI, DeepSeek, Groq, Together AI) with encrypted API key storage.
+- **Task Mining:** Desktop activity analysis with AI-powered pattern detection, supported by an Electron-based Desktop Capture Agent.
+- **SSO/SAML Authentication:** Enterprise-grade Single Sign-On using SAML 2.0 with multi-tenant configuration, auto-provisioning, 4-field encryption architecture, security features (replay attack prevention, signature verification), and support for major IdPs.
+- **Backend:** PostgreSQL database (Neon), Drizzle ORM, comprehensive RESTful API, robust authentication, bcryptjs password hashing, Zod schema validation, user ID-based rate limiting, and secure cookie configuration.
+- **GDPR Compliance:** Features for data export, right to deletion, and consent management.
+- **Desktop Applications:** An installable Electron-based main desktop application and a separate Desktop Capture Agent for task mining.
+- **Deployment:** Supports containerized deployment using Docker with multi-stage builds and Docker Compose.
 
 ## External Dependencies
 - **Database**: PostgreSQL (via Neon)
