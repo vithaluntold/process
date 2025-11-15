@@ -1,21 +1,27 @@
+/**
+ * SECURITY FIX: This endpoint has been updated to use tenant-safe storage functions
+ * Previous version only filtered by userId - now properly enforces organizationId
+ */
+
 import { NextRequest, NextResponse } from "next/server";
-import * as storage from "@/server/storage";
-import { getCurrentUser } from "@/lib/server-auth";
+import { withTenantContext } from "@/lib/with-tenant-context";
+import {
+  getProcessesByTenant,
+  getProcessCountByTenant,
+  createProcessForTenant,
+} from "@/server/tenant-storage";
 import { processSchema, sanitizeInput } from "@/lib/validation";
 import { appCache } from "@/lib/cache";
 import { withApiGuards } from "@/lib/api-guards";
 import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
+import { requireTenantContext } from "@/lib/tenant-context";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 30;
 
-export async function GET(request: NextRequest) {
+export const GET = withTenantContext(async (request: NextRequest) => {
   try {
-    const user = await getCurrentUser();
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
+    const { organizationId, userId, role } = requireTenantContext();
     const { searchParams } = new URL(request.url);
     
     const parsedLimit = parseInt(searchParams.get('limit') || '50', 10);
@@ -28,7 +34,8 @@ export async function GET(request: NextRequest) {
       ? parsedOffset 
       : 0;
 
-    const cacheKey = `processes:${user.id}:${limit}:${offset}`;
+    // SECURITY FIX: Include userId and role in cache key to prevent cross-role data leakage
+    const cacheKey = `processes:org${organizationId}:user${userId}:role${role}:${limit}:${offset}`;
     const cached = appCache.get(cacheKey);
     if (cached) {
       return NextResponse.json(cached, {
@@ -39,9 +46,10 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // SECURITY FIX: Now filters by organizationId from context, not just userId
     const [processes, total] = await Promise.all([
-      storage.getProcessesByUser(user.id, { limit, offset }),
-      storage.getProcessCount(user.id),
+      getProcessesByTenant({ limit, offset }),
+      getProcessCountByTenant(),
     ]);
     
     const responseData = { 
@@ -67,16 +75,11 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
-}
+});
 
-export async function POST(request: NextRequest) {
+export const POST = withTenantContext(async (request: NextRequest) => {
   try {
-    const user = await getCurrentUser();
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const guardError = withApiGuards(request, 'process-create', API_WRITE_LIMIT, user.id);
+    const guardError = withApiGuards(request, 'process-create', API_WRITE_LIMIT);
     if (guardError) return guardError;
 
     const body = await request.json();
@@ -91,8 +94,8 @@ export async function POST(request: NextRequest) {
 
     const { name, description, source } = validation.data;
 
-    const process = await storage.createProcess({
-      userId: user.id,
+    // SECURITY FIX: Automatically sets organizationId and userId from tenant context
+    const process = await createProcessForTenant({
       name: sanitizeInput(name),
       description: description ? sanitizeInput(description) : undefined,
       source: sanitizeInput(source),
@@ -107,4 +110,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-}
+});

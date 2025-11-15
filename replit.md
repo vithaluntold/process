@@ -10,6 +10,15 @@ EPI-Q is a next-generation enterprise-grade multi-tenant SaaS process intelligen
 ## System Architecture
 EPI-Q is a production-ready enterprise SaaS platform built with Next.js, React, and TypeScript. It utilizes a multi-tenant architecture with strict data isolation by `organizationId` and a robust role hierarchy (Super Admin, Admin, Employee). Security features include JWT-based authentication, team-based RBAC, Zod schema validation, SQL injection protection via Drizzle ORM, AES-256-GCM encrypted API keys, comprehensive CSRF protection, and distributed rate limiting across all API endpoints.
 
+**Tenant Isolation & Data Security:**
+The platform implements enterprise-grade tenant isolation to prevent cross-organization data leakage:
+- **Tenant Context System** (`lib/tenant-context.ts`): AsyncLocalStorage-based context that automatically tracks organizationId, userId, and role throughout request lifecycle
+- **Tenant-Safe Storage Layer** (`server/tenant-storage.ts`): All database queries automatically filter by organizationId from context, replacing legacy userId-only filtering
+- **API Wrapper Functions** (`lib/with-tenant-context.ts`): Higher-order functions (`withTenantContext`, `withAdminContext`, `withSuperAdminContext`) that automatically set up tenant context and enforce role-based access
+- **Automatic Context Enforcement**: All API endpoints wrapped with `withTenantContext` guarantee organizationId validation without manual checks
+- **Zero Trust Architecture**: Resources are validated against both userId AND organizationId, preventing access even if user IDs collide across organizations
+- **Versioned API** (`/api/v1/*`): New tenant-safe API endpoints provide backward-compatible migration path from legacy endpoints
+
 **Team Hierarchy & RBAC:**
 The platform implements comprehensive team-based access control with:
 - Team management system with dedicated team managers who own processes
