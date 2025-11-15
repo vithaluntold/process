@@ -8,7 +8,8 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Shield } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface LandingPageAuthProps {
   csrfToken: string;
@@ -20,6 +21,7 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
   const [showSignupPassword, setShowSignupPassword] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -47,9 +49,11 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
         description: "Logged in successfully!",
       });
 
+      // Invalidate auth queries and redirect
+      await queryClient.invalidateQueries({ queryKey: ["user"] });
       setTimeout(() => {
         window.location.href = "/";
-      }, 500);
+      }, 300);
     } catch (error: any) {
       console.error("Login error:", error);
       toast({
@@ -90,9 +94,11 @@ export function LandingPageAuth({ csrfToken: initialCsrfToken }: LandingPageAuth
         description: "Account created successfully! Logging you in...",
       });
 
+      // Invalidate auth queries and redirect
+      await queryClient.invalidateQueries({ queryKey: ["user"] });
       setTimeout(() => {
         window.location.href = "/";
-      }, 500);
+      }, 300);
     } catch (error: any) {
       console.error("Signup error:", error);
       toast({
