@@ -226,6 +226,13 @@ export default function DashboardClient() {
                 <p className="text-muted-foreground mt-1">Analyze, optimize, and automate your business processes.</p>
               </div>
               <div className="flex items-center gap-2">
+                <Button 
+                  onClick={() => setUploadModalOpen(true)}
+                  className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white shadow-lg"
+                >
+                  <FileUp className="mr-2 h-4 w-4" />
+                  Upload Data
+                </Button>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" size="sm" className="hover:bg-brand/10 hover:text-brand hover:border-brand/50">
