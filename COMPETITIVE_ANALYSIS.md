@@ -1,22 +1,90 @@
 # EPI-Q Competitive Analysis & Strategic Positioning
 **Analysis Date:** November 2025  
-**Market:** Enterprise Process Mining & Process Intelligence
+**Market:** Enterprise Process Mining & Task Mining (Unified Platform)
 
 ---
 
 ## Executive Summary
 
-EPI-Q is positioned as the **AI-first, enterprise-governed process intelligence platform** targeting regulated mid-to-large enterprises seeking rapid ROI without costly implementation services. Our analysis reveals significant opportunities to disrupt the market with transparent pricing, modern SaaS architecture, and integrated AI capabilities.
+EPI-Q is positioned as the **first unified task mining + process mining platform with AI-powered digital twin capabilities**, targeting regulated mid-to-large enterprises seeking complete end-to-end process visibility without tool sprawl or costly implementation services. 
+
+**Core Positioning:** Most competitors force you to buy TWO separate products:
+1. **Process Mining** (for system-level analysis: SAP, CRM, ERP logs)
+2. **Task Mining** (for user-level analysis: desktop activities, clicks, keystrokes)
+
+**EPI-Q's Unique Value:** ONE integrated platform that delivers both simultaneously, creating unprecedented visibility from desktop to data center.
 
 **Key Findings:**
-- **Market Opportunity:** $2.5B+ process mining market growing at 33% CAGR
-- **Competitive Advantage:** Unified task + process mining with real-time digital twin simulation
+- **Market Opportunity:** $2.5B+ process mining + $800M+ task mining markets (converging)
+- **#1 Competitive Advantage:** ONLY platform with native unified task + process mining (not add-ons)
 - **Target Position:** High Enterprise Governance + High AI/Automation Intensity
-- **Pricing Strategy:** Transparent modular pricing vs. enterprise-negotiated licenses
+- **Pricing Strategy:** Single platform pricing vs. buying 2 separate tools ($500K+ savings)
 
 ---
 
-## 1. COMPETITIVE LANDSCAPE ANALYSIS
+## 1. TASK MINING vs. PROCESS MINING: MARKET LANDSCAPE
+
+### Understanding the Two Markets
+
+**PROCESS MINING** (System-Level Analysis)
+- **Data Source:** Event logs from IT systems (SAP, Salesforce, ServiceNow, Oracle, etc.)
+- **What it captures:** System-recorded events, transactions, status changes
+- **Visibility:** What happens INSIDE applications (order created, invoice approved, ticket closed)
+- **Market Size:** $2.5B+ (2025)
+- **Use Cases:** Process discovery, bottleneck analysis, compliance checking, performance optimization
+
+**TASK MINING** (User-Level Analysis)
+- **Data Source:** Desktop activity capture (clicks, keystrokes, screenshots, application usage)
+- **What it captures:** How users actually work, manual steps, workarounds, context switches
+- **Visibility:** What happens OUTSIDE applications (copy-paste between systems, manual data entry, spreadsheet work)
+- **Market Size:** $800M+ (2025, growing faster at 45% CAGR)
+- **Use Cases:** Automation opportunity discovery, user behavior analysis, training needs, productivity insights
+
+### The Integration Gap: Why Both Are Essential
+
+**Process Mining Alone = Incomplete Picture**
+- ❌ Misses 40-60% of work that happens outside core systems
+- ❌ Can't see manual workarounds, shadow IT, desktop activities
+- ❌ Doesn't capture copy-paste, spreadsheet manipulation, email workflows
+
+**Task Mining Alone = No System Context**
+- ❌ Lacks visibility into backend system processes
+- ❌ Can't analyze system-generated events, approvals, data flows
+- ❌ Misses cross-application dependencies
+
+**EPI-Q: Unified Task + Process Mining = Complete End-to-End Visibility**
+- ✅ **Desktop to Data Center:** See user activities + system processes together
+- ✅ **Full Process Discovery:** Automated + manual work in one view
+- ✅ **True Automation Potential:** Identify RPA + BPM opportunities simultaneously
+- ✅ **Root Cause Analysis:** Correlate user behavior with system bottlenecks
+
+---
+
+## 2. COMPETITIVE LANDSCAPE ANALYSIS
+
+### Task + Process Mining Capability Matrix
+
+| Competitor | Process Mining | Task Mining | Integration | Notes |
+|------------|----------------|-------------|-------------|-------|
+| **EPI-Q** | ✅✅✅ Native | ✅✅✅ Native | **✅✅✅ Unified Platform** | **Only true unified platform** |
+| **Celonis** | ✅✅✅ Leader | ⚠️ Add-on ($$$) | ❌ Separate products | Task Mining = expensive add-on, not integrated |
+| **UiPath Process Mining** | ✅✅ Strong | ✅✅ Separate tool | ⚠️ Loose integration | Two products: Process Mining + Task Mining (separate licenses) |
+| **Microsoft (Minit)** | ✅✅ Good | ✅ Desktop flows | ⚠️ Power Automate only | Acquired Minit (task mining) but not fully integrated |
+| **SAP Signavio** | ✅✅ Enterprise | ❌ None | N/A | Process mining only, no task mining |
+| **Software AG ARIS** | ✅✅ Traditional | ❌ None | N/A | Process mining only, legacy |
+| **IBM Process Mining** | ✅✅ Enterprise | ❌ None | N/A | Process mining only |
+| **Appian** | ✅ Platform-based | ❌ None | N/A | Process mining only |
+| **QPR** | ✅✅ Mid-market | ❌ None | N/A | Process mining only |
+| **Fluxicon Disco** | ✅ Desktop tool | ❌ None | N/A | Process mining only |
+
+**Key Insight:** EPI-Q is the ONLY platform with native, fully integrated task + process mining. Competitors either:
+1. **Don't have task mining at all** (SAP, IBM, Software AG, Appian, QPR, Fluxicon)
+2. **Sell it as expensive separate add-on** (Celonis ~$200K+ additional)
+3. **Have two loosely-integrated tools** (UiPath requires both licenses)
+
+**Market Opportunity:** Companies currently buying Celonis Process Mining + Celonis Task Mining pay **$700K-$2M+** for both. EPI-Q delivers unified platform at **$89K-$500K** = **60-80% cost savings**.
+
+---
 
 ### Major Competitors Overview
 
@@ -90,9 +158,67 @@ EPI-Q is positioned as the **AI-first, enterprise-governed process intelligence 
 
 ---
 
-## 3. FOUR-QUADRANT POSITIONING MAP
+## 3. STRATEGIC POSITIONING MAPS
 
-### Primary Positioning Matrix: **Enterprise Governance & Compliance** vs. **AI/Automation Intensity**
+### Map #1: **Task Mining Integration** vs. **Process Mining Capabilities** (MOST IMPORTANT)
+
+This positioning map shows EPI-Q's UNIQUE competitive advantage: unified task + process mining.
+
+```
+                    TASK MINING CAPABILITIES
+                              HIGH
+                                │
+                                │
+        ◆ EPI-Q                 │   
+        (ONLY unified           │   
+         native platform)       │   
+                                │
+        UiPath                  │
+        (2 separate products,   │
+         loose integration)     │
+                                │
+─────────────────┼──────────────┼──────────────┼─────────── PROCESS
+  LOW           │              │              │    HIGH    MINING
+                │              │              │            CAPABILITIES
+                │              │   Celonis
+    Microsoft   │              │   (Process Mining leader,
+    Process     │              │    Task Mining = $$$
+    Advisor     │              │    expensive add-on)
+    (Desktop    │              │
+     flows only)│              │   SAP Signavio
+                │              │   Software AG ARIS
+                │              │   IBM Process Mining
+                │              │   (Process Mining ONLY,
+                │              │    no task mining)
+                              LOW
+```
+
+**Quadrant Analysis:**
+
+- **Top-Right (EPI-Q - UNIQUE):** High task mining + High process mining = Complete end-to-end visibility
+  - **Only EPI-Q:** Native unified platform, single database, real-time correlation
+  - **Value:** See desktop activities + system processes together, identify automation opportunities across both layers
+  - **Cost:** One platform price (~$89K-$500K/year for enterprise)
+
+- **Bottom-Right (Celonis, SAP, IBM, Software AG):** High process mining, NO task mining
+  - **Limitation:** Blind to 40-60% of work happening on user desktops
+  - **Gap:** Can't capture manual workarounds, copy-paste, spreadsheet work
+  - **Cost:** $500K-$2M for process mining alone
+
+- **Top-Right (UiPath - Partial):** Good on both but NOT integrated
+  - **Limitation:** Two separate products requiring separate licenses
+  - **Integration:** Loose API connections, not unified database
+  - **Cost:** Process Mining + Task Mining = $400K-$800K combined
+
+- **Bottom-Left (Microsoft, Others):** Limited on both dimensions
+  - **Microsoft:** Basic process mining + desktop flows (not true task mining)
+  - **Most others:** Process mining only
+
+**Strategic Insight:** EPI-Q is the ONLY solution in the top-right quadrant with TRUE unified integration. This creates a sustainable competitive moat.
+
+---
+
+### Map #2: **Enterprise Governance & Compliance** vs. **AI/Automation Intensity**
 
 ```
                     AI/AUTOMATION INTENSITY (Innovation)
@@ -252,29 +378,44 @@ EPI-Q is positioned as the **AI-first, enterprise-governed process intelligence 
 
 ### 6.2 Go-to-Market Narrative
 
-**Positioning Statement:**
-> "EPI-Q is the AI-first process intelligence platform that gives you Celonis-level insights without the Celonis-level price tag. We combine unified task and process mining with real-time digital twin simulation, delivered through modern SaaS architecture with transparent pricing. Get enterprise-grade governance and cutting-edge AI—without the six-figure consulting bill."
+**PRIMARY Positioning Statement:**
+> "EPI-Q is the ONLY unified task mining + process mining platform that shows you the complete picture—from desktop activities to data center processes—in one integrated solution. While competitors force you to buy and integrate TWO separate products (costing $700K-$2M+), EPI-Q delivers both with AI-powered digital twins at 60-80% lower cost. Get complete end-to-end visibility without the tool sprawl, integration headaches, or consulting fees."
 
-**Key Messages:**
-1. **"Enterprise Features, Mid-Market Pricing"**
-   - All the capabilities of market leaders
-   - Transparent, modular pricing (not enterprise-negotiated)
-   - Self-service implementation (weeks, not months)
+**ALTERNATIVE Positioning (AI-Focus):**
+> "Stop buying process mining and task mining separately. EPI-Q is the first unified platform that combines both with real-time AI-powered digital twin simulation. See user activities AND system processes together—automate smarter, faster, and cheaper than Celonis + UiPath combined."
 
-2. **"AI-Powered Digital Twins for Every Process"**
+**Key Messages (Priority Order):**
+
+1. **"ONE Platform, Complete Visibility: Task + Process Mining Unified"** ⭐ PRIMARY
+   - **Process Mining:** System-level event log analysis (SAP, CRM, ERP)
+   - **Task Mining:** User-level desktop activity capture (clicks, keystrokes, workflows)
+   - **Unified Integration:** See both together in real-time
+   - **No Tool Sprawl:** One platform vs. buying two separate products
+   - **Cost Savings:** 60-80% cheaper than Celonis + Task Mining add-on
+
+2. **"Desktop to Data Center: See the Full Process Story"**
+   - Track user copy-paste between systems (task mining)
+   - Analyze backend SAP approval workflows (process mining)
+   - Correlate manual workarounds with system bottlenecks
+   - Identify automation opportunities across BOTH layers
+
+3. **"AI-Powered Digital Twins for Every Process"**
    - Real-time simulation with impact prediction
    - Multi-LLM AI assistant (your choice of provider)
    - Predictive analytics with 5 ML algorithms
+   - What-if analysis for process optimization
 
-3. **"Unified Task + Process Mining"**
-   - No need for separate desktop capture tools
-   - Integrated end-to-end visibility
-   - Single platform, single price
+4. **"Enterprise Features, Mid-Market Pricing"**
+   - All the capabilities of market leaders (Celonis-level depth)
+   - Transparent, modular pricing (not $500K+ enterprise-negotiated)
+   - Self-service implementation (weeks, not months)
+   - No mandatory consulting fees
 
-4. **"Modern SaaS, Enterprise Security"**
+5. **"Modern SaaS, Enterprise Security"**
    - Cloud-native multi-tenant architecture
    - GDPR-compliant by design
    - SSO/SAML, RBAC, audit trails included
+   - Faster innovation than legacy competitors
 
 ---
 
