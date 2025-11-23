@@ -6,6 +6,23 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  experimental: {
+    // Optimize memory usage during build
+    webpackMemoryOptimizations: true,
+  },
+  // Reduce memory usage by limiting concurrent builds
+  webpack: (config, { isServer }) => {
+    config.optimization = {
+      ...config.optimization,
+      minimize: true,
+      moduleIds: 'deterministic',
+    };
+    
+    // Reduce memory usage
+    config.parallelism = 1;
+    
+    return config;
+  },
   allowedDevOrigins: [
     '*.pike.replit.dev',
     '*.replit.dev',
