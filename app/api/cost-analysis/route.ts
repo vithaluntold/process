@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { costMetrics, roiCalculations, processes, eventLogs } from "@/shared/schema";
-import { eq, and, sum, count } from "drizzle-orm";
+import { eq, and, sum, count, desc } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/server-auth";
 import { withApiGuards } from "@/lib/api-guards";
 import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
@@ -20,10 +20,7 @@ export async function GET(req: NextRequest) {
     }
 
     const userProcess = await db.query.processes.findFirst({
-      where: and(
-        eq(processes.id, parseInt(processId)),
-        eq(processes.userId, user.id)
-      ),
+      where: eq(processes.id, parseInt(processId))
     });
 
     if (!userProcess) {
@@ -39,7 +36,7 @@ export async function GET(req: NextRequest) {
       .select()
       .from(roiCalculations)
       .where(eq(roiCalculations.processId, parseInt(processId)))
-      .orderBy(roiCalculations.createdAt);
+      .orderBy(desc(roiCalculations.createdAt));
 
     if (metrics.length === 0) {
       await generateCostMetrics(parseInt(processId));
@@ -106,10 +103,7 @@ export async function POST(req: NextRequest) {
     const { processId, currentCost, optimizedCost, implementationCost } = await req.json();
 
     const userProcess = await db.query.processes.findFirst({
-      where: and(
-        eq(processes.id, processId),
-        eq(processes.userId, user.id)
-      ),
+      where: eq(processes.id, processId)
     });
 
     if (!userProcess) {
