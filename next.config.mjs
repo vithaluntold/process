@@ -17,6 +17,16 @@ const nextConfig = {
     webpackMemoryOptimizations: true,
     // Optimize CSS loading
     optimizeCss: true,
+    // Disable webpack cache to save memory
+    turbotrace: {
+      logLevel: 'error',
+    },
+  },
+  // Reduce bundle size
+  compiler: {
+    removeConsole: {
+      exclude: ['error', 'warn'],
+    },
   },
   // Reduce memory usage by limiting concurrent builds
   webpack: (config, { isServer }) => {

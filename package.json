@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "NODE_OPTIONS='--max-old-space-size=3072 --optimize-for-size --max-semi-space-size=1 --gc-interval=100' next build",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096 --optimize-for-size --max-semi-space-size=1 --gc-interval=50 --gc-global' NEXT_TELEMETRY_DISABLED=1 next build",
     "dev": "NODE_OPTIONS='--max-old-space-size=1536' next dev -H 0.0.0.0 -p 5000",
     "dev:turbo": "next dev --turbo -H 0.0.0.0 -p 5000",
     "lint": "next lint",
