@@ -1,20 +1,34 @@
 """
 Production-Ready LSTM Autoencoder Anomaly Detector
-Deep learning reconstruction-based anomaly detection
+Deep learning reconstruction-based anomaly detection with proper lifecycle management
 """
 
 import numpy as np
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 import sys
 from pathlib import Path
+import json
+from dataclasses import asdict
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from base.ml_model_base import AnomalyDetectorBase, TrainingResult, PredictionResult, TrainingError
+from base.ml_model_base import (
+    AnomalyDetectorBase, TrainingResult, PredictionResult, TrainingError,
+    PersistenceError, ArtifactStore, LifecycleContext
+)
+from base.preprocessing import FeatureExtractor
 
 
 class LSTMAutoencoderDetector(AnomalyDetectorBase):
-    """LSTM Autoencoder for anomaly detection"""
+    """
+    Production-Ready LSTM Autoencoder for anomaly detection
+    
+    Features:
+    - Deterministic preprocessing with FeatureExtractor
+    - Lifecycle hooks (before_train, after_train, before_predict, etc.)
+    - Complete artifact persistence (TensorFlow model + scaler + threshold)
+    - Proper save/load cycle
+    """
     
     def __init__(
         self,
@@ -28,8 +42,7 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
         self.sequence_length = sequence_length
         self.encoding_dim = encoding_dim
         self.epochs = epochs
-        self.scaler_mean = None
-        self.scaler_std = None
+        self.feature_extractor: Optional[FeatureExtractor] = None
         
         self.metadata.hyperparameters.update({
             'sequence_length': sequence_length,
@@ -37,25 +50,34 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
             'epochs': epochs
         })
     
-    def _scale_data(self, data: np.ndarray, fit: bool = False) -> np.ndarray:
-        """Normalize data"""
-        if fit:
-            self.scaler_mean = np.mean(data, axis=0)
-            self.scaler_std = np.std(data, axis=0)
-        
-        return (data - self.scaler_mean) / (self.scaler_std + 1e-8)
-    
     def _create_sequences(self, data: np.ndarray) -> np.ndarray:
         """Create LSTM sequences"""
         X = []
-        
         for i in range(len(data) - self.sequence_length + 1):
             X.append(data[i:i + self.sequence_length])
-        
         return np.array(X)
     
     def train(self, data: Any, **kwargs) -> TrainingResult:
-        """Train LSTM Autoencoder"""
+        """
+        Train LSTM Autoencoder with production-ready lifecycle management
+        
+        Args:
+            data: Time series data (array-like)
+            **kwargs: Additional training parameters
+        
+        Returns:
+            TrainingResult with metrics and metadata
+        """
+        # Lifecycle hook: before training
+        from datetime import datetime
+        context = LifecycleContext(
+            model_id=self.model_id,
+            model_type=self.model_type,
+            operation='train',
+            timestamp=datetime.now()
+        )
+        self.before_train(context)
+        
         try:
             import tensorflow as tf
             from tensorflow import keras
@@ -73,8 +95,13 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
         
         self.metadata.status = 'training'
         
-        # Scale data
-        scaled_data = self._scale_data(data, fit=True)
+        # Deterministic preprocessing with FeatureExtractor
+        from base.preprocessing import FeatureConfig
+        config = FeatureConfig(scaling='standard', feature_selection=False)
+        self.feature_extractor = FeatureExtractor(config)
+        
+        # Fit and transform data
+        scaled_data = self.feature_extractor.fit_transform(data)
         
         # Create sequences
         X = self._create_sequences(scaled_data)
@@ -126,6 +153,15 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
         
         self.metadata.performance_metrics = metrics
         
+        # Lifecycle hook: after training (fresh context)
+        after_context = LifecycleContext(
+            model_id=self.model_id,
+            model_type=self.model_type,
+            operation='train',
+            timestamp=datetime.now()
+        )
+        self.after_train(after_context)
+        
         return TrainingResult(
             success=True,
             metrics=metrics,
@@ -133,9 +169,34 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
         )
     
     def predict(self, data: Any, **kwargs) -> PredictionResult:
-        """Detect anomalies"""
+        """
+        Detect anomalies with production-ready lifecycle management
+        
+        Args:
+            data: Time series data (array-like)
+            **kwargs: Additional prediction parameters
+        
+        Returns:
+            PredictionResult with anomaly detections
+        """
         if not self.is_trained:
             raise ValueError("Model must be trained first")
+        
+        # Explicit error handling for missing artifacts
+        if self.feature_extractor is None:
+            raise PersistenceError("feature_extractor not loaded - model state incomplete")
+        if self.threshold is None:
+            raise ValueError("threshold not set - model not properly trained or loaded")
+        
+        # Lifecycle hook: before prediction
+        from datetime import datetime
+        context = LifecycleContext(
+            model_id=self.model_id,
+            model_type=self.model_type,
+            operation='predict',
+            timestamp=datetime.now()
+        )
+        self.before_predict(context)
         
         if isinstance(data, list):
             data = np.array(data)
@@ -143,8 +204,16 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
         if len(data.shape) == 1:
             data = data.reshape(-1, 1)
         
-        # Scale and create sequences
-        scaled_data = self._scale_data(data, fit=False)
+        # Validate sufficient data for sequence creation
+        if len(data) < self.sequence_length:
+            from base.ml_model_base import PredictionError
+            raise PredictionError(
+                f"Insufficient data: need at least {self.sequence_length} samples, got {len(data)}. "
+                f"Provide more historical data for sequence-based prediction."
+            )
+        
+        # Deterministic preprocessing (use fitted extractor)
+        scaled_data = self.feature_extractor.transform(data)
         X = self._create_sequences(scaled_data)
         
         # Get reconstructions
@@ -163,6 +232,15 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
                 'severity': 'critical' if error > self.threshold * 2 else 'high' if is_anomaly else 'low',
                 'confidence': float(error / self.threshold) if self.threshold > 0 else 1.0
             })
+        
+        # Lifecycle hook: after prediction (fresh context)
+        after_context = LifecycleContext(
+            model_id=self.model_id,
+            model_type=self.model_type,
+            operation='predict',
+            timestamp=datetime.now()
+        )
+        self.after_predict(after_context)
         
         return PredictionResult(
             predictions=results,
@@ -204,3 +282,132 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
             'recall': float(recall),
             'f1_score': float(f1)
         }
+    
+    def save(self, path: Optional[str] = None) -> str:
+        """
+        Save model with proper artifact persistence
+        
+        CRITICAL: TensorFlow models need special handling (save as .keras format)
+        Also saves feature_extractor and threshold artifacts
+        
+        Returns:
+            Path to saved model directory
+        """
+        if not self.is_trained:
+            raise PersistenceError("Cannot save untrained model")
+        
+        # Lifecycle hook: before save
+        from datetime import datetime
+        context = LifecycleContext(
+            model_id=self.model_id,
+            model_type=self.model_type,
+            operation='save',
+            timestamp=datetime.now()
+        )
+        self.before_save(context)
+        
+        # Setup save directory
+        save_dir = Path(path) if path else self.model_dir
+        artifact_dir = save_dir / "artifacts"
+        artifact_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Save TensorFlow model using ArtifactStore (with proper checksum)
+        model_path = artifact_dir / "model.keras"
+        model_spec = ArtifactStore.save(
+            self.model, model_path, 'tensorflow', name='model'
+        )
+        
+        # Save feature extractor
+        extractor_path = artifact_dir / "feature_extractor.joblib"
+        extractor_spec = ArtifactStore.save(
+            self.feature_extractor, extractor_path, 'joblib', name='feature_extractor'
+        )
+        
+        # Save threshold
+        threshold_path = artifact_dir / "threshold.json"
+        threshold_spec = ArtifactStore.save(
+            {'threshold': self.threshold}, threshold_path, 'json', name='threshold'
+        )
+        
+        # Build complete artifacts list (prevents accumulation on repeated saves)
+        from datetime import datetime
+        self.metadata.artifacts = [model_spec, extractor_spec, threshold_spec]
+        self.metadata.trained_at = datetime.now().isoformat()
+        
+        # Save manifest
+        manifest_path = save_dir / "manifest.json"
+        with open(manifest_path, 'w') as f:
+            json.dump(asdict(self.metadata), f, indent=2, default=str)
+        
+        # Lifecycle hook: after save
+        after_context = LifecycleContext(
+            model_id=self.model_id,
+            model_type=self.model_type,
+            operation='save',
+            timestamp=datetime.now()
+        )
+        self.after_save(after_context)
+        
+        return str(save_dir)
+    
+    def load(self, path: str) -> None:
+        """
+        Load model with complete state restoration
+        
+        Args:
+            path: Path to model directory
+        """
+        try:
+            import tensorflow as tf
+            from tensorflow import keras
+        except ImportError:
+            raise PersistenceError("tensorflow not available for loading")
+        
+        load_dir = Path(path)
+        manifest_path = load_dir / "manifest.json"
+        artifact_dir = load_dir / "artifacts"
+        
+        # Load manifest
+        with open(manifest_path, 'r') as f:
+            manifest_dict = json.load(f)
+        
+        # Convert to dataclass
+        from base.ml_model_base import ArtifactSpec, ModelManifest, ManifestValidator
+        manifest_dict['artifacts'] = [
+            ArtifactSpec(**a) for a in manifest_dict.get('artifacts', [])
+        ]
+        self.metadata = ModelManifest(**manifest_dict)
+        
+        # Validate manifest (ensures artifact integrity)
+        ManifestValidator.validate(self.metadata, artifact_dir)
+        
+        # Load artifacts using ArtifactStore
+        for artifact_spec in self.metadata.artifacts:
+            artifact_path = artifact_dir / artifact_spec.filename
+            if artifact_spec.name == 'model':
+                self.model = ArtifactStore.load(artifact_path, artifact_spec.artifact_type)
+            elif artifact_spec.name == 'feature_extractor':
+                self.feature_extractor = ArtifactStore.load(artifact_path, artifact_spec.artifact_type)
+            elif artifact_spec.name == 'threshold':
+                threshold_data = ArtifactStore.load(artifact_path, artifact_spec.artifact_type)
+                self.threshold = threshold_data['threshold']
+        
+        # Verify all required artifacts were loaded
+        if self.model is None:
+            raise PersistenceError("Failed to load model artifact")
+        if self.feature_extractor is None:
+            raise PersistenceError("Failed to load feature_extractor artifact")
+        if self.threshold is None:
+            raise PersistenceError("Failed to load threshold artifact")
+        
+        self.is_trained = True
+        
+        # Lifecycle hook
+        from datetime import datetime
+        context = LifecycleContext(
+            model_id=self.model_id,
+            model_type=self.model_type,
+            operation='load',
+            timestamp=datetime.now()
+        )
+        self.after_load(context)

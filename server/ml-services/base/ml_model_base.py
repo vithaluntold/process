@@ -199,7 +199,7 @@ class ArtifactStore:
         Args:
             obj: Object to save
             path: Save path
-            artifact_type: 'joblib', 'pickle', or 'json'
+            artifact_type: 'joblib', 'pickle', 'json', or 'tensorflow'
             name: Optional explicit artifact name (defaults to path.stem)
         
         Returns:
@@ -215,6 +215,9 @@ class ArtifactStore:
         elif artifact_type == 'json':
             with open(path, 'w') as f:
                 json.dump(obj, f, default=str)
+        elif artifact_type == 'tensorflow':
+            # TensorFlow keras model - save as .keras format
+            obj.save(path, save_format='keras')
         else:
             raise ValueError(f"Unsupported artifact type: {artifact_type}")
         
@@ -241,6 +244,13 @@ class ArtifactStore:
         elif artifact_type == 'json':
             with open(path, 'r') as f:
                 return json.load(f)
+        elif artifact_type == 'tensorflow':
+            # TensorFlow keras model
+            try:
+                from tensorflow import keras
+                return keras.models.load_model(path)
+            except ImportError:
+                raise ValueError("tensorflow not available for loading")
         else:
             raise ValueError(f"Unsupported artifact type: {artifact_type}")
 
@@ -293,6 +303,10 @@ class MLModelBase(ABC):
     
     def before_save(self, context: LifecycleContext) -> None:
         """Called before saving"""
+        pass
+    
+    def after_save(self, context: LifecycleContext) -> None:
+        """Called after saving"""
         pass
     
     def after_load(self, context: LifecycleContext) -> None:
