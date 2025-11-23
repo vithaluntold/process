@@ -9,9 +9,11 @@ import tempfile
 import shutil
 from pathlib import Path
 
-sys.path.append(str(Path(__file__).parent.parent))
+# Add parent directory to path to import from anomaly-detection folder
+sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).parent.parent / "anomaly-detection"))
 
-from anomaly_detection.lstm_autoencoder_prod import LSTMAutoencoderDetector
+from lstm_autoencoder_prod import LSTMAutoencoderDetector
 
 
 def test_lstm_ae_train_save_load_predict():
@@ -19,7 +21,7 @@ def test_lstm_ae_train_save_load_predict():
     CRITICAL REGRESSION TEST: Verify complete train→save→load→predict cycle
     
     Tests:
-    1. Training works with FeatureExtractor
+    1. Training works with StandardScaler
     2. TensorFlow .keras model saves with proper checksum
     3. Feature extractor joblib serialization works
     4. Threshold persistence works
@@ -57,11 +59,11 @@ def test_lstm_ae_train_save_load_predict():
         train_result = detector.train(data)
         assert train_result.success, "Training failed"
         assert detector.is_trained, "Model not marked as trained"
-        assert detector.feature_extractor is not None, "FeatureExtractor not created"
+        assert detector.scaler is not None, "StandardScaler not created"
         assert detector.threshold is not None, "Threshold not set"
         print(f"   ✓ Training successful")
         print(f"   ✓ Threshold: {detector.threshold:.4f}")
-        print(f"   ✓ FeatureExtractor: {type(detector.feature_extractor).__name__}")
+        print(f"   ✓ StandardScaler: {type(detector.scaler).__name__}")
         
         # STEP 2: Make predictions before save
         print("\n[3/7] Making predictions before save...")
@@ -81,12 +83,12 @@ def test_lstm_ae_train_save_load_predict():
         # Verify artifacts exist
         artifacts_dir = Path(saved_path) / "artifacts"
         assert (artifacts_dir / "model.keras").exists(), "TensorFlow model not saved"
-        assert (artifacts_dir / "feature_extractor.joblib").exists(), "FeatureExtractor not saved"
+        assert (artifacts_dir / "scaler.joblib").exists(), "StandardScaler not saved"
         assert (artifacts_dir / "threshold.json").exists(), "Threshold not saved"
         assert (Path(saved_path) / "manifest.json").exists(), "Manifest not saved"
         print(f"   ✓ Saved to: {saved_path}")
         print(f"   ✓ TensorFlow model: {(artifacts_dir / 'model.keras').stat().st_size} bytes")
-        print(f"   ✓ FeatureExtractor: {(artifacts_dir / 'feature_extractor.joblib').stat().st_size} bytes")
+        print(f"   ✓ StandardScaler: {(artifacts_dir / 'scaler.joblib').stat().st_size} bytes")
         
         # STEP 4: Create new detector instance and load
         print("\n[5/7] Loading model from disk...")
@@ -99,7 +101,7 @@ def test_lstm_ae_train_save_load_predict():
         detector2.load(saved_path)
         assert detector2.is_trained, "Loaded model not marked as trained"
         assert detector2.model is not None, "TensorFlow model not loaded"
-        assert detector2.feature_extractor is not None, "FeatureExtractor not loaded"
+        assert detector2.scaler is not None, "StandardScaler not loaded"
         assert detector2.threshold is not None, "Threshold not loaded"
         print(f"   ✓ Model loaded successfully")
         print(f"   ✓ Threshold restored: {detector2.threshold:.4f}")
@@ -129,7 +131,7 @@ def test_lstm_ae_train_save_load_predict():
         print("=" * 60)
         print("\n✓ Train->Save->Load->Predict cycle works correctly")
         print("✓ TensorFlow .keras persistence verified")
-        print("✓ FeatureExtractor joblib serialization verified")
+        print("✓ StandardScaler joblib serialization verified")
         print("✓ Threshold persistence verified")
         print("✓ Predictions are reproducible after load")
         

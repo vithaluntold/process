@@ -16,7 +16,7 @@ from base.ml_model_base import (
     AnomalyDetectorBase, TrainingResult, PredictionResult, TrainingError,
     PersistenceError, ArtifactStore, LifecycleContext
 )
-from base.preprocessing import FeatureExtractor
+from base.preprocessing import StandardScaler
 
 
 class LSTMAutoencoderDetector(AnomalyDetectorBase):
@@ -24,7 +24,7 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
     Production-Ready LSTM Autoencoder for anomaly detection
     
     Features:
-    - Deterministic preprocessing with FeatureExtractor
+    - Deterministic preprocessing with StandardScaler
     - Lifecycle hooks (before_train, after_train, before_predict, etc.)
     - Complete artifact persistence (TensorFlow model + scaler + threshold)
     - Proper save/load cycle
@@ -42,7 +42,7 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
         self.sequence_length = sequence_length
         self.encoding_dim = encoding_dim
         self.epochs = epochs
-        self.feature_extractor: Optional[FeatureExtractor] = None
+        self.scaler: Optional[StandardScaler] = None
         
         self.metadata.hyperparameters.update({
             'sequence_length': sequence_length,
@@ -95,13 +95,9 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
         
         self.metadata.status = 'training'
         
-        # Deterministic preprocessing with FeatureExtractor
-        from base.preprocessing import FeatureConfig
-        config = FeatureConfig(scaling='standard', feature_selection=False)
-        self.feature_extractor = FeatureExtractor(config)
-        
-        # Fit and transform data
-        scaled_data = self.feature_extractor.fit_transform(data)
+        # Deterministic preprocessing with StandardScaler
+        self.scaler = StandardScaler()
+        scaled_data = self.scaler.fit_transform(data)
         
         # Create sequences
         X = self._create_sequences(scaled_data)
@@ -183,8 +179,8 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
             raise ValueError("Model must be trained first")
         
         # Explicit error handling for missing artifacts
-        if self.feature_extractor is None:
-            raise PersistenceError("feature_extractor not loaded - model state incomplete")
+        if self.scaler is None:
+            raise PersistenceError("scaler not loaded - model state incomplete")
         if self.threshold is None:
             raise ValueError("threshold not set - model not properly trained or loaded")
         
@@ -212,8 +208,8 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
                 f"Provide more historical data for sequence-based prediction."
             )
         
-        # Deterministic preprocessing (use fitted extractor)
-        scaled_data = self.feature_extractor.transform(data)
+        # Deterministic preprocessing (use fitted scaler)
+        scaled_data = self.scaler.transform(data)
         X = self._create_sequences(scaled_data)
         
         # Get reconstructions
@@ -317,10 +313,10 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
             self.model, model_path, 'tensorflow', name='model'
         )
         
-        # Save feature extractor
-        extractor_path = artifact_dir / "feature_extractor.joblib"
-        extractor_spec = ArtifactStore.save(
-            self.feature_extractor, extractor_path, 'joblib', name='feature_extractor'
+        # Save scaler
+        scaler_path = artifact_dir / "scaler.joblib"
+        scaler_spec = ArtifactStore.save(
+            self.scaler, scaler_path, 'joblib', name='scaler'
         )
         
         # Save threshold
@@ -331,7 +327,7 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
         
         # Build complete artifacts list (prevents accumulation on repeated saves)
         from datetime import datetime
-        self.metadata.artifacts = [model_spec, extractor_spec, threshold_spec]
+        self.metadata.artifacts = [model_spec, scaler_spec, threshold_spec]
         self.metadata.trained_at = datetime.now().isoformat()
         
         # Save manifest
@@ -386,8 +382,8 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
             artifact_path = artifact_dir / artifact_spec.filename
             if artifact_spec.name == 'model':
                 self.model = ArtifactStore.load(artifact_path, artifact_spec.artifact_type)
-            elif artifact_spec.name == 'feature_extractor':
-                self.feature_extractor = ArtifactStore.load(artifact_path, artifact_spec.artifact_type)
+            elif artifact_spec.name == 'scaler':
+                self.scaler = ArtifactStore.load(artifact_path, artifact_spec.artifact_type)
             elif artifact_spec.name == 'threshold':
                 threshold_data = ArtifactStore.load(artifact_path, artifact_spec.artifact_type)
                 self.threshold = threshold_data['threshold']
@@ -395,8 +391,8 @@ class LSTMAutoencoderDetector(AnomalyDetectorBase):
         # Verify all required artifacts were loaded
         if self.model is None:
             raise PersistenceError("Failed to load model artifact")
-        if self.feature_extractor is None:
-            raise PersistenceError("Failed to load feature_extractor artifact")
+        if self.scaler is None:
+            raise PersistenceError("Failed to load scaler artifact")
         if self.threshold is None:
             raise PersistenceError("Failed to load threshold artifact")
         
