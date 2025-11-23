@@ -39,6 +39,19 @@ export async function POST(
     });
   } catch (error) {
     console.error("Conformance checking error:", error);
+    
+    // Provide helpful guidance for common errors
+    if (error instanceof Error && error.message?.includes("No process model found")) {
+      return NextResponse.json(
+        {
+          error: "No process model available for conformance checking",
+          guidance: "Please discover a process model first by going to Process Discovery and clicking 'Discover Process Model'.",
+          details: error.message
+        },
+        { status: 404 }
+      );
+    }
+    
     return NextResponse.json(
       {
         error: "Failed to perform conformance checking",

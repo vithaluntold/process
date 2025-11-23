@@ -46,6 +46,18 @@ export async function POST(
     });
   } catch (error: any) {
     console.error("Error in process discovery:", error);
+    
+    // Provide helpful guidance for common errors
+    if (error.message?.includes("No event logs found")) {
+      return NextResponse.json(
+        { 
+          error: "No event log data found for this process",
+          guidance: "Please upload a CSV file with event logs first. Go to the dashboard and click 'Upload Event Log' to import your process data."
+        },
+        { status: 404 }
+      );
+    }
+    
     return NextResponse.json(
       { error: error.message || "Failed to discover process model" },
       { status: 500 }
