@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Download } from "lucide-react";
 
 export function Footer() {
@@ -8,9 +9,13 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-sm">
             <span className="text-muted-foreground">Powered by</span>
-            <span className="font-bold text-lg bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-500 bg-clip-text text-transparent">
-              FinACEverse
-            </span>
+            <Image 
+              src="/images/finaceverse-logo.png" 
+              alt="FinACEverse" 
+              width={140}
+              height={40}
+              className="h-8 w-auto object-contain"
+            />
           </div>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <Link href="/downloads" className="flex items-center gap-1.5 hover:text-cyan-500 transition-colors">
