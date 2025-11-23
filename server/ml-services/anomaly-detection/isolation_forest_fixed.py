@@ -278,21 +278,28 @@ class IsolationForestDetector(AnomalyDetectorBase):
         if not self.is_trained:
             raise PersistenceError("Cannot save untrained model")
         
-        # Call parent save (handles sklearn model)
+        # Call parent save (handles sklearn model and creates base manifest)
         save_dir = super().save(path)
         save_dir_path = Path(save_dir)
         artifact_dir = save_dir_path / "artifacts"
         
-        # ALSO save feature extractor as separate artifact
+        # Get the model artifact from parent save
+        model_artifact = self.metadata.artifacts[0]
+        
+        # Save feature extractor as separate artifact
         extractor_path = artifact_dir / "feature_extractor.joblib"
-        extractor_spec = ArtifactStore.save(self.feature_extractor, extractor_path, 'joblib')
+        extractor_spec = ArtifactStore.save(
+            self.feature_extractor, extractor_path, 'joblib', name='feature_extractor'
+        )
         
-        # ALSO save threshold
+        # Save threshold
         threshold_path = artifact_dir / "threshold.json"
-        threshold_spec = ArtifactStore.save({'threshold': self.threshold}, threshold_path, 'json')
+        threshold_spec = ArtifactStore.save(
+            {'threshold': self.threshold}, threshold_path, 'json', name='threshold'
+        )
         
-        # Update manifest with ALL artifacts
-        self.metadata.artifacts.extend([extractor_spec, threshold_spec])
+        # Replace artifacts list with complete set (prevents accumulation on repeated saves)
+        self.metadata.artifacts = [model_artifact, extractor_spec, threshold_spec]
         
         # Re-save manifest with all artifacts
         manifest_path = save_dir_path / "manifest.json"

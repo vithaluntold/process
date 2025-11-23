@@ -192,7 +192,7 @@ class ArtifactStore:
     """Manages artifact persistence"""
     
     @staticmethod
-    def save(obj: Any, path: Path, artifact_type: str = 'joblib') -> ArtifactSpec:
+    def save(obj: Any, path: Path, artifact_type: str = 'joblib', *, name: Optional[str] = None) -> ArtifactSpec:
         """
         Save artifact and return spec with checksum
         
@@ -200,6 +200,7 @@ class ArtifactStore:
             obj: Object to save
             path: Save path
             artifact_type: 'joblib', 'pickle', or 'json'
+            name: Optional explicit artifact name (defaults to path.stem)
         
         Returns:
             ArtifactSpec with checksum
@@ -222,7 +223,7 @@ class ArtifactStore:
         size = path.stat().st_size
         
         return ArtifactSpec(
-            name=path.stem,
+            name=name or path.stem,  # Use explicit name if provided, else path.stem
             filename=path.name,
             checksum=checksum,
             size_bytes=size,
