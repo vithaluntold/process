@@ -1,30 +1,174 @@
 """
-Base classes for all ML models with proper persistence and lifecycle management
-Production-ready ML service infrastructure
+Production-Ready ML Model Base with Versioned Lifecycle Management
+- Artifact/metadata separation
+- Manifest validation with checksums
+- Typed error hierarchy
+- Lifecycle hooks
 """
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional, Union
-from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Union, Callable
+from dataclasses import dataclass, asdict, field
 from datetime import datetime
+from enum import Enum
+from pathlib import Path
 import json
 import pickle
-import os
-from pathlib import Path
+import hashlib
+import joblib
+
+
+class ModelErrorCode(Enum):
+    """Standardized error codes"""
+    TRAINING_FAILED = "TRAINING_FAILED"
+    PREDICTION_FAILED = "PREDICTION_FAILED"
+    VALIDATION_ERROR = "VALIDATION_ERROR"
+    PERSISTENCE_ERROR = "PERSISTENCE_ERROR"
+    LIFECYCLE_ERROR = "LIFECYCLE_ERROR"
+    INCOMPATIBLE_VERSION = "INCOMPATIBLE_VERSION"
+    MISSING_ARTIFACT = "MISSING_ARTIFACT"
+    CHECKSUM_MISMATCH = "CHECKSUM_MISMATCH"
+
+
+class ModelError(Exception):
+    """Base exception for all model errors"""
+    def __init__(self, message: str, code: ModelErrorCode, context: Optional[Dict] = None):
+        self.message = message
+        self.code = code
+        self.context = context or {}
+        super().__init__(f"[{code.value}] {message}")
+
+
+class TrainingError(ModelError):
+    """Errors during training"""
+    def __init__(self, message: str, context: Optional[Dict] = None):
+        super().__init__(message, ModelErrorCode.TRAINING_FAILED, context)
+
+
+class PredictionError(ModelError):
+    """Errors during prediction"""
+    def __init__(self, message: str, context: Optional[Dict] = None):
+        super().__init__(message, ModelErrorCode.PREDICTION_FAILED, context)
+
+
+class ValidationError(ModelError):
+    """Errors during validation"""
+    def __init__(self, message: str, context: Optional[Dict] = None):
+        super().__init__(message, ModelErrorCode.VALIDATION_ERROR, context)
+
+
+class PersistenceError(ModelError):
+    """Errors during save/load"""
+    def __init__(self, message: str, code: ModelErrorCode = ModelErrorCode.PERSISTENCE_ERROR, context: Optional[Dict] = None):
+        super().__init__(message, code, context)
+
+
+class LifecycleError(ModelError):
+    """Errors during lifecycle transitions"""
+    def __init__(self, message: str, context: Optional[Dict] = None):
+        super().__init__(message, ModelErrorCode.LIFECYCLE_ERROR, context)
 
 
 @dataclass
-class ModelMetadata:
-    """Metadata for tracking model versions and performance"""
+class ArtifactSpec:
+    """Specification for a model artifact"""
+    name: str
+    filename: str
+    checksum: str
+    size_bytes: int
+    artifact_type: str  # 'pickle', 'joblib', 'json', 'weights'
+
+
+@dataclass
+class ModelManifest:
+    """Versioned manifest for model persistence"""
+    schema_version: str = "1.0.0"
+    model_id: str = ""
+    model_type: str = ""
+    version: str = "1.0.0"
+    created_at: str = ""
+    trained_at: Optional[str] = None
+    hyperparameters: Dict[str, Any] = field(default_factory=dict)
+    performance_metrics: Dict[str, float] = field(default_factory=dict)
+    training_samples: int = 0
+    status: str = "initialized"
+    artifacts: List[ArtifactSpec] = field(default_factory=list)
+    dependencies: Dict[str, str] = field(default_factory=dict)
+    input_schema_version: str = "1.0.0"
+
+
+class ManifestValidator:
+    """Validates model manifests"""
+    
+    REQUIRED_FIELDS = {'schema_version', 'model_id', 'model_type', 'version', 'status'}
+    SUPPORTED_SCHEMA_VERSIONS = {'1.0.0'}
+    
+    @classmethod
+    def validate(cls, manifest: ModelManifest, artifact_dir: Path) -> None:
+        """
+        Validate manifest completeness and artifact integrity
+        
+        Raises:
+            ValidationError: If validation fails
+        """
+        # Check required fields
+        manifest_dict = asdict(manifest)
+        missing_fields = cls.REQUIRED_FIELDS - set(manifest_dict.keys())
+        if missing_fields:
+            raise ValidationError(
+                f"Missing required fields: {missing_fields}",
+                context={'manifest': manifest_dict}
+            )
+        
+        # Check schema version
+        if manifest.schema_version not in cls.SUPPORTED_SCHEMA_VERSIONS:
+            raise PersistenceError(
+                f"Unsupported schema version: {manifest.schema_version}",
+                code=ModelErrorCode.INCOMPATIBLE_VERSION,
+                context={'supported': list(cls.SUPPORTED_SCHEMA_VERSIONS)}
+            )
+        
+        # Validate artifacts exist and checksums match
+        for artifact_spec in manifest.artifacts:
+            artifact_path = artifact_dir / artifact_spec.filename
+            
+            if not artifact_path.exists():
+                raise PersistenceError(
+                    f"Missing artifact: {artifact_spec.filename}",
+                    code=ModelErrorCode.MISSING_ARTIFACT,
+                    context={'artifact': artifact_spec.name}
+                )
+            
+            # Verify checksum
+            actual_checksum = cls._calculate_checksum(artifact_path)
+            if actual_checksum != artifact_spec.checksum:
+                raise PersistenceError(
+                    f"Checksum mismatch for {artifact_spec.filename}",
+                    code=ModelErrorCode.CHECKSUM_MISMATCH,
+                    context={
+                        'expected': artifact_spec.checksum,
+                        'actual': actual_checksum
+                    }
+                )
+    
+    @staticmethod
+    def _calculate_checksum(file_path: Path) -> str:
+        """Calculate SHA256 checksum of file"""
+        sha256 = hashlib.sha256()
+        with open(file_path, 'rb') as f:
+            for chunk in iter(lambda: f.read(4096), b''):
+                sha256.update(chunk)
+        return sha256.hexdigest()
+
+
+@dataclass
+class LifecycleContext:
+    """Immutable context passed to lifecycle hooks"""
     model_id: str
     model_type: str
-    version: str
-    created_at: datetime
-    trained_at: Optional[datetime]
-    hyperparameters: Dict[str, Any]
-    performance_metrics: Dict[str, float]
-    training_samples: int
-    status: str  # 'initialized', 'training', 'trained', 'failed'
+    operation: str
+    timestamp: datetime
+    data: Optional[Dict[str, Any]] = None
 
 
 @dataclass
@@ -32,8 +176,8 @@ class TrainingResult:
     """Standardized training result"""
     success: bool
     metrics: Dict[str, float]
-    metadata: ModelMetadata
-    error: Optional[str] = None
+    metadata: ModelManifest
+    error: Optional[ModelError] = None
 
 
 @dataclass
@@ -44,108 +188,224 @@ class PredictionResult:
     metadata: Optional[Dict[str, Any]] = None
 
 
+class ArtifactStore:
+    """Manages artifact persistence"""
+    
+    @staticmethod
+    def save(obj: Any, path: Path, artifact_type: str = 'joblib') -> ArtifactSpec:
+        """
+        Save artifact and return spec with checksum
+        
+        Args:
+            obj: Object to save
+            path: Save path
+            artifact_type: 'joblib', 'pickle', or 'json'
+        
+        Returns:
+            ArtifactSpec with checksum
+        """
+        path.parent.mkdir(parents=True, exist_ok=True)
+        
+        if artifact_type == 'joblib':
+            joblib.dump(obj, path)
+        elif artifact_type == 'pickle':
+            with open(path, 'wb') as f:
+                pickle.dump(obj, f)
+        elif artifact_type == 'json':
+            with open(path, 'w') as f:
+                json.dump(obj, f, default=str)
+        else:
+            raise ValueError(f"Unsupported artifact type: {artifact_type}")
+        
+        # Calculate checksum
+        checksum = ManifestValidator._calculate_checksum(path)
+        size = path.stat().st_size
+        
+        return ArtifactSpec(
+            name=path.stem,
+            filename=path.name,
+            checksum=checksum,
+            size_bytes=size,
+            artifact_type=artifact_type
+        )
+    
+    @staticmethod
+    def load(path: Path, artifact_type: str = 'joblib') -> Any:
+        """Load artifact"""
+        if artifact_type == 'joblib':
+            return joblib.load(path)
+        elif artifact_type == 'pickle':
+            with open(path, 'rb') as f:
+                return pickle.load(f)
+        elif artifact_type == 'json':
+            with open(path, 'r') as f:
+                return json.load(f)
+        else:
+            raise ValueError(f"Unsupported artifact type: {artifact_type}")
+
+
 class MLModelBase(ABC):
     """
-    Base class for all ML models
-    Enforces proper persistence, evaluation, and error handling
+    Production-ready base class for all ML models
+    - Versioned manifest with artifact/metadata separation
+    - Lifecycle hooks for extensibility
+    - Typed error handling
     """
     
     def __init__(self, model_id: str, model_type: str, version: str = "1.0.0"):
         self.model_id = model_id
         self.model_type = model_type
         self.version = version
-        self.metadata = ModelMetadata(
+        
+        # Initialize manifest
+        self.metadata = ModelManifest(
             model_id=model_id,
             model_type=model_type,
             version=version,
-            created_at=datetime.now(),
-            trained_at=None,
-            hyperparameters={},
-            performance_metrics={},
-            training_samples=0,
+            created_at=datetime.now().isoformat(),
             status='initialized'
         )
+        
         self.model = None
         self.is_trained = False
         
-        # Create model directory
-        self.model_dir = Path(f"models/{model_type}/{model_id}")
-        self.model_dir.mkdir(parents=True, exist_ok=True)
+        # Model directory structure: models/{type}/{id}/{version}/
+        self.model_dir = Path(f"models/{model_type}/{model_id}/{version}")
+        self.artifact_dir = self.model_dir / "artifacts"
         
+    # Lifecycle hooks (subclasses can override)
+    def before_train(self, context: LifecycleContext) -> None:
+        """Called before training starts"""
+        pass
+    
+    def after_train(self, context: LifecycleContext) -> None:
+        """Called after training completes"""
+        pass
+    
+    def before_predict(self, context: LifecycleContext) -> None:
+        """Called before prediction"""
+        pass
+    
+    def after_predict(self, context: LifecycleContext) -> None:
+        """Called after prediction"""
+        pass
+    
+    def before_save(self, context: LifecycleContext) -> None:
+        """Called before saving"""
+        pass
+    
+    def after_load(self, context: LifecycleContext) -> None:
+        """Called after loading"""
+        pass
+    
+    def on_rollback(self, context: LifecycleContext) -> None:
+        """Called during rollback"""
+        pass
+    
     @abstractmethod
     def train(self, data: Any, **kwargs) -> TrainingResult:
-        """
-        Train the model
-        Must return TrainingResult with success status and metrics
-        """
+        """Train the model"""
         pass
     
     @abstractmethod
     def predict(self, data: Any, **kwargs) -> PredictionResult:
-        """
-        Make predictions
-        Must return PredictionResult with predictions and confidence
-        """
+        """Make predictions"""
         pass
     
     @abstractmethod
     def evaluate(self, data: Any, labels: Any, **kwargs) -> Dict[str, float]:
-        """
-        Evaluate model performance
-        Must return dict of metrics (accuracy, precision, recall, etc.)
-        """
+        """Evaluate model performance"""
         pass
     
     def save(self, path: Optional[str] = None) -> str:
         """
-        Save model to disk
-        Returns path where model was saved
+        Save model with manifest validation
+        
+        Returns:
+            Path to saved model directory
         """
         if not self.is_trained:
-            raise ValueError("Cannot save untrained model")
+            raise PersistenceError("Cannot save untrained model")
         
-        save_path = path or str(self.model_dir / f"{self.model_id}_v{self.version}.pkl")
+        # Lifecycle hook
+        context = LifecycleContext(
+            model_id=self.model_id,
+            model_type=self.model_type,
+            operation='save',
+            timestamp=datetime.now()
+        )
+        self.before_save(context)
         
-        # Save model state
-        model_state = {
-            'model': self.model,
-            'metadata': self.metadata,
-            'is_trained': self.is_trained,
-            'version': self.version
-        }
-        
-        with open(save_path, 'wb') as f:
-            pickle.dump(model_state, f)
-        
-        # Save metadata separately as JSON for easy inspection
-        metadata_path = str(self.model_dir / f"{self.model_id}_metadata.json")
-        with open(metadata_path, 'w') as f:
-            json.dump({
-                'model_id': self.metadata.model_id,
-                'model_type': self.metadata.model_type,
-                'version': self.metadata.version,
-                'created_at': self.metadata.created_at.isoformat(),
-                'trained_at': self.metadata.trained_at.isoformat() if self.metadata.trained_at else None,
-                'hyperparameters': self.metadata.hyperparameters,
-                'performance_metrics': self.metadata.performance_metrics,
-                'training_samples': self.metadata.training_samples,
-                'status': self.metadata.status
-            }, f, indent=2)
-        
-        return save_path
+        try:
+            save_dir = Path(path) if path else self.model_dir
+            artifact_dir = save_dir / "artifacts"
+            artifact_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Save model artifact
+            model_path = artifact_dir / "model.joblib"
+            artifact_spec = ArtifactStore.save(self.model, model_path, 'joblib')
+            
+            # Update manifest
+            self.metadata.artifacts = [artifact_spec]
+            self.metadata.trained_at = datetime.now().isoformat()
+            
+            # Save manifest
+            manifest_path = save_dir / "manifest.json"
+            with open(manifest_path, 'w') as f:
+                json.dump(asdict(self.metadata), f, indent=2, default=str)
+            
+            return str(save_dir)
+            
+        except Exception as e:
+            raise PersistenceError(f"Failed to save model: {str(e)}", context={'error': str(e)})
     
     def load(self, path: str) -> None:
-        """Load model from disk"""
-        if not os.path.exists(path):
-            raise FileNotFoundError(f"Model file not found: {path}")
+        """
+        Load model with manifest validation
         
-        with open(path, 'rb') as f:
-            model_state = pickle.load(f)
-        
-        self.model = model_state['model']
-        self.metadata = model_state['metadata']
-        self.is_trained = model_state['is_trained']
-        self.version = model_state['version']
+        Args:
+            path: Path to model directory
+        """
+        try:
+            load_dir = Path(path)
+            manifest_path = load_dir / "manifest.json"
+            artifact_dir = load_dir / "artifacts"
+            
+            # Load manifest
+            with open(manifest_path, 'r') as f:
+                manifest_dict = json.load(f)
+            
+            # Convert to dataclass
+            manifest_dict['artifacts'] = [
+                ArtifactSpec(**a) for a in manifest_dict.get('artifacts', [])
+            ]
+            self.metadata = ModelManifest(**manifest_dict)
+            
+            # Validate manifest
+            ManifestValidator.validate(self.metadata, artifact_dir)
+            
+            # Load artifacts
+            for artifact_spec in self.metadata.artifacts:
+                artifact_path = artifact_dir / artifact_spec.filename
+                if artifact_spec.name == 'model':
+                    self.model = ArtifactStore.load(artifact_path, artifact_spec.artifact_type)
+            
+            self.is_trained = True
+            self.version = self.metadata.version
+            
+            # Lifecycle hook
+            context = LifecycleContext(
+                model_id=self.model_id,
+                model_type=self.model_type,
+                operation='load',
+                timestamp=datetime.now()
+            )
+            self.after_load(context)
+            
+        except Exception as e:
+            if isinstance(e, ModelError):
+                raise
+            raise PersistenceError(f"Failed to load model: {str(e)}", context={'path': path, 'error': str(e)})
     
     def get_info(self) -> Dict[str, Any]:
         """Get model information"""
@@ -155,128 +415,38 @@ class MLModelBase(ABC):
             'version': self.version,
             'is_trained': self.is_trained,
             'status': self.metadata.status,
-            'performance_metrics': self.metadata.performance_metrics,
-            'hyperparameters': self.metadata.hyperparameters
+            'created_at': self.metadata.created_at,
+            'trained_at': self.metadata.trained_at,
+            'training_samples': self.metadata.training_samples,
+            'hyperparameters': self.metadata.hyperparameters,
+            'performance_metrics': self.metadata.performance_metrics
         }
-    
-    def _update_metadata(self, **kwargs):
-        """Update metadata fields"""
-        for key, value in kwargs.items():
-            if hasattr(self.metadata, key):
-                setattr(self.metadata, key, value)
 
 
 class AnomalyDetectorBase(MLModelBase):
     """Base class for anomaly detection models"""
     
     def __init__(self, model_id: str, model_type: str, contamination: float = 0.05):
-        super().__init__(model_id, model_type)
+        super().__init__(model_id, f"anomaly_{model_type}")
         self.contamination = contamination
         self.threshold = None
         self.metadata.hyperparameters['contamination'] = contamination
     
     @abstractmethod
     def detect_anomalies(self, data: Any) -> List[Dict[str, Any]]:
-        """
-        Detect anomalies in data
-        Returns list of anomaly records with scores and metadata
-        """
+        """Detect and return anomalous records"""
         pass
-    
-    def evaluate(self, data: Any, labels: Any, **kwargs) -> Dict[str, float]:
-        """
-        Evaluate anomaly detection performance
-        labels: 1 for anomaly, 0 for normal
-        """
-        predictions = self.predict(data)
-        pred_labels = [1 if p['is_anomaly'] else 0 for p in predictions.predictions]
-        
-        # Calculate metrics
-        true_positives = sum(1 for p, l in zip(pred_labels, labels) if p == 1 and l == 1)
-        false_positives = sum(1 for p, l in zip(pred_labels, labels) if p == 1 and l == 0)
-        true_negatives = sum(1 for p, l in zip(pred_labels, labels) if p == 0 and l == 0)
-        false_negatives = sum(1 for p, l in zip(pred_labels, labels) if p == 0 and l == 1)
-        
-        total = len(labels)
-        accuracy = (true_positives + true_negatives) / total if total > 0 else 0
-        precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) > 0 else 0
-        recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
-        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0
-        
-        return {
-            'accuracy': accuracy,
-            'precision': precision,
-            'recall': recall,
-            'f1_score': f1,
-            'true_positives': true_positives,
-            'false_positives': false_positives,
-            'true_negatives': true_negatives,
-            'false_negatives': false_negatives
-        }
 
 
 class ForecasterBase(MLModelBase):
     """Base class for forecasting models"""
     
     def __init__(self, model_id: str, model_type: str, horizon: int = 30):
-        super().__init__(model_id, model_type)
+        super().__init__(model_id, f"forecaster_{model_type}")
         self.horizon = horizon
-        self.scaler_mean = None
-        self.scaler_std = None
         self.metadata.hyperparameters['horizon'] = horizon
     
     @abstractmethod
     def forecast(self, historical_data: Any, horizon: Optional[int] = None) -> Dict[str, Any]:
-        """
-        Generate forecast
-        Returns dict with forecast values and confidence intervals
-        """
-        pass
-    
-    def evaluate(self, data: Any, labels: Any, **kwargs) -> Dict[str, float]:
-        """
-        Evaluate forecasting performance
-        Uses RMSE, MAE, MAPE metrics
-        """
-        predictions = self.predict(data).predictions
-        
-        # Calculate metrics
-        errors = [abs(p - l) for p, l in zip(predictions, labels)]
-        squared_errors = [(p - l) ** 2 for p, l in zip(predictions, labels)]
-        
-        mae = sum(errors) / len(errors) if errors else 0
-        rmse = (sum(squared_errors) / len(squared_errors)) ** 0.5 if squared_errors else 0
-        mape = sum([abs(p - l) / abs(l) for p, l in zip(predictions, labels) if l != 0]) / len(labels) * 100 if labels else 0
-        
-        return {
-            'mae': mae,
-            'rmse': rmse,
-            'mape': mape
-        }
-    
-    def normalize(self, data):
-        """Normalize data using stored statistics"""
-        if self.scaler_mean is None:
-            import numpy as np
-            self.scaler_mean = np.mean(data)
-            self.scaler_std = np.std(data)
-        
-        return (data - self.scaler_mean) / (self.scaler_std + 1e-8)
-    
-    def denormalize(self, data):
-        """Denormalize data"""
-        if self.scaler_mean is None:
-            raise ValueError("Scaler not initialized. Train model first.")
-        return data * self.scaler_std + self.scaler_mean
-
-
-class ProcessMinerBase(MLModelBase):
-    """Base class for process mining models"""
-    
-    @abstractmethod
-    def discover_process(self, event_log: List[Dict[str, Any]]) -> Dict[str, Any]:
-        """
-        Discover process model from event log
-        Returns process model representation
-        """
+        """Generate forecast"""
         pass
