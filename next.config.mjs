@@ -6,20 +6,46 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Use standalone output for smaller deployments
+  output: 'standalone',
+  // Disable source maps in production to save memory
+  productionBrowserSourceMaps: false,
+  // Use SWC minification (faster and less memory)
+  swcMinify: true,
   experimental: {
     // Optimize memory usage during build
     webpackMemoryOptimizations: true,
+    // Optimize CSS loading
+    optimizeCss: true,
   },
   // Reduce memory usage by limiting concurrent builds
   webpack: (config, { isServer }) => {
+    // Disable source maps to reduce memory
+    config.devtool = false;
+    
     config.optimization = {
       ...config.optimization,
       minimize: true,
       moduleIds: 'deterministic',
+      // Split chunks to reduce memory pressure
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          default: false,
+          vendors: false,
+        },
+      },
     };
     
-    // Reduce memory usage
+    // Reduce memory usage - sequential processing
     config.parallelism = 1;
+    
+    // Limit memory per module
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+      };
+    }
     
     return config;
   },
