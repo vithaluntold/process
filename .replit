@@ -74,4 +74,4 @@ externalPort = 5000
 [deployment]
 deploymentTarget = "gce"
 run = ["pnpm", "start"]
-build = ["pnpm", "build"]
+build = ["sh", "-c", "NODE_OPTIONS='--max-old-space-size=6144' pnpm build"]
