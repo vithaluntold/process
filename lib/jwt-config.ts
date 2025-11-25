@@ -35,21 +35,6 @@ export function getJwtSecret(): Uint8Array {
   return _jwtSecret;
 }
 
-export const JWT_SECRET = new Proxy({} as Uint8Array, {
-  get(_, prop) {
-    return (getJwtSecret() as any)[prop];
-  },
-  has(_, prop) {
-    return prop in getJwtSecret();
-  },
-  ownKeys() {
-    return Reflect.ownKeys(getJwtSecret());
-  },
-  getOwnPropertyDescriptor(_, prop) {
-    return Object.getOwnPropertyDescriptor(getJwtSecret(), prop);
-  },
-});
-
 export const JWT_ALGORITHM = "HS256" as const;
 
 export const JWT_EXPIRATION = {

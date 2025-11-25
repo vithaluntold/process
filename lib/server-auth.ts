@@ -3,10 +3,7 @@ import { jwtVerify } from "jose";
 import { db } from "@/lib/db";
 import { users } from "@/shared/schema";
 import { eq } from "drizzle-orm";
-
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.SESSION_SECRET || "dev-secret-change-in-production"
-);
+import { getJwtSecret } from "@/lib/jwt-config";
 
 export interface AuthenticatedUser {
   id: number;
@@ -27,7 +24,7 @@ export async function getCurrentUser(): Promise<AuthenticatedUser | null> {
       return null;
     }
 
-    const { payload } = await jwtVerify(token.value, JWT_SECRET);
+    const { payload } = await jwtVerify(token.value, getJwtSecret());
     const userId = payload.userId as number;
 
     const [user] = await db

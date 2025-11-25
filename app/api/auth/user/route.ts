@@ -5,10 +5,7 @@ import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { appCache } from "@/lib/cache";
-
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.SESSION_SECRET || "dev-secret-change-in-production"
-);
+import { getJwtSecret } from "@/lib/jwt-config";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 60;
@@ -26,7 +23,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
 
-    const { payload } = await jwtVerify(token.value, JWT_SECRET);
+    const { payload } = await jwtVerify(token.value, getJwtSecret());
     const userId = payload.userId as number;
 
     const cacheKey = `user:${userId}`;

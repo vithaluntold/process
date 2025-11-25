@@ -8,7 +8,7 @@ import { SignJWT } from "jose";
 import { loginSchema } from "@/lib/validation";
 import { checkRateLimit, getClientIdentifier, AUTH_RATE_LIMIT } from "@/lib/rate-limiter";
 import { addCSRFCookie } from "@/lib/csrf";
-import { JWT_SECRET, JWT_ALGORITHM, JWT_EXPIRATION } from "@/lib/jwt-config";
+import { getJwtSecret, JWT_ALGORITHM, JWT_EXPIRATION } from "@/lib/jwt-config";
 
 export async function POST(request: NextRequest) {
   try {
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
     const token = await new SignJWT({ userId: user.id })
       .setProtectedHeader({ alg: JWT_ALGORITHM })
       .setExpirationTime(JWT_EXPIRATION.session)
-      .sign(JWT_SECRET);
+      .sign(getJwtSecret());
 
     await db.insert(schema.auditLogs).values({
       userId: user.id,

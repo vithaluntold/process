@@ -1,0 +1,52 @@
+2025-11-25T09:51:00.000000000Z [inf]  Starting Container
+2025-11-25T09:51:01.591457195Z [inf]   ✓ Ready in 151ms
+2025-11-25T09:51:01.591524104Z [inf]     ▲ Next.js 15.5.4
+2025-11-25T09:51:01.591532453Z [inf]     - Local:        http://localhost:8080
+2025-11-25T09:51:01.591540149Z [inf]     - Network:      http://0.0.0.0:8080
+2025-11-25T09:51:01.591547379Z [inf]  
+2025-11-25T09:51:01.591552790Z [inf]   ✓ Starting...
+2025-11-25T09:51:07.053434015Z [inf]  [DB] Using standard PostgreSQL driver
+2025-11-25T09:53:28.672397966Z [err]  Login error: TypeError: Key for the HS256 algorithm must be one of type CryptoKey, KeyObject, JSON Web Key, or Uint8Array. Received an instance of Uint8Array
+2025-11-25T09:53:28.672407874Z [err]      at symmetricTypeCheck (.next/server/app/api/ai-assistant/route.js:12666:15)
+2025-11-25T09:53:28.672415130Z [err]      at __WEBPACK_DEFAULT_EXPORT__ (.next/server/app/api/ai-assistant/route.js:12721:9)
+2025-11-25T09:53:28.672423535Z [err]      at FlattenedSign.sign (.next/server/app/api/auth/login/route.js:2710:42)
+2025-11-25T09:53:28.672432546Z [inf]  Login successful for user: svec4477@gmail.com (ID: 9)
+2025-11-25T09:53:28.672457816Z [err]      at CompactSign.sign (.next/server/app/api/auth/login/route.js:2754:43)
+2025-11-25T09:53:28.672468820Z [err]      at SignJWT.sign (.next/server/app/api/auth/login/route.js:2814:20)
+2025-11-25T09:53:28.672475203Z [err]      at POST (.next/server/app/api/auth/login/route.js:13287:109)
+2025-11-25T09:53:28.672680396Z [err]      at async responseGenerator (.next/server/app/api/auth/login/route.js:8321:38)
+2025-11-25T09:53:28.672685726Z [err]      at async handleResponse (.next/server/app/api/auth/login/route.js:8383:32)
+2025-11-25T09:53:28.672690325Z [err]      at async handler (.next/server/app/api/auth/login/route.js:8435:13)
+2025-11-25T09:53:28.673054937Z [inf]  Login successful for user: svec4477@gmail.com (ID: 9)
+2025-11-25T09:53:28.673060300Z [err]  Login error: TypeError: Key for the HS256 algorithm must be one of type CryptoKey, KeyObject, JSON Web Key, or Uint8Array. Received an instance of Uint8Array
+2025-11-25T09:53:28.673064466Z [err]      at symmetricTypeCheck (.next/server/app/api/ai-assistant/route.js:12666:15)
+2025-11-25T09:53:28.673068536Z [err]      at __WEBPACK_DEFAULT_EXPORT__ (.next/server/app/api/ai-assistant/route.js:12721:9)
+2025-11-25T09:53:28.673072738Z [err]      at FlattenedSign.sign (.next/server/app/api/auth/login/route.js:2710:42)
+2025-11-25T09:53:28.674088979Z [err]      at CompactSign.sign (.next/server/app/api/auth/login/route.js:2754:43)
+2025-11-25T09:53:28.674093431Z [err]      at SignJWT.sign (.next/server/app/api/auth/login/route.js:2814:20)
+2025-11-25T09:53:28.674112549Z [err]      at POST (.next/server/app/api/auth/login/route.js:13287:109)
+2025-11-25T09:53:28.674117351Z [err]      at async responseGenerator (.next/server/app/api/auth/login/route.js:8321:38)
+2025-11-25T09:53:28.674123310Z [err]      at async handleResponse (.next/server/app/api/auth/login/route.js:8383:32)
+2025-11-25T09:53:28.674127843Z [err]      at async handler (.next/server/app/api/auth/login/route.js:8435:13)
+2025-11-25T09:54:08.498937949Z [inf]  Login successful for user: svec4477@gmail.com (ID: 9)
+2025-11-25T09:54:08.498941776Z [err]  Login error: TypeError: Key for the HS256 algorithm must be one of type CryptoKey, KeyObject, JSON Web Key, or Uint8Array. Received an instance of Uint8Array
+2025-11-25T09:54:08.498945537Z [err]      at symmetricTypeCheck (.next/server/app/api/ai-assistant/route.js:12666:15)
+2025-11-25T09:54:08.498949824Z [err]      at __WEBPACK_DEFAULT_EXPORT__ (.next/server/app/api/ai-assistant/route.js:12721:9)
+2025-11-25T09:54:08.498955470Z [err]      at FlattenedSign.sign (.next/server/app/api/auth/login/route.js:2710:42)
+2025-11-25T09:54:08.498961271Z [err]      at CompactSign.sign (.next/server/app/api/auth/login/route.js:2754:43)
+2025-11-25T09:54:08.498966877Z [err]      at SignJWT.sign (.next/server/app/api/auth/login/route.js:2814:20)
+2025-11-25T09:54:08.498972402Z [err]      at POST (.next/server/app/api/auth/login/route.js:13287:109)
+2025-11-25T09:54:08.498977812Z [err]      at async responseGenerator (.next/server/app/api/auth/login/route.js:8321:38)
+2025-11-25T09:54:08.498983214Z [err]      at async handleResponse (.next/server/app/api/auth/login/route.js:8383:32)
+2025-11-25T09:54:08.498988766Z [err]      at async handler (.next/server/app/api/auth/login/route.js:8435:13)
+2025-11-25T09:54:08.498994392Z [inf]  Login successful for user: svec4477@gmail.com (ID: 9)
+2025-11-25T09:54:08.499001020Z [err]  Login error: TypeError: Key for the HS256 algorithm must be one of type CryptoKey, KeyObject, JSON Web Key, or Uint8Array. Received an instance of Uint8Array
+2025-11-25T09:54:08.499006234Z [err]      at symmetricTypeCheck (.next/server/app/api/ai-assistant/route.js:12666:15)
+2025-11-25T09:54:08.499010022Z [err]      at __WEBPACK_DEFAULT_EXPORT__ (.next/server/app/api/ai-assistant/route.js:12721:9)
+2025-11-25T09:54:08.499015234Z [err]      at FlattenedSign.sign (.next/server/app/api/auth/login/route.js:2710:42)
+2025-11-25T09:54:08.500818842Z [err]      at CompactSign.sign (.next/server/app/api/auth/login/route.js:2754:43)
+2025-11-25T09:54:08.500826405Z [err]      at SignJWT.sign (.next/server/app/api/auth/login/route.js:2814:20)
+2025-11-25T09:54:08.500830729Z [err]      at POST (.next/server/app/api/auth/login/route.js:13287:109)
+2025-11-25T09:54:08.500835211Z [err]      at async responseGenerator (.next/server/app/api/auth/login/route.js:8321:38)
+2025-11-25T09:54:08.500839267Z [err]      at async handleResponse (.next/server/app/api/auth/login/route.js:8383:32)
+2025-11-25T09:54:08.500843749Z [err]      at async handler (.next/server/app/api/auth/login/route.js:8435:13)

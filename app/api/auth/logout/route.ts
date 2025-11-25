@@ -5,10 +5,7 @@ import { db } from "@/lib/db";
 import * as schema from "@/shared/schema";
 import { withApiGuards } from "@/lib/api-guards";
 import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
-
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.SESSION_SECRET || "dev-secret-change-in-production"
-);
+import { getJwtSecret } from "@/lib/jwt-config";
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,7 +16,7 @@ export async function POST(request: NextRequest) {
 
     if (token) {
       try {
-        const { payload } = await jwtVerify(token.value, JWT_SECRET);
+        const { payload } = await jwtVerify(token.value, getJwtSecret());
         userId = payload.userId as number;
 
         const guardError = withApiGuards(request, 'auth-logout', API_WRITE_LIMIT, userId);

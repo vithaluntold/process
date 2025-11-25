@@ -3,7 +3,7 @@ import { db } from "@/server/storage";
 import { users } from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { jwtVerify } from "jose";
-import { JWT_SECRET } from "@/lib/jwt-config";
+import { getJwtSecret } from "@/lib/jwt-config";
 
 export async function getUserFromRequest(req: NextRequest) {
   const sessionCookie = req.cookies.get("session");
@@ -12,7 +12,7 @@ export async function getUserFromRequest(req: NextRequest) {
   const sessionToken = sessionCookie.value;
   
   try {
-    const { payload } = await jwtVerify(sessionToken, JWT_SECRET);
+    const { payload } = await jwtVerify(sessionToken, getJwtSecret());
     const userId = payload.userId as number;
     
     const user = await db.select().from(users).where(eq(users.id, userId)).limit(1);
