@@ -1,0 +1,113 @@
+2025-11-25T08:44:06.631990072Z [inf]  
+2025-11-25T08:44:07.947208842Z [inf]  [35m[Region: us-east4][0m
+2025-11-25T08:44:07.954773340Z [inf]  [35m=========================
+2025-11-25T08:44:07.954805282Z [inf]  Using Detected Dockerfile
+2025-11-25T08:44:07.954811577Z [inf]  =========================
+2025-11-25T08:44:07.954816865Z [inf]  [0m
+2025-11-25T08:44:07.954831583Z [inf]  context: fhl6-0CtB
+2025-11-25T08:44:08.109952657Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T08:44:08.110004202Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T08:44:08.110019619Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T08:44:08.119881766Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T08:44:08.122232049Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
+2025-11-25T08:44:08.191507577Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
+2025-11-25T08:44:08.191815104Z [inf]  [internal] load .dockerignore
+2025-11-25T08:44:08.191839552Z [inf]  [internal] load .dockerignore
+2025-11-25T08:44:08.191858214Z [inf]  [internal] load .dockerignore
+2025-11-25T08:44:08.192303163Z [inf]  [internal] load .dockerignore
+2025-11-25T08:44:08.202818721Z [inf]  [internal] load .dockerignore
+2025-11-25T08:44:08.208491781Z [inf]  [deps 1/2] COPY package.json pnpm-lock.yaml ./
+2025-11-25T08:44:08.208518536Z [inf]  [builder 1/3] COPY --from=deps /app/node_modules ./node_modules
+2025-11-25T08:44:08.208527282Z [inf]  [base 2/4] RUN corepack enable && corepack prepare pnpm@latest --activate
+2025-11-25T08:44:08.208533938Z [inf]  [runner  8/14] COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+2025-11-25T08:44:08.208543561Z [inf]  [builder 2/3] COPY . .
+2025-11-25T08:44:08.208552676Z [inf]  [runner  4/14] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+2025-11-25T08:44:08.208560918Z [inf]  [runner  9/14] COPY --from=builder --chown=nextjs:nodejs /app/next.config.ts ./next.config.ts
+2025-11-25T08:44:08.208569679Z [inf]  [runner  2/14] RUN apk add --no-cache dumb-init &&     rm -rf /var/cache/apk/* &&     corepack enable &&     corepack prepare pnpm@latest --activate
+2025-11-25T08:44:08.208596498Z [inf]  [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/lib ./lib
+2025-11-25T08:44:08.208605816Z [inf]  [base 3/4] WORKDIR /app
+2025-11-25T08:44:08.208611955Z [inf]  [runner  7/14] COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+2025-11-25T08:44:08.208620526Z [inf]  [builder 3/3] RUN pnpm run build
+2025-11-25T08:44:08.208626357Z [inf]  [internal] load build context
+2025-11-25T08:44:08.208635096Z [inf]  [base 4/4] RUN apk update &&     apk upgrade &&     apk add --no-cache     libc6-compat     dumb-init &&     rm -rf /var/cache/apk/*
+2025-11-25T08:44:08.208641463Z [inf]  [runner  6/14] COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+2025-11-25T08:44:08.208647749Z [inf]  [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/drizzle.config.ts ./drizzle.config.ts
+2025-11-25T08:44:08.208653856Z [inf]  [runner  3/14] WORKDIR /app
+2025-11-25T08:44:08.208659729Z [inf]  [deps 2/2] RUN pnpm install --frozen-lockfile --prod=false
+2025-11-25T08:44:08.208665521Z [inf]  [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/shared ./shared
+2025-11-25T08:44:08.208670669Z [inf]  [base 1/4] FROM docker.io/library/node:20-alpine@sha256:6178e78b972f79c335df281f4b7674a2d85071aae2af020ffa39f0a770265435
+2025-11-25T08:44:08.208676659Z [inf]  [runner  5/14] COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
+2025-11-25T08:44:08.208695259Z [inf]  [runner 14/14] RUN mkdir -p /app/uploads && chown -R nextjs:nodejs /app/uploads
+2025-11-25T08:44:08.208706609Z [inf]  [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/server ./server
+2025-11-25T08:44:08.208718508Z [inf]  [internal] load build context
+2025-11-25T08:44:08.208730209Z [inf]  [base 1/4] FROM docker.io/library/node:20-alpine@sha256:6178e78b972f79c335df281f4b7674a2d85071aae2af020ffa39f0a770265435
+2025-11-25T08:44:08.213540229Z [inf]  [base 1/4] FROM docker.io/library/node:20-alpine@sha256:6178e78b972f79c335df281f4b7674a2d85071aae2af020ffa39f0a770265435
+2025-11-25T08:44:08.216086826Z [inf]  [internal] load build context
+2025-11-25T08:44:08.349925257Z [inf]  [internal] load build context
+2025-11-25T08:44:08.355086971Z [inf]  [runner  2/14] RUN apk add --no-cache dumb-init &&     rm -rf /var/cache/apk/* &&     corepack enable &&     corepack prepare pnpm@latest --activate
+2025-11-25T08:44:08.355115221Z [inf]  [runner  3/14] WORKDIR /app
+2025-11-25T08:44:08.355137925Z [inf]  [runner  4/14] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+2025-11-25T08:44:08.355147748Z [inf]  [base 2/4] RUN corepack enable && corepack prepare pnpm@latest --activate
+2025-11-25T08:44:08.355156154Z [inf]  [base 3/4] WORKDIR /app
+2025-11-25T08:44:08.355163956Z [inf]  [base 4/4] RUN apk update &&     apk upgrade &&     apk add --no-cache     libc6-compat     dumb-init &&     rm -rf /var/cache/apk/*
+2025-11-25T08:44:08.355171083Z [inf]  [deps 1/2] COPY package.json pnpm-lock.yaml ./
+2025-11-25T08:44:08.355178131Z [inf]  [deps 2/2] RUN pnpm install --frozen-lockfile --prod=false
+2025-11-25T08:44:08.355184724Z [inf]  [runner  5/14] COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
+2025-11-25T08:44:08.355201876Z [inf]  [builder 1/3] COPY --from=deps /app/node_modules ./node_modules
+2025-11-25T08:44:08.355214010Z [inf]  [builder 2/3] COPY . .
+2025-11-25T08:44:08.447218584Z [inf]  [builder 2/3] COPY . .
+2025-11-25T08:44:08.449115032Z [inf]  [builder 3/3] RUN pnpm run build
+2025-11-25T08:44:08.995627446Z [inf]  
+> my-v0-project@0.1.0 build /app
+> next build
+
+
+2025-11-25T08:44:09.935948726Z [inf]     ▲ Next.js 15.5.4
+
+2025-11-25T08:44:09.936313571Z [inf]     - Experiments (use with caution):
+     ⨯ webpackBuildWorker
+
+2025-11-25T08:44:09.936325129Z [inf]       ✓ webpackMemoryOptimizations
+
+2025-11-25T08:44:09.936423782Z [inf]  
+
+2025-11-25T08:44:09.991344918Z [inf]     Creating an optimized production build ...
+
+2025-11-25T08:44:10.52491199Z [inf]   ⚠ Production code optimization has been disabled in your project. Read more: https://nextjs.org/docs/messages/minification-disabled
+
+2025-11-25T08:44:43.149497008Z [inf]   ✓ Compiled successfully in 32.6s
+
+2025-11-25T08:44:43.1511562Z [inf]     Skipping validation of types
+   Skipping linting
+
+2025-11-25T08:44:43.434083377Z [inf]     Collecting page data ...
+
+2025-11-25T08:44:45.288458465Z [inf]  Error: CRITICAL SECURITY ERROR: SESSION_SECRET environment variable is required for production. JWT tokens cannot be securely signed without this secret.
+    at 56711 (.next/server/app/api/auth/login/route.js:18000:11)
+    at __webpack_require__ (.next/server/webpack-runtime.js:25:43)
+    at 7788 (.next/server/app/api/auth/login/route.js:798:18)
+    at __webpack_require__ (.next/server/webpack-runtime.js:25:43)
+    at __webpack_exec__ (.next/server/app/api/auth/login/route.js:33036:39)
+    at <unknown> (.next/server/app/api/auth/login/route.js:33037:28)
+    at Object.<anonymous> (.next/server/app/api/auth/login/route.js:33040:3)
+
+2025-11-25T08:44:45.291467485Z [inf]  
+
+2025-11-25T08:44:45.291521161Z [inf]  > Build error occurred
+
+2025-11-25T08:44:45.299397839Z [inf]  [Error: Failed to collect page data for /api/auth/login] {
+  type: 'Error'
+}
+
+2025-11-25T08:44:45.403216512Z [inf]   ELIFECYCLE  Command failed with exit code 1.
+
+2025-11-25T08:44:45.506468162Z [err]  [builder 3/3] RUN pnpm run build
+2025-11-25T08:44:45.522471771Z [err]  Dockerfile:57
+2025-11-25T08:44:45.522491988Z [err]  -------------------
+2025-11-25T08:44:45.522496403Z [err]  55 |     # Build the Next.js application
+2025-11-25T08:44:45.522500318Z [err]  56 |     # This creates the .next folder with optimized production build
+2025-11-25T08:44:45.522505116Z [err]  57 | >>> RUN pnpm run build
+2025-11-25T08:44:45.522508734Z [err]  58 |
+2025-11-25T08:44:45.522513575Z [err]  59 |     # -----------------------------------------------------------------------------
+2025-11-25T08:44:45.522518906Z [err]  -------------------
+2025-11-25T08:44:45.522524074Z [err]  ERROR: failed to build: failed to solve: process "/bin/sh -c pnpm run build" did not complete successfully: exit code: 1
