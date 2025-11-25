@@ -1,0 +1,445 @@
+2025-11-25T09:14:51.971847411Z [inf]  
+2025-11-25T09:14:53.619191770Z [inf]  [35m[Region: us-east4][0m
+2025-11-25T09:14:53.635742175Z [inf]  [35m=========================
+2025-11-25T09:14:53.635802828Z [inf]  Using Detected Dockerfile
+2025-11-25T09:14:53.635814032Z [inf]  =========================
+2025-11-25T09:14:53.635822352Z [inf]  [0m
+2025-11-25T09:14:53.635846934Z [inf]  context: 7btw-G1gb
+2025-11-25T09:14:53.941113583Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T09:14:53.941307473Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T09:14:53.941772162Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T09:14:54.034489497Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T09:14:54.453882209Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
+2025-11-25T09:14:54.458511433Z [inf]  [auth] library/node:pull token for registry-1.docker.io
+2025-11-25T09:14:54.458538693Z [inf]  [auth] library/node:pull token for registry-1.docker.io
+2025-11-25T09:14:54.567826776Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
+2025-11-25T09:14:54.568570875Z [inf]  [internal] load .dockerignore
+2025-11-25T09:14:54.568628738Z [inf]  [internal] load .dockerignore
+2025-11-25T09:14:54.568766538Z [inf]  [internal] load .dockerignore
+2025-11-25T09:14:54.583279923Z [inf]  [internal] load .dockerignore
+2025-11-25T09:14:54.596986011Z [inf]  [builder 1/3] COPY --from=deps /app/node_modules ./node_modules
+2025-11-25T09:14:54.597058900Z [inf]  [runner  5/14] COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
+2025-11-25T09:14:54.597077974Z [inf]  [deps 2/2] RUN pnpm install --frozen-lockfile --prod=false
+2025-11-25T09:14:54.597103046Z [inf]  [deps 1/2] COPY package.json pnpm-lock.yaml ./
+2025-11-25T09:14:54.597115856Z [inf]  [internal] load build context
+2025-11-25T09:14:54.597127140Z [inf]  [builder 3/3] RUN pnpm run build
+2025-11-25T09:14:54.597138477Z [inf]  [base 3/4] WORKDIR /app
+2025-11-25T09:14:54.597150025Z [inf]  [base 2/4] RUN corepack enable && corepack prepare pnpm@latest --activate
+2025-11-25T09:14:54.597167170Z [inf]  [runner  4/14] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+2025-11-25T09:14:54.597179730Z [inf]  [runner  3/14] WORKDIR /app
+2025-11-25T09:14:54.597192910Z [inf]  [runner  2/14] RUN apk add --no-cache dumb-init &&     rm -rf /var/cache/apk/* &&     corepack enable &&     corepack prepare pnpm@latest --activate
+2025-11-25T09:14:54.597205482Z [inf]  [builder 2/3] COPY . .
+2025-11-25T09:14:54.597216837Z [inf]  [runner  6/14] COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+2025-11-25T09:14:54.597232722Z [inf]  [base 1/4] FROM docker.io/library/node:20-alpine@sha256:6178e78b972f79c335df281f4b7674a2d85071aae2af020ffa39f0a770265435
+2025-11-25T09:14:54.597244874Z [inf]  [base 4/4] RUN apk update &&     apk upgrade &&     apk add --no-cache     libc6-compat     dumb-init &&     rm -rf /var/cache/apk/*
+2025-11-25T09:14:54.597276027Z [inf]  [runner  7/14] COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+2025-11-25T09:14:54.597332309Z [inf]  [runner 14/14] RUN mkdir -p /app/uploads && chown -R nextjs:nodejs /app/uploads
+2025-11-25T09:14:54.597351370Z [inf]  [runner 13/14] COPY --from=builder --chown=nextjs:nodejs /app/server ./server
+2025-11-25T09:14:54.597363592Z [inf]  [runner 12/14] COPY --from=builder --chown=nextjs:nodejs /app/lib ./lib
+2025-11-25T09:14:54.597378224Z [inf]  [runner 11/14] COPY --from=builder --chown=nextjs:nodejs /app/shared ./shared
+2025-11-25T09:14:54.597397650Z [inf]  [runner 10/14] COPY --from=builder --chown=nextjs:nodejs /app/drizzle.config.ts ./drizzle.config.ts
+2025-11-25T09:14:54.597410714Z [inf]  [runner  9/14] COPY --from=builder --chown=nextjs:nodejs /app/next.config.ts ./next.config.ts
+2025-11-25T09:14:54.597424174Z [inf]  [runner  8/14] COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+2025-11-25T09:14:54.597520620Z [inf]  [internal] load build context
+2025-11-25T09:14:54.597570270Z [inf]  [base 1/4] FROM docker.io/library/node:20-alpine@sha256:6178e78b972f79c335df281f4b7674a2d85071aae2af020ffa39f0a770265435
+2025-11-25T09:14:54.605155741Z [inf]  [internal] load build context
+2025-11-25T09:14:54.605301026Z [inf]  [base 1/4] FROM docker.io/library/node:20-alpine@sha256:6178e78b972f79c335df281f4b7674a2d85071aae2af020ffa39f0a770265435
+2025-11-25T09:14:54.605483269Z [inf]  [runner  2/14] RUN apk add --no-cache dumb-init &&     rm -rf /var/cache/apk/* &&     corepack enable &&     corepack prepare pnpm@latest --activate
+2025-11-25T09:14:54.605507228Z [inf]  [base 2/4] RUN corepack enable && corepack prepare pnpm@latest --activate
+2025-11-25T09:14:55.482256651Z [inf]  [internal] load build context
+2025-11-25T09:14:55.513317655Z [inf]  fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/main/x86_64/APKINDEX.tar.gz
+
+2025-11-25T09:14:55.609463814Z [inf]  fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/community/x86_64/APKINDEX.tar.gz
+
+2025-11-25T09:14:55.970744723Z [inf]  Preparing pnpm@latest for immediate activation...
+
+2025-11-25T09:14:55.981996013Z [inf]  (1/1) Installing dumb-init (1.2.5-r3)
+
+2025-11-25T09:14:55.985563929Z [inf]  Executing busybox-1.37.0-r19.trigger
+
+2025-11-25T09:14:55.993344085Z [inf]  OK: 10 MiB in 19 packages
+
+2025-11-25T09:14:56.529006672Z [inf]  Preparing pnpm@latest for immediate activation...
+
+2025-11-25T09:14:59.888644735Z [inf]  [base 2/4] RUN corepack enable && corepack prepare pnpm@latest --activate
+2025-11-25T09:14:59.906147718Z [inf]  [runner  2/14] RUN apk add --no-cache dumb-init &&     rm -rf /var/cache/apk/* &&     corepack enable &&     corepack prepare pnpm@latest --activate
+2025-11-25T09:14:59.915034025Z [inf]  [runner  3/14] WORKDIR /app
+2025-11-25T09:14:59.915095073Z [inf]  [base 3/4] WORKDIR /app
+2025-11-25T09:14:59.998753804Z [inf]  [base 3/4] WORKDIR /app
+2025-11-25T09:15:00.000878760Z [inf]  [runner  3/14] WORKDIR /app
+2025-11-25T09:15:00.003479521Z [inf]  [base 4/4] RUN apk update &&     apk upgrade &&     apk add --no-cache     libc6-compat     dumb-init &&     rm -rf /var/cache/apk/*
+2025-11-25T09:15:00.006992558Z [inf]  [runner  4/14] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+2025-11-25T09:15:00.122253238Z [inf]  fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/main/x86_64/APKINDEX.tar.gz
+
+2025-11-25T09:15:00.156731916Z [inf]  [runner  4/14] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+2025-11-25T09:15:00.218429327Z [inf]  fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/community/x86_64/APKINDEX.tar.gz
+
+2025-11-25T09:15:01.221428631Z [inf]  v3.22.2-242-g05a305de363 [https://dl-cdn.alpinelinux.org/alpine/v3.22/main]
+v3.22.2-241-g65a78a3e867 [https://dl-cdn.alpinelinux.org/alpine/v3.22/community]
+OK: 26328 distinct packages available
+
+2025-11-25T09:15:01.709674894Z [inf]  (1/3) Upgrading busybox (1.37.0-r19 -> 1.37.0-r20)
+
+2025-11-25T09:15:01.75544768Z [inf]  Executing busybox-1.37.0-r20.post-upgrade
+
+2025-11-25T09:15:01.777694205Z [inf]  (2/3) Upgrading busybox-binsh (1.37.0-r19 -> 1.37.0-r20)
+
+2025-11-25T09:15:01.779867222Z [inf]  (3/3) Upgrading ssl_client (1.37.0-r19 -> 1.37.0-r20)
+
+2025-11-25T09:15:01.782297234Z [inf]  Executing busybox-1.37.0-r20.trigger
+
+2025-11-25T09:15:01.788019672Z [inf]  OK: 10 MiB in 18 packages
+
+2025-11-25T09:15:01.919382327Z [inf]  fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/main/x86_64/APKINDEX.tar.gz
+
+2025-11-25T09:15:01.993554734Z [inf]  fetch https://dl-cdn.alpinelinux.org/alpine/v3.22/community/x86_64/APKINDEX.tar.gz
+
+2025-11-25T09:15:02.376025023Z [inf]  (1/4) Installing dumb-init (1.2.5-r3)
+
+2025-11-25T09:15:02.378919697Z [inf]  (2/4) Installing musl-obstack (1.2.3-r2)
+
+2025-11-25T09:15:02.381292086Z [inf]  (3/4) Installing libucontext (1.3.2-r0)
+
+2025-11-25T09:15:02.383473523Z [inf]  (4/4) Installing gcompat (1.1.0-r4)
+
+2025-11-25T09:15:02.38742335Z [inf]  Executing busybox-1.37.0-r20.trigger
+
+2025-11-25T09:15:02.392846084Z [inf]  OK: 10 MiB in 22 packages
+
+2025-11-25T09:15:02.558533998Z [inf]  [base 4/4] RUN apk update &&     apk upgrade &&     apk add --no-cache     libc6-compat     dumb-init &&     rm -rf /var/cache/apk/*
+2025-11-25T09:15:02.561416801Z [inf]  [deps 1/2] COPY package.json pnpm-lock.yaml ./
+2025-11-25T09:15:02.680179351Z [inf]  [deps 1/2] COPY package.json pnpm-lock.yaml ./
+2025-11-25T09:15:02.684000528Z [inf]  [deps 2/2] RUN pnpm install --frozen-lockfile --prod=false
+2025-11-25T09:15:03.641248965Z [inf]  Lockfile is up to date, resolution step is skipped
+
+2025-11-25T09:15:03.752796865Z [inf]  Progress: resolved 1, reused 0, downloaded 0, added 0
+
+2025-11-25T09:15:04.514211973Z [inf]  Packages: +502
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2025-11-25T09:15:05.391656533Z [inf]  Progress: resolved 502, reused 0, downloaded 0, added 0
+
+2025-11-25T09:15:06.417518251Z [inf]  Progress: resolved 502, reused 0, downloaded 292, added 94
+
+2025-11-25T09:15:07.440628631Z [inf]  Progress: resolved 502, reused 0, downloaded 487, added 420
+
+2025-11-25T09:15:08.44060004Z [inf]  Progress: resolved 502, reused 0, downloaded 499, added 499
+
+2025-11-25T09:15:14.054767513Z [inf]  Progress: resolved 502, reused 0, downloaded 500, added 499
+
+2025-11-25T09:15:15.055626663Z [inf]  Progress: resolved 502, reused 0, downloaded 502, added 501
+
+2025-11-25T09:15:15.163285977Z [inf]  Progress: resolved 502, reused 0, downloaded 502, added 502, done
+
+2025-11-25T09:15:15.546583731Z [inf]  
+dependencies:
++ @auth/drizzle-adapter 1.11.1
++ @hookform/resolvers 3.10.0
++ @neondatabase/serverless 1.0.2
++ @node-saml/node-saml 5.1.0
++ @node-saml/passport-saml 5.1.0
++ @radix-ui/react-accordion 1.2.2
++ @radix-ui/react-alert-dialog 1.1.4
++ @radix-ui/react-aspect-ratio 1.1.1
++ @radix-ui/react-avatar 1.1.2
++ @radix-ui/react-checkbox 1.1.3
++ @radix-ui/react-collapsible 1.1.2
++ @radix-ui/react-context-menu 2.2.4
++ @radix-ui/react-dialog 1.1.4
++ @radix-ui/react-dropdown-menu 2.1.4
++ @radix-ui/react-hover-card 1.1.4
++ @radix-ui/react-label 2.1.1
++ @radix-ui/react-menubar 1.1.4
++ @radix-ui/react-navigation-menu 1.2.3
++ @radix-ui/react-popover 1.1.4
++ @radix-ui/react-progress 1.1.1
++ @radix-ui/react-radio-group 1.2.2
++ @radix-ui/react-scroll-area 1.2.2
++ @radix-ui/react-select 2.1.4
++ @radix-ui/react-separator 1.1.1
++ @radix-ui/react-slider 1.2.2
++ @radix-ui/react-slot 1.1.1
++ @radix-ui/react-switch 1.1.2
++ @radix-ui/react-tabs 1.1.2
++ @radix-ui/react-toast 1.2.4
++ @radix-ui/react-toggle 1.1.1
++ @radix-ui/react-toggle-group 1.1.1
++ @radix-ui/react-tooltip 1.1.6
++ @tanstack/react-query 5.90.7
++ @types/bcryptjs 3.0.0
++ @types/connect-pg-simple 7.0.3
++ @types/express-session 1.18.2
++ @types/jsonwebtoken 9.0.10
++ @types/memoizee 0.4.12
++ @types/papaparse 5.5.0
++ @types/passport 1.0.17
++ @types/ws 8.18.1
++ @vercel/analytics 1.3.1
++ autoprefixer 10.4.21
++ bcryptjs 3.0.3
++ bufferutil 4.0.9
++ class-variance-authority 0.7.1
++ clsx 2.1.1
++ cmdk 1.0.4
++ connect-pg-simple 10.0.0
++ csv-parser 3.2.0
++ date-fns 4.1.0
++ drizzle-kit 0.31.6
++ drizzle-orm 0.44.7
++ embla-carousel-react 8.5.1
++ exceljs 4.4.0
++ express-session 1.18.2
++ framer-motion 12.23.24
++ geist 1.5.1
++ input-otp 1.4.1
++ jose 6.1.0
++ jsonwebtoken 9.0.2
++ jspdf 3.0.3
++ jspdf-autotable 5.0.2
++ lucide-react 0.454.0
++ memoizee 0.4.17
++ multer 2.0.2
++ next 15.5.4
++ next-auth 4.24.13
++ next-themes 0.4.6
++ openai 6.8.1
++ openid-client 6.8.1
++ p-limit 7.2.0
++ p-retry 7.1.0
++ papaparse 5.5.3
++ passport 0.7.0
++ pptxgenjs 4.0.1
++ react 19.1.0
++ react-day-picker 9.8.0
++ react-dom 19.1.0
++ react-hook-form 7.66.0
++ react-resizable-panels 2.1.9
++ reactflow 11.11.4
++ recharts 3.3.0
++ sonner 1.7.4
++ tailwind-merge 2.6.0
++ tailwindcss-animate 1.0.7
++ utf-8-validate 6.0.5
++ vaul 0.9.9
++ ws 8.18.3
++ zod 3.25.67
+
+devDependencies:
++ @tailwindcss/postcss 4.1.17
++ @types/node 22.19.0
++ @types/react 18.3.26
++ @types/react-dom 18.3.7
++ postcss 8.5.6
++ tailwindcss 4.1.17
++ tw-animate-css 1.3.3
++ typescript 5.9.3
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: bufferutil, core-js, es5-ext, esbuild, sharp,       │
+│   utf-8-validate.                                                            │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+2025-11-25T09:15:16.06095598Z [inf]  Done in 13.1s using pnpm v10.23.0
+
+2025-11-25T09:15:16.365348504Z [inf]  [deps 2/2] RUN pnpm install --frozen-lockfile --prod=false
+2025-11-25T09:15:30.419956015Z [inf]  [runner  5/14] COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
+2025-11-25T09:15:30.429442773Z [inf]  [builder 1/3] COPY --from=deps /app/node_modules ./node_modules
+2025-11-25T09:15:39.257795395Z [inf]  [runner  5/14] COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
+2025-11-25T09:15:39.266827723Z [inf]  [builder 1/3] COPY --from=deps /app/node_modules ./node_modules
+2025-11-25T09:15:39.267752133Z [inf]  [builder 2/3] COPY . .
+2025-11-25T09:15:39.797059007Z [inf]  [builder 2/3] COPY . .
+2025-11-25T09:15:39.806010805Z [inf]  [builder 3/3] RUN pnpm run build
+2025-11-25T09:15:40.554061054Z [inf]  
+> my-v0-project@0.1.0 build /app
+> next build
+
+
+2025-11-25T09:15:41.496985299Z [inf]     ▲ Next.js 15.5.4
+
+2025-11-25T09:15:41.497502921Z [inf]     - Experiments (use with caution):
+     ⨯ webpackBuildWorker
+     ✓ webpackMemoryOptimizations
+
+2025-11-25T09:15:41.497639725Z [inf]  
+
+2025-11-25T09:15:41.59686124Z [inf]     Creating an optimized production build ...
+
+2025-11-25T09:15:42.327105671Z [inf]   ⚠ Production code optimization has been disabled in your project. Read more: https://nextjs.org/docs/messages/minification-disabled
+
+2025-11-25T09:16:34.459471961Z [inf]   ✓ Compiled successfully in 52s
+
+2025-11-25T09:16:34.46182949Z [inf]     Skipping validation of types
+
+2025-11-25T09:16:34.461920392Z [inf]     Skipping linting
+
+2025-11-25T09:16:34.836693479Z [inf]     Collecting page data ...
+
+2025-11-25T09:18:05.74494177Z [inf]     Generating static pages (0/93) ...
+
+2025-11-25T09:18:13.403961497Z [inf]     Generating static pages (23/93) 
+
+2025-11-25T09:18:13.404378217Z [inf]     Generating static pages (46/93) 
+
+2025-11-25T09:18:13.404733317Z [inf]     Generating static pages (69/93) 
+
+2025-11-25T09:18:13.405149497Z [inf]   ✓ Generating static pages (93/93)
+
+2025-11-25T09:18:31.497106462Z [inf]     Finalizing page optimization ...
+   Collecting build traces ...
+
+2025-11-25T09:19:00.571074798Z [inf]  
+
+2025-11-25T09:19:00.600668375Z [inf]  Route (app)                                   Size  First Load JS
+┌ ○ /                                       137 kB         357 kB
+├ ○ /_not-found                             1.6 kB         222 kB
+├ ○ /admin/invitations                      271 kB         491 kB
+├ ○ /admin/organizations                    257 kB         477 kB
+├ ○ /admin/teams                            258 kB         478 kB
+├ ○ /admin/tickets                          259 kB         479 kB
+├ ○ /ai-assistant                           161 kB         381 kB
+├ ○ /api-integrations                       258 kB         478 kB
+├ ƒ /api/admin/saml-config                   464 B         220 kB
+├ ƒ /api/ai-assistant                        464 B         220 kB
+├ ƒ /api/analytics/analyze                   464 B         220 kB
+├ ƒ /api/analytics/automation                464 B         220 kB
+├ ƒ /api/analytics/performance               464 B         220 kB
+├ ƒ /api/auth/[...nextauth]                  464 B         220 kB
+├ ƒ /api/auth/audit/logout                   464 B         220 kB
+├ ƒ /api/auth/csrf                           464 B         220 kB
+├ ƒ /api/auth/login                          464 B         220 kB
+├ ƒ /api/auth/logout                         464 B         220 kB
+├ ƒ /api/auth/password-reset/confirm         464 B         220 kB
+├ ƒ /api/auth/password-reset/request         464 B         220 kB
+├ ƒ /api/auth/saml/[orgSlug]                 464 B         220 kB
+├ ƒ /api/auth/saml/[orgSlug]/callback        464 B         220 kB
+├ ƒ /api/auth/saml/[orgSlug]/metadata        464 B         220 kB
+├ ƒ /api/auth/signup                         464 B         220 kB
+├ ƒ /api/auth/user                           464 B         220 kB
+├ ƒ /api/billing/invoices                    464 B         220 kB
+├ ƒ /api/comments                            464 B         220 kB
+├ ƒ /api/conformance/deviations              464 B         220 kB
+├ ƒ /api/cost-analysis                       464 B         220 kB
+├ ƒ /api/custom-kpis                         464 B         220 kB
+├ ƒ /api/dashboard/export                    464 B         220 kB
+├ ƒ /api/dashboard/stats                     464 B         220 kB
+├ ƒ /api/document-parser                     464 B         220 kB
+├ ƒ /api/documents                           464 B         220 kB
+├ ƒ /api/documents/[id]                      464 B         220 kB
+├ ƒ /api/documents/[id]/download             464 B         220 kB
+├ ƒ /api/email-parser                        464 B         220 kB
+├ ƒ /api/event-logs                          464 B         220 kB
+├ ƒ /api/event-logs/[id]                     464 B         220 kB
+├ ƒ /api/gdpr/consent                        464 B         220 kB
+├ ƒ /api/gdpr/delete-account                 464 B         220 kB
+├ ƒ /api/gdpr/export                         464 B         220 kB
+├ ƒ /api/health                              464 B         220 kB
+├ ƒ /api/integrations/csv-adapter            464 B         220 kB
+├ ƒ /api/invitations                         464 B         220 kB
+├ ƒ /api/invitations/[id]                    464 B         220 kB
+├ ƒ /api/invitations/accept                  464 B         220 kB
+├ ƒ /api/invitations/verify                  464 B         220 kB
+├ ƒ /api/llm-providers                       464 B         220 kB
+├ ƒ /api/llm-providers/health-check          464 B         220 kB
+├ ƒ /api/llm-providers/validate              464 B         220 kB
+├ ƒ /api/monitoring/alerts                   464 B         220 kB
+├ ƒ /api/monitoring/health                   464 B         220 kB
+├ ƒ /api/monitoring/instances                464 B         220 kB
+├ ƒ /api/organizations                       464 B         220 kB
+├ ƒ /api/organizations/[id]                  464 B         220 kB
+├ ƒ /api/organizations/my-organization       464 B         220 kB
+├ ƒ /api/payments/webhook                    464 B         220 kB
+├ ƒ /api/processes                           464 B         220 kB
+├ ƒ /api/processes/[id]                      464 B         220 kB
+├ ƒ /api/processes/[id]/analyze              464 B         220 kB
+├ ƒ /api/processes/[id]/check-conformance    464 B         220 kB
+├ ƒ /api/processes/[id]/detect-anomalies     464 B         220 kB
+├ ƒ /api/processes/[id]/discover             464 B         220 kB
+├ ƒ /api/processes/[id]/forecast             464 B         220 kB
+├ ƒ /api/processes/[id]/scenario-analysis    464 B         220 kB
+├ ƒ /api/reports                             464 B         220 kB
+├ ƒ /api/reports/download/[id]               464 B         220 kB
+├ ƒ /api/reports/export                      464 B         220 kB
+├ ƒ /api/reports/generate                    464 B         220 kB
+├ ƒ /api/settings/llm                        464 B         220 kB
+├ ƒ /api/simulations                         464 B         220 kB
+├ ƒ /api/simulations/[id]                    464 B         220 kB
+├ ƒ /api/subscriptions                       464 B         220 kB
+├ ƒ /api/subscriptions/plans                 464 B         220 kB
+├ ƒ /api/task-mining/activities              464 B         220 kB
+├ ƒ /api/task-mining/api-keys                464 B         220 kB
+├ ƒ /api/task-mining/automations             464 B         220 kB
+├ ƒ /api/task-mining/patterns                464 B         220 kB
+├ ƒ /api/task-mining/sessions                464 B         220 kB
+├ ƒ /api/task-mining/stats                   464 B         220 kB
+├ ƒ /api/teams                               464 B         220 kB
+├ ƒ /api/teams/[id]                          464 B         220 kB
+├ ƒ /api/teams/[id]/members                  464 B         220 kB
+├ ƒ /api/teams/[id]/members/[userId]         464 B         220 kB
+├ ƒ /api/ticket-categories                   464 B         220 kB
+├ ƒ /api/tickets                             464 B         220 kB
+├ ƒ /api/tickets/[id]                        464 B         220 kB
+├ ƒ /api/tickets/[id]/messages               464 B         220 kB
+├ ƒ /api/tickets/stats                       464 B         220 kB
+├ ƒ /api/upload                              464 B         220 kB
+├ ƒ /api/users                               464 B         220 kB
+├ ƒ /api/v1/processes                        464 B         220 kB
+├ ○ /auth/accept-invite                    40.9 kB         261 kB
+├ ○ /auth/forgot-password                  28.7 kB         249 kB
+├ ○ /auth/reset-password                   30.3 kB         250 kB
+├ ○ /auth/signin                           20.2 kB         240 kB
+├ ○ /auth/signup                           20.1 kB         240 kB
+├ ○ /automation-opportunities               423 kB         643 kB
+├ ○ /conformance-checking                   167 kB         387 kB
+├ ○ /cost-analysis                          187 kB         407 kB
+├ ○ /custom-kpis                            255 kB         475 kB
+├ ○ /dashboard                              551 kB         771 kB
+├ ○ /demo/berkadia                          206 kB         426 kB
+├ ○ /digital-twin                           280 kB         500 kB
+├ ○ /document-upload                        154 kB         374 kB
+├ ○ /downloads                              142 kB         362 kB
+├ ○ /monitoring                             140 kB         360 kB
+├ ○ /performance-analytics                  164 kB         384 kB
+├ ○ /predictive-analytics                   451 kB         671 kB
+├ ○ /pricing                                150 kB         370 kB
+├ ○ /process-analysis                       266 kB         486 kB
+├ ○ /process-discovery                      165 kB         385 kB
+├ ○ /reports                                165 kB         385 kB
+├ ○ /scenario-analysis                      164 kB         384 kB
+├ ○ /settings                               152 kB         372 kB
+├ ○ /subscription                           151 kB         371 kB
+├ ○ /task-mining                            256 kB         476 kB
+├ ○ /test-landing                           137 kB         357 kB
+└ ○ /what-if-scenarios                      164 kB         384 kB
++ First Load JS shared by all               220 kB
+  ├ chunks/main-app-fdb2fd3859dd2fa4.js     216 kB
+  └ other shared chunks (total)            4.45 kB
+
+
+ƒ Middleware                               83.4 kB
+
+
+2025-11-25T09:19:00.60094449Z [inf]  ○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+2025-11-25T09:19:00.875442071Z [inf]  [builder 3/3] RUN pnpm run build
+2025-11-25T09:19:03.683489776Z [inf]  [runner  6/14] COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+2025-11-25T09:19:03.835718197Z [inf]  [runner  6/14] COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+2025-11-25T09:19:03.835787800Z [inf]  [runner  7/14] COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+2025-11-25T09:19:03.835811890Z [inf]  [runner  8/14] COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+2025-11-25T09:19:03.835830865Z [err]  [runner  9/14] COPY --from=builder --chown=nextjs:nodejs /app/next.config.ts ./next.config.ts
+2025-11-25T09:19:03.837465204Z [err]  [runner  6/14] COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+2025-11-25T09:19:04.023970505Z [err]  Dockerfile:95
+2025-11-25T09:19:04.024054091Z [err]  -------------------
+2025-11-25T09:19:04.024062372Z [err]  93 |
+2025-11-25T09:19:04.024069747Z [err]  94 |     # Copy necessary configuration files
+2025-11-25T09:19:04.024078972Z [err]  95 | >>> COPY --from=builder --chown=nextjs:nodejs /app/next.config.ts ./next.config.ts
+2025-11-25T09:19:04.024085091Z [err]  96 |     COPY --from=builder --chown=nextjs:nodejs /app/drizzle.config.ts ./drizzle.config.ts
+2025-11-25T09:19:04.024091687Z [err]  97 |     COPY --from=builder --chown=nextjs:nodejs /app/shared ./shared
+2025-11-25T09:19:04.024097613Z [err]  -------------------
+2025-11-25T09:19:04.024104277Z [err]  ERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref kwcv32pcjv1ozrnxpmpxs19yz::mg5rqhkbi7b7lgawvdk7gar9l: "/app/next.config.ts": not found
