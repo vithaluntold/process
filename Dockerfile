@@ -48,6 +48,9 @@ COPY . .
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Increase Node.js memory limit for large builds (Railway has limited memory)
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 # Provide dummy environment variables for build phase (Next.js needs them for static analysis)
 # The real values will be injected at runtime by Railway
 ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
@@ -75,6 +78,8 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=5000
 ENV HOSTNAME="0.0.0.0"
+# Clear the large memory setting from build stage (not needed at runtime)
+ENV NODE_OPTIONS=""
 
 # Create non-root user for security
 RUN addgroup --system --gid 1001 nodejs && \

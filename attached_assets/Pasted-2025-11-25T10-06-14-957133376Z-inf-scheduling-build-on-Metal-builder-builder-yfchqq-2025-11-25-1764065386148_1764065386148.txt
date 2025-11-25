@@ -1,0 +1,122 @@
+2025-11-25T10:06:14.957133376Z [inf]  scheduling build on Metal builder "builder-yfchqq"
+2025-11-25T10:06:15.002524305Z [inf]  [snapshot] received sha256:04b84b14fc305bb02e1c464c8e35b4fd0b97d7d3fcade831a8654a5a47f599d8 md5:577d787dd468258b9bae4597539a92da
+2025-11-25T10:06:15.002609202Z [inf]  [snapshot] receiving snapshot, complete 10 MB [took 2.545220365s]
+2025-11-25T10:06:15.098178042Z [inf]  [snapshot] analyzing snapshot, complete 10 MB [took 93.088827ms]
+2025-11-25T10:06:15.414609140Z [inf]  [snapshot] uploading snapshot, complete 10 MB [took 316.507142ms]
+2025-11-25T10:06:40.092493510Z [inf]  scheduling build on Metal builder "builder-bkliao"
+2025-11-25T10:06:41.687697981Z [inf]  fetched snapshot sha256:04b84b14fc305bb02e1c464c8e35b4fd0b97d7d3fcade831a8654a5a47f599d8 (10 MB bytes)
+2025-11-25T10:06:41.687786864Z [inf]  fetching snapshot
+2025-11-25T10:06:42.073846225Z [inf]  unpacking archive
+2025-11-25T10:06:42.600960784Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T10:06:42.600962817Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T10:06:42.600971610Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T10:06:42.601817770Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T10:06:42.685486336Z [inf]  [internal] load build definition from Dockerfile
+2025-11-25T10:06:42.689755481Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
+2025-11-25T10:06:43.251459148Z [inf]  [internal] load metadata for docker.io/library/node:20-alpine
+2025-11-25T10:06:43.252352308Z [inf]  [internal] load .dockerignore
+2025-11-25T10:06:43.252418156Z [inf]  [internal] load .dockerignore
+2025-11-25T10:06:43.252521431Z [inf]  [internal] load .dockerignore
+2025-11-25T10:06:43.270176091Z [inf]  [internal] load .dockerignore
+2025-11-25T10:06:43.274496132Z [wrn]  SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "SESSION_SECRET") (line 54)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
+ details: Sensitive data should not be used in the ARG or ENV commands
+
+2025-11-25T10:06:43.274513058Z [wrn]  SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "AUTH_SECRET") (line 55)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
+ details: Sensitive data should not be used in the ARG or ENV commands
+
+2025-11-25T10:06:43.274513839Z [wrn]  SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "JWT_SECRET") (line 56)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
+ details: Sensitive data should not be used in the ARG or ENV commands
+
+2025-11-25T10:06:43.274514329Z [wrn]  SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "MASTER_ENCRYPTION_KEY") (line 57)(https://docs.docker.com/go/dockerfile/rule/secrets-used-in-arg-or-env/)
+ details: Sensitive data should not be used in the ARG or ENV commands
+
+2025-11-25T10:06:43.279720271Z [inf]  [internal] load build context
+2025-11-25T10:06:43.279725308Z [inf]  [base 4/4] RUN apk update &&     apk upgrade &&     apk add --no-cache     libc6-compat     dumb-init &&     rm -rf /var/cache/apk/*
+2025-11-25T10:06:43.279726560Z [inf]  [base 3/4] WORKDIR /app
+2025-11-25T10:06:43.279727251Z [inf]  [base 2/4] RUN corepack enable && corepack prepare pnpm@latest --activate
+2025-11-25T10:06:43.279727932Z [inf]  [runner  4/12] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+2025-11-25T10:06:43.279728803Z [inf]  [runner  3/12] WORKDIR /app
+2025-11-25T10:06:43.279729324Z [inf]  [runner  2/12] RUN apk add --no-cache dumb-init &&     rm -rf /var/cache/apk/*
+2025-11-25T10:06:43.279729895Z [inf]  [base 1/4] FROM docker.io/library/node:20-alpine@sha256:6178e78b972f79c335df281f4b7674a2d85071aae2af020ffa39f0a770265435
+2025-11-25T10:06:43.280531457Z [inf]  [runner  7/12] COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+2025-11-25T10:06:43.280536685Z [inf]  [runner  6/12] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+2025-11-25T10:06:43.280538027Z [inf]  [runner  5/12] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+2025-11-25T10:06:43.280538879Z [inf]  [builder 3/3] RUN pnpm run build
+2025-11-25T10:06:43.280539480Z [inf]  [builder 2/3] COPY . .
+2025-11-25T10:06:43.280539920Z [inf]  [builder 1/3] COPY --from=deps /app/node_modules ./node_modules
+2025-11-25T10:06:43.280540391Z [inf]  [deps 2/2] RUN pnpm install --frozen-lockfile --prod=false
+2025-11-25T10:06:43.280540731Z [inf]  [deps 1/2] COPY package.json pnpm-lock.yaml ./
+2025-11-25T10:06:43.280556795Z [inf]  [runner 12/12] RUN mkdir -p /app/uploads && chown -R nextjs:nodejs /app/uploads
+2025-11-25T10:06:43.280557336Z [inf]  [runner 11/12] COPY --from=builder --chown=nextjs:nodejs /app/drizzle.config.ts ./drizzle.config.ts
+2025-11-25T10:06:43.280557727Z [inf]  [runner 10/12] COPY --from=builder --chown=nextjs:nodejs /app/server ./server
+2025-11-25T10:06:43.280558027Z [inf]  [runner  9/12] COPY --from=builder --chown=nextjs:nodejs /app/lib ./lib
+2025-11-25T10:06:43.280558528Z [inf]  [runner  8/12] COPY --from=builder --chown=nextjs:nodejs /app/shared ./shared
+2025-11-25T10:06:43.280605359Z [inf]  [base 1/4] FROM docker.io/library/node:20-alpine@sha256:6178e78b972f79c335df281f4b7674a2d85071aae2af020ffa39f0a770265435
+2025-11-25T10:06:43.280606490Z [inf]  [internal] load build context
+2025-11-25T10:06:43.280610816Z [inf]  [internal] load build context
+2025-11-25T10:06:43.292634347Z [inf]  [base 1/4] FROM docker.io/library/node:20-alpine@sha256:6178e78b972f79c335df281f4b7674a2d85071aae2af020ffa39f0a770265435
+2025-11-25T10:06:43.293540957Z [inf]  [internal] load build context
+2025-11-25T10:06:43.293541989Z [inf]  [runner  2/12] RUN apk add --no-cache dumb-init &&     rm -rf /var/cache/apk/*
+2025-11-25T10:06:43.293542840Z [inf]  [runner  3/12] WORKDIR /app
+2025-11-25T10:06:43.293545003Z [inf]  [runner  4/12] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+2025-11-25T10:06:43.295478915Z [inf]  [runner  4/12] RUN addgroup --system --gid 1001 nodejs &&     adduser --system --uid 1001 nextjs
+2025-11-25T10:06:43.442983519Z [inf]  [internal] load build context
+2025-11-25T10:06:43.449539376Z [inf]  [base 2/4] RUN corepack enable && corepack prepare pnpm@latest --activate
+2025-11-25T10:06:43.449540718Z [inf]  [base 3/4] WORKDIR /app
+2025-11-25T10:06:43.449541319Z [inf]  [base 4/4] RUN apk update &&     apk upgrade &&     apk add --no-cache     libc6-compat     dumb-init &&     rm -rf /var/cache/apk/*
+2025-11-25T10:06:43.449541770Z [inf]  [deps 1/2] COPY package.json pnpm-lock.yaml ./
+2025-11-25T10:06:43.449542070Z [inf]  [deps 2/2] RUN pnpm install --frozen-lockfile --prod=false
+2025-11-25T10:06:43.449542440Z [inf]  [builder 1/3] COPY --from=deps /app/node_modules ./node_modules
+2025-11-25T10:06:43.449546807Z [inf]  [builder 2/3] COPY . .
+2025-11-25T10:06:43.636482484Z [inf]  [builder 2/3] COPY . .
+2025-11-25T10:06:43.638256696Z [inf]  [builder 3/3] RUN pnpm run build
+2025-11-25T10:06:44.240510724Z [inf]  
+> my-v0-project@0.1.0 build /app
+> next build
+
+
+2025-11-25T10:06:45.021650721Z [inf]     ▲ Next.js 15.5.4
+
+2025-11-25T10:06:45.021838183Z [inf]     - Experiments (use with caution):
+     ⨯ webpackBuildWorker
+     ✓ webpackMemoryOptimizations
+
+2025-11-25T10:06:45.021866435Z [inf]  
+2025-11-25T10:06:45.084286089Z [inf]     Creating an optimized production build ...
+
+2025-11-25T10:06:45.541707682Z [inf]   ⚠ Production code optimization has been disabled in your project. Read more: https://nextjs.org/docs/messages/minification-disabled
+
+2025-11-25T10:07:24.226772659Z [inf]   ✓ Compiled successfully in 38.7s
+
+2025-11-25T10:07:24.228893972Z [inf]     Skipping validation of types
+   Skipping linting
+
+2025-11-25T10:07:24.566053293Z [inf]     Collecting page data ...
+
+2025-11-25T10:08:43.512807595Z [inf]     Generating static pages (0/93) ...
+
+2025-11-25T10:08:55.034981439Z [inf]     Generating static pages (23/93) 
+
+2025-11-25T10:08:55.03532836Z [inf]     Generating static pages (46/93) 
+
+2025-11-25T10:08:55.035563442Z [inf]     Generating static pages (69/93) 
+
+2025-11-25T10:08:55.035939747Z [inf]   ✓ Generating static pages (93/93)
+
+2025-11-25T10:09:00.582578207Z [inf]  
+<--- Last few GCs --->
+
+[17:0x7fd8d2591660]   134263 ms: Mark-Compact 4022.4 (4129.5) -> 4012.4 (4137.6) MB, 1831.88 / 0.03 ms  (average mu = 0.513, current mu = 0.475) allocation failure; scavenge might not succeed
+[17:0x7fd8d2591660]   136324 ms: Mark-Compact 4028.4 (4137.6) -> 4021.0 (4145.1) MB, 2015.13 / 0.00 ms  (average mu = 0.308, current mu = 0.022) allocation failure; scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+----- Native stack trace -----
+
+
+2025-11-25T10:09:01.063939188Z [inf]   ELIFECYCLE  Command failed.
+
+2025-11-25T10:09:01.199348976Z [err]  [builder 3/3] RUN pnpm run build
+2025-11-25T10:09:01.220770727Z [err]  Build Failed: bc.Build: failed to solve: process "/bin/sh -c pnpm run build" did not complete successfully: exit code: 1
