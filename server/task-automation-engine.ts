@@ -1,7 +1,17 @@
 import OpenAI from "openai";
 import pRetry from "p-retry";
 
-const openai = new OpenAI();
+let _openai: OpenAI | null = null;
+
+function getOpenAI(): OpenAI {
+  if (!_openai) {
+    _openai = new OpenAI({
+      baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+      apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY || "dummy-key-for-build",
+    });
+  }
+  return _openai;
+}
 
 interface TaskPattern {
   id: number;
@@ -75,7 +85,7 @@ Generate 1-3 automation recommendations. For each recommendation provide:
   try {
     const analysis = await pRetry(
       async () => {
-        const completion = await openai.chat.completions.create({
+        const completion = await getOpenAI().chat.completions.create({
           model: "gpt-4o-mini",
           messages: [
             {
@@ -164,7 +174,7 @@ Include error handling and make it production-ready.`;
   try {
     const script = await pRetry(
       async () => {
-        const completion = await openai.chat.completions.create({
+        const completion = await getOpenAI().chat.completions.create({
           model: "gpt-4o-mini",
           messages: [
             {

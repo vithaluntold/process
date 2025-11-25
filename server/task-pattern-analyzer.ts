@@ -3,7 +3,18 @@ import pRetry from "p-retry";
 import pLimit from "p-limit";
 import { getUserActivitiesBySession } from "./task-mining-storage";
 
-const openai = new OpenAI();
+let _openai: OpenAI | null = null;
+
+function getOpenAI(): OpenAI {
+  if (!_openai) {
+    _openai = new OpenAI({
+      baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+      apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY || "dummy-key-for-build",
+    });
+  }
+  return _openai;
+}
+
 const limit = pLimit(3);
 
 interface Activity {
@@ -110,7 +121,7 @@ Provide a JSON response with:
   try {
     const analysis = await pRetry(
       async () => {
-        const completion = await openai.chat.completions.create({
+        const completion = await getOpenAI().chat.completions.create({
           model: "gpt-4o-mini",
           messages: [
             {

@@ -2,10 +2,17 @@ import OpenAI from "openai";
 import pRetry from "p-retry";
 import { getUserLLMProvider, createOpenAIClient, getDefaultModelForProvider } from "./llm-config";
 
-const defaultOpenai = new OpenAI({
-  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
-});
+let _defaultOpenai: OpenAI | null = null;
+
+function getDefaultOpenai(): OpenAI {
+  if (!_defaultOpenai) {
+    _defaultOpenai = new OpenAI({
+      baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+      apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY || "dummy-key-for-build",
+    });
+  }
+  return _defaultOpenai;
+}
 
 function isRateLimitError(error: any): boolean {
   const errorMsg = error?.message || String(error);
@@ -22,7 +29,7 @@ export async function generateAIResponse(
   userId?: number
 ): Promise<string> {
   try {
-    let openai = defaultOpenai;
+    let openai = getDefaultOpenai();
     let model = "gpt-4o";
 
     if (userId) {
