@@ -1,0 +1,14 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+numReplicas = 1
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+healthcheckPath = "/api/health"
+healthcheckTimeout = 300
+
+[[deploy.healthcheck]]
+path = "/api/health"
+interval = 30
+timeout = 10
