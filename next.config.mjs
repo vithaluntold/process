@@ -10,30 +10,39 @@ const nextConfig = {
   output: 'standalone',
   // Disable source maps in production to save memory
   productionBrowserSourceMaps: false,
+  // Disable eslint during build to save memory
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   experimental: {
     // Optimize memory usage during build
     webpackMemoryOptimizations: true,
-  },
-  // Reduce bundle size
-  compiler: {
-    removeConsole: {
-      exclude: ['error', 'warn'],
-    },
+    // Reduce memory by disabling webpack cache
+    webpackBuildWorker: false,
   },
   // Reduce memory usage by limiting concurrent builds
   webpack: (config, { isServer }) => {
     // Disable source maps to reduce memory
     config.devtool = false;
     
-    // Temporarily disable minification to reduce memory usage
+    // Aggressive memory optimizations
     config.optimization = {
       ...config.optimization,
       minimize: false, // Disabled to save memory during build
       moduleIds: 'deterministic',
+      removeAvailableModules: false,
+      removeEmptyChunks: false,
+      splitChunks: false,
     };
     
-    // Reduce memory usage - sequential processing
+    // Force sequential processing (no parallelism)
     config.parallelism = 1;
+    
+    // Disable performance hints to save memory
+    config.performance = false;
+    
+    // Reduce cache to minimum
+    config.cache = false;
     
     return config;
   },
