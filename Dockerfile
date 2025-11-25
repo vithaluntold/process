@@ -48,9 +48,13 @@ COPY . .
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Provide dummy DATABASE_URL for build phase (Next.js needs it for static analysis)
-# The real DATABASE_URL will be injected at runtime by Railway
+# Provide dummy environment variables for build phase (Next.js needs them for static analysis)
+# The real values will be injected at runtime by Railway
 ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
+ENV SESSION_SECRET="build-time-dummy-secret-replaced-at-runtime"
+ENV AUTH_SECRET="build-time-dummy-secret-replaced-at-runtime"
+ENV JWT_SECRET="build-time-dummy-secret-replaced-at-runtime"
+ENV MASTER_ENCRYPTION_KEY="0000000000000000000000000000000000000000000000000000000000000000"
 
 # Build the Next.js application
 # This creates the .next folder with optimized production build
