@@ -8,11 +8,17 @@ nixPkgs = ["nodejs_20", "pnpm-9_x", "openssl"]
 cmds = ["pnpm install --frozen-lockfile"]
 
 [phases.build]
-cmds = ["NODE_OPTIONS='--max-old-space-size=8192' pnpm run build"]
+cmds = [
+  "NODE_OPTIONS='--max-old-space-size=8192' pnpm run build",
+  "cp -r public .next/standalone/public",
+  "cp -r .next/static .next/standalone/.next/static"
+]
 
 [start]
-cmd = "pnpm run start"
+cmd = "node .next/standalone/server.js"
 
 [variables]
 NODE_ENV = "production"
 NEXT_TELEMETRY_DISABLED = "1"
+HOSTNAME = "0.0.0.0"
+PORT = "5000"
