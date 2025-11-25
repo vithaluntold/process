@@ -1,0 +1,638 @@
+2025-11-25T08:07:25.000000000Z [inf]  Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/446fcde3-18a1-4d81-983e-ee88d423cdaa/vol_lt0pkd7dgx2uk6m0
+2025-11-25T08:07:26.000000000Z [inf]  Starting Container
+2025-11-25T08:07:26.805827209Z [inf]  Certificate will not expire
+2025-11-25T08:07:26.805835695Z [inf]  
+2025-11-25T08:07:26.805842497Z [inf]  PostgreSQL Database directory appears to contain a database; Skipping initialization
+2025-11-25T08:07:26.805848763Z [inf]  
+2025-11-25T08:07:26.805855514Z [err]  2025-11-25 08:07:26.263 UTC [6] LOG:  starting PostgreSQL 17.7 (Debian 17.7-3.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2025-11-25T08:07:26.805862531Z [err]  2025-11-25 08:07:26.263 UTC [6] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-11-25T08:07:26.805869314Z [err]  2025-11-25 08:07:26.263 UTC [6] LOG:  listening on IPv6 address "::", port 5432
+2025-11-25T08:07:26.805875623Z [err]  2025-11-25 08:07:26.268 UTC [6] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-11-25T08:07:26.806054976Z [err]  2025-11-25 08:07:26.279 UTC [29] LOG:  database system was interrupted; last known up at 2025-11-25 08:02:49 UTC
+2025-11-25T08:07:26.806061991Z [err]  2025-11-25 08:07:26.706 UTC [29] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-11-25T08:07:26.806069215Z [err]  2025-11-25 08:07:26.723 UTC [29] LOG:  redo starts at 0/19592E0
+2025-11-25T08:07:26.806075696Z [err]  2025-11-25 08:07:26.723 UTC [29] LOG:  invalid record length at 0/1959318: expected at least 24, got 0
+2025-11-25T08:07:26.806084032Z [err]  2025-11-25 08:07:26.723 UTC [29] LOG:  redo done at 0/19592E0 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-11-25T08:07:26.806098575Z [err]  2025-11-25 08:07:26.733 UTC [27] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-11-25T08:07:26.806105131Z [err]  2025-11-25 08:07:26.766 UTC [27] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.005 s, total=0.038 s; sync files=2, longest=0.003 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/1959318, redo lsn=0/1959318
+2025-11-25T08:07:26.808452956Z [err]  2025-11-25 08:07:26.774 UTC [6] LOG:  database system is ready to accept connections
+2025-11-25T08:15:36.000000000Z [inf]  Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/446fcde3-18a1-4d81-983e-ee88d423cdaa/vol_lt0pkd7dgx2uk6m0
+2025-11-25T08:15:43.124435255Z [inf]  Certificate will not expire
+2025-11-25T08:15:43.124443763Z [inf]  
+2025-11-25T08:15:43.124454966Z [inf]  PostgreSQL Database directory appears to contain a database; Skipping initialization
+2025-11-25T08:15:43.124461560Z [inf]  
+2025-11-25T08:15:43.124478413Z [err]  2025-11-25 08:15:37.478 UTC [6] LOG:  starting PostgreSQL 17.7 (Debian 17.7-3.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2025-11-25T08:15:43.124486844Z [err]  2025-11-25 08:15:37.478 UTC [6] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-11-25T08:15:43.124494814Z [err]  2025-11-25 08:15:37.478 UTC [6] LOG:  listening on IPv6 address "::", port 5432
+2025-11-25T08:15:43.124505120Z [err]  2025-11-25 08:15:37.487 UTC [6] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-11-25T08:15:43.124512534Z [err]  2025-11-25 08:15:37.506 UTC [29] LOG:  database system was interrupted; last known up at 2025-11-25 08:07:26 UTC
+2025-11-25T08:15:43.124524620Z [err]  2025-11-25 08:15:37.934 UTC [29] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-11-25T08:15:43.124537797Z [err]  2025-11-25 08:15:37.942 UTC [29] LOG:  redo starts at 0/1959390
+2025-11-25T08:15:43.124544580Z [err]  2025-11-25 08:15:37.942 UTC [29] LOG:  invalid record length at 0/19593C8: expected at least 24, got 0
+2025-11-25T08:15:43.124550744Z [err]  2025-11-25 08:15:37.942 UTC [29] LOG:  redo done at 0/1959390 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-11-25T08:15:43.124556637Z [err]  2025-11-25 08:15:37.953 UTC [27] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-11-25T08:15:43.124562536Z [err]  2025-11-25 08:15:37.986 UTC [27] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.010 s, sync=0.004 s, total=0.038 s; sync files=2, longest=0.003 s, average=0.002 s; distance=0 kB, estimate=0 kB; lsn=0/19593C8, redo lsn=0/19593C8
+2025-11-25T08:15:43.126671502Z [err]  2025-11-25 08:15:37.995 UTC [6] LOG:  database system is ready to accept connections
+2025-11-25T08:18:34.429602925Z [err]  2025-11-25 08:18:27.913 UTC [38] ERROR:  relation "agent_api_keys" already exists
+2025-11-25T08:18:34.429603064Z [err]  	    automation_potential real,
+2025-11-25T08:18:34.429616197Z [err]  2025-11-25 08:18:27.913 UTC [38] STATEMENT:  CREATE TABLE public.agent_api_keys (
+2025-11-25T08:18:34.429624438Z [err]  	    AS integer
+2025-11-25T08:18:34.429625083Z [err]  	);
+2025-11-25T08:18:34.429632641Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:34.429634320Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:34.429642855Z [err]  	    START WITH 1
+2025-11-25T08:18:34.429642996Z [err]  	    label text,
+2025-11-25T08:18:34.429646457Z [err]  2025-11-25 08:18:27.307 UTC [38] ERROR:  relation "activities_id_seq" already exists
+2025-11-25T08:18:34.429648981Z [err]  	    user_id integer NOT NULL,
+2025-11-25T08:18:34.429665509Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:34.429667320Z [err]  2025-11-25 08:18:27.307 UTC [38] STATEMENT:  CREATE SEQUENCE public.activities_id_seq
+2025-11-25T08:18:34.429667935Z [err]  	    key_prefix character varying(12) NOT NULL,
+2025-11-25T08:18:34.429680150Z [err]  	    NO MINVALUE
+2025-11-25T08:18:34.429680700Z [err]  	    hashed_key text NOT NULL,
+2025-11-25T08:18:34.429691313Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:34.429700049Z [err]  2025-11-25 08:18:27.011 UTC [38] ERROR:  relation "activities" already exists
+2025-11-25T08:18:34.429707441Z [err]  	    CACHE 1;
+2025-11-25T08:18:34.429733083Z [err]  2025-11-25 08:18:27.011 UTC [38] STATEMENT:  CREATE TABLE public.activities (
+2025-11-25T08:18:34.429739993Z [err]  	    name text NOT NULL,
+2025-11-25T08:18:34.429751546Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:34.429755122Z [err]  	    frequency integer DEFAULT 0 NOT NULL,
+2025-11-25T08:18:34.429767258Z [err]  	    avg_duration real,
+2025-11-25T08:18:34.429770587Z [err]  	    process_id integer NOT NULL,
+2025-11-25T08:18:34.432884271Z [err]  	    status text DEFAULT 'active'::text NOT NULL,
+2025-11-25T08:18:34.432895962Z [err]  	    last_used_at timestamp without time zone,
+2025-11-25T08:18:34.432904192Z [err]  	    expires_at timestamp without time zone,
+2025-11-25T08:18:34.432912348Z [err]  	    metadata jsonb,
+2025-11-25T08:18:34.432944272Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:34.432956311Z [err]  	    updated_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:34.432968690Z [err]  	);
+2025-11-25T08:18:34.432979127Z [err]  2025-11-25 08:18:28.211 UTC [38] ERROR:  relation "agent_api_keys_id_seq" already exists
+2025-11-25T08:18:34.432986657Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:34.432988217Z [err]  2025-11-25 08:18:28.211 UTC [38] STATEMENT:  CREATE SEQUENCE public.agent_api_keys_id_seq
+2025-11-25T08:18:34.432996691Z [err]  	    AS integer
+2025-11-25T08:18:34.433005606Z [err]  	    CACHE 1;
+2025-11-25T08:18:34.433006197Z [err]  	    START WITH 1
+2025-11-25T08:18:34.433016560Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:34.433017408Z [err]  2025-11-25 08:18:28.808 UTC [38] ERROR:  relation "agent_encryption_keys" already exists
+2025-11-25T08:18:34.433043879Z [err]  	    NO MINVALUE
+2025-11-25T08:18:34.433254387Z [err]  2025-11-25 08:18:28.808 UTC [38] STATEMENT:  CREATE TABLE public.agent_encryption_keys (
+2025-11-25T08:18:34.433270453Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:34.433278472Z [err]  	    user_id integer NOT NULL,
+2025-11-25T08:18:34.433284358Z [err]  	    encrypted_aes_key text NOT NULL,
+2025-11-25T08:18:34.433289666Z [err]  	    algorithm text DEFAULT 'aes-256-gcm'::text NOT NULL,
+2025-11-25T08:18:34.433294353Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:34.433299359Z [err]  	    updated_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:34.434254774Z [err]  2025-11-25 08:18:29.105 UTC [38] STATEMENT:  CREATE SEQUENCE public.agent_encryption_keys_id_seq
+2025-11-25T08:18:34.434267941Z [err]  	    AS integer
+2025-11-25T08:18:34.434279637Z [err]  	    START WITH 1
+2025-11-25T08:18:34.434282134Z [err]  	    type text NOT NULL,
+2025-11-25T08:18:34.434286559Z [err]  	    metadata jsonb,
+2025-11-25T08:18:34.434289489Z [err]  	);
+2025-11-25T08:18:34.434298506Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:34.434299859Z [err]  	    category text NOT NULL,
+2025-11-25T08:18:34.434304104Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:34.434305098Z [err]  	    impact text,
+2025-11-25T08:18:34.434312990Z [err]  2025-11-25 08:18:29.998 UTC [38] ERROR:  relation "ai_insights_id_seq" already exists
+2025-11-25T08:18:34.434313376Z [err]  	    NO MINVALUE
+2025-11-25T08:18:34.434314797Z [err]  	);
+2025-11-25T08:18:34.434317024Z [err]  	    title text NOT NULL,
+2025-11-25T08:18:34.434323671Z [err]  	    confidence real,
+2025-11-25T08:18:34.434327651Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:34.434332893Z [err]  2025-11-25 08:18:29.998 UTC [38] STATEMENT:  CREATE SEQUENCE public.ai_insights_id_seq
+2025-11-25T08:18:34.434333215Z [err]  	    description text NOT NULL,
+2025-11-25T08:18:34.434333277Z [err]  2025-11-25 08:18:29.105 UTC [38] ERROR:  relation "agent_encryption_keys_id_seq" already exists
+2025-11-25T08:18:34.434338016Z [err]  	    CACHE 1;
+2025-11-25T08:18:34.434345789Z [err]  2025-11-25 08:18:29.701 UTC [38] ERROR:  relation "ai_insights" already exists
+2025-11-25T08:18:34.434347082Z [err]  	    recommendations jsonb,
+2025-11-25T08:18:34.434352237Z [err]  2025-11-25 08:18:29.701 UTC [38] STATEMENT:  CREATE TABLE public.ai_insights (
+2025-11-25T08:18:34.434358334Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:34.434364727Z [err]  	    process_id integer NOT NULL,
+2025-11-25T08:18:34.436377804Z [err]  	    user_id integer NOT NULL,
+2025-11-25T08:18:34.436411432Z [err]  	    session_id integer,
+2025-11-25T08:18:34.436418866Z [err]  	    AS integer
+2025-11-25T08:18:34.436429604Z [err]  	    START WITH 1
+2025-11-25T08:18:34.436433747Z [err]  	    application_name text NOT NULL,
+2025-11-25T08:18:34.436440781Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:34.436448075Z [err]  	    category text,
+2025-11-25T08:18:34.436454577Z [err]  	    NO MINVALUE
+2025-11-25T08:18:34.436463877Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:34.436471273Z [err]  	    CACHE 1;
+2025-11-25T08:18:34.436478087Z [err]  2025-11-25 08:18:30.611 UTC [38] ERROR:  relation "app_sessions" already exists
+2025-11-25T08:18:34.436486539Z [err]  2025-11-25 08:18:30.611 UTC [38] STATEMENT:  CREATE TABLE public.app_sessions (
+2025-11-25T08:18:34.436495071Z [err]  	    sid character varying NOT NULL,
+2025-11-25T08:18:34.436502507Z [err]  	    sess jsonb NOT NULL,
+2025-11-25T08:18:34.436510107Z [err]  	    expire timestamp without time zone NOT NULL
+2025-11-25T08:18:34.436517870Z [err]  	);
+2025-11-25T08:18:34.436525816Z [err]  2025-11-25 08:18:30.908 UTC [38] ERROR:  relation "application_usage" already exists
+2025-11-25T08:18:34.436533385Z [err]  2025-11-25 08:18:30.908 UTC [38] STATEMENT:  CREATE TABLE public.application_usage (
+2025-11-25T08:18:34.436541738Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:34.436547042Z [err]  	    time_spent integer NOT NULL,
+2025-11-25T08:18:34.436564848Z [err]  	    interactions integer DEFAULT 0 NOT NULL,
+2025-11-25T08:18:34.436572358Z [err]  	    productivity_score real,
+2025-11-25T08:18:34.436578359Z [err]  	    date timestamp without time zone NOT NULL,
+2025-11-25T08:18:34.436584047Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:34.436590872Z [err]  	);
+2025-11-25T08:18:34.436600925Z [err]  2025-11-25 08:18:31.207 UTC [38] ERROR:  relation "application_usage_id_seq" already exists
+2025-11-25T08:18:34.439775510Z [err]  2025-11-25 08:18:31.207 UTC [38] STATEMENT:  CREATE SEQUENCE public.application_usage_id_seq
+2025-11-25T08:18:34.439784523Z [err]  	    AS integer
+2025-11-25T08:18:34.439791653Z [err]  	    START WITH 1
+2025-11-25T08:18:34.439803325Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:34.439810266Z [err]  	    NO MINVALUE
+2025-11-25T08:18:34.439817082Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:34.439823718Z [err]  	    CACHE 1;
+2025-11-25T08:18:34.439830275Z [err]  2025-11-25 08:18:31.817 UTC [38] ERROR:  relation "audit_logs" already exists
+2025-11-25T08:18:34.439836765Z [err]  2025-11-25 08:18:31.817 UTC [38] STATEMENT:  CREATE TABLE public.audit_logs (
+2025-11-25T08:18:34.439843576Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:34.439849613Z [err]  	    user_id integer,
+2025-11-25T08:18:34.439856719Z [err]  	    action text NOT NULL,
+2025-11-25T08:18:34.439864659Z [err]  	    resource text NOT NULL,
+2025-11-25T08:18:34.439871703Z [err]  	    resource_id text,
+2025-11-25T08:18:34.439877812Z [err]  	    ip_address text,
+2025-11-25T08:18:34.439883506Z [err]  	    user_agent text,
+2025-11-25T08:18:34.439890343Z [err]  	    metadata jsonb,
+2025-11-25T08:18:34.439897100Z [err]  	    "timestamp" timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:34.439903082Z [err]  	);
+2025-11-25T08:18:34.439909353Z [err]  2025-11-25 08:18:32.114 UTC [38] ERROR:  relation "audit_logs_id_seq" already exists
+2025-11-25T08:18:34.439915763Z [err]  2025-11-25 08:18:32.114 UTC [38] STATEMENT:  CREATE SEQUENCE public.audit_logs_id_seq
+2025-11-25T08:18:34.439923829Z [err]  	    AS integer
+2025-11-25T08:18:34.439929742Z [err]  	    START WITH 1
+2025-11-25T08:18:34.439937310Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:34.439943772Z [err]  	    NO MINVALUE
+2025-11-25T08:18:34.439950482Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:34.439957418Z [err]  	    CACHE 1;
+2025-11-25T08:18:34.442208787Z [err]  2025-11-25 08:18:32.723 UTC [38] ERROR:  relation "automation_opportunities" already exists
+2025-11-25T08:18:34.442212151Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:34.442217831Z [err]  2025-11-25 08:18:32.723 UTC [38] STATEMENT:  CREATE TABLE public.automation_opportunities (
+2025-11-25T08:18:34.442225696Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:34.442227225Z [err]  	    NO MINVALUE
+2025-11-25T08:18:34.442238020Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:34.442238238Z [err]  	    process_id integer NOT NULL,
+2025-11-25T08:18:34.442246611Z [err]  	    task_name text NOT NULL,
+2025-11-25T08:18:34.442249032Z [err]  	    CACHE 1;
+2025-11-25T08:18:34.442256562Z [err]  	    frequency integer NOT NULL,
+2025-11-25T08:18:34.442259496Z [err]  2025-11-25 08:18:33.615 UTC [38] ERROR:  relation "conformance_results" already exists
+2025-11-25T08:18:34.442266904Z [err]  	    duration real NOT NULL,
+2025-11-25T08:18:34.442269490Z [err]  2025-11-25 08:18:33.615 UTC [38] STATEMENT:  CREATE TABLE public.conformance_results (
+2025-11-25T08:18:34.442275833Z [err]  	    automation_potential real NOT NULL,
+2025-11-25T08:18:34.442280679Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:34.442286296Z [err]  	    savings_estimate real,
+2025-11-25T08:18:34.442292340Z [err]  	    process_id integer NOT NULL,
+2025-11-25T08:18:34.442295352Z [err]  	    recommended_solution text,
+2025-11-25T08:18:34.442301934Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:34.442308589Z [err]  	);
+2025-11-25T08:18:34.442315268Z [err]  2025-11-25 08:18:33.019 UTC [38] ERROR:  relation "automation_opportunities_id_seq" already exists
+2025-11-25T08:18:34.442321573Z [err]  2025-11-25 08:18:33.019 UTC [38] STATEMENT:  CREATE SEQUENCE public.automation_opportunities_id_seq
+2025-11-25T08:18:34.442327983Z [err]  	    AS integer
+2025-11-25T08:18:34.442334821Z [err]  	    START WITH 1
+2025-11-25T08:18:34.444715977Z [err]  	    model_id integer,
+2025-11-25T08:18:34.444724273Z [err]  	    case_id text NOT NULL,
+2025-11-25T08:18:34.444729907Z [err]  	    conformant boolean NOT NULL,
+2025-11-25T08:18:34.444737722Z [err]  	    deviation_type text,
+2025-11-25T08:18:34.444743911Z [err]  	    deviation_details jsonb,
+2025-11-25T08:18:34.444749753Z [err]  	    fitness real,
+2025-11-25T08:18:34.444755634Z [err]  	    "timestamp" timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:34.444761170Z [err]  	);
+2025-11-25T08:18:34.444768750Z [err]  2025-11-25 08:18:33.911 UTC [38] ERROR:  relation "conformance_results_id_seq" already exists
+2025-11-25T08:18:34.444774522Z [err]  2025-11-25 08:18:33.911 UTC [38] STATEMENT:  CREATE SEQUENCE public.conformance_results_id_seq
+2025-11-25T08:18:34.444783668Z [err]  	    AS integer
+2025-11-25T08:18:34.444789301Z [err]  	    START WITH 1
+2025-11-25T08:18:34.444795698Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:34.444806906Z [err]  	    NO MINVALUE
+2025-11-25T08:18:34.444812726Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:34.444819117Z [err]  	    CACHE 1;
+2025-11-25T08:18:34.510809062Z [err]  2025-11-25 08:18:34.508 UTC [38] ERROR:  relation "cost_metrics" already exists
+2025-11-25T08:18:34.510823203Z [err]  2025-11-25 08:18:34.508 UTC [38] STATEMENT:  CREATE TABLE public.cost_metrics (
+2025-11-25T08:18:34.510847094Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:34.510861144Z [err]  	    process_id integer NOT NULL,
+2025-11-25T08:18:34.510869494Z [err]  	    activity_name text NOT NULL,
+2025-11-25T08:18:34.510876706Z [err]  	    resource_cost real NOT NULL,
+2025-11-25T08:18:34.510885886Z [err]  	    time_cost real NOT NULL,
+2025-11-25T08:18:34.510896908Z [err]  	    total_cost real NOT NULL,
+2025-11-25T08:18:34.510904572Z [err]  	    currency text DEFAULT 'USD'::text NOT NULL,
+2025-11-25T08:18:34.510913470Z [err]  	    frequency integer NOT NULL,
+2025-11-25T08:18:34.510920287Z [err]  	    cost_per_execution real NOT NULL,
+2025-11-25T08:18:34.510927559Z [err]  	    metadata jsonb,
+2025-11-25T08:18:34.510938761Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:34.510945593Z [err]  	);
+2025-11-25T08:18:35.568517969Z [err]  	    status text DEFAULT 'active'::text NOT NULL,
+2025-11-25T08:18:35.568527998Z [err]  	    metadata jsonb,
+2025-11-25T08:18:35.568535367Z [err]  2025-11-25 08:18:34.805 UTC [38] ERROR:  relation "cost_metrics_id_seq" already exists
+2025-11-25T08:18:35.568538615Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:35.568539008Z [err]  2025-11-25 08:18:34.805 UTC [38] STATEMENT:  CREATE SEQUENCE public.cost_metrics_id_seq
+2025-11-25T08:18:35.568546666Z [err]  	    updated_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:35.568555662Z [err]  	    AS integer
+2025-11-25T08:18:35.568556054Z [err]  	);
+2025-11-25T08:18:35.568559518Z [err]  	    description text,
+2025-11-25T08:18:35.568566299Z [err]  	    START WITH 1
+2025-11-25T08:18:35.568569913Z [err]  	    metric text NOT NULL,
+2025-11-25T08:18:35.568576710Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:35.568579304Z [err]  	    calculation text NOT NULL,
+2025-11-25T08:18:35.568587158Z [err]  	    threshold real,
+2025-11-25T08:18:35.568590076Z [err]  	    NO MINVALUE
+2025-11-25T08:18:35.568598504Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:35.568606441Z [err]  	    current_value real,
+2025-11-25T08:18:35.568608858Z [err]  	    CACHE 1;
+2025-11-25T08:18:35.568615711Z [err]  	    unit text,
+2025-11-25T08:18:35.568617518Z [err]  2025-11-25 08:18:35.403 UTC [38] ERROR:  relation "custom_kpis" already exists
+2025-11-25T08:18:35.568625010Z [err]  2025-11-25 08:18:35.403 UTC [38] STATEMENT:  CREATE TABLE public.custom_kpis (
+2025-11-25T08:18:35.568632687Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:35.568639738Z [err]  	    user_id integer NOT NULL,
+2025-11-25T08:18:35.568647579Z [err]  	    process_id integer,
+2025-11-25T08:18:35.568655222Z [err]  	    name text NOT NULL,
+2025-11-25T08:18:36.356700072Z [err]  2025-11-25 08:18:35.700 UTC [38] ERROR:  relation "custom_kpis_id_seq" already exists
+2025-11-25T08:18:36.356716682Z [err]  2025-11-25 08:18:35.700 UTC [38] STATEMENT:  CREATE SEQUENCE public.custom_kpis_id_seq
+2025-11-25T08:18:36.356728179Z [err]  	    AS integer
+2025-11-25T08:18:36.356761897Z [err]  	    frequency integer DEFAULT 0 NOT NULL,
+2025-11-25T08:18:36.356775847Z [err]  	    impact text NOT NULL,
+2025-11-25T08:18:36.356787286Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:36.356794764Z [err]  	    START WITH 1
+2025-11-25T08:18:36.356797688Z [err]  	);
+2025-11-25T08:18:36.356810596Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:36.356821626Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:36.356823703Z [err]  	    NO MINVALUE
+2025-11-25T08:18:36.356834338Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:36.356841694Z [err]  	    process_id integer NOT NULL,
+2025-11-25T08:18:36.356848306Z [err]  	    CACHE 1;
+2025-11-25T08:18:36.356856149Z [err]  	    name text NOT NULL,
+2025-11-25T08:18:36.356863734Z [err]  2025-11-25 08:18:36.296 UTC [38] ERROR:  relation "deviations" already exists
+2025-11-25T08:18:36.356875874Z [err]  	    description text,
+2025-11-25T08:18:36.356877805Z [err]  2025-11-25 08:18:36.296 UTC [38] STATEMENT:  CREATE TABLE public.deviations (
+2025-11-25T08:18:36.594998673Z [err]  2025-11-25 08:18:36.593 UTC [38] ERROR:  relation "deviations_id_seq" already exists
+2025-11-25T08:18:36.595009456Z [err]  2025-11-25 08:18:36.593 UTC [38] STATEMENT:  CREATE SEQUENCE public.deviations_id_seq
+2025-11-25T08:18:36.595017860Z [err]  	    AS integer
+2025-11-25T08:18:36.595024503Z [err]  	    START WITH 1
+2025-11-25T08:18:36.595032820Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:36.595042311Z [err]  	    NO MINVALUE
+2025-11-25T08:18:36.595049100Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:36.595056377Z [err]  	    CACHE 1;
+2025-11-25T08:18:37.352242458Z [err]  	);
+2025-11-25T08:18:37.352362861Z [err]  2025-11-25 08:18:37.205 UTC [38] ERROR:  relation "discovered_models" already exists
+2025-11-25T08:18:37.352369568Z [err]  2025-11-25 08:18:37.205 UTC [38] STATEMENT:  CREATE TABLE public.discovered_models (
+2025-11-25T08:18:37.352376713Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:37.352382945Z [err]  	    process_id integer NOT NULL,
+2025-11-25T08:18:37.352389819Z [err]  	    algorithm text NOT NULL,
+2025-11-25T08:18:37.352398500Z [err]  	    version integer DEFAULT 1 NOT NULL,
+2025-11-25T08:18:37.352405224Z [err]  	    model_data jsonb NOT NULL,
+2025-11-25T08:18:37.352413341Z [err]  	    activities jsonb NOT NULL,
+2025-11-25T08:18:37.352418672Z [err]  	    transitions jsonb NOT NULL,
+2025-11-25T08:18:37.352423620Z [err]  	    start_activities jsonb NOT NULL,
+2025-11-25T08:18:37.352428494Z [err]  	    end_activities jsonb NOT NULL,
+2025-11-25T08:18:37.352434175Z [err]  	    metadata jsonb,
+2025-11-25T08:18:37.352441317Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:37.525367060Z [err]  2025-11-25 08:18:37.502 UTC [38] ERROR:  relation "discovered_models_id_seq" already exists
+2025-11-25T08:18:37.525376360Z [err]  2025-11-25 08:18:37.502 UTC [38] STATEMENT:  CREATE SEQUENCE public.discovered_models_id_seq
+2025-11-25T08:18:37.525383926Z [err]  	    AS integer
+2025-11-25T08:18:37.525391564Z [err]  	    START WITH 1
+2025-11-25T08:18:37.525400061Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:37.525407890Z [err]  	    NO MINVALUE
+2025-11-25T08:18:37.525415752Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:37.525426751Z [err]  	    CACHE 1;
+2025-11-25T08:18:38.283549632Z [err]  2025-11-25 08:18:38.106 UTC [38] STATEMENT:  CREATE TABLE public.documents (
+2025-11-25T08:18:38.283550712Z [err]  	    size text NOT NULL,
+2025-11-25T08:18:38.283562269Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:38.283562370Z [err]  	    path text NOT NULL,
+2025-11-25T08:18:38.283571409Z [err]  	    user_id integer,
+2025-11-25T08:18:38.283582075Z [err]  	    status text DEFAULT 'uploaded'::text NOT NULL,
+2025-11-25T08:18:38.283582409Z [err]  	    name text NOT NULL,
+2025-11-25T08:18:38.283589134Z [err]  	    extracted_processes integer DEFAULT 0,
+2025-11-25T08:18:38.283595104Z [err]  	    activities integer DEFAULT 0,
+2025-11-25T08:18:38.283600608Z [err]  2025-11-25 08:18:38.106 UTC [38] ERROR:  relation "documents" already exists
+2025-11-25T08:18:38.283623516Z [err]  	    upload_date timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:38.283629702Z [err]  	);
+2025-11-25T08:18:38.283636056Z [err]  2025-11-25 08:18:38.159 UTC [33] LOG:  could not receive data from client: Connection reset by peer
+2025-11-25T08:18:38.417473683Z [err]  	    START WITH 1
+2025-11-25T08:18:38.417480788Z [err]  2025-11-25 08:18:38.407 UTC [38] ERROR:  relation "documents_id_seq" already exists
+2025-11-25T08:18:38.417485508Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:38.417493879Z [err]  	    NO MINVALUE
+2025-11-25T08:18:38.417501671Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:38.417507833Z [err]  	    CACHE 1;
+2025-11-25T08:18:38.417516982Z [err]  2025-11-25 08:18:38.407 UTC [38] STATEMENT:  CREATE SEQUENCE public.documents_id_seq
+2025-11-25T08:18:38.417523446Z [err]  	    AS integer
+2025-11-25T08:18:39.288040208Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:39.288050434Z [err]  	);
+2025-11-25T08:18:39.288172668Z [err]  2025-11-25 08:18:39.003 UTC [38] ERROR:  relation "event_logs" already exists
+2025-11-25T08:18:39.288179125Z [err]  2025-11-25 08:18:39.003 UTC [38] STATEMENT:  CREATE TABLE public.event_logs (
+2025-11-25T08:18:39.288185501Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:39.288191421Z [err]  	    process_id integer NOT NULL,
+2025-11-25T08:18:39.288198111Z [err]  	    case_id text NOT NULL,
+2025-11-25T08:18:39.288203428Z [err]  	    activity text NOT NULL,
+2025-11-25T08:18:39.288211954Z [err]  	    "timestamp" timestamp without time zone NOT NULL,
+2025-11-25T08:18:39.288218866Z [err]  	    resource text,
+2025-11-25T08:18:39.288224485Z [err]  	    metadata jsonb,
+2025-11-25T08:18:39.307427389Z [err]  2025-11-25 08:18:39.300 UTC [38] ERROR:  relation "event_logs_id_seq" already exists
+2025-11-25T08:18:39.307440562Z [err]  2025-11-25 08:18:39.300 UTC [38] STATEMENT:  CREATE SEQUENCE public.event_logs_id_seq
+2025-11-25T08:18:39.307448853Z [err]  	    AS integer
+2025-11-25T08:18:39.307459221Z [err]  	    START WITH 1
+2025-11-25T08:18:39.307466777Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:39.307473696Z [err]  	    NO MINVALUE
+2025-11-25T08:18:39.307481009Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:39.307488313Z [err]  	    CACHE 1;
+2025-11-25T08:18:40.246548298Z [err]  	    file_path text,
+2025-11-25T08:18:40.246579361Z [err]  	    file_size integer,
+2025-11-25T08:18:40.246586198Z [err]  	    status text DEFAULT 'generating'::text NOT NULL,
+2025-11-25T08:18:40.246592475Z [err]  	    metadata jsonb,
+2025-11-25T08:18:40.246597853Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:40.246604704Z [err]  	);
+2025-11-25T08:18:40.246610434Z [err]  2025-11-25 08:18:40.192 UTC [38] ERROR:  relation "generated_reports_id_seq" already exists
+2025-11-25T08:18:40.246616251Z [err]  2025-11-25 08:18:40.192 UTC [38] STATEMENT:  CREATE SEQUENCE public.generated_reports_id_seq
+2025-11-25T08:18:40.246622535Z [err]  	    AS integer
+2025-11-25T08:18:40.246629798Z [err]  	    START WITH 1
+2025-11-25T08:18:40.246636169Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:40.246656032Z [err]  	    NO MINVALUE
+2025-11-25T08:18:40.246677629Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:40.246688523Z [err]  2025-11-25 08:18:39.896 UTC [38] ERROR:  relation "generated_reports" already exists
+2025-11-25T08:18:40.246689230Z [err]  	    CACHE 1;
+2025-11-25T08:18:40.246696004Z [err]  2025-11-25 08:18:39.896 UTC [38] STATEMENT:  CREATE TABLE public.generated_reports (
+2025-11-25T08:18:40.246702456Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:40.246710916Z [err]  	    user_id integer NOT NULL,
+2025-11-25T08:18:40.246718197Z [err]  	    process_id integer,
+2025-11-25T08:18:40.246725329Z [err]  	    title text NOT NULL,
+2025-11-25T08:18:40.246731888Z [err]  	    type text NOT NULL,
+2025-11-25T08:18:40.246739050Z [err]  	    format text NOT NULL,
+2025-11-25T08:18:41.219624549Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:41.219633738Z [err]  	    NO MINVALUE
+2025-11-25T08:18:41.219640393Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:41.219646739Z [err]  	    CACHE 1;
+2025-11-25T08:18:41.219663958Z [err]  2025-11-25 08:18:40.788 UTC [38] ERROR:  relation "integrations" already exists
+2025-11-25T08:18:41.219676315Z [err]  2025-11-25 08:18:40.788 UTC [38] STATEMENT:  CREATE TABLE public.integrations (
+2025-11-25T08:18:41.219684794Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:41.219695761Z [err]  	    user_id integer,
+2025-11-25T08:18:41.219703382Z [err]  	    name text NOT NULL,
+2025-11-25T08:18:41.219709072Z [err]  	    type text NOT NULL,
+2025-11-25T08:18:41.219714554Z [err]  	    status text DEFAULT 'disconnected'::text NOT NULL,
+2025-11-25T08:18:41.219720135Z [err]  	    config jsonb,
+2025-11-25T08:18:41.219726251Z [err]  	    last_sync timestamp without time zone,
+2025-11-25T08:18:41.219732215Z [err]  	    record_count integer DEFAULT 0,
+2025-11-25T08:18:41.219737794Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:41.219743584Z [err]  	);
+2025-11-25T08:18:41.219750591Z [err]  2025-11-25 08:18:41.084 UTC [38] ERROR:  relation "integrations_id_seq" already exists
+2025-11-25T08:18:41.219757309Z [err]  2025-11-25 08:18:41.084 UTC [38] STATEMENT:  CREATE SEQUENCE public.integrations_id_seq
+2025-11-25T08:18:41.219763744Z [err]  	    AS integer
+2025-11-25T08:18:41.219769649Z [err]  	    START WITH 1
+2025-11-25T08:18:41.683226610Z [err]  2025-11-25 08:18:41.679 UTC [38] ERROR:  relation "invitations" already exists
+2025-11-25T08:18:41.683239870Z [err]  2025-11-25 08:18:41.679 UTC [38] STATEMENT:  CREATE TABLE public.invitations (
+2025-11-25T08:18:41.683249179Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:41.683257088Z [err]  	    organization_id integer NOT NULL,
+2025-11-25T08:18:41.683272441Z [err]  	    email text NOT NULL,
+2025-11-25T08:18:41.683279218Z [err]  	    token text NOT NULL,
+2025-11-25T08:18:41.683290591Z [err]  	    role text DEFAULT 'employee'::text NOT NULL,
+2025-11-25T08:18:41.683306770Z [err]  	    team_id integer,
+2025-11-25T08:18:41.683313789Z [err]  	    invited_by integer NOT NULL,
+2025-11-25T08:18:41.683320738Z [err]  	    status text DEFAULT 'pending'::text NOT NULL,
+2025-11-25T08:18:41.683327183Z [err]  	    expires_at timestamp without time zone NOT NULL,
+2025-11-25T08:18:41.683334796Z [err]  	    accepted_at timestamp without time zone,
+2025-11-25T08:18:41.683343081Z [err]  	    metadata jsonb,
+2025-11-25T08:18:41.683349535Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:41.683359183Z [err]  	);
+2025-11-25T08:18:42.295483294Z [err]  2025-11-25 08:18:41.977 UTC [38] ERROR:  relation "invitations_id_seq" already exists
+2025-11-25T08:18:42.295493181Z [err]  2025-11-25 08:18:41.977 UTC [38] STATEMENT:  CREATE SEQUENCE public.invitations_id_seq
+2025-11-25T08:18:42.295501095Z [err]  	    AS integer
+2025-11-25T08:18:42.295508312Z [err]  	    START WITH 1
+2025-11-25T08:18:42.295517092Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:42.295532929Z [err]  	    NO MINVALUE
+2025-11-25T08:18:42.295543146Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:42.295549650Z [err]  	    CACHE 1;
+2025-11-25T08:18:42.587225290Z [err]  2025-11-25 08:18:42.577 UTC [38] ERROR:  relation "invoices" already exists
+2025-11-25T08:18:42.587252710Z [err]  2025-11-25 08:18:42.577 UTC [38] STATEMENT:  CREATE TABLE public.invoices (
+2025-11-25T08:18:42.587261478Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:42.587268177Z [err]  	    organization_id integer NOT NULL,
+2025-11-25T08:18:42.587276795Z [err]  	    subscription_id integer,
+2025-11-25T08:18:42.587285216Z [err]  	    invoice_number text NOT NULL,
+2025-11-25T08:18:42.587291154Z [err]  	    amount_subtotal numeric(10,2) NOT NULL,
+2025-11-25T08:18:42.587297002Z [err]  	    amount_tax numeric(10,2) DEFAULT 0 NOT NULL,
+2025-11-25T08:18:42.587303075Z [err]  	    amount_total numeric(10,2) NOT NULL,
+2025-11-25T08:18:42.587309071Z [err]  	    currency text DEFAULT 'USD'::text NOT NULL,
+2025-11-25T08:18:42.587314110Z [err]  	    status text DEFAULT 'draft'::text NOT NULL,
+2025-11-25T08:18:42.587320001Z [err]  	    payment_gateway text,
+2025-11-25T08:18:42.587325396Z [err]  	    gateway_invoice_id text,
+2025-11-25T08:18:42.587330999Z [err]  	    due_date timestamp without time zone,
+2025-11-25T08:18:42.587338675Z [err]  	    paid_at timestamp without time zone,
+2025-11-25T08:18:42.587344682Z [err]  	    line_items jsonb,
+2025-11-25T08:18:42.587350374Z [err]  	    metadata jsonb,
+2025-11-25T08:18:42.587356361Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:42.587363297Z [err]  	    updated_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:42.587369091Z [err]  	);
+2025-11-25T08:18:43.396643282Z [err]  2025-11-25 08:18:42.873 UTC [38] ERROR:  relation "invoices_id_seq" already exists
+2025-11-25T08:18:43.396650787Z [err]  2025-11-25 08:18:42.873 UTC [38] STATEMENT:  CREATE SEQUENCE public.invoices_id_seq
+2025-11-25T08:18:43.396657367Z [err]  	    AS integer
+2025-11-25T08:18:43.396663534Z [err]  	    START WITH 1
+2025-11-25T08:18:43.396672280Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:43.396679063Z [err]  	    NO MINVALUE
+2025-11-25T08:18:43.396685684Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:43.396691968Z [err]  	    CACHE 1;
+2025-11-25T08:18:43.481197815Z [err]  2025-11-25 08:18:43.473 UTC [38] ERROR:  relation "kpi_alerts" already exists
+2025-11-25T08:18:43.481208384Z [err]  2025-11-25 08:18:43.473 UTC [38] STATEMENT:  CREATE TABLE public.kpi_alerts (
+2025-11-25T08:18:43.481215192Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:43.481221359Z [err]  	    kpi_id integer NOT NULL,
+2025-11-25T08:18:43.481227099Z [err]  	    user_id integer NOT NULL,
+2025-11-25T08:18:43.481233165Z [err]  	    message text NOT NULL,
+2025-11-25T08:18:43.481240328Z [err]  	    severity text NOT NULL,
+2025-11-25T08:18:43.481247117Z [err]  	    status text DEFAULT 'active'::text NOT NULL,
+2025-11-25T08:18:43.481253531Z [err]  	    metadata jsonb,
+2025-11-25T08:18:43.481260922Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:43.481267724Z [err]  	    acknowledged_at timestamp without time zone
+2025-11-25T08:18:43.481274811Z [err]  	);
+2025-11-25T08:18:44.543102340Z [err]  	    metric_type text NOT NULL,
+2025-11-25T08:18:44.543116355Z [err]  	    value real NOT NULL,
+2025-11-25T08:18:44.543124505Z [err]  	    unit text,
+2025-11-25T08:18:44.543132731Z [err]  	    calculation_method text,
+2025-11-25T08:18:44.543140745Z [err]  	    metadata jsonb,
+2025-11-25T08:18:44.543152782Z [err]  	    "timestamp" timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:44.543161103Z [err]  	);
+2025-11-25T08:18:44.543465590Z [err]  2025-11-25 08:18:43.772 UTC [38] ERROR:  relation "kpi_alerts_id_seq" already exists
+2025-11-25T08:18:44.543473522Z [err]  2025-11-25 08:18:43.772 UTC [38] STATEMENT:  CREATE SEQUENCE public.kpi_alerts_id_seq
+2025-11-25T08:18:44.543481787Z [err]  	    AS integer
+2025-11-25T08:18:44.543488239Z [err]  	    START WITH 1
+2025-11-25T08:18:44.543496878Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:44.543504045Z [err]  	    NO MINVALUE
+2025-11-25T08:18:44.543513361Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:44.543520604Z [err]  	    CACHE 1;
+2025-11-25T08:18:44.543529633Z [err]  2025-11-25 08:18:44.376 UTC [38] ERROR:  relation "kpi_metrics" already exists
+2025-11-25T08:18:44.543537282Z [err]  2025-11-25 08:18:44.376 UTC [38] STATEMENT:  CREATE TABLE public.kpi_metrics (
+2025-11-25T08:18:44.543544964Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:44.543552378Z [err]  	    process_id integer NOT NULL,
+2025-11-25T08:18:44.679549054Z [err]  2025-11-25 08:18:44.672 UTC [38] ERROR:  relation "kpi_metrics_id_seq" already exists
+2025-11-25T08:18:44.679557740Z [err]  2025-11-25 08:18:44.672 UTC [38] STATEMENT:  CREATE SEQUENCE public.kpi_metrics_id_seq
+2025-11-25T08:18:44.679563218Z [err]  	    AS integer
+2025-11-25T08:18:44.679568743Z [err]  	    START WITH 1
+2025-11-25T08:18:44.679573931Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:44.679579441Z [err]  	    NO MINVALUE
+2025-11-25T08:18:44.679584563Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:44.679589540Z [err]  	    CACHE 1;
+2025-11-25T08:18:45.517211797Z [err]  2025-11-25 08:18:45.275 UTC [38] ERROR:  relation "llm_provider_keys" already exists
+2025-11-25T08:18:45.517218760Z [err]  2025-11-25 08:18:45.275 UTC [38] STATEMENT:  CREATE TABLE public.llm_provider_keys (
+2025-11-25T08:18:45.517226019Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:45.517233261Z [err]  	    user_id integer NOT NULL,
+2025-11-25T08:18:45.517243551Z [err]  	    provider text NOT NULL,
+2025-11-25T08:18:45.517251094Z [err]  	    encrypted_api_key text NOT NULL,
+2025-11-25T08:18:45.517256820Z [err]  	    label text,
+2025-11-25T08:18:45.517262780Z [err]  	    status text DEFAULT 'active'::text NOT NULL,
+2025-11-25T08:18:45.517269329Z [err]  	    last_used_at timestamp without time zone,
+2025-11-25T08:18:45.517275470Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:45.517280789Z [err]  	    updated_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:45.517287654Z [err]  	);
+2025-11-25T08:18:45.575573550Z [err]  2025-11-25 08:18:45.571 UTC [38] ERROR:  relation "llm_provider_keys_id_seq" already exists
+2025-11-25T08:18:45.575578443Z [err]  2025-11-25 08:18:45.571 UTC [38] STATEMENT:  CREATE SEQUENCE public.llm_provider_keys_id_seq
+2025-11-25T08:18:45.575583632Z [err]  	    AS integer
+2025-11-25T08:18:45.575588777Z [err]  	    START WITH 1
+2025-11-25T08:18:45.575593702Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:45.575598380Z [err]  	    NO MINVALUE
+2025-11-25T08:18:45.575602632Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:45.575607747Z [err]  	    CACHE 1;
+2025-11-25T08:18:46.299879202Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:46.299889983Z [err]  	    provider_id integer NOT NULL,
+2025-11-25T08:18:46.299900837Z [err]  	    model_id text NOT NULL,
+2025-11-25T08:18:46.299906437Z [err]  	    display_name text NOT NULL,
+2025-11-25T08:18:46.299912007Z [err]  	    context_window integer,
+2025-11-25T08:18:46.299917830Z [err]  	    capabilities jsonb,
+2025-11-25T08:18:46.299923102Z [err]  	    is_active boolean DEFAULT true NOT NULL,
+2025-11-25T08:18:46.299928525Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:46.299935015Z [err]  	);
+2025-11-25T08:18:46.299999427Z [err]  2025-11-25 08:18:46.166 UTC [38] ERROR:  relation "llm_provider_models" already exists
+2025-11-25T08:18:46.300004629Z [err]  2025-11-25 08:18:46.166 UTC [38] STATEMENT:  CREATE TABLE public.llm_provider_models (
+2025-11-25T08:18:46.468023065Z [err]  2025-11-25 08:18:46.463 UTC [38] ERROR:  relation "llm_provider_models_id_seq" already exists
+2025-11-25T08:18:46.468037728Z [err]  2025-11-25 08:18:46.463 UTC [38] STATEMENT:  CREATE SEQUENCE public.llm_provider_models_id_seq
+2025-11-25T08:18:46.468045513Z [err]  	    AS integer
+2025-11-25T08:18:46.468051975Z [err]  	    START WITH 1
+2025-11-25T08:18:46.468058384Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:46.468065047Z [err]  	    NO MINVALUE
+2025-11-25T08:18:46.468071664Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:46.468078598Z [err]  	    CACHE 1;
+2025-11-25T08:18:47.394095900Z [err]  	    validation_endpoint text,
+2025-11-25T08:18:47.394108328Z [err]  2025-11-25 08:18:47.057 UTC [38] ERROR:  relation "llm_providers" already exists
+2025-11-25T08:18:47.394118207Z [err]  	    created_by integer,
+2025-11-25T08:18:47.394120819Z [err]  	    base_url text NOT NULL,
+2025-11-25T08:18:47.394135321Z [err]  	    default_headers jsonb,
+2025-11-25T08:18:47.394137543Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:47.394144851Z [err]  	    compatibility_type text DEFAULT 'openai_compatible'::text NOT NULL,
+2025-11-25T08:18:47.394154492Z [err]  2025-11-25 08:18:47.057 UTC [38] STATEMENT:  CREATE TABLE public.llm_providers (
+2025-11-25T08:18:47.394154856Z [err]  	    updated_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:47.394160779Z [err]  	    is_builtin boolean DEFAULT false NOT NULL,
+2025-11-25T08:18:47.394170179Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:47.394173800Z [err]  	);
+2025-11-25T08:18:47.394179257Z [err]  	    START WITH 1
+2025-11-25T08:18:47.394180932Z [err]  	    is_active boolean DEFAULT true NOT NULL,
+2025-11-25T08:18:47.394182317Z [err]  	    name text NOT NULL,
+2025-11-25T08:18:47.394194213Z [err]  2025-11-25 08:18:47.354 UTC [38] ERROR:  relation "llm_providers_id_seq" already exists
+2025-11-25T08:18:47.394195816Z [err]  	    provider_id text NOT NULL,
+2025-11-25T08:18:47.394201156Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:47.394207435Z [err]  	    description text,
+2025-11-25T08:18:47.394215458Z [err]  2025-11-25 08:18:47.354 UTC [38] STATEMENT:  CREATE SEQUENCE public.llm_providers_id_seq
+2025-11-25T08:18:47.394219857Z [err]  	    category text DEFAULT 'llm'::text NOT NULL,
+2025-11-25T08:18:47.394220387Z [err]  	    NO MINVALUE
+2025-11-25T08:18:47.394229026Z [err]  	    auth_type text DEFAULT 'bearer'::text NOT NULL,
+2025-11-25T08:18:47.394238984Z [err]  	    AS integer
+2025-11-25T08:18:47.397627757Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:47.397635043Z [err]  	    CACHE 1;
+2025-11-25T08:18:48.395191849Z [err]  2025-11-25 08:18:47.952 UTC [38] ERROR:  relation "organization_subscriptions" already exists
+2025-11-25T08:18:48.395197619Z [err]  2025-11-25 08:18:47.952 UTC [38] STATEMENT:  CREATE TABLE public.organization_subscriptions (
+2025-11-25T08:18:48.395203745Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:48.395209770Z [err]  	    organization_id integer NOT NULL,
+2025-11-25T08:18:48.395215762Z [err]  	    plan_id integer NOT NULL,
+2025-11-25T08:18:48.395221552Z [err]  	    status text DEFAULT 'active'::text NOT NULL,
+2025-11-25T08:18:48.395227419Z [err]  	    billing_cycle text DEFAULT 'monthly'::text NOT NULL,
+2025-11-25T08:18:48.395233008Z [err]  	    seats integer DEFAULT 1 NOT NULL,
+2025-11-25T08:18:48.395239864Z [err]  	    seats_used integer DEFAULT 0 NOT NULL,
+2025-11-25T08:18:48.395245794Z [err]  	    current_period_start timestamp without time zone NOT NULL,
+2025-11-25T08:18:48.395251268Z [err]  	    current_period_end timestamp without time zone NOT NULL,
+2025-11-25T08:18:48.395256360Z [err]  	    cancel_at_period_end boolean DEFAULT false NOT NULL,
+2025-11-25T08:18:48.395261692Z [err]  	    trial_ends_at timestamp without time zone,
+2025-11-25T08:18:48.395266926Z [err]  	    payment_gateway text,
+2025-11-25T08:18:48.395273433Z [err]  	    gateway_subscription_id text,
+2025-11-25T08:18:48.395280195Z [err]  	    metadata jsonb,
+2025-11-25T08:18:48.395285916Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:48.395291660Z [err]  	    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:48.395297531Z [err]  	    cancelled_at timestamp without time zone
+2025-11-25T08:18:48.395303697Z [err]  	);
+2025-11-25T08:18:48.395310830Z [err]  2025-11-25 08:18:48.250 UTC [38] ERROR:  relation "organization_subscriptions_id_seq" already exists
+2025-11-25T08:18:48.395316186Z [err]  2025-11-25 08:18:48.250 UTC [38] STATEMENT:  CREATE SEQUENCE public.organization_subscriptions_id_seq
+2025-11-25T08:18:48.395468685Z [err]  	    AS integer
+2025-11-25T08:18:48.395475101Z [err]  	    START WITH 1
+2025-11-25T08:18:48.395481241Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:48.395487068Z [err]  	    NO MINVALUE
+2025-11-25T08:18:48.395493510Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:48.395499609Z [err]  	    CACHE 1;
+2025-11-25T08:18:49.449246680Z [err]  	    name text NOT NULL,
+2025-11-25T08:18:49.449257883Z [err]  	    slug text NOT NULL,
+2025-11-25T08:18:49.449273797Z [err]  	    START WITH 1
+2025-11-25T08:18:49.449283885Z [err]  	    logo_url text,
+2025-11-25T08:18:49.449285332Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:49.449294019Z [err]  	    NO MINVALUE
+2025-11-25T08:18:49.449298839Z [err]  	    website text,
+2025-11-25T08:18:49.449302325Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:49.449319898Z [err]  	    industry text,
+2025-11-25T08:18:49.449327287Z [err]  	    size text,
+2025-11-25T08:18:49.449334963Z [err]  2025-11-25 08:18:48.854 UTC [38] ERROR:  relation "organizations" already exists
+2025-11-25T08:18:49.449336177Z [err]  	    billing_email text,
+2025-11-25T08:18:49.449343231Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:49.449346039Z [err]  2025-11-25 08:18:48.854 UTC [38] STATEMENT:  CREATE TABLE public.organizations (
+2025-11-25T08:18:49.449346420Z [err]  	    metadata jsonb,
+2025-11-25T08:18:49.449353857Z [err]  	    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+2025-11-25T08:18:49.449356421Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:49.449364411Z [err]  	    CACHE 1;
+2025-11-25T08:18:49.449364512Z [err]  	    status text DEFAULT 'active'::text NOT NULL
+2025-11-25T08:18:49.449365074Z [err]  2025-11-25 08:18:49.151 UTC [38] ERROR:  relation "organizations_id_seq" already exists
+2025-11-25T08:18:49.449374585Z [err]  	);
+2025-11-25T08:18:49.449374966Z [err]  2025-11-25 08:18:49.151 UTC [38] STATEMENT:  CREATE SEQUENCE public.organizations_id_seq
+2025-11-25T08:18:49.449383015Z [err]  	    AS integer
+2025-11-25T08:18:49.788590968Z [err]  2025-11-25 08:18:49.780 UTC [38] ERROR:  relation "password_reset_tokens" already exists
+2025-11-25T08:18:49.788601377Z [err]  2025-11-25 08:18:49.780 UTC [38] STATEMENT:  CREATE TABLE public.password_reset_tokens (
+2025-11-25T08:18:49.788608606Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:49.788615680Z [err]  	    user_id integer NOT NULL,
+2025-11-25T08:18:49.788621909Z [err]  	    token text NOT NULL,
+2025-11-25T08:18:49.788629110Z [err]  	    expires_at timestamp without time zone NOT NULL,
+2025-11-25T08:18:49.788639504Z [err]  	    used boolean DEFAULT false NOT NULL,
+2025-11-25T08:18:49.788645541Z [err]  	    used_at timestamp without time zone,
+2025-11-25T08:18:49.788651349Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:49.788657744Z [err]  	);
+2025-11-25T08:18:50.363369453Z [err]  2025-11-25 08:18:50.078 UTC [38] ERROR:  relation "password_reset_tokens_id_seq" already exists
+2025-11-25T08:18:50.363373984Z [err]  2025-11-25 08:18:50.078 UTC [38] STATEMENT:  CREATE SEQUENCE public.password_reset_tokens_id_seq
+2025-11-25T08:18:50.363378506Z [err]  	    AS integer
+2025-11-25T08:18:50.363383891Z [err]  	    START WITH 1
+2025-11-25T08:18:50.363388575Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:50.363392995Z [err]  	    NO MINVALUE
+2025-11-25T08:18:50.363397384Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:50.363402141Z [err]  	    CACHE 1;
+2025-11-25T08:18:50.676746961Z [err]  2025-11-25 08:18:50.673 UTC [38] ERROR:  relation "payment_events" already exists
+2025-11-25T08:18:50.676757002Z [err]  	    error text,
+2025-11-25T08:18:50.676758156Z [err]  2025-11-25 08:18:50.673 UTC [38] STATEMENT:  CREATE TABLE public.payment_events (
+2025-11-25T08:18:50.676767636Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:50.676775025Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:50.676775714Z [err]  	    payment_gateway text NOT NULL,
+2025-11-25T08:18:50.676783786Z [err]  	    event_type text NOT NULL,
+2025-11-25T08:18:50.676785088Z [err]  	);
+2025-11-25T08:18:50.676791171Z [err]  	    event_id text NOT NULL,
+2025-11-25T08:18:50.676797095Z [err]  	    payload jsonb NOT NULL,
+2025-11-25T08:18:50.676803520Z [err]  	    processed boolean DEFAULT false NOT NULL,
+2025-11-25T08:18:50.676808933Z [err]  	    processed_at timestamp without time zone,
+2025-11-25T08:18:51.368262011Z [err]  	    START WITH 1
+2025-11-25T08:18:51.368278093Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:51.368285977Z [err]  	    NO MINVALUE
+2025-11-25T08:18:51.368297551Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:51.368306394Z [err]  	    CACHE 1;
+2025-11-25T08:18:51.368433298Z [err]  2025-11-25 08:18:50.969 UTC [38] ERROR:  relation "payment_events_id_seq" already exists
+2025-11-25T08:18:51.368440647Z [err]  2025-11-25 08:18:50.969 UTC [38] STATEMENT:  CREATE SEQUENCE public.payment_events_id_seq
+2025-11-25T08:18:51.368447602Z [err]  	    AS integer
+2025-11-25T08:18:51.569703227Z [err]  2025-11-25 08:18:51.566 UTC [38] ERROR:  relation "payments" already exists
+2025-11-25T08:18:51.569704232Z [err]  	    created_at timestamp without time zone DEFAULT now() NOT NULL
+2025-11-25T08:18:51.569714334Z [err]  2025-11-25 08:18:51.566 UTC [38] STATEMENT:  CREATE TABLE public.payments (
+2025-11-25T08:18:51.569721814Z [err]  	);
+2025-11-25T08:18:51.569722044Z [err]  	    id integer NOT NULL,
+2025-11-25T08:18:51.569728525Z [err]  	    organization_id integer NOT NULL,
+2025-11-25T08:18:51.569734308Z [err]  	    amount numeric(10,2) NOT NULL,
+2025-11-25T08:18:51.569746340Z [err]  	    currency text DEFAULT 'USD'::text NOT NULL,
+2025-11-25T08:18:51.569752530Z [err]  	    status text DEFAULT 'pending'::text NOT NULL,
+2025-11-25T08:18:51.569756566Z [err]  	    payment_gateway text NOT NULL,
+2025-11-25T08:18:51.569761889Z [err]  	    gateway_transaction_id text,
+2025-11-25T08:18:51.569765749Z [err]  	    payment_method text,
+2025-11-25T08:18:51.569769421Z [err]  	    description text,
+2025-11-25T08:18:51.569773301Z [err]  	    metadata jsonb,
+2025-11-25T08:18:51.569778275Z [err]  	    paid_at timestamp without time zone,
+2025-11-25T08:18:52.384038212Z [err]  	    INCREMENT BY 1
+2025-11-25T08:18:52.384051802Z [err]  	    NO MINVALUE
+2025-11-25T08:18:52.384063401Z [err]  	    NO MAXVALUE
+2025-11-25T08:18:52.384071174Z [err]  	    CACHE 1;
+2025-11-25T08:18:52.384075374Z [err]  2025-11-25 08:18:51.866 UTC [38] ERROR:  relation "payments_id_seq" already exists
+2025-11-25T08:18:52.384082277Z [err]  2025-11-25 08:18:51.866 UTC [38] STATEMENT:  CREATE SEQUENCE public.payments_id_seq
+2025-11-25T08:18:52.384089001Z [err]  	    AS integer
+2025-11-25T08:18:52.384096104Z [err]  	    START WITH 1
+2025-11-25T08:18:52.471784248Z [err]  2025-11-25 08:18:52.464 UTC [38] LOG:  could not receive data from client: Connection reset by peer
