@@ -1,0 +1,115 @@
+2025-11-25T09:34:16.000000000Z [inf]  Starting Container
+2025-11-25T09:34:17.530915901Z [inf]     ▲ Next.js 15.5.4
+2025-11-25T09:34:17.530922223Z [inf]     - Local:        http://localhost:8080
+2025-11-25T09:34:17.530928312Z [inf]     - Network:      http://0.0.0.0:8080
+2025-11-25T09:34:17.530936577Z [inf]  
+2025-11-25T09:34:17.530944322Z [inf]   ✓ Starting...
+2025-11-25T09:34:17.530952784Z [inf]   ✓ Ready in 218ms
+2025-11-25T09:34:25.688763724Z [err]  Health check failed: Error: Failed query: SELECT 1
+2025-11-25T09:34:25.688776916Z [err]  params: 
+2025-11-25T09:34:25.688783030Z [err]      at NeonPreparedQuery.queryWithCache (.next/server/app/api/ai-assistant/route.js:7533:15)
+2025-11-25T09:34:25.693613414Z [err]      at async NeonPreparedQuery.execute (.next/server/app/api/ai-assistant/route.js:7761:14)
+2025-11-25T09:34:25.693634720Z [err]      at async GET (.next/server/app/api/health/route.js:9766:9)
+2025-11-25T09:34:25.693640143Z [err]      at async responseGenerator (.next/server/app/api/health/route.js:9952:38)
+2025-11-25T09:34:25.693644839Z [err]      at async handleResponse (.next/server/app/api/health/route.js:10014:32)
+2025-11-25T09:34:25.693649671Z [err]      at async handler (.next/server/app/api/health/route.js:10066:13) {
+2025-11-25T09:34:25.693655953Z [err]    query: 'SELECT 1',
+2025-11-25T09:34:25.693663025Z [err]    params: [],
+2025-11-25T09:34:25.693667975Z [err]    [cause]: [ErrorEvent]
+2025-11-25T09:34:25.693672393Z [err]  }
+2025-11-25T09:34:27.459641037Z [err]    [cause]: [ErrorEvent]
+2025-11-25T09:34:27.459641066Z [err]      at async NeonPreparedQuery.execute (.next/server/app/api/ai-assistant/route.js:7761:14)
+2025-11-25T09:34:27.459652985Z [err]      at async GET (.next/server/app/api/health/route.js:9766:9)
+2025-11-25T09:34:27.459663641Z [err]  Health check failed: Error: Failed query: SELECT 1
+2025-11-25T09:34:27.459664102Z [err]  }
+2025-11-25T09:34:27.459664988Z [err]      at async responseGenerator (.next/server/app/api/health/route.js:9952:38)
+2025-11-25T09:34:27.459675335Z [err]  params: 
+2025-11-25T09:34:27.459675513Z [err]      at async handleResponse (.next/server/app/api/health/route.js:10014:32)
+2025-11-25T09:34:27.459682535Z [err]      at async handler (.next/server/app/api/health/route.js:10066:13) {
+2025-11-25T09:34:27.459684372Z [err]      at NeonPreparedQuery.queryWithCache (.next/server/app/api/ai-assistant/route.js:7533:15)
+2025-11-25T09:34:27.459689574Z [err]    query: 'SELECT 1',
+2025-11-25T09:34:27.459695392Z [err]    params: [],
+2025-11-25T09:34:30.621744160Z [err]  Health check failed: Error: Failed query: SELECT 1
+2025-11-25T09:34:30.621750924Z [err]  params: 
+2025-11-25T09:34:30.621758069Z [err]      at NeonPreparedQuery.queryWithCache (.next/server/app/api/ai-assistant/route.js:7533:15)
+2025-11-25T09:34:30.621765030Z [err]      at async NeonPreparedQuery.execute (.next/server/app/api/ai-assistant/route.js:7761:14)
+2025-11-25T09:34:30.621771466Z [err]      at async GET (.next/server/app/api/health/route.js:9766:9)
+2025-11-25T09:34:30.621778380Z [err]      at async responseGenerator (.next/server/app/api/health/route.js:9952:38)
+2025-11-25T09:34:30.621786870Z [err]      at async handleResponse (.next/server/app/api/health/route.js:10014:32)
+2025-11-25T09:34:30.621795104Z [err]      at async handler (.next/server/app/api/health/route.js:10066:13) {
+2025-11-25T09:34:30.621801408Z [err]    query: 'SELECT 1',
+2025-11-25T09:34:30.621808454Z [err]    params: [],
+2025-11-25T09:34:30.621815494Z [err]    [cause]: [ErrorEvent]
+2025-11-25T09:34:30.621823017Z [err]  }
+2025-11-25T09:34:34.661843015Z [err]  Health check failed: Error: Failed query: SELECT 1
+2025-11-25T09:34:34.661883474Z [err]  params: 
+2025-11-25T09:34:34.661893877Z [err]      at NeonPreparedQuery.queryWithCache (.next/server/app/api/ai-assistant/route.js:7533:15)
+2025-11-25T09:34:34.661898410Z [err]    query: 'SELECT 1',
+2025-11-25T09:34:34.661902844Z [err]      at async NeonPreparedQuery.execute (.next/server/app/api/ai-assistant/route.js:7761:14)
+2025-11-25T09:34:34.661910444Z [err]      at async GET (.next/server/app/api/health/route.js:9766:9)
+2025-11-25T09:34:34.661912884Z [err]    params: [],
+2025-11-25T09:34:34.661921555Z [err]    [cause]: [ErrorEvent]
+2025-11-25T09:34:34.661921780Z [err]      at async responseGenerator (.next/server/app/api/health/route.js:9952:38)
+2025-11-25T09:34:34.661928036Z [err]      at async handleResponse (.next/server/app/api/health/route.js:10014:32)
+2025-11-25T09:34:34.661934524Z [err]  }
+2025-11-25T09:34:34.661938303Z [err]      at async handler (.next/server/app/api/health/route.js:10066:13) {
+2025-11-25T09:34:44.565451678Z [err]    params: [],
+2025-11-25T09:34:44.565461815Z [err]    [cause]: [ErrorEvent]
+2025-11-25T09:34:44.565469005Z [err]  }
+2025-11-25T09:34:44.565495417Z [err]  Health check failed: Error: Failed query: SELECT 1
+2025-11-25T09:34:44.565501814Z [err]      at async GET (.next/server/app/api/health/route.js:9766:9)
+2025-11-25T09:34:44.565505042Z [err]  params: 
+2025-11-25T09:34:44.565516417Z [err]      at NeonPreparedQuery.queryWithCache (.next/server/app/api/ai-assistant/route.js:7533:15)
+2025-11-25T09:34:44.565516557Z [err]      at async responseGenerator (.next/server/app/api/health/route.js:9952:38)
+2025-11-25T09:34:44.565526979Z [err]      at async handleResponse (.next/server/app/api/health/route.js:10014:32)
+2025-11-25T09:34:44.565527546Z [err]      at async NeonPreparedQuery.execute (.next/server/app/api/ai-assistant/route.js:7761:14)
+2025-11-25T09:34:44.565539526Z [err]      at async handler (.next/server/app/api/health/route.js:10066:13) {
+2025-11-25T09:34:44.565551227Z [err]    query: 'SELECT 1',
+2025-11-25T09:35:05.612225108Z [err]  Health check failed: Error: Failed query: SELECT 1
+2025-11-25T09:35:05.612232036Z [err]  params: 
+2025-11-25T09:35:05.612239192Z [err]      at NeonPreparedQuery.queryWithCache (.next/server/app/api/ai-assistant/route.js:7533:15)
+2025-11-25T09:35:05.612246295Z [err]      at async NeonPreparedQuery.execute (.next/server/app/api/ai-assistant/route.js:7761:14)
+2025-11-25T09:35:05.612253539Z [err]      at async GET (.next/server/app/api/health/route.js:9766:9)
+2025-11-25T09:35:05.612265140Z [err]      at async responseGenerator (.next/server/app/api/health/route.js:9952:38)
+2025-11-25T09:35:05.612272721Z [err]      at async handleResponse (.next/server/app/api/health/route.js:10014:32)
+2025-11-25T09:35:05.612281629Z [err]      at async handler (.next/server/app/api/health/route.js:10066:13) {
+2025-11-25T09:35:05.612289638Z [err]    query: 'SELECT 1',
+2025-11-25T09:35:05.612296595Z [err]    params: [],
+2025-11-25T09:35:05.612303315Z [err]    [cause]: [ErrorEvent]
+2025-11-25T09:35:05.612309476Z [err]  }
+2025-11-25T09:35:35.779169954Z [err]  Health check failed: Error: Failed query: SELECT 1
+2025-11-25T09:35:35.779182872Z [err]  params: 
+2025-11-25T09:35:35.779191765Z [err]      at NeonPreparedQuery.queryWithCache (.next/server/app/api/ai-assistant/route.js:7533:15)
+2025-11-25T09:35:35.779200057Z [err]      at async NeonPreparedQuery.execute (.next/server/app/api/ai-assistant/route.js:7761:14)
+2025-11-25T09:35:35.779208207Z [err]      at async GET (.next/server/app/api/health/route.js:9766:9)
+2025-11-25T09:35:35.779217107Z [err]      at async responseGenerator (.next/server/app/api/health/route.js:9952:38)
+2025-11-25T09:35:35.779225249Z [err]      at async handleResponse (.next/server/app/api/health/route.js:10014:32)
+2025-11-25T09:35:35.779234003Z [err]      at async handler (.next/server/app/api/health/route.js:10066:13) {
+2025-11-25T09:35:35.779242217Z [err]    query: 'SELECT 1',
+2025-11-25T09:35:35.779250272Z [err]    params: [],
+2025-11-25T09:35:35.779303948Z [err]    [cause]: [ErrorEvent]
+2025-11-25T09:35:35.779311988Z [err]  }
+2025-11-25T09:36:05.417702007Z [err]    query: 'SELECT 1',
+2025-11-25T09:36:05.417713217Z [err]    params: [],
+2025-11-25T09:36:05.417722713Z [err]    [cause]: [ErrorEvent]
+2025-11-25T09:36:05.417729076Z [err]  }
+2025-11-25T09:36:05.418375333Z [err]  Health check failed: Error: Failed query: SELECT 1
+2025-11-25T09:36:05.418381954Z [err]  params: 
+2025-11-25T09:36:05.418389192Z [err]      at NeonPreparedQuery.queryWithCache (.next/server/app/api/ai-assistant/route.js:7533:15)
+2025-11-25T09:36:05.418395823Z [err]      at async NeonPreparedQuery.execute (.next/server/app/api/ai-assistant/route.js:7761:14)
+2025-11-25T09:36:05.418402408Z [err]      at async GET (.next/server/app/api/health/route.js:9766:9)
+2025-11-25T09:36:05.418410315Z [err]      at async responseGenerator (.next/server/app/api/health/route.js:9952:38)
+2025-11-25T09:36:05.418415967Z [err]      at async handleResponse (.next/server/app/api/health/route.js:10014:32)
+2025-11-25T09:36:05.418422026Z [err]      at async handler (.next/server/app/api/health/route.js:10066:13) {
+2025-11-25T09:36:34.296035567Z [err]      at async GET (.next/server/app/api/health/route.js:9766:9)
+2025-11-25T09:36:34.296051131Z [err]      at async responseGenerator (.next/server/app/api/health/route.js:9952:38)
+2025-11-25T09:36:34.296061264Z [err]      at async handleResponse (.next/server/app/api/health/route.js:10014:32)
+2025-11-25T09:36:34.296069979Z [err]      at async handler (.next/server/app/api/health/route.js:10066:13) {
+2025-11-25T09:36:34.296079115Z [err]    query: 'SELECT 1',
+2025-11-25T09:36:34.296089263Z [err]    params: [],
+2025-11-25T09:36:34.296092567Z [err]  Health check failed: Error: Failed query: SELECT 1
+2025-11-25T09:36:34.296100847Z [err]    [cause]: [ErrorEvent]
+2025-11-25T09:36:34.296102057Z [err]  params: 
+2025-11-25T09:36:34.296111852Z [err]  }
+2025-11-25T09:36:34.296112199Z [err]      at NeonPreparedQuery.queryWithCache (.next/server/app/api/ai-assistant/route.js:7533:15)
+2025-11-25T09:36:34.296120125Z [err]      at async NeonPreparedQuery.execute (.next/server/app/api/ai-assistant/route.js:7761:14)
