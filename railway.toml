@@ -1,8 +1,6 @@
 [build]
 builder = "nixpacks"
-
-[build.env]
-NODE_OPTIONS = "--max-old-space-size=6144"
+nixpacksConfigPath = "nixpacks.toml"
 
 [deploy]
 numReplicas = 1
