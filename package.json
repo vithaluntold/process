@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.1",
+    "@aws-sdk/client-kms": "^3.939.0",
+    "@google-cloud/kms": "^5.2.1",
     "@hookform/resolvers": "^3.10.0",
     "@neondatabase/serverless": "^1.0.2",
     "@node-saml/node-saml": "^5.1.0",
