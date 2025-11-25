@@ -48,6 +48,10 @@ COPY . .
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Provide dummy DATABASE_URL for build phase (Next.js needs it for static analysis)
+# The real DATABASE_URL will be injected at runtime by Railway
+ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
+
 # Build the Next.js application
 # This creates the .next folder with optimized production build
 RUN pnpm run build

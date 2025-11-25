@@ -6,6 +6,8 @@ import { getCurrentUser } from "@/lib/server-auth";
 import { withApiGuards } from "@/lib/api-guards";
 import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   const user = await getCurrentUser();
   if (!user) {
