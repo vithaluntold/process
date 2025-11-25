@@ -30,9 +30,11 @@ This guide will help you deploy EPI-Q to Railway in **under 10 minutes**.
    - Select your EPI-Q repository
    - Railway will start building immediately - **pause this by clicking "Cancel Build"**
 
-3. **Add PostgreSQL Database**
-   - Click **"+ New"** → **"Database"** → **"Add PostgreSQL"**
-   - Railway automatically creates `DATABASE_URL` environment variable
+3. **Add PostgreSQL Database** (⚠️ REQUIRED)
+   - In your project, click **"+ New"** → **"Database"** → **"Add PostgreSQL"**
+   - Railway automatically creates `DATABASE_URL` and all `PG*` environment variables
+   - **Important:** The database service and your app service must be in the SAME project
+   - Wait for the database to be created before deploying your app
 
 4. **⚠️ CRITICAL: Configure Environment Variables BEFORE Deploy**
    - Click on your service → **"Variables"** tab
@@ -76,8 +78,9 @@ railway init
 # Link to new project
 railway link
 
-# Add PostgreSQL
+# Add PostgreSQL (REQUIRED - do this first!)
 railway add --database postgresql
+# Wait for database to be ready before continuing
 
 # ⚠️ CRITICAL: Set ALL required environment variables BEFORE deploying
 railway variables set SESSION_SECRET="<from-replit>"
