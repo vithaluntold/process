@@ -1,6 +1,5 @@
 [build]
-builder = "dockerfile"
-dockerfilePath = "Dockerfile"
+builder = "nixpacks"
 
 [build.env]
 NODE_OPTIONS = "--max-old-space-size=6144"
