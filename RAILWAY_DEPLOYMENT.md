@@ -18,6 +18,8 @@ This guide will help you deploy EPI-Q to Railway in **under 10 minutes**.
 
 ### **Method 1: Via Railway Dashboard (Easiest)**
 
+⚠️ **IMPORTANT:** Set environment variables BEFORE first deploy to avoid boot failures!
+
 1. **Go to Railway Dashboard**
    - Visit [railway.app](https://railway.app)
    - Click **"New Project"**
@@ -26,19 +28,35 @@ This guide will help you deploy EPI-Q to Railway in **under 10 minutes**.
    - Click **"Deploy from GitHub repo"**
    - Authorize Railway to access your repository
    - Select your EPI-Q repository
+   - Railway will start building immediately - **pause this by clicking "Cancel Build"**
 
 3. **Add PostgreSQL Database**
    - Click **"+ New"** → **"Database"** → **"Add PostgreSQL"**
    - Railway automatically creates `DATABASE_URL` environment variable
 
-4. **Configure Environment Variables**
+4. **⚠️ CRITICAL: Configure Environment Variables BEFORE Deploy**
    - Click on your service → **"Variables"** tab
-   - Add all required environment variables (see section below)
+   - Add **ALL required** environment variables:
+     ```bash
+     SESSION_SECRET=<from-replit>
+     AUTH_SECRET=<from-replit-or-same-as-session>
+     JWT_SECRET=<from-replit-or-same-as-session>
+     MASTER_ENCRYPTION_KEY=<from-replit>
+     NODE_ENV=production
+     ```
+   - **Skip NEXT_PUBLIC_APP_URL** for now (will add after deploy)
+   - See full list in `RAILWAY_ENV_SETUP.md`
 
 5. **Deploy**
-   - Railway automatically detects the Dockerfile and builds
-   - Build uses Dockerfile with 6GB memory allocation
+   - Click **"Redeploy"** or **"Deploy"**
+   - Railway detects the Dockerfile and builds with 6GB memory
    - Deployment completes in 5-10 minutes
+
+6. **Post-Deployment** (Critical!)
+   - See `RAILWAY_POST_DEPLOYMENT.md` for:
+     - Setting `NEXT_PUBLIC_APP_URL` (then redeploy)
+     - Adding persistent volume for uploads
+     - Database migration
 
 ---
 
@@ -61,37 +79,75 @@ railway link
 # Add PostgreSQL
 railway add --database postgresql
 
-# Set environment variables (see below)
-railway variables set SESSION_SECRET="your-secret-here"
-railway variables set MASTER_ENCRYPTION_KEY="your-key-here"
-# ... add all other variables
+# ⚠️ CRITICAL: Set ALL required environment variables BEFORE deploying
+railway variables set SESSION_SECRET="<from-replit>"
+railway variables set AUTH_SECRET="<from-replit-or-same-as-session>"
+railway variables set JWT_SECRET="<from-replit-or-same-as-session>"
+railway variables set MASTER_ENCRYPTION_KEY="<from-replit>"
+railway variables set NODE_ENV="production"
+
+# Skip NEXT_PUBLIC_APP_URL for now (will set after first deploy)
+
+# Optional: Add AI/payment vars if needed
+railway variables set AI_INTEGRATIONS_OPENAI_API_KEY="sk-..."
+railway variables set PAYMENT_GATEWAY_PROVIDER="razorpay"
+railway variables set PAYMENT_GATEWAY_API_KEY="..."
+# ... see RAILWAY_ENV_SETUP.md for complete list
 
 # Deploy
 railway up
+
+# After deployment, set NEXT_PUBLIC_APP_URL and redeploy
+# See RAILWAY_POST_DEPLOYMENT.md for details
 ```
 
 ---
 
 ## 🔐 **Required Environment Variables**
 
-Copy these from your current Replit deployment:
+⚠️ **CRITICAL:** See **RAILWAY_ENV_SETUP.md** for the COMPLETE list of ALL environment variables.
 
-### **Core Application Secrets**
+### **Minimum Required (App won't start without these):**
 ```bash
 SESSION_SECRET=<copy from Replit>
+AUTH_SECRET=<copy from Replit or use same as SESSION_SECRET>
+JWT_SECRET=<copy from Replit or use same as SESSION_SECRET>
 MASTER_ENCRYPTION_KEY=<copy from Replit>
+NODE_ENV=production
+NEXT_PUBLIC_APP_URL=<set after first deploy - see RAILWAY_POST_DEPLOYMENT.md>
 ```
 
 ### **Database** (Automatically set by Railway)
 ```bash
 DATABASE_URL=<automatically provided by Railway PostgreSQL>
+PGDATABASE=<automatically provided>
+PGHOST=<automatically provided>
+PGPORT=<automatically provided>
+PGUSER=<automatically provided>
+PGPASSWORD=<automatically provided>
 ```
 
-### **AI Integration** (if using OpenAI)
+### **Optional (If Using These Features):**
+
+**AI Integration:**
 ```bash
 AI_INTEGRATIONS_OPENAI_API_KEY=<your OpenAI key>
 AI_INTEGRATIONS_OPENAI_BASE_URL=https://api.openai.com/v1
+OPENAI_API_KEY=<your OpenAI key if using separate integration>
 ```
+
+**Payment Gateway (⚠️ REQUIRED if billing/subscriptions are enabled):**
+```bash
+PAYMENT_GATEWAY_PROVIDER=razorpay  # or payu or payoneer
+PAYMENT_GATEWAY_API_KEY=<your payment gateway key>
+PAYMENT_GATEWAY_API_SECRET=<your payment gateway secret>
+PAYMENT_GATEWAY_WEBHOOK_SECRET=<your webhook secret>
+PAYMENT_GATEWAY_SANDBOX=false  # true for testing
+```
+
+**⚠️ NOTE:** If you enable billing/subscription features without setting payment gateway variables, payment routes will return 500 errors.
+
+📖 **For complete environment variable setup guide, see:** `RAILWAY_ENV_SETUP.md`
 
 ### **How to Set Variables in Railway Dashboard:**
 1. Click on your service
@@ -109,17 +165,29 @@ AI_INTEGRATIONS_OPENAI_BASE_URL=https://api.openai.com/v1
 
 ## 🏗️ **Build Configuration**
 
-Railway uses the **Dockerfile** in your repository:
+Railway uses the **Dockerfile** in your repository with optimized settings:
 
-- **Build Memory**: 6GB (configured via `NODE_OPTIONS`)
+### **Build Settings (via railway.toml):**
+```toml
+[build]
+builder = "dockerfile"               # Uses your Dockerfile
+dockerfilePath = "Dockerfile"
+
+[build.env]
+NODE_OPTIONS = "--max-old-space-size=6144"  # 6GB for build
+```
+
+### **Build Process:**
+- **Build Memory**: 6GB (configured via `NODE_OPTIONS` in railway.toml)
 - **Build Time**: ~5-10 minutes
-- **Output**: Optimized production image (~500MB)
+- **Output**: Optimized multi-stage Docker image (~500MB)
+- **Method**: Multi-stage Docker build with Node.js 20 Alpine
 
 **Build automatically:**
-- Installs dependencies with pnpm
-- Builds Next.js in production mode
-- Creates standalone output
-- Runs on port 5000
+1. Installs dependencies with pnpm (frozen lockfile)
+2. Builds Next.js in production mode (standalone output)
+3. Creates optimized production image
+4. Runs on port 5000 with health checks
 
 ---
 
