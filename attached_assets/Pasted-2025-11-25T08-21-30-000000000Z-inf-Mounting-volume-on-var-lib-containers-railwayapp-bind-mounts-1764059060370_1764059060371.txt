@@ -1,0 +1,18 @@
+2025-11-25T08:21:30.000000000Z [inf]  Mounting volume on: /var/lib/containers/railwayapp/bind-mounts/9ea06675-969b-4de2-a100-1cd067dd0ba6/vol_lt0pkd7dgx2uk6m0
+2025-11-25T08:21:31.000000000Z [inf]  Starting Container
+2025-11-25T08:21:32.857018295Z [err]  2025-11-25 08:21:32.500 UTC [27] LOG:  checkpoint starting: end-of-recovery immediate wait
+2025-11-25T08:21:32.857044618Z [err]  2025-11-25 08:21:32.546 UTC [27] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.019 s, sync=0.005 s, total=0.055 s; sync files=2, longest=0.003 s, average=0.003 s; distance=0 kB, estimate=0 kB; lsn=0/1C49370, redo lsn=0/1C49370
+2025-11-25T08:21:32.857186022Z [inf]  Certificate will not expire
+2025-11-25T08:21:32.857193159Z [inf]  
+2025-11-25T08:21:32.857198252Z [inf]  PostgreSQL Database directory appears to contain a database; Skipping initialization
+2025-11-25T08:21:32.857203405Z [inf]  
+2025-11-25T08:21:32.857207840Z [err]  2025-11-25 08:21:31.895 UTC [6] LOG:  starting PostgreSQL 17.7 (Debian 17.7-3.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2025-11-25T08:21:32.857212191Z [err]  2025-11-25 08:21:31.896 UTC [6] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-11-25T08:21:32.857216304Z [err]  2025-11-25 08:21:31.896 UTC [6] LOG:  listening on IPv6 address "::", port 5432
+2025-11-25T08:21:32.857653842Z [err]  2025-11-25 08:21:31.904 UTC [6] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-11-25T08:21:32.857798781Z [err]  2025-11-25 08:21:31.917 UTC [29] LOG:  database system was interrupted; last known up at 2025-11-25 08:21:17 UTC
+2025-11-25T08:21:32.857803181Z [err]  2025-11-25 08:21:32.478 UTC [29] LOG:  database system was not properly shut down; automatic recovery in progress
+2025-11-25T08:21:32.857808282Z [err]  2025-11-25 08:21:32.486 UTC [29] LOG:  redo starts at 0/1C49268
+2025-11-25T08:21:32.857812590Z [err]  2025-11-25 08:21:32.486 UTC [29] LOG:  invalid record length at 0/1C49370: expected at least 24, got 0
+2025-11-25T08:21:32.857817709Z [err]  2025-11-25 08:21:32.486 UTC [29] LOG:  redo done at 0/1C492F8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2025-11-25T08:21:32.860763418Z [err]  2025-11-25 08:21:32.558 UTC [6] LOG:  database system is ready to accept connections
