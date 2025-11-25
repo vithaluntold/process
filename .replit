@@ -72,6 +72,6 @@ localPort = 46721
 externalPort = 5000
 
 [deployment]
-deploymentTarget = "autoscale"
+deploymentTarget = "gce"
 run = ["pnpm", "start"]
 build = ["pnpm", "build"]
