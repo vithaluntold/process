@@ -1,6 +1,6 @@
 # =============================================================================
 # EPI-Q - Production Docker Image
-# Multi-stage build with security hardening for portable deployment
+# Multi-stage build optimized for Next.js standalone output
 # =============================================================================
 
 # -----------------------------------------------------------------------------
@@ -56,20 +56,17 @@ ENV AUTH_SECRET="build-time-dummy-secret-replaced-at-runtime"
 ENV JWT_SECRET="build-time-dummy-secret-replaced-at-runtime"
 ENV MASTER_ENCRYPTION_KEY="0000000000000000000000000000000000000000000000000000000000000000"
 
-# Build the Next.js application
-# This creates the .next folder with optimized production build
+# Build the Next.js application (produces standalone output)
 RUN pnpm run build
 
 # -----------------------------------------------------------------------------
-# Stage 4: Production Runner (Final Image)
+# Stage 4: Production Runner (Final Image - Standalone)
 # -----------------------------------------------------------------------------
 FROM node:20-alpine AS runner
 
-# Install dumb-init for proper signal handling and enable pnpm
+# Install dumb-init for proper signal handling
 RUN apk add --no-cache dumb-init && \
-    rm -rf /var/cache/apk/* && \
-    corepack enable && \
-    corepack prepare pnpm@latest --activate
+    rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
@@ -83,20 +80,20 @@ ENV HOSTNAME="0.0.0.0"
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# Copy only production dependencies
-COPY --from=deps --chown=nextjs:nodejs /app/node_modules ./node_modules
+# Copy the standalone build output
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 
-# Copy built application from builder stage
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+# Copy static files (required for standalone mode)
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Copy public assets
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 
-# Copy necessary configuration files
-COPY --from=builder --chown=nextjs:nodejs /app/next.config.mjs ./next.config.mjs
-COPY --from=builder --chown=nextjs:nodejs /app/drizzle.config.ts ./drizzle.config.ts
+# Copy additional server-side files needed at runtime
 COPY --from=builder --chown=nextjs:nodejs /app/shared ./shared
 COPY --from=builder --chown=nextjs:nodejs /app/lib ./lib
 COPY --from=builder --chown=nextjs:nodejs /app/server ./server
+COPY --from=builder --chown=nextjs:nodejs /app/drizzle.config.ts ./drizzle.config.ts
 
 # Create uploads directory with proper permissions
 RUN mkdir -p /app/uploads && chown -R nextjs:nodejs /app/uploads
@@ -114,5 +111,5 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
 # Use dumb-init to handle signals properly (graceful shutdown)
 ENTRYPOINT ["dumb-init", "--"]
 
-# Start the Next.js production server
-CMD ["pnpm", "start"]
+# Start the Next.js standalone server
+CMD ["node", "server.js"]
