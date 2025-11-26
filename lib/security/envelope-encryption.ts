@@ -125,6 +125,11 @@ export class EnvelopeEncryptionService {
   async decrypt(envelope: EncryptionEnvelope): Promise<Buffer> {
     let dek: Buffer;
 
+    if (envelope.provider !== this.config.provider) {
+      const providerService = createEnvelopeEncryptionServiceForProvider(envelope.provider);
+      return providerService.decrypt(envelope);
+    }
+
     switch (envelope.provider) {
       case 'aws':
         dek = await this.decryptDEKWithAWS(Buffer.from(envelope.encryptedDEK, 'base64'));
@@ -144,7 +149,7 @@ export class EnvelopeEncryptionService {
         envelope.algorithm,
         dek,
         Buffer.from(envelope.iv, 'base64')
-      );
+      ) as crypto.DecipherGCM;
       
       decipher.setAuthTag(Buffer.from(envelope.authTag, 'base64'));
       
@@ -318,33 +323,45 @@ export class EnvelopeEncryptionService {
   }
 }
 
-export function createEnvelopeEncryptionService(): EnvelopeEncryptionService {
-  const provider = (process.env.KMS_PROVIDER || 'local') as KMSProvider;
-  
+export function createEnvelopeEncryptionServiceForProvider(provider: KMSProvider): EnvelopeEncryptionService {
   const config: KMSConfig = {
     provider,
   };
 
   if (provider === 'aws') {
+    if (!process.env.AWS_KMS_KEY_ID) {
+      throw new Error('AWS KMS configuration required: AWS_KMS_KEY_ID not set');
+    }
     config.awsConfig = {
       region: process.env.AWS_REGION || 'us-east-1',
-      keyId: process.env.AWS_KMS_KEY_ID || '',
+      keyId: process.env.AWS_KMS_KEY_ID,
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     };
   } else if (provider === 'gcp') {
+    if (!process.env.GCP_PROJECT_ID || !process.env.GCP_KMS_KEYRING || !process.env.GCP_KMS_KEY) {
+      throw new Error('GCP KMS configuration required: GCP_PROJECT_ID, GCP_KMS_KEYRING, GCP_KMS_KEY not set');
+    }
     config.gcpConfig = {
-      projectId: process.env.GCP_PROJECT_ID || '',
+      projectId: process.env.GCP_PROJECT_ID,
       locationId: process.env.GCP_KMS_LOCATION || 'global',
-      keyRingId: process.env.GCP_KMS_KEYRING || '',
-      keyId: process.env.GCP_KMS_KEY || '',
+      keyRingId: process.env.GCP_KMS_KEYRING,
+      keyId: process.env.GCP_KMS_KEY,
       credentialsPath: process.env.GOOGLE_APPLICATION_CREDENTIALS,
     };
   } else {
+    if (!process.env.MASTER_ENCRYPTION_KEY) {
+      console.warn('MASTER_ENCRYPTION_KEY not set, using ephemeral key (not recommended for production)');
+    }
     config.localConfig = {
       masterKey: process.env.MASTER_ENCRYPTION_KEY || crypto.randomBytes(32).toString('hex'),
     };
   }
 
   return new EnvelopeEncryptionService(config);
+}
+
+export function createEnvelopeEncryptionService(): EnvelopeEncryptionService {
+  const provider = (process.env.KMS_PROVIDER || 'local') as KMSProvider;
+  return createEnvelopeEncryptionServiceForProvider(provider);
 }
