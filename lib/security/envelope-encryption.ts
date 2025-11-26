@@ -320,15 +320,24 @@ export class EnvelopeEncryptionService {
     let key;
     try {
       key = await this.azureKeyClient.getKey(keyName);
-    } catch (error) {
-      key = await this.azureKeyClient.createKey(keyName, 'RSA', {
-        keySize: 2048,
-        keyOps: ['wrapKey', 'unwrapKey'],
-      });
+      
+      if (key.keyType !== 'RSA-HSM') {
+        console.warn(`Azure Key Vault key '${keyName}' is not HSM-backed (type: ${key.keyType}). For enterprise compliance (HIPAA/SOX/PCI), use RSA-HSM keys.`);
+      }
+    } catch (error: any) {
+      if (error.code === 'KeyNotFound' || error.statusCode === 404) {
+        throw new Error(
+          `Azure Key Vault key '${keyName}' not found. ` +
+          `For enterprise security, please create an HSM-backed key manually in Azure Portal: ` +
+          `Key Vault -> Keys -> Generate/Import -> Key type: RSA-HSM, Key size: 2048 or higher. ` +
+          `Automatic key creation is disabled to ensure HSM protection.`
+        );
+      }
+      throw error;
     }
 
     if (!key.id) {
-      throw new Error('Failed to get or create Azure Key Vault key');
+      throw new Error('Failed to retrieve Azure Key Vault key');
     }
 
     const cryptoClient = new CryptographyClient(key.id, credential);
