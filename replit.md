@@ -34,4 +34,51 @@ EPI-Q is a production-ready enterprise SaaS platform built with Next.js, React, 
 - **Desktop Framework**: Electron 28 with Electron Builder
 - **Payment Gateways**: Razorpay, PayU, Payoneer
 - **Python ML Backend Libraries**: TensorFlow, PyTorch, scikit-learn, Prophet, statsmodels, pmdarima, xgboost, pyod, stable-baselines3, gymnasium, bayesian-optimization, pm4py, gensim, numpy, pandas, joblib, scipy
-- **Cloud Key Management (Optional for Enterprise Security)**: AWS KMS, Google Cloud KMS
+- **Cloud Key Management (Optional for Enterprise Security)**: AWS KMS, Google Cloud KMS, Azure Key Vault
+
+## Enterprise Security Architecture
+
+### KEK/DEK Envelope Encryption
+**Location:** `lib/security/envelope-encryption.ts`
+
+**Supported Providers:**
+- **AWS KMS** - Full HSM-backed key management
+- **Google Cloud KMS** - Enterprise cloud key management
+- **Azure Key Vault** - Microsoft's enterprise key management with HSM support
+- **Local** - Development fallback with AES-256-GCM
+
+### Environment Variables for Security
+
+```bash
+# KMS Provider (aws, gcp, azure, or local)
+KMS_PROVIDER=local
+
+# AWS KMS
+AWS_REGION=us-east-1
+AWS_KMS_KEY_ID=arn:aws:kms:...
+AWS_ACCESS_KEY_ID=your-access-key
+AWS_SECRET_ACCESS_KEY=your-secret-key
+
+# Google Cloud KMS
+GCP_PROJECT_ID=your-project
+GCP_KMS_LOCATION=global
+GCP_KMS_KEYRING=your-keyring
+GCP_KMS_KEY=your-key
+GOOGLE_APPLICATION_CREDENTIALS=/path/to/credentials.json
+
+# Azure Key Vault
+AZURE_KEYVAULT_URL=https://your-vault.vault.azure.net
+AZURE_KEY_NAME=your-key-name
+AZURE_TENANT_ID=your-tenant-id
+AZURE_CLIENT_ID=your-client-id
+AZURE_CLIENT_SECRET=your-client-secret
+
+# Local Development
+MASTER_ENCRYPTION_KEY=your-32-byte-hex-key
+```
+
+### Security API Endpoints
+- `GET /api/security/encryption/status` - View encryption configuration
+- `POST /api/security/encryption/status` - Test encryption/decryption
+- `GET /api/security/audit` - Retrieve tamper-proof audit logs
+- `POST /api/security/audit` - Create audit log entry

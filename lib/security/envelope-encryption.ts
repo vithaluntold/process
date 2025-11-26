@@ -1,8 +1,10 @@
 import crypto from 'crypto';
 import { KMSClient, GenerateDataKeyCommand, DecryptCommand } from '@aws-sdk/client-kms';
 import { KeyManagementServiceClient } from '@google-cloud/kms';
+import { DefaultAzureCredential, ClientSecretCredential } from '@azure/identity';
+import { KeyClient, CryptographyClient } from '@azure/keyvault-keys';
 
-export type KMSProvider = 'aws' | 'gcp' | 'local';
+export type KMSProvider = 'aws' | 'gcp' | 'azure' | 'local';
 
 export interface EncryptionEnvelope {
   ciphertext: string;
@@ -30,6 +32,13 @@ export interface KMSConfig {
     keyId: string;
     credentialsPath?: string;
   };
+  azureConfig?: {
+    vaultUrl: string;
+    keyName: string;
+    tenantId?: string;
+    clientId?: string;
+    clientSecret?: string;
+  };
   localConfig?: {
     masterKey: string;
   };
@@ -38,6 +47,8 @@ export interface KMSConfig {
 export class EnvelopeEncryptionService {
   private kmsClient: KMSClient | null = null;
   private gcpKmsClient: KeyManagementServiceClient | null = null;
+  private azureKeyClient: KeyClient | null = null;
+  private azureCryptoClient: CryptographyClient | null = null;
   private config: KMSConfig;
   private readonly ALGORITHM = 'aes-256-gcm';
   private readonly DEK_SIZE = 32; // 256-bit
@@ -67,6 +78,28 @@ export class EnvelopeEncryptionService {
         options.keyFilename = this.config.gcpConfig.credentialsPath;
       }
       this.gcpKmsClient = new KeyManagementServiceClient(options);
+    } else if (this.config.provider === 'azure' && this.config.azureConfig) {
+      const { vaultUrl, keyName, tenantId, clientId, clientSecret } = this.config.azureConfig;
+      
+      const credential = tenantId && clientId && clientSecret
+        ? new ClientSecretCredential(tenantId, clientId, clientSecret)
+        : new DefaultAzureCredential();
+      
+      this.azureKeyClient = new KeyClient(vaultUrl, credential);
+      this.initializeAzureCryptoClient(keyName, credential);
+    }
+  }
+
+  private async initializeAzureCryptoClient(keyName: string, credential: DefaultAzureCredential | ClientSecretCredential): Promise<void> {
+    if (this.azureKeyClient && this.config.azureConfig) {
+      try {
+        const key = await this.azureKeyClient.getKey(keyName);
+        if (key.id) {
+          this.azureCryptoClient = new CryptographyClient(key.id, credential);
+        }
+      } catch (error) {
+        console.warn('Azure Key Vault key not found, will be created on first use');
+      }
     }
   }
 
@@ -85,6 +118,9 @@ export class EnvelopeEncryptionService {
         break;
       case 'gcp':
         ({ dek, encryptedDEK, kekVersion } = await this.generateDEKWithGCP());
+        break;
+      case 'azure':
+        ({ dek, encryptedDEK, kekVersion } = await this.generateDEKWithAzure());
         break;
       case 'local':
         ({ dek, encryptedDEK, kekVersion } = await this.generateDEKLocally());
@@ -136,6 +172,9 @@ export class EnvelopeEncryptionService {
         break;
       case 'gcp':
         dek = await this.decryptDEKWithGCP(Buffer.from(envelope.encryptedDEK, 'base64'));
+        break;
+      case 'azure':
+        dek = await this.decryptDEKWithAzure(Buffer.from(envelope.encryptedDEK, 'base64'));
         break;
       case 'local':
         dek = await this.decryptDEKLocally(Buffer.from(envelope.encryptedDEK, 'base64'));
@@ -267,6 +306,66 @@ export class EnvelopeEncryptionService {
     return Buffer.from(decryptResult.plaintext as Uint8Array);
   }
 
+  private async generateDEKWithAzure(): Promise<{ dek: Buffer; encryptedDEK: Buffer; kekVersion: string }> {
+    if (!this.azureKeyClient || !this.config.azureConfig) {
+      throw new Error('Azure Key Vault not configured');
+    }
+
+    const { keyName, vaultUrl, tenantId, clientId, clientSecret } = this.config.azureConfig;
+
+    const credential = tenantId && clientId && clientSecret
+      ? new ClientSecretCredential(tenantId, clientId, clientSecret)
+      : new DefaultAzureCredential();
+
+    let key;
+    try {
+      key = await this.azureKeyClient.getKey(keyName);
+    } catch (error) {
+      key = await this.azureKeyClient.createKey(keyName, 'RSA', {
+        keySize: 2048,
+        keyOps: ['wrapKey', 'unwrapKey'],
+      });
+    }
+
+    if (!key.id) {
+      throw new Error('Failed to get or create Azure Key Vault key');
+    }
+
+    const cryptoClient = new CryptographyClient(key.id, credential);
+    const dek = crypto.randomBytes(this.DEK_SIZE);
+
+    const wrapResult = await cryptoClient.wrapKey('RSA-OAEP', dek);
+
+    return {
+      dek,
+      encryptedDEK: Buffer.from(wrapResult.result),
+      kekVersion: key.properties.version || 'latest',
+    };
+  }
+
+  private async decryptDEKWithAzure(encryptedDEK: Buffer): Promise<Buffer> {
+    if (!this.azureKeyClient || !this.config.azureConfig) {
+      throw new Error('Azure Key Vault not configured');
+    }
+
+    const { keyName, tenantId, clientId, clientSecret } = this.config.azureConfig;
+
+    const credential = tenantId && clientId && clientSecret
+      ? new ClientSecretCredential(tenantId, clientId, clientSecret)
+      : new DefaultAzureCredential();
+
+    const key = await this.azureKeyClient.getKey(keyName);
+
+    if (!key.id) {
+      throw new Error('Azure Key Vault key not found');
+    }
+
+    const cryptoClient = new CryptographyClient(key.id, credential);
+    const unwrapResult = await cryptoClient.unwrapKey('RSA-OAEP', encryptedDEK);
+
+    return Buffer.from(unwrapResult.result);
+  }
+
   private async generateDEKLocally(): Promise<{ dek: Buffer; encryptedDEK: Buffer; kekVersion: string }> {
     if (!this.config.localConfig?.masterKey) {
       throw new Error('Local master key not configured');
@@ -348,6 +447,17 @@ export function createEnvelopeEncryptionServiceForProvider(provider: KMSProvider
       keyRingId: process.env.GCP_KMS_KEYRING,
       keyId: process.env.GCP_KMS_KEY,
       credentialsPath: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+    };
+  } else if (provider === 'azure') {
+    if (!process.env.AZURE_KEYVAULT_URL || !process.env.AZURE_KEY_NAME) {
+      throw new Error('Azure Key Vault configuration required: AZURE_KEYVAULT_URL and AZURE_KEY_NAME not set');
+    }
+    config.azureConfig = {
+      vaultUrl: process.env.AZURE_KEYVAULT_URL,
+      keyName: process.env.AZURE_KEY_NAME,
+      tenantId: process.env.AZURE_TENANT_ID,
+      clientId: process.env.AZURE_CLIENT_ID,
+      clientSecret: process.env.AZURE_CLIENT_SECRET,
     };
   } else {
     if (!process.env.MASTER_ENCRYPTION_KEY) {

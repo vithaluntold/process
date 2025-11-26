@@ -21,6 +21,8 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^1.11.1",
     "@aws-sdk/client-kms": "^3.939.0",
+    "@azure/identity": "^4.13.0",
+    "@azure/keyvault-keys": "^4.10.0",
     "@google-cloud/kms": "^5.2.1",
     "@hookform/resolvers": "^3.10.0",
     "@neondatabase/serverless": "^1.0.2",
