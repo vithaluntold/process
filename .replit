@@ -84,5 +84,5 @@ build = ["sh", "-c", "NODE_OPTIONS='--max-old-space-size=6144' pnpm build"]
 
 [userenv.shared]
 AZURE_KEYVAULT_URL = "https://finaceverse-central.vault.azure.net"
-AZURE_KEY_NAME = "epi-q-master-key"
+AZURE_KEY_NAME = "sumbuddy-master-kek"
 KMS_PROVIDER = "azure"
