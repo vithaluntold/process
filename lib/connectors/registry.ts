@@ -2,6 +2,9 @@ import type { BaseConnector, ConnectorType, ConnectorMetadata } from './types';
 import { SalesforceConnector } from './salesforce';
 import { ServiceNowConnector } from './servicenow';
 import { SAPODataConnector } from './sap';
+import { OracleEBSConnector } from './oracle';
+import { DynamicsConnector } from './dynamics';
+import { StreamingConnector } from './streaming';
 
 class ConnectorRegistry {
   private connectors: Map<ConnectorType, BaseConnector> = new Map();
@@ -10,6 +13,9 @@ class ConnectorRegistry {
     this.register(new SalesforceConnector());
     this.register(new ServiceNowConnector());
     this.register(new SAPODataConnector());
+    this.register(new OracleEBSConnector());
+    this.register(new DynamicsConnector());
+    this.register(new StreamingConnector());
   }
 
   register(connector: BaseConnector): void {

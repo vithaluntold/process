@@ -7,7 +7,7 @@ import type {
   InsertConnectorEvent,
 } from '@/shared/schema';
 
-export type ConnectorType = 'salesforce' | 'servicenow' | 'sap' | 'dynamics' | 'oracle' | 'custom';
+export type ConnectorType = 'salesforce' | 'servicenow' | 'sap' | 'dynamics' | 'oracle' | 'streaming' | 'custom';
 
 export type AuthType = 'oauth2' | 'basic' | 'api_key' | 'jwt';
 
