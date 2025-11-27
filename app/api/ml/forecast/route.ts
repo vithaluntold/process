@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
     const mlResult = await generateForecastWithML(values, {
       timestamps: sortedDates,
       horizon,
-      algorithm: algorithm as 'holt_winters' | 'linear_regression' | 'moving_average',
+      algorithm: algorithm as 'simple_exponential_smoothing' | 'holt_winters' | 'linear_regression' | 'moving_average',
     });
 
     if (mlResult) {
@@ -130,6 +130,8 @@ export async function POST(request: NextRequest) {
       forecastResults = Forecaster.linearRegression(values, horizon);
     } else if (algorithm === 'moving_average') {
       forecastResults = Forecaster.movingAverage(values, horizon, 7);
+    } else if (algorithm === 'simple_exponential_smoothing') {
+      forecastResults = Forecaster.simpleExponentialSmoothing(values, horizon, 0.3);
     } else {
       forecastResults = Forecaster.holtWinters(values, horizon);
       algorithmUsed = 'holt_winters';

@@ -59,6 +59,11 @@ export function validateAnomalyDetector(): ValidationResult {
       errors.push('Z-Score failed to detect obvious anomaly (100 in normal data)');
     }
     
+    const modifiedZScoreResults = AnomalyDetector.modifiedZScoreDetection(dataWithAnomaly, 3.5);
+    if (modifiedZScoreResults.length === 0) {
+      errors.push('Modified Z-Score failed to detect obvious anomaly');
+    }
+    
     const iqrResults = AnomalyDetector.iqrDetection(dataWithAnomaly, 1.5);
     if (iqrResults.length === 0) {
       errors.push('IQR failed to detect obvious anomaly');
@@ -71,11 +76,17 @@ export function validateAnomalyDetector(): ValidationResult {
       errors.push('Z-Score detected false positives in normal data');
     }
     
+    const noAnomalyModifiedZScore = AnomalyDetector.modifiedZScoreDetection(normalData, 3.5);
+    if (noAnomalyModifiedZScore.length > 0) {
+      errors.push('Modified Z-Score detected false positives in normal data');
+    }
+    
     return {
       algorithm: 'AnomalyDetector',
       passed: errors.length === 0,
       metrics: {
         zScoreAnomalies: zScoreResults.length,
+        modifiedZScoreAnomalies: modifiedZScoreResults.length,
         iqrAnomalies: iqrResults.length,
         isolationAnomalies: isolationResults.length,
       },
@@ -94,8 +105,17 @@ export function validateAnomalyDetector(): ValidationResult {
 export function validateForecaster(): ValidationResult {
   const errors: string[] = [];
   const trendingData = [10, 12, 14, 16, 18, 20, 22, 24, 26, 28];
+  const stationaryData = [50, 52, 48, 51, 49, 50, 51, 49, 50, 48];
   
   try {
+    const sesForecast = Forecaster.simpleExponentialSmoothing(stationaryData, 5, 0.3);
+    if (sesForecast.length !== 5) {
+      errors.push(`Simple Exponential Smoothing returned ${sesForecast.length} points, expected 5`);
+    }
+    if (sesForecast[0]?.value < 40 || sesForecast[0]?.value > 60) {
+      errors.push(`Simple Exponential Smoothing out of expected range: ${sesForecast[0]?.value}`);
+    }
+    
     const hwForecast = Forecaster.holtWinters(trendingData, 5);
     if (hwForecast.length !== 5) {
       errors.push(`Holt-Winters returned ${hwForecast.length} points, expected 5`);
@@ -123,6 +143,7 @@ export function validateForecaster(): ValidationResult {
       algorithm: 'Forecaster',
       passed: errors.length === 0,
       metrics: {
+        sesFirstValue: sesForecast[0]?.value,
         hwFirstValue: hwForecast[0]?.value,
         lrFirstValue: lrForecast[0]?.value,
         maFirstValue: maForecast[0]?.value,

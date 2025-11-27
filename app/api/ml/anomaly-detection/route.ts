@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     if (guardError) return guardError;
 
     const body = await request.json();
-    const { processId, algorithm = 'isolation_forest', contamination = 0.05 } = body;
+    const { processId, algorithm = 'zscore', contamination = 0.05 } = body;
 
     if (!processId) {
       return NextResponse.json({ error: 'Process ID required' }, { status: 400 });
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     }));
 
     const mlResult = await detectAnomaliesWithML(formattedEvents, {
-      algorithm: algorithm as 'isolation_forest' | 'statistical_zscore' | 'dbscan',
+      algorithm: algorithm as 'zscore' | 'modified_zscore' | 'iqr' | 'isolation_score',
       contamination,
     });
 
@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
 
     let modelMetrics: Record<string, any> = {};
 
-    if (algorithm === 'isolation_forest') {
+    if (algorithm === 'isolation_score') {
       const results = AnomalyDetector.isolationScore(durations, contamination);
       detectedAnomalies = results.map(r => ({
         caseId: eventDurationMap[r.index].caseId,
@@ -134,11 +134,11 @@ export async function POST(request: NextRequest) {
         severity: r.severity,
       }));
       modelMetrics = {
-        algorithm: 'isolation_forest_ts',
+        algorithm: 'isolation_score',
         contamination,
         threshold: StatisticalAnalyzer.percentile(durations, (1 - contamination) * 100),
       };
-    } else if (algorithm === 'dbscan') {
+    } else if (algorithm === 'iqr') {
       const results = AnomalyDetector.iqrDetection(durations, 1.5);
       detectedAnomalies = results.map(r => ({
         caseId: eventDurationMap[r.index].caseId,
@@ -149,10 +149,27 @@ export async function POST(request: NextRequest) {
       }));
       const { q1, q3, iqr } = StatisticalAnalyzer.iqr(durations);
       modelMetrics = {
-        algorithm: 'iqr_detection',
+        algorithm: 'iqr',
         q1: q1 / 1000,
         q3: q3 / 1000,
         iqr: iqr / 1000,
+      };
+    } else if (algorithm === 'modified_zscore') {
+      const results = AnomalyDetector.modifiedZScoreDetection(durations, 3.5);
+      detectedAnomalies = results.map(r => ({
+        caseId: eventDurationMap[r.index].caseId,
+        activity: eventDurationMap[r.index].activity,
+        timestamp: eventDurationMap[r.index].timestamp,
+        score: r.score,
+        severity: r.severity,
+      }));
+      const median = StatisticalAnalyzer.median(durations);
+      const mad = StatisticalAnalyzer.mad(durations);
+      modelMetrics = {
+        algorithm: 'modified_zscore',
+        median: median / 1000,
+        mad: mad / 1000,
+        threshold: 3.5,
       };
     } else {
       const results = AnomalyDetector.zScoreDetection(durations, 3);
@@ -164,7 +181,7 @@ export async function POST(request: NextRequest) {
         severity: r.severity,
       }));
       modelMetrics = {
-        algorithm: 'z_score',
+        algorithm: 'zscore',
         mean: StatisticalAnalyzer.mean(durations) / 1000,
         stdDev: StatisticalAnalyzer.standardDeviation(durations) / 1000,
         threshold: 3,

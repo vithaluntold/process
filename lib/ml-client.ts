@@ -13,7 +13,7 @@ interface EventLog {
 
 interface AnomalyDetectionRequest {
   events: EventLog[];
-  algorithm?: 'isolation_forest' | 'statistical_zscore' | 'dbscan';
+  algorithm?: 'zscore' | 'modified_zscore' | 'iqr' | 'isolation_score';
   contamination?: number;
 }
 
@@ -42,7 +42,7 @@ interface ForecastRequest {
   values: number[];
   timestamps?: string[];
   horizon?: number;
-  algorithm?: 'holt_winters' | 'linear_regression' | 'moving_average';
+  algorithm?: 'simple_exponential_smoothing' | 'holt_winters' | 'linear_regression' | 'moving_average';
 }
 
 interface ForecastPoint {
@@ -141,7 +141,7 @@ class MLClient {
       method: 'POST',
       body: JSON.stringify({
         events: request.events,
-        algorithm: request.algorithm || 'isolation_forest',
+        algorithm: request.algorithm || 'zscore',
         contamination: request.contamination || 0.05,
       }),
     });
@@ -189,7 +189,7 @@ export async function detectAnomaliesWithML(
     resource?: string;
   }>,
   options: {
-    algorithm?: 'isolation_forest' | 'statistical_zscore' | 'dbscan';
+    algorithm?: 'zscore' | 'modified_zscore' | 'iqr' | 'isolation_score';
     contamination?: number;
   } = {}
 ): Promise<AnomalyDetectionResponse | null> {
@@ -225,7 +225,7 @@ export async function generateForecastWithML(
   options: {
     timestamps?: string[];
     horizon?: number;
-    algorithm?: 'holt_winters' | 'linear_regression' | 'moving_average';
+    algorithm?: 'simple_exponential_smoothing' | 'holt_winters' | 'linear_regression' | 'moving_average';
   } = {}
 ): Promise<ForecastResponse | null> {
   const client = getMLClient();

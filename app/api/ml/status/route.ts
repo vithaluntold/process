@@ -10,25 +10,37 @@ import { getMLClient } from '@/lib/ml-client';
 const TYPESCRIPT_ALGORITHMS = {
   anomaly_detection: [
     {
-      id: 'isolation_forest',
-      name: 'Isolation Forest',
-      description: 'Tree-based anomaly detection using isolation score',
-      parameters: ['contamination (0.01-0.5)'],
-    },
-    {
-      id: 'statistical_zscore',
+      id: 'zscore',
       name: 'Z-Score Analysis',
       description: 'Statistical method detecting values beyond threshold standard deviations',
       parameters: ['threshold (default: 3)'],
     },
     {
-      id: 'dbscan',
+      id: 'modified_zscore',
+      name: 'Modified Z-Score (Robust)',
+      description: 'MAD-based robust z-score detection resistant to outliers',
+      parameters: ['threshold (default: 3.5)'],
+    },
+    {
+      id: 'iqr',
       name: 'IQR Detection',
       description: 'Interquartile range method for outlier detection',
       parameters: ['multiplier (default: 1.5)'],
     },
+    {
+      id: 'isolation_score',
+      name: 'Isolation Score',
+      description: 'Tree-based anomaly detection using random isolation',
+      parameters: ['contamination (0.01-0.5)'],
+    },
   ],
   forecasting: [
+    {
+      id: 'simple_exponential_smoothing',
+      name: 'Simple Exponential Smoothing',
+      description: 'Basic exponential smoothing for stationary data',
+      parameters: ['horizon', 'alpha (0.1-0.9)'],
+    },
     {
       id: 'holt_winters',
       name: 'Holt-Winters',
@@ -127,7 +139,7 @@ export async function GET(request: NextRequest) {
           method: 'POST',
           body: {
             processId: 'number (required)',
-            algorithm: 'string (isolation_forest|statistical_zscore|dbscan)',
+            algorithm: 'string (zscore|modified_zscore|iqr|isolation_score)',
             contamination: 'number (0.01-0.5, default: 0.05)',
           },
         },
@@ -137,7 +149,7 @@ export async function GET(request: NextRequest) {
           body: {
             processId: 'number (required)',
             horizon: 'number (days, default: 30)',
-            algorithm: 'string (holt_winters|linear_regression|moving_average)',
+            algorithm: 'string (simple_exponential_smoothing|holt_winters|linear_regression|moving_average)',
           },
         },
         simulation: {
