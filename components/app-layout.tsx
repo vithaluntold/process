@@ -121,6 +121,7 @@ const navigationCategories: NavCategory[] = [
     items: [
       { href: "/document-upload", label: "Document Upload", icon: FileUp },
       { href: "/reports", label: "Reports & Exports", icon: FileText },
+      { href: "/integrations", label: "Enterprise Connectors", icon: LinkIcon },
       { href: "/api-integrations", label: "API Integrations", icon: LinkIcon },
     ],
   },
