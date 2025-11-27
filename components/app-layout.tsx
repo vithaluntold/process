@@ -143,6 +143,13 @@ const navigationCategories: NavCategory[] = [
       { href: "/settings", label: "Settings", icon: Settings },
     ],
   },
+  {
+    label: "Platform",
+    icon: Shield,
+    items: [
+      { href: "/super-admin", label: "Super Admin Portal", icon: Shield, adminOnly: true },
+    ],
+  },
 ]
 
 interface AppLayoutProps {
