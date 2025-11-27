@@ -3,6 +3,7 @@ import { db } from '@/lib/db';
 import { connectorOAuthState, connectorConfigurations } from '@/shared/schema';
 import { eq } from 'drizzle-orm';
 import { EnvelopeEncryptionService, KMSConfig, KMSProvider } from '@/lib/security/envelope-encryption';
+import type { OAuthTokens } from './types';
 
 const OAUTH_STATE_EXPIRY_MS = 10 * 60 * 1000;
 
@@ -120,15 +121,6 @@ function getEncryptionService(): EnvelopeEncryptionService {
   return encryptionService;
 }
 
-export interface OAuthTokens {
-  accessToken: string;
-  refreshToken?: string;
-  tokenType: string;
-  expiresAt?: Date;
-  instanceUrl?: string;
-  scope?: string;
-  metadata?: Record<string, unknown>;
-}
 
 export interface EncryptedOAuthTokens {
   accessTokenEnvelope: string;
@@ -155,7 +147,7 @@ export async function encryptOAuthTokens(tokens: OAuthTokens): Promise<Encrypted
   return {
     accessTokenEnvelope,
     refreshTokenEnvelope,
-    tokenType: tokens.tokenType,
+    tokenType: tokens.tokenType || 'Bearer',
     expiresAt: tokens.expiresAt,
     instanceUrl: tokens.instanceUrl,
     scope: tokens.scope,

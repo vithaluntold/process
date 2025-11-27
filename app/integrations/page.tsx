@@ -86,11 +86,10 @@ const connectorTypes = [
   {
     id: "sap",
     name: "SAP",
-    description: "Connect to SAP ERP via OData for process data (Coming Soon)",
+    description: "Connect to SAP S/4HANA and ECC via OData for business process data",
     icon: Building2,
     color: "text-orange-500",
     bgColor: "bg-orange-500/10",
-    comingSoon: true,
   },
 ]
 
@@ -516,15 +515,11 @@ export default function IntegrationsPage() {
             {connectorTypes.map((type) => (
               <Card
                 key={type.id}
-                className={`cursor-pointer transition-all hover:shadow-md ${
-                  type.comingSoon ? "opacity-60" : ""
-                }`}
+                className="cursor-pointer transition-all hover:shadow-md"
                 onClick={() => {
-                  if (!type.comingSoon) {
-                    setSelectedConnectorType(type.id)
-                    setFormData({ ...formData, displayName: type.name })
-                    setAddDialogOpen(true)
-                  }
+                  setSelectedConnectorType(type.id)
+                  setFormData({ ...formData, displayName: type.name })
+                  setAddDialogOpen(true)
                 }}
               >
                 <CardHeader>
@@ -535,11 +530,6 @@ export default function IntegrationsPage() {
                     <div>
                       <CardTitle className="text-lg flex items-center gap-2">
                         {type.name}
-                        {type.comingSoon && (
-                          <Badge variant="secondary" className="text-xs">
-                            Coming Soon
-                          </Badge>
-                        )}
                       </CardTitle>
                     </div>
                   </div>
@@ -570,9 +560,7 @@ export default function IntegrationsPage() {
 
           {!selectedConnectorType ? (
             <div className="grid gap-3 py-4">
-              {connectorTypes
-                .filter((t) => !t.comingSoon)
-                .map((type) => (
+              {connectorTypes.map((type) => (
                   <Button
                     key={type.id}
                     variant="outline"

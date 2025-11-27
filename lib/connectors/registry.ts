@@ -1,6 +1,7 @@
 import type { BaseConnector, ConnectorType, ConnectorMetadata } from './types';
 import { SalesforceConnector } from './salesforce';
 import { ServiceNowConnector } from './servicenow';
+import { SAPODataConnector } from './sap';
 
 class ConnectorRegistry {
   private connectors: Map<ConnectorType, BaseConnector> = new Map();
@@ -8,6 +9,7 @@ class ConnectorRegistry {
   constructor() {
     this.register(new SalesforceConnector());
     this.register(new ServiceNowConnector());
+    this.register(new SAPODataConnector());
   }
 
   register(connector: BaseConnector): void {
