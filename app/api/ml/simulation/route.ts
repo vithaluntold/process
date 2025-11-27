@@ -10,6 +10,7 @@ import { db } from '@/lib/db';
 import { discoveredModels, eventLogs } from '@/shared/schema';
 import { eq, desc } from 'drizzle-orm';
 import { runSimulationWithML } from '@/lib/ml-client';
+import { MonteCarloSimulator } from '@/lib/ts-ml-algorithms';
 
 export async function POST(request: NextRequest) {
   try {
@@ -114,44 +115,22 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const simulated: number[] = [];
-    for (let i = 0; i < numSimulations; i++) {
-      const u1 = Math.random();
-      const u2 = Math.random();
-      const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
-      const value = Math.max(1, baseCycleTime + z * baseCycleTime * variance);
-      simulated.push(value);
-    }
-
-    simulated.sort((a, b) => a - b);
+    const simulationResult = MonteCarloSimulator.simulate(
+      baseCycleTime,
+      variance,
+      numSimulations
+    );
 
     return NextResponse.json({
       success: true,
-      source: 'statistical_fallback',
+      source: 'typescript_ml',
       algorithm: 'monte_carlo',
       numSimulations,
       results: {
-        cycle_times: simulated.slice(0, 100),
-        percentiles: {
-          p10: simulated[Math.floor(numSimulations * 0.1)],
-          p25: simulated[Math.floor(numSimulations * 0.25)],
-          p50: simulated[Math.floor(numSimulations * 0.5)],
-          p75: simulated[Math.floor(numSimulations * 0.75)],
-          p90: simulated[Math.floor(numSimulations * 0.9)],
-          p95: simulated[Math.floor(numSimulations * 0.95)],
-          p99: simulated[Math.floor(numSimulations * 0.99)],
-        },
+        cycle_times: simulationResult.samples,
+        percentiles: simulationResult.percentiles,
       },
-      statistics: {
-        mean: simulated.reduce((a, b) => a + b, 0) / numSimulations,
-        median: simulated[Math.floor(numSimulations * 0.5)],
-        std_dev: Math.sqrt(simulated.reduce((sum, val) => {
-          const mean = simulated.reduce((a, b) => a + b, 0) / numSimulations;
-          return sum + Math.pow(val - mean, 2);
-        }, 0) / numSimulations),
-        min: simulated[0],
-        max: simulated[numSimulations - 1],
-      },
+      statistics: simulationResult.statistics,
       processInfo: {
         activities: processModel.activities.length,
         baseCycleTime,

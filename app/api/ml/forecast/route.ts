@@ -1,5 +1,5 @@
 /**
- * ML Forecasting API - Enhanced with Python ML Backend
+ * ML Forecasting API - Enhanced with Python ML Backend + TypeScript Fallbacks
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -10,6 +10,7 @@ import { db } from '@/lib/db';
 import { eventLogs } from '@/shared/schema';
 import { eq } from 'drizzle-orm';
 import { generateForecastWithML } from '@/lib/ml-client';
+import { Forecaster } from '@/lib/ts-ml-algorithms';
 
 export async function POST(request: NextRequest) {
   try {
@@ -122,54 +123,51 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const alpha = 0.3;
-    const beta = 0.1;
-    let level = values[0];
-    let trend = 0;
-    
-    for (let i = 1; i < values.length; i++) {
-      const prevLevel = level;
-      level = alpha * values[i] + (1 - alpha) * (level + trend);
-      trend = beta * (level - prevLevel) + (1 - beta) * trend;
+    let forecastResults;
+    let algorithmUsed = algorithm;
+
+    if (algorithm === 'linear_regression') {
+      forecastResults = Forecaster.linearRegression(values, horizon);
+    } else if (algorithm === 'moving_average') {
+      forecastResults = Forecaster.movingAverage(values, horizon, 7);
+    } else {
+      forecastResults = Forecaster.holtWinters(values, horizon);
+      algorithmUsed = 'holt_winters';
     }
 
-    const forecast30d = level + 30 * trend;
-    const forecast60d = level + 60 * trend;
-    const forecast90d = level + 90 * trend;
-
-    const stdDev = Math.sqrt(
-      values.reduce((sum, val) => sum + Math.pow(val - values.reduce((a, b) => a + b, 0) / values.length, 2), 0) / values.length
-    );
-
-    const chartData = sortedDates.slice(-30).map((date, i) => ({
+    const chartData: Array<any> = sortedDates.slice(-30).map((date, i) => ({
       date,
       actual: values[values.length - 30 + i] || values[i],
     }));
 
-    for (let i = 1; i <= horizon; i += 10) {
+    forecastResults.forEach(f => {
       const forecastDate = new Date(sortedDates[sortedDates.length - 1]);
-      forecastDate.setDate(forecastDate.getDate() + i);
-      const forecastValue = level + i * trend;
-      const margin = 1.96 * stdDev * Math.sqrt(i / values.length);
+      forecastDate.setDate(forecastDate.getDate() + f.step);
       
-      chartData.push({
-        date: forecastDate.toISOString().split('T')[0],
-        forecast: Math.max(0, forecastValue),
-        lower: Math.max(0, forecastValue - margin),
-        upper: forecastValue + margin,
-      } as any);
-    }
+      if (f.step % 10 === 0 || f.step <= 10) {
+        chartData.push({
+          date: forecastDate.toISOString().split('T')[0],
+          forecast: f.value,
+          lower: f.lower,
+          upper: f.upper,
+        });
+      }
+    });
+
+    const day30 = forecastResults.find(f => f.step === 30) || forecastResults[Math.min(29, forecastResults.length - 1)];
+    const day60 = forecastResults.find(f => f.step === 60) || forecastResults[Math.min(59, forecastResults.length - 1)];
+    const day90 = forecastResults.find(f => f.step === 90) || forecastResults[forecastResults.length - 1];
 
     return NextResponse.json({
       success: true,
-      source: 'statistical_fallback',
-      algorithm: 'holt_winters',
+      source: 'typescript_ml',
+      algorithm: algorithmUsed,
       metric,
       current: values[values.length - 1],
       forecast: {
-        day30: Math.max(0, forecast30d),
-        day60: Math.max(0, forecast60d),
-        day90: Math.max(0, forecast90d),
+        day30: day30?.value,
+        day60: day60?.value,
+        day90: day90?.value,
       },
       confidenceIntervals: {
         confidence_level: 0.95,
@@ -177,11 +175,9 @@ export async function POST(request: NextRequest) {
       },
       chartData,
       metrics: {
-        level,
-        trend,
-        alpha,
-        beta,
+        algorithm: algorithmUsed,
         dataPoints: values.length,
+        horizon,
       },
     });
   } catch (error) {

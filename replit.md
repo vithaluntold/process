@@ -48,58 +48,65 @@ EPI-Q is a multi-tenant SaaS platform designed to transform raw operational data
 - API rate limiting per user
 - Zod schema validation
 
-### ML Integration (In Progress)
+### ML Integration (Functional)
 
-**Completed TypeScript/Frontend:**
-- ML API endpoints created (`app/api/ml/anomaly-detection/route.ts`, `app/api/ml/forecast/route.ts`, `app/api/ml/simulation/route.ts`)
-- TypeScript ML client for Python services (`lib/ml-client.ts`)
-- FastAPI server definition (`server/ml-services/api/main.py`)
-- Updated Predictive Analytics dashboard with real anomaly detection and forecasting UI
-- Updated Task Mining dashboard with task frequency and automation analysis
-- Updated Scenario Analysis page with Monte Carlo simulation and comparison UI
+**TypeScript ML Algorithms Library** (`lib/ts-ml-algorithms.ts`):
+Pure TypeScript implementation of ML algorithms for immediate use without Python dependencies:
+- `StatisticalAnalyzer` - Mean, standard deviation, median, percentiles, IQR, MAD
+- `AnomalyDetector` - Z-Score, Modified Z-Score, IQR Detection, Isolation Score
+- `Forecaster` - Simple Exponential Smoothing, Holt-Winters, Linear Regression, Moving Average
+- `MonteCarloSimulator` - Process simulation with scenario comparison
 
-**Frontend Components Updated (No Longer Placeholders):**
-- `components/predictive-analytics.tsx` - Full anomaly detection + forecasting UI with algorithm selection
-- `components/task-mining-dashboard.tsx` - Task frequency, duration, automation scoring with charts
-- `components/scenario-analysis-page.tsx` - Monte Carlo simulation with baseline vs optimized comparison
+**ML API Endpoints (Production-Ready):**
+- `app/api/ml/anomaly-detection/route.ts` - Anomaly detection with algorithm selection
+- `app/api/ml/forecast/route.ts` - Time series forecasting with multiple methods
+- `app/api/ml/simulation/route.ts` - Monte Carlo simulation for scenario analysis
 
-**Statistical Fallback (Always Available):**
-- Z-Score anomaly detection (when Python ML service unavailable)
-- Holt-Winters forecasting (statistical time series)
-- Basic Monte Carlo simulation (parameter-based)
+**ML Client for Python Services** (`lib/ml-client.ts`):
+- Bridges to Python FastAPI when available (set ML_API_URL env var)
+- Automatic fallback to TypeScript algorithms when Python API unavailable
 
-### Python ML Services (Available for Integration)
+**Frontend Components (Fully Functional):**
+- `components/predictive-analytics.tsx` - Anomaly detection + forecasting with charts
+- `components/task-mining-dashboard.tsx` - Task frequency, duration, automation scoring
+- `components/scenario-analysis-page.tsx` - Monte Carlo with baseline vs optimized comparison
 
-Python ML implementations exist in `server/ml-services/` and are ready to connect via FastAPI:
+**Available TypeScript ML Algorithms:**
+| Category | Algorithm | Implementation |
+|----------|-----------|----------------|
+| Anomaly Detection | Z-Score | `AnomalyDetector.zScoreDetection()` |
+| Anomaly Detection | Modified Z-Score (Robust) | `AnomalyDetector.modifiedZScoreDetection()` |
+| Anomaly Detection | IQR Method | `AnomalyDetector.iqrDetection()` |
+| Anomaly Detection | Isolation Score | `AnomalyDetector.isolationScore()` |
+| Forecasting | Holt-Winters | `Forecaster.holtWinters()` |
+| Forecasting | Linear Regression | `Forecaster.linearRegression()` |
+| Forecasting | Moving Average | `Forecaster.movingAverage()` |
+| Forecasting | Exponential Smoothing | `Forecaster.simpleExponentialSmoothing()` |
+| Simulation | Monte Carlo | `MonteCarloSimulator.simulate()` |
+| Simulation | Scenario Comparison | `MonteCarloSimulator.compareScenarios()` |
+
+### Python ML Services (For Advanced Algorithms)
+
+Python ML implementations in `server/ml-services/` can be deployed externally:
 
 **Anomaly Detection** (`server/ml-services/anomaly-detection/`):
-- `lstm_autoencoder_prod.py` - LSTM Autoencoder
-- `vae_prod.py` - Variational Autoencoder
-- `isolation_forest_prod.py` - Isolation Forest
-- `dbscan_prod.py` - DBSCAN Clustering
-- `oneclass_svm_prod.py` - One-Class SVM
+- LSTM Autoencoder, VAE, Isolation Forest, DBSCAN, One-Class SVM
 
 **Forecasting** (`server/ml-services/forecasting/`):
-- `prophet_prod.py` - Facebook Prophet
-- `arima_prod.py` - ARIMA/SARIMA
-- `lstm_prod.py` - LSTM Networks
-- `gru_prod.py` - GRU Networks
-- `xgboost_prod.py` - XGBoost
-- `hybrid_arima_lstm_prod.py` - Hybrid Models
+- Prophet, ARIMA/SARIMA, LSTM Networks, GRU, XGBoost, Hybrid Models
 
 **Digital Twin RL** (`server/ml-services/digital-twin/`):
-- `rl_optimizer.py` - PPO, TD3, Bayesian Optimization
-- `monte_carlo_simulator.py` - Monte Carlo Simulation
+- PPO, TD3, Bayesian Optimization, Monte Carlo Simulation
 
 **Process Discovery** (`server/ml-services/process-discovery/`):
-- `object_centric_mining.py` - OCPM
-- `trace2vec.py` - Trace2Vec/Activity2Vec
+- Object-Centric Mining (OCPM), Trace2Vec/Activity2Vec
 
-### Remaining ML Integration Work
+### Deploying Python ML Services
 
-1. **Deploy Python ML API**: Run FastAPI server on port 8000 for advanced ML algorithms
-2. **Install Python ML dependencies**: TensorFlow, PyTorch, scikit-learn, Prophet, etc.
-3. **Connect to advanced algorithms**: Route ML client to FastAPI when available
+To enable advanced Python ML algorithms:
+1. Deploy FastAPI service to Railway, Render, or container host
+2. Set `ML_API_URL` environment variable to the deployed endpoint
+3. TypeScript ML client will automatically route to Python API when available
 
 ## System Architecture
 

@@ -1,5 +1,5 @@
 /**
- * ML Anomaly Detection API - Enhanced with Python ML Backend
+ * ML Anomaly Detection API - Enhanced with Python ML Backend + TypeScript Fallbacks
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -10,6 +10,7 @@ import { db } from '@/lib/db';
 import { eventLogs } from '@/shared/schema';
 import { eq } from 'drizzle-orm';
 import { detectAnomaliesWithML } from '@/lib/ml-client';
+import { AnomalyDetector, StatisticalAnalyzer } from '@/lib/ts-ml-algorithms';
 
 export async function POST(request: NextRequest) {
   try {
@@ -72,9 +73,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const durations: number[] = [];
     const caseGroups = new Map<string, typeof events>();
-
     for (const event of events) {
       if (!caseGroups.has(event.caseId)) {
         caseGroups.set(event.caseId, []);
@@ -82,7 +81,10 @@ export async function POST(request: NextRequest) {
       caseGroups.get(event.caseId)!.push(event);
     }
 
-    for (const [, caseEvents] of caseGroups) {
+    const durations: number[] = [];
+    const eventDurationMap: Array<{ caseId: string; activity: string; timestamp: Date; duration: number }> = [];
+
+    for (const [caseId, caseEvents] of caseGroups) {
       const sorted = caseEvents.sort(
         (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
       );
@@ -90,15 +92,29 @@ export async function POST(request: NextRequest) {
         const duration = new Date(sorted[i + 1].timestamp).getTime() - 
                         new Date(sorted[i].timestamp).getTime();
         durations.push(duration);
+        eventDurationMap.push({
+          caseId,
+          activity: sorted[i].activity,
+          timestamp: sorted[i].timestamp,
+          duration,
+        });
       }
     }
 
-    const mean = durations.reduce((a, b) => a + b, 0) / durations.length;
-    const stdDev = Math.sqrt(
-      durations.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / durations.length
-    );
+    if (durations.length === 0) {
+      return NextResponse.json({
+        success: true,
+        source: 'statistical_fallback',
+        algorithm,
+        totalEvents: events.length,
+        anomaliesDetected: 0,
+        anomalyRate: 0,
+        anomalies: [],
+        modelMetrics: { message: 'No duration data available' },
+      });
+    }
 
-    const anomalies: Array<{
+    let detectedAnomalies: Array<{
       caseId: string;
       activity: string;
       timestamp: Date;
@@ -106,40 +122,64 @@ export async function POST(request: NextRequest) {
       severity: string;
     }> = [];
 
-    let durationIndex = 0;
-    for (const [caseId, caseEvents] of caseGroups) {
-      const sorted = caseEvents.sort(
-        (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-      );
-      for (let i = 0; i < sorted.length - 1; i++) {
-        const duration = durations[durationIndex++];
-        const zScore = stdDev > 0 ? Math.abs((duration - mean) / stdDev) : 0;
-        
-        if (zScore > 3) {
-          anomalies.push({
-            caseId,
-            activity: sorted[i].activity,
-            timestamp: sorted[i].timestamp,
-            score: zScore,
-            severity: zScore > 5 ? 'critical' : zScore > 4 ? 'high' : 'medium',
-          });
-        }
-      }
+    let modelMetrics: Record<string, any> = {};
+
+    if (algorithm === 'isolation_forest') {
+      const results = AnomalyDetector.isolationScore(durations, contamination);
+      detectedAnomalies = results.map(r => ({
+        caseId: eventDurationMap[r.index].caseId,
+        activity: eventDurationMap[r.index].activity,
+        timestamp: eventDurationMap[r.index].timestamp,
+        score: r.score,
+        severity: r.severity,
+      }));
+      modelMetrics = {
+        algorithm: 'isolation_forest_ts',
+        contamination,
+        threshold: StatisticalAnalyzer.percentile(durations, (1 - contamination) * 100),
+      };
+    } else if (algorithm === 'dbscan') {
+      const results = AnomalyDetector.iqrDetection(durations, 1.5);
+      detectedAnomalies = results.map(r => ({
+        caseId: eventDurationMap[r.index].caseId,
+        activity: eventDurationMap[r.index].activity,
+        timestamp: eventDurationMap[r.index].timestamp,
+        score: r.score,
+        severity: r.severity,
+      }));
+      const { q1, q3, iqr } = StatisticalAnalyzer.iqr(durations);
+      modelMetrics = {
+        algorithm: 'iqr_detection',
+        q1: q1 / 1000,
+        q3: q3 / 1000,
+        iqr: iqr / 1000,
+      };
+    } else {
+      const results = AnomalyDetector.zScoreDetection(durations, 3);
+      detectedAnomalies = results.map(r => ({
+        caseId: eventDurationMap[r.index].caseId,
+        activity: eventDurationMap[r.index].activity,
+        timestamp: eventDurationMap[r.index].timestamp,
+        score: r.score,
+        severity: r.severity,
+      }));
+      modelMetrics = {
+        algorithm: 'z_score',
+        mean: StatisticalAnalyzer.mean(durations) / 1000,
+        stdDev: StatisticalAnalyzer.standardDeviation(durations) / 1000,
+        threshold: 3,
+      };
     }
 
     return NextResponse.json({
       success: true,
-      source: 'statistical_fallback',
-      algorithm: 'z_score',
+      source: 'typescript_ml',
+      algorithm: modelMetrics.algorithm || algorithm,
       totalEvents: events.length,
-      anomaliesDetected: anomalies.length,
-      anomalyRate: anomalies.length / events.length,
-      anomalies: anomalies.slice(0, 100),
-      modelMetrics: {
-        mean: mean / 1000,
-        stdDev: stdDev / 1000,
-        threshold: 3,
-      },
+      anomaliesDetected: detectedAnomalies.length,
+      anomalyRate: detectedAnomalies.length / events.length,
+      anomalies: detectedAnomalies.slice(0, 100),
+      modelMetrics,
     });
   } catch (error) {
     console.error('ML anomaly detection error:', error);
