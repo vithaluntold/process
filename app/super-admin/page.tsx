@@ -43,6 +43,7 @@ import {
   Pause,
   Play,
   PieChart,
+  Link2,
 } from "lucide-react"
 
 interface AggregateOrgData {
@@ -98,6 +99,22 @@ interface SecurityEvent {
   resolved: boolean
 }
 
+interface ConnectorHealthSummary {
+  total: number
+  healthy: number
+  unhealthy: number
+  unknown: number
+  connectors: Array<{
+    id: number
+    displayName: string
+    connectorType: string
+    status: string
+    healthStatus: string
+    lastCheckedAt: string | null
+    responseTimeMs: number | null
+  }>
+}
+
 export default function SuperAdminPortal() {
   const router = useRouter()
   const { user, isLoading: loading } = useAuth()
@@ -109,6 +126,7 @@ export default function SuperAdminPortal() {
   const [platformMetrics, setPlatformMetrics] = useState<PlatformMetrics | null>(null)
   const [auditLogs, setAuditLogs] = useState<AuditLogEntry[]>([])
   const [securityEvents, setSecurityEvents] = useState<SecurityEvent[]>([])
+  const [connectorHealth, setConnectorHealth] = useState<ConnectorHealthSummary | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [statusFilter, setStatusFilter] = useState("all")
   const [selectedOrg, setSelectedOrg] = useState<ManagementOrg | null>(null)
@@ -135,13 +153,14 @@ export default function SuperAdminPortal() {
   const fetchAllData = async () => {
     setIsLoading(true)
     try {
-      const [aggRes, mgmtRes, healthRes, metricsRes, auditRes, securityRes] = await Promise.all([
+      const [aggRes, mgmtRes, healthRes, metricsRes, auditRes, securityRes, connectorsRes] = await Promise.all([
         apiClient.get("/api/super-admin/organizations?mode=aggregate"),
         apiClient.get("/api/super-admin/organizations?mode=management"),
         apiClient.get("/api/super-admin/health"),
         apiClient.get("/api/super-admin/metrics"),
         apiClient.get("/api/super-admin/audit-logs?limit=50"),
         apiClient.get("/api/super-admin/security-events"),
+        apiClient.get("/api/super-admin/connectors"),
       ])
 
       if (aggRes.ok) setAggregateData(await aggRes.json())
@@ -150,6 +169,7 @@ export default function SuperAdminPortal() {
       if (metricsRes.ok) setPlatformMetrics(await metricsRes.json())
       if (auditRes.ok) setAuditLogs((await auditRes.json()).logs || [])
       if (securityRes.ok) setSecurityEvents((await securityRes.json()).events || [])
+      if (connectorsRes.ok) setConnectorHealth(await connectorsRes.json())
     } catch (error) {
       console.error("Failed to fetch super admin data:", error)
       toast({
@@ -578,6 +598,39 @@ export default function SuperAdminPortal() {
                   <Separator />
                   <div className="text-sm text-muted-foreground">
                     Next.js API Routes
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Link2 className="h-5 w-5" />
+                    Enterprise Connectors
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span>Total</span>
+                    <Badge variant="outline">{connectorHealth?.total || 0}</Badge>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Healthy</span>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-green-500" />
+                      <span>{connectorHealth?.healthy || 0}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span>Unhealthy</span>
+                    <div className="flex items-center gap-2">
+                      <XCircle className="h-4 w-4 text-red-500" />
+                      <span>{connectorHealth?.unhealthy || 0}</span>
+                    </div>
+                  </div>
+                  <Separator />
+                  <div className="text-sm text-muted-foreground">
+                    Salesforce, ServiceNow, SAP
                   </div>
                 </CardContent>
               </Card>
