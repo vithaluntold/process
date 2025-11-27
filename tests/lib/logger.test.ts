@@ -1,5 +1,265 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { Logger, createRequestLogger, createServiceLogger } from '@/lib/logger';
+import { Writable } from 'stream';
+
+function createCapturingStream(): { stream: Writable; getOutput: () => string } {
+  let captured = '';
+  const stream = new Writable({
+    write(chunk, encoding, callback) {
+      captured += chunk.toString();
+      callback();
+    }
+  });
+  return { stream, getOutput: () => captured };
+}
+
+describe('Logger Class - Output Verification via createWithDestination', () => {
+  it('should emit valid JSON log entries via Logger wrapper', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.info('Test message', { action: 'test' });
+    
+    const output = getOutput();
+    const parsed = JSON.parse(output.trim());
+    
+    expect(parsed).toHaveProperty('level', 'info');
+    expect(parsed).toHaveProperty('msg', 'Test message');
+    expect(parsed).toHaveProperty('action', 'test');
+    expect(parsed).toHaveProperty('time');
+  });
+
+  it('should emit debug level correctly via Logger', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.debug('Debug log', { component: 'test' });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('debug');
+    expect(parsed.msg).toBe('Debug log');
+    expect(parsed.component).toBe('test');
+  });
+
+  it('should emit warn level correctly via Logger', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.warn('Warning message', { warningType: 'deprecation' });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('warn');
+    expect(parsed.msg).toBe('Warning message');
+    expect(parsed.warningType).toBe('deprecation');
+  });
+
+  it('should emit error with Error object via Logger', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    const testError = new Error('Test error message');
+    logger.error('Error occurred', testError);
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('error');
+    expect(parsed.msg).toBe('Error occurred');
+    expect(parsed.error.message).toBe('Test error message');
+    expect(parsed.error.name).toBe('Error');
+    expect(parsed.error.stack).toBeDefined();
+  });
+
+  it('should emit fatal with Error object via Logger', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    const testError = new Error('Fatal error message');
+    logger.fatal('Fatal occurred', testError);
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('fatal');
+    expect(parsed.msg).toBe('Fatal occurred');
+    expect(parsed.error.message).toBe('Fatal error message');
+  });
+
+  it('should redact sensitive password fields via Logger', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.info('Login attempt', { password: 'secret123', username: 'testuser' });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.password).toBe('[REDACTED]');
+    expect(parsed.username).toBe('testuser');
+  });
+
+  it('should redact sensitive token fields via Logger', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.info('Auth check', { token: 'jwt-token-abc', userId: 1 });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.token).toBe('[REDACTED]');
+    expect(parsed.userId).toBe(1);
+  });
+
+  it('should redact sensitive apiKey fields via Logger', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.info('API call', { apiKey: 'sk-abc123xyz', endpoint: '/api/test' });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.apiKey).toBe('[REDACTED]');
+    expect(parsed.endpoint).toBe('/api/test');
+  });
+
+  it('should redact nested password fields via Logger', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.info('User data', { user: { name: 'test', password: 'secret456' } });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.user.password).toBe('[REDACTED]');
+    expect(parsed.user.name).toBe('test');
+  });
+
+  it('should include timestamp in ISO format via Logger', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.info('Timestamp test');
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.time).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/);
+  });
+
+  it('should log httpRequest with structured output', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.httpRequest({
+      method: 'POST',
+      url: '/api/users',
+      statusCode: 201,
+      duration: 45,
+      userAgent: 'Mozilla/5.0',
+      ip: '192.168.1.1',
+    });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('info');
+    expect(parsed.http.method).toBe('POST');
+    expect(parsed.http.url).toBe('/api/users');
+    expect(parsed.http.statusCode).toBe(201);
+    expect(parsed.http.duration).toBe(45);
+    expect(parsed.msg).toContain('POST /api/users 201 45ms');
+  });
+
+  it('should log dbQuery with structured output', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.dbQuery({
+      operation: 'SELECT',
+      table: 'users',
+      duration: 12,
+      rowCount: 50,
+    });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('debug');
+    expect(parsed.db.operation).toBe('SELECT');
+    expect(parsed.db.table).toBe('users');
+    expect(parsed.db.duration).toBe(12);
+    expect(parsed.db.rowCount).toBe(50);
+  });
+
+  it('should log securityEvent with auth_success at info level', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.securityEvent({
+      type: 'auth_success',
+      userId: 42,
+      ip: '192.168.1.1',
+      userAgent: 'Chrome/100',
+    });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('info');
+    expect(parsed.security.type).toBe('auth_success');
+    expect(parsed.security.userId).toBe(42);
+  });
+
+  it('should log securityEvent with auth_failure at warn level', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.securityEvent({
+      type: 'auth_failure',
+      ip: '192.168.1.1',
+      details: { reason: 'invalid_password' },
+    });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('warn');
+    expect(parsed.security.type).toBe('auth_failure');
+    expect(parsed.security.reason).toBe('invalid_password');
+  });
+
+  it('should log mlOperation success at info level', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.mlOperation({
+      algorithm: 'zscore',
+      dataPoints: 1000,
+      duration: 50,
+      success: true,
+    });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('info');
+    expect(parsed.ml.algorithm).toBe('zscore');
+    expect(parsed.ml.success).toBe(true);
+  });
+
+  it('should log mlOperation failure at error level', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.mlOperation({
+      algorithm: 'isolation_score',
+      dataPoints: 0,
+      duration: 5,
+      success: false,
+      error: 'Insufficient data',
+    });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('error');
+    expect(parsed.ml.algorithm).toBe('isolation_score');
+    expect(parsed.ml.success).toBe(false);
+    expect(parsed.ml.error).toBe('Insufficient data');
+  });
+
+  it('should log auditLog with structured output', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const logger = Logger.createWithDestination(stream);
+    logger.auditLog({
+      action: 'CREATE',
+      resourceType: 'process',
+      resourceId: 'proc-123',
+      userId: 1,
+      organizationId: 10,
+    });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.level).toBe('info');
+    expect(parsed.audit.action).toBe('CREATE');
+    expect(parsed.audit.resourceType).toBe('process');
+    expect(parsed.audit.resourceId).toBe('proc-123');
+  });
+
+  it('should handle child loggers with context propagation', () => {
+    const { stream, getOutput } = createCapturingStream();
+    const parentLogger = Logger.createWithDestination(stream, { service: 'auth' });
+    const childLogger = parentLogger.child({ userId: 42 });
+    childLogger.info('Child log message', { action: 'login' });
+    
+    const parsed = JSON.parse(getOutput().trim());
+    expect(parsed.service).toBe('auth');
+    expect(parsed.userId).toBe(42);
+    expect(parsed.action).toBe('login');
+    expect(parsed.msg).toBe('Child log message');
+  });
+});
 
 describe('Logger Module - Real Implementation', () => {
   describe('Logger Class', () => {

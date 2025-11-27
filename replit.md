@@ -260,8 +260,8 @@ ML_API_URL=https://your-ml-service.railway.app
 | ML Algorithms | 45 tests | `tests/lib/ts-ml-algorithms.test.ts` |
 | Security Modules | 34 tests | `tests/lib/security.test.ts` |
 | API Endpoints | 22 tests | `tests/api/health.test.ts` |
-| Logger | 46 tests | `tests/lib/logger.test.ts` |
-| **Total** | **147 tests** | All passing |
+| Logger | 64 tests | `tests/lib/logger.test.ts` |
+| **Total** | **165 tests** | All passing |
 
 **Test Commands:**
 ```bash

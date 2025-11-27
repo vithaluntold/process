@@ -1,4 +1,5 @@
 import pino from 'pino';
+import type { DestinationStream } from 'pino';
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'fatal';
 
@@ -14,7 +15,7 @@ export interface LogContext {
 const isProduction = process.env.NODE_ENV === 'production';
 const isTest = process.env.NODE_ENV === 'test';
 
-const pinoConfig: pino.LoggerOptions = {
+export const pinoConfig: pino.LoggerOptions = {
   level: process.env.LOG_LEVEL || (isProduction ? 'info' : 'debug'),
   formatters: {
     level: (label) => ({ level: label }),
@@ -65,14 +66,25 @@ export class Logger {
   private context: LogContext;
   private logger: pino.Logger;
 
-  constructor(context: LogContext = {}) {
+  constructor(context: LogContext = {}, preConfiguredLogger?: pino.Logger) {
     this.context = context;
-    this.logger = baseLogger.child(context);
+    if (preConfiguredLogger) {
+      this.logger = preConfiguredLogger;
+    } else {
+      this.logger = baseLogger.child(context);
+    }
+  }
+
+  static createWithDestination(destination: DestinationStream, context: LogContext = {}): Logger {
+    const customPino = pino(pinoConfig, destination);
+    const boundLogger = customPino.child(context);
+    return new Logger(context, boundLogger);
   }
 
   child(additionalContext: LogContext): Logger {
     const newContext = { ...this.context, ...additionalContext };
-    return new Logger(newContext);
+    const childPinoLogger = this.logger.child(additionalContext);
+    return new Logger(newContext, childPinoLogger);
   }
 
   debug(message: string, data?: Record<string, unknown>): void {
