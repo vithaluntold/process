@@ -1105,6 +1105,157 @@ export const roleAssignments = pgTable("role_assignments", {
 }));
 
 // ===================================
+// ENTERPRISE CONNECTORS
+// ===================================
+
+export const connectorConfigurations = pgTable("connector_configurations", {
+  id: serial("id").primaryKey(),
+  organizationId: integer("organization_id").notNull().references(() => organizations.id, { onDelete: "cascade" }),
+  name: text("name").notNull(),
+  connectorType: text("connector_type").notNull(), // salesforce, servicenow, sap, dynamics, oracle, custom
+  authType: text("auth_type").notNull(), // oauth2, basic, api_key, jwt
+  credentialsEnvelope: text("credentials_envelope"), // Encrypted credentials (client_id, client_secret, etc.)
+  instanceUrl: text("instance_url"), // e.g., https://company.salesforce.com
+  scopes: text("scopes"), // OAuth scopes (comma-separated)
+  status: text("status").notNull().default("inactive"), // active, inactive, error, pending_auth
+  scheduleCron: text("schedule_cron").default("0 */4 * * *"), // Default: every 4 hours
+  lastSyncAt: timestamp("last_sync_at"),
+  nextSyncAt: timestamp("next_sync_at"),
+  syncEnabled: boolean("sync_enabled").notNull().default(true),
+  metadata: jsonb("metadata"), // Additional connector-specific settings
+  createdBy: integer("created_by").references(() => users.id, { onDelete: "set null" }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  orgIdIdx: index("connector_configurations_organization_id_idx").on(table.organizationId),
+  typeIdx: index("connector_configurations_type_idx").on(table.connectorType),
+  statusIdx: index("connector_configurations_status_idx").on(table.status),
+}));
+
+export type ConnectorConfiguration = typeof connectorConfigurations.$inferSelect;
+export type InsertConnectorConfiguration = typeof connectorConfigurations.$inferInsert;
+
+export const connectorOAuthState = pgTable("connector_oauth_state", {
+  id: serial("id").primaryKey(),
+  connectorConfigId: integer("connector_config_id").notNull().references(() => connectorConfigurations.id, { onDelete: "cascade" }),
+  accessTokenEnvelope: text("access_token_envelope").notNull(), // Encrypted access token
+  refreshTokenEnvelope: text("refresh_token_envelope"), // Encrypted refresh token
+  tokenType: text("token_type").default("Bearer"),
+  expiresAt: timestamp("expires_at"),
+  lastRefreshedAt: timestamp("last_refreshed_at").defaultNow().notNull(),
+  scope: text("scope"),
+  metadata: jsonb("metadata"), // Additional token metadata (instance_url, id, etc.)
+}, (table) => ({
+  connectorIdIdx: index("connector_oauth_state_connector_id_idx").on(table.connectorConfigId),
+  expiresAtIdx: index("connector_oauth_state_expires_at_idx").on(table.expiresAt),
+}));
+
+export type ConnectorOAuthState = typeof connectorOAuthState.$inferSelect;
+export type InsertConnectorOAuthState = typeof connectorOAuthState.$inferInsert;
+
+export const connectorMappings = pgTable("connector_mappings", {
+  id: serial("id").primaryKey(),
+  connectorConfigId: integer("connector_config_id").notNull().references(() => connectorConfigurations.id, { onDelete: "cascade" }),
+  sourceObject: text("source_object").notNull(), // e.g., "Case", "Opportunity", "incident", "VBAK" (SAP)
+  sourceObjectLabel: text("source_object_label"), // Human-readable label
+  enabled: boolean("enabled").notNull().default(true),
+  caseIdField: text("case_id_field").notNull(), // Field to use as case ID (e.g., "Id", "CaseNumber")
+  activityField: text("activity_field").notNull(), // Field(s) for activity name (e.g., "Status")
+  timestampField: text("timestamp_field").notNull(), // Field for event timestamp
+  resourceField: text("resource_field"), // Field for resource/user (optional)
+  additionalFields: jsonb("additional_fields"), // Array of extra fields to extract
+  transformRules: jsonb("transform_rules"), // Custom transformation rules
+  filterQuery: text("filter_query"), // SOQL/query filter to apply
+  batchSize: integer("batch_size").default(200),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  connectorIdIdx: index("connector_mappings_connector_id_idx").on(table.connectorConfigId),
+  sourceObjectIdx: index("connector_mappings_source_object_idx").on(table.sourceObject),
+}));
+
+export type ConnectorMapping = typeof connectorMappings.$inferSelect;
+export type InsertConnectorMapping = typeof connectorMappings.$inferInsert;
+
+export const connectorRuns = pgTable("connector_runs", {
+  id: serial("id").primaryKey(),
+  connectorConfigId: integer("connector_config_id").notNull().references(() => connectorConfigurations.id, { onDelete: "cascade" }),
+  mappingId: integer("mapping_id").references(() => connectorMappings.id, { onDelete: "set null" }),
+  status: text("status").notNull().default("pending"), // pending, running, completed, failed, cancelled
+  runType: text("run_type").notNull().default("scheduled"), // scheduled, manual, initial, delta
+  startedAt: timestamp("started_at"),
+  finishedAt: timestamp("finished_at"),
+  recordsFetched: integer("records_fetched").default(0),
+  recordsImported: integer("records_imported").default(0),
+  recordsSkipped: integer("records_skipped").default(0),
+  recordsFailed: integer("records_failed").default(0),
+  errorMessage: text("error_message"),
+  errorDetails: jsonb("error_details"),
+  retryCount: integer("retry_count").default(0),
+  lastProcessedId: text("last_processed_id"), // For cursor-based pagination
+  metadata: jsonb("metadata"), // Additional run statistics
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  connectorIdIdx: index("connector_runs_connector_id_idx").on(table.connectorConfigId),
+  statusIdx: index("connector_runs_status_idx").on(table.status),
+  startedAtIdx: index("connector_runs_started_at_idx").on(table.startedAt),
+}));
+
+export type ConnectorRun = typeof connectorRuns.$inferSelect;
+export type InsertConnectorRun = typeof connectorRuns.$inferInsert;
+
+export const connectorHealth = pgTable("connector_health", {
+  id: serial("id").primaryKey(),
+  connectorConfigId: integer("connector_config_id").notNull().references(() => connectorConfigurations.id, { onDelete: "cascade" }).unique(),
+  status: text("status").notNull().default("unknown"), // healthy, degraded, unhealthy, unknown
+  lastSuccessAt: timestamp("last_success_at"),
+  lastFailureAt: timestamp("last_failure_at"),
+  consecutiveFailures: integer("consecutive_failures").default(0),
+  consecutiveSuccesses: integer("consecutive_successes").default(0),
+  averageLatencyMs: real("average_latency_ms"),
+  rateLimitResetAt: timestamp("rate_limit_reset_at"),
+  rateLimitRemaining: integer("rate_limit_remaining"),
+  lastErrorMessage: text("last_error_message"),
+  lastCheckedAt: timestamp("last_checked_at").defaultNow().notNull(),
+  notes: text("notes"),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  connectorIdIdx: index("connector_health_connector_id_idx").on(table.connectorConfigId),
+  statusIdx: index("connector_health_status_idx").on(table.status),
+}));
+
+export type ConnectorHealth = typeof connectorHealth.$inferSelect;
+export type InsertConnectorHealth = typeof connectorHealth.$inferInsert;
+
+export const connectorEvents = pgTable("connector_events", {
+  id: serial("id").primaryKey(),
+  connectorConfigId: integer("connector_config_id").notNull().references(() => connectorConfigurations.id, { onDelete: "cascade" }),
+  runId: integer("run_id").references(() => connectorRuns.id, { onDelete: "set null" }),
+  sourceId: text("source_id").notNull(), // Original record ID from source system
+  sourceObject: text("source_object").notNull(),
+  caseId: text("case_id").notNull(),
+  activity: text("activity").notNull(),
+  timestamp: timestamp("timestamp").notNull(),
+  resource: text("resource"),
+  additionalData: jsonb("additional_data"), // Extra extracted fields
+  importedToProcessId: integer("imported_to_process_id").references(() => processes.id, { onDelete: "set null" }),
+  importedAt: timestamp("imported_at"),
+  status: text("status").notNull().default("staged"), // staged, imported, skipped, error
+  errorMessage: text("error_message"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  connectorIdIdx: index("connector_events_connector_id_idx").on(table.connectorConfigId),
+  runIdIdx: index("connector_events_run_id_idx").on(table.runId),
+  caseIdIdx: index("connector_events_case_id_idx").on(table.caseId),
+  timestampIdx: index("connector_events_timestamp_idx").on(table.timestamp),
+  statusIdx: index("connector_events_status_idx").on(table.status),
+  sourceIdIdx: index("connector_events_source_id_idx").on(table.sourceId),
+}));
+
+export type ConnectorEvent = typeof connectorEvents.$inferSelect;
+export type InsertConnectorEvent = typeof connectorEvents.$inferInsert;
+
+// ===================================
 // RELATIONS
 // ===================================
 
@@ -1191,4 +1342,63 @@ export const usersRelations = relations(users, ({ many, one }) => ({
     references: [userProfiles.userId],
   }),
   roleAssignments: many(roleAssignments),
+  connectorConfigurations: many(connectorConfigurations),
+}));
+
+// Connector Relations
+export const connectorConfigurationsRelations = relations(connectorConfigurations, ({ one, many }) => ({
+  organization: one(organizations, {
+    fields: [connectorConfigurations.organizationId],
+    references: [organizations.id],
+  }),
+  createdByUser: one(users, {
+    fields: [connectorConfigurations.createdBy],
+    references: [users.id],
+  }),
+  oauthState: one(connectorOAuthState, {
+    fields: [connectorConfigurations.id],
+    references: [connectorOAuthState.connectorConfigId],
+  }),
+  health: one(connectorHealth, {
+    fields: [connectorConfigurations.id],
+    references: [connectorHealth.connectorConfigId],
+  }),
+  mappings: many(connectorMappings),
+  runs: many(connectorRuns),
+  events: many(connectorEvents),
+}));
+
+export const connectorMappingsRelations = relations(connectorMappings, ({ one, many }) => ({
+  connectorConfig: one(connectorConfigurations, {
+    fields: [connectorMappings.connectorConfigId],
+    references: [connectorConfigurations.id],
+  }),
+  runs: many(connectorRuns),
+}));
+
+export const connectorRunsRelations = relations(connectorRuns, ({ one, many }) => ({
+  connectorConfig: one(connectorConfigurations, {
+    fields: [connectorRuns.connectorConfigId],
+    references: [connectorConfigurations.id],
+  }),
+  mapping: one(connectorMappings, {
+    fields: [connectorRuns.mappingId],
+    references: [connectorMappings.id],
+  }),
+  events: many(connectorEvents),
+}));
+
+export const connectorEventsRelations = relations(connectorEvents, ({ one }) => ({
+  connectorConfig: one(connectorConfigurations, {
+    fields: [connectorEvents.connectorConfigId],
+    references: [connectorConfigurations.id],
+  }),
+  run: one(connectorRuns, {
+    fields: [connectorEvents.runId],
+    references: [connectorRuns.id],
+  }),
+  process: one(processes, {
+    fields: [connectorEvents.importedToProcessId],
+    references: [processes.id],
+  }),
 }));
