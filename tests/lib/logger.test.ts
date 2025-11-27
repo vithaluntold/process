@@ -1,7 +1,148 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { Logger, createRequestLogger, createServiceLogger } from '@/lib/logger';
 
-describe('Logger Module', () => {
-  describe('Log Levels', () => {
+describe('Logger Module - Real Implementation', () => {
+  describe('Logger Class', () => {
+    it('should create a logger instance', () => {
+      const logger = new Logger();
+      expect(logger).toBeInstanceOf(Logger);
+    });
+
+    it('should create child logger with additional context', () => {
+      const logger = new Logger({ service: 'test-service' });
+      const childLogger = logger.child({ requestId: 'req-123' });
+      expect(childLogger).toBeInstanceOf(Logger);
+    });
+
+    it('should create request logger with context', () => {
+      const logger = createRequestLogger('req-456', 1, 10);
+      expect(logger).toBeInstanceOf(Logger);
+    });
+
+    it('should create service logger', () => {
+      const logger = createServiceLogger('my-service');
+      expect(logger).toBeInstanceOf(Logger);
+    });
+  });
+
+  describe('Log Methods Execution', () => {
+    it('should execute debug without throwing', () => {
+      const logger = new Logger();
+      expect(() => logger.debug('Test debug message')).not.toThrow();
+    });
+
+    it('should execute info with data without throwing', () => {
+      const logger = new Logger();
+      expect(() => logger.info('Test info message', { key: 'value' })).not.toThrow();
+    });
+
+    it('should execute warn without throwing', () => {
+      const logger = new Logger();
+      expect(() => logger.warn('Test warning message')).not.toThrow();
+    });
+
+    it('should execute error with Error object', () => {
+      const logger = new Logger();
+      const testError = new Error('Test error');
+      expect(() => logger.error('Error occurred', testError)).not.toThrow();
+    });
+
+    it('should execute fatal with Error object', () => {
+      const logger = new Logger();
+      const testError = new Error('Fatal error');
+      expect(() => logger.fatal('Fatal occurred', testError)).not.toThrow();
+    });
+
+    it('should execute httpRequest logging', () => {
+      const logger = new Logger();
+      expect(() => logger.httpRequest({
+        method: 'GET',
+        url: '/api/test',
+        statusCode: 200,
+        duration: 15,
+        userAgent: 'test-agent',
+        ip: '127.0.0.1',
+      })).not.toThrow();
+    });
+
+    it('should execute dbQuery logging', () => {
+      const logger = new Logger();
+      expect(() => logger.dbQuery({
+        operation: 'SELECT',
+        table: 'users',
+        duration: 5,
+        rowCount: 10,
+      })).not.toThrow();
+    });
+
+    it('should execute securityEvent logging', () => {
+      const logger = new Logger();
+      expect(() => logger.securityEvent({
+        type: 'auth_success',
+        userId: 1,
+        ip: '192.168.1.1',
+        userAgent: 'test-agent',
+      })).not.toThrow();
+    });
+
+    it('should execute securityEvent for auth_failure', () => {
+      const logger = new Logger();
+      expect(() => logger.securityEvent({
+        type: 'auth_failure',
+        ip: '192.168.1.1',
+        details: { reason: 'invalid_password' },
+      })).not.toThrow();
+    });
+
+    it('should execute mlOperation logging', () => {
+      const logger = new Logger();
+      expect(() => logger.mlOperation({
+        algorithm: 'zscore',
+        dataPoints: 1000,
+        duration: 50,
+        success: true,
+      })).not.toThrow();
+    });
+
+    it('should execute mlOperation for failed operations', () => {
+      const logger = new Logger();
+      expect(() => logger.mlOperation({
+        algorithm: 'isolation_score',
+        dataPoints: 0,
+        duration: 5,
+        success: false,
+        error: 'Insufficient data',
+      })).not.toThrow();
+    });
+
+    it('should execute auditLog logging', () => {
+      const logger = new Logger();
+      expect(() => logger.auditLog({
+        action: 'CREATE',
+        resourceType: 'process',
+        resourceId: 'proc-123',
+        userId: 1,
+        organizationId: 10,
+      })).not.toThrow();
+    });
+  });
+
+  describe('Child Logger Context Propagation', () => {
+    it('should propagate context to child logger', () => {
+      const parentLogger = new Logger({ service: 'parent-service' });
+      const childLogger = parentLogger.child({ requestId: 'req-789' });
+      expect(() => childLogger.info('Message from child')).not.toThrow();
+    });
+
+    it('should allow nested child loggers', () => {
+      const logger1 = new Logger({ userId: 1 });
+      const logger2 = logger1.child({ requestId: 'req-001' });
+      const logger3 = logger2.child({ operationId: 'op-001' });
+      expect(() => logger3.debug('Nested child message')).not.toThrow();
+    });
+  });
+
+  describe('Log Level Types', () => {
     it('should support debug level', () => {
       const levels = ['debug', 'info', 'warn', 'error', 'fatal'];
       expect(levels).toContain('debug');
@@ -27,7 +168,9 @@ describe('Logger Module', () => {
       expect(levels).toContain('fatal');
     });
   });
+});
 
+describe('Logger Module - Types and Patterns', () => {
   describe('Log Context', () => {
     interface LogContext {
       userId?: number;

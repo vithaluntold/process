@@ -1,5 +1,82 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import crypto from 'crypto';
+import { EnvelopeEncryptionService, type KMSConfig } from '@/lib/security/envelope-encryption';
+
+describe('EnvelopeEncryptionService - Local Mode', () => {
+  const testMasterKey = crypto.randomBytes(32).toString('hex');
+  const config: KMSConfig = {
+    provider: 'local',
+    localConfig: {
+      masterKey: testMasterKey,
+    },
+  };
+
+  it('should encrypt and decrypt data successfully', async () => {
+    const service = new EnvelopeEncryptionService(config);
+    const plaintext = 'Sensitive data for encryption test';
+    
+    const envelope = await service.encrypt(plaintext);
+    
+    expect(envelope).toHaveProperty('ciphertext');
+    expect(envelope).toHaveProperty('encryptedDEK');
+    expect(envelope).toHaveProperty('iv');
+    expect(envelope).toHaveProperty('authTag');
+    expect(envelope).toHaveProperty('algorithm');
+    expect(envelope).toHaveProperty('provider');
+    expect(envelope.provider).toBe('local');
+    
+    const decrypted = await service.decrypt(envelope);
+    expect(decrypted.toString()).toBe(plaintext);
+  });
+
+  it('should generate different ciphertext for same plaintext', async () => {
+    const service = new EnvelopeEncryptionService(config);
+    const plaintext = 'Same data encrypted twice';
+    
+    const envelope1 = await service.encrypt(plaintext);
+    const envelope2 = await service.encrypt(plaintext);
+    
+    expect(envelope1.ciphertext).not.toBe(envelope2.ciphertext);
+    expect(envelope1.iv).not.toBe(envelope2.iv);
+    expect(envelope1.encryptedDEK).not.toBe(envelope2.encryptedDEK);
+  });
+
+  it('should handle unicode and special characters', async () => {
+    const service = new EnvelopeEncryptionService(config);
+    const plaintext = '日本語テスト 🔐 émojis & spëciål çharacters';
+    
+    const envelope = await service.encrypt(plaintext);
+    const decrypted = await service.decrypt(envelope);
+    
+    expect(decrypted.toString()).toBe(plaintext);
+  });
+
+  it('should fail decryption with tampered ciphertext', async () => {
+    const service = new EnvelopeEncryptionService(config);
+    const plaintext = 'Data to be tampered';
+    
+    const envelope = await service.encrypt(plaintext);
+    const tamperedEnvelope = {
+      ...envelope,
+      ciphertext: envelope.ciphertext.slice(0, -4) + '0000',
+    };
+    
+    await expect(service.decrypt(tamperedEnvelope)).rejects.toThrow();
+  });
+
+  it('should fail decryption with wrong auth tag', async () => {
+    const service = new EnvelopeEncryptionService(config);
+    const plaintext = 'Protected data';
+    
+    const envelope = await service.encrypt(plaintext);
+    const wrongTagEnvelope = {
+      ...envelope,
+      authTag: crypto.randomBytes(16).toString('hex'),
+    };
+    
+    await expect(service.decrypt(wrongTagEnvelope)).rejects.toThrow();
+  });
+});
 
 describe('Security Module - Hash Chain Integrity', () => {
   const ALGORITHM = 'sha256';

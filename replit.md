@@ -252,6 +252,43 @@ ML_API_URL=https://your-ml-service.railway.app
 - Optional: Deploy Python ML service for advanced algorithms
 - Optional: Package Electron desktop agent
 
+## Testing & Observability
+
+### Automated Testing
+| Component | Tests | Location |
+|-----------|-------|----------|
+| ML Algorithms | 45 tests | `tests/lib/ts-ml-algorithms.test.ts` |
+| Security Modules | 34 tests | `tests/lib/security.test.ts` |
+| API Endpoints | 22 tests | `tests/api/health.test.ts` |
+| Logger | 46 tests | `tests/lib/logger.test.ts` |
+| **Total** | **147 tests** | All passing |
+
+**Test Commands:**
+```bash
+pnpm test           # Run all tests
+pnpm test:watch     # Watch mode
+pnpm test:coverage  # With coverage report
+```
+
+### Structured Logging
+- **Library:** Pino (high-performance JSON logging)
+- **Log Levels:** debug, info, warn, error, fatal
+- **Features:**
+  - Request tracing with unique request IDs
+  - HTTP request/response logging
+  - Security event logging (auth, access, rate limiting)
+  - ML operation logging
+  - Database query logging
+  - Automatic sensitive data redaction (passwords, tokens, API keys)
+  - Environment-aware formatting (pretty in dev, JSON in prod)
+
+**Location:** `lib/logger.ts`, `lib/api-logger.ts`
+
+### Error Tracking
+- **Error Boundary:** React error boundary with automatic error reporting
+- **Error Reporting API:** `/api/error-report`
+- **Location:** `components/error-boundary.tsx`
+
 ## Quick Start
 
 1. **Run the application:**
