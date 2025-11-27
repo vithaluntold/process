@@ -55,7 +55,7 @@ export async function GET(req: NextRequest) {
     const events = securityLogs.map(log => {
       let severity = "low"
       let type = log.action
-      let message = `${log.action} on ${log.resource}`
+      let message = `Security event: ${log.action.replace(/_/g, ' ')}`
       let resolved = true
 
       if (log.action.includes("failed") || log.action.includes("unauthorized")) {
@@ -69,11 +69,14 @@ export async function GET(req: NextRequest) {
       }
 
       if (log.action === "login_failed") {
-        message = `Failed login attempt from IP: ${log.ipAddress || "unknown"}`
+        const ipPrefix = log.ipAddress ? log.ipAddress.split('.').slice(0, 2).join('.') + '.x.x' : "unknown"
+        message = `Failed login attempt from IP range: ${ipPrefix}`
       } else if (log.action === "role_change") {
-        message = `User role changed for ${log.resource} #${log.resourceId}`
+        message = `User role modification detected`
       } else if (log.action === "password_reset") {
-        message = `Password reset requested`
+        message = `Password reset initiated`
+      } else if (log.action.includes("organization")) {
+        message = `Organization status change`
       }
 
       return {

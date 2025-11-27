@@ -82,3 +82,50 @@ MASTER_ENCRYPTION_KEY=your-32-byte-hex-key
 - `POST /api/security/encryption/status` - Test encryption/decryption
 - `GET /api/security/audit` - Retrieve tamper-proof audit logs
 - `POST /api/security/audit` - Create audit log entry
+
+## Super Admin Portal
+
+### Overview
+The Super Admin Portal (`/super-admin`) provides platform-wide administrative capabilities with strict privacy guardrails. Super Admins can manage the entire platform without accessing client data or private information.
+
+**Location:** `app/super-admin/page.tsx`
+
+### Features
+- **Platform Overview**: Aggregate metrics (organizations, users, processes, API calls)
+- **Tenant Management**: Suspend/activate organizations without data access
+- **System Health**: Database, encryption, API, memory, and CPU monitoring
+- **Security Controls**: View security status and configuration
+- **Audit Logs**: Platform-level audit trail (excludes client data access logs)
+- **Settings**: Platform-wide configuration options
+
+### Privacy Guardrails
+- NO access to client process data, event logs, or documents
+- NO access to user personal information or passwords
+- NO access to organization-specific content
+- Audit log filtering excludes data access entries
+- Only aggregate metrics and system health data visible
+
+### Super Admin API Endpoints
+- `GET /api/super-admin/organizations` - List all organizations with aggregate counts
+- `POST /api/super-admin/organizations/:id/suspend` - Suspend an organization
+- `POST /api/super-admin/organizations/:id/activate` - Activate an organization
+- `GET /api/super-admin/health` - System health metrics
+- `GET /api/super-admin/metrics` - Platform-wide aggregate metrics
+- `GET /api/super-admin/audit-logs` - Platform audit logs (filtered)
+- `GET /api/super-admin/security-events` - Security-related events
+
+## Compliance Documentation
+
+### Location
+All compliance documentation is in `docs/compliance/`:
+- `MARKET_READINESS_GAPS.md` - Gap analysis and remediation roadmap
+- `HIPAA_CONTROL_MATRIX.md` - HIPAA Security Rule control mapping (84% compliant)
+- `SOX_CONTROL_MATRIX.md` - SOX ITGC control mapping (87.5% compliant)
+
+### Operations Documentation
+- `docs/operations/INCIDENT_RESPONSE_SOP.md` - Incident response procedures
+
+### Market Readiness Score
+- Current: 55%
+- Target: 85%+
+- Key gaps: Enterprise connectors, automated testing, compliance certifications

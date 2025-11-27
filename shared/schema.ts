@@ -9,6 +9,7 @@ export const organizations = pgTable("organizations", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   slug: text("slug").notNull().unique(),
+  adminToken: text("admin_token").unique(), // Random UUID for super admin management (non-reversible)
   domain: text("domain"),
   logo: text("logo"),
   industry: text("industry"),
@@ -21,6 +22,7 @@ export const organizations = pgTable("organizations", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (table) => ({
   slugIdx: index("organizations_slug_idx").on(table.slug),
+  adminTokenIdx: index("organizations_admin_token_idx").on(table.adminToken),
 }));
 
 export const users = pgTable("users", {

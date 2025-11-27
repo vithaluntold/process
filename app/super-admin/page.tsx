@@ -14,7 +14,7 @@ import { Switch } from "@/components/ui/switch"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { useToast } from "@/hooks/use-toast"
 import { useAuth } from "@/hooks/useAuth"
 import { apiClient } from "@/lib/api-client"
@@ -29,45 +29,36 @@ import {
   CheckCircle2,
   XCircle,
   RefreshCw,
-  Settings,
   Lock,
-  Eye,
-  EyeOff,
   TrendingUp,
-  Clock,
   FileText,
   Key,
   Globe,
   Zap,
   BarChart3,
-  Search,
-  Filter,
-  MoreVertical,
-  Pause,
-  Play,
-  Trash2,
-  Mail,
-  Calendar,
-  CreditCard,
   HardDrive,
   Cpu,
-  Wifi,
   ShieldAlert,
   ShieldCheck,
-  UserX,
-  UserCheck,
+  Pause,
+  Play,
+  PieChart,
 } from "lucide-react"
 
-interface Organization {
-  id: number
-  name: string
-  slug: string
+interface AggregateOrgData {
+  mode: string
+  byStatus: Array<{ status: string; count: number }>
+  bySize: Array<{ size: string; count: number }>
+  totals: {
+    organizations: number
+    users: number
+    processes: number
+  }
+}
+
+interface ManagementOrg {
+  token: string
   status: string
-  industry: string | null
-  size: string | null
-  createdAt: string
-  userCount: number
-  processCount: number
 }
 
 interface SystemHealth {
@@ -96,7 +87,6 @@ interface AuditLogEntry {
   resourceId: string | null
   timestamp: string
   ipAddress: string | null
-  userEmail?: string
 }
 
 interface SecurityEvent {
@@ -113,15 +103,15 @@ export default function SuperAdminPortal() {
   const { user, isLoading: loading } = useAuth()
   const { toast } = useToast()
   
-  const [organizations, setOrganizations] = useState<Organization[]>([])
+  const [aggregateData, setAggregateData] = useState<AggregateOrgData | null>(null)
+  const [managementOrgs, setManagementOrgs] = useState<ManagementOrg[]>([])
   const [systemHealth, setSystemHealth] = useState<SystemHealth | null>(null)
   const [platformMetrics, setPlatformMetrics] = useState<PlatformMetrics | null>(null)
   const [auditLogs, setAuditLogs] = useState<AuditLogEntry[]>([])
   const [securityEvents, setSecurityEvents] = useState<SecurityEvent[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [searchTerm, setSearchTerm] = useState("")
   const [statusFilter, setStatusFilter] = useState("all")
-  const [selectedOrg, setSelectedOrg] = useState<Organization | null>(null)
+  const [selectedOrg, setSelectedOrg] = useState<ManagementOrg | null>(null)
   const [actionDialogOpen, setActionDialogOpen] = useState(false)
   const [actionType, setActionType] = useState<string>("")
 
@@ -145,15 +135,17 @@ export default function SuperAdminPortal() {
   const fetchAllData = async () => {
     setIsLoading(true)
     try {
-      const [orgsRes, healthRes, metricsRes, auditRes, securityRes] = await Promise.all([
-        apiClient.get("/api/super-admin/organizations"),
+      const [aggRes, mgmtRes, healthRes, metricsRes, auditRes, securityRes] = await Promise.all([
+        apiClient.get("/api/super-admin/organizations?mode=aggregate"),
+        apiClient.get("/api/super-admin/organizations?mode=management"),
         apiClient.get("/api/super-admin/health"),
         apiClient.get("/api/super-admin/metrics"),
         apiClient.get("/api/super-admin/audit-logs?limit=50"),
         apiClient.get("/api/super-admin/security-events"),
       ])
 
-      if (orgsRes.ok) setOrganizations(await orgsRes.json())
+      if (aggRes.ok) setAggregateData(await aggRes.json())
+      if (mgmtRes.ok) setManagementOrgs(await mgmtRes.json())
       if (healthRes.ok) setSystemHealth(await healthRes.json())
       if (metricsRes.ok) setPlatformMetrics(await metricsRes.json())
       if (auditRes.ok) setAuditLogs((await auditRes.json()).logs || [])
@@ -170,9 +162,9 @@ export default function SuperAdminPortal() {
     }
   }
 
-  const handleOrgAction = async (action: string, orgId: number) => {
+  const handleOrgAction = async (action: string, token: string) => {
     try {
-      const res = await apiClient.post(`/api/super-admin/organizations/${orgId}/${action}`)
+      const res = await apiClient.post(`/api/super-admin/organizations/${token}/${action}`)
       if (res.ok) {
         toast({
           title: "Success",
@@ -193,11 +185,8 @@ export default function SuperAdminPortal() {
     setSelectedOrg(null)
   }
 
-  const filteredOrgs = organizations.filter(org => {
-    const matchesSearch = org.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          org.slug.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesStatus = statusFilter === "all" || org.status === statusFilter
-    return matchesSearch && matchesStatus
+  const filteredOrgs = managementOrgs.filter(org => {
+    return statusFilter === "all" || org.status === statusFilter
   })
 
   const getStatusBadge = (status: string) => {
@@ -223,6 +212,11 @@ export default function SuperAdminPortal() {
     ) : (
       <XCircle className="h-5 w-5 text-red-500" />
     )
+  }
+
+  const getStatusCount = (status: string) => {
+    const found = aggregateData?.byStatus.find(s => s.status === status)
+    return found ? Number(found.count) : 0
   }
 
   if (loading || isLoading) {
@@ -259,8 +253,8 @@ export default function SuperAdminPortal() {
           <ShieldAlert className="h-4 w-4 text-amber-500" />
           <AlertTitle className="text-amber-500">Privacy Protection Active</AlertTitle>
           <AlertDescription>
-            Super Admin access is restricted from viewing client data, personal information, 
-            and process content. Only aggregate metrics and system health data are accessible.
+            Super Admin access shows only aggregate metrics and anonymized identifiers.
+            No access to client names, business data, or personal information.
           </AlertDescription>
         </Alert>
 
@@ -282,9 +276,9 @@ export default function SuperAdminPortal() {
                   <Building2 className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{platformMetrics?.totalOrganizations || 0}</div>
+                  <div className="text-2xl font-bold">{aggregateData?.totals.organizations || 0}</div>
                   <p className="text-xs text-muted-foreground">
-                    {platformMetrics?.activeOrganizations || 0} active
+                    {getStatusCount("active")} active
                   </p>
                 </CardContent>
               </Card>
@@ -295,9 +289,9 @@ export default function SuperAdminPortal() {
                   <Users className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{platformMetrics?.totalUsers || 0}</div>
+                  <div className="text-2xl font-bold">{aggregateData?.totals.users || 0}</div>
                   <p className="text-xs text-muted-foreground">
-                    {platformMetrics?.activeUsers || 0} active today
+                    Across all tenants
                   </p>
                 </CardContent>
               </Card>
@@ -308,7 +302,7 @@ export default function SuperAdminPortal() {
                   <Activity className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{platformMetrics?.totalProcesses || 0}</div>
+                  <div className="text-2xl font-bold">{aggregateData?.totals.processes || 0}</div>
                   <p className="text-xs text-muted-foreground">
                     {platformMetrics?.totalEventLogs?.toLocaleString() || 0} event logs
                   </p>
@@ -330,6 +324,29 @@ export default function SuperAdminPortal() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <PieChart className="h-5 w-5" />
+                    Organization Distribution
+                  </CardTitle>
+                  <CardDescription>Aggregate tenant statistics by status</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  {aggregateData?.byStatus.map((item) => (
+                    <div key={item.status} className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        {getStatusBadge(item.status)}
+                      </div>
+                      <span className="text-lg font-semibold">{item.count}</span>
+                    </div>
+                  ))}
+                  {(!aggregateData?.byStatus || aggregateData.byStatus.length === 0) && (
+                    <p className="text-sm text-muted-foreground text-center py-4">No data available</p>
+                  )}
+                </CardContent>
+              </Card>
+
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -387,44 +404,6 @@ export default function SuperAdminPortal() {
                   </div>
                 </CardContent>
               </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <ShieldCheck className="h-5 w-5" />
-                    Recent Security Events
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ScrollArea className="h-[200px]">
-                    {securityEvents.length === 0 ? (
-                      <p className="text-sm text-muted-foreground text-center py-8">
-                        No security events
-                      </p>
-                    ) : (
-                      <div className="space-y-3">
-                        {securityEvents.slice(0, 5).map((event) => (
-                          <div key={event.id} className="flex items-start gap-3 p-2 rounded-lg bg-muted/50">
-                            {event.severity === "high" ? (
-                              <AlertTriangle className="h-4 w-4 text-red-500 mt-0.5" />
-                            ) : event.severity === "medium" ? (
-                              <AlertTriangle className="h-4 w-4 text-yellow-500 mt-0.5" />
-                            ) : (
-                              <ShieldCheck className="h-4 w-4 text-blue-500 mt-0.5" />
-                            )}
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-medium truncate">{event.message}</p>
-                              <p className="text-xs text-muted-foreground">
-                                {new Date(event.timestamp).toLocaleString()}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </ScrollArea>
-                </CardContent>
-              </Card>
             </div>
           </TabsContent>
 
@@ -433,54 +412,39 @@ export default function SuperAdminPortal() {
               <CardHeader>
                 <CardTitle>Tenant Management</CardTitle>
                 <CardDescription>
-                  Manage organizations without accessing their data
+                  Manage tenant status using anonymized identifiers (no access to tenant data)
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Search organizations..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-9"
-                    />
-                  </div>
                   <Select value={statusFilter} onValueChange={setStatusFilter}>
-                    <SelectTrigger className="w-[150px]">
-                      <SelectValue placeholder="Status" />
+                    <SelectTrigger className="w-[200px]">
+                      <SelectValue placeholder="Filter by status" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">All Status</SelectItem>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="trial">Trial</SelectItem>
-                      <SelectItem value="suspended">Suspended</SelectItem>
-                      <SelectItem value="canceled">Canceled</SelectItem>
+                      <SelectItem value="all">All Status ({managementOrgs.length})</SelectItem>
+                      <SelectItem value="active">Active ({filteredOrgs.filter(o => o.status === "active").length})</SelectItem>
+                      <SelectItem value="trial">Trial ({filteredOrgs.filter(o => o.status === "trial").length})</SelectItem>
+                      <SelectItem value="suspended">Suspended ({filteredOrgs.filter(o => o.status === "suspended").length})</SelectItem>
+                      <SelectItem value="canceled">Canceled ({filteredOrgs.filter(o => o.status === "canceled").length})</SelectItem>
                     </SelectContent>
                   </Select>
+                  <p className="text-sm text-muted-foreground">
+                    Showing {filteredOrgs.length} tenant{filteredOrgs.length !== 1 ? 's' : ''}
+                  </p>
                 </div>
 
                 <div className="rounded-md border">
-                  <div className="grid grid-cols-7 gap-4 p-4 font-medium border-b bg-muted/50">
-                    <div className="col-span-2">Organization</div>
+                  <div className="grid grid-cols-3 gap-4 p-4 font-medium border-b bg-muted/50">
+                    <div>Anonymized ID</div>
                     <div>Status</div>
-                    <div>Industry</div>
-                    <div>Users</div>
-                    <div>Processes</div>
                     <div className="text-right">Actions</div>
                   </div>
                   <ScrollArea className="h-[400px]">
                     {filteredOrgs.map((org) => (
-                      <div key={org.id} className="grid grid-cols-7 gap-4 p-4 border-b items-center hover:bg-muted/30">
-                        <div className="col-span-2">
-                          <p className="font-medium">{org.name}</p>
-                          <p className="text-sm text-muted-foreground">{org.slug}</p>
-                        </div>
+                      <div key={org.token} className="grid grid-cols-3 gap-4 p-4 border-b items-center hover:bg-muted/30">
+                        <div className="font-mono text-sm">{org.token}</div>
                         <div>{getStatusBadge(org.status)}</div>
-                        <div className="text-sm">{org.industry || "-"}</div>
-                        <div className="text-sm">{org.userCount}</div>
-                        <div className="text-sm">{org.processCount}</div>
                         <div className="flex justify-end gap-2">
                           {org.status === "active" && (
                             <Button
@@ -492,7 +456,8 @@ export default function SuperAdminPortal() {
                                 setActionDialogOpen(true)
                               }}
                             >
-                              <Pause className="h-4 w-4" />
+                              <Pause className="h-4 w-4 mr-1" />
+                              Suspend
                             </Button>
                           )}
                           {org.status === "suspended" && (
@@ -505,7 +470,22 @@ export default function SuperAdminPortal() {
                                 setActionDialogOpen(true)
                               }}
                             >
-                              <Play className="h-4 w-4" />
+                              <Play className="h-4 w-4 mr-1" />
+                              Activate
+                            </Button>
+                          )}
+                          {org.status === "trial" && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => {
+                                setSelectedOrg(org)
+                                setActionType("activate")
+                                setActionDialogOpen(true)
+                              }}
+                            >
+                              <Play className="h-4 w-4 mr-1" />
+                              Activate
                             </Button>
                           )}
                         </div>
@@ -513,7 +493,7 @@ export default function SuperAdminPortal() {
                     ))}
                     {filteredOrgs.length === 0 && (
                       <div className="p-8 text-center text-muted-foreground">
-                        No organizations found
+                        No tenants found
                       </div>
                     )}
                   </ScrollArea>
@@ -579,7 +559,7 @@ export default function SuperAdminPortal() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Wifi className="h-5 w-5" />
+                    <Globe className="h-5 w-5" />
                     API Health
                   </CardTitle>
                 </CardHeader>
@@ -698,7 +678,7 @@ export default function SuperAdminPortal() {
                     <AlertTriangle className="h-5 w-5" />
                     Security Events
                   </CardTitle>
-                  <CardDescription>Recent security-related events across the platform</CardDescription>
+                  <CardDescription>Recent security-related events (anonymized)</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ScrollArea className="h-[250px]">
@@ -720,8 +700,8 @@ export default function SuperAdminPortal() {
                             )}
                             <div className="flex-1">
                               <div className="flex items-center justify-between">
-                                <p className="font-medium">{event.type}</p>
-                                <Badge variant={event.resolved ? "outline" : "destructive"}>
+                                <p className="font-medium text-sm">{event.type.replace(/_/g, ' ')}</p>
+                                <Badge variant={event.resolved ? "outline" : "destructive"} className="text-xs">
                                   {event.resolved ? "Resolved" : "Active"}
                                 </Badge>
                               </div>
@@ -758,15 +738,11 @@ export default function SuperAdminPortal() {
                       <div key={log.id} className="flex items-start gap-4 p-3 rounded-lg border hover:bg-muted/30">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <Badge variant="outline">{log.action}</Badge>
+                            <Badge variant="outline">{log.action.replace(/_/g, ' ')}</Badge>
                             <span className="text-sm font-medium">{log.resource}</span>
-                            {log.resourceId && (
-                              <span className="text-xs text-muted-foreground">#{log.resourceId}</span>
-                            )}
                           </div>
                           <div className="flex items-center gap-4 mt-1 text-xs text-muted-foreground">
                             <span>{new Date(log.timestamp).toLocaleString()}</span>
-                            {log.ipAddress && <span>IP: {log.ipAddress}</span>}
                           </div>
                         </div>
                       </div>
@@ -867,12 +843,12 @@ export default function SuperAdminPortal() {
           <DialogContent>
             <DialogHeader>
               <DialogTitle>
-                {actionType === "suspend" ? "Suspend Organization" : "Activate Organization"}
+                {actionType === "suspend" ? "Suspend Tenant" : "Activate Tenant"}
               </DialogTitle>
               <DialogDescription>
                 {actionType === "suspend"
-                  ? `Are you sure you want to suspend "${selectedOrg?.name}"? Users will lose access until reactivated.`
-                  : `Are you sure you want to activate "${selectedOrg?.name}"? Users will regain full access.`}
+                  ? `Are you sure you want to suspend tenant ${selectedOrg?.token}? Users will lose access until reactivated.`
+                  : `Are you sure you want to activate tenant ${selectedOrg?.token}? Users will regain full access.`}
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
@@ -881,7 +857,7 @@ export default function SuperAdminPortal() {
               </Button>
               <Button
                 variant={actionType === "suspend" ? "destructive" : "default"}
-                onClick={() => selectedOrg && handleOrgAction(actionType, selectedOrg.id)}
+                onClick={() => selectedOrg && handleOrgAction(actionType, selectedOrg.token)}
               >
                 {actionType === "suspend" ? "Suspend" : "Activate"}
               </Button>

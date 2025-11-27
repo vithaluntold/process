@@ -55,7 +55,14 @@ export async function GET(req: NextRequest) {
       .limit(limit)
       .offset(offset)
 
-    const logs = await query
+    const rawLogs = await query
+    
+    const PRIVACY_RESOURCES = ["organization", "tenant", "user", "team"]
+    const logs = rawLogs.map(log => ({
+      ...log,
+      resourceId: PRIVACY_RESOURCES.includes(log.resource) ? null : log.resourceId,
+      ipAddress: log.ipAddress ? log.ipAddress.split('.').slice(0, 2).join('.') + '.x.x' : null,
+    }))
 
     return NextResponse.json({
       logs,
