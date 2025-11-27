@@ -99,16 +99,34 @@ The Super Admin Portal (`/super-admin`) provides platform-wide administrative ca
 - **Settings**: Platform-wide configuration options
 
 ### Privacy Guardrails
+The Super Admin Portal implements comprehensive privacy guardrails to ensure no client data exposure:
+
+**Token-Based Tenant Management:**
+- Organizations are identified by non-reversible UUID tokens (adminToken field)
+- Tokens are randomly generated using crypto.randomUUID() and cannot be used to derive organization identity
+- Super Admins never see numeric organization IDs or organization names
+
+**Data Protection:**
 - NO access to client process data, event logs, or documents
 - NO access to user personal information or passwords
-- NO access to organization-specific content
-- Audit log filtering excludes data access entries
-- Only aggregate metrics and system health data visible
+- NO access to organization-specific content (names, domains, settings)
+- Aggregate metrics only (counts by status, not individual details)
+
+**Audit Log Privacy:**
+- resourceId is nulled for sensitive resources (organization, tenant, user, team)
+- IP addresses are partially masked (only first two octets visible)
+- Action filtering excludes data access entries
+
+**Token Rotation:**
+- POST /api/super-admin/organizations with action="rotate_token" to invalidate compromised tokens
+- New token automatically generated and returned
 
 ### Super Admin API Endpoints
-- `GET /api/super-admin/organizations` - List all organizations with aggregate counts
-- `POST /api/super-admin/organizations/:id/suspend` - Suspend an organization
-- `POST /api/super-admin/organizations/:id/activate` - Activate an organization
+- `GET /api/super-admin/organizations?mode=management` - List tenants by token + status only
+- `GET /api/super-admin/organizations?mode=aggregate` - Aggregate statistics (counts only)
+- `POST /api/super-admin/organizations` - Token rotation and administrative actions
+- `POST /api/super-admin/organizations/:token/suspend` - Suspend a tenant (token-based)
+- `POST /api/super-admin/organizations/:token/activate` - Activate a tenant (token-based)
 - `GET /api/super-admin/health` - System health metrics
 - `GET /api/super-admin/metrics` - Platform-wide aggregate metrics
 - `GET /api/super-admin/audit-logs` - Platform audit logs (filtered)
