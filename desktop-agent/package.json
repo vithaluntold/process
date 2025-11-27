@@ -1,46 +1,204 @@
 {
   "name": "epi-q-agent",
   "version": "1.0.0",
-  "description": "EPI-Q Desktop Activity Capture Agent",
+  "description": "EPI-Q Desktop Activity Capture Agent for Task Mining",
   "main": "dist/main/index.js",
   "scripts": {
     "build": "tsc && npm run build:renderer",
     "build:renderer": "cp src/renderer/index.html dist/renderer/",
     "start": "npm run build && electron .",
+    "dev": "npm run build && electron . --dev",
     "package": "npm run build && electron-builder",
     "package:win": "npm run build && electron-builder --win",
     "package:mac": "npm run build && electron-builder --mac",
-    "package:linux": "npm run build && electron-builder --linux"
+    "package:linux": "npm run build && electron-builder --linux",
+    "package:all": "npm run build && electron-builder -mwl",
+    "package:msi": "npm run build && electron-builder --win msi",
+    "package:pkg": "npm run build && electron-builder --mac pkg",
+    "release": "npm run build && electron-builder --publish always",
+    "release:win": "npm run build && electron-builder --win --publish always",
+    "release:mac": "npm run build && electron-builder --mac --publish always",
+    "release:linux": "npm run build && electron-builder --linux --publish always"
   },
   "build": {
-    "appId": "com.finaceverse.epi-q-agent",
+    "appId": "com.epiq.desktop-agent",
     "productName": "EPI-Q Agent",
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
     "directories": {
-      "output": "release"
+      "output": "release",
+      "buildResources": "assets"
     },
     "files": [
       "dist/**/*",
-      "assets/**/*"
+      "assets/**/*",
+      "!**/*.ts",
+      "!**/*.map"
+    ],
+    "extraResources": [
+      {
+        "from": "assets/",
+        "to": "assets/",
+        "filter": ["**/*"]
+      }
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "epiq",
+        "repo": "desktop-agent",
+        "releaseType": "release"
+      },
+      {
+        "provider": "generic",
+        "url": "${env.UPDATE_SERVER_URL}",
+        "channel": "latest"
+      }
     ],
     "win": {
-      "target": ["nsis", "portable"],
-      "icon": "assets/icon.png"
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        },
+        {
+          "target": "msi",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "publisherName": "EPI-Q Inc",
+      "verifyUpdateCodeSignature": true,
+      "signAndEditExecutable": true,
+      "certificateSubjectName": "${env.WIN_CSC_SUBJECT_NAME}",
+      "certificateSha1": "${env.WIN_CSC_SHA1}",
+      "rfc3161TimeStampServer": "http://timestamp.digicert.com"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "perMachine": false,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "license": "LICENSE.txt",
+      "deleteAppDataOnUninstall": false,
+      "include": "installer/nsis/installer.nsh"
+    },
+    "msi": {
+      "oneClick": false,
+      "perMachine": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "runAfterFinish": false,
+      "upgradeCode": "7B8E4F2A-C519-4D6E-A831-F9E7C0D52B16"
     },
     "mac": {
-      "target": ["dmg", "zip"],
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "pkg",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64", "arm64"]
+        }
+      ],
       "category": "public.app-category.productivity",
-      "icon": "assets/icon.png"
+      "icon": "assets/icon.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "entitlements.mac.plist",
+      "identity": "${env.APPLE_IDENTITY}",
+      "signIgnore": ["node_modules"]
+    },
+    "afterSign": "scripts/notarize.js",
+    "dmg": {
+      "sign": true,
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 540,
+        "height": 380
+      }
+    },
+    "pkg": {
+      "allowAnywhere": false,
+      "allowCurrentUserHome": true,
+      "allowRootDirectory": false,
+      "isVersionChecked": true,
+      "isRelocatable": false,
+      "overwriteAction": "upgrade"
     },
     "linux": {
-      "target": ["AppImage", "deb", "rpm"],
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        },
+        {
+          "target": "deb",
+          "arch": ["x64"]
+        },
+        {
+          "target": "rpm",
+          "arch": ["x64"]
+        },
+        {
+          "target": "tar.gz",
+          "arch": ["x64"]
+        }
+      ],
       "category": "Utility",
-      "icon": "assets/icon.png"
+      "icon": "assets/icons",
+      "maintainer": "EPI-Q Inc <support@epiq.com>",
+      "vendor": "EPI-Q Inc",
+      "synopsis": "Desktop Activity Capture Agent for Task Mining",
+      "description": "EPI-Q Agent captures desktop activity for process mining and task automation analysis."
+    },
+    "deb": {
+      "depends": ["libgtk-3-0", "libnotify4", "libnss3", "libxss1", "libxtst6", "xdg-utils"],
+      "afterInstall": "installer/linux/postinstall.sh",
+      "afterRemove": "installer/linux/postremove.sh"
+    },
+    "rpm": {
+      "depends": ["gtk3", "libnotify", "nss", "libXScrnSaver", "libXtst", "xdg-utils"],
+      "afterInstall": "installer/linux/postinstall.sh",
+      "afterRemove": "installer/linux/postremove.sh"
     }
   },
-  "keywords": ["task-mining", "activity-tracking", "process-mining"],
-  "author": "FinACEverse",
+  "keywords": ["task-mining", "activity-tracking", "process-mining", "automation", "desktop-agent"],
+  "author": {
+    "name": "EPI-Q Inc",
+    "email": "support@epiq.com"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/epiq/desktop-agent.git"
+  },
   "devDependencies": {
+    "@electron/notarize": "^2.2.0",
     "@types/node": "^20.0.0",
     "electron": "^28.0.0",
     "electron-builder": "^24.0.0",
@@ -48,6 +206,9 @@
   },
   "dependencies": {
     "axios": "^1.6.0",
+    "electron-log": "^5.0.0",
+    "electron-store": "^8.1.0",
+    "electron-updater": "^6.1.0",
     "screenshot-desktop": "^1.15.0",
     "active-win": "^8.0.0",
     "node-global-key-listener": "^0.3.0"
