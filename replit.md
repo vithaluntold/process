@@ -86,6 +86,23 @@ EPI-Q is a production-ready enterprise SaaS platform built with Next.js, React, 
 | Forecasting Dashboard | Production-Ready | `components/predictive-analytics.tsx` |
 | Interactive Charts | Production-Ready | Recharts integration |
 
+### Enterprise Connectors (100% Complete)
+| Feature | Status | Location |
+|---------|--------|----------|
+| Connector Framework | Production-Ready | `lib/connectors/base-connector.ts` |
+| Salesforce Connector | Production-Ready | `lib/connectors/salesforce.ts` |
+| ServiceNow Connector | Production-Ready | `lib/connectors/servicenow.ts` |
+| OAuth 2.0 with CSRF Protection | Production-Ready | `lib/connectors/security.ts` |
+| Token Envelope Encryption | Production-Ready | `lib/connectors/security.ts` |
+| Health Monitoring | Production-Ready | `app/api/connectors/route.ts` |
+| Field Mapping | Production-Ready | `shared/schema.ts` |
+
+**Connector Security Architecture:**
+- OAuth state tokens signed with HMAC-SHA256 and time-bounded (10 minute expiry)
+- All OAuth tokens encrypted at rest using EnvelopeEncryptionService
+- Per-tenant credential isolation with multi-tenant organization scoping
+- Automatic token refresh with encrypted storage
+
 ## ML Algorithms Reference
 
 ### Anomaly Detection Algorithms
@@ -149,6 +166,38 @@ GET /api/security/encryption/status
 POST /api/security/encryption/status (test encryption)
 GET /api/security/audit
 POST /api/security/audit
+```
+
+### Connector Endpoints
+```
+GET /api/connectors
+  Returns: List of configured connectors with health status
+
+POST /api/connectors
+  Body: { connectorType, displayName, instanceUrl, config }
+  Creates: New connector configuration
+
+GET /api/connectors/[id]
+  Returns: Connector details and OAuth state
+
+PUT /api/connectors/[id]
+  Body: { displayName, config, fieldMappings, status }
+  Updates: Connector configuration
+
+DELETE /api/connectors/[id]
+  Deletes: Connector and associated OAuth tokens
+
+GET /api/connectors/[id]/auth-url
+  Returns: OAuth authorization URL for connector setup
+
+GET /api/connectors/[id]/oauth/callback
+  Handles: OAuth callback with CSRF-protected state validation
+
+POST /api/connectors/[id]/test
+  Tests: Connector connection with decrypted tokens
+
+GET /api/connectors/[id]/objects
+  Returns: Available objects for field mapping
 ```
 
 ## External Dependencies
