@@ -14,3 +14,6 @@ export {
 export * from './salesforce';
 export * from './servicenow';
 export * from './sap';
+export * from './oracle';
+export * from './dynamics';
+export * from './streaming';

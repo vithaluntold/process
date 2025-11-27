@@ -20,7 +20,14 @@ EPI-Q is built with Next.js, React, and TypeScript, featuring a multi-tenant arc
 - **Super Admin Portal:** Provides platform metrics, health monitoring, token-based tenant management, privacy guardrails, and audit log review.
 - **Task Mining:** Offers task pattern analysis, frequency & duration analytics, and automation scoring.
 - **Predictive Analytics:** Features anomaly detection and forecasting dashboards with interactive charts.
-- **Enterprise Connectors:** A robust framework supports connectors for Salesforce, ServiceNow, and SAP OData, including OAuth 2.0 with CSRF protection, token envelope encryption, and health monitoring. The SAP OData connector supports dynamic service path resolution, OData v2/v4, and multi-tenant scoping.
+- **Enterprise Connectors:** A robust framework supports 6 enterprise connectors with full frontend-backend E2E integration:
+  - **Salesforce:** OAuth 2.0, REST API, 20+ objects, field mapping
+  - **ServiceNow:** OAuth 2.0, Table API, ITSM objects, rate limiting
+  - **SAP OData:** OData v2/v4, 15+ objects, dynamic service path resolution
+  - **Oracle EBS:** OAuth 2.0/Basic auth, REST API, 15+ business objects
+  - **Microsoft Dynamics 365:** Azure AD OAuth 2.0, Dataverse API, 13+ CRM entities
+  - **Real-time Streaming:** Kafka, Azure Event Hub, AWS Kinesis, Google Pub/Sub
+- **ETL Data Transformation Pipeline:** Supports 10 transformation operations (map, filter, aggregate, join, sort, deduplicate, enrich, validate, split, merge) with batch processing, error handling, and API endpoints.
 
 **System Design Choices:**
 - **Logging:** Utilizes Pino for structured, high-performance JSON logging, with features like request tracing, HTTP logging, security event logging, ML operation logging, DB query logging, and sensitive data redaction.

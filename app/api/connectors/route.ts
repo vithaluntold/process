@@ -7,13 +7,20 @@ import { getCurrentUser } from '@/lib/server-auth';
 import { z } from 'zod';
 
 const createConnectorSchema = z.object({
-  name: z.string().min(1).max(100),
-  connectorType: z.enum(['salesforce', 'servicenow', 'sap', 'dynamics', 'oracle', 'custom']),
-  authType: z.enum(['oauth2', 'basic', 'api_key', 'jwt']),
-  instanceUrl: z.string().url().optional(),
+  name: z.string().min(1).max(100).optional(),
+  displayName: z.string().min(1).max(100).optional(),
+  connectorType: z.enum(['salesforce', 'servicenow', 'sap', 'dynamics', 'oracle', 'streaming', 'custom']),
+  authType: z.enum(['oauth2', 'basic', 'api_key', 'jwt']).optional(),
+  instanceUrl: z.string().url().optional().or(z.string().max(0)),
   scopes: z.string().optional(),
   scheduleCron: z.string().optional(),
   metadata: z.record(z.unknown()).optional(),
+  config: z.object({
+    clientId: z.string().optional(),
+    clientSecret: z.string().optional(),
+  }).optional(),
+}).refine(data => data.name || data.displayName, {
+  message: 'Either name or displayName is required',
 });
 
 export async function GET(request: NextRequest) {
@@ -47,6 +54,11 @@ export async function GET(request: NextRequest) {
 
     const connectors = await query;
 
+    const formatConnector = (c: typeof connectors[0]) => ({
+      ...c,
+      displayName: c.name,
+    });
+
     if (includeHealth && connectors.length > 0) {
       const connectorIds = connectors.map((c) => c.id);
       const healthRecords = await db
@@ -60,7 +72,7 @@ export async function GET(request: NextRequest) {
 
       return NextResponse.json({
         connectors: connectors.map((c) => ({
-          ...c,
+          ...formatConnector(c),
           health: healthMap.get(c.id) || null,
         })),
         availableTypes: getAvailableConnectors(),
@@ -68,7 +80,7 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json({
-      connectors,
+      connectors: connectors.map(formatConnector),
       availableTypes: getAvailableConnectors(),
     });
   } catch (error) {
@@ -102,21 +114,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, connectorType, authType, instanceUrl, scopes, scheduleCron, metadata } = parsed.data;
+    const { name, displayName, connectorType, authType, instanceUrl, scopes, scheduleCron, metadata, config } = parsed.data;
+
+    const connectorName = name || displayName || 'Unnamed Connector';
+    
+    const defaultAuthType = connectorType === 'streaming' ? 'api_key' : 'oauth2';
 
     const [connector] = await db
       .insert(connectorConfigurations)
       .values({
         organizationId,
-        name,
+        name: connectorName,
         connectorType,
-        authType,
-        instanceUrl,
-        scopes,
+        authType: authType || defaultAuthType,
+        instanceUrl: instanceUrl || null,
+        scopes: scopes || null,
         scheduleCron: scheduleCron || '0 */4 * * *',
         status: 'inactive',
         syncEnabled: true,
         metadata: metadata || {},
+        credentialsEnvelope: config ? JSON.stringify(config) : null,
         createdBy: user.id,
       })
       .returning();
@@ -126,7 +143,12 @@ export async function POST(request: NextRequest) {
       status: 'unknown',
     });
 
-    return NextResponse.json({ connector }, { status: 201 });
+    return NextResponse.json({ 
+      connector: {
+        ...connector,
+        displayName: connector.name,
+      }
+    }, { status: 201 });
   } catch (error) {
     console.error('Error creating connector:', error);
     return NextResponse.json(

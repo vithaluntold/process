@@ -91,6 +91,30 @@ const connectorTypes = [
     color: "text-orange-500",
     bgColor: "bg-orange-500/10",
   },
+  {
+    id: "dynamics",
+    name: "Microsoft Dynamics 365",
+    description: "Connect to Dynamics 365 CRM and ERP for sales, service, and operations data",
+    icon: Building2,
+    color: "text-purple-500",
+    bgColor: "bg-purple-500/10",
+  },
+  {
+    id: "oracle",
+    name: "Oracle EBS",
+    description: "Connect to Oracle E-Business Suite for financials, procurement, and manufacturing data",
+    icon: Database,
+    color: "text-red-500",
+    bgColor: "bg-red-500/10",
+  },
+  {
+    id: "streaming",
+    name: "Real-time Streaming",
+    description: "Connect to Kafka, Azure Event Hub, AWS Kinesis, or Google Pub/Sub for real-time events",
+    icon: Cloud,
+    color: "text-cyan-500",
+    bgColor: "bg-cyan-500/10",
+  },
 ]
 
 function getStatusBadge(status: string, healthStatus?: string) {
