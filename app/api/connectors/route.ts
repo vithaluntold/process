@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { connectorConfigurations, connectorHealth } from '@/shared/schema';
-import { eq, and } from 'drizzle-orm';
+import { eq, and, sql, inArray } from 'drizzle-orm';
 import { getAvailableConnectors } from '@/lib/connectors';
 import { getCurrentUser } from '@/lib/server-auth';
 import { z } from 'zod';
@@ -48,14 +48,12 @@ export async function GET(request: NextRequest) {
     const connectors = await query;
 
     if (includeHealth && connectors.length > 0) {
+      const connectorIds = connectors.map((c) => c.id);
       const healthRecords = await db
         .select()
         .from(connectorHealth)
         .where(
-          eq(
-            connectorHealth.connectorConfigId,
-            connectors[0].id
-          )
+          sql`${connectorHealth.connectorConfigId} = ANY(ARRAY[${sql.join(connectorIds, sql`, `)}]::int[])`
         );
 
       const healthMap = new Map(healthRecords.map((h) => [h.connectorConfigId, h]));

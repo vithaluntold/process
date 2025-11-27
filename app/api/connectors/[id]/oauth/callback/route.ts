@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { connectorConfigurations, connectorOAuthState, connectorHealth } from '@/shared/schema';
+import { connectorConfigurations, connectorHealth } from '@/shared/schema';
 import { eq, and } from 'drizzle-orm';
 import { getCurrentUser } from '@/lib/server-auth';
 import { getConnector } from '@/lib/connectors';
 import type { ConnectorType } from '@/lib/connectors/types';
+import { validateOAuthState, storeEncryptedTokens } from '@/lib/connectors/security';
 
 export async function GET(
   request: NextRequest,
@@ -32,11 +33,24 @@ export async function GET(
       );
     }
 
+    if (!state) {
+      return NextResponse.redirect(
+        new URL(`/integrations?error=Missing state parameter&connectorId=${connectorId}`, request.url)
+      );
+    }
+
     const user = await getCurrentUser();
     if (!user || !user.organizationId) {
       return NextResponse.redirect(new URL('/auth/signin', request.url));
     }
     const organizationId = user.organizationId;
+
+    const validatedState = validateOAuthState(state, connectorId, organizationId);
+    if (!validatedState) {
+      return NextResponse.redirect(
+        new URL(`/integrations?error=Invalid or expired OAuth state - please try again&connectorId=${connectorId}`, request.url)
+      );
+    }
 
     const [config] = await db
       .select()
@@ -67,35 +81,15 @@ export async function GET(
 
     const tokens = await connector.exchangeCodeForTokens(config, code, redirectUri);
 
-    const existingOAuth = await db
-      .select()
-      .from(connectorOAuthState)
-      .where(eq(connectorOAuthState.connectorConfigId, connectorId));
-
-    if (existingOAuth.length > 0) {
-      await db
-        .update(connectorOAuthState)
-        .set({
-          accessTokenEnvelope: tokens.accessToken,
-          refreshTokenEnvelope: tokens.refreshToken,
-          tokenType: tokens.tokenType,
-          expiresAt: tokens.expiresAt,
-          lastRefreshedAt: new Date(),
-          scope: tokens.scope,
-          metadata: { instanceUrl: tokens.instanceUrl, ...tokens.metadata },
-        })
-        .where(eq(connectorOAuthState.connectorConfigId, connectorId));
-    } else {
-      await db.insert(connectorOAuthState).values({
-        connectorConfigId: connectorId,
-        accessTokenEnvelope: tokens.accessToken,
-        refreshTokenEnvelope: tokens.refreshToken,
-        tokenType: tokens.tokenType,
-        expiresAt: tokens.expiresAt,
-        scope: tokens.scope,
-        metadata: { instanceUrl: tokens.instanceUrl, ...tokens.metadata },
-      });
-    }
+    await storeEncryptedTokens(connectorId, {
+      accessToken: tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+      tokenType: tokens.tokenType,
+      expiresAt: tokens.expiresAt,
+      instanceUrl: tokens.instanceUrl,
+      scope: tokens.scope,
+      metadata: tokens.metadata,
+    });
 
     await db
       .update(connectorConfigurations)

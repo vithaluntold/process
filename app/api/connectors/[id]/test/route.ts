@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { connectorConfigurations, connectorHealth, connectorOAuthState } from '@/shared/schema';
+import { connectorConfigurations, connectorHealth } from '@/shared/schema';
 import { eq, and } from 'drizzle-orm';
 import { getCurrentUser } from '@/lib/server-auth';
 import { getConnector } from '@/lib/connectors';
 import type { ConnectorType, OAuthTokens, ConnectorContext } from '@/lib/connectors/types';
+import { getDecryptedTokens } from '@/lib/connectors/security';
 import { Logger } from '@/lib/logger';
 
 export async function POST(
@@ -39,12 +40,8 @@ export async function POST(
       return NextResponse.json({ error: 'Connector not found' }, { status: 404 });
     }
 
-    const [oauthState] = await db
-      .select()
-      .from(connectorOAuthState)
-      .where(eq(connectorOAuthState.connectorConfigId, connectorId));
-
-    if (!oauthState) {
+    const decryptedTokens = await getDecryptedTokens(connectorId);
+    if (!decryptedTokens) {
       return NextResponse.json(
         { error: 'Connector not authenticated. Please complete OAuth setup.' },
         { status: 400 }
@@ -67,12 +64,12 @@ export async function POST(
     };
 
     const tokens: OAuthTokens = {
-      accessToken: oauthState.accessTokenEnvelope,
-      refreshToken: oauthState.refreshTokenEnvelope || undefined,
-      tokenType: oauthState.tokenType || 'Bearer',
-      expiresAt: oauthState.expiresAt || undefined,
-      instanceUrl: (oauthState.metadata as { instanceUrl?: string })?.instanceUrl || config.instanceUrl || undefined,
-      scope: oauthState.scope || undefined,
+      accessToken: decryptedTokens.accessToken,
+      refreshToken: decryptedTokens.refreshToken,
+      tokenType: decryptedTokens.tokenType,
+      expiresAt: decryptedTokens.expiresAt,
+      instanceUrl: decryptedTokens.instanceUrl || config.instanceUrl || undefined,
+      scope: decryptedTokens.scope,
     };
 
     const result = await connector.testConnection(config, tokens, context);

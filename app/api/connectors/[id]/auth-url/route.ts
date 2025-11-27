@@ -5,7 +5,7 @@ import { eq, and } from 'drizzle-orm';
 import { getCurrentUser } from '@/lib/server-auth';
 import { getConnector } from '@/lib/connectors';
 import type { ConnectorType } from '@/lib/connectors/types';
-import crypto from 'crypto';
+import { generateOAuthState } from '@/lib/connectors/security';
 
 export async function GET(
   request: NextRequest,
@@ -50,7 +50,7 @@ export async function GET(
 
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || `https://${request.headers.get('host')}`;
     const redirectUri = `${baseUrl}/api/connectors/${connectorId}/oauth/callback`;
-    const state = crypto.randomBytes(16).toString('hex');
+    const state = generateOAuthState(connectorId, organizationId);
 
     const authUrl = connector.buildAuthUrl(config, redirectUri, state);
 
