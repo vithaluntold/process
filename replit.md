@@ -7,34 +7,137 @@ EPI-Q is a multi-tenant SaaS platform designed to transform raw operational data
 - Prefers comprehensive documentation with detailed feature descriptions and step-by-step user guides
 - Consistent dashboard structure and navigation across all module pages
 
+## Current Implementation Status
+
+### Fully Implemented Features (Production-Ready)
+
+**Process Mining Core:**
+- Process Discovery using Alpha Miner algorithm (`server/alpha-miner.ts`)
+- Conformance Checking with deviation analysis (`server/conformance-checker.ts`)
+- Performance Analytics with KPI tracking (`server/performance-analytics.ts`)
+- Automation Opportunity Identification (`components/automation-opportunities.tsx`)
+- Process Flowchart Visualization with ReactFlow (`components/process-flowchart.tsx`)
+
+**Analytics & Insights:**
+- Anomaly Detection using statistical Z-score analysis (`server/anomaly-detector.ts`)
+- Forecasting using Holt-Winters, Linear Regression, Moving Average (`server/forecasting.ts`)
+- AI-Powered Insights via configurable LLM providers (`lib/ai.ts`)
+
+**Digital Twin & Simulation:**
+- Basic parameter-based simulation engine (`server/simulation-engine.ts`)
+- What-If Scenario comparison (`server/scenario-analysis.ts`)
+
+**Security & Compliance:**
+- HSM-backed KEK/DEK envelope encryption (AWS KMS, GCP KMS, Azure Key Vault, Local)
+- Tamper-proof audit logging with hash chains
+- JWT-based authentication with secure cookies
+- CSRF protection and rate limiting
+- Team-based RBAC with role hierarchy (Super Admin, Admin, Employee)
+- SSO/SAML 2.0 authentication
+- GDPR compliance (data export, deletion, consent)
+
+**Super Admin Portal:**
+- Platform-wide metrics and health monitoring
+- Token-based tenant management (privacy-preserving)
+- Audit log review with redaction for sensitive resources
+- Token rotation for security
+
+**Infrastructure:**
+- Multi-tenant architecture with strict data isolation
+- PostgreSQL with Drizzle ORM
+- API rate limiting per user
+- Zod schema validation
+
+### ML Integration (In Progress)
+
+**Completed TypeScript/Frontend:**
+- ML API endpoints created (`app/api/ml/anomaly-detection/route.ts`, `app/api/ml/forecast/route.ts`, `app/api/ml/simulation/route.ts`)
+- TypeScript ML client for Python services (`lib/ml-client.ts`)
+- FastAPI server definition (`server/ml-services/api/main.py`)
+- Updated Predictive Analytics dashboard with real anomaly detection and forecasting UI
+- Updated Task Mining dashboard with task frequency and automation analysis
+- Updated Scenario Analysis page with Monte Carlo simulation and comparison UI
+
+**Frontend Components Updated (No Longer Placeholders):**
+- `components/predictive-analytics.tsx` - Full anomaly detection + forecasting UI with algorithm selection
+- `components/task-mining-dashboard.tsx` - Task frequency, duration, automation scoring with charts
+- `components/scenario-analysis-page.tsx` - Monte Carlo simulation with baseline vs optimized comparison
+
+**Statistical Fallback (Always Available):**
+- Z-Score anomaly detection (when Python ML service unavailable)
+- Holt-Winters forecasting (statistical time series)
+- Basic Monte Carlo simulation (parameter-based)
+
+### Python ML Services (Available for Integration)
+
+Python ML implementations exist in `server/ml-services/` and are ready to connect via FastAPI:
+
+**Anomaly Detection** (`server/ml-services/anomaly-detection/`):
+- `lstm_autoencoder_prod.py` - LSTM Autoencoder
+- `vae_prod.py` - Variational Autoencoder
+- `isolation_forest_prod.py` - Isolation Forest
+- `dbscan_prod.py` - DBSCAN Clustering
+- `oneclass_svm_prod.py` - One-Class SVM
+
+**Forecasting** (`server/ml-services/forecasting/`):
+- `prophet_prod.py` - Facebook Prophet
+- `arima_prod.py` - ARIMA/SARIMA
+- `lstm_prod.py` - LSTM Networks
+- `gru_prod.py` - GRU Networks
+- `xgboost_prod.py` - XGBoost
+- `hybrid_arima_lstm_prod.py` - Hybrid Models
+
+**Digital Twin RL** (`server/ml-services/digital-twin/`):
+- `rl_optimizer.py` - PPO, TD3, Bayesian Optimization
+- `monte_carlo_simulator.py` - Monte Carlo Simulation
+
+**Process Discovery** (`server/ml-services/process-discovery/`):
+- `object_centric_mining.py` - OCPM
+- `trace2vec.py` - Trace2Vec/Activity2Vec
+
+### Remaining ML Integration Work
+
+1. **Deploy Python ML API**: Run FastAPI server on port 8000 for advanced ML algorithms
+2. **Install Python ML dependencies**: TensorFlow, PyTorch, scikit-learn, Prophet, etc.
+3. **Connect to advanced algorithms**: Route ML client to FastAPI when available
+
 ## System Architecture
+
 EPI-Q is a production-ready enterprise SaaS platform built with Next.js, React, and TypeScript. It features a multi-tenant architecture with strict data isolation by `organizationId` and a robust role hierarchy (Super Admin, Admin, Employee).
 
 **UI/UX Design:** The frontend uses Tailwind CSS with shadcn/ui components, `framer-motion` for animations, and a custom brand color palette with dark/light mode support. Interactive process visualizations are powered by ReactFlow. The dashboard design is professional, featuring Inter font, blue accent colors, clean white cards, subtle borders, and a clear layout with breadcrumb navigation. Authenticated pages use a standardized `AppLayout` for consistent navigation and a responsive sidebar.
 
-**Technical Implementations & Feature Specifications:**
-- **Core Features:** Process Discovery (Alpha Miner, Inductive Miner, OCPM, Trace2Vec, Activity2Vec), Conformance Checking, Performance Analytics, Automation Opportunities, Predictive Analytics (Anomaly Detection, Forecasting, Scenario Analysis), Digital Twin Simulation (PPO, TD3, Bayesian Optimization, Monte Carlo, Self-Evolving Digital Twin), Task Mining, Real-Time Process Monitoring, and Advanced Reporting. These are consolidated into a Unified Process Analysis Dashboard.
-- **AI-Powered Features:** An AI Process Assistant leveraging configurable LLM providers (Replit AI, OpenAI, Mistral AI, DeepSeek, Groq, Together AI) with encrypted API key storage.
-- **Security:** JWT-based authentication, team-based RBAC, Zod schema validation, SQL injection protection via Drizzle ORM, AES-256-GCM encrypted API keys, comprehensive CSRF protection, and distributed rate limiting. Enterprise-grade security includes HSM-backed key management, envelope encryption, and tamper-proof audit logging.
-- **Tenant Isolation:** `AsyncLocalStorage`-based tenant context system enforcing `organizationId` filtering on all database queries and API endpoints.
-- **Team Management:** Comprehensive team-based access control with invite-only employee registration via secure tokens and role-based permissions.
-- **Authentication:** Enterprise-grade password reset system, and SSO/SAML authentication (SAML 2.0 with multi-tenant configuration, auto-provisioning, and 4-field encryption).
-- **Pricing & Subscription:** A 4-tier enterprise SaaS pricing model (FREE, ELITE, PRO, ENTERPRISE) with integrated payment gateway support.
-- **Desktop Applications:** An installable Electron-based main desktop application and a separate Desktop Capture Agent for task mining.
-- **GDPR Compliance:** Features for data export, right to deletion, and consent management.
-- **Deployment:** Supports containerized deployment using Docker with multi-stage builds and Docker Compose.
-- **Backend:** PostgreSQL database, Drizzle ORM, comprehensive RESTful API, bcryptjs password hashing, Zod schema validation, user ID-based rate limiting, and secure cookie configuration.
-- **Advanced Analytics:** Over 28 ML algorithms implemented across anomaly detection (LSTM-AE, VAE, Isolation Forest, DBSCAN, One-Class SVM), forecasting (LSTM, GRU, ARIMA, Prophet, XGBoost, hybrid models), and reinforcement learning for digital twins (PPO, TD3, Bayesian Optimization).
+**Technical Implementations:**
+- **Currently Active:** Process Discovery (Alpha Miner), Conformance Checking, Performance Analytics, Automation Opportunities, Basic Digital Twin Simulation, Statistical Anomaly Detection, Holt-Winters Forecasting
+- **AI-Powered Features:** AI Process Assistant with configurable LLM providers (Replit AI, OpenAI, Mistral AI, DeepSeek, Groq, Together AI) with encrypted API key storage
+- **Security:** JWT authentication, team-based RBAC, Zod validation, SQL injection protection, AES-256-GCM encryption, CSRF protection, rate limiting, HSM-backed key management, envelope encryption, tamper-proof audit logging
+- **Tenant Isolation:** `AsyncLocalStorage`-based tenant context enforcing `organizationId` filtering
+- **Team Management:** Invite-only employee registration via secure tokens
+- **Authentication:** Password reset, SSO/SAML 2.0 with multi-tenant configuration
+- **Pricing:** 4-tier model (FREE, ELITE, PRO, ENTERPRISE) with payment gateway support
+- **Desktop:** Electron-based desktop application (packaging needed)
+- **GDPR:** Data export, deletion, consent management
+- **Deployment:** Docker multi-stage builds and Docker Compose
 
 ## External Dependencies
+
+**Currently Used:**
 - **Database**: PostgreSQL (via Neon)
 - **ORM**: Drizzle ORM
 - **AI Integration**: OpenAI (via Replit AI Integrations), Mistral AI, DeepSeek, Groq, Together AI
 - **UI Libraries**: ReactFlow, shadcn/ui, framer-motion
-- **Desktop Framework**: Electron 28 with Electron Builder
-- **Payment Gateways**: Razorpay, PayU, Payoneer
-- **Python ML Backend Libraries**: TensorFlow, PyTorch, scikit-learn, Prophet, statsmodels, pmdarima, xgboost, pyod, stable-baselines3, gymnasium, bayesian-optimization, pm4py, gensim, numpy, pandas, joblib, scipy
-- **Cloud Key Management (Optional for Enterprise Security)**: AWS KMS, Google Cloud KMS, Azure Key Vault
+- **Cloud Key Management**: AWS KMS, Google Cloud KMS, Azure Key Vault
+
+**For ML Integration (Python - Not Yet Active):**
+- TensorFlow, PyTorch, scikit-learn, Prophet, statsmodels, pmdarima, xgboost
+- pyod, stable-baselines3, gymnasium, bayesian-optimization
+- pm4py, gensim, numpy, pandas, joblib, scipy
+
+**For Desktop (Not Yet Packaged):**
+- Electron 28 with Electron Builder
+
+**Payment Gateways:**
+- Razorpay, PayU, Payoneer
 
 ## Enterprise Security Architecture
 
@@ -146,4 +249,23 @@ All compliance documentation is in `docs/compliance/`:
 ### Market Readiness Score
 - Current: 55%
 - Target: 85%+
-- Key gaps: Enterprise connectors, automated testing, compliance certifications
+- Key gaps: Python-TypeScript ML integration, automated testing, desktop agent packaging
+
+## Implementation Roadmap
+
+### Phase 1: Core ML Integration (Priority)
+1. Create FastAPI server for Python ML services
+2. Build TypeScript client for ML API calls
+3. Integrate anomaly detection (LSTM-AE, Isolation Forest)
+4. Integrate forecasting (Prophet, ARIMA)
+
+### Phase 2: Advanced Features
+1. Task Mining with desktop capture agent
+2. Digital Twin with RL optimization (PPO, TD3)
+3. Advanced process discovery (Inductive Miner, OCPM)
+
+### Phase 3: Production Hardening
+1. Automated testing (unit, integration, E2E)
+2. CI/CD pipeline
+3. Performance benchmarks
+4. Desktop app packaging
