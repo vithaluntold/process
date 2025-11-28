@@ -308,8 +308,8 @@ function extractAttribute(profile: SamlProfile, attributeName: string): string |
   }
 
   // Try nested attribute access (common in SAML assertions)
-  if (profile.attributes) {
-    const attr = profile.attributes[attributeName];
+  if (profile.attributes && typeof profile.attributes === 'object') {
+    const attr = (profile.attributes as Record<string, any>)[attributeName];
     if (attr) {
       return Array.isArray(attr) ? attr[0] : String(attr);
     }

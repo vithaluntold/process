@@ -161,7 +161,10 @@ export async function getTopApplications(userId: number, limit = 10) {
 }
 
 export async function createTaskPattern(data: TaskPatternInput) {
-  const [pattern] = await db.insert(schema.taskPatterns).values(data).returning();
+  const [pattern] = await db.insert(schema.taskPatterns).values({
+    ...data,
+    steps: data.steps || [],
+  }).returning();
   return pattern;
 }
 

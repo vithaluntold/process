@@ -98,19 +98,22 @@ export function Pulse({ children, className = "" }: PulseProps) {
   )
 }
 
-interface RippleButtonProps extends React.ComponentProps<'button'> {
-  children: ReactNode
+interface RippleButtonProps {
+  children: ReactNode;
+  className?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  disabled?: boolean;
 }
 
-export function RippleButton({ children, className = "", onClick, ...props }: RippleButtonProps) {
+export function RippleButton({ children, className = "", onClick, disabled }: RippleButtonProps) {
   return (
     <motion.button
       className={className}
+      disabled={disabled}
       whileTap={{ scale: 0.95 }}
       whileHover={{ scale: 1.05 }}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
       onClick={onClick}
-      {...props}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
     >
       {children}
     </motion.button>

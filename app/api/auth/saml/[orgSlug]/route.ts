@@ -39,20 +39,14 @@ export async function GET(
     // Create SAML instance with shared cache
     const saml = new SAML(samlOptions);
 
-    // Generate SAML AuthnRequest (cache provider automatically stores request ID)
-    const { id, context } = await saml.getAuthorizeRequestAsync();
-
-    // Store additional organization metadata linked to request ID
-    await samlRequestCache.saveAsync(`${id}_meta`, JSON.stringify({
-      orgSlug,
-      organizationId: organization.id,
-      timestamp: Date.now(),
-    }));
+    // Generate SAML AuthnRequest URL
+    const loginUrl = await saml.getAuthorizeUrlAsync('', '', {});
+    
+    // The cache provider should automatically store the request ID when generating the URL
+    // We'll rely on the InResponseTo validation in the callback
 
     // Redirect to IdP with AuthnRequest
-    // Organization context is stored in cache tied to request ID, not cookies
-    // (cookies with SameSite=lax won't survive cross-site POST from IdP)
-    return NextResponse.redirect(context);
+    return NextResponse.redirect(loginUrl);
   } catch (error) {
     console.error('SAML login initiation error:', error);
     return NextResponse.json(

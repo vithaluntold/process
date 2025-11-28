@@ -20,7 +20,6 @@ export class OrganizationService {
       industry: data.industry,
       size: data.size,
       billingEmail: data.billingEmail,
-      website: data.website,
       metadata: {},
     }).returning();
 

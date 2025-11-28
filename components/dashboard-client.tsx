@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import Link from "next/link"
+import LoadingSpinner from "@/components/ui/loading-spinner"
 import {
   BarChart3,
   FileUp,

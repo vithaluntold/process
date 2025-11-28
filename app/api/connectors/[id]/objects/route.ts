@@ -61,7 +61,7 @@ export async function GET(
         debug: (msg, data) => logger.debug(msg, data),
         info: (msg, data) => logger.info(msg, data),
         warn: (msg, data) => logger.warn(msg, data),
-        error: (msg, data) => logger.error(msg, data as Error),
+        error: (msg, data) => logger.error(msg, data instanceof Error ? data : new Error(String(data))),
       },
     };
 

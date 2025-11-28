@@ -58,7 +58,7 @@ export async function GET(
 
     const filename = `${report.title.replace(/[^a-z0-9]/gi, '_')}.${extension}`;
 
-    return new NextResponse(buffer, {
+    return new NextResponse(new Uint8Array(buffer), {
       headers: {
         "Content-Type": contentType,
         "Content-Disposition": `attachment; filename="${filename}"`,

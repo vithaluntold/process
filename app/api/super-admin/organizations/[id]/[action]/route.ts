@@ -14,6 +14,11 @@ export async function POST(
     if (authError) {
       return NextResponse.json({ error: authError.error }, { status: authError.status })
     }
+    
+    // At this point user is guaranteed to be non-null by requireSuperAdmin
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
 
     const { id: token, action } = await params
     

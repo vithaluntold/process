@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -13,6 +13,7 @@ import AppLayout from "@/components/app-layout"
 import { PageHeader } from "@/components/page-header"
 import { toast } from "sonner"
 import { apiClient } from "@/lib/api-client"
+import LoadingSpinner from "@/components/ui/loading-spinner"
 
 interface AnomalyDetection {
   type: string

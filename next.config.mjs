@@ -32,8 +32,35 @@ const nextConfig = {
       };
       config.parallelism = 1;
       config.cache = false;
+    } else {
+      // Production optimizations for better code splitting
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+              maxSize: 244000, // 244KB chunks
+            },
+            charts: {
+              test: /[\\/]node_modules[\\/](recharts|d3)[\\/]/,
+              name: 'charts',
+              chunks: 'all',
+              priority: 10,
+            },
+            common: {
+              minChunks: 2,
+              chunks: 'all',
+              enforce: true,
+              name: 'common',
+            },
+          },
+        },
+      };
     }
-    // Production optimizations enabled by default for better performance
     
     return config;
   },

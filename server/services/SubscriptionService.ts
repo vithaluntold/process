@@ -81,11 +81,11 @@ export class SubscriptionService {
       return null;
     }
 
-    const [usage] = await db
+    const usage = await db
       .select()
       .from(subscriptionUsage)
       .where(eq(subscriptionUsage.subscriptionId, subscription.subscription.id))
-      .orderBy(desc(subscriptionUsage.periodStart))
+      .orderBy(desc(subscriptionUsage.updatedAt))
       .limit(1);
 
     return {
@@ -145,10 +145,8 @@ export class SubscriptionService {
   }) {
     const [usage] = await db.insert(subscriptionUsage).values({
       subscriptionId: data.subscriptionId,
-      metricName: data.metricName,
-      metricValue: data.metricValue,
-      periodStart: data.periodStart,
-      periodEnd: data.periodEnd,
+      metricKey: data.metricName,
+      currentValue: data.metricValue,
     }).returning();
 
     return usage;
@@ -157,14 +155,14 @@ export class SubscriptionService {
   async getUsageStats(subscriptionId: number, metricName?: string) {
     const conditions = [eq(subscriptionUsage.subscriptionId, subscriptionId)];
     if (metricName) {
-      conditions.push(eq(subscriptionUsage.metricName, metricName));
+      conditions.push(eq(subscriptionUsage.metricKey, metricName));
     }
 
     return await db
       .select()
       .from(subscriptionUsage)
       .where(and(...conditions))
-      .orderBy(desc(subscriptionUsage.periodStart))
+      .orderBy(desc(subscriptionUsage.updatedAt))
       .limit(30);
   }
 
@@ -219,11 +217,11 @@ export class SubscriptionService {
   }) {
     const [plan] = await db.insert(subscriptionPlans).values({
       name: data.name,
-      description: data.description,
-      priceMonthly: data.priceMonthly.toString(),
-      priceYearly: data.priceYearly?.toString(),
-      features: data.features || {},
-      limits: data.limits || {},
+      tier: data.priceMonthly === 0 ? 'free' : data.priceMonthly < 50 ? 'pro' : 'enterprise',
+      monthlyPrice: Math.round(data.priceMonthly * 100), // convert to cents
+      yearlyPrice: data.priceYearly ? Math.round(data.priceYearly * 100) : null,
+      features: data.features || [],
+      featureLimits: data.limits || {},
       isActive: true,
     }).returning();
 
@@ -249,10 +247,10 @@ export class SubscriptionService {
       organizationId: data.organizationId,
       subscriptionId: data.subscriptionId,
       invoiceNumber,
-      amountSubtotal: data.amountSubtotal.toString(),
-      amountTax: amountTax.toString(),
-      amountTotal: amountTotal.toString(),
-      currency: data.currency || 'USD',
+      amountSubtotal: Math.round(data.amountSubtotal * 100), // convert to cents
+      amountTax: Math.round(amountTax * 100),
+      amountTotal: Math.round(amountTotal * 100),
+      currency: data.currency || 'usd',
       status: 'draft',
       dueDate: data.dueDate,
       lineItems: data.lineItems || [],
@@ -309,13 +307,11 @@ export class SubscriptionService {
   }) {
     const [payment] = await db.insert(payments).values({
       organizationId: data.organizationId,
-      amount: data.amount.toString(),
-      currency: data.currency || 'USD',
+      amount: Math.round(data.amount * 100), // convert to cents
+      currency: data.currency || 'usd',
       status: 'pending',
       paymentGateway: data.paymentGateway,
       gatewayTransactionId: data.gatewayTransactionId,
-      paymentMethod: data.paymentMethod,
-      description: data.description,
       metadata: data.metadata || {},
     }).returning();
 

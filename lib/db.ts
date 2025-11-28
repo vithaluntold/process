@@ -69,11 +69,6 @@ function initializePool(): PoolType | null {
       ssl: process.env.NODE_ENV === "production" ? {
         rejectUnauthorized: false // Railway requires this for SSL
       } : false,
-      // Retry configuration
-      retry: {
-        max: 3,
-        delay: 1000, // 1 second delay between retries
-      },
     });
 
     pool.on("error", (err: Error) => {
