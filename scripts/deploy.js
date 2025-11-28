@@ -87,11 +87,18 @@ async function main() {
     
     // Start the application using the standalone build
     console.log('🌟 Starting the application...');
+    
+    // Set PORT for Railway (Railway provides $PORT environment variable)
+    const port = process.env.PORT || 5000;
+    console.log(`🌐 Application will start on port: ${port}`);
+    
     execSync('node .next/standalone/server.js', { 
       stdio: 'inherit',
       env: {
         ...process.env,
-        DATABASE_URL: process.env.DATABASE_URL
+        DATABASE_URL: process.env.DATABASE_URL,
+        PORT: port,
+        HOSTNAME: '0.0.0.0'
       }
     });
   } catch (error) {
