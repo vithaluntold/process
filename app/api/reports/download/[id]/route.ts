@@ -7,7 +7,7 @@ import { generatePDFReport, generateExcelReport, generatePowerPointReport } from
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const user = await getCurrentUser();
   if (!user) {
@@ -15,7 +15,8 @@ export async function GET(
   }
 
   try {
-    const reportId = parseInt(params.id);
+    const { id } = await params;
+    const reportId = parseInt(id);
     
     const report = await db.query.generatedReports.findFirst({
       where: and(

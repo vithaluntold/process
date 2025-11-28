@@ -8,7 +8,7 @@ import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string; userId: string } }
+  { params }: { params: Promise<{ id: string; userId: string }> }
 ) {
   try {
     const currentUser = await getUserFromRequest(req);
@@ -31,10 +31,11 @@ export async function DELETE(
     const guardError = withApiGuards(req, 'team-member-remove', API_WRITE_LIMIT, currentUser.id);
     if (guardError) return guardError;
 
-    const teamId = parseInt(params.id);
-    const userId = parseInt(params.userId);
+    const { id, userId } = await params;
+    const teamId = parseInt(id);
+    const userIdNum = parseInt(userId);
     
-    if (isNaN(teamId) || isNaN(userId)) {
+    if (isNaN(teamId) || isNaN(userIdNum)) {
       return NextResponse.json(
         { error: "Invalid team ID or user ID" },
         { status: 400 }
@@ -64,11 +65,11 @@ export async function DELETE(
       .where(
         and(
           eq(teamMembers.teamId, teamId),
-          eq(teamMembers.userId, userId)
+          eq(teamMembers.userId, userIdNum)
         )
       );
 
-    if (team.managerId === userId) {
+    if (team.managerId === userIdNum) {
       await db
         .update(teams)
         .set({ managerId: null, updatedAt: new Date() })

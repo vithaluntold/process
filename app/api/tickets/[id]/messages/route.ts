@@ -12,9 +12,10 @@ const addMessageSchema = z.object({
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -27,7 +28,7 @@ export async function POST(
       return NextResponse.json({ error: 'User must belong to an organization' }, { status: 403 });
     }
 
-    const ticketId = parseInt(params.id);
+    const ticketId = parseInt(id);
     if (isNaN(ticketId)) {
       return NextResponse.json({ error: 'Invalid ticket ID' }, { status: 400 });
     }
@@ -60,9 +61,10 @@ export async function POST(
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -72,7 +74,7 @@ export async function GET(
       return NextResponse.json({ error: 'User must belong to an organization' }, { status: 403 });
     }
 
-    const ticketId = parseInt(params.id);
+    const ticketId = parseInt(id);
     if (isNaN(ticketId)) {
       return NextResponse.json({ error: 'Invalid ticket ID' }, { status: 400 });
     }

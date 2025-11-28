@@ -17,7 +17,7 @@ const updateOrganizationSchema = z.object({
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await getCurrentUser();
@@ -25,7 +25,8 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const organizationId = parseInt(params.id);
+    const { id } = await params;
+    const organizationId = parseInt(id);
     if (isNaN(organizationId)) {
       return NextResponse.json({ error: 'Invalid organization ID' }, { status: 400 });
     }
@@ -56,7 +57,7 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await getCurrentUser();
@@ -67,7 +68,8 @@ export async function PATCH(
     const guardError = withApiGuards(request, 'organization-update', API_WRITE_LIMIT, user.id);
     if (guardError) return guardError;
 
-    const organizationId = parseInt(params.id);
+    const { id } = await params;
+    const organizationId = parseInt(id);
     if (isNaN(organizationId)) {
       return NextResponse.json({ error: 'Invalid organization ID' }, { status: 400 });
     }
@@ -111,7 +113,7 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await getCurrentUser();
@@ -129,7 +131,8 @@ export async function DELETE(
     const guardError = withApiGuards(request, 'organization-delete', API_WRITE_LIMIT, user.id);
     if (guardError) return guardError;
 
-    const organizationId = parseInt(params.id);
+    const { id } = await params;
+    const organizationId = parseInt(id);
     if (isNaN(organizationId)) {
       return NextResponse.json({ error: 'Invalid organization ID' }, { status: 400 });
     }

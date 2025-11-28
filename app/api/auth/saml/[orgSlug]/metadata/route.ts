@@ -14,10 +14,10 @@ import { eq } from 'drizzle-orm';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { orgSlug: string } }
+  { params }: { params: Promise<{ orgSlug: string }> }
 ) {
   try {
-    const { orgSlug } = params;
+    const { orgSlug } = await params;
 
     // Get organization by slug
     const [organization] = await db

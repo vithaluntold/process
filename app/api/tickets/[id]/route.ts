@@ -18,9 +18,10 @@ const updateTicketSchema = z.object({
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -30,7 +31,7 @@ export async function GET(
       return NextResponse.json({ error: 'User must belong to an organization' }, { status: 403 });
     }
 
-    const ticketId = parseInt(params.id);
+    const ticketId = parseInt(id);
     if (isNaN(ticketId)) {
       return NextResponse.json({ error: 'Invalid ticket ID' }, { status: 400 });
     }
@@ -52,9 +53,10 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -67,7 +69,7 @@ export async function PATCH(
     const guardError = withApiGuards(request, 'ticket-update', API_WRITE_LIMIT, user.id);
     if (guardError) return guardError;
 
-    const ticketId = parseInt(params.id);
+    const ticketId = parseInt(id);
     if (isNaN(ticketId)) {
       return NextResponse.json({ error: 'Invalid ticket ID' }, { status: 400 });
     }
@@ -103,9 +105,10 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -116,13 +119,10 @@ export async function DELETE(
     }
 
     if (user.role !== 'admin' && user.role !== 'super_admin') {
-      return NextResponse.json({ error: 'Only admins can delete tickets' }, { status: 403 });
+      return NextResponse.json({ error: 'Admin access required' }, { status: 403 });
     }
 
-    const guardError = withApiGuards(request, 'ticket-delete', API_WRITE_LIMIT, user.id);
-    if (guardError) return guardError;
-
-    const ticketId = parseInt(params.id);
+    const ticketId = parseInt(id);
     if (isNaN(ticketId)) {
       return NextResponse.json({ error: 'Invalid ticket ID' }, { status: 400 });
     }

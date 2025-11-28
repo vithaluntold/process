@@ -8,7 +8,7 @@ import { API_WRITE_LIMIT } from "@/lib/rate-limiter";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = await getUserFromRequest(req);
@@ -31,7 +31,8 @@ export async function DELETE(
     const guardError = withApiGuards(req, 'invitation-delete', API_WRITE_LIMIT, currentUser.id);
     if (guardError) return guardError;
 
-    const invitationId = parseInt(params.id);
+    const { id } = await params;
+    const invitationId = parseInt(id);
     if (isNaN(invitationId)) {
       return NextResponse.json(
         { error: "Invalid invitation ID" },

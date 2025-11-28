@@ -16,7 +16,7 @@ const updateTeamSchema = z.object({
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = await getUserFromRequest(req);
@@ -39,7 +39,8 @@ export async function PUT(
     const guardError = withApiGuards(req, 'team-update', API_WRITE_LIMIT, currentUser.id);
     if (guardError) return guardError;
 
-    const teamId = parseInt(params.id);
+    const { id } = await params;
+    const teamId = parseInt(id);
     if (isNaN(teamId)) {
       return NextResponse.json(
         { error: "Invalid team ID" },
@@ -165,7 +166,7 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const currentUser = await getUserFromRequest(req);
@@ -188,7 +189,8 @@ export async function DELETE(
     const guardError = withApiGuards(req, 'team-delete', API_WRITE_LIMIT, currentUser.id);
     if (guardError) return guardError;
 
-    const teamId = parseInt(params.id);
+    const { id } = await params;
+    const teamId = parseInt(id);
     if (isNaN(teamId)) {
       return NextResponse.json(
         { error: "Invalid team ID" },

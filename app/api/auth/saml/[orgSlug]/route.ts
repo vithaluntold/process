@@ -13,10 +13,10 @@ import { SAML } from '@node-saml/node-saml';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { orgSlug: string } }
+  { params }: { params: Promise<{ orgSlug: string }> }
 ) {
   try {
-    const { orgSlug } = params;
+    const { orgSlug } = await params;
 
     // Get SAML configuration for the organization
     const result = await getSamlConfigByOrganizationSlug(orgSlug);

@@ -17,10 +17,10 @@ import { eq } from 'drizzle-orm';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { orgSlug: string } }
+  { params }: { params: Promise<{ orgSlug: string }> }
 ) {
   try {
-    const { orgSlug } = params;
+    const { orgSlug } = await params;
 
     // Get SAML configuration
     const result = await getSamlConfigByOrganizationSlug(orgSlug);
