@@ -53,8 +53,8 @@ export type TenantSafeHandler = (
  */
 export function createTenantSafeHandler(
   handler: TenantSafeHandler
-): (request: NextRequest, context?: { params: Promise<any> }) => Promise<NextResponse> {
-  return async (request: NextRequest, routeContext?: { params: Promise<any> }) => {
+): (request: NextRequest, context: { params: Promise<any> }) => Promise<NextResponse> {
+  return async (request: NextRequest, routeContext: { params: Promise<any> } = { params: Promise.resolve({}) }) => {
     try {
       // Step 1: Authenticate the user
       const user = await getCurrentUser();
@@ -87,7 +87,7 @@ export function createTenantSafeHandler(
       };
 
       // Step 4: Resolve route params if present
-      const params = routeContext?.params ? await routeContext.params : undefined;
+      const params = routeContext.params ? await routeContext.params : {};
 
       // Step 5: Execute handler within tenant context
       return await runWithTenantContext(
@@ -118,7 +118,7 @@ export function createTenantSafeHandler(
  */
 export function createAdminHandler(
   handler: TenantSafeHandler
-): (request: NextRequest, context?: { params: Promise<any> }) => Promise<NextResponse> {
+): (request: NextRequest, context: { params: Promise<any> }) => Promise<NextResponse> {
   return createTenantSafeHandler(async (request, context, params) => {
     // Enforce admin role
     if (context.role !== 'admin' && context.role !== 'super_admin') {
@@ -144,7 +144,7 @@ export function createAdminHandler(
  */
 export function createSuperAdminHandler(
   handler: TenantSafeHandler
-): (request: NextRequest, context?: { params: Promise<any> }) => Promise<NextResponse> {
+): (request: NextRequest, context: { params: Promise<any> }) => Promise<NextResponse> {
   return createTenantSafeHandler(async (request, context, params) => {
     // Enforce super admin role
     if (context.role !== 'super_admin') {
