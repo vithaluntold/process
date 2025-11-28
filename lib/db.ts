@@ -60,24 +60,43 @@ function initializePool(): PoolType | null {
       connectionString: databaseUrl,
       max: process.env.NODE_ENV === "production" ? 10 : 3,
       min: 1, // Keep at least 1 connection alive
-      idleTimeoutMillis: 30_000, // 30 seconds
-      connectionTimeoutMillis: 15_000, // 15 seconds for Railway
-      query_timeout: 30_000, // 30 seconds for queries
-      statement_timeout: 30_000, // 30 seconds for statements
+      idleTimeoutMillis: 60_000, // 60 seconds - increased for Railway
+      connectionTimeoutMillis: 30_000, // 30 seconds for Railway
+      query_timeout: 45_000, // 45 seconds for queries
+      statement_timeout: 45_000, // 45 seconds for statements
+      keepAlive: true,
+      keepAliveInitialDelayMillis: 0,
       ssl: process.env.NODE_ENV === "production" ? {
         rejectUnauthorized: false // Railway requires this for SSL
       } : false,
+      // Retry configuration
+      retry: {
+        max: 3,
+        delay: 1000, // 1 second delay between retries
+      },
     });
 
     pool.on("error", (err: Error) => {
-      console.error("Unexpected PostgreSQL pool error", err);
+      console.error("PostgreSQL pool error:", err.message);
+      // Don't exit the process on pool errors, let it retry
     });
 
-    pool.on("connect", () => {
-      console.log('[DB] PostgreSQL pool connected successfully');
+    pool.on("connect", (client: any) => {
+      console.log('[DB] PostgreSQL client connected successfully');
+      // Set connection-level timeouts
+      client.query('SET statement_timeout = 45000'); // 45 seconds
+      client.query('SET idle_in_transaction_session_timeout = 60000'); // 60 seconds
     });
 
-    console.log('[DB] Using standard PostgreSQL driver');
+    pool.on("acquire", () => {
+      console.log('[DB] PostgreSQL client acquired from pool');
+    });
+
+    pool.on("release", () => {
+      console.log('[DB] PostgreSQL client released back to pool');
+    });
+
+    console.log('[DB] Using standard PostgreSQL driver with enhanced configuration');
     return pool;
   }
 }
