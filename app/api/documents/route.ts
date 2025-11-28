@@ -25,7 +25,7 @@ const createDocumentSchema = z.object({
   activities: z.number().int().optional(),
 });
 
-export const GET = createTenantSafeHandler(async (request, context) => {
+export const GET = createTenantSafeHandler(async (request, context, params) => {
   try {
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get('limit') || '50');
@@ -53,7 +53,7 @@ export const GET = createTenantSafeHandler(async (request, context) => {
   }
 });
 
-export const POST = createTenantSafeHandler(async (request, context) => {
+export const POST = createTenantSafeHandler(async (request, context, params) => {
   try {
     const body = await request.json();
     const validatedData = createDocumentSchema.parse(body);

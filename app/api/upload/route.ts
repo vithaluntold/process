@@ -28,7 +28,7 @@ function sanitizeFilename(filename: string): string {
   return `${uuid}${ext}`;
 }
 
-export const POST = createTenantSafeHandler(async (request, context) => {
+export const POST = createTenantSafeHandler(async (request, context, params) => {
   const guardError = withApiGuards(request, 'file-upload', UPLOAD_LIMIT);
   if (guardError) return guardError;
 

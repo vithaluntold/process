@@ -26,7 +26,7 @@ export const revalidate = 30;
  * GET /api/processes
  * List all processes for the current tenant
  */
-export const GET = createTenantSafeHandler(async (request, context) => {
+export const GET = createTenantSafeHandler(async (request, context, params) => {
   const { organizationId, userId, role } = context;
   const { searchParams } = new URL(request.url);
   
@@ -80,7 +80,7 @@ export const GET = createTenantSafeHandler(async (request, context) => {
  * POST /api/processes
  * Create a new process for the current tenant
  */
-export const POST = createTenantSafeHandler(async (request, context) => {
+export const POST = createTenantSafeHandler(async (request, context, params) => {
   const guardError = withApiGuards(request, 'process-create', API_WRITE_LIMIT);
   if (guardError) return guardError;
 

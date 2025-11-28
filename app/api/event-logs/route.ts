@@ -36,7 +36,7 @@ const bulkCreateEventLogsSchema = z.object({
   })).min(1, 'At least one event is required'),
 });
 
-export const GET = createTenantSafeHandler(async (request, context) => {
+export const GET = createTenantSafeHandler(async (request, context, params) => {
   try {
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get('limit') || '100');
@@ -66,7 +66,7 @@ export const GET = createTenantSafeHandler(async (request, context) => {
   }
 });
 
-export const POST = createTenantSafeHandler(async (request, context) => {
+export const POST = createTenantSafeHandler(async (request, context, params) => {
   try {
     const body = await request.json();
 

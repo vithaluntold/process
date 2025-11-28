@@ -19,7 +19,7 @@ import { requireTenantContext } from '@/lib/tenant-context';
 export const dynamic = 'force-dynamic';
 export const revalidate = 30;
 
-export const GET = createTenantSafeHandler(async (request, context) => {
+export const GET = createTenantSafeHandler(async (request, context, params) => {
   try {
     const { organizationId, userId } = requireTenantContext();
 

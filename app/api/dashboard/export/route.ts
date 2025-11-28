@@ -25,7 +25,7 @@ const exportSchema = z.object({
   format: z.string().optional().default('pdf'),
 });
 
-export const POST = createTenantSafeHandler(async (request, context) => {
+export const POST = createTenantSafeHandler(async (request, context, params) => {
   try {
     const { organizationId, userId } = requireTenantContext();
 

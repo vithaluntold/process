@@ -41,7 +41,7 @@ const samlConfigSchema = z.object({
   clockTolerance: z.number().optional(),
 });
 
-export const GET = createAdminHandler(async (request, context) => {
+export const GET = createAdminHandler(async (request, context, params) => {
   try {
     const { organizationId } = context;
 
@@ -67,7 +67,7 @@ export const GET = createAdminHandler(async (request, context) => {
   }
 });
 
-export const POST = createAdminHandler(async (request, context) => {
+export const POST = createAdminHandler(async (request, context, params) => {
   try {
     const { userId, organizationId } = context;
 
@@ -161,7 +161,7 @@ export const POST = createAdminHandler(async (request, context) => {
   }
 });
 
-export const DELETE = createAdminHandler(async (request, context) => {
+export const DELETE = createAdminHandler(async (request, context, params) => {
   try {
     const { userId, organizationId } = context;
 
