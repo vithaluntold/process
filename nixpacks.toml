@@ -9,7 +9,7 @@ cmds = ["pnpm install --frozen-lockfile"]
 
 [phases.build]
 cmds = [
-  "NODE_OPTIONS='--max-old-space-size=8192' pnpm run build",
+  "NODE_ENV=production NODE_OPTIONS='--max-old-space-size=8192' pnpm run build",
   "cp -r public .next/standalone/public",
   "cp -r .next/static .next/standalone/.next/static"
 ]

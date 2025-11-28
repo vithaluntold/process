@@ -1,48 +1,39 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false, // Enable type checking in production
   },
   images: {
-    unoptimized: true,
+    unoptimized: false, // Enable image optimization in production
   },
-  // Use standalone output for smaller deployments
+  // Use standalone output for Railway deployment
   output: 'standalone',
-  // Disable source maps in production to save memory
+  // Enable source maps in production for better debugging
   productionBrowserSourceMaps: false,
-  // Disable eslint during build to save memory
+  // Enable eslint during build for production
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   experimental: {
-    // Optimize memory usage during build
+    // Enable memory optimizations but keep production features
     webpackMemoryOptimizations: true,
-    // Reduce memory by disabling webpack cache
-    webpackBuildWorker: false,
   },
-  // Reduce memory usage by limiting concurrent builds
-  webpack: (config, { isServer }) => {
-    // Disable source maps to reduce memory
-    config.devtool = false;
-    
-    // Aggressive memory optimizations
-    config.optimization = {
-      ...config.optimization,
-      minimize: false, // Disabled to save memory during build
-      moduleIds: 'deterministic',
-      removeAvailableModules: false,
-      removeEmptyChunks: false,
-      splitChunks: false,
-    };
-    
-    // Force sequential processing (no parallelism)
-    config.parallelism = 1;
-    
-    // Disable performance hints to save memory
-    config.performance = false;
-    
-    // Reduce cache to minimum
-    config.cache = false;
+  // Optimize webpack for production
+  webpack: (config, { isServer, dev }) => {
+    // Only apply memory constraints during development or if memory is limited
+    if (dev || process.env.MEMORY_LIMIT === 'true') {
+      config.optimization = {
+        ...config.optimization,
+        minimize: false,
+        moduleIds: 'deterministic',
+        removeAvailableModules: false,
+        removeEmptyChunks: false,
+        splitChunks: false,
+      };
+      config.parallelism = 1;
+      config.cache = false;
+    }
+    // Production optimizations enabled by default for better performance
     
     return config;
   },
@@ -87,7 +78,7 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'no-cache, no-store, must-revalidate',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
