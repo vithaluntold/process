@@ -15,7 +15,7 @@ cmds = [
 ]
 
 [start]
-cmd = "node .next/standalone/server.js"
+cmd = "npm run deploy"
 
 [variables]
 NODE_ENV = "production"
