@@ -43,11 +43,11 @@ PAYMENT_GATEWAY_WEBHOOK_SECRET=<copy-value-here>
 
 | Variable Name | Source | Example Value |
 |---------------|--------|---------------|
+| `DATABASE_URL` | **Set manually** | `postgresql://postgres:ucTyKnkgdEqocvzFkKAOkXWKWOUApVfc@ballast.proxy.rlwy.net:31554/railway` |
 | `SESSION_SECRET` | Replit Secrets | `your-secret-session-key` |
 | `AUTH_SECRET` | Replit Secrets (or same as SESSION_SECRET) | `your-auth-secret-key` |
 | `JWT_SECRET` | Replit Secrets (or same as SESSION_SECRET) | `your-jwt-secret-key` |
 | `MASTER_ENCRYPTION_KEY` | Replit Secrets | `your-32-char-encryption-key` |
-| `DATABASE_URL` | **Auto-set by Railway** | Provided by Railway PostgreSQL |
 | `NODE_ENV` | Set manually | `production` |
 
 **Note:** If `AUTH_SECRET` and `JWT_SECRET` are not in Replit, use the same value as `SESSION_SECRET`.
