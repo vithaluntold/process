@@ -33,15 +33,16 @@ async function checkDatabaseHealth(timeoutMs: number = 12000, retries: number = 
       
       const responseTime = Date.now() - startTime;
       
-      // Verify the result is valid
-      if (result && Array.isArray(result) && result.length > 0) {
+      // Drizzle execute returns a result object, not an array
+      // Just check if we got a result without error
+      if (result !== undefined && result !== null) {
         return {
           status: "up",
           responseTime,
           attempt,
         };
       } else {
-        throw new Error('Invalid database response');
+        throw new Error('No database response received');
       }
     } catch (error) {
       const responseTime = Date.now() - startTime;
