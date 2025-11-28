@@ -7,10 +7,10 @@ numReplicas = 1
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
 healthcheckPath = "/api/health"
-healthcheckTimeout = 300
+healthcheckTimeout = 30
 startCommand = "npm run deploy"
 
 [[deploy.healthcheck]]
 path = "/api/health"
-interval = 30
-timeout = 10
+interval = 60
+timeout = 15

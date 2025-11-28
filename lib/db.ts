@@ -55,16 +55,26 @@ function initializePool(): PoolType | null {
     console.log('[DB] Using Neon serverless driver');
     return pool;
   } else {
+    // Railway PostgreSQL configuration with optimized timeouts
     const pool = new PgPool({
       connectionString: databaseUrl,
       max: process.env.NODE_ENV === "production" ? 10 : 3,
-      min: 0,
-      idleTimeoutMillis: 10_000,
-      connectionTimeoutMillis: 5_000,
+      min: 1, // Keep at least 1 connection alive
+      idleTimeoutMillis: 30_000, // 30 seconds
+      connectionTimeoutMillis: 15_000, // 15 seconds for Railway
+      query_timeout: 30_000, // 30 seconds for queries
+      statement_timeout: 30_000, // 30 seconds for statements
+      ssl: process.env.NODE_ENV === "production" ? {
+        rejectUnauthorized: false // Railway requires this for SSL
+      } : false,
     });
 
     pool.on("error", (err: Error) => {
       console.error("Unexpected PostgreSQL pool error", err);
+    });
+
+    pool.on("connect", () => {
+      console.log('[DB] PostgreSQL pool connected successfully');
     });
 
     console.log('[DB] Using standard PostgreSQL driver');

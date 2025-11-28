@@ -43,7 +43,7 @@ PAYMENT_GATEWAY_WEBHOOK_SECRET=<copy-value-here>
 
 | Variable Name | Source | Example Value |
 |---------------|--------|---------------|
-| `DATABASE_URL` | **Set manually** | `postgresql://postgres:ucTyKnkgdEqocvzFkKAOkXWKWOUApVfc@ballast.proxy.rlwy.net:31554/railway` |
+| `DATABASE_URL` | **Set manually** | `postgresql://postgres:ucTyKnkgdEqocvzFkKAOkXWKWOUApVfc@ballast.proxy.rlwy.net:31554/railway?sslmode=require` |
 | `SESSION_SECRET` | Replit Secrets | `your-secret-session-key` |
 | `AUTH_SECRET` | Replit Secrets (or same as SESSION_SECRET) | `your-auth-secret-key` |
 | `JWT_SECRET` | Replit Secrets (or same as SESSION_SECRET) | `your-jwt-secret-key` |
