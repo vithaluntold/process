@@ -31,7 +31,7 @@ export const revalidate = 30;
  * - offset: Pagination offset (default: 0)
  * - teamId: Filter by team (optional)
  */
-export const GET = withTenantContext(async (request: NextRequest) => {
+export const GET = withTenantContext(async (request: NextRequest, context) => {
   try {
     const { searchParams } = new URL(request.url);
     
@@ -95,7 +95,7 @@ export const GET = withTenantContext(async (request: NextRequest) => {
  * - source: Data source (required)
  * - teamId: Team ID (optional)
  */
-export const POST = withTenantContext(async (request: NextRequest) => {
+export const POST = withTenantContext(async (request: NextRequest, context) => {
   try {
     const guardError = withApiGuards(request, 'process-create', API_WRITE_LIMIT);
     if (guardError) return guardError;

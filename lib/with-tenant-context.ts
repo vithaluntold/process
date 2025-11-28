@@ -11,7 +11,7 @@ import { runWithTenantContext } from "@/lib/tenant-context";
 
 export type ApiHandler = (
   request: NextRequest,
-  context?: { params: Promise<any> }
+  context: { params: Promise<any> }
 ) => Promise<Response>;
 
 /**
@@ -25,7 +25,7 @@ export type ApiHandler = (
  * });
  */
 export function withTenantContext(handler: ApiHandler): ApiHandler {
-  return async (request: NextRequest, context?: { params: Promise<any> }) => {
+  return async (request: NextRequest, context: { params: Promise<any> } = { params: Promise.resolve({}) }) => {
     // Get the authenticated user
     const user = await getCurrentUser();
     
@@ -71,7 +71,7 @@ export function withTenantContext(handler: ApiHandler): ApiHandler {
  * });
  */
 export function withAdminContext(handler: ApiHandler): ApiHandler {
-  return async (request: NextRequest, context?: { params: Promise<any> }) => {
+  return async (request: NextRequest, context: { params: Promise<any> } = { params: Promise.resolve({}) }) => {
     const user = await getCurrentUser();
     
     if (!user) {
@@ -123,7 +123,7 @@ export function withAdminContext(handler: ApiHandler): ApiHandler {
  * });
  */
 export function withSuperAdminContext(handler: ApiHandler): ApiHandler {
-  return async (request: NextRequest, context?: { params: Promise<any> }) => {
+  return async (request: NextRequest, context: { params: Promise<any> } = { params: Promise.resolve({}) }) => {
     const user = await getCurrentUser();
     
     if (!user) {
