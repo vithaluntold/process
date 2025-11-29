@@ -98,8 +98,10 @@ class ApiClient {
         const errorData = await response.clone().json();
         if (
           errorData.error?.includes("CSRF") ||
-          errorData.error?.includes("token")
+          errorData.error?.includes("token") ||
+          errorData.code === "CSRF_TOKEN_INVALID"
         ) {
+          console.warn("CSRF token invalid, refreshing...", errorData);
           // Clear cached token and retry once
           clearCSRFToken();
           const newToken = await getCSRFToken();

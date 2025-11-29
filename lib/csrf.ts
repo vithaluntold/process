@@ -9,11 +9,27 @@ export function verifyCSRFToken(request: NextRequest): boolean {
   const cookieToken = request.cookies.get("csrf-token")?.value;
   const headerToken = request.headers.get("x-csrf-token");
 
+  console.log('CSRF Debug:', {
+    cookieToken: cookieToken ? '***' : 'missing',
+    headerToken: headerToken ? '***' : 'missing',
+    url: request.nextUrl.pathname
+  });
+
   if (!cookieToken || !headerToken) {
+    console.warn('CSRF token missing:', { 
+      hasCookie: !!cookieToken, 
+      hasHeader: !!headerToken,
+      url: request.nextUrl.pathname 
+    });
     return false;
   }
 
-  return cookieToken === headerToken;
+  const isValid = cookieToken === headerToken;
+  if (!isValid) {
+    console.warn('CSRF token mismatch for:', request.nextUrl.pathname);
+  }
+
+  return isValid;
 }
 
 export function addCSRFCookie(response: NextResponse, token?: string): void {
@@ -36,8 +52,14 @@ export function requireCSRF(request: NextRequest): NextResponse | null {
   }
 
   if (!verifyCSRFToken(request)) {
+    console.error(`CSRF validation failed for ${method} ${request.nextUrl.pathname}`);
     return NextResponse.json(
-      { error: "Invalid or missing CSRF token" },
+      { 
+        error: "Invalid or missing CSRF token",
+        code: "CSRF_TOKEN_INVALID",
+        message: "Please refresh the page and try again",
+        url: request.nextUrl.pathname
+      },
       { status: 403 }
     );
   }
