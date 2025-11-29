@@ -1,8 +1,31 @@
-import { randomBytes, timingSafeEqual } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * Generate a cryptographically secure CSRF token using Web Crypto API
+ * Compatible with Edge Runtime
+ */
 export function generateCSRFToken(): string {
-  return randomBytes(32).toString("hex");
+  // Use Web Crypto API instead of Node.js crypto (Edge Runtime compatible)
+  const array = new Uint8Array(32);
+  crypto.getRandomValues(array);
+  return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+}
+
+/**
+ * Constant-time string comparison to prevent timing attacks
+ * Edge Runtime compatible implementation
+ */
+function timingSafeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) {
+    return false;
+  }
+  
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  
+  return result === 0;
 }
 
 export function verifyCSRFToken(request: NextRequest): boolean {
@@ -26,15 +49,12 @@ export function verifyCSRFToken(request: NextRequest): boolean {
 
   // Use constant-time comparison to prevent timing attacks
   try {
-    const cookieBuffer = Buffer.from(cookieToken, 'utf-8');
-    const headerBuffer = Buffer.from(headerToken, 'utf-8');
-    
-    if (cookieBuffer.length !== headerBuffer.length) {
+    if (cookieToken.length !== headerToken.length) {
       console.warn('CSRF token length mismatch for:', request.nextUrl.pathname);
       return false;
     }
     
-    const isValid = timingSafeEqual(cookieBuffer, headerBuffer);
+    const isValid = timingSafeEqual(cookieToken, headerToken);
     if (!isValid) {
       console.warn('CSRF token mismatch for:', request.nextUrl.pathname);
     }
