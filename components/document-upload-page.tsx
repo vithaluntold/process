@@ -26,6 +26,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { toast } from "sonner"
 import { apiClient } from "@/lib/api-client"
+import { getCSRFToken } from "@/lib/csrf-client"
 
 export default function DocumentUploadPage() {
   const router = useRouter()
@@ -38,6 +39,10 @@ export default function DocumentUploadPage() {
 
   useEffect(() => {
     fetchData()
+    // Pre-fetch CSRF token when component mounts
+    getCSRFToken().catch((error) => {
+      console.error("Failed to pre-fetch CSRF token:", error)
+    })
   }, [])
 
   const fetchData = async () => {
@@ -103,6 +108,7 @@ export default function DocumentUploadPage() {
       formData.append("file", file)
       formData.append("processName", file.name.replace(/\.[^/.]+$/, ""))
 
+      console.log("Starting upload with CSRF protection...")
       const res = await apiClient.upload("/api/upload", formData)
 
       if (res.ok) {
@@ -110,7 +116,13 @@ export default function DocumentUploadPage() {
         fetchData()
       } else {
         const error = await res.json()
-        toast.error(error.error || "Upload failed")
+        // Enhanced error handling for CSRF issues
+        if (res.status === 403 && error.code === "CSRF_TOKEN_INVALID") {
+          console.error("CSRF validation failed:", error)
+          toast.error("Security validation failed. Please refresh the page and try again.")
+        } else {
+          toast.error(error.error || "Upload failed")
+        }
       }
     } catch (error) {
       console.error("Upload error:", error)

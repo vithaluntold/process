@@ -1,4 +1,4 @@
-import { randomBytes } from "crypto";
+import { randomBytes, timingSafeEqual } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
 export function generateCSRFToken(): string {
@@ -24,21 +24,37 @@ export function verifyCSRFToken(request: NextRequest): boolean {
     return false;
   }
 
-  const isValid = cookieToken === headerToken;
-  if (!isValid) {
-    console.warn('CSRF token mismatch for:', request.nextUrl.pathname);
+  // Use constant-time comparison to prevent timing attacks
+  try {
+    const cookieBuffer = Buffer.from(cookieToken, 'utf-8');
+    const headerBuffer = Buffer.from(headerToken, 'utf-8');
+    
+    if (cookieBuffer.length !== headerBuffer.length) {
+      console.warn('CSRF token length mismatch for:', request.nextUrl.pathname);
+      return false;
+    }
+    
+    const isValid = timingSafeEqual(cookieBuffer, headerBuffer);
+    if (!isValid) {
+      console.warn('CSRF token mismatch for:', request.nextUrl.pathname);
+    }
+    
+    return isValid;
+  } catch (error) {
+    console.error('CSRF verification error:', error);
+    return false;
   }
-
-  return isValid;
 }
 
 export function addCSRFCookie(response: NextResponse, token?: string): void {
   const csrfToken = token || generateCSRFToken();
+  const isProduction = process.env.NODE_ENV === "production";
+  
   response.cookies.set("csrf-token", csrfToken, {
-    httpOnly: false,
-    sameSite: "strict",
-    secure: process.env.NODE_ENV === "production",
-    maxAge: 60 * 60 * 24 * 7,
+    httpOnly: false,  // Must be false so JavaScript can read it
+    sameSite: isProduction ? "lax" : "strict",  // Use 'lax' in production for better compatibility
+    secure: isProduction,  // Only secure in production (HTTPS)
+    maxAge: 60 * 60 * 24 * 7,  // 7 days
     path: "/",
   });
   response.headers.set("X-CSRF-Token", csrfToken);

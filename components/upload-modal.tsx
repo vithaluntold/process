@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Upload, FileUp, CheckCircle2, AlertCircle } from "lucide-react"
 import { toast } from "sonner"
 import { apiClient } from "@/lib/api-client"
+import { getCSRFToken } from "@/lib/csrf-client"
 
 interface UploadModalProps {
   open: boolean
@@ -19,6 +20,23 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
   const [file, setFile] = useState<File | null>(null)
   const [uploading, setUploading] = useState(false)
   const [processName, setProcessName] = useState("")
+  const [csrfReady, setCsrfReady] = useState(false)
+
+  // Pre-fetch CSRF token when modal opens
+  useEffect(() => {
+    if (open) {
+      setCsrfReady(false)
+      getCSRFToken()
+        .then(() => {
+          setCsrfReady(true)
+          console.log("CSRF token pre-fetched successfully")
+        })
+        .catch((error) => {
+          console.error("Failed to pre-fetch CSRF token:", error)
+          toast.error("Security token unavailable. Please refresh the page.")
+        })
+    }
+  }, [open])
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -47,6 +65,11 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
       return
     }
 
+    if (!csrfReady) {
+      toast.error("Security initialization incomplete. Please wait a moment and try again.")
+      return
+    }
+
     const fileName = file.name.toLowerCase()
     if (!fileName.endsWith('.csv')) {
       toast.error("Only CSV files are allowed. Please select a .csv file.")
@@ -60,10 +83,16 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
       formData.append("file", file)
       formData.append("processName", processName.trim())
 
+      console.log("Starting upload with CSRF protection...")
       const response = await apiClient.upload("/api/upload", formData)
       const data = await response.json()
 
       if (!response.ok) {
+        // Enhanced error handling for CSRF issues
+        if (response.status === 403 && data.code === "CSRF_TOKEN_INVALID") {
+          console.error("CSRF validation failed:", data)
+          throw new Error("Security validation failed. Please refresh the page and try again.")
+        }
         throw new Error(data.error || "Upload failed")
       }
 
@@ -73,6 +102,7 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
       onOpenChange(false)
       onUploadComplete?.()
     } catch (error) {
+      console.error("Upload error:", error)
       toast.error(error instanceof Error ? error.message : "Upload failed")
     } finally {
       setUploading(false)
@@ -139,13 +169,18 @@ export default function UploadModal({ open, onOpenChange, onUploadComplete }: Up
           </Button>
           <Button
             onClick={handleUpload}
-            disabled={!file || !processName.trim() || uploading}
+            disabled={!file || !processName.trim() || uploading || !csrfReady}
             className="bg-brand hover:bg-brand/90 text-white"
           >
             {uploading ? (
               <>
                 <Upload className="mr-2 h-4 w-4 animate-spin" />
                 Uploading...
+              </>
+            ) : !csrfReady ? (
+              <>
+                <Upload className="mr-2 h-4 w-4 animate-pulse" />
+                Initializing...
               </>
             ) : (
               <>
