@@ -13,13 +13,17 @@ export function middleware(request: NextRequest) {
   response.headers.set("x-client-ip", ip);
   response.headers.set("x-client-user-agent", userAgent);
   
-  // Apply CSRF protection to API routes (except specific endpoints)
-  if (request.nextUrl.pathname.startsWith("/api/") && 
-      !request.nextUrl.pathname.startsWith("/api/auth/csrf") &&
-      !request.nextUrl.pathname.startsWith("/api/health") &&
-      !request.nextUrl.pathname.startsWith("/api/ready") &&
-      !request.nextUrl.pathname.startsWith("/api/auth/[...nextauth]")) {
-    
+  // Apply CSRF protection to specific API routes only
+  // Exclude NextAuth endpoints and health checks
+  const path = request.nextUrl.pathname;
+  const shouldCheckCSRF = 
+    path.startsWith("/api/") && 
+    !path.startsWith("/api/auth/") &&  // Exclude all auth endpoints (NextAuth handles its own CSRF)
+    !path.startsWith("/api/health") &&
+    !path.startsWith("/api/ready") &&
+    !path.startsWith("/api/db-health");
+  
+  if (shouldCheckCSRF) {
     const csrfError = requireCSRF(request);
     if (csrfError) {
       return csrfError;

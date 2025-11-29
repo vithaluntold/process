@@ -24,9 +24,6 @@ class InvitationError extends Error {
 
 export async function POST(req: NextRequest) {
   try {
-    const csrfError = requireCSRF(req);
-    if (csrfError) return csrfError;
-
     const clientId = getClientIdentifier(req);
     const rateLimit = checkRateLimit(`invitation-accept:${clientId}`, INVITATION_ACCEPT_LIMIT);
     

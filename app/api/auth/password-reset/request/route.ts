@@ -4,7 +4,6 @@ import * as schema from "@/shared/schema";
 import { eq } from "drizzle-orm";
 import { passwordResetRequestSchema, sanitizeInput } from "@/lib/validation";
 import { checkRateLimit, getClientIdentifier } from "@/lib/rate-limiter";
-import { requireCSRF } from "@/lib/csrf";
 import { randomBytes } from "crypto";
 
 const PASSWORD_RESET_REQUEST_RATE_LIMIT = {
@@ -14,11 +13,6 @@ const PASSWORD_RESET_REQUEST_RATE_LIMIT = {
 
 export async function POST(request: NextRequest) {
   try {
-    const csrfError = requireCSRF(request);
-    if (csrfError) {
-      return csrfError;
-    }
-
     const clientId = getClientIdentifier(request);
     const rateLimit = checkRateLimit(`password-reset:${clientId}`, PASSWORD_RESET_REQUEST_RATE_LIMIT);
 

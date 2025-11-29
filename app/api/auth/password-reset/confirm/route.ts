@@ -14,11 +14,6 @@ const PASSWORD_RESET_CONFIRM_RATE_LIMIT = {
 
 export async function POST(request: NextRequest) {
   try {
-    const csrfError = requireCSRF(request);
-    if (csrfError) {
-      return csrfError;
-    }
-
     const clientId = getClientIdentifier(request);
     const rateLimit = checkRateLimit(`password-reset-confirm:${clientId}`, PASSWORD_RESET_CONFIRM_RATE_LIMIT);
 
